@@ -1,36 +1,36 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkControl.h"
 
 class VdkButton;
 class VdkWindow;
 class VdkScrollBar;
 
-/// \brief VdkSlider ·ç¸ñÊôĞÔ
+/// \brief VdkSlider é£æ ¼å±æ€§
 enum VdkSliderStyle {
 
-	/// \brief ÅÉÉúÀà·ç¸ñÎ»¶¨ÒåµÄÆğÊ¼Î»ĞòºÅ
+	/// \brief æ´¾ç”Ÿç±»é£æ ¼ä½å®šä¹‰çš„èµ·å§‹ä½åºå·
 	VSS_USER					= ( VCS_USER + 5 ),
-	/// \brief ÔÚ»¬¿éÍâµã»÷»¬¿éÊÇ·ñĞèÒªÌøµ½Êó±êµã»÷´¦
+	/// \brief åœ¨æ»‘å—å¤–ç‚¹å‡»æ»‘å—æ˜¯å¦éœ€è¦è·³åˆ°é¼ æ ‡ç‚¹å‡»å¤„
 	VSS_CLICK_TO_GO				= 1 << ( VCS_USER + 0 ),
-	/// \brief ÊúÖ±¹ö¶¯ÌõµÄÆğÊ¼µãÔÚ y Öá×î¸ß´¦£¬ºÍ¹ö¶¯ÌõµÄĞĞÎª¸ÕºÃÏà·´
+	/// \brief ç«–ç›´æ»šåŠ¨æ¡çš„èµ·å§‹ç‚¹åœ¨ y è½´æœ€é«˜å¤„ï¼Œå’Œæ»šåŠ¨æ¡çš„è¡Œä¸ºåˆšå¥½ç›¸å
 	VSS_VERTICAL_BOTTOM_UP		= 1 << ( VCS_USER + 1 ),
 };
 
-/// \brief VdkSlider µÄÔËĞĞÊ±×´Ì¬ÊôĞÔ¼¯
+/// \brief VdkSlider çš„è¿è¡Œæ—¶çŠ¶æ€å±æ€§é›†
 enum VdkSliderState {
 
-	/// \brief ÅÉÉúÀàµÄÔËĞĞÊ±×´Ì¬¶¨ÒåµÄÆğÊ¼Î»ĞòºÅ
+	/// \brief æ´¾ç”Ÿç±»çš„è¿è¡Œæ—¶çŠ¶æ€å®šä¹‰çš„èµ·å§‹ä½åºå·
 	VSST_USER					= ( VCS_USER + 5 ),
-	/// \brief µã»÷»¬¿é£¬ÊÍ·ÅÊó±êÊ±²»Òª·¢ËÍÊÂ¼ş
+	/// \brief ç‚¹å‡»æ»‘å—ï¼Œé‡Šæ”¾é¼ æ ‡æ—¶ä¸è¦å‘é€äº‹ä»¶
 	VSST_DONT_FIRE_EVENT		= 1 << ( VCST_USER + 0 ),
-	/// \brief ÊÕµ½ NORMAL ÊÂ¼şÊ±£¬Çø±ğ¶Ô´ı¡°¼´µã¼´´ï¡±ÊÍ·ÅÊó±êÓëÍÏ¶¯»¬¿é
-	/// ÊÍ·ÅÊó±êºóÊÕµ½µÄ²»Í¬°æ±¾ÊÂ¼ş
+	/// \brief æ”¶åˆ° NORMAL äº‹ä»¶æ—¶ï¼ŒåŒºåˆ«å¯¹å¾…â€œå³ç‚¹å³è¾¾â€é‡Šæ”¾é¼ æ ‡ä¸æ‹–åŠ¨æ»‘å—
+	/// é‡Šæ”¾é¼ æ ‡åæ”¶åˆ°çš„ä¸åŒç‰ˆæœ¬äº‹ä»¶
 	VSST_LAST_CLICK_TO_GO		= 1 << ( VCST_USER + 1 ),
 };
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief Îª VdkSlider ÉèÖÃ³õÊ¼»¯ĞÅÏ¢
+/// \brief ä¸º VdkSlider è®¾ç½®åˆå§‹åŒ–ä¿¡æ¯
 class VdkSliderInitializer : public 
 	VdkCtrlInitializer< VdkSliderInitializer >
 {
@@ -38,15 +38,15 @@ public:
 
 	typedef VdkSliderInitializer Slider;
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkSliderInitializer();
 
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	~VdkSliderInitializer();
 
-	/// \brief ÉèÖÃËùÓÃµÄÎ»Í¼Êı×é
+	/// \brief è®¾ç½®æ‰€ç”¨çš„ä½å›¾æ•°ç»„
 	///
-	/// \param hold ÈôÎªÕæ£¬Ôò»á½Ó¹Ü\a ba µÄ¿ØÖÆÈ¨£¬Îö¹¹º¯Êı±»µ÷ÓÃÊ±»áÊÕÄÚ´æ
+	/// \param hold è‹¥ä¸ºçœŸï¼Œåˆ™ä¼šæ¥ç®¡\a ba çš„æ§åˆ¶æƒï¼Œææ„å‡½æ•°è¢«è°ƒç”¨æ—¶ä¼šæ”¶å†…å­˜
 	Slider& bitmapArray(wxBitmap* ba, bool hold)
 	{
 		BitmapArray = ba;
@@ -55,16 +55,16 @@ public:
 		return *this;
 	}
 
-	/// \brief ÉèÖÃ¹ö¶¯ÌõµÄ¹ö¶¯·½Ïò
+	/// \brief è®¾ç½®æ»šåŠ¨æ¡çš„æ»šåŠ¨æ–¹å‘
 	Slider& vertical(bool b) { Vertical = b; return *this; }
 
-	/// \brief ÉèÖÃ¹ö¶¯ÌõÊÖ±úËùÓÃÎ»Í¼µÄ·Ö¸î·İÊı
+	/// \brief è®¾ç½®æ»šåŠ¨æ¡æ‰‹æŸ„æ‰€ç”¨ä½å›¾çš„åˆ†å‰²ä»½æ•°
 	Slider& thumbExpl(int nExpl) { Expl = nExpl; return *this; }
 
-	/// \brief ÉèÖÃ¹ö¶¯ÌõÊÖ±úËùÓÃÎ»Í¼µÄÀ­Éìµş·Å³¤¶È
+	/// \brief è®¾ç½®æ»šåŠ¨æ¡æ‰‹æŸ„æ‰€ç”¨ä½å›¾çš„æ‹‰ä¼¸å æ”¾é•¿åº¦
 	Slider& thumbTileLen(int len) { ThumbTileLen = len; return *this; }
 
-	/// \brief ÉèÖÃ¹ö¶¯ÌõÊÖ±úËùÓÃÎ»Í¼µÄÀ­Éì·½Ê½
+	/// \brief è®¾ç½®æ»šåŠ¨æ¡æ‰‹æŸ„æ‰€ç”¨ä½å›¾çš„æ‹‰ä¼¸æ–¹å¼
 	Slider& thumbResizeType(VdkResizeableBitmapType type)
 	{
 		ThumbResizeType = type;
@@ -86,37 +86,37 @@ protected:
 
 //////////////////////////////////////////////////////////////////////////
 
-/*!\brief ÍÏ¶¯ÊÖ±ú£¨¹ö¶¯Ìõ£©
+/*!\brief æ‹–åŠ¨æ‰‹æŸ„ï¼ˆæ»šåŠ¨æ¡ï¼‰
 **/
 class VdkSlider : public VdkControl
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkSlider() { Init(); }
 
-	/// \brief µÚÒ»½×¶Î¹¹½¨º¯Êı
+	/// \brief ç¬¬ä¸€é˜¶æ®µæ„å»ºå‡½æ•°
 	///
-	/// ´ÓÒ»¸öÎÄ¼şÃûÊı×éÖĞ»ñÈ¡Ò»¸öÎ»Í¼Êı×é¡£
-	/// \param strFileNames Êı×éÖÁÉÙÓ¦ÓĞ 3 Ïî( 3 ¸öÎÄ¼şÃû)
+	/// ä»ä¸€ä¸ªæ–‡ä»¶åæ•°ç»„ä¸­è·å–ä¸€ä¸ªä½å›¾æ•°ç»„ã€‚
+	/// \param strFileNames æ•°ç»„è‡³å°‘åº”æœ‰ 3 é¡¹( 3 ä¸ªæ–‡ä»¶å)
 	static wxBitmap* GetBitmaps(wxString* strFileNames);
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief Êµ¼Ê¹¹½¨º¯Êı
+	/// \brief å®é™…æ„å»ºå‡½æ•°
 	void Create(const VdkSliderInitializer& init_data);
 	
 	/////////////////////////////////////////////////////////////////////////
 
-	/// \brief ÒÆ¶¯µ½Ö¸¶¨°Ù·Ö±È
+	/// \brief ç§»åŠ¨åˆ°æŒ‡å®šç™¾åˆ†æ¯”
 	void GoTo(double percentage, wxDC* pDC, bool fireCallback = false);
 
-	/// \brief µÃµ½ VdkSlider µ±Ç°µÄ°Ù·Ö±È
-	/// \param prt ĞèÒª»ñÈ¡ÊÖ±ú×÷ÓÃÓòÊ±¿ÉÒÔÖ¸¶¨´ËÖ¸Õë
+	/// \brief å¾—åˆ° VdkSlider å½“å‰çš„ç™¾åˆ†æ¯”
+	/// \param prt éœ€è¦è·å–æ‰‹æŸ„ä½œç”¨åŸŸæ—¶å¯ä»¥æŒ‡å®šæ­¤æŒ‡é’ˆ
 	double GetProgress(wxRect* prt = NULL) const;
 
-	/// \brief ÉÏ´Î¹ö¶¯ÌõÏòÄÄ¸ö·½ÏòÍÏ¶¯£¿
+	/// \brief ä¸Šæ¬¡æ»šåŠ¨æ¡å‘å“ªä¸ªæ–¹å‘æ‹–åŠ¨ï¼Ÿ
 	enum SliderDirection {
 
 		SD_NONE,
@@ -124,53 +124,53 @@ public:
 		SD_MORE
 	};
 
-	/// \brief Ìá¹©Ò»¸öµãµÃµ½ÏòÄÄ¸ö·½Ïò¹ö¶¯
-	/// \param fLastDirection »ñÈ¡ÉÏ´Î¹ö¶¯µÄ·½Ïò
+	/// \brief æä¾›ä¸€ä¸ªç‚¹å¾—åˆ°å‘å“ªä¸ªæ–¹å‘æ»šåŠ¨
+	/// \param fLastDirection è·å–ä¸Šæ¬¡æ»šåŠ¨çš„æ–¹å‘
 	SliderDirection GetDirection(int y, SliderDirection& lastDirection) const;
 
-	/// \brief ÖØÖÃÍÏ¶¯·½Ïò
+	/// \brief é‡ç½®æ‹–åŠ¨æ–¹å‘
 	void ResetDirection();
 
-	/// \brief ÉèÖÃ²Á³ı±³¾°Ê±ËùÓÃµÄ»­Ë¢
+	/// \brief è®¾ç½®æ“¦é™¤èƒŒæ™¯æ—¶æ‰€ç”¨çš„ç”»åˆ·
 	void SetBackground(const wxBrush& brush) { m_bgBrush = brush; }
 
-	/// \brief ¹ö¶¯Ìõ¿É¹ö¶¯µÄ·½ÏòÊÇ·ñÎªÊúÖ±·½Ïò
+	/// \brief æ»šåŠ¨æ¡å¯æ»šåŠ¨çš„æ–¹å‘æ˜¯å¦ä¸ºç«–ç›´æ–¹å‘
 	bool IsVertical() const { return m_bVertical; }
 
-	/// \brief »ñÈ¡ÊÖ±ú¾ä±ú
-	/// \warning ÇëÎğÇáÒ×ĞŞ¸ÄÊÖ±úµÄ¸÷ÏîÊôĞÔ£¡
+	/// \brief è·å–æ‰‹æŸ„å¥æŸ„
+	/// \warning è¯·å‹¿è½»æ˜“ä¿®æ”¹æ‰‹æŸ„çš„å„é¡¹å±æ€§ï¼
 	const VdkButton* GetThumb() const { return m_pThumb; }
 
-	/// \brief ¸üĞÂÊÖ±ú×´Ì¬
+	/// \brief æ›´æ–°æ‰‹æŸ„çŠ¶æ€
 	///
-	/// Í¨¹ıÄ³Ğ©²»Ã÷ÏÔµÄ·½Ê½¸Ä¶¯ÁËÊÖ±úµÄµ±Ç°Î»ÖÃµÈĞÅÏ¢Ê±£¬\n
-	/// ¿ÉÒÔµ÷ÓÃ±¾º¯Êı½«¸Ä¶¯Á¢¼´ÏÔÏÖ³öÀ´¡£
+	/// é€šè¿‡æŸäº›ä¸æ˜æ˜¾çš„æ–¹å¼æ”¹åŠ¨äº†æ‰‹æŸ„çš„å½“å‰ä½ç½®ç­‰ä¿¡æ¯æ—¶ï¼Œ\n
+	/// å¯ä»¥è°ƒç”¨æœ¬å‡½æ•°å°†æ”¹åŠ¨ç«‹å³æ˜¾ç°å‡ºæ¥ã€‚
 	void UpdateThumbState(wxDC* pDC);
 
 private:
 
-	/// \brief ³õÊ¼»¯¿Ø¼ş
+	/// \brief åˆå§‹åŒ–æ§ä»¶
 	void Init();
 
-	/// \brief ½ÓÊÕ¡¢´¦ÀíÍ¨ÖªĞÅÏ¢
+	/// \brief æ¥æ”¶ã€å¤„ç†é€šçŸ¥ä¿¡æ¯
 	virtual void DoHandleNotify(const VdkNotify& notice);
 
-	/// \brief ´¦ÀíÊó±êÊÂ¼ş
+	/// \brief å¤„ç†é¼ æ ‡äº‹ä»¶
 	virtual void DoHandleMouseEvent(VdkMouseEvent& e);
 
 	/// \brief detect width and height for dc.Blit
 	void DectectWH(int& w, int& h);
 
-	/// \brief ²Á³ı\a rc Ö¸¶¨µÄ¾ØĞÎ
-	/// \param rc ×ø±êÆğµãÎª¸¸¿Ø¼şµÄ×óÉÏ½Ç
+	/// \brief æ“¦é™¤\a rc æŒ‡å®šçš„çŸ©å½¢
+	/// \param rc åæ ‡èµ·ç‚¹ä¸ºçˆ¶æ§ä»¶çš„å·¦ä¸Šè§’
 	virtual void DoEraseBackground(wxDC& dc, const wxRect& rc);
 
-	/// \brief »æÖÆ¿Ø¼ş
+	/// \brief ç»˜åˆ¶æ§ä»¶
 	virtual void DoDraw(wxDC& dc);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief °´Å¥Î»Í¼µÄĞéÄâÊµÏÖ
+	/// \brief æŒ‰é’®ä½å›¾çš„è™šæ‹Ÿå®ç°
 	struct Bitmap {
 
 		int work_side;
@@ -181,12 +181,12 @@ private:
 
 	struct SliderImp {
 
-		int curr; // Êä³öĞÅÏ¢£¬¾­´¦ÀíºóÊÖ±úÓ¦¸Ã´¦ÔÚµÄÎ»ÖÃ
-		int ptr; // Êó±êµÄÎ»ÖÃ
+		int curr; // è¾“å‡ºä¿¡æ¯ï¼Œç»å¤„ç†åæ‰‹æŸ„åº”è¯¥å¤„åœ¨çš„ä½ç½®
+		int ptr; // é¼ æ ‡çš„ä½ç½®
 
-		/// \brief Á¬ĞøÍÏ¶¯ VdkSlider Ê±ÉÏ´ÎÀ­¶¯µÄ·½Ïò
+		/// \brief è¿ç»­æ‹–åŠ¨ VdkSlider æ—¶ä¸Šæ¬¡æ‹‰åŠ¨çš„æ–¹å‘
 		///
-		/// µ±Ç°Ö÷ÒªÓ¦ÓÃÊÇÓÃÓÚ VdkScrollBar µÄ³ÖĞø°´×¡Á¬Ğø¹ö¶¯µÄÊµÏÖÉÏ
+		/// å½“å‰ä¸»è¦åº”ç”¨æ˜¯ç”¨äº VdkScrollBar çš„æŒç»­æŒ‰ä½è¿ç»­æ»šåŠ¨çš„å®ç°ä¸Š
 		SliderDirection direction;
 		double percent;
 
@@ -195,22 +195,22 @@ private:
 
 		//////////////////////////////////////////////////////////////////////////
 
-		/// \brief ¸´ÖÆ¸³Öµº¯Êı
+		/// \brief å¤åˆ¶èµ‹å€¼å‡½æ•°
 		SliderImp& operator = (const SliderImp& rhs);
 
-		/// \brief ³õÊ¼»¯
+		/// \brief åˆå§‹åŒ–
 		void Init();
 
-		/// \brief ´¦ÀíÍÏ¶¯
+		/// \brief å¤„ç†æ‹–åŠ¨
 		void HandleDrag(int mousePos);
 
-		/// \brief ÒÆ¶¯µ½Ö¸¶¨°Ù·Ö±È
+		/// \brief ç§»åŠ¨åˆ°æŒ‡å®šç™¾åˆ†æ¯”
 		void MoveTo(double percent_);
 
-		/// \brief ÊÍ·ÅÊó±êÖ¸Õë
+		/// \brief é‡Šæ”¾é¼ æ ‡æŒ‡é’ˆ
 		void Release(){	ptr = INVALID_MOUSE_ON_THUMB; }
 
-		/// \brief Êó±êÖ¸ÕëÊÇ·ñÎ»ÓÚÊÖ±úÉÏ£¬ÕâÊ±ÔÊĞíÍÏ¶¯
+		/// \brief é¼ æ ‡æŒ‡é’ˆæ˜¯å¦ä½äºæ‰‹æŸ„ä¸Šï¼Œè¿™æ—¶å…è®¸æ‹–åŠ¨
 		bool IsOk() const { return ptr != INVALID_MOUSE_ON_THUMB; }
 	};
 
@@ -221,22 +221,22 @@ private:
 	bool						m_bVertical;
 	VdkButton*					m_pThumb;
 
-	// ÊÖ±úµÄ×îĞ¡¸ß¶È£¬¼´Î»Í¼Ô´ÎÄ¼şµÄ´óĞ¡
+	// æ‰‹æŸ„çš„æœ€å°é«˜åº¦ï¼Œå³ä½å›¾æºæ–‡ä»¶çš„å¤§å°
 	int							m_nMinHeight;
-	// ¸Ä±ä´óĞ¡Ê±ÊÖ±úµÄ±³¾°ÔõÃ´²Ù×÷£¿À­Éì»òÕßÆ½ÆÌ
+	// æ”¹å˜å¤§å°æ—¶æ‰‹æŸ„çš„èƒŒæ™¯æ€ä¹ˆæ“ä½œï¼Ÿæ‹‰ä¼¸æˆ–è€…å¹³é“º
 	VdkResizeableBitmapType		m_nThumbTileType;
-	// ¸Ä±ä´óĞ¡Ê±ÊÖ±úµÄ±³¾°ÖĞĞÄÁ½²àÔÊĞíÀ­ÉìµÄ³¤¶ÈÖ®ºÍ
+	// æ”¹å˜å¤§å°æ—¶æ‰‹æŸ„çš„èƒŒæ™¯ä¸­å¿ƒä¸¤ä¾§å…è®¸æ‹‰ä¼¸çš„é•¿åº¦ä¹‹å’Œ
 	int							m_nThumbTile;
 
 	//////////////////////////////////////////////////////////////////////////
 
-	// ½ø¶ÈÌõ±³¾°Î»Í¼
+	// è¿›åº¦æ¡èƒŒæ™¯ä½å›¾
 	wxBitmap					m_bmBar;
-	// ¼ÙÈç±³¾°Î»Í¼ÊÇÏàÍ¬µÄ£¬Ö±½ÓÊ¹ÓÃ´¿É«À´Ìî³ä½ø¶ÈÌõ
+	// å‡å¦‚èƒŒæ™¯ä½å›¾æ˜¯ç›¸åŒçš„ï¼Œç›´æ¥ä½¿ç”¨çº¯è‰²æ¥å¡«å……è¿›åº¦æ¡
 	wxBrush						m_bgBrush; 
-	// ½ø¶ÈÏÔÊ¾
+	// è¿›åº¦æ˜¾ç¤º
 	wxBitmap					m_bmFull;
-	// ÓÃÓÚ»Øµ÷º¯Êı£¨ÍÏ¶¯µÄ×îĞ¡¼ä¸ô40ms£©
+	// ç”¨äºå›è°ƒå‡½æ•°ï¼ˆæ‹–åŠ¨çš„æœ€å°é—´éš”40msï¼‰
 	wxMilliClock_t				m_dragTimeStamp;
 
 	DECLARE_CLONEABLE_VOBJECT( VdkSlider )

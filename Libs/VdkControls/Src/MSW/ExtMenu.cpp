@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "MSW/ExtMenu.h"
 
 #ifndef MN_GETHMENU
@@ -23,8 +23,8 @@ VectorOfMenuHwndInfo		ExtMenu::m_menuHandles;
 
 HWND ExtMenu::GetActiveExtMenu()
 {
-	// ÒòÎª×Ó²Ëµ¥¿Ï¶¨ºóÓÚ¸¸²Ëµ¥´´½¨²¢ÏÔÊ¾£¬¹Ê´Óºó¿ªÊ¼²éÕÒ£¬
-	// ±ÜÃâÏÈÅöµ½ÈÔÔÚÏÔÊ¾µÄ¸¸²Ëµ¥
+	// å› ä¸ºå­èœå•è‚¯å®šåŽäºŽçˆ¶èœå•åˆ›å»ºå¹¶æ˜¾ç¤ºï¼Œæ•…ä»ŽåŽå¼€å§‹æŸ¥æ‰¾ï¼Œ
+	// é¿å…å…ˆç¢°åˆ°ä»åœ¨æ˜¾ç¤ºçš„çˆ¶èœå•
 	int size( m_menuHandles.size() ), i;
 	for( i = size - 1; i >= 0 ; i-- )
 	{
@@ -94,14 +94,14 @@ HRESULT CALLBACK ExtMenu::TryHookMenuWnd(int code, WPARAM wParam, LPARAM lParam)
 	{
 		HWND hWnd = pStruct->hwnd;
 
-		// ²¶×½²Ëµ¥´´½¨WM_CREATE, 0x01E2ÊÇÊ²Ã´ÏûÏ¢ÎÒ²»ÖªµÀ,ºÇºÇ,ÕâÒ»¶Î²Î¿¼ÁË±ðÈËµÄ´úÂë
+		// æ•æ‰èœå•åˆ›å»ºWM_CREATE, 0x01E2æ˜¯ä»€ä¹ˆæ¶ˆæ¯æˆ‘ä¸çŸ¥é“,å‘µå‘µ,è¿™ä¸€æ®µå‚è€ƒäº†åˆ«äººçš„ä»£ç 
 		if( pStruct->message != WM_CREATE && pStruct->message != 0x01E2)
 			break;
 
 		TCHAR sClassName[10];
 		int Count = ::GetClassName( hWnd, sClassName, 10 );
 
-		// ¼ì²éÊÇ·ñ²Ëµ¥´°¿Ú
+		// æ£€æŸ¥æ˜¯å¦èœå•çª—å£
 		if( Count != 6 || _tcscmp(sClassName, _T("#32768")) != 0 )
 			break;
 
@@ -194,7 +194,7 @@ HRESULT CALLBACK ExtMenu::TryHookMenuWnd(int code, WPARAM wParam, LPARAM lParam)
 
 			//////////////////////////////////////////////////////////////////////////
 
-			// ½«×Ó²Ëµ¥ÉèÖÃ³É×Ô»­
+			// å°†å­èœå•è®¾ç½®æˆè‡ªç”»
 			MENUITEMINFO mii;
 			ZeroMemory(&mii, sizeof(MENUITEMINFO));
 			mii.cbSize = sizeof(MENUITEMINFO);
@@ -215,10 +215,10 @@ HRESULT CALLBACK ExtMenu::TryHookMenuWnd(int code, WPARAM wParam, LPARAM lParam)
 			WNDPROC lastWndProc = (WNDPROC)GetWindowLong(hWnd, GWL_WNDPROC);
 			if( lastWndProc != (WNDPROC)&ExtMenu::ExtMenuWndProc )
 			{
-				//Ìæ»»²Ëµ¥´°¿Ú¹ý³Ìº¯Êý
+				//æ›¿æ¢èœå•çª—å£è¿‡ç¨‹å‡½æ•°
 				SetWindowLong(hWnd, GWL_WNDPROC, (long)ExtMenu::ExtMenuWndProc);
 
-				//±£Áô¾ÉµÄ´°¿Ú¹ý³Ì
+				//ä¿ç•™æ—§çš„çª—å£è¿‡ç¨‹
 				MenuHwndInfo mhi = { NULL, hWnd, lastWndProc, false };
 				m_menuHandles.push_back(mhi);
 
@@ -257,13 +257,13 @@ LRESULT CALLBACK ExtMenu::ExtMenuWndProc(HWND hWnd, UINT message, WPARAM wParam,
 
 		return 0;//*/
 
-	// ÕâÀï×èÖ¹·Ç¿Í»§ÇøµÄ»æÖÆ
+	// è¿™é‡Œé˜»æ­¢éžå®¢æˆ·åŒºçš„ç»˜åˆ¶
 	case WM_PRINT:
 
 		return CallWindowProc(m_oldMenuWndProc, hWnd, WM_PRINTCLIENT, wParam, lParam);
 
-	// ÒòÎªÔÚMeasureItemÀïÖ¸¶¨µÄ²Ëµ¥´óÐ¡£¬ÏµÍ³»á×Ô¶¯ÌæÄã¼ÓÉÏ±ß¿ò£¬ÎÒÃÇ±ØÐëÈ¥µôÕâ²¿·Ö¶îÍâµÄ³ß´ç
-	// Í¬Ê±ÔÚÕâÀïÈ¥µô²Ëµ¥´°¿ÚµÄWS_BORDER·ç¸ñºÍWS_EX_DLGMODALFRAME , WS_EX_WINDOWEDGEÀ©Õ¹·ç¸ñ
+	// å› ä¸ºåœ¨MeasureItemé‡ŒæŒ‡å®šçš„èœå•å¤§å°ï¼Œç³»ç»Ÿä¼šè‡ªåŠ¨æ›¿ä½ åŠ ä¸Šè¾¹æ¡†ï¼Œæˆ‘ä»¬å¿…é¡»åŽ»æŽ‰è¿™éƒ¨åˆ†é¢å¤–çš„å°ºå¯¸
+	// åŒæ—¶åœ¨è¿™é‡ŒåŽ»æŽ‰èœå•çª—å£çš„WS_BORDERé£Žæ ¼å’ŒWS_EX_DLGMODALFRAME , WS_EX_WINDOWEDGEæ‰©å±•é£Žæ ¼
 	case WM_WINDOWPOSCHANGING:
 		{
 			DWORD dwStyle = ::GetWindowLong(hWnd, GWL_STYLE);
@@ -274,7 +274,7 @@ LRESULT CALLBACK ExtMenu::ExtMenuWndProc(HWND hWnd, UINT message, WPARAM wParam,
 			dwExStyle &= ~(WS_EX_DLGMODALFRAME | WS_EX_WINDOWEDGE);
 			::SetWindowLong(hWnd, GWL_EXSTYLE, dwExStyle);
 
-			//½«²Ëµ¥´óÐ¡¸ÄÐ¡
+			//å°†èœå•å¤§å°æ”¹å°
 			LPWINDOWPOS lpPos = (LPWINDOWPOS)lParam;
 			lpPos->cx -= 2 * GetSystemMetrics(SM_CXBORDER);
 			lpPos->cy -= 2 * GetSystemMetrics(SM_CYBORDER);

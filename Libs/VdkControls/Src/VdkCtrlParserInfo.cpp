@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkCtrlParserInfo.cpp
- * Purpose:   XRC ½âÊÍ¹ı³ÌµÄµ÷ÓÃĞÅÏ¢
+ * Purpose:   XRC è§£é‡Šè¿‡ç¨‹çš„è°ƒç”¨ä¿¡æ¯
  * Author:    vanxining (vanxining@139.com)
  * Created:   2011-02-22
  * Copyright: vanxining

@@ -1,14 +1,14 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkListCtrl.h"
 
-/// \brief Îª VdkListBox ÉèÖÃ³õÊ¼»¯ĞÅÏ¢
+/// \brief ä¸º VdkListBox è®¾ç½®åˆå§‹åŒ–ä¿¡æ¯
 class VdkListBoxInitializer : public 
 	VdkCtrlInitializer< VdkListBoxInitializer > {
 public:
 
 	typedef VdkListBoxInitializer ListBox;
 
-	/// \brief ÉèÖÃÎÄ±¾¶ÔÆë·½Ê½
+	/// \brief è®¾ç½®æ–‡æœ¬å¯¹é½æ–¹å¼
 	ListBox& textAlign(align_type align) {
 		TextAlign = align; return *this;
 	}
@@ -21,25 +21,25 @@ private:
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief Ö»ÓĞÒ»ÁĞµÄ VdkListCtrl
+/// \brief åªæœ‰ä¸€åˆ—çš„ VdkListCtrl
 ///
-/// ÕâÊÇÒ»¸ö±ãÀûÀà¡£
+/// è¿™æ˜¯ä¸€ä¸ªä¾¿åˆ©ç±»ã€‚
 class VdkListBox : public VdkListCtrl
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
-	/// \param style ÁĞ±í¿òµÄ·ç¸ñ×éºÏ
+	/// \brief æ„é€ å‡½æ•°
+	/// \param style åˆ—è¡¨æ¡†çš„é£æ ¼ç»„åˆ
 	VdkListBox(long style = VCS_BORDER_SIMPLE | VLCS_HOVERING)
 		: VdkListCtrl( style )
 	{
 
 	}
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief Ö´ĞĞÊµ¼Ê¹¹½¨²Ù×÷
+	/// \brief æ‰§è¡Œå®é™…æ„å»ºæ“ä½œ
 	void Create(const VdkListBoxInitializer& init_data);
 
 private:

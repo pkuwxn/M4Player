@@ -1,58 +1,58 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkControl.h"
 
 class VdkEdit;
 
-/// \brief ÀàËÆ HTML ÖĞµÄ¡°<file>¡±±êÇ©
+/// \brief ç±»ä¼¼ HTML ä¸­çš„â€œ<file>â€æ ‡ç­¾
 class VdkFileSelector : public VdkCtrlHandler
 {
 public:
 
-	/// \brief ´ò¿ªµÄÀàĞÍ
+	/// \brief æ‰“å¼€çš„ç±»å‹
 	enum SEL_TYPE {
 
-		ST_DIR, ///< ¡°ÎÄ¼ş¡±
-		ST_FILE ///< ¡°ÎÄ¼ş¼Ğ¡±
+		ST_DIR, ///< â€œæ–‡ä»¶â€
+		ST_FILE ///< â€œæ–‡ä»¶å¤¹â€
 	};
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkFileSelector();
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief Ö´ĞĞÊµ¼Ê¹¹½¨²Ù×÷
+	/// \brief æ‰§è¡Œå®é™…æ„å»ºæ“ä½œ
 	void Create(VdkWindow* Window, const wxString& strName, const wxRect& rc);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief »ñÈ¡µÃµ½µÄÎÄ¼ş/ÎÄ¼ş¼ĞÂ·¾¶
+	/// \brief è·å–å¾—åˆ°çš„æ–‡ä»¶/æ–‡ä»¶å¤¹è·¯å¾„
 	wxString GetPath() const;
 
-	/// \brief ÉèÖÃµ±Ç°ÏÔÊ¾Â·¾¶
+	/// \brief è®¾ç½®å½“å‰æ˜¾ç¤ºè·¯å¾„
 	void SetPath(const wxString& strPath);
 
-	/// \brief ÉèÖÃ¡°´ò¿ª¡±Í¨ÓÃ¶Ô»°¿òÏÔÊ¾µÄÎÄ¼şÀàĞÍ
+	/// \brief è®¾ç½®â€œæ‰“å¼€â€é€šç”¨å¯¹è¯æ¡†æ˜¾ç¤ºçš„æ–‡ä»¶ç±»å‹
 	void SetExt(const wxString& strDefaultFileName, const wxString& strExtPrompt);
 
-	/// \brief µ±Ç°´ò¿ªµÄÀàĞÍÊÇ¡°ÎÄ¼ş¡±»¹ÊÇ¡°ÎÄ¼ş¼Ğ¡±
+	/// \brief å½“å‰æ‰“å¼€çš„ç±»å‹æ˜¯â€œæ–‡ä»¶â€è¿˜æ˜¯â€œæ–‡ä»¶å¤¹â€
 	SEL_TYPE GetType() const { return m_type; }
 
-	/// \brief ÉèÖÃµ±Ç°´ò¿ªµÄÀàĞÍ
+	/// \brief è®¾ç½®å½“å‰æ‰“å¼€çš„ç±»å‹
 	void SetType(SEL_TYPE type) { m_type = type; }
 
-	/// \brief ÉèÖÃ¡°´ò¿ª¡±Í¨ÓÃ¶Ô»°¿òµÄ±êÌâ
+	/// \brief è®¾ç½®â€œæ‰“å¼€â€é€šç”¨å¯¹è¯æ¡†çš„æ ‡é¢˜
 	void SetAlertMessage(const wxString& alertMsg) { m_alertMsg = alertMsg; }
 
-	/// \brief »ñÈ¡¡°´ò¿ª¡±Í¨ÓÃ¶Ô»°¿òµÄ±êÌâ
+	/// \brief è·å–â€œæ‰“å¼€â€é€šç”¨å¯¹è¯æ¡†çš„æ ‡é¢˜
 	wxString GetAlertMessage() const { return m_alertMsg; }
 
 private:
 
-	// ÏÔÊ¾¡°´ò¿ª¡±Í¨ÓÃ¶Ô»°¿ò(ÏûÏ¢×ª·¢Æ÷)
+	// æ˜¾ç¤ºâ€œæ‰“å¼€â€é€šç”¨å¯¹è¯æ¡†(æ¶ˆæ¯è½¬å‘å™¨)
 	void OnSelectorRed(VdkVObjEvent&);
 
-	// ÏÔÊ¾¡°´ò¿ª¡±Í¨ÓÃ¶Ô»°¿ò
+	// æ˜¾ç¤ºâ€œæ‰“å¼€â€é€šç”¨å¯¹è¯æ¡†
 	void OnSelector(wxCommandEvent&);
 
 	//////////////////////////////////////////////////////////////////////////

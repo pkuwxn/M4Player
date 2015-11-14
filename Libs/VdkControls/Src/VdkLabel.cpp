@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "VdkLabel.h"
 
 #include "VdkDC.h"
@@ -33,14 +33,14 @@ void VdkLabel::Create(wxXmlNode* node)
 {
 	TextInfo ti( GetXrcTextInfo( node, m_WindowImpl ) );
 
-	// ÌáÊ¾ĞÅÏ¢(ToolTip)
+	// æç¤ºä¿¡æ¯(ToolTip)
 	wxXmlNode* chd( FindChildNode( node, L"tip" ) );
 	if( chd )
 	{
 		SetToolTip( chd->GetNodeContent() );
 	}
 
-	// ×Ô¶¯À©Õ¹
+	// è‡ªåŠ¨æ‰©å±•
 	chd = FindChildNode( node, L"auto-expand" );
 	if( chd )
 	{
@@ -74,7 +74,7 @@ void VdkLabel::Create(const VdkLabelInitializer& init_data)
 	}
 
 	m_strCaption = init_data.Caption;
-	m_strCaption.Replace( L"£º", L":" );
+	m_strCaption.Replace( L"ï¼š", L":" );
 
 	PrepareRect();
 }
@@ -105,7 +105,7 @@ void VdkLabel::PrepareRect()
 		SetAddinState( VLBST_CLIPPING_REGION );
 	}
 	
-	// ·ÀÖ¹¸ß¶È²»¹»
+	// é˜²æ­¢é«˜åº¦ä¸å¤Ÿ
 	if( m_Rect.height < h )
 	    m_Rect.height = h;
 
@@ -155,11 +155,11 @@ void VdkLabel::SetCaption(const wxString& strCaption, wxDC* pDC)
 {
 	m_strCaption = strCaption;
 
-	// Ê×ÏÈ²Á³ı±³¾°£¬·ÀÖ¹ºóÃæĞÂÉèµÄ×÷ÓÃÓò±Èµ±Ç°Ğ¡
+	// é¦–å…ˆæ“¦é™¤èƒŒæ™¯ï¼Œé˜²æ­¢åé¢æ–°è®¾çš„ä½œç”¨åŸŸæ¯”å½“å‰å°
 	if( pDC )
 	{
-	    // ²Á³ı±³¾°Ê±£¬»­¾ØĞÎµÄ»­±ÊÊÇÍ¸Ã÷µÄ£¬»áµ¼ÖÂÒ»¶¨µÄ²ĞÁô£¬ÔÚÕâÀï½øĞĞÊÊµ±
-	    // À©´óÒª²Á³öµÄ·¶Î§
+	    // æ“¦é™¤èƒŒæ™¯æ—¶ï¼Œç”»çŸ©å½¢çš„ç”»ç¬”æ˜¯é€æ˜çš„ï¼Œä¼šå¯¼è‡´ä¸€å®šçš„æ®‹ç•™ï¼Œåœ¨è¿™é‡Œè¿›è¡Œé€‚å½“
+	    // æ‰©å¤§è¦æ“¦å‡ºçš„èŒƒå›´
 	    wxRect rc( GetAbsoluteRect() );
 		EraseBackground( *pDC, rc.Inflate( 1 ) );
 	}

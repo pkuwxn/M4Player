@@ -1,51 +1,51 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkButton.h"
 
-/// \brief ¸´Ñ¡¿ò
+/// \brief å¤é€‰æ¡†
 class VdkCheckBox : public VdkButton
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkCheckBox();
 
-	/// \brief Ö´ĞĞÊµ¼Ê¹¹½¨²Ù×÷
+	/// \brief æ‰§è¡Œå®é™…æ„å»ºæ“ä½œ
 	void Create(VdkWindow* Window, const wxString& strName, wxRect rc);
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ÇĞ»»Ñ¡ÖĞÓë·ñ
+	/// \brief åˆ‡æ¢é€‰ä¸­ä¸å¦
 	void Toggle(bool bToggled, wxDC* pDC);
 
-	/// \brief ÊÇ·ñ±»Ñ¡ÖĞ
+	/// \brief æ˜¯å¦è¢«é€‰ä¸­
 	bool IsChecked() const { return m_bToggled; }
 
-	/// \brief Ê¹ÄÜ/½ûÓÃ¹ØÁª¿Ø¼ş
+	/// \brief ä½¿èƒ½/ç¦ç”¨å…³è”æ§ä»¶
 	void EnableRelatedCtrls(bool bEnabled, wxDC* pDC);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief Ìí¼Ó¹ØÁª VdkControl µ½ CheckBox ÖĞ
+	/// \brief æ·»åŠ å…³è” VdkControl åˆ° CheckBox ä¸­
 	///
-	/// ÀıÈç VdkCheckBox Ê¹¿ØÖÆÒ»¸öÎÄ±¾¿ò£¬Ôò VdkCheckBox Ñ¡ÖĞÊ±ÎÄ±¾¿ò¿ÉÓÃ£¬
-	/// ²»Ñ¡ÖĞÊ±Ê§»î¡£
+	/// ä¾‹å¦‚ VdkCheckBox ä½¿æ§åˆ¶ä¸€ä¸ªæ–‡æœ¬æ¡†ï¼Œåˆ™ VdkCheckBox é€‰ä¸­æ—¶æ–‡æœ¬æ¡†å¯ç”¨ï¼Œ
+	/// ä¸é€‰ä¸­æ—¶å¤±æ´»ã€‚
 	void AddRelatedCtrl(VdkControl* relatedCtrl);
 
 private:
 
-	/// \brief »æÖÆ¿Ø¼ş
+	/// \brief ç»˜åˆ¶æ§ä»¶
 	virtual void DoDraw(wxDC& dc);
 
-	/// \brief ´¦ÀíÊó±êÊÂ¼ş
+	/// \brief å¤„ç†é¼ æ ‡äº‹ä»¶
 	virtual void DoHandleMouseEvent(VdkMouseEvent& e);
 
-	/// \brief ½ÓÊÕ¡¢´¦ÀíÍ¨ÖªĞÅÏ¢
+	/// \brief æ¥æ”¶ã€å¤„ç†é€šçŸ¥ä¿¡æ¯
 	virtual void DoHandleNotify(const VdkNotify& notice);
 	
-	/// \brief ¸´Ñ¡¿ò¿ÉÒÔ´¦ÓÚµÄ×´Ì¬
+	/// \brief å¤é€‰æ¡†å¯ä»¥å¤„äºçš„çŠ¶æ€
 	enum State {
 
 		NORMAL,
@@ -58,7 +58,7 @@ private:
 		CHECKED_DISABLED
 	};
 
-	/// \brief ½« VdkCheckBox::State Ç¿ÖÆ×ªĞÍÎª VdkButton::State
+	/// \brief å°† VdkCheckBox::State å¼ºåˆ¶è½¬å‹ä¸º VdkButton::State
 	void SetButtonState(State state) {
 		Update( (VdkButton::State )state, NULL );
 	}

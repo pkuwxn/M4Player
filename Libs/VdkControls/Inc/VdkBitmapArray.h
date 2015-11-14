@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkBitmapArray.h
- * Purpose:   VdkBitmapArray µÄÍ·ÎÄ¼ş
+ * Purpose:   VdkBitmapArray çš„å¤´æ–‡ä»¶
  * Author:    vanxining (vanxining@139.com)
  * Created:   2011-01-10
  * Copyright: vanxining
@@ -8,80 +8,80 @@
 #pragma once
 #include "VdkDefs.h"
 
-/// \brief Î»Í¼Êı×éµÄ¹ÜÀí¶ÔÏóÀà
+/// \brief ä½å›¾æ•°ç»„çš„ç®¡ç†å¯¹è±¡ç±»
 ///
-/// ±àĞ´¸ÃÀàµÄÄ¿µÄÊÇ±ÜÃâÉú³É¹ı¶àĞ¡Î»Í¼ÒÔ½ÚÊ¡×ÊÔ´¡£
+/// ç¼–å†™è¯¥ç±»çš„ç›®çš„æ˜¯é¿å…ç”Ÿæˆè¿‡å¤šå°ä½å›¾ä»¥èŠ‚çœèµ„æºã€‚
 class VdkBitmapArray
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkBitmapArray();
 
-	/// \brief ¹¹Ôìº¯Êı
-	/// \param strPath Î»Í¼ËùÔÚµÄ´ÅÅÌÂ·¾¶
-	/// \param cols ·Ö¸îµÄ·İÊı
+	/// \brief æ„é€ å‡½æ•°
+	/// \param strPath ä½å›¾æ‰€åœ¨çš„ç£ç›˜è·¯å¾„
+	/// \param cols åˆ†å‰²çš„ä»½æ•°
 	VdkBitmapArray(const wxString& strPath, unsigned cols, unsigned rows);
 
-	/// \brief ¹¹Ôìº¯Êı
-	/// \param bm ËùÓÃÎ»Í¼
-	/// \param cols ·Ö¸îµÄ·İÊı
+	/// \brief æ„é€ å‡½æ•°
+	/// \param bm æ‰€ç”¨ä½å›¾
+	/// \param cols åˆ†å‰²çš„ä»½æ•°
 	VdkBitmapArray(const wxBitmap& bm, unsigned cols, unsigned rows) {
 		Set( bm, cols, rows );
 	}
 
-	/// \brief ¸´ÖÆ¹¹Ôìº¯Êı
+	/// \brief å¤åˆ¶æ„é€ å‡½æ•°
 	VdkBitmapArray(const VdkBitmapArray& other);
 
-	/// \brief ¸´ÖÆ¸³Öµº¯Êı
+	/// \brief å¤åˆ¶èµ‹å€¼å‡½æ•°
 	VdkBitmapArray& operator = (const VdkBitmapArray& rhs);
 
-	/// \brief ´ÓÁíÒ»¸ö¶ÔÏó¸´ÖÆ
+	/// \brief ä»å¦ä¸€ä¸ªå¯¹è±¡å¤åˆ¶
 	void Assign(const VdkBitmapArray& rhs);
 
-	/// \brief Êı×éÊÇ·ñÒÑÈ»³õÊ¼»¯/Î»Í¼´æÔÚ
+	/// \brief æ•°ç»„æ˜¯å¦å·²ç„¶åˆå§‹åŒ–/ä½å›¾å­˜åœ¨
 	bool IsOk() const { return m_bmp.IsOk(); }
 
-	/// \brief ÉèÖÃÊı×éËùÓÃÎ»Í¼
-	/// \param bm ËùÓÃÎ»Í¼
-	/// \param cols ·Ö¸îµÄ·İÊı
+	/// \brief è®¾ç½®æ•°ç»„æ‰€ç”¨ä½å›¾
+	/// \param bm æ‰€ç”¨ä½å›¾
+	/// \param cols åˆ†å‰²çš„ä»½æ•°
 	void Set(const wxBitmap& bm, unsigned cols, unsigned rows);
 
-	/// \brief ÉèÖÃÊı×éËùÓÃÎ»Í¼
-	/// \param strPath Î»Í¼ËùÔÚµÄ´ÅÅÌÂ·¾¶
-	/// \param cols ·Ö¸îµÄ·İÊı
+	/// \brief è®¾ç½®æ•°ç»„æ‰€ç”¨ä½å›¾
+	/// \param strPath ä½å›¾æ‰€åœ¨çš„ç£ç›˜è·¯å¾„
+	/// \param cols åˆ†å‰²çš„ä»½æ•°
 	void Set(const wxString& strPath, unsigned cols, unsigned rows);
 
-	/// \brief ½«(\a row, \a col )´¦µÄĞ¡Î»Í¼¸´ÖÆµ½ DC µÄ(\a x, \a y)´¦
+	/// \brief å°†(\a row, \a col )å¤„çš„å°ä½å›¾å¤åˆ¶åˆ° DC çš„(\a x, \a y)å¤„
 	void BlitTo(wxDC& dc, unsigned col, unsigned row, wxCoord x, wxCoord y);
 
-	/// \brief ¸ü¸ÄÊı×éÎ»Í¼´óĞ¡
+	/// \brief æ›´æ”¹æ•°ç»„ä½å›¾å¤§å°
 	/// 
-	/// µ±Ç°Ö»Ö§³Ö¸ü¸ÄÖ»ÓĞÒ»ĞĞµÄÎ»Í¼Êı×éµÄ´óĞ¡¡£
+	/// å½“å‰åªæ”¯æŒæ›´æ”¹åªæœ‰ä¸€è¡Œçš„ä½å›¾æ•°ç»„çš„å¤§å°ã€‚
 	bool Resize(int newwidth, int newheight, 
 		VdkResizeableBitmapType type, const wxRect& rcTile);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief »ñÈ¡Ô­Ê¼Î»Í¼
+	/// \brief è·å–åŸå§‹ä½å›¾
 	wxBitmap GetRawBitmap() const { return m_bmp; }
 
-	/// \brief »ñÈ¡ÕæÕıÒâÒåÉÏµÄÎ»Í¼Êı×é
+	/// \brief è·å–çœŸæ­£æ„ä¹‰ä¸Šçš„ä½å›¾æ•°ç»„
 	wxBitmap* Explode() const;
 
-	/// \brief µÃµ½Ğ¡Î»Í¼µÄ¿í¶È
+	/// \brief å¾—åˆ°å°ä½å›¾çš„å®½åº¦
 	unsigned GetWidth() const;
 
-	/// \brief µÃµ½Ğ¡Î»Í¼µÄ¸ß¶È
+	/// \brief å¾—åˆ°å°ä½å›¾çš„é«˜åº¦
 	unsigned GetHeight() const;
 
-	/// \brief µÃµ½·Ö¸îµÄ·İÊı
+	/// \brief å¾—åˆ°åˆ†å‰²çš„ä»½æ•°
 	unsigned GetExplNum() const { return m_cols; }
 
-	/// \brief µÃµ½ĞĞÊı
+	/// \brief å¾—åˆ°è¡Œæ•°
 	unsigned GetRows() const { return m_rows; }
 
-	/// \brief µÃµ½ÁĞÊı
+	/// \brief å¾—åˆ°åˆ—æ•°
 	unsigned GetColumns() const { return m_cols; }
 
 private:
@@ -92,21 +92,21 @@ private:
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief Î»Í¼Êı×éµÄÖ¸¶¨Ğ¡Î»Í¼£¬Ê¹Ö®¾ßÓĞ wxBitmap µÄÀàËÆĞÔÖÊ
+/// \brief ä½å›¾æ•°ç»„çš„æŒ‡å®šå°ä½å›¾ï¼Œä½¿ä¹‹å…·æœ‰ wxBitmap çš„ç±»ä¼¼æ€§è´¨
 class VdkBitmapArrayId
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı£¬¹¹½¨Ò»¸ö¿Õ°×Î±Î»Í¼
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°ï¼Œæ„å»ºä¸€ä¸ªç©ºç™½ä¼ªä½å›¾
 	VdkBitmapArrayId() : m_ba( NULL ), m_x( -1 ), m_y( -1 ) {}
 
-	/// \brief ¹¹Ôìº¯Êı
-	/// \param ba Ğ¡Î»Í¼ËùÊôµÄÎ»Í¼Êı×é
-	/// \param index Ğ¡Î»Í¼µÄĞòºÅ
+	/// \brief æ„é€ å‡½æ•°
+	/// \param ba å°ä½å›¾æ‰€å±çš„ä½å›¾æ•°ç»„
+	/// \param index å°ä½å›¾çš„åºå·
 	VdkBitmapArrayId(VdkBitmapArray& ba, int x, int y)
 		: m_ba( &ba ), m_x( x ), m_y( y ) {}
 
-	/// \brief ¸´ÖÆ¸³Öµº¯Êı
+	/// \brief å¤åˆ¶èµ‹å€¼å‡½æ•°
 	VdkBitmapArrayId& operator = (const VdkBitmapArrayId& another)
 	{
 		m_ba = another.m_ba;
@@ -116,10 +116,10 @@ public:
 		return *this;
 	}
 
-	/// \brief ½«Ğ¡Î»Í¼¸´ÖÆµ½Ö¸¶¨ DC µÄ(\a x, \a y)´¦
+	/// \brief å°†å°ä½å›¾å¤åˆ¶åˆ°æŒ‡å®š DC çš„(\a x, \a y)å¤„
 	void BlitTo(wxDC& dc, wxCoord x, wxCoord y) const;
 
-	/// \brief Ğ¡Î»Í¼ÊÇ·ñÓĞĞ§£¬¿ÉÒÔ±»¸´ÖÆ
+	/// \brief å°ä½å›¾æ˜¯å¦æœ‰æ•ˆï¼Œå¯ä»¥è¢«å¤åˆ¶
 	bool IsOk() const {
 
 		return m_ba && 

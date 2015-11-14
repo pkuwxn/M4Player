@@ -1,4 +1,4 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkMenuPopper.h
  * Purpose:   Code for VdkMenuPopper declaration
  * Author:    vanxining (vanxining@139.com)
@@ -11,40 +11,40 @@
 class VdkMenu;
 class VdkWindow;
 
-/// \brief °´ÏÂ°´Å¥£¬µ¯³ö²Ëµ¥
+/// \brief æŒ‰ä¸‹æŒ‰é’®ï¼Œå¼¹å‡ºèœå•
 class VdkMenuPopper : public VdkToggleButton, public VdkEventFilter
 {
 public:
 
-	/// \brief XRC ¶¯Ì¬´´½¨µÄ¹Ø¼üº¯Êı
+	/// \brief XRC åŠ¨æ€åˆ›å»ºçš„å…³é”®å‡½æ•°
 	///
-	/// Ò»¸ö VdkControl µÄÅÉÉúÀà¼ÙÈçÒªÊµÏÖ¶¯Ì¬´´½¨£¬ÔòÓ¦¸ÃÊµÏÖÕâ¸öº¯Êı
-	/// \todo ¸¸¿Ø¼ş
+	/// ä¸€ä¸ª VdkControl çš„æ´¾ç”Ÿç±»å‡å¦‚è¦å®ç°åŠ¨æ€åˆ›å»ºï¼Œåˆ™åº”è¯¥å®ç°è¿™ä¸ªå‡½æ•°
+	/// \todo çˆ¶æ§ä»¶
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief µ¯³öÏà¹ØÁªµÄ²Ëµ¥
+	/// \brief å¼¹å‡ºç›¸å…³è”çš„èœå•
 	void PopupMenu();
 
 protected:
 
-	/// \brief ÉèÖÃÕë¶Ô¸¸´°¿ÚµÄÊó±ê¹³×Ó
+	/// \brief è®¾ç½®é’ˆå¯¹çˆ¶çª—å£çš„é¼ æ ‡é’©å­
 	///
-	/// Ò»µ©ÏÂÀ­²Ëµ¥ÒÑ±»ÏÔÊ¾£¬¼ÌĞøµã»÷°´Å¥²»»áÈ¡Ïû²Ëµ¥£¬¶øÖ»ÓĞÔÚ°´Å¥Íâ²¿
-	/// µã»÷²Å»á¡£
+	/// ä¸€æ—¦ä¸‹æ‹‰èœå•å·²è¢«æ˜¾ç¤ºï¼Œç»§ç»­ç‚¹å‡»æŒ‰é’®ä¸ä¼šå–æ¶ˆèœå•ï¼Œè€Œåªæœ‰åœ¨æŒ‰é’®å¤–éƒ¨
+	/// ç‚¹å‡»æ‰ä¼šã€‚
 	void HookMouseEvent();
 
-	/// \brief Ä³Ğ©×¼±¸¹¤×÷
-	/// \warning ÅÉÉúÀà¹¹½¨Ê±±ØĞëµ÷ÓÃ
+	/// \brief æŸäº›å‡†å¤‡å·¥ä½œ
+	/// \warning æ´¾ç”Ÿç±»æ„å»ºæ—¶å¿…é¡»è°ƒç”¨
 	void Prepare(wxDC* pDC);
 
-	/// \brief ¹ıÂËÊÂ¼ş
+	/// \brief è¿‡æ»¤äº‹ä»¶
 	virtual bool FilterEvent
 		(const VdkEventFilter::EventForFiltering& e);
 
-	/// \brief ´¦ÀíÊó±êÊÂ¼ş
+	/// \brief å¤„ç†é¼ æ ‡äº‹ä»¶
 	virtual void DoHandleMouseEvent(VdkMouseEvent& e);
 
-	/// \brief ½ÓÊÕ¡¢´¦ÀíÍ¨ÖªĞÅÏ¢
+	/// \brief æ¥æ”¶ã€å¤„ç†é€šçŸ¥ä¿¡æ¯
 	virtual void DoHandleNotify(const VdkNotify& notice);
 
 	DECLARE_DYNAMIC_VOBJECT

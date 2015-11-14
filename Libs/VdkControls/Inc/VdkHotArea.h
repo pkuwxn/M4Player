@@ -1,36 +1,36 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkControl.h"
 
 class VdkWindow;
-/// \brief Ò»¸öÀàËÆ³¬Á´½ÓµÄÈÈµãÇøÓò£¬¿ÉÒÔÊ¹ÓÃ±³¾°Î»Í¼
+/// \brief ä¸€ä¸ªç±»ä¼¼è¶…é“¾æ¥çš„çƒ­ç‚¹åŒºåŸŸï¼Œå¯ä»¥ä½¿ç”¨èƒŒæ™¯ä½å›¾
 class VdkHotArea : public VdkControl
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkHotArea();
 
-	/// \brief Ö´ĞĞÊµ¼Ê¹¹½¨²Ù×÷
+	/// \brief æ‰§è¡Œå®é™…æ„å»ºæ“ä½œ
 	void Create(VdkWindow* Window, 
 				const wxString& strName, 
 				const wxRect& rc, 
 				const wxString& strUrl);
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
 protected:
 
-	/// \brief ÓÃÓÚÅÉÉúÀàµÄ³õÊ¼»¯
+	/// \brief ç”¨äºæ´¾ç”Ÿç±»çš„åˆå§‹åŒ–
 	void StartSense();
 
-	/// \brief ´¦ÀíÊó±êÊÂ¼ş
+	/// \brief å¤„ç†é¼ æ ‡äº‹ä»¶
 	virtual void DoHandleMouseEvent(VdkMouseEvent& e);
 
-	bool			m_bHand; ///< Êó±êÖ¸ÕëÊÇ·ñÒÑ¾­¸Ä±ä
-	wxString		m_strUrl; ///< URL µØÖ·
+	bool			m_bHand; ///< é¼ æ ‡æŒ‡é’ˆæ˜¯å¦å·²ç»æ”¹å˜
+	wxString		m_strUrl; ///< URL åœ°å€
 
-	wxCursor		m_cursorHand; ///< ½øÈë×÷ÓÃÓòºóÊó±êÖ¸ÕëĞÎ×´
+	wxCursor		m_cursorHand; ///< è¿›å…¥ä½œç”¨åŸŸåé¼ æ ‡æŒ‡é’ˆå½¢çŠ¶
 
 	DECLARE_DYNAMIC_VOBJECT
 };

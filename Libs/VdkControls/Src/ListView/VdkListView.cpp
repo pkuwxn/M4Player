@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkListView.cpp
- * Purpose:   Àà Android µÄÁĞ±í¿Ø¼ş£¬ÄÜ¶¯Ì¬»ñÈ¡Êı¾İ
+ * Purpose:   ç±» Android çš„åˆ—è¡¨æ§ä»¶ï¼Œèƒ½åŠ¨æ€è·å–æ•°æ®
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-03
  **************************************************************/
@@ -155,10 +155,10 @@ void VdkListView::OnDraw(wxDC& dc)
 
 	int numRows = m_adapter->GetRowCount();
 
-	// ĞĞÊı²»×ãÒ»ÆÁÊ±Çå¿Õµ×²¿ÒÑ»­ÄÚÈİ
+	// è¡Œæ•°ä¸è¶³ä¸€å±æ—¶æ¸…ç©ºåº•éƒ¨å·²ç”»å†…å®¹
 	if( viewStartY == maxViewStartY )
 	{
-		int lh, yblank; // ¿Õ°×ÇøÓòµÄ¸ß¶È
+		int lh, yblank; // ç©ºç™½åŒºåŸŸçš„é«˜åº¦
 		GetVirtualSize( NULL, &lh );
 		yblank = m_Rect.height - (numRows - viewStartY) * GetRowHeight();
 
@@ -292,7 +292,7 @@ bool VdkListView::GetIndex(int y, int* rowAtPointer)
 	if( numRows == 0 )
 		return true;
 
-	int base; // ÕıÔÚÏÔÊ¾µÄµÚÒ»ĞĞ
+	int base; // æ­£åœ¨æ˜¾ç¤ºçš„ç¬¬ä¸€è¡Œ
 	GetViewStart( NULL, &base );
 
 	int row = base + y / m_rowHeight;

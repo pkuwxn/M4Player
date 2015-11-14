@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkHTTP.h
- * Purpose:   wxHttpHelper µÄÊµÌåÀà
+ * Purpose:   wxHttpHelper çš„å®ä½“ç±»
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-19
  **************************************************************/
@@ -44,7 +44,7 @@ wxString VdkHTTP::DetectCharset(const char* p)
 	const char* first = strstr( p, "charset=" );
 	if( !first )
 	{
-		first = strstr( p, "encoding=\"" ); // XML ¸ñÊ½
+		first = strstr( p, "encoding=\"" ); // XML æ ¼å¼
 		if( first )
 		{
 			first += 10;
@@ -56,7 +56,7 @@ wxString VdkHTTP::DetectCharset(const char* p)
 	}
 
 	//================================================
-	// ½ØÈ¡×Ö·û¼¯Ãû³Æ
+	// æˆªå–å­—ç¬¦é›†åç§°
 
 	if( first )
 	{
@@ -98,7 +98,7 @@ bool VdkHTTP::Get(const wxString& url, wxString& result)
 		SetHeader( L"Accept-Encoding", L"gzip, deflate" );
 	}
 
-    // ÏÈÇå¿Õ£¬±ÜÃâ²ĞÁô
+    // å…ˆæ¸…ç©ºï¼Œé¿å…æ®‹ç•™
     result.clear();
 	return DoGet( url, result );
 }
@@ -128,7 +128,7 @@ wxString VdkHTTP::EncodeResult(const char* p) const
 
 	if( charset.empty() )
 	{
-		wxLogDebug( L"Ò³ÃæÃ»ÓĞÖ¸¶¨ÈÎºÎ×Ö·û¼¯£¬Ä¬ÈÏÊ¹ÓÃ±¾µØ¶à×Ö½Ú×Ö·û¼¯" );
+		wxLogDebug( L"é¡µé¢æ²¡æœ‰æŒ‡å®šä»»ä½•å­—ç¬¦é›†ï¼Œé»˜è®¤ä½¿ç”¨æœ¬åœ°å¤šå­—èŠ‚å­—ç¬¦é›†" );
 		return wxString( p, GetAnsiLocalConv() );
 	}
 	else

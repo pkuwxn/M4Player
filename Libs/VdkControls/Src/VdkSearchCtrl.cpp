@@ -1,4 +1,4 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkSearchCtrl.cpp
  * Purpose:   Code for VdkSearchCtrl implementation
  * Author:    vanxining (vanxining@139.com)
@@ -51,7 +51,7 @@ void VdkSearchCtrl::Create(const VdkSearchCtrlInitializer& init_data)
 	VdkControl::Create( init_data );
 
 	//////////////////////////////////////////////////////////////////////////
-	// °´Å¥
+	// æŒ‰é’®
 
 #   ifdef __WXMSW__
 	int nExpl = 3;
@@ -80,7 +80,7 @@ void VdkSearchCtrl::Create(const VdkSearchCtrlInitializer& init_data)
 					  rect( rcButton ) );
 
 	//////////////////////////////////////////////////////////////////////////
-	// ÎÄ±¾¿ò
+	// æ–‡æœ¬æ¡†
 
 	wxRect rcEdit( m_Rect );
 	rcEdit.x = m_borderWeight + m_radius;
@@ -104,7 +104,7 @@ void VdkSearchCtrl::Create(const VdkSearchCtrlInitializer& init_data)
 
 	//--------------------------------------------------
 
-	// ÎÒÃÇ²»ĞèÒª½¹µã×ªÒÆ£¬ĞèÒªµÄÊÇ Edit
+	// æˆ‘ä»¬ä¸éœ€è¦ç„¦ç‚¹è½¬ç§»ï¼Œéœ€è¦çš„æ˜¯ Edit
 	RemoveStyle( VCS_TAB_TRAVERSAL );
 }
 

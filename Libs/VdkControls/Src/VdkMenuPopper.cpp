@@ -1,4 +1,4 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkMenuPopper.cpp
  * Purpose:   Code for VdkMenuPopper implementation
  * Author:    vanxining (vanxining@139.com)
@@ -56,7 +56,7 @@ void VdkMenuPopper::DoHandleMouseEvent(VdkMouseEvent& e)
 		{
 		case LEFT_DOWN:
 
-			// ÒòÎªµ¯³ö²Ëµ¥ºó²»ÔÙ·¢ËÍ LEFT_UP ÊÂ¼þ£¬Òò´ËÎÒÃÇÊÂÏÈ²¹³ä
+			// å› ä¸ºå¼¹å‡ºèœå•åŽä¸å†å‘é€ LEFT_UP äº‹ä»¶ï¼Œå› æ­¤æˆ‘ä»¬äº‹å…ˆè¡¥å……
 			e.evtCode = LEFT_UP;
 			VdkToggleButton::DoHandleMouseEvent( e );
 
@@ -85,7 +85,7 @@ void VdkMenuPopper::PopupMenu()
 	wxPoint p( GetAbsoluteRect().GetPosition() );
 	p.y += m_Rect.height;
 
-	// ÑÓ³ÙÏÔÊ¾²Ëµ¥
+	// å»¶è¿Ÿæ˜¾ç¤ºèœå•
 	m_Window->ShowContextMenu( this, p );
 }
 

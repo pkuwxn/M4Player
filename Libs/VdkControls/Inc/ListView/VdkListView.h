@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkListView.h
- * Purpose:   Àà Android µÄÁĞ±í¿Ø¼ş£¬ÄÜ¶¯Ì¬»ñÈ¡Êı¾İ
+ * Purpose:   ç±» Android çš„åˆ—è¡¨æ§ä»¶ï¼Œèƒ½åŠ¨æ€è·å–æ•°æ®
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-03
  **************************************************************/
@@ -8,195 +8,195 @@
 #include "VdkScrolledWindow.h"
 class IListViewPlaugin;
 
-/// Àà Android µÄÁĞ±í¿Ø¼ş£¬ÄÜ¶¯Ì¬»ñÈ¡Êı¾İ
+/// ç±» Android çš„åˆ—è¡¨æ§ä»¶ï¼Œèƒ½åŠ¨æ€è·å–æ•°æ®
 class VdkListView : public VdkScrolledWindow
 {
 public:
 
-	/// Êı¾İÊÊÅäÆ÷
+	/// æ•°æ®é€‚é…å™¨
 	class Adapter
 	{
 	public:
 
-		/// ĞéÎö¹¹º¯Êı
+		/// è™šææ„å‡½æ•°
 		virtual ~Adapter() {}
 
-		/// Êı¾İ¼¯ÊÇ·ñÎª¿Õ
+		/// æ•°æ®é›†æ˜¯å¦ä¸ºç©º
 		virtual bool IsEmpty() const = 0;
 
-		/// »ñÈ¡Êı¾İ¼¯ÀïµÄÊı¾İÌõÄ¿×ÜÊı
+		/// è·å–æ•°æ®é›†é‡Œçš„æ•°æ®æ¡ç›®æ€»æ•°
 		virtual size_t GetRowCount() const = 0;
 
-		/// »ñÈ¡Êı¾İ¼¯ÀïµÄÁĞ×ÜÊı
+		/// è·å–æ•°æ®é›†é‡Œçš„åˆ—æ€»æ•°
 		virtual size_t GetColumnCount() const = 0;
 
-		/// »ñÈ¡Ä³¸öµ¥Ôª¸ñÄÚµÄÎÄ±¾
+		/// è·å–æŸä¸ªå•å…ƒæ ¼å†…çš„æ–‡æœ¬
 		virtual wxString GetCell(size_t row, size_t col) const = 0;
 
 	public:
 
 		enum {
-			MATCH_PARENT = -1, ///< Î´Ö¸¶¨µÄÁĞ¿í¶È£¬Î´ÊµÏÖ
+			MATCH_PARENT = -1, ///< æœªæŒ‡å®šçš„åˆ—å®½åº¦ï¼Œæœªå®ç°
 		};
 
-		/// Ò»ÁĞµÄ·ç¸ñ¶¨Òå
+		/// ä¸€åˆ—çš„é£æ ¼å®šä¹‰
 		struct ColumnStyle
 		{
-			wxString heading; ///< ÁĞµÄ±êÌâ
-			int width; ///< ¸ÃÁĞµÄµ±Ç°¿í¶È
-			/// µ±ÁĞ±í¿Ø¼ş´óĞ¡¸Ä±äÊ±±¾ÁĞ·ÖµÃµÄ¸Ã±äÁ¿£¨Èç80%£©
+			wxString heading; ///< åˆ—çš„æ ‡é¢˜
+			int width; ///< è¯¥åˆ—çš„å½“å‰å®½åº¦
+			/// å½“åˆ—è¡¨æ§ä»¶å¤§å°æ”¹å˜æ—¶æœ¬åˆ—åˆ†å¾—çš„è¯¥å˜é‡ï¼ˆå¦‚80%ï¼‰
 			int extendingPercentage;
-			align_type textAlign;	///< ÁĞµÄÎÄ±¾¶ÔÆë
+			align_type textAlign;	///< åˆ—çš„æ–‡æœ¬å¯¹é½
 		};
 
-		/// »ñÈ¡ÁĞ·ç¸ñ¶¨Òå
+		/// è·å–åˆ—é£æ ¼å®šä¹‰
 		virtual ColumnStyle& GetColumnStyle(size_t col) = 0;
 	};
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// ¹¹Ôìº¯Êı
-	/// @param style ÁĞ±í¿òµÄ·ç¸ñ×éºÏ
+	/// æ„é€ å‡½æ•°
+	/// @param style åˆ—è¡¨æ¡†çš„é£æ ¼ç»„åˆ
 	VdkListView(long style = 0);
 
-	/// Îö¹¹º¯Êı
+	/// ææ„å‡½æ•°
 	~VdkListView();
 	
-	/// XRC ¶¯Ì¬´´½¨
+	/// XRC åŠ¨æ€åˆ›å»º
 	virtual void OnXrcCreate(wxXmlNode* node);
 
-	/// ´´½¨¿Ø¼ş
+	/// åˆ›å»ºæ§ä»¶
 	void Create(VdkWindow* parent,
 				const wxString& strName,
 				const wxRect& rc);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/*! ÊÊÅäÆ÷µÄÉúÃüÖÜÆÚ¹ÜÀíÄ£Ê½ */
+	/*! é€‚é…å™¨çš„ç”Ÿå‘½å‘¨æœŸç®¡ç†æ¨¡å¼ */
 	enum AdapterLifeTimePolicy {
-		ALTP_HELD, ///< VdkListView ½Ó¹ÜÊÊÅäÆ÷£¬ÔÚ VdkListView É¾³ıÊ±Ò²É¾³ıÊÊÅäÆ÷
-		ALTP_STATIC, ///< Íâ²¿¾²Ì¬±äÁ¿
+		ALTP_HELD, ///< VdkListView æ¥ç®¡é€‚é…å™¨ï¼Œåœ¨ VdkListView åˆ é™¤æ—¶ä¹Ÿåˆ é™¤é€‚é…å™¨
+		ALTP_STATIC, ///< å¤–éƒ¨é™æ€å˜é‡
 	};
 
-	/// ÉèÖÃÊı¾İÊÊÅäÆ÷
-	/// @param adapter ÊÊÅäÆ÷Ö¸Õë£¬²»¿ÉÒÔÉèÎª¿Õ
-	/// @param altp ÊÊÅäÆ÷µÄÉúÃüÖÜÆÚ¹ÜÀíÄ£Ê½
+	/// è®¾ç½®æ•°æ®é€‚é…å™¨
+	/// @param adapter é€‚é…å™¨æŒ‡é’ˆï¼Œä¸å¯ä»¥è®¾ä¸ºç©º
+	/// @param altp é€‚é…å™¨çš„ç”Ÿå‘½å‘¨æœŸç®¡ç†æ¨¡å¼
 	void SetAdapter(Adapter* adapter, AdapterLifeTimePolicy altp);
 
-	/// ¸üĞÂĞéÄâ»­²¼´óĞ¡
+	/// æ›´æ–°è™šæ‹Ÿç”»å¸ƒå¤§å°
 	void UpdateSize(wxDC* pDC);
 
-	/// »ñÈ¡ÒÑ°ó¶¨µÄÊÊÅäÆ÷
+	/// è·å–å·²ç»‘å®šçš„é€‚é…å™¨
 	Adapter* GetAdapter() const { return m_adapter; }
 
-	/// É¾³ıÒÑ°ó¶¨µÄÊÊÅäÆ÷¶ÔÏó(ÒÔÊÍ·ÅÕ¼ÓÃµÄÄÚ´æ)
+	/// åˆ é™¤å·²ç»‘å®šçš„é€‚é…å™¨å¯¹è±¡(ä»¥é‡Šæ”¾å ç”¨çš„å†…å­˜)
 	void DestroyAdapter() { wxDELETE( m_adapter ); }
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// Êı¾İÊÊÅäÆ÷³ÖÓĞÕßÍ¨ÖªÁĞ±í¿òĞòºÅÎª@a row µÄĞÂÏî±»¼ÓÈë
+	/// æ•°æ®é€‚é…å™¨æŒæœ‰è€…é€šçŸ¥åˆ—è¡¨æ¡†åºå·ä¸º@a row çš„æ–°é¡¹è¢«åŠ å…¥
 	void NotifyItemAdd(size_t row);
 
-	/// Êı¾İÊÊÅäÆ÷³ÖÓĞÕßÍ¨ÖªÁĞ±í¿òĞòºÅÎª@a row µÄÏî±»ÒÆ³ı
+	/// æ•°æ®é€‚é…å™¨æŒæœ‰è€…é€šçŸ¥åˆ—è¡¨æ¡†åºå·ä¸º@a row çš„é¡¹è¢«ç§»é™¤
 	void NotifyItemRemove(size_t row);
 
-	/// Êı¾İÊÊÅäÆ÷³ÖÓĞÕßÍ¨ÖªÁĞ±í¿òËùÓĞÊı¾İÏî¾ùÒÑ±»ÒÆ³ı
+	/// æ•°æ®é€‚é…å™¨æŒæœ‰è€…é€šçŸ¥åˆ—è¡¨æ¡†æ‰€æœ‰æ•°æ®é¡¹å‡å·²è¢«ç§»é™¤
 	void NotifyClear();
 
 	//////////////////////////////////////////////////////////////////////////
 
 	typedef IListViewPlaugin * PluginPtr;
 
-	/// Ìí¼ÓÒ»¸ö²å¼ş
+	/// æ·»åŠ ä¸€ä¸ªæ’ä»¶
 	void AddPlugin(PluginPtr plugin);
 
-	/// ÒÆ³ı²å¼şÊ±¶Ô²å¼ş¶ÔÏóÖ´ĞĞµÄ²Ù×÷
+	/// ç§»é™¤æ’ä»¶æ—¶å¯¹æ’ä»¶å¯¹è±¡æ‰§è¡Œçš„æ“ä½œ
 	enum DestoryPolicy {
-		PDP_LEAVE_IT_AS_IS, ///< ±£ÁôÖ¸Õë
-		PDP_DESTORY, ///< Ë³±ãÉ¾³ı²å¼ş¶ÔÏó
+		PDP_LEAVE_IT_AS_IS, ///< ä¿ç•™æŒ‡é’ˆ
+		PDP_DESTORY, ///< é¡ºä¾¿åˆ é™¤æ’ä»¶å¯¹è±¡
 	};
 
-	/// ÒÆ³ıÖ¸¶¨²å¼ş
+	/// ç§»é™¤æŒ‡å®šæ’ä»¶
 	void RemovePlugin(const wxString& name, DestoryPolicy dp);
 
-	/// É¾³ıËùÓĞ²å¼ş¶ÔÏó
+	/// åˆ é™¤æ‰€æœ‰æ’ä»¶å¯¹è±¡
 	void DestroyAllPlugins();
 
 public:
 
-	/// µ±Ç°×÷ÓÃÓòÏÂ×î´ó¿ÉÒÔÏÔÊ¾µÄÌõÄ¿Êı
+	/// å½“å‰ä½œç”¨åŸŸä¸‹æœ€å¤§å¯ä»¥æ˜¾ç¤ºçš„æ¡ç›®æ•°
 	int GetShownItems() const { return m_shownItems; }
 
-	/// µÃµ½ĞĞ¸ß
+	/// å¾—åˆ°è¡Œé«˜
 	int GetRowHeight() const { return m_rowHeight; }
 
-	/// ÉèÖÃĞĞ¸ß
+	/// è®¾ç½®è¡Œé«˜
 	///
-	/// Ìá¹©µÄÊıÖµ²»ÄÜĞ¡ÓÚ×ÖÌåµÄ¸ß¶È¡£
+	/// æä¾›çš„æ•°å€¼ä¸èƒ½å°äºå­—ä½“çš„é«˜åº¦ã€‚
 	void SetRowHeight(int height, wxDC* pDC = NULL);
 
-	/// »ñÈ¡»æÖÆµ¥Ôª¸ñÊ±×ó²à¾à±¾ÁĞ¿ªÊ¼×ø±êµÄ¾àÀë
+	/// è·å–ç»˜åˆ¶å•å…ƒæ ¼æ—¶å·¦ä¾§è·æœ¬åˆ—å¼€å§‹åæ ‡çš„è·ç¦»
 	static size_t GetCellLeftPadding();
 
 public:
 
-	/// ´æÈ¡Ä¬ÈÏ±³¾°»­Ë¢
+	/// å­˜å–é»˜è®¤èƒŒæ™¯ç”»åˆ·
 	wxBrush GetBackgroundBrush() const { return m_background; }
 	void SetBackgroundBrush(const wxBrush& brush) { m_background = brush; }
 
-	// ¸üĞÂĞĞ×´Ì¬£¨ÓèÒÔÖØ»­£©
+	// æ›´æ–°è¡ŒçŠ¶æ€ï¼ˆäºˆä»¥é‡ç”»ï¼‰
 	void UpdateRow(int index, wxDC& dc);
 
 protected:
 
-	/// ´¦ÀíÊó±êÊÂ¼ş
+	/// å¤„ç†é¼ æ ‡äº‹ä»¶
 	virtual void OnMouseEvent(VdkMouseEvent& e);
 
-	/// ÏìÓ¦ÓÃ»§°´¼üÊÂ¼ş
+	/// å“åº”ç”¨æˆ·æŒ‰é”®äº‹ä»¶
 	virtual void OnKeyEvent(VdkKeyEvent& ke);
 
-	/// »æÖÆ¿Ø¼ş
+	/// ç»˜åˆ¶æ§ä»¶
 	virtual void OnDraw(wxDC& dc);
 
-	/// ²Á³ı£¨»æÖÆ£©ĞĞ±³¾°
+	/// æ“¦é™¤ï¼ˆç»˜åˆ¶ï¼‰è¡ŒèƒŒæ™¯
 	void EraseRow(int index, wxDC& dc);
 
-	/// »æÖÆÒ»ĞĞµÄÎÄ±¾
+	/// ç»˜åˆ¶ä¸€è¡Œçš„æ–‡æœ¬
 	///
-	/// ±¾º¯ÊıÒò»¹Ô­±»Ñ¡Ôñ»ò¸ßÁÁµÄÏî¶øÉú¡£
-	/// @attention ±¾º¯ÊıĞ§ÂÊ±È½ÏµÍÏÂ£¬½÷É÷Ê¹ÓÃ£¡
-	/// ÍÆ¼öÓÃÍ¾:\link UpdateRow \endlink
+	/// æœ¬å‡½æ•°å› è¿˜åŸè¢«é€‰æ‹©æˆ–é«˜äº®çš„é¡¹è€Œç”Ÿã€‚
+	/// @attention æœ¬å‡½æ•°æ•ˆç‡æ¯”è¾ƒä½ä¸‹ï¼Œè°¨æ…ä½¿ç”¨ï¼
+	/// æ¨èç”¨é€”:\link UpdateRow \endlink
 	void DrawRowText(int row, wxDC& dc);
 
-	/// ÔÚ×ø±ê(@a x, @a y)´¦¿ªÊ¼»æÖÆµ¥Ôª¸ñ(@a col, @a row)µÄÎÄ±¾
+	/// åœ¨åæ ‡(@a x, @a y)å¤„å¼€å§‹ç»˜åˆ¶å•å…ƒæ ¼(@a col, @a row)çš„æ–‡æœ¬
 	///
-	/// »á×Ô¶¯´¦ÀíÖîÈç×óÌî³ä¡¢¶ÔÆë¡¢³¤ÎÄ±¾½Ø¶ÏµÈÎÊÌâ¡£
+	/// ä¼šè‡ªåŠ¨å¤„ç†è¯¸å¦‚å·¦å¡«å……ã€å¯¹é½ã€é•¿æ–‡æœ¬æˆªæ–­ç­‰é—®é¢˜ã€‚
 	void DrawCellText(wxDC& dc, size_t row, size_t col, int x, int y);
 
-	/// ´¦Àí X Öá×ø±êÎÄ±¾¶ÔÆë¡¢³¤ÎÄ±¾½Ø¶Ï
-	/// @param col ÎÄ±¾ËùÊôÁĞ
-	/// @param text ÒªÏÔÊ¾µÄÎÄ±¾£¬¹ı³¤Ê±»á±»½Ø¶Ï
-	/// @return ÎÄ±¾»æÍ¼×ø±ê x ×ø±êµÄĞŞÕıÖµ
+	/// å¤„ç† X è½´åæ ‡æ–‡æœ¬å¯¹é½ã€é•¿æ–‡æœ¬æˆªæ–­
+	/// @param col æ–‡æœ¬æ‰€å±åˆ—
+	/// @param text è¦æ˜¾ç¤ºçš„æ–‡æœ¬ï¼Œè¿‡é•¿æ—¶ä¼šè¢«æˆªæ–­
+	/// @return æ–‡æœ¬ç»˜å›¾åæ ‡ x åæ ‡çš„ä¿®æ­£å€¼
 	int CalTextXAxisProp(wxDC& dc, size_t col, wxString& text);
 
 protected:
 
-	/// ´ÓÄ³Ò»ÊúÖ±×ø±ê\a y ÅĞ¶ÏÖ¸ÕëÏÂµÄÁĞ±íÏî ID
-	/// @return µã»÷µãÊÇ·ñÑÏ¸ñ´¦ÓÚ¿ÉÊÓÇøÓòÖ®ÄÚ£¬·ñÔòµã»÷ÁË¿Ø¼ş
-	/// ×îºóµÄ¿Õ°×´¦
+	/// ä»æŸä¸€ç«–ç›´åæ ‡\a y åˆ¤æ–­æŒ‡é’ˆä¸‹çš„åˆ—è¡¨é¡¹ ID
+	/// @return ç‚¹å‡»ç‚¹æ˜¯å¦ä¸¥æ ¼å¤„äºå¯è§†åŒºåŸŸä¹‹å†…ï¼Œå¦åˆ™ç‚¹å‡»äº†æ§ä»¶
+	/// æœ€åçš„ç©ºç™½å¤„
 	bool GetIndex(int y, int* rowAtPointer);
 
 private:
 
-	// £¨ÖØĞÂ£©¼ÆËãµ±Ç°×÷ÓÃÓòÏÂ×î´ó¿ÉÒÔÏÔÊ¾µÄÌõÄ¿Êı
+	// ï¼ˆé‡æ–°ï¼‰è®¡ç®—å½“å‰ä½œç”¨åŸŸä¸‹æœ€å¤§å¯ä»¥æ˜¾ç¤ºçš„æ¡ç›®æ•°
 	void CalcShownItems();
 
-	// ½ÓÊÕ¡¢´¦ÀíÍ¨ÖªĞÅÏ¢
-	// ÅÉÉú×Ô VdkScrolledWindow
+	// æ¥æ”¶ã€å¤„ç†é€šçŸ¥ä¿¡æ¯
+	// æ´¾ç”Ÿè‡ª VdkScrolledWindow
 	virtual void OnNotify(const VdkNotify& notice);
 
-	/// @brief ÔÚ´Ë²Á³ı£¨»æÖÆ£©ĞĞ±³¾°
-	/// @return Ö¸Ê¾ VdkListCtrl µÄºóĞøĞĞÎª
+	/// @brief åœ¨æ­¤æ“¦é™¤ï¼ˆç»˜åˆ¶ï¼‰è¡ŒèƒŒæ™¯
+	/// @return æŒ‡ç¤º VdkListCtrl çš„åç»­è¡Œä¸º
 	/// @see VdkCusdrawReturnFlag
 	virtual VdkCusdrawReturnFlag DoEraseRow(int index, wxDC& dc)
 	{
@@ -209,7 +209,7 @@ private:
 		DSCA_CLEAR,
 	};
 
-	// ´¦ÀíÊı¾İ¼¯±ä»¯
+	// å¤„ç†æ•°æ®é›†å˜åŒ–
 	void OnDataSetChange(DataSetChangeAction dsca, size_t row);
 
 private:
@@ -218,17 +218,17 @@ private:
 	Adapter* m_adapter;
 	bool m_held;
 
-	int m_rowHeight; // ĞĞ¸ß
-	int m_shownItems; // µ±Ç°µÄ VdkListCtrl ÄÜÈİÄÉ¶àÉÙĞĞ
+	int m_rowHeight; // è¡Œé«˜
+	int m_shownItems; // å½“å‰çš„ VdkListCtrl èƒ½å®¹çº³å¤šå°‘è¡Œ
 
 	// TODO:
-	// ÔÚÕı³£µÄ´¹Ö±ÏÔÊ¾·¶Î§Ö®ÏÂ»¹Òª»æÖÆ¶àÉÙÌõÏîÄ¿£¬
-	// ¶àÓÃÓÚÔÊĞí×Ô¶¯¹ö¶¯µÄ¹ö¶¯´°¿Ú£¬·ñÔòÍùÍù»áÊ¹µÃµ±Ç°ÆÁµÄ
-	// µÚÒ»ĞĞÒÆ³ö»­²¼ÉÏÑØºó£¬¶ø×îºóÒ»ĞĞµÄÏÂÒ»ĞĞÈ´»¹Ã»½øÈë
-	// ÓÃ»§µÄÊÓÒ°¡£
+	// åœ¨æ­£å¸¸çš„å‚ç›´æ˜¾ç¤ºèŒƒå›´ä¹‹ä¸‹è¿˜è¦ç»˜åˆ¶å¤šå°‘æ¡é¡¹ç›®ï¼Œ
+	// å¤šç”¨äºå…è®¸è‡ªåŠ¨æ»šåŠ¨çš„æ»šåŠ¨çª—å£ï¼Œå¦åˆ™å¾€å¾€ä¼šä½¿å¾—å½“å‰å±çš„
+	// ç¬¬ä¸€è¡Œç§»å‡ºç”»å¸ƒä¸Šæ²¿åï¼Œè€Œæœ€åä¸€è¡Œçš„ä¸‹ä¸€è¡Œå´è¿˜æ²¡è¿›å…¥
+	// ç”¨æˆ·çš„è§†é‡ã€‚
 	int m_nShownItemsAddIn;
 
-	wxBrush m_background; // Ä¬ÈÏ±³¾°»­Ë¢
+	wxBrush m_background; // é»˜è®¤èƒŒæ™¯ç”»åˆ·
 	wxVector< PluginPtr > m_plugins;
 
 	DECLARE_DYNAMIC_VOBJECT

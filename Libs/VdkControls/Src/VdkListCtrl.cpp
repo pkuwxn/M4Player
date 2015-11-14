@@ -1,4 +1,4 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkListCtrl.cpp
  * Purpose:   Code for VdkListCtrl implementation
  * Author:    Ning (vanxining@139.com)
@@ -28,15 +28,15 @@ IMPLEMENT_CLONEABLE_VOBJECT( VdkListCtrl, VdkControl );
 #include "Images/list_ctrl_header.xpm"
 
 enum {
-	// Ä¬ÈÏĞĞ¸ß
+	// é»˜è®¤è¡Œé«˜
 	CNST_DEFAULT_ROW_HEIGHT = 20,
-	// ±êÌâÀ¸¸ß¶È
+	// æ ‡é¢˜æ é«˜åº¦
 	CNST_HEADER_HEIGHT = 20,
 };
 
 //////////////////////////////////////////////////////////////////////////
-// Ò»Ğ©Õë¶Ô std::list µÄ±ãÀûº¯Êı
-// TODO: ¸ÄÓÃ STL µÄµÈĞ§ÉèÊ©
+// ä¸€äº›é’ˆå¯¹ std::list çš„ä¾¿åˆ©å‡½æ•°
+// TODO: æ”¹ç”¨ STL çš„ç­‰æ•ˆè®¾æ–½
 
 template< class ListT >
 inline typename ListT::value_type at(ListT& lst, size_t index)
@@ -164,9 +164,9 @@ void VdkListCtrl::Create(VdkWindow* parent,
 
 void VdkListCtrl::Clone(VdkListCtrl* o)
 {
-	// Ê×ÏÈ¸´ÖÆÁĞÁ´±í£¬ÒòÎªÎÒÃÇ¿ÉÄÜÔÚ VdkScrolledWindow::Clone ÀïĞŞ¸Ä
-	// ×÷ÓÃÓò£¬ÕâÒ»ĞŞ¸Ä±ØĞëÄÜ·´Ó³µ½ÁĞÁ´±íÀï¡£
-	// ×¢Òâ wxList ÊÇ±£´æÊı¾İµÄÖ¸Õë
+	// é¦–å…ˆå¤åˆ¶åˆ—é“¾è¡¨ï¼Œå› ä¸ºæˆ‘ä»¬å¯èƒ½åœ¨ VdkScrolledWindow::Clone é‡Œä¿®æ”¹
+	// ä½œç”¨åŸŸï¼Œè¿™ä¸€ä¿®æ”¹å¿…é¡»èƒ½åæ˜ åˆ°åˆ—é“¾è¡¨é‡Œã€‚
+	// æ³¨æ„ wxList æ˜¯ä¿å­˜æ•°æ®çš„æŒ‡é’ˆ
 	LcColIter i;
 	for( i = o->m_cols.begin(); i != o->m_cols.end(); ++i )
 	{
@@ -202,8 +202,8 @@ void VdkListCtrl::Attach(LcDataSet* dataSet)
 {
 	m_cols.Attach( dataSet );
 
-	// TODO: Óë InsertColumn ÄÇÀïÒ»Æğ×ö¸ö±È½ÏÏêÏ¸µÄËµÃ÷
-	// ×¢Òâ¸üĞÂ m_lastSelelected
+	// TODO: ä¸ InsertColumn é‚£é‡Œä¸€èµ·åšä¸ªæ¯”è¾ƒè¯¦ç»†çš„è¯´æ˜
+	// æ³¨æ„æ›´æ–° m_lastSelelected
 	if( GetColumnCount() > 0 )
 	{
 		UpdateLastSelected( (*(m_cols.begin()))->cells.end() );
@@ -274,9 +274,9 @@ bool VdkListCtrl::AjustCollumn(size_t w, size_t adjust, size_t adjustFrom)
 	colFrom->UpdateWidth( colFrom->width - dw );
 
 	if( col->x < colFrom->x )
-		colFrom->x += dw;  // Ô´ÁĞÔÚÓÒ±ß£¬Ô´ÁĞÓÒÒÆ
+		colFrom->x += dw;  // æºåˆ—åœ¨å³è¾¹ï¼Œæºåˆ—å³ç§»
 	else
-		col->x -= dw; // Ô´ÁĞÔÚ×ó±ß£¬Ä¿±êÁĞ×óÒÆ
+		col->x -= dw; // æºåˆ—åœ¨å·¦è¾¹ï¼Œç›®æ ‡åˆ—å·¦ç§»
 
 	return true;
 }
@@ -288,10 +288,10 @@ void VdkListCtrl::OnDraw(wxDC& dc)
 	GetViewStart( NULL, &y );
 	GetMaxViewStart( NULL, &maxY );
 
-	// ĞĞÊı²»×ãÒ»ÆÁÊ±Çå¿Õµ×²¿ÒÑ»­ÄÚÈİ
+	// è¡Œæ•°ä¸è¶³ä¸€å±æ—¶æ¸…ç©ºåº•éƒ¨å·²ç”»å†…å®¹
 	if( y == maxY )
 	{
-		int lh, yBlank; // ¿Õ°×ÇøÓòµÄ¸ß¶È
+		int lh, yBlank; // ç©ºç™½åŒºåŸŸçš„é«˜åº¦
 		GetVirtualSize( NULL, &lh );
 		yBlank = m_Rect.height - (numRows - y) * GetRowHeight();
 
@@ -312,7 +312,7 @@ void VdkListCtrl::OnDraw(wxDC& dc)
 	for( int i = y; (i < (y + m_shownItems)) && (i < numRows); ++i, ++it )
 		EraseRow( it, i, dc );
 
-	int w = 0; // ÁĞ¿í¶ÈÀÛ¼Ó
+	int w = 0; // åˆ—å®½åº¦ç´¯åŠ 
 	LcColIter i( m_cols.begin() ), e( m_cols.end() );
 	int colIndex = 0;
 	for( ; i != e; ++i, ++colIndex )
@@ -449,7 +449,7 @@ void VdkListCtrl::GetIndex(int y, int& index, int& indexMayOverflow)
 	if( itemsCount == 0 )
 		return;
 
-	int base; // ÕıÔÚÏÔÊ¾µÄµÚÒ»ĞĞ
+	int base; // æ­£åœ¨æ˜¾ç¤ºçš„ç¬¬ä¸€è¡Œ
 	GetViewStart( NULL, &base );
 
 	indexMayOverflow = base + y / m_rowHeight;
@@ -474,7 +474,7 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 	if( itemsCount == 0 )
 		return;
 
-	int base; // ÕıÔÚÏÔÊ¾µÄµÚÒ»ĞĞ
+	int base; // æ­£åœ¨æ˜¾ç¤ºçš„ç¬¬ä¸€è¡Œ
 	GetViewStart( NULL, &base );
 
 	int index, indexMayOverflow;
@@ -482,7 +482,7 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 
 	//==============================================
 
-	bool selected = (!m_selItems.empty()) && // ÊÇ·ñÒÑ±»Ñ¡ÖĞ
+	bool selected = (!m_selItems.empty()) && // æ˜¯å¦å·²è¢«é€‰ä¸­
 				  (m_selItems.Index( index ) != wxNOT_FOUND);
 
 	bool multi = TestStyle( VLCS_MULTI_SELECT );
@@ -498,11 +498,11 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 
 		if( m_lastHilighted != index )
 		{
-			// ²»Òª¸üĞÂ²»ÔÚÏÔÊ¾·¶Î§ÄÚÏî
+			// ä¸è¦æ›´æ–°ä¸åœ¨æ˜¾ç¤ºèŒƒå›´å†…é¡¹
 			if( m_lastHilighted >= base )
 				UpdateRow( wxNOT_FOUND, e.dc );
 
-			// ²»Òª¸ßÁÁÒÑ±»Ñ¡ÖĞµÄÏî
+			// ä¸è¦é«˜äº®å·²è¢«é€‰ä¸­çš„é¡¹
 			if( !selected )
 			{
 				m_lastHilighted = index;
@@ -525,7 +525,7 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 
 			if( e.shiftDown && multi )
 			{
-				// ÓÃ»§µã»÷ÁËÁĞ±í¿ò×îºóµÄ¿Õ°×£¬Ö±½Ó¶ªÆúÕâ¸öÊÂ¼ş
+				// ç”¨æˆ·ç‚¹å‡»äº†åˆ—è¡¨æ¡†æœ€åçš„ç©ºç™½ï¼Œç›´æ¥ä¸¢å¼ƒè¿™ä¸ªäº‹ä»¶
 				if( index == -1 )
 					break;
 
@@ -533,22 +533,22 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 				{
 					int nFirst, nLast;
 
-					// ÏòÏÂ¶àÑ¡
+					// å‘ä¸‹å¤šé€‰
 					if( index >= m_selStart )
 					{
 						nFirst = m_selStart;
 						nLast = index;
 					}
-					else if( index < m_selStart ) // ÏòÉÏ¶àÑ¡
+					else if( index < m_selStart ) // å‘ä¸Šå¤šé€‰
 					{
 						nFirst = index;
 						nLast = m_selStart;
 					}
 
-					int i; // ÊÇ m_selItems ±£´æµÄ¡¢
-						   // ÊôÓÚ VdkListCtrl µÄ index£¬Êµ¼ÊÊı×Ö
+					int i; // æ˜¯ m_selItems ä¿å­˜çš„ã€
+						   // å±äº VdkListCtrl çš„ indexï¼Œå®é™…æ•°å­—
 
-					// Çå¿Õ nFirst Ö®Ç°²»ÔÙÊÇ±»Ñ¡ÖĞµÄÏîÄ¿
+					// æ¸…ç©º nFirst ä¹‹å‰ä¸å†æ˜¯è¢«é€‰ä¸­çš„é¡¹ç›®
 					i = m_selItems[0];
 					while( i < nFirst )
 					{
@@ -560,7 +560,7 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 						i = m_selItems[0];
 					}
 
-					// Çå¿Õ nLast Ö®ºó²»ÔÙÊÇ±»Ñ¡ÖĞµÄÏîÄ¿
+					// æ¸…ç©º nLast ä¹‹åä¸å†æ˜¯è¢«é€‰ä¸­çš„é¡¹ç›®
 					i = m_selItems[m_selItems.size() - 1];
 					while( i > nLast )
 					{
@@ -574,7 +574,7 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 
 					for( int j = nFirst; j <= nLast; j++ )
 					{
-						// ²»ÒªÖØ¸´Ìí¼ÓÌõÄ¿
+						// ä¸è¦é‡å¤æ·»åŠ æ¡ç›®
 						if( m_selItems.Index( j ) == wxNOT_FOUND )
 						{
 							m_selItems.Add( j );
@@ -590,7 +590,7 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 					if( !selected )
 						m_selItems.Add( index );
 
-					m_selStart = index; // ×îºó±»Ñ¡ÖĞµÄÒ»¸öÌõÄ¿×÷ÎªÆğµã
+					m_selStart = index; // æœ€åè¢«é€‰ä¸­çš„ä¸€ä¸ªæ¡ç›®ä½œä¸ºèµ·ç‚¹
 
 					//==============================================
 
@@ -604,16 +604,16 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 			{
 				if( indexMayOverflow < itemsCount )
 				{
-					// ¶àÑ¡
+					// å¤šé€‰
 					if( e.controlDown && selected )
 					{
 						m_selItems.Remove( index );
 					}
-					// TODO: ÕâÀïÓ¦¸ÃÇø·ÖÊó±ê×ó¼ü°´ÏÂºÍµ¯ÆğµÄÇé¿ö£¬ÀıÈçÍÏ¶¯¶àÑ¡
-					// ÏîÄ¿
+					// TODO: è¿™é‡Œåº”è¯¥åŒºåˆ†é¼ æ ‡å·¦é”®æŒ‰ä¸‹å’Œå¼¹èµ·çš„æƒ…å†µï¼Œä¾‹å¦‚æ‹–åŠ¨å¤šé€‰
+					// é¡¹ç›®
 					else if( !selected )
 					{
-						if( !e.controlDown ) // µ¥Ñ¡Ê±Çå¿ÕÆäËûÑ¡Ôñ
+						if( !e.controlDown ) // å•é€‰æ—¶æ¸…ç©ºå…¶ä»–é€‰æ‹©
 						{
 							SelectNone( &e.dc );
 						}
@@ -621,7 +621,7 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 						m_selItems.Add( index );
 					}
 
-					m_selStart = index; // ½«×îºó±»Ñ¡ÖĞµÄÒ»¸öÌõÄ¿×÷ÎªÆğµã
+					m_selStart = index; // å°†æœ€åè¢«é€‰ä¸­çš„ä¸€ä¸ªæ¡ç›®ä½œä¸ºèµ·ç‚¹
 					UpdateLastSelected( GetCellIterator( 0, index ) );
 
 					if( !hovering )
@@ -630,7 +630,7 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 					}
 
 				}
-				else // ÔÚ×îºóµÄ¿Õ°×´¦µ¥»÷£¬Ó¦¸ÃÇå¿ÕÒÑÑ¡ÔñµÄÌõÄ¿
+				else // åœ¨æœ€åçš„ç©ºç™½å¤„å•å‡»ï¼Œåº”è¯¥æ¸…ç©ºå·²é€‰æ‹©çš„æ¡ç›®
 				{
 					SelectNone( &e.dc );
 				}
@@ -644,8 +644,8 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 
 		UpdateRow( wxNOT_FOUND, e.dc );
 
-		// ¼ÙÈçÔÚ×÷ÓÃÓòÖ®Íâ·Å¿ªÕıÔÚÍÏ·ÅµÄÖ¸Õë£¬
-		// Ôò»á·¢ËÍ NORMAL ÊÂ¼ş¶ø²»ÊÇ LEFT_UP
+		// å‡å¦‚åœ¨ä½œç”¨åŸŸä¹‹å¤–æ”¾å¼€æ­£åœ¨æ‹–æ”¾çš„æŒ‡é’ˆï¼Œ
+		// åˆ™ä¼šå‘é€ NORMAL äº‹ä»¶è€Œä¸æ˜¯ LEFT_UP
 		if( m_lastDraggTarget == wxNOT_FOUND )
 			break;
 
@@ -655,33 +655,33 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 		{
 			m_lastDraggTarget = wxNOT_FOUND;
 
-			// ½«×Ô¼ºÒÆ¶¯µ½ÒÑÑ¡ÌõÄ¿µÄÏÖÎ»ÖÃ£¿
+			// å°†è‡ªå·±ç§»åŠ¨åˆ°å·²é€‰æ¡ç›®çš„ç°ä½ç½®ï¼Ÿ
 			if( selected )
 			{
 				break;
 			}
 
-			// ²»ÖªµÀÎªÊ²Ã´»á³öÏÖ size == 0 µÄÇé¿ö
+			// ä¸çŸ¥é“ä¸ºä»€ä¹ˆä¼šå‡ºç° size == 0 çš„æƒ…å†µ
 			int numSel = m_selItems.size();
 			if( numSel == 0 )
 				break;
 
 			//==============================================
 
-			// Ê×ÏÈ±£´æ Shift ¶àÑ¡µÄÆğµã
+			// é¦–å…ˆä¿å­˜ Shift å¤šé€‰çš„èµ·ç‚¹
 			int selStartIndex = wxNOT_FOUND;
 			if( m_selStart != wxNOT_FOUND )
 				selStartIndex = m_selItems.Index( m_selStart );
 
-			// ¼ÙÈçÊÇÏòÏÂÖØÅÅ£¬ÒòÎªÎÒÃÇ´ÓÔ­À´µÄµØ·½½ØÈ¡ÁË size ¸öÌõÄ¿³öÀ´£¬
-			// Òò´ËÒª±£³Ö²åÈëÎ»ÖÃ²»±ä£¬²åÈëµãÒªÏàÓ¦ÏÂÒÆÄ³¸öÈ·¶¨µÄ´ÎÊı
-			// £¨ÒòÎª¶àÑ¡Ê±¿ÉÄÜ°´×¡ Ctrl ¼ü½øĞĞÁË·ÖÉ¢µÄ¶àÑ¡£¬
-			// ¶øÓÃ»§Ç¡Ç¡Ïë½«ÒÑÑ¡µÄÌõÄ¿²åÈëµ½ÆäÖĞµÄ¿Õµ²Àï£©
+			// å‡å¦‚æ˜¯å‘ä¸‹é‡æ’ï¼Œå› ä¸ºæˆ‘ä»¬ä»åŸæ¥çš„åœ°æ–¹æˆªå–äº† size ä¸ªæ¡ç›®å‡ºæ¥ï¼Œ
+			// å› æ­¤è¦ä¿æŒæ’å…¥ä½ç½®ä¸å˜ï¼Œæ’å…¥ç‚¹è¦ç›¸åº”ä¸‹ç§»æŸä¸ªç¡®å®šçš„æ¬¡æ•°
+			// ï¼ˆå› ä¸ºå¤šé€‰æ—¶å¯èƒ½æŒ‰ä½ Ctrl é”®è¿›è¡Œäº†åˆ†æ•£çš„å¤šé€‰ï¼Œ
+			// è€Œç”¨æˆ·æ°æ°æƒ³å°†å·²é€‰çš„æ¡ç›®æ’å…¥åˆ°å…¶ä¸­çš„ç©ºæŒ¡é‡Œï¼‰
 			int dstIndex = index;
 			if( dstIndex > m_selItems[0] )
 			{
 				int i = 0; // TODO: 1 or 0 ?
-				// index ²»¿ÉÄÜÎ»ÓÚÒÑÑ¡ÌõÄ¿µÄ¼¯ºÏÖĞ
+				// index ä¸å¯èƒ½ä½äºå·²é€‰æ¡ç›®çš„é›†åˆä¸­
 				while( i < numSel && dstIndex > m_selItems[i] )
 				{
 					i++;
@@ -689,7 +689,7 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 				}
 			}
 
-			// ±£´æÒªÒÆ¶¯µÄÏîÄ¿µÄµü´úÆ÷
+			// ä¿å­˜è¦ç§»åŠ¨çš„é¡¹ç›®çš„è¿­ä»£å™¨
 			LcCellIter* selItemIters = new LcCellIter[numSel];
 
 			LcColIter walker( m_cols.begin() );
@@ -697,8 +697,8 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 			{
 				VdkLcColumn* col = *walker;
 
-				// ÏÈ±£´æÒªÒÆ¶¯µÄÏî£¬ÒòÎªÒ»µ©¿ªÊ¼ÒÆ¶¯ºó£¬ÒÑÑ¡ÔñÏîÊı×é
-				// µÄÖµ»á±äµÃ²»ÕıÈ·£¬ÒªÏë¸ú×Ù×öÆğÀ´±È½Ï¸ºÔğ
+				// å…ˆä¿å­˜è¦ç§»åŠ¨çš„é¡¹ï¼Œå› ä¸ºä¸€æ—¦å¼€å§‹ç§»åŠ¨åï¼Œå·²é€‰æ‹©é¡¹æ•°ç»„
+				// çš„å€¼ä¼šå˜å¾—ä¸æ­£ç¡®ï¼Œè¦æƒ³è·Ÿè¸ªåšèµ·æ¥æ¯”è¾ƒè´Ÿè´£
 				for( int i = 0; i < numSel ; i++ )
 				{
 					if( i == 0 )
@@ -729,17 +729,17 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 
 			//-----------------------------------------------------------
 
-			// ĞŞ¸Ä m_selItems µÄÖµ
+			// ä¿®æ”¹ m_selItems çš„å€¼
 			for( int i = 0; i < numSel ; i++ )
 				m_selItems[i] = index + i;
 
-			// »¹Ô­ Shift ¶àÑ¡µÄÆğµã
+			// è¿˜åŸ Shift å¤šé€‰çš„èµ·ç‚¹
 			if( m_selStart != wxNOT_FOUND )
 				m_selStart = m_selItems[selStartIndex];
 
 			RefreshState( &e.dc );
 
-			// ·¢ËÍÍ¨ÖªÊÂ¼ş
+			// å‘é€é€šçŸ¥äº‹ä»¶
 			if( IsReadyForEvent() )
 			{
 				// TODO: No corresponding END_DRAG?
@@ -790,15 +790,15 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 					m_selStart = index;
 				}
 
-				// ¸üĞÂ×îºóÑ¡ÖĞÏî
+				// æ›´æ–°æœ€åé€‰ä¸­é¡¹
 				UpdateLastSelected( GetCellIterator( 0, index ) );
 
-				// ½« UpdateRow ·Åµ½×îºó²Åµ÷ÓÃ(µÈ´ıËùÓĞ×´Ì¬¶¼¾ÍĞ÷)
+				// å°† UpdateRow æ”¾åˆ°æœ€åæ‰è°ƒç”¨(ç­‰å¾…æ‰€æœ‰çŠ¶æ€éƒ½å°±ç»ª)
 				UpdateRow( index, e.dc );
 
 			} // END if( !TestStyle( VLCS_NO_SELECT ) )
 
-			// µ¯³öÓÒ¼ü²Ëµ¥
+			// å¼¹å‡ºå³é”®èœå•
 			wxPoint menupos( AbsoluteRect().GetPosition() );
 			menupos.x += e.mousePos.x;
 			menupos.y += e.mousePos.y;
@@ -806,7 +806,7 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 			m_Window->ShowContextMenu( this, menupos );
 		}
 
-		// ÔÚ×îºóµÄ¿Õ°×´¦ÓÒ»÷£¬Ó¦¸ÃÇå¿ÕÒÑÑ¡ÔñµÄÌõÄ¿
+		// åœ¨æœ€åçš„ç©ºç™½å¤„å³å‡»ï¼Œåº”è¯¥æ¸…ç©ºå·²é€‰æ‹©çš„æ¡ç›®
 		if( index == -1 )
 			SelectNone( &e.dc );
 
@@ -821,7 +821,7 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 				break;
 			}
 
-			// ¼ÌĞøÏò¿´²»µ½µÄµØ·½ÍÏ¶¯
+			// ç»§ç»­å‘çœ‹ä¸åˆ°çš„åœ°æ–¹æ‹–åŠ¨
 			if( m_lastDraggTarget == index )
 			{
 				if( (index == base || index >= base + m_shownItems - 1) &&
@@ -838,12 +838,12 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 						e.evtCode = WHEEL_DOWN;
 					}
 
-					/* ÕâÀï²»ÄÜÓÃ VdkDcDeviceOriginSaver£¬¶øÓ¦¸ÃÖ±½ÓÖØĞÂÉè¶¨ DC £¬
-					 * ÖØĞÂÉèÖÃÕıÈ·µÄ²Ã¼ôÇøÓò */
+					/* è¿™é‡Œä¸èƒ½ç”¨ VdkDcDeviceOriginSaverï¼Œè€Œåº”è¯¥ç›´æ¥é‡æ–°è®¾å®š DC ï¼Œ
+					 * é‡æ–°è®¾ç½®æ­£ç¡®çš„è£å‰ªåŒºåŸŸ */
 					HandleMouseEvent( e );
 					e.evtCode = DRAGGING;
 
-					// ÖØĞÂÉè¶¨ DC
+					// é‡æ–°è®¾å®š DC
 					PrepareDC( e.dc );
 				}
 				else
@@ -855,7 +855,7 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 			if( m_lastDraggTarget != wxNOT_FOUND )
 				UpdateRow( m_lastDraggTarget, e.dc );
 
-			// ±ÜÃâÍÏ¶¯ÊÂ¼şÌ«¹ıÁéÃô£¬Ä¿±êÎªÒÑÑ¡ÏîÊ±²»Òª»­°×Ïß
+			// é¿å…æ‹–åŠ¨äº‹ä»¶å¤ªè¿‡çµæ•ï¼Œç›®æ ‡ä¸ºå·²é€‰é¡¹æ—¶ä¸è¦ç”»ç™½çº¿
 			if( !selected )
 			{
 				e.dc.SetPen( m_draggTarget );
@@ -876,7 +876,7 @@ void VdkListCtrl::OnMouseEvent(VdkMouseEvent& e)
 
 void VdkListCtrl::OnKeyEvent(VdkKeyEvent& ke)
 {
-	// È«²¿Ìø¹ı
+	// å…¨éƒ¨è·³è¿‡
 	ke.Skip( true );
 
 	//===============================================
@@ -894,10 +894,10 @@ void VdkListCtrl::OnKeyEvent(VdkKeyEvent& ke)
 	int base, shownItems;
 	GetViewStart( NULL, &base );
 	shownItems = static_cast< float >( m_Rect.height ) / GetRowHeight();
-	// - 1 ÊÇÎªÁË½«ÒÑÑ¡ÏîÒÆ¶¯µ½¿ÉÊÓÇøÓò×îºóÒ»ĞĞ
+	// - 1 æ˜¯ä¸ºäº†å°†å·²é€‰é¡¹ç§»åŠ¨åˆ°å¯è§†åŒºåŸŸæœ€åä¸€è¡Œ
 	int bottom = base + shownItems;
 	if( m_Rect.height % GetRowHeight() )
-		bottom -= 1; // ×îºóÒ»ĞĞÏÔÊ¾²»È«
+		bottom -= 1; // æœ€åä¸€è¡Œæ˜¾ç¤ºä¸å…¨
 
 	int count = GetItemCount();
 	int sel = wxNOT_FOUND, selCount( m_selItems.size() );
@@ -914,7 +914,7 @@ void VdkListCtrl::OnKeyEvent(VdkKeyEvent& ke)
 	{
 	case WXK_PAGEDOWN:
 		{
-			// µÚÒ»ÆÁÏÈ½«Ñ¡ÔñÏîÒÆ¶¯µ½¿ÉÊÓÇøÓòµ×²¿
+			// ç¬¬ä¸€å±å…ˆå°†é€‰æ‹©é¡¹ç§»åŠ¨åˆ°å¯è§†åŒºåŸŸåº•éƒ¨
 			if( sel == wxNOT_FOUND || sel != bottom )
 			{
 				SelectNone( NULL );
@@ -924,7 +924,7 @@ void VdkListCtrl::OnKeyEvent(VdkKeyEvent& ke)
 			}
 			else
 			{
-				// ÔÙÏÂ¾Í³¬³ö·¶Î§ÁË
+				// å†ä¸‹å°±è¶…å‡ºèŒƒå›´äº†
 				if( bottom == count - 1 )
 					break;
 
@@ -947,7 +947,7 @@ void VdkListCtrl::OnKeyEvent(VdkKeyEvent& ke)
 
 	case WXK_PAGEUP:
 		{
-			// µÚÒ»ÆÁÏÈ½«Ñ¡ÔñÏîÒÆ¶¯µ½¿ÉÊÓÇøÓò¶¥²¿
+			// ç¬¬ä¸€å±å…ˆå°†é€‰æ‹©é¡¹ç§»åŠ¨åˆ°å¯è§†åŒºåŸŸé¡¶éƒ¨
 			if( sel == wxNOT_FOUND || sel != base )
 			{
 				SelectNone( NULL );
@@ -985,7 +985,7 @@ void VdkListCtrl::OnKeyEvent(VdkKeyEvent& ke)
 				selCount = 0;
 			}
 
-			// Ê¹ÓÃÊó±ê×îºóÑ¡ÔñµÄÒ»ÏîÀ´È·¶¨ÏÂÒ»ÒªÑ¡µÄÌõÄ¿
+			// ä½¿ç”¨é¼ æ ‡æœ€åé€‰æ‹©çš„ä¸€é¡¹æ¥ç¡®å®šä¸‹ä¸€è¦é€‰çš„æ¡ç›®
 			if( m_lastSelected != GetColumnEnd( 0 ) )
 				sel = IndexOf( *m_lastSelected );
 			else
@@ -993,7 +993,7 @@ void VdkListCtrl::OnKeyEvent(VdkKeyEvent& ke)
 
 			sel++;
 
-			// ³¬³ö·¶Î§
+			// è¶…å‡ºèŒƒå›´
 			if( sel >= count )
 				break;
 
@@ -1003,7 +1003,7 @@ void VdkListCtrl::OnKeyEvent(VdkKeyEvent& ke)
 				{
 					OnShiftUpDownKeys( sel, *pDC );
 				}
-				else // Ô­ÏÈÃ»ÓĞÈÎºÎÑ¡Ôñ
+				else // åŸå…ˆæ²¡æœ‰ä»»ä½•é€‰æ‹©
 				{
 					break;
 				}
@@ -1034,7 +1034,7 @@ void VdkListCtrl::OnKeyEvent(VdkKeyEvent& ke)
 				selCount = 0;
 			}
 
-			// Ê¹ÓÃ×îºóÑ¡ÔñµÄÒ»ÏîÀ´È·¶¨ÏÂÒ»ÒªÑ¡µÄÌõÄ¿
+			// ä½¿ç”¨æœ€åé€‰æ‹©çš„ä¸€é¡¹æ¥ç¡®å®šä¸‹ä¸€è¦é€‰çš„æ¡ç›®
 			if( m_lastSelected != GetColumnEnd( 0 ) )
 				sel = IndexOf( *m_lastSelected );
 			else
@@ -1042,7 +1042,7 @@ void VdkListCtrl::OnKeyEvent(VdkKeyEvent& ke)
 
 			sel--;
 
-			// ³¬³ö·¶Î§
+			// è¶…å‡ºèŒƒå›´
 			if( sel < 0 )
 				break;
 
@@ -1052,7 +1052,7 @@ void VdkListCtrl::OnKeyEvent(VdkKeyEvent& ke)
 				{
 					OnShiftUpDownKeys( sel, *pDC );
 				}
-				else // Ô­ÏÈÃ»ÓĞÈÎºÎÑ¡Ôñ
+				else // åŸå…ˆæ²¡æœ‰ä»»ä½•é€‰æ‹©
 				{
 					break;
 				}
@@ -1119,7 +1119,7 @@ void VdkListCtrl::OnShiftUpDownKeys(int sel, wxDC& dc)
 
 void VdkListCtrl::InsertColumn(const VdkLcColumnInitializer& init_data)
 {
-	wxASSERT_MSG( m_cols.IsOk(), L"±ØĞëÏÈ°ó¶¨¿ÉÓÃµÄÊı¾İ¼¯£¡" );
+	wxASSERT_MSG( m_cols.IsOk(), L"å¿…é¡»å…ˆç»‘å®šå¯ç”¨çš„æ•°æ®é›†ï¼" );
 
 	//----------------------------------------------------
 
@@ -1127,13 +1127,13 @@ void VdkListCtrl::InsertColumn(const VdkLcColumnInitializer& init_data)
 
 	int x = 0;
 	int index = init_data.Index;
-	if( index == wxNOT_FOUND ) // Ä¬ÈÏ´ÓÄ©Î²²åÈë
+	if( index == wxNOT_FOUND ) // é»˜è®¤ä»æœ«å°¾æ’å…¥
 		index = numCols;
 
 	LcColIter dst( m_cols.begin() );
 	std::advance( dst, index );
 
-	// ²éÕÒÕıÈ·µÄÎ»ÖÃ
+	// æŸ¥æ‰¾æ­£ç¡®çš„ä½ç½®
 	if( index > 0 )
 	{
 		LcColIter lastCol( dst );
@@ -1143,7 +1143,7 @@ void VdkListCtrl::InsertColumn(const VdkLcColumnInitializer& init_data)
 		x = last->x + last->width;
 	}
 
-	if( numCols > 0 && index != numCols ) // ÔÚÖĞ¼ä²åÈë
+	if( numCols > 0 && index != numCols ) // åœ¨ä¸­é—´æ’å…¥
 	{
 		LcColIter iter( dst );
 		for( ; iter != m_cols.end(); ++iter )
@@ -1186,9 +1186,9 @@ VdkLcCell* VdkListCtrl::Append(const wxString& label, bool updateSize)
 VdkLcCell* VdkListCtrl::DoInsertRow
 	(int index, const wxString& label, bool updateSize)
 {
-	wxASSERT_MSG( !m_cols.empty(), L"±ØĞëÏÈ²åÈëÁĞ£¡" );
+	wxASSERT_MSG( !m_cols.empty(), L"å¿…é¡»å…ˆæ’å…¥åˆ—ï¼" );
 
-	// ½«Ò»ÁĞËùÓĞµÄµ¥Ôª¸ñ×éÖ¯³ÉÒ»¸öÁÙÊ±Á´±í·µ»Ø¸øµ÷ÓÃÕß
+	// å°†ä¸€åˆ—æ‰€æœ‰çš„å•å…ƒæ ¼ç»„ç»‡æˆä¸€ä¸ªä¸´æ—¶é“¾è¡¨è¿”å›ç»™è°ƒç”¨è€…
 	VdkLcCell *head = NULL, *prev = NULL;
 	wxString cellLabel( label );
 	LcColIter iter( m_cols.begin() );
@@ -1198,7 +1198,7 @@ VdkLcCell* VdkListCtrl::DoInsertRow
 		VdkLcColumn* col = *iter;
 		VdkLcCell* cell = new VdkLcCell( col, cellLabel, NULL );
 
-		// ÌØÊâÇé¿ö
+		// ç‰¹æ®Šæƒ…å†µ
 		if( index == -1 )
 		{
 			col->cells.push_back( cell );
@@ -1212,7 +1212,7 @@ VdkLcCell* VdkListCtrl::DoInsertRow
 		{
 			prev->SetClientData( cell );
 		}
-		else // prev Îª¿Õ£¬±íÃ÷ÕâÊÇÒ»ĞĞÖĞµÚÒ»¸öµ¥Ôª¸ñ
+		else // prev ä¸ºç©ºï¼Œè¡¨æ˜è¿™æ˜¯ä¸€è¡Œä¸­ç¬¬ä¸€ä¸ªå•å…ƒæ ¼
 		{
 			head = cell;
 		}
@@ -1225,7 +1225,7 @@ VdkLcCell* VdkListCtrl::DoInsertRow
 	{
 		UpdateSize( NULL );
 
-		// ·¢ËÍÍ¨ÖªÊÂ¼ş
+		// å‘é€é€šçŸ¥äº‹ä»¶
 		if( IsReadyForEvent() )
 		{
 			wxListEvent lstEvent( wxEVT_COMMAND_LIST_INSERT_ITEM, m_id );
@@ -1240,14 +1240,14 @@ VdkLcCell* VdkListCtrl::DoInsertRow
 
 void VdkListCtrl::RemoveRow(int index, bool updateSize, wxDC* pDC)
 {
-	// ¿ÉÄÜ´æÔÚÓÚ×îºóÑ¡ÔñÏîÖĞ
+	// å¯èƒ½å­˜åœ¨äºæœ€åé€‰æ‹©é¡¹ä¸­
 	int lastSel = std::distance( at( m_cols, 0 )->cells.begin(), m_lastSelected );
 	if( lastSel == index )
 	{
 		UpdateLastSelected( GetColumnEnd( 0 ) );
 	}
 
-	// ¿ÉÄÜ´æÔÚÓÚÒÑÑ¡ÁĞ±íÖĞ
+	// å¯èƒ½å­˜åœ¨äºå·²é€‰åˆ—è¡¨ä¸­
 	if( !m_selItems.IsEmpty() )
 	{
 		int selIndex = m_selItems.Index( index );
@@ -1256,7 +1256,7 @@ void VdkListCtrl::RemoveRow(int index, bool updateSize, wxDC* pDC)
 			m_selItems.RemoveAt( selIndex );
 		}
 
-		// ¸üĞÂÔÚÆäÖ®ºóµÄÒÑÑ¡ÔñÏî
+		// æ›´æ–°åœ¨å…¶ä¹‹åçš„å·²é€‰æ‹©é¡¹
 		int numSel = m_selItems.size();
 		for( int i = 0; i < numSel; i++ )
 		{
@@ -1294,7 +1294,7 @@ void VdkListCtrl::RemoveRow(int index, bool updateSize, wxDC* pDC)
 	{
 		UpdateSize( pDC );
 
-		// ·¢ËÍÍ¨ÖªÊÂ¼ş
+		// å‘é€é€šçŸ¥äº‹ä»¶
 		if( IsReadyForEvent() )
 		{
 			wxListEvent lstEvent( wxEVT_COMMAND_LIST_DELETE_ITEM, m_id );
@@ -1390,7 +1390,7 @@ void VdkListCtrl::Clear(wxDC* pDC)
 	m_selItems.clear();
 	UpdateLastSelected( GetColumnEnd( 0 ) );
 
-	// TODO: Ó¦¸ÃÓÃ LcDataSet::RemoveAllRows()
+	// TODO: åº”è¯¥ç”¨ LcDataSet::RemoveAllRows()
 	LcColIter i( m_cols.begin() );
 	for( ; i != m_cols.end(); ++i )
 	{
@@ -1403,7 +1403,7 @@ void VdkListCtrl::Clear(wxDC* pDC)
 
 	if( pDC )
 	{
-		// ÕâÀï²»ÄÜÔÙÓÃ Draw
+		// è¿™é‡Œä¸èƒ½å†ç”¨ Draw
 		VdkUtil::ClrBkGnd( *pDC, m_crossBrush1, AbsoluteRect() );
 	}
 }
@@ -1421,13 +1421,13 @@ void VdkListCtrl::Select(int first, int last, wxDC* pDC)
 	for( int i = first; i < last; i++ )
 		m_selItems.Add( i );
 
-	// ¸üĞÂÑ¡ÔñÆğµã
+	// æ›´æ–°é€‰æ‹©èµ·ç‚¹
 	m_selStart = first;
 	UpdateLastSelected( GetCellIterator( 0, m_selStart ) );
 
 	if( pDC )
 	{
-		int base; // ÕıÔÚÏÔÊ¾µÄµÚÒ»ĞĞ
+		int base; // æ­£åœ¨æ˜¾ç¤ºçš„ç¬¬ä¸€è¡Œ
 		GetViewStart( NULL, &base );
 
 		for( int i = wxMax( first, base ); i < last; i++ )
@@ -1450,7 +1450,7 @@ void VdkListCtrl::SelectAll(wxDC* pDC)
 
 	SetAddinState( VLCST_SELECT_ALL );
 
-	// Ö±½ÓÖØ»­Õû¸ö¿Ø¼ş£¬²»ĞèÒª¸üĞÂ¹ö¶¯Ìõ
+	// ç›´æ¥é‡ç”»æ•´ä¸ªæ§ä»¶ï¼Œä¸éœ€è¦æ›´æ–°æ»šåŠ¨æ¡
 	RefreshContent( pDC );
 }
 
@@ -1460,7 +1460,7 @@ void VdkListCtrl::SelectNone(wxDC* pDC)
 	UpdateLastSelected( GetColumnEnd( 0 ) );
 	RemoveState( VLCST_SELECT_ALL );
 	
-	// Ö±½ÓÖØ»­Õû¸ö¿Ø¼ş£¬Ò»ĞĞÒ»ĞĞµØ»­Ì«ÂıÁË£¬²»ĞèÒª¸üĞÂ¹ö¶¯Ìõ
+	// ç›´æ¥é‡ç”»æ•´ä¸ªæ§ä»¶ï¼Œä¸€è¡Œä¸€è¡Œåœ°ç”»å¤ªæ…¢äº†ï¼Œä¸éœ€è¦æ›´æ–°æ»šåŠ¨æ¡
 	RefreshContent( pDC );
 }
 
@@ -1616,11 +1616,11 @@ void VdkListCtrl::OnNotify(const VdkNotify& notice)
 						sum += d;
 
 						col->UpdateWidth( col->width + d );
-						// 100% Ê±²»ÒªÍË³öÑ­»·£¡£¡£¡
+						// 100% æ—¶ä¸è¦é€€å‡ºå¾ªç¯ï¼ï¼ï¼
 					}
 				} // END for
 
-				// Ò»Ğ©Ê£ÓàµÄ¿í¶È£¬¿¶¿®µØ¸ø×îºóÒ»ÁĞ
+				// ä¸€äº›å‰©ä½™çš„å®½åº¦ï¼Œæ…·æ…¨åœ°ç»™æœ€åä¸€åˆ—
 				if( col && (sum != dX) )
 					col->UpdateWidth( col->width + dX - sum );
 			}
@@ -1739,7 +1739,7 @@ void VdkLcCell::SetLabel(const wxString& label)
 	{
 		m_label.assign( label );
 
-		// ÖØĞÂ¼ÆËã»æÖÆÊôĞÔ¼¯
+		// é‡æ–°è®¡ç®—ç»˜åˆ¶å±æ€§é›†
 		DecreaseDrawingVersion();
 	}
 }
@@ -1772,7 +1772,7 @@ void VdkLcCell::CalcTextPos()
 		while( widths[i] <= suitable )
 		    i++;
 		    
-		// TODO: ÕâÀïÒª²»Òª ¡°i--;¡±£¿
+		// TODO: è¿™é‡Œè¦ä¸è¦ â€œi--;â€ï¼Ÿ
 		// wxDC::GetPartialTextExtents():
 		// ...from the beginning of text to the corresponding character of text
 
@@ -1854,13 +1854,13 @@ void VdkListCtrl::VdkLcHeader::DoDraw(wxDC& dc)
 		wxRect rc( m_Rect );
 		rc.Inflate( 1 );
 
-		// ×ó¡ı
+		// å·¦â†“
 		dc.DrawLine
 			( rc.x, rc.y, rc.x, rc.y + rc.height );
-		// ÉÏ¡ú
+		// ä¸Šâ†’
 		dc.DrawLine
 			( rc.x, rc.y, rc.GetRight(), rc.y );
-		// ÓÒ¡ı
+		// å³â†“
 		dc.DrawLine
 			( rc.GetRight(), rc.y, rc.GetRight(), rc.y + rc.height );
 	}
@@ -1942,7 +1942,7 @@ void VdkLcColumn::SetFont(const wxFont& f)
 {
 	font = f;
 
-	// ÖØĞÂ¼ÆËã»æÖÆÊôĞÔ¼¯
+	// é‡æ–°è®¡ç®—ç»˜åˆ¶å±æ€§é›†
 	IncreaseDrawingVersion();
 }
 
@@ -1952,7 +1952,7 @@ void VdkLcColumn::UpdateWidth(size_t w)
     {
 	    width = w;
 
-		// µ¥Ôª¸ñÎÄ±¾ĞèÒªÖØĞÂ¼ÆËã»æÖÆÆğÊ¼Î»ÖÃºÍÒç³ö
+		// å•å…ƒæ ¼æ–‡æœ¬éœ€è¦é‡æ–°è®¡ç®—ç»˜åˆ¶èµ·å§‹ä½ç½®å’Œæº¢å‡º
 	    IncreaseDrawingVersion();
     }
 }

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "VdkTab.h"
 
 #include "VdkWindow.h"
@@ -56,7 +56,7 @@ VdkPanel* VdkTab::AddPage(const wxString& cap)
 	VdkPanel* npanel = new VdkPanel;
 	npanel->Create( m_Window, wxEmptyString, wxRect() );
 	npanel->SetParent( this );
-	m_Window->AddCtrl( npanel ); // TODO: ÊÇ·ñÓÅ»¯Ò»ÏÂÕâ¸öÁ÷³Ì£¿
+	m_Window->AddCtrl( npanel ); // TODO: æ˜¯å¦ä¼˜åŒ–ä¸€ä¸‹è¿™ä¸ªæµç¨‹ï¼Ÿ
 
 	//====================================================
 
@@ -202,7 +202,7 @@ void VdkTab::Notify(VdkWindow*, const wxString& clName, VdkControl* pCtrl)
 		PageInfo* pi = m_pages[m_pages.size() - 1];
 		pi->panel = (VdkPanel *) pCtrl;
 
-		// TODO:´¦ÀíÊúÅÅÊ±µÄÇé¿ö
+		// TODO:å¤„ç†ç«–æ’æ—¶çš„æƒ…å†µ
 		int dY = pi->btn->GetRect().height;
 
 		wxRect rcPanel( 0, dY, m_Rect.width, m_Rect.height - dY );
@@ -231,7 +231,7 @@ void VdkTab::Toggle(int id, wxDC* pDC)
 	VdkToggleButton* newbutton = m_pages[id]->btn;
 	if( m_currToggled )
 	{
-		// ¼ÙÈçÏàÍ¬¾Í²»ÒªÇĞ»»ÁË
+		// å‡å¦‚ç›¸åŒå°±ä¸è¦åˆ‡æ¢äº†
 		if( m_currToggled == newbutton )
 			return;
 
@@ -260,12 +260,12 @@ void VdkTab::DoDraw(wxDC& dc)
 	{
 		dc.SetPen( *wxGREY_PEN );
 
-		// ¶¥²¿
+		// é¡¶éƒ¨
 		wxCoord y = m_Rect.y + m_pages[0]->btn->GetRect().height - 1;
 		dc.DrawLine( m_Rect.x, y, m_Rect.x + m_Rect.width, y );
 		
-		// µ×²¿
-		y = m_Rect.GetBottom(); // TODO: ÎªÊ²Ã´²»ĞĞµÄ£¿
+		// åº•éƒ¨
+		y = m_Rect.GetBottom(); // TODO: ä¸ºä»€ä¹ˆä¸è¡Œçš„ï¼Ÿ
 		dc.DrawLine( m_Rect.x, y, m_Rect.GetRight(), y );
 	}
 }

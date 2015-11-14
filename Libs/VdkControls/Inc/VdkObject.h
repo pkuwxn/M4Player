@@ -1,39 +1,39 @@
-#pragma once
+ï»¿#pragma once
 
 class VdkObject;
 
 typedef VdkObject* ( *VdkObjectCreator )();
 WX_DECLARE_STRING_HASH_MAP( VdkObjectCreator, OBJECT_MAP );
 
-/// \brief ËùÓĞ¿ÉÒÔ±»¶¯Ì¬´´½¨µÄÀàµÄ»ùÀà
+/// \brief æ‰€æœ‰å¯ä»¥è¢«åŠ¨æ€åˆ›å»ºçš„ç±»çš„åŸºç±»
 ///
-/// ±¾Àà´ú±íÒ»¸öÀàµÄ¶¯Ì¬´´½¨ÊôĞÔ
+/// æœ¬ç±»ä»£è¡¨ä¸€ä¸ªç±»çš„åŠ¨æ€åˆ›å»ºå±æ€§
 class VdkObject
 {
 public:
 
-	/// \brief ´ÓÀàÃû»ñÈ¡Ò»¸ö¶ÔÓ¦ÀàµÄ¶ÔÏó
+	/// \brief ä»ç±»åè·å–ä¸€ä¸ªå¯¹åº”ç±»çš„å¯¹è±¡
 	static VdkObject* CreateDynamicVObject(const wxString& strClassName);
 
 protected:
 
-	/// \brief ±£Ö¤¡°ÀàÃû-¶¯Ì¬´´½¨¶ÔÏó¹¹½¨º¯Êı¡±Í¼½á¹¹ÔÚÊ¹ÓÃÇ°ÒÑ±»ÕıÈ·³õÊ¼»¯
+	/// \brief ä¿è¯â€œç±»å-åŠ¨æ€åˆ›å»ºå¯¹è±¡æ„å»ºå‡½æ•°â€å›¾ç»“æ„åœ¨ä½¿ç”¨å‰å·²è¢«æ­£ç¡®åˆå§‹åŒ–
 	static OBJECT_MAP& GetCreators();
 
 	friend class AddToHashMap;
 };
 
-/// \brief ¶¯Ì¬´´½¨¶ÔÏó¹¹½¨º¯ÊıĞÅÏ¢×Ô¶¯»¯¶ÔÏó
+/// \brief åŠ¨æ€åˆ›å»ºå¯¹è±¡æ„å»ºå‡½æ•°ä¿¡æ¯è‡ªåŠ¨åŒ–å¯¹è±¡
 ///
-/// ÔÚ¹¹Ôìº¯ÊıÖĞ½«Ö¸¶¨µÄ¶¯Ì¬´´½¨¶ÔÏó¹¹½¨º¯ÊıÌí¼Óµ½\n
-/// ¡°ÀàÃû-¶¯Ì¬´´½¨¶ÔÏó¹¹½¨º¯Êı¡±Í¼½á¹¹ÖĞ¡£
+/// åœ¨æ„é€ å‡½æ•°ä¸­å°†æŒ‡å®šçš„åŠ¨æ€åˆ›å»ºå¯¹è±¡æ„å»ºå‡½æ•°æ·»åŠ åˆ°\n
+/// â€œç±»å-åŠ¨æ€åˆ›å»ºå¯¹è±¡æ„å»ºå‡½æ•°â€å›¾ç»“æ„ä¸­ã€‚
 class AddToHashMap
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
-	/// \param strClassName ÀàÃû
-	/// \param Creator \a strClassName ËùÊôµÄ¶ÔÏó¹¹½¨º¯Êı
+	/// \brief æ„é€ å‡½æ•°
+	/// \param strClassName ç±»å
+	/// \param Creator \a strClassName æ‰€å±çš„å¯¹è±¡æ„å»ºå‡½æ•°
 	AddToHashMap(const wxString& strClassName, VdkObjectCreator Creator);
 };
 
@@ -70,7 +70,7 @@ public:
 	void ClassName::Clone(VdkControl* o, VdkControl* parent) \
 	{ \
 		wxASSERT_MSG( VdkControl::CheckSourceCtrl< ClassName >( o ), \
-					   L"´íÎóµÄ¿ËÂ¡ÊµÌå" ); \
+					   L"é”™è¯¯çš„å…‹éš†å®ä½“" ); \
 		\
 		ClassName* oo = (ClassName *) o; \
 		BaseClassName::Clone( o, parent ); \

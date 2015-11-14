@@ -1,25 +1,25 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkControl.h"
 
-/// \brief VdkLabel µÄ·ç¸ñ¶¨Òå
+/// \brief VdkLabel çš„é£æ ¼å®šä¹‰
 enum VdkLabelStyle {
 
-	VLBS_USER				= VCS_USER + 10, ///< \brief ÅÉÉúÀà¿ÉÓÃ
-	/// \brief µ±×÷ÓÃÓòµÄ¿í¸ß¶ÈĞ¡ÓÚÎÄ±¾Êµ¼Ê³ß´çÊ±ÊÇ·ñ×Ô¶¯À©Õ¹×÷ÓÃÓò
+	VLBS_USER				= VCS_USER + 10, ///< \brief æ´¾ç”Ÿç±»å¯ç”¨
+	/// \brief å½“ä½œç”¨åŸŸçš„å®½é«˜åº¦å°äºæ–‡æœ¬å®é™…å°ºå¯¸æ—¶æ˜¯å¦è‡ªåŠ¨æ‰©å±•ä½œç”¨åŸŸ
 	VLBS_AUTO_EXPAND		= 1 << ( VCS_USER + 0 ), 
 };
 
-/// \brief VdkLabel µÄÔËĞĞÊ±ÊôĞÔ¼¯Î»¶¨Òå
+/// \brief VdkLabel çš„è¿è¡Œæ—¶å±æ€§é›†ä½å®šä¹‰
 enum VdkLabelState {
 
-	VLBST_USER				= VCST_USER + 10, ///< \brief ÅÉÉúÀà¿ÉÓÃ
-	/// \brief µ±×÷ÓÃÓòµÄ¿í¸ß¶ÈĞ¡ÓÚÎÄ±¾Êµ¼Ê³ß´çÊ±²Ã¼ô»æÍ¼ÇøÓò
+	VLBST_USER				= VCST_USER + 10, ///< \brief æ´¾ç”Ÿç±»å¯ç”¨
+	/// \brief å½“ä½œç”¨åŸŸçš„å®½é«˜åº¦å°äºæ–‡æœ¬å®é™…å°ºå¯¸æ—¶è£å‰ªç»˜å›¾åŒºåŸŸ
 	VLBST_CLIPPING_REGION	= 1 << ( VCST_USER + 0 ), 
 };
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief Îª VdkLabel ÉèÖÃ³õÊ¼»¯ĞÅÏ¢
+/// \brief ä¸º VdkLabel è®¾ç½®åˆå§‹åŒ–ä¿¡æ¯
 class VdkLabelInitializer : 
 	public VdkCtrlInitializer< VdkLabelInitializer >
 {
@@ -27,25 +27,25 @@ public:
 
 	typedef VdkLabelInitializer Label;
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkLabelInitializer();
 
-	/// \brief ±êÌâ
+	/// \brief æ ‡é¢˜
 	Label& caption(const wxString& s) { Caption = s; return *this; }
 
-	/// \brief ÎÄ±¾¶ÔÆëÊôĞÔ
+	/// \brief æ–‡æœ¬å¯¹é½å±æ€§
 	Label& textAlign(align_type a) { TextAlign = a; return *this; }
 
-	/// \brief ÎÄ±¾ÑÕÉ«
+	/// \brief æ–‡æœ¬é¢œè‰²
 	Label& textColor(const wxColour& color) {
 		TextColor = color; return *this;
 	}
 
 protected:
 
-	wxString Caption; ///< ±êÌâ
-	align_type TextAlign; ///< ÎÄ±¾¶ÔÆëÊôĞÔ
-	wxColour TextColor; ///< ÎÄ±¾ÑÕÉ«
+	wxString Caption; ///< æ ‡é¢˜
+	align_type TextAlign; ///< æ–‡æœ¬å¯¹é½å±æ€§
+	wxColour TextColor; ///< æ–‡æœ¬é¢œè‰²
 
 	friend class VdkLabel;
 };
@@ -53,79 +53,79 @@ protected:
 //////////////////////////////////////////////////////////////////////////
 
 class VdkLabelGhost;
-/// \brief ×î»ù±¾µÄ GUI Àà¡ª¡ªÏÔÊ¾Ò»Ğ¡¶Î´¿ÎÄ±¾
+/// \brief æœ€åŸºæœ¬çš„ GUI ç±»â€”â€”æ˜¾ç¤ºä¸€å°æ®µçº¯æ–‡æœ¬
 class VdkLabel : public VdkControl
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkLabel();
 
-	/// \brief Êµ¼Ê¹¹½¨º¯Êı
+	/// \brief å®é™…æ„å»ºå‡½æ•°
 	void Create(const VdkLabelInitializer& init_data);
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	~VdkLabel();
 
-	/// \brief È·¶¨ VdkLabel µÄÊµ¼Ê×÷ÓÃÓò
+	/// \brief ç¡®å®š VdkLabel çš„å®é™…ä½œç”¨åŸŸ
 	///
-	/// ÊÜÎÄ±¾µÄ±¾ÉíĞÔÖÊÏŞÖÆ£¬ÓÃ»§¸ø³öµÄÊı×ÖºÜÄÑ¾«È·¡£
+	/// å—æ–‡æœ¬çš„æœ¬èº«æ€§è´¨é™åˆ¶ï¼Œç”¨æˆ·ç»™å‡ºçš„æ•°å­—å¾ˆéš¾ç²¾ç¡®ã€‚
 	virtual void PrepareRect();
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ÉèÖÃÓëÖ®¹ØÁªµÄ VdkLabelGhost
-	/// \attention ²»Òª´ÓÓÃ»§¶Ëµ÷ÓÃ¡£
+	/// \brief è®¾ç½®ä¸ä¹‹å…³è”çš„ VdkLabelGhost
+	/// \attention ä¸è¦ä»ç”¨æˆ·ç«¯è°ƒç”¨ã€‚
 	void SetGhost(VdkLabelGhost* ghost) { m_ghost = ghost; }
 
-	/// \brief »ñÈ¡±êÌâÎÄ±¾
+	/// \brief è·å–æ ‡é¢˜æ–‡æœ¬
 	wxString GetCaption() { return m_strCaption; }
 
-	/// \brief ÉèÖÃ±êÌâÎÄ±¾
+	/// \brief è®¾ç½®æ ‡é¢˜æ–‡æœ¬
 	void SetCaption(const wxString& strCaption, wxDC* pDC);
 
 private:
 
-	/// \brief »æÖÆ¿Ø¼ş
+	/// \brief ç»˜åˆ¶æ§ä»¶
 	virtual void DoDraw(wxDC& dc);
 
-	/// \brief ½ÓÊÕ¡¢´¦Àí¸÷ÖÖÍ¨ÖªĞÅÏ¢
+	/// \brief æ¥æ”¶ã€å¤„ç†å„ç§é€šçŸ¥ä¿¡æ¯
 	virtual void DoHandleNotify(const VdkNotify& notice);
 
 protected:
 
-	wxString			m_strCaption; ///< ÒªÏÔÊ¾µÄÎÄ±¾
+	wxString			m_strCaption; ///< è¦æ˜¾ç¤ºçš„æ–‡æœ¬
 
-	int					m_xFix; ///< x·½ÏòµÄĞŞÕıÖµ£¬Ö÷ÒªÓÃÓÚÓÒ¶ÔÆëµÄÇé¿ö
-	int					m_yFix; ///< y·½ÏòµÄĞŞÕıÖµ£¬Ê¹ÎÄ±¾´¹Ö±¾ÓÖĞ
-	align_type			m_TextAlign; ///< ÎÄ±¾¶ÔÆëÊôĞÔ
+	int					m_xFix; ///< xæ–¹å‘çš„ä¿®æ­£å€¼ï¼Œä¸»è¦ç”¨äºå³å¯¹é½çš„æƒ…å†µ
+	int					m_yFix; ///< yæ–¹å‘çš„ä¿®æ­£å€¼ï¼Œä½¿æ–‡æœ¬å‚ç›´å±…ä¸­
+	align_type			m_TextAlign; ///< æ–‡æœ¬å¯¹é½å±æ€§
 
-	wxColour			m_TextColor; ///< ÎÄ±¾ÑÕÉ«
-	VdkLabelGhost*		m_ghost; ///< ÑÓ³ÙÖ¸¶¨Ê±¼ä¸Ä±ä VdkLabel µÄ±êÌâ
+	wxColour			m_TextColor; ///< æ–‡æœ¬é¢œè‰²
+	VdkLabelGhost*		m_ghost; ///< å»¶è¿ŸæŒ‡å®šæ—¶é—´æ”¹å˜ VdkLabel çš„æ ‡é¢˜
 
 	DECLARE_DYNAMIC_VOBJECT
 };
 
-/// \brief ÑÓ³ÙÖ¸¶¨Ê±¼ä¸Ä±ä VdkLabel µÄ±êÌâ
+/// \brief å»¶è¿ŸæŒ‡å®šæ—¶é—´æ”¹å˜ VdkLabel çš„æ ‡é¢˜
 ///
-/// ±ØĞëÔÚ¶ÑÉÏ´´½¨£¡£¨ÒòÎª»áµ÷ÓÃdelete this;É¾³ı×Ô¼º£©\n
-/// Ê¹ÓÃ·½·¨:
+/// å¿…é¡»åœ¨å †ä¸Šåˆ›å»ºï¼ï¼ˆå› ä¸ºä¼šè°ƒç”¨delete this;åˆ é™¤è‡ªå·±ï¼‰\n
+/// ä½¿ç”¨æ–¹æ³•:
 /// \code
 /// wxString oldCaption(label->GetCaption());
 /// label->SetCaption(newCaption);
-/// new VdkLabelGhost(label, oldCaption, 1000); // ÑÓ³Ù1Ãë»Ö¸´ÏÔÊ¾
+/// new VdkLabelGhost(label, oldCaption, 1000); // å»¶è¿Ÿ1ç§’æ¢å¤æ˜¾ç¤º
 /// \endcode
-/// ²»Òª¹Ü VdkLabelGhost µÄÊÍ·Å
+/// ä¸è¦ç®¡ VdkLabelGhost çš„é‡Šæ”¾
 class VdkLabelGhost : public wxTimer
 {
 public:
 
 	VdkLabelGhost(VdkLabel* label, const wxString& strNewText, int ms);
 
-	/// \brief ÔÚ´Ë»Ö¸´ VdkLabel µÄ±êÌâ
+	/// \brief åœ¨æ­¤æ¢å¤ VdkLabel çš„æ ‡é¢˜
 	virtual void Notify();
 
 private:

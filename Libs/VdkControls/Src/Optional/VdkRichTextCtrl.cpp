@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 
 #include "Optional/VdkRichTextCtrl.h"
 #include "VdkWindow.h"

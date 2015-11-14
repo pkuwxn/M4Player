@@ -1,4 +1,4 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkScalableBitmap.cpp
  * Purpose:   Code for VdkScalableBitmap implementation
  * Author:    vanxining (vanxining@139.com)
@@ -112,7 +112,7 @@ bool VdkScalableBitmap::CanResize() const
 	wxRect rcPrimitive( 0, 0, m_bitmap.GetWidth(), GetHeight() );
 	if( !rcPrimitive.Contains( m_rcTile ) )
 	{
-		wxLogDebug( L"ÎŞĞ§À­Éì(Æ½ÆÌ)ÇøÓò:(%d,%d,%d,%d)/(%d,%d,%d,%d)",
+		wxLogDebug( L"æ— æ•ˆæ‹‰ä¼¸(å¹³é“º)åŒºåŸŸ:(%d,%d,%d,%d)/(%d,%d,%d,%d)",
 					m_rcTile.x, m_rcTile.y,
 					m_rcTile.width, m_rcTile.height,
 					rcPrimitive.x, rcPrimitive.y, 
@@ -134,7 +134,7 @@ bool VdkScalableBitmap::Rescale(const wxSize& newsize)
 
 	if( m_resizeType == RESIZE_TYPE_TILE )
 	{
-		// ÓÅ»¯
+		// ä¼˜åŒ–
 		int dx = newsize.x - m_rescaled.GetWidth(),
 			dy = newsize.y - m_rescaled.GetHeight();
 
@@ -148,7 +148,7 @@ bool VdkScalableBitmap::Rescale(const wxSize& newsize)
 		}
 		else
 		{
-			m_rescaled = wxNullBitmap; // ²»ÄÜºÍ m_bitmap Í¬Ê±Ê¹ÓÃ
+			m_rescaled = wxNullBitmap; // ä¸èƒ½å’Œ m_bitmap åŒæ—¶ä½¿ç”¨
 			m_rcTile_o = m_rcTile;
 
 			m_rescaled = VdkUtil::TileBitmap
@@ -157,7 +157,7 @@ bool VdkScalableBitmap::Rescale(const wxSize& newsize)
 	}
 	else
 	{
-		m_rescaled = wxNullBitmap; // ²»ÄÜºÍ m_bitmap Í¬Ê±Ê¹ÓÃ
+		m_rescaled = wxNullBitmap; // ä¸èƒ½å’Œ m_bitmap åŒæ—¶ä½¿ç”¨
 		m_rescaled = VdkUtil::InflateBitmapByCenter
 			( m_bitmap, m_rcTile, newsize );
 	}

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "VdkEvent.h"
 
 #include "VdkDC.h"
@@ -30,7 +30,7 @@ void MouseHoldTimer::Notify()
 void MouseHoldTimer::Start(VdkControl* pCtrl, int evtCode, const wxPoint& Point)
 {
 	wxASSERT_MSG( pCtrl->TestStyle( VCS_HONLD_ON ), 
-		L"ָ���ؼ���֧�ֳ�����ס��������" );
+		L"指定控件不支持持续按住鼠标左键。" );
 
 	m_Point	= Point;
 	m_evtCode = evtCode;

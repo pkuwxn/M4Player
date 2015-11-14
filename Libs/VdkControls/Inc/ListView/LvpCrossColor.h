@@ -1,18 +1,18 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      LvpCrossColor.h
- * Purpose:   ÊµÏÖ VdkListView µÄ¸ôĞĞ±äÉ«ÌØĞÔ
+ * Purpose:   å®ç° VdkListView çš„éš”è¡Œå˜è‰²ç‰¹æ€§
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-3-3
  **************************************************************/
 #pragma once
 #include "IListViewPlaugin.h"
 
-/// ÊµÏÖ VdkListView µÄ¸ôĞĞ±äÉ«ÌØĞÔ
+/// å®ç° VdkListView çš„éš”è¡Œå˜è‰²ç‰¹æ€§
 class LvpCrossColor : public IListViewPlaugin
 {
 public:
 
-	/// ¹¹Ôìº¯Êı
+	/// æ„é€ å‡½æ•°
 	LvpCrossColor(ListView* list, const wxBrush& b1, const wxBrush& b2);
 
 private:
@@ -21,6 +21,6 @@ private:
 
 private:
 
-	wxBrush m_crossBrush1; // ½»´íÑÕÉ« 1
-	wxBrush m_crossBrush2; // ½»´íÑÕÉ« 2
+	wxBrush m_crossBrush1; // äº¤é”™é¢œè‰² 1
+	wxBrush m_crossBrush2; // äº¤é”™é¢œè‰² 2
 };

@@ -1,4 +1,4 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkToolBar.h
  * Purpose:   Code for VdkToolBar declaration
  * Author:    vanxining (vanxining@139.com)
@@ -9,12 +9,12 @@
 #include "VdkControl.h"
 #include "VdkBitmapArray.h"
 
-/// \brief VdkToolBar µÄ·ç¸ñÊôĞÔ¼¯
+/// \brief VdkToolBar çš„é£æ ¼å±æ€§é›†
 enum VdkToolBarStyle {
 
 };
 
-/// \brief VdkToolBar µÄÔËĞĞÊ±×´Ì¬ÊôĞÔ¼¯
+/// \brief VdkToolBar çš„è¿è¡Œæ—¶çŠ¶æ€å±æ€§é›†
 enum VdkToolBarState {
 
 };
@@ -23,31 +23,31 @@ class VdkToolBarEntry;
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief ±ãÀû¹¤¾ßÀ¸ÏîÄ¿Ìí¼ÓÆ÷
+/// \brief ä¾¿åˆ©å·¥å…·æ é¡¹ç›®æ·»åŠ å™¨
 class VdkToolBarEntryAdder
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkToolBarEntryAdder()
 		: Menu( NULL )
 	{
 
 	}
 
-	/// \brief ÉèÖÃ±êÌâÎÄ±¾
+	/// \brief è®¾ç½®æ ‡é¢˜æ–‡æœ¬
 	VdkToolBarEntryAdder& caption(const wxString& c) {
 		Caption = c;
 		return *this;
 	}
 
-	/// \brief ÉèÖÃÏÂÀ­²Ëµ¥
+	/// \brief è®¾ç½®ä¸‹æ‹‰èœå•
 	VdkToolBarEntryAdder& menu(VdkMenu* m) {
 		Menu = m;
 		return *this;
 	}
 
-	/// \brief ÉèÖÃÏà¹ØÁªµÄĞ¡Î»Í¼
+	/// \brief è®¾ç½®ç›¸å…³è”çš„å°ä½å›¾
 	VdkToolBarEntryAdder& bid(const VdkBitmapArrayId& i) {
 		BId = i;
 		return *this;
@@ -62,57 +62,57 @@ private:
 	friend class VdkToolBar;
 };
 
-/// \brief ¹¤¾ßÀ¸µÄ¾²Ì¬·ç¸ñ
+/// \brief å·¥å…·æ çš„é™æ€é£æ ¼
 class VdkToolBarStaticStyle
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkToolBarStaticStyle();
 
-	/// \brief ÉèÖÃ±ß¿òÑÕÉ«
+	/// \brief è®¾ç½®è¾¹æ¡†é¢œè‰²
 	VdkToolBarStaticStyle& borderColor(const wxColour& color) {
 		m_border.SetColour( color );
 		return *this;
 	}
 
-	/// \brief »ñÈ¡±ß¿ò»­±Ê
+	/// \brief è·å–è¾¹æ¡†ç”»ç¬”
 	wxPen& borderPen() { return m_border; }
 
-	/// \brief ÉèÖÃÊó±êÖ¸ÕëÖÃÓÚÆäÉÏÊ±°´Å¥µÄ¸ßÁÁÑÕÉ«
+	/// \brief è®¾ç½®é¼ æ ‡æŒ‡é’ˆç½®äºå…¶ä¸Šæ—¶æŒ‰é’®çš„é«˜äº®é¢œè‰²
 	VdkToolBarStaticStyle& hilightColor(const wxColour& color) {
 		m_hilight.SetColour( color );
 		return *this;
 	}
 
-	/// \brief »ñÈ¡¸ßÁÁ»­Ë¢
+	/// \brief è·å–é«˜äº®ç”»åˆ·
 	wxBrush& hilightBrush() { return m_hilight; }
 
-	/// \brief ÉèÖÃÊó±êÖ¸Õë°´ÏÂÊ±°´Å¥µÄ¸ßÁÁÑÕÉ«
+	/// \brief è®¾ç½®é¼ æ ‡æŒ‡é’ˆæŒ‰ä¸‹æ—¶æŒ‰é’®çš„é«˜äº®é¢œè‰²
 	VdkToolBarStaticStyle& pushedColor(const wxColour& color) {
 		m_pushed.SetColour( color );
 		return *this;
 	}
 
-	/// \brief »ñÈ¡°´ÏÂÊ±µÄ»­Ë¢
+	/// \brief è·å–æŒ‰ä¸‹æ—¶çš„ç”»åˆ·
 	wxBrush& pushedBrush() { return m_pushed; }
 
-	/// \brief ÉèÖÃ¹¤¾ßÀ¸±³¾°»­Ë¢
+	/// \brief è®¾ç½®å·¥å…·æ èƒŒæ™¯ç”»åˆ·
 	VdkToolBarStaticStyle& bgBrush(wxBrush brush) {
 		m_bg = brush;
 		return *this;
 	}
 
-	/// \brief »ñÈ¡¹¤¾ßÀ¸±³¾°»­Ë¢
+	/// \brief è·å–å·¥å…·æ èƒŒæ™¯ç”»åˆ·
 	wxBrush& bgBrush() { return m_bg; }
 
-	/// \brief ÉèÖÃ¹¤¾ßÀ¸°´Å¥µÄ¸÷Ïò±ß¾à
+	/// \brief è®¾ç½®å·¥å…·æ æŒ‰é’®çš„å„å‘è¾¹è·
 	VdkToolBarStaticStyle& bitmapAddin(int addin) {
 		m_bitmapAddin = addin;
 		return *this;
 	}
 
-	/// \brief »ñÈ¡¹¤¾ßÀ¸°´Å¥µÄ¸÷Ïò±ß¾à
+	/// \brief è·å–å·¥å…·æ æŒ‰é’®çš„å„å‘è¾¹è·
 	int bitmapAddin() const { return m_bitmapAddin; }
 
 private:
@@ -120,7 +120,7 @@ private:
 	wxPen m_border;
 	wxBrush m_hilight;
 	wxBrush m_pushed;
-	wxBrush m_bg; // ±³¾°»­Ë¢
+	wxBrush m_bg; // èƒŒæ™¯ç”»åˆ·
 
 	int m_bitmapAddin;
 };
@@ -128,44 +128,44 @@ private:
 class VdkToolBarLeftSideHandle;
 class VdkToolBarRightSideHandle;
 
-/// \brief ÀàËÆ Office 2003 ·ç¸ñµÄ¹¤¾ßÀ¸
+/// \brief ç±»ä¼¼ Office 2003 é£æ ¼çš„å·¥å…·æ 
 class VdkToolBar : public VdkCtrlHandler
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkToolBar();
 
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	~VdkToolBar();
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief Íù¹¤¾ßÀ¸Ä©Î²Ìí¼ÓÒ»Ïî
+	/// \brief å¾€å·¥å…·æ æœ«å°¾æ·»åŠ ä¸€é¡¹
 	VdkToolBar& Append(const VdkToolBarEntryAdder& adder);
 
-	/// \brief Íù¹¤¾ßÀ¸Ä©Î²Ìí¼ÓÒ»¸ö·Ö¸ô·û
+	/// \brief å¾€å·¥å…·æ æœ«å°¾æ·»åŠ ä¸€ä¸ªåˆ†éš”ç¬¦
 	VdkToolBar& AppendSeperator();
 
-	/// \brief »ñÈ¡¾²Ì¬·ç¸ñ
+	/// \brief è·å–é™æ€é£æ ¼
 	VdkToolBarStaticStyle* GetStaticStyle() const {
 		return m_sstyle;
 	}
 
 private:
 
-	// ²Á³ı±³¾°
+	// æ“¦é™¤èƒŒæ™¯
 	virtual void DoEraseBackground(wxDC& dc, const wxRect& rc);
 
 	//////////////////////////////////////////////////////////////////////////
-	// ¿Ø¼ş×´Ì¬¶¨Òå
+	// æ§ä»¶çŠ¶æ€å®šä¹‰
 
 	class VdkToolBarLeftSideHandle* m_leftHandle;
 	class VdkToolBarRightSideHandle* m_rightHandle;
 
 	//////////////////////////////////////////////////////////////////////////
-	// ·ç¸ñ¶¨Òå
+	// é£æ ¼å®šä¹‰
 	VdkToolBarStaticStyle* m_sstyle;
 
 	DECLARE_CLONEABLE_VOBJECT( VdkToolBar )

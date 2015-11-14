@@ -1,12 +1,12 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      XUtil.cpp
- * Purpose:   Ò»Ğ©ÊıÑ§±ãÀûº¯Êı
+ * Purpose:   ä¸€äº›æ•°å­¦ä¾¿åˆ©å‡½æ•°
  * Author:    Wang Xiao Ning
  * Created:   2011-04-10
  **************************************************************/
 #pragma once
 
-/// \brief Ç°ÒÆµü´úÆ÷
+/// \brief å‰ç§»è¿­ä»£å™¨
 template < class T >
 void adv(T& t, size_t n)
 {
@@ -14,19 +14,19 @@ void adv(T& t, size_t n)
 		t++;
 }
 
-/// \brief ÇóÆ½·½
+/// \brief æ±‚å¹³æ–¹
 template< class T >
 T xsqr(T x) { return x * x; }
 
-/// \brief ÇóÁ½±äÁ¿ÖĞ½ÏĞ¡Õß
+/// \brief æ±‚ä¸¤å˜é‡ä¸­è¾ƒå°è€…
 template< class T >
 T xmin(T x, T y) { return x < y ? x : y; }
 
-/// \brief ÇóÁ½±äÁ¿ÖĞ½Ï´óÕß
+/// \brief æ±‚ä¸¤å˜é‡ä¸­è¾ƒå¤§è€…
 template< class T >
 T xmax(T x, T y) { return x > y ? x : y; }
 
-/// \brief ½»»»Á½±äÁ¿
+/// \brief äº¤æ¢ä¸¤å˜é‡
 template< class T >
 void xswap(T& x, T& y)
 {
@@ -35,7 +35,7 @@ void xswap(T& x, T& y)
 	y = temp;
 }
 
-/// \brief ÇóÆ½¾ùÖµ
+/// \brief æ±‚å¹³å‡å€¼
 template< class T, class Retval >
 Retval xmean_value(T data[], int count)
 {
@@ -46,7 +46,7 @@ Retval xmean_value(T data[], int count)
 	return sum / count;
 }
 
-/// \brief Çó·½²î
+/// \brief æ±‚æ–¹å·®
 template< class T, class Retval >
 Retval xvariance(T data[], int count)
 {
@@ -58,7 +58,7 @@ Retval xvariance(T data[], int count)
 	return variance;
 }
 
-/// \brief É¾³ıÖ¸Õë
+/// \brief åˆ é™¤æŒ‡é’ˆ
 template< class T >
 void xdelete(T*& p)
 {
@@ -69,7 +69,7 @@ void xdelete(T*& p)
 	}
 }
 
-/// \brief É¾³ıÊı×éÖ¸Õë
+/// \brief åˆ é™¤æ•°ç»„æŒ‡é’ˆ
 template< class T >
 void xdelete_a(T*& p)
 {
@@ -80,7 +80,7 @@ void xdelete_a(T*& p)
 	}
 }
 
-/// \brief É¾³ıÈİÆ÷ÖĞµÄÖ¸ÕëËùÖ¸ÏòµÄ¶ÔÏó
+/// \brief åˆ é™¤å®¹å™¨ä¸­çš„æŒ‡é’ˆæ‰€æŒ‡å‘çš„å¯¹è±¡
 template< class Container, class Iterator >
 void xdel_ptrs(Container& set, Iterator first, Iterator last)
 {
@@ -89,7 +89,7 @@ void xdel_ptrs(Container& set, Iterator first, Iterator last)
 		delete *i;
 }
 
-/// \brief É¾³ıÈİÆ÷ÖĞµÄÖ¸Õë¶ÔÏó²¢»ØÊÕ×ÊÔ´
+/// \brief åˆ é™¤å®¹å™¨ä¸­çš„æŒ‡é’ˆå¯¹è±¡å¹¶å›æ”¶èµ„æº
 template< class Container, class Iterator >
 void xerase_ptrs(Container& set, Iterator first, Iterator last)
 {
@@ -100,7 +100,7 @@ void xerase_ptrs(Container& set, Iterator first, Iterator last)
 #if defined( _MSC_VER ) && _MSC_VER <= 1200
 #	define countof( array ) (sizeof( array ) / sizeof( array[0] ))
 #else
-	/// \brief ¼ÆËãÊı×éÔªËØ¸öÊı
+	/// \brief è®¡ç®—æ•°ç»„å…ƒç´ ä¸ªæ•°
 	template< typename T, size_t N >
 	char(&_ArraySizeHelper(T(&array)[N] ))[N];
 #	define countof( array ) (sizeof( _ArraySizeHelper( array ) ))

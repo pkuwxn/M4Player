@@ -1,18 +1,18 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      LvpHilighter.h
- * Purpose:   ÊµÏÖ VdkListView Êó±ê»¬¹ıÊ±¸ßÁÁËùÔÚĞĞ
+ * Purpose:   å®ç° VdkListView é¼ æ ‡æ»‘è¿‡æ—¶é«˜äº®æ‰€åœ¨è¡Œ
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-3-3
  **************************************************************/
 #pragma once
 #include "IListViewPlaugin.h"
 
-/// ÊµÏÖ VdkListView Êó±ê»¬¹ıÊ±¸ßÁÁËùÔÚĞĞ
+/// å®ç° VdkListView é¼ æ ‡æ»‘è¿‡æ—¶é«˜äº®æ‰€åœ¨è¡Œ
 class LvpHilighter : public IListViewPlaugin
 {
 public:
 
-	/// ¹¹Ôìº¯Êı
+	/// æ„é€ å‡½æ•°
 	LvpHilighter(ListView* list, const wxBrush& hilighted);
     
 private:
@@ -29,5 +29,5 @@ private:
 
 private:
 
-	wxBrush m_hilighted; // ¸ßÁÁÏîµÄ±³¾°»­Ë¢
+	wxBrush m_hilighted; // é«˜äº®é¡¹çš„èƒŒæ™¯ç”»åˆ·
 };

@@ -1,28 +1,28 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkHotArea.h"
 
 class VdkWindow;
-/// \brief ÏÔÊ¾Ò»¸ö³¬Á´½Ó
+/// \brief æ˜¾ç¤ºä¸€ä¸ªè¶…é“¾æ¥
 class VdkHyperLink : public VdkHotArea
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkHyperLink();
 
-	/// \brief Ö´ĞĞÊµ¼Ê¹¹½¨²Ù×÷
+	/// \brief æ‰§è¡Œå®é™…æ„å»ºæ“ä½œ
 	void Create(VdkWindow* Window,
                 const wxString& strName,
                 const wxRect& rc,
                 const wxString& strUrl,
                 const wxString& strCaption);
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
 private:
 
-	/// \brief »æÖÆ¿Ø¼ş
+	/// \brief ç»˜åˆ¶æ§ä»¶
 	virtual void DoDraw(wxDC& dc);
 
 	wxString					m_strCaption;

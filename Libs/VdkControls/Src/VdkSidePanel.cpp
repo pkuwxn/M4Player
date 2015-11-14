@@ -1,4 +1,4 @@
-/***************************************************************
+﻿/***************************************************************
  * Name:      VdkSidePanel.cpp
  * Purpose:   Code for VdkSidePanel implementation
  * Author:    vanxining (vanxining@139.com)

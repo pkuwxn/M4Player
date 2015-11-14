@@ -1,72 +1,72 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkLabel.h"
 #include <wx/vector.h>
 
-/// \brief VdkRichLabel Àï°üº¬µÄ URL
+/// \brief VdkRichLabel é‡ŒåŒ…å«çš„ URL
 struct Url {
 
-	wxString	strUrl; ///< URL µØÖ·
-	wxString	strUrlDisplay; ///< ÏÔÊ¾µÄÊµ¼Ê URL ÎÄ±¾£¨¿ÉÄÜ½Ø¶Ì£©
-	wxString	strDummy; ///< VdkRichLabel ÀïÓÃÀ´±ê¼Ç URL Î»ÖÃµÄÌØÊâÎÄ±¾
+	wxString	strUrl; ///< URL åœ°å€
+	wxString	strUrlDisplay; ///< æ˜¾ç¤ºçš„å®é™… URL æ–‡æœ¬ï¼ˆå¯èƒ½æˆªçŸ­ï¼‰
+	wxString	strDummy; ///< VdkRichLabel é‡Œç”¨æ¥æ ‡è®° URL ä½ç½®çš„ç‰¹æ®Šæ–‡æœ¬
 
-	wxRect		Rect; ///< ĞéÄâ»­²¼ÉÏµÄÎ»ÖÃ
+	wxRect		Rect; ///< è™šæ‹Ÿç”»å¸ƒä¸Šçš„ä½ç½®
 };
 
-/// \brief ¸»ÎÄ±¾±êÇ©
+/// \brief å¯Œæ–‡æœ¬æ ‡ç­¾
 ///
-/// µ±Ç°¾ßÓĞµÄ¹¦ÄÜ£º
-/// ** ¶àĞĞÏÔÊ¾£»
-/// ** URL ½âÊÍ¡£
+/// å½“å‰å…·æœ‰çš„åŠŸèƒ½ï¼š
+/// ** å¤šè¡Œæ˜¾ç¤ºï¼›
+/// ** URL è§£é‡Šã€‚
 class VdkRichLabel : public VdkLabel
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkRichLabel();
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief È·¶¨ VdkLabel µÄÊµ¼Ê×÷ÓÃÓò
+	/// \brief ç¡®å®š VdkLabel çš„å®é™…ä½œç”¨åŸŸ
 	virtual void PrepareRect();
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ÉèÖÃ URL ÏÔÊ¾·ç¸ñ£¨ÎÄ±¾ÑÕÉ«¡¢ÊÇ·ñÏÔÊ¾ÏÂ»®ÏßµÈ£©
+	/// \brief è®¾ç½® URL æ˜¾ç¤ºé£æ ¼ï¼ˆæ–‡æœ¬é¢œè‰²ã€æ˜¯å¦æ˜¾ç¤ºä¸‹åˆ’çº¿ç­‰ï¼‰
 	void SetUrlStyle(wxString strStyle);
 
-	/// \brief µÃµ½Ö¸¶¨ĞòºÅµÄ URL
+	/// \brief å¾—åˆ°æŒ‡å®šåºå·çš„ URL
 	wxString GetUrl(unsigned id = 0);
 
 private:
 
-	/// \brief Ò»¶Î²ÊÉ«ÎÄ±¾
+	/// \brief ä¸€æ®µå½©è‰²æ–‡æœ¬
 	struct ColorTextNode {
 
-		wxString	strText; ///< ÎÄ±¾
-		int			width; ///< ÎÄ±¾¿í¶È
-		int			x, y; ///< ÎÄ±¾µÄÏà¶ÔÎ»ÖÃ
-		wxColour	color; ///< ÎÄ±¾ÑÕÉ«
+		wxString	strText; ///< æ–‡æœ¬
+		int			width; ///< æ–‡æœ¬å®½åº¦
+		int			x, y; ///< æ–‡æœ¬çš„ç›¸å¯¹ä½ç½®
+		wxColour	color; ///< æ–‡æœ¬é¢œè‰²
 	};
 
-	/// \brief »æÖÆ¿Ø¼ş
+	/// \brief ç»˜åˆ¶æ§ä»¶
 	virtual void DoDraw(wxDC& dc);
 
-	/// \brief ´¦ÀíÊó±êÊÂ¼ş
+	/// \brief å¤„ç†é¼ æ ‡äº‹ä»¶
 	virtual void DoHandleMouseEvent(VdkMouseEvent& e);
 
-	/// \brief ½ÓÊÕ¡¢´¦ÀíÍ¨ÖªĞÅÏ¢
+	/// \brief æ¥æ”¶ã€å¤„ç†é€šçŸ¥ä¿¡æ¯
 	virtual void DoHandleNotify(const VdkNotify& notice);
 
-	/// \brief ·ÖÎö UBB ´úÂë£¬·Ö½âÊôĞÔÖµ
+	/// \brief åˆ†æ UBB ä»£ç ï¼Œåˆ†è§£å±æ€§å€¼
 	bool GetUbbNode( wxString& strUbb, 
 					 wxString& strName, 
 					 wxString& strAttriValue,
 					 wxString& strText );
 
-	/// \brief »æÖÆ URL
+	/// \brief ç»˜åˆ¶ URL
 	void DrawUrl(int& UrlIndex, const wxString& strUrlAll, wxDC& dc, int x, int y);
-	/// \brief Ëæ»úÉú³ÉÓë URL Í¬³¤¡¢ÓÃÀ´±ê¼ÇÆäÎ»ÖÃµÄÌØÊâÎÄ±¾
+	/// \brief éšæœºç”Ÿæˆä¸ URL åŒé•¿ã€ç”¨æ¥æ ‡è®°å…¶ä½ç½®çš„ç‰¹æ®Šæ–‡æœ¬
 	void GetRandomString(wxString& strOut, int len);
 
 	//////////////////////////////////////////////////////////////////////////
@@ -76,9 +76,9 @@ private:
 	_WX_DECLARE_VECTOR(Url, VectorOfUrl, );
 	_WX_DECLARE_VECTOR(ColorTextNode, VectorOfColorTextNode, );
 
-	VectorOfUrl				m_Urls;				// ÎÄ±¾ÖĞ°üº¬µÄËùÓĞURL
-	wxArrayString			m_strBreaks;		// ¶àĞĞÎÄ±¾ÓÃÒÔ·ÖĞĞ¡¢·Ö´Ê
-	VectorOfColorTextNode	m_colorTexts;		// ×ÅÉ«ÎÄ±¾
+	VectorOfUrl				m_Urls;				// æ–‡æœ¬ä¸­åŒ…å«çš„æ‰€æœ‰URL
+	wxArrayString			m_strBreaks;		// å¤šè¡Œæ–‡æœ¬ç”¨ä»¥åˆ†è¡Œã€åˆ†è¯
+	VectorOfColorTextNode	m_colorTexts;		// ç€è‰²æ–‡æœ¬
 
 	DECLARE_DYNAMIC_VOBJECT
 };

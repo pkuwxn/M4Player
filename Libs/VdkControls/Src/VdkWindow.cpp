@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkWindow.cpp
- * Purpose:   VdkWindow µÄÊµÏÖÎÄ¼ş
+ * Purpose:   VdkWindow çš„å®ç°æ–‡ä»¶
  * Author:    vanxining (vanxining@139.com)
  * Created:   2011-02-13
  * Copyright: vanxining
@@ -19,7 +19,7 @@
 #ifdef __WXMSW__
 #	include "msw/TrayIcon.h"
 #else
-/// \brief Ô­ÓĞ wxTrayIcon µÄÀ©Õ¹Àà£¬Ìí¼ÓÁËÍ¼±êÉÁË¸µÈÌØĞÔ
+/// \brief åŸæœ‰ wxTrayIcon çš„æ‰©å±•ç±»ï¼Œæ·»åŠ äº†å›¾æ ‡é—ªçƒç­‰ç‰¹æ€§
 class TrayIcon {};
 #endif // __WXMSW__
 
@@ -38,7 +38,7 @@ VdkWindowInitializer::VdkWindowInitializer()
 }
 
 //////////////////////////////////////////////////////////////////////////
-// TAB order ¹ÜÀí
+// TAB order ç®¡ç†
 
 typedef unsigned int tab_order_t;
 
@@ -46,24 +46,24 @@ class TabOrderIterator
 {
 public:
 
-	// Ìí¼ÓÒ»¸ö¿Ø¼ş
+	// æ·»åŠ ä¸€ä¸ªæ§ä»¶
 	void AddCtrl(VdkControl* pCtrl);
 
-	// É¾³ıÒ»¸ö¿Ø¼ş
+	// åˆ é™¤ä¸€ä¸ªæ§ä»¶
 	bool RemoveCtrl(VdkControl* pCtrl);
 
-	/// Çå¿ÕËùÓĞÒÑ×¢²áµÄ¿Ø¼ş
+	/// æ¸…ç©ºæ‰€æœ‰å·²æ³¨å†Œçš„æ§ä»¶
 	void Clear();
 
-	// ¼¤»î TAB order Á´ÖĞµÄÏÂÒ»¸ö¿Ø¼ş£¨×ªÒÆ½¹µã£©
+	// æ¿€æ´» TAB order é“¾ä¸­çš„ä¸‹ä¸€ä¸ªæ§ä»¶ï¼ˆè½¬ç§»ç„¦ç‚¹ï¼‰
 	//
-	// @param current ÈôÎª¿Õ£¬Ôò»á¼¤»î¿Ø¼şÁ´ÖĞµÄµÚÒ»Ïî
-	// @return Èô³É¹¦¼¤»î½¹µãÁ´ÖĞµÄÏÂÒ»¸ö¿Ø¼şÔò·µ»ØÕæ¡£
+	// @param current è‹¥ä¸ºç©ºï¼Œåˆ™ä¼šæ¿€æ´»æ§ä»¶é“¾ä¸­çš„ç¬¬ä¸€é¡¹
+	// @return è‹¥æˆåŠŸæ¿€æ´»ç„¦ç‚¹é“¾ä¸­çš„ä¸‹ä¸€ä¸ªæ§ä»¶åˆ™è¿”å›çœŸã€‚
 	bool FocusNext(VdkControl* current);
 
 private:
 
-	// ²éÕÒÖ¸¶¨¾ä±úµÄ¿Ø¼ş
+	// æŸ¥æ‰¾æŒ‡å®šå¥æŸ„çš„æ§ä»¶
 	VdkCtrlIter FindCtrl(VdkControl* pCtrl);
 
 private:
@@ -106,7 +106,7 @@ bool TabOrderIterator::FocusNext(VdkControl* current)
 			++iter;
 		}
 
-		// TODO: ¼ÙÈçµ±Ç°¿Ø¼şÃ»ÓĞÉèÖÃ¿É×ªÒÆ½¹µã¸ÃÈçºÎ´¦Àí£¿
+		// TODO: å‡å¦‚å½“å‰æ§ä»¶æ²¡æœ‰è®¾ç½®å¯è½¬ç§»ç„¦ç‚¹è¯¥å¦‚ä½•å¤„ç†ï¼Ÿ
 	}
 
 	if( iter == end )
@@ -134,11 +134,11 @@ bool TabOrderIterator::FocusNext(VdkControl* current)
 		}
 
 		//-----------------------------------------------------
-		// ¼ÌĞøÕÒÏÂÈ¥
+		// ç»§ç»­æ‰¾ä¸‹å»
 
 		++iter;
 
-		// Ñ­»·
+		// å¾ªç¯
 		if( iter == end )
 		{
 			iter = beg;
@@ -167,11 +167,11 @@ VDK_DEFINE_WX_PTR_LIST( VdkWindowList );
 VDK_DEFINE_WX_PTR_LIST( VdkEventFilterList );
 
 enum {
-	// Êó±êÖ¸ÕëÒÆ³öµ±Ç°´°¿ÚÊ±·¢ËÍµ½´°¿ÚµÄÎ±Êó±êÎ»ÖÃµÄ×ø±êÖµ
+	// é¼ æ ‡æŒ‡é’ˆç§»å‡ºå½“å‰çª—å£æ—¶å‘é€åˆ°çª—å£çš„ä¼ªé¼ æ ‡ä½ç½®çš„åæ ‡å€¼
 	MEANNINGLESS_MOUSE_COORD = 9999999,
 };
 
-// È«¾Ö¾²Ì¬±äÁ¿£ºµ±Ç°´¦ÓÚÊó±êÖ¸ÕëÖ®ÏÂµÄ¿Ø¼ş
+// å…¨å±€é™æ€å˜é‡ï¼šå½“å‰å¤„äºé¼ æ ‡æŒ‡é’ˆä¹‹ä¸‹çš„æ§ä»¶
 VdkControl* VdkWindow::ms_hovering = NULL;
 
 //////////////////////////////////////////////////////////////////////////
@@ -188,19 +188,19 @@ VdkWindow::VdkWindow(wxWindow* handle, long style)
 		   m_tabOrderIter( NULL ),
 		   m_cachedDC( NULL ),
 		   m_postListeners( NULL )
-		   // ÆäËü³ÉÔ±±äÁ¿ÔÚ Init() ÖĞ³õÊ¼»¯
-		   // TODO: ÄÄĞ©Ó¦¸ÃÔÚ Init() ÖĞ³õÊ¼»¯£¿
+		   // å…¶å®ƒæˆå‘˜å˜é‡åœ¨ Init() ä¸­åˆå§‹åŒ–
+		   // TODO: å“ªäº›åº”è¯¥åœ¨ Init() ä¸­åˆå§‹åŒ–ï¼Ÿ
 {
 	wxASSERT( m_this );
 	Init();
 
 #ifdef __WXMSW__
-	m_this->SetFont( wxEasyCreatFont( L"ËÎÌå" ) );
+	m_this->SetFont( wxEasyCreatFont( L"å®‹ä½“" ) );
 #endif
 
 	//-----------------------------------------------------------------
 
-	// TODO: ÓÃ»§¸Ä±äÁËÕâ¸ö·ç¸ñÔõÃ´°ì£¿
+	// TODO: ç”¨æˆ·æ”¹å˜äº†è¿™ä¸ªé£æ ¼æ€ä¹ˆåŠï¼Ÿ
 	m_dragBySpace = TestStyle( VWIS_DRAG_BY_SPACE );
 }
 
@@ -262,16 +262,16 @@ void VdkWindow::Init()
 
 void VdkWindow::BindHandlers()
 {
-	// ¼ÙÈç´°Ìå»¹Ã»³õÊ¼»¯Íê³É£¨ÉĞÎ´»æÖÆµÚÒ»´Î£©£¬
-	// ÇÒ²»ÊÇ´¦ÓÚÖØÖÃ´°ÌåµÄ¹ı³ÌÖ®ÖĞ
-	// ¾ø¶Ô²»ÄÜ°ó¶¨Á½´ÎÏàÍ¬µÄÊÂ¼ş´¦Àíº¯Êı
+	// å‡å¦‚çª—ä½“è¿˜æ²¡åˆå§‹åŒ–å®Œæˆï¼ˆå°šæœªç»˜åˆ¶ç¬¬ä¸€æ¬¡ï¼‰ï¼Œ
+	// ä¸”ä¸æ˜¯å¤„äºé‡ç½®çª—ä½“çš„è¿‡ç¨‹ä¹‹ä¸­
+	// ç»å¯¹ä¸èƒ½ç»‘å®šä¸¤æ¬¡ç›¸åŒçš„äº‹ä»¶å¤„ç†å‡½æ•°
 	if( IsInitializing() && !TestState( VWST_RESET ) )
 	{
-		// Windows ºÍ GTK ¶Ô¼üÅÌÊÂ¼şµÄ´¦ÀíÓĞËù²»Í¬¡£
-		// Windows ÏÂÃæÍ¨¹ı base panel Ö±½Ó½ÓÊÕ¼üÅÌÊÂ¼şºÜ²»¿¿Æ×£¬Òò´Ë²»Ê¹ÓÃ
-		// base panel À´½Ø»ñ°´¼üÊÂ¼ş£¬¶øÊÇÊ¹ÓÃÒ»¸öÒş²ØµÄ wxControl ÀàÊµÀı¡£
-		// GTK ÄÜÊ¹ÓÃÒş²Ø¿Ø¼şµÄ·½·¨À´½Ø»ñ°´¼üÊÂ¼ş£¬µ«ÊÇĞèÒª¸Ä±äÊäÈë·¨×´Ì¬´°¿Ú
-		// µÄÎ»ÖÃÊ±È´ÓÖ²»Õı³£ÁË£¬ÎŞ·¨½â¾ö£¬Ö»ÄÜÊ¹ÓÃ base panel Õâ¸ö·½·¨¡£
+		// Windows å’Œ GTK å¯¹é”®ç›˜äº‹ä»¶çš„å¤„ç†æœ‰æ‰€ä¸åŒã€‚
+		// Windows ä¸‹é¢é€šè¿‡ base panel ç›´æ¥æ¥æ”¶é”®ç›˜äº‹ä»¶å¾ˆä¸é è°±ï¼Œå› æ­¤ä¸ä½¿ç”¨
+		// base panel æ¥æˆªè·æŒ‰é”®äº‹ä»¶ï¼Œè€Œæ˜¯ä½¿ç”¨ä¸€ä¸ªéšè—çš„ wxControl ç±»å®ä¾‹ã€‚
+		// GTK èƒ½ä½¿ç”¨éšè—æ§ä»¶çš„æ–¹æ³•æ¥æˆªè·æŒ‰é”®äº‹ä»¶ï¼Œä½†æ˜¯éœ€è¦æ”¹å˜è¾“å…¥æ³•çŠ¶æ€çª—å£
+		// çš„ä½ç½®æ—¶å´åˆä¸æ­£å¸¸äº†ï¼Œæ— æ³•è§£å†³ï¼Œåªèƒ½ä½¿ç”¨ base panel è¿™ä¸ªæ–¹æ³•ã€‚
 
 #ifndef __WXMSW__
 		if( TestStyle( VWS_BASE_PANEL ) )
@@ -286,10 +286,10 @@ void VdkWindow::BindHandlers()
 			BindToPanel( wxEVT_KEY_UP, OnKeyUp );
 			BindToPanel( wxEVT_CHAR, OnChars );
 
-			// ²»»á³öÏÖÄ¬ÈÏ±³¾°
+			// ä¸ä¼šå‡ºç°é»˜è®¤èƒŒæ™¯
             m_panel->SetBackgroundStyle( wxBG_STYLE_CUSTOM );
 
-			// ±ÜÃâÉÁË¸
+			// é¿å…é—ªçƒ
 			BindToWindow( wxEVT_ERASE_BACKGROUND, OnEraseBackground );
 			BindToWindow( wxEVT_PAINT, OnWindowPaintDummy );
 		}
@@ -297,7 +297,7 @@ void VdkWindow::BindHandlers()
 
 		//-----------------------------------------------------------------
 
-        m_this->SetBackgroundStyle( wxBG_STYLE_CUSTOM ); // ²»»á³öÏÖÄ¬ÈÏ±³¾°
+        m_this->SetBackgroundStyle( wxBG_STYLE_CUSTOM ); // ä¸ä¼šå‡ºç°é»˜è®¤èƒŒæ™¯
 
 		BindToPanel( wxEVT_LEFT_DOWN, OnLeftDown );
 		BindToPanel( wxEVT_LEFT_DCLICK, OnDLeftDown );
@@ -308,7 +308,7 @@ void VdkWindow::BindHandlers()
 		BindToPanel( wxEVT_LEAVE_WINDOW, OnLeaveWindow );
 
 #ifdef __WXMSW__
-		// ºÜ¶àÊ±ºòÆÕÍ¨´°¿ÚÒ²ĞèÒª°´¼üÊÂ¼ş£¬ÈçÈ¡ÏûÉÏÏÂÎÄ²Ëµ¥µÄÏÔÊ¾
+		// å¾ˆå¤šæ—¶å€™æ™®é€šçª—å£ä¹Ÿéœ€è¦æŒ‰é”®äº‹ä»¶ï¼Œå¦‚å–æ¶ˆä¸Šä¸‹æ–‡èœå•çš„æ˜¾ç¤º
 		BindToPanel( wxEVT_KEY_DOWN, OnKeyDown );
 		BindToPanel( wxEVT_KEY_UP, OnKeyUp );
 #endif
@@ -322,10 +322,10 @@ void VdkWindow::BindHandlers()
 		if( TestStyle( VWS_CLOSE_TO_DESTORY ) )
 			BindToWindow( wxEVT_CLOSE_WINDOW, OnClose );
 
-		// ÑÓ³ÙÏÔÊ¾²Ëµ¥
+		// å»¶è¿Ÿæ˜¾ç¤ºèœå•
 		BindVObjEvent( OnDelayShowContextMenu, VEMC_SHOW_CONTEXT_MENU );
 
-		// ÖªÏş²Ëµ¥Òş²Ø
+		// çŸ¥æ™“èœå•éšè—
 		BindVObjEvent( OnMenuHid, VEMC_MENU_HID );
 	}
 }
@@ -345,7 +345,7 @@ void VdkWindow::Create(const VdkWindowInitializer& init_data)
 	{
 		if( !init_data.strFileName.IsEmpty() )
 		{
-			// Î»Í¼Ä¬ÈÏ²»ÉèÖÃÍ¸Ã÷É«
+			// ä½å›¾é»˜è®¤ä¸è®¾ç½®é€æ˜è‰²
 			VdkUtil::ImRead( bkCanvas, init_data.strFileName );
 		}
 		else
@@ -358,7 +358,7 @@ void VdkWindow::Create(const VdkWindowInitializer& init_data)
 		bkCanvas = init_data.bmBkGnd;
 	}
 
-	// ÆÕÍ¨±ß¿ò£¬Ã»ÓĞ±³¾°Î»Í¼
+	// æ™®é€šè¾¹æ¡†ï¼Œæ²¡æœ‰èƒŒæ™¯ä½å›¾
 	if( !bkCanvas.IsOk() )
 	{
 		m_nMinWidth = init_data.Rect.width;
@@ -383,7 +383,7 @@ void VdkWindow::Create(const VdkWindowInitializer& init_data)
 
 		if( !init_data.TileArea.IsEmpty() )
 		{
-			if( init_data.bResizeable ) // nBorder > 0 Ê±²Å»áÆôÓÃ¿É¸Ä±ä´°¿Ú´óĞ¡
+			if( init_data.bResizeable ) // nBorder > 0 æ—¶æ‰ä¼šå¯ç”¨å¯æ”¹å˜çª—å£å¤§å°
 				SetAddinStyle( VWS_RESIZEABLE );
 
 			int w = init_data.Rect.width;
@@ -400,7 +400,7 @@ void VdkWindow::Create(const VdkWindowInitializer& init_data)
 			Resize( m_nMinWidth, m_nMinHeight );
 		}
 
-		// ¼ÙÈç init_data.Rect Îª¿Õ¾Í²»ÒªÒÆ¶¯´°¿ÚÁË
+		// å‡å¦‚ init_data.Rect ä¸ºç©ºå°±ä¸è¦ç§»åŠ¨çª—å£äº†
 		if( !init_data.Rect.IsEmpty() && 
 				init_data.Rect.GetPosition() != wxDefaultPosition )
 		{
@@ -415,10 +415,10 @@ VdkWindow* VdkWindow::Create(wxXmlNode* node, MapOfCtrlIdInfo* ids)
 	wxXmlNode* chd = NULL;
 	bool resizeable = true;
 	wxRect ResizeRect;
-	// TODO: Ç§Ç§¾²ÌıÄ¬ÈÏÊÇÀ­Éì
+	// TODO: åƒåƒé™å¬é»˜è®¤æ˜¯æ‹‰ä¼¸
 	VdkResizeableBitmapType nResizeType = RESIZE_TYPE_STRETCH;
 
-	// À­ÉìÊôĞÔ
+	// æ‹‰ä¼¸å±æ€§
 	chd = FindChildNode( node, L"resize_rect" );
 	if( chd )
 	{
@@ -441,7 +441,7 @@ VdkWindow* VdkWindow::Create(wxXmlNode* node, MapOfCtrlIdInfo* ids)
 		}
 	}
 
-	// ×ÖÌåÊôĞÔ
+	// å­—ä½“å±æ€§
 	TextInfo info( VdkUtil::GetXrcTextInfo( node, m_this ) );
 	m_this->SetFont( info.font );
 	if( m_panel != m_this )
@@ -450,7 +450,7 @@ VdkWindow* VdkWindow::Create(wxXmlNode* node, MapOfCtrlIdInfo* ids)
 	}
 
 	//-----------------------------------------------------------------
-	// ³õÊ¼»¯´°¿Ú
+	// åˆå§‹åŒ–çª—å£
 
 	wxString bgFile( XmlGetChildContent( node, L"image" ) );
 	Create(  VdkWindowInitializer().
@@ -479,14 +479,14 @@ VdkWindow* VdkWindow::Create(wxXmlNode* node, MapOfCtrlIdInfo* ids)
 	}
 
 	//-----------------------------------------------------------------
-	// ´´½¨ËùÓĞ¿Ø¼ş
+	// åˆ›å»ºæ‰€æœ‰æ§ä»¶
 
 	VdkControl::ParseObjects( VdkCtrlParserInfo().
 							  window( this ).
 							  node( node ).
 							  ids( ids ) );
 
-	// ²¹³ä¿Ø¼şµØÖ·
+	// è¡¥å……æ§ä»¶åœ°å€
 	if( ids )
 	{
 		VdkControl** addr = NULL;
@@ -513,7 +513,7 @@ VdkWindow* VdkWindow::Create(wxXmlNode* node, MapOfCtrlIdInfo* ids)
 
 void VdkWindow::BeginExit()
 {
-	// ¼ÙÈç»¹Ã»³õÊ¼»¯ÕÕÑùÄÜ×Ô¶¯ÍË³ö
+	// å‡å¦‚è¿˜æ²¡åˆå§‹åŒ–ç…§æ ·èƒ½è‡ªåŠ¨é€€å‡º
 	SetAddinState( VWST_EXITING );
 
 	// TODO: FindMenu
@@ -593,7 +593,7 @@ void VdkWindow::Draw(wxDC& pdc)
 	if( TestState( VWST_EXITING ) )
 		return;
 
-	// TODO: ÊÇ·ñ±ØĞë£¿
+	// TODO: æ˜¯å¦å¿…é¡»ï¼Ÿ
 	bool isFirstDraw = false;
 
 	//-----------------------------------------------------------------
@@ -608,22 +608,22 @@ void VdkWindow::Draw(wxDC& pdc)
 			return;
 		}
 
-		// ×¢Òâ£ºVdkDC vdc ºê±ØĞëÔÚ VWST_INITING ±êÖ¾Î»±»È¡Ïûºó
-		// ²Å»á·µ»ØÕıÈ·µÄ DC ¾ä±ú
+		// æ³¨æ„ï¼šVdkDC vdc å®å¿…é¡»åœ¨ VWST_INITING æ ‡å¿—ä½è¢«å–æ¶ˆå
+		// æ‰ä¼šè¿”å›æ­£ç¡®çš„ DC å¥æŸ„
 		if( TestState( VWST_INITING ) )
 		{
 			isFirstDraw = true;
 			RemoveState( VWST_INITING );
 		}
 
-		// TODO: ÕâÀïÎªÊ²Ã´ÒªÕâÃ´¸É£¿
+		// TODO: è¿™é‡Œä¸ºä»€ä¹ˆè¦è¿™ä¹ˆå¹²ï¼Ÿ
 		VdkDC vdc( this, Rect00(), &pdc );
 
-		// ¼ÙÈçÖ»ÊÇ²»ÊÇµÚÒ»´Î»æÖÆ£¬Ö±½Ó´ÓË«»º³åÎ»Í¼ÖĞ¸´ÖÆ
-		// ÒòÎªÎÒÃÇËùÓĞµÄ»æÍ¼²Ù×÷¶¼ÊÇÏÈÔÚË«»º³åÎ»Í¼ÖĞ½øĞĞ
-		if( !TestStyle( VWS_ALWAYS_REFRESH ) && // ¼ÙÈç×ÜÊÇĞèÒªË¢ĞÂ
-			!TestState( VWST_REDRAW_ALL ) && // ¼ÙÈç²»ÊÇ±¾´ÎĞèÒªË¢ĞÂ
-			!TestState( VWST_RESET ) &&  // ¼ÙÈç²»ÊÇÖØÖÃÁË´°¿Ú
+		// å‡å¦‚åªæ˜¯ä¸æ˜¯ç¬¬ä¸€æ¬¡ç»˜åˆ¶ï¼Œç›´æ¥ä»åŒç¼“å†²ä½å›¾ä¸­å¤åˆ¶
+		// å› ä¸ºæˆ‘ä»¬æ‰€æœ‰çš„ç»˜å›¾æ“ä½œéƒ½æ˜¯å…ˆåœ¨åŒç¼“å†²ä½å›¾ä¸­è¿›è¡Œ
+		if( !TestStyle( VWS_ALWAYS_REFRESH ) && // å‡å¦‚æ€»æ˜¯éœ€è¦åˆ·æ–°
+			!TestState( VWST_REDRAW_ALL ) && // å‡å¦‚ä¸æ˜¯æœ¬æ¬¡éœ€è¦åˆ·æ–°
+			!TestState( VWST_RESET ) &&  // å‡å¦‚ä¸æ˜¯é‡ç½®äº†çª—å£
 			!isFirstDraw )
 		{
 			return;
@@ -654,11 +654,11 @@ void VdkWindow::DoDraw(wxDC& dc)
 {
 	EraseBackground( dc, Rect00() );
 
-	// ÅÉÉúÀà¿ÉÒÔ¶ÔÖØ»­ÊÂ¼ş×÷³öÏìÓ¦
+	// æ´¾ç”Ÿç±»å¯ä»¥å¯¹é‡ç”»äº‹ä»¶ä½œå‡ºå“åº”
 	DoPaint( dc );
 
-	// µ±¿ìËÙ¸Ä±ä VdkWindow µÄ´óĞ¡Ê±£¬¹ö¶¯ÌõÊÖ±ú¿ÉÄÜ»á¸²¸Çµô¡°ÏòÏÂ¹ö¶¯¡±°´Å¥£¬
-	// ËùÒÔ´ÓºóÍùÇ°»­£¬ÏÈ»­ÊÖ±ú£¬ÔÙ»­°´Å¥¡£Ææ¹Ö
+	// å½“å¿«é€Ÿæ”¹å˜ VdkWindow çš„å¤§å°æ—¶ï¼Œæ»šåŠ¨æ¡æ‰‹æŸ„å¯èƒ½ä¼šè¦†ç›–æ‰â€œå‘ä¸‹æ»šåŠ¨â€æŒ‰é’®ï¼Œ
+	// æ‰€ä»¥ä»åå¾€å‰ç”»ï¼Œå…ˆç”»æ‰‹æŸ„ï¼Œå†ç”»æŒ‰é’®ã€‚å¥‡æ€ª
 	VdkControl* pCtrl( NULL );
 	VdkCtrlList::reverse_iterator i, rEnd( m_Ctrls.rend() );
 	for( i = m_Ctrls.rbegin(); i != rEnd; ++i )
@@ -696,7 +696,7 @@ void VdkWindow::OnShow(wxShowEvent& e)
 
 void VdkWindow::OnIconize(wxIconizeEvent&)
 {
-	// ÎÒÃÇĞèÒª»¹Ô­×îĞ¡»¯°´Å¥µÄÕı³£×´Ì¬
+	// æˆ‘ä»¬éœ€è¦è¿˜åŸæœ€å°åŒ–æŒ‰é’®çš„æ­£å¸¸çŠ¶æ€
 	wxMouseEvent e( wxEVT_LEAVE_WINDOW );
 	e.SetX( -1 );
 	e.SetY( -1 );
@@ -713,16 +713,16 @@ void VdkWindow::OnSize(wxSizeEvent& e)
 {
 	wxSize size( e.GetSize() );
 
-	// ¼ÙÈçÊÇ´°Ìå´óĞ¡Óë±³¾°Î»Í¼´óĞ¡²»Í¬»¹ÊÇÒªµ÷ÓÃ Resize
+	// å‡å¦‚æ˜¯çª—ä½“å¤§å°ä¸èƒŒæ™¯ä½å›¾å¤§å°ä¸åŒè¿˜æ˜¯è¦è°ƒç”¨ Resize
 	if( !TestState( VWST_INITING ) &&
-		m_bkCanvas.IsOk() && // ¼ÙÈç²»´æÔÚ±³¾°Î»Í¼£¬ÔòÎŞĞëÏìÓ¦¸Ä±ä´óĞ¡ÊÂ¼ş
-		size != m_bkCanvas.GetSize() ) // Ä¿µÄ´óĞ¡Óëµ±Ç°±³¾°Î»Í¼´óĞ¡²»·û
+		m_bkCanvas.IsOk() && // å‡å¦‚ä¸å­˜åœ¨èƒŒæ™¯ä½å›¾ï¼Œåˆ™æ— é¡»å“åº”æ”¹å˜å¤§å°äº‹ä»¶
+		size != m_bkCanvas.GetSize() ) // ç›®çš„å¤§å°ä¸å½“å‰èƒŒæ™¯ä½å›¾å¤§å°ä¸ç¬¦
 	{
 		if( !Resize( size.x, size.y ) )
 		{
 			if( IsZoomed() )
 			{
-				// Ìá½»¸ü¸Ä
+				// æäº¤æ›´æ”¹
 				wxRect rc( wxDisplay().GetClientArea() );
 				DoResize( rc.width, rc.height );
 
@@ -754,9 +754,9 @@ void VdkWindow::OnWindowFocus(wxActivateEvent& e)
 	{
 		if( GetMenuOnShow() )
 		{
-			// ²Ëµ¥´°¿Ú±¾Éí²»Ó¦¸Ã½ÓÊÜ LOSTFOCUS ÊÂ¼ş
+			// èœå•çª—å£æœ¬èº«ä¸åº”è¯¥æ¥å— LOSTFOCUS äº‹ä»¶
 			wxASSERT( !IsMenuImpl() );
-			// µÃµ½½¹µãµÄ´°¿Ú²»ÄÜ¾ÍÊÇµ±Ç°ÕıÔÚÏÔÊ¾µÄ²Ëµ¥ÊµÌåÊµÏÖ´°Ìå×ÔÉí
+			// å¾—åˆ°ç„¦ç‚¹çš„çª—å£ä¸èƒ½å°±æ˜¯å½“å‰æ­£åœ¨æ˜¾ç¤ºçš„èœå•å®ä½“å®ç°çª—ä½“è‡ªèº«
 			wxASSERT( wxWindow::FindFocus() !=
 				(wxWindow* )GetMenuOnShow()->GetImpl() );
 
@@ -767,8 +767,8 @@ void VdkWindow::OnWindowFocus(wxActivateEvent& e)
 #if 0
 	else
 	{
-		// ´°¿Ú´ÓÊ§»î×´Ì¬½øÈë¼¤»î×´Ì¬²»»á×Ô¶¯¼¤»îÃæ°å£¬
-		// µ¼ÖÂÃæ°åÉÏµÄ VdkEdit ÎŞ·¨»ñµÃÊäÈë½¹µã
+		// çª—å£ä»å¤±æ´»çŠ¶æ€è¿›å…¥æ¿€æ´»çŠ¶æ€ä¸ä¼šè‡ªåŠ¨æ¿€æ´»é¢æ¿ï¼Œ
+		// å¯¼è‡´é¢æ¿ä¸Šçš„ VdkEdit æ— æ³•è·å¾—è¾“å…¥ç„¦ç‚¹
 		if( m_this != m_panel )
 			m_panel->SetFocus();
 	}
@@ -778,7 +778,7 @@ void VdkWindow::OnWindowFocus(wxActivateEvent& e)
 
 void VdkWindow::OnClose(wxCloseEvent&)
 {
-	// ¼ÙÈçÊÇ²Ëµ¥´°Ìå£¬È¡Ïû²Ù×÷
+	// å‡å¦‚æ˜¯èœå•çª—ä½“ï¼Œå–æ¶ˆæ“ä½œ
 	if( IsMenuImpl() )
 		return;
 
@@ -790,7 +790,7 @@ void VdkWindow::OnLeftDown(wxMouseEvent& e)
 {
 	HandleMouseEvent( e, LEFT_DOWN );
 
-	// ±£´æÏà¶Ô´°¿Ú×óÉÏ½ÇµÄÎ»ÖÃ£¬ÓÃÓÚÄ£ÄâÍÏ¶¯´°¿Ú
+	// ä¿å­˜ç›¸å¯¹çª—å£å·¦ä¸Šè§’çš„ä½ç½®ï¼Œç”¨äºæ¨¡æ‹Ÿæ‹–åŠ¨çª—å£
 	SetAddinState( VWST_LEFT_DOWN_SKIPPED );
 	m_mouseOn = e.GetPosition();
 
@@ -827,14 +827,14 @@ inline void VdkWindow::OnRightUp(wxMouseEvent& e)
 
 void VdkWindow::OnMouseMove(wxMouseEvent& e)
 {
-	// ²»ÖªµÀÎªÊ²Ã´µ±ÔÚ´°ÌåÖĞµã»÷Ò»ÏÂ¼¤»î´°ÌåÊ±»á·¢ËÍ
-	// ÉÏ´ÎÊ§»îÊ±µÄÒ»¸ö MOVING Êó±êÊÂ¼ş
+	// ä¸çŸ¥é“ä¸ºä»€ä¹ˆå½“åœ¨çª—ä½“ä¸­ç‚¹å‡»ä¸€ä¸‹æ¿€æ´»çª—ä½“æ—¶ä¼šå‘é€
+	// ä¸Šæ¬¡å¤±æ´»æ—¶çš„ä¸€ä¸ª MOVING é¼ æ ‡äº‹ä»¶
 	if( e.GetPosition() != m_this->ScreenToClient( wxGetMousePosition() ) )
 		return;
 
 	if( e.Dragging() && e.LeftIsDown() )
 	{
-		// ×î´ó»¯ºó²»ÔÊĞíÔÙÍÏ¶¯
+		// æœ€å¤§åŒ–åä¸å…è®¸å†æ‹–åŠ¨
 		if( !HandleMouseEvent( e, DRAGGING ) &&
 			 TestStyle( VWS_DRAGGABLE ) &&
 			 (m_nLastMouseEvent == LEFT_DOWN ||
@@ -867,13 +867,13 @@ void VdkWindow::OnMouseWheel(wxMouseEvent& e)
 
 void VdkWindow::OnLeaveWindow(wxMouseEvent& e)
 {
-	// ²»¹ÜÊ²Ã´Çé¿ö£¬Ö»ÒªÊó±êÖ¸ÕëÀë¿ª´°¿Ú£¬¾Í»¹Ô­Êó±êÖ¸ÕëÎªÄ¬ÈÏ¼ıÍ·£¬
-	// ÖØÈëÊ±ÔÙĞĞÉèÖÃ¡£µ«µ±ÍÏÀ­±ß¿ò¸Ä±ä´°¿Ú´óĞ¡Ê±²»ÒªÖØÖÃ¡£
+	// ä¸ç®¡ä»€ä¹ˆæƒ…å†µï¼Œåªè¦é¼ æ ‡æŒ‡é’ˆç¦»å¼€çª—å£ï¼Œå°±è¿˜åŸé¼ æ ‡æŒ‡é’ˆä¸ºé»˜è®¤ç®­å¤´ï¼Œ
+	// é‡å…¥æ—¶å†è¡Œè®¾ç½®ã€‚ä½†å½“æ‹–æ‹‰è¾¹æ¡†æ”¹å˜çª—å£å¤§å°æ—¶ä¸è¦é‡ç½®ã€‚
 	if( !wxGetMouseState().LeftIsDown() )
 		ResetCursor();
 
-	if( (m_nLastCtrlState == DRAGGING) || // ÍÏ¶¯ÊÂ¼şÊ±Ö¸ÕëÒÆ³ö´°¿Ú
-		// ½ÓÊÕµ½µÄ¡°Êó±êÀë¿ª´°¿Ú¡±ÊÂ¼şºóÓÚ¡°½øÈëÆäËû´°¿Ú¡±ÊÂ¼ş±»´¦Àí£¬ÉáÆú
+	if( (m_nLastCtrlState == DRAGGING) || // æ‹–åŠ¨äº‹ä»¶æ—¶æŒ‡é’ˆç§»å‡ºçª—å£
+		// æ¥æ”¶åˆ°çš„â€œé¼ æ ‡ç¦»å¼€çª—å£â€äº‹ä»¶åäºâ€œè¿›å…¥å…¶ä»–çª—å£â€äº‹ä»¶è¢«å¤„ç†ï¼Œèˆå¼ƒ
 		(ms_hovering && (ms_hovering->GetVdkWindow() != this)) )
 	{
 		return;
@@ -902,20 +902,20 @@ void VdkWindow::OnChars(wxKeyEvent& e)
 
 void VdkWindow::HandleKeys(VdkKeyEventType type, wxKeyEvent& e)
 {
-	// ÏÈ·ÖÅÉ¸øÅÉÉúÀà´¦Àí
+	// å…ˆåˆ†æ´¾ç»™æ´¾ç”Ÿç±»å¤„ç†
 	if( DoHandleKeyEvent( e ) )
 		return;
 
 	bool isMenuOnShow = (GetMenuOnShow() != NULL);
 	int keyCode = e.GetKeyCode();
 
-	// ´¦Àí¡°Windows context menu¡±°´¼ü£¬Êµ¼ÊÊÇ´ò¿ªÓÒ¼ü²Ëµ¥
+	// å¤„ç†â€œWindows context menuâ€æŒ‰é”®ï¼Œå®é™…æ˜¯æ‰“å¼€å³é”®èœå•
 	if( !isMenuOnShow && (keyCode == WXK_WINDOWS_MENU) && (type == KEY_UP) )
 	{
 		wxMouseEvent fakeEvent( wxEVT_RIGHT_UP );
 		fakeEvent.SetRightDown( true );
 
-		// ¼ÙÈçÓĞ½¹µã¿Ø¼ş£¬ÓÉ½¹µã¿Ø¼şÀ´´¦Àí£¬·ñÔòÓÉ´°¿ÚÀ´´¦Àí
+		// å‡å¦‚æœ‰ç„¦ç‚¹æ§ä»¶ï¼Œç”±ç„¦ç‚¹æ§ä»¶æ¥å¤„ç†ï¼Œå¦åˆ™ç”±çª—å£æ¥å¤„ç†
 		wxPoint pos( 0, 0 );
 		if( m_focus )
 		{
@@ -932,7 +932,7 @@ void VdkWindow::HandleKeys(VdkKeyEventType type, wxKeyEvent& e)
 		return;
 	}
 
-	// ´¦Àí¼üÅÌµ¼º½
+	// å¤„ç†é”®ç›˜å¯¼èˆª
 	if( !isMenuOnShow && m_tabOrderIter &&
 		(type == KEY_DOWN) &&  (keyCode == WXK_TAB) &&
 		(!m_focus || !m_focus->TestStyle( VCS_WANTS_ALL_CHARS )) )
@@ -956,14 +956,14 @@ void VdkWindow::HandleKeys(VdkKeyEventType type, wxKeyEvent& e)
 		VdkMenu* menuOnShow = GetMenuOnShow();
 		VdkWindow* win = menuOnShow ? menuOnShow->GetVdkWindowImpl() : this;
 
-		// Ê¹ÓÃ ESC ¹Ø±Õ´°¿Ú/²Ëµ¥
+		// ä½¿ç”¨ ESC å…³é—­çª—å£/èœå•
 		if( (type == KEY_DOWN) && keyCode == WXK_ESCAPE &&
 			win->TestStyle( VWS_DISMISS_BY_ESC ) &&
-			// Ê¹ÓÃ ESC È¡ÏûÊäÈë·¨×´Ì¬´°¿Ú
+			// ä½¿ç”¨ ESC å–æ¶ˆè¾“å…¥æ³•çŠ¶æ€çª—å£
 			!IsImeWindowVisiable( win->m_this ) )
 		{
 			// Hide() or Close() ?
-			// ¿ÉÄÜÊÇ Close() ±È½ÏºÏÊÊ£¬±Ï¾¹ºÜ¶àÊ±ºò¶Ô»°¿ò¶¼ÊÇ¡°Ò»´ÎĞÔ¡±µÄ
+			// å¯èƒ½æ˜¯ Close() æ¯”è¾ƒåˆé€‚ï¼Œæ¯•ç«Ÿå¾ˆå¤šæ—¶å€™å¯¹è¯æ¡†éƒ½æ˜¯â€œä¸€æ¬¡æ€§â€çš„
 			if( !menuOnShow )
 			{
 				m_this->Close();
@@ -983,11 +983,11 @@ void VdkWindow::HandleKeys(VdkKeyEventType type, wxKeyEvent& e)
 
 void VdkWindow::OnWindowMenuKeyUp(wxMouseEvent& e)
 {
-	// ²»ÒªÖØ¸´ÏÔÊ¾²Ëµ¥
+	// ä¸è¦é‡å¤æ˜¾ç¤ºèœå•
 	if( GetMenuOnShow() )
 		return;
 
-	// ¼ÙÈçÓĞ½¹µã¿Ø¼ş£¬ÓÉ½¹µã¿Ø¼şÀ´´¦Àí£¬·ñÔòÓÉ´°¿ÚÀ´´¦Àí
+	// å‡å¦‚æœ‰ç„¦ç‚¹æ§ä»¶ï¼Œç”±ç„¦ç‚¹æ§ä»¶æ¥å¤„ç†ï¼Œå¦åˆ™ç”±çª—å£æ¥å¤„ç†
 	wxPoint pos( 0, 0 );
 	if( m_focus )
 	{
@@ -1061,19 +1061,19 @@ bool VdkWindow::FilterEvent(int evtCode, const wxMouseEvent& e)
 
 bool VdkWindow::HandleMouseEvent(wxMouseEvent& evt, VdkMouseEventType evtCode)
 {
-	// ÏÖÊ±·µ»ØÖµ½öÔÚÅĞ¶ÏÍÏ¶¯´°¿ÚÊ±Ê¹ÓÃ
+	// ç°æ—¶è¿”å›å€¼ä»…åœ¨åˆ¤æ–­æ‹–åŠ¨çª—å£æ—¶ä½¿ç”¨
 	if( TestState( VWST_INITING ) || TestState( VWST_EXITING ) )
 	{
 		RETURN( true );
 	}
 
-	// ´¦ÀíÄÚ²¿ÊÂ¼ş¹ıÂËÆ÷£¨ÅÉÉúÀà£©
+	// å¤„ç†å†…éƒ¨äº‹ä»¶è¿‡æ»¤å™¨ï¼ˆæ´¾ç”Ÿç±»ï¼‰
 	if( FilterEventBefore( evt, evtCode ) )
 	{
 		RETURN( true );
 	}
 
-	// ´¦ÀíÍâ²¿ÊÂ¼ş¹ıÂËÆ÷£¨¿Ø¼ş,etc.£©
+	// å¤„ç†å¤–éƒ¨äº‹ä»¶è¿‡æ»¤å™¨ï¼ˆæ§ä»¶,etc.ï¼‰
 	if( !m_EventFilters.empty() )
 	{
 		if( FilterEvent( evtCode, evt ) )
@@ -1082,12 +1082,12 @@ bool VdkWindow::HandleMouseEvent(wxMouseEvent& evt, VdkMouseEventType evtCode)
 		}
 	}
 
-	// ÓÒ¼ü²Ëµ¥ÊÇ·ñÔÚÏÔÊ¾
+	// å³é”®èœå•æ˜¯å¦åœ¨æ˜¾ç¤º
 	if( GetMenuOnShow() && !IsMenuImpl() )
 	{
 #ifdef __WXMSW__
-		// ÔÚ wxMSW ÏÂÃæ£¬µ±Ò»¸ö²Ëµ¥ÔÚÏÔÊ¾Ê±£¬·¢ÉúµÄ¹öÂÖÊÂ¼ş»á±»
-		// ·¢ËÍµ½²Ëµ¥ÊµÌå´°ÌåµÄ¸¸´°¿ÚµÄÏûÏ¢¶ÓÁĞÖĞ
+		// åœ¨ wxMSW ä¸‹é¢ï¼Œå½“ä¸€ä¸ªèœå•åœ¨æ˜¾ç¤ºæ—¶ï¼Œå‘ç”Ÿçš„æ»šè½®äº‹ä»¶ä¼šè¢«
+		// å‘é€åˆ°èœå•å®ä½“çª—ä½“çš„çˆ¶çª—å£çš„æ¶ˆæ¯é˜Ÿåˆ—ä¸­
 		if( evtCode == WHEEL_UP || evtCode == WHEEL_DOWN )
 		{
 			VdkMenu* menu = GetMenuOnShow()->GetLastShownMenu();
@@ -1099,7 +1099,7 @@ bool VdkWindow::HandleMouseEvent(wxMouseEvent& evt, VdkMouseEventType evtCode)
 				wxGetMousePosition( &evt.m_x, &evt.m_y );
 				menuImpl->GetHandle()->ScreenToClient( &evt.m_x, &evt.m_y );
 
-				// µ±È»£¬Êó±êÖ¸ÕëĞèÒªÔÚÕâ¸ö»î¶¯²Ëµ¥ÊµÌå´°ÌåÀï
+				// å½“ç„¶ï¼Œé¼ æ ‡æŒ‡é’ˆéœ€è¦åœ¨è¿™ä¸ªæ´»åŠ¨èœå•å®ä½“çª—ä½“é‡Œ
 				if( menuImpl->Rect00().Contains( evt.m_x, evt.m_y ) )
 				{
 					m_mouseEventNotForMe = true;
@@ -1111,13 +1111,13 @@ bool VdkWindow::HandleMouseEvent(wxMouseEvent& evt, VdkMouseEventType evtCode)
 		}
 #endif //__WXMSW__
 
-		// Êó±ê°´¼üÊÂ¼şÊÇÆäËûÒ»ÇĞÓĞÒâÒåÊÂ¼şµÄ»ù´¡£¬Òò´ËÖ»ĞèÒª
-		// ½ØÈ¡×óÓÒ¼ü°´ÏÂµÄÊÂ¼ş£¬ÔÚÆäÖĞÈ¡Ïû²Ëµ¥µÄÏÔÊ¾¼´¿É¡£
+		// é¼ æ ‡æŒ‰é”®äº‹ä»¶æ˜¯å…¶ä»–ä¸€åˆ‡æœ‰æ„ä¹‰äº‹ä»¶çš„åŸºç¡€ï¼Œå› æ­¤åªéœ€è¦
+		// æˆªå–å·¦å³é”®æŒ‰ä¸‹çš„äº‹ä»¶ï¼Œåœ¨å…¶ä¸­å–æ¶ˆèœå•çš„æ˜¾ç¤ºå³å¯ã€‚
 		if( IsActivatableEvent( evtCode ) )
 		{
 			HideMenu();
 		}
-		else // À¹½ØÆäËûÒ»ÇĞÊÂ¼ş
+		else // æ‹¦æˆªå…¶ä»–ä¸€åˆ‡äº‹ä»¶
 		{
 			RETURN( true );
 		}
@@ -1128,7 +1128,7 @@ bool VdkWindow::HandleMouseEvent(wxMouseEvent& evt, VdkMouseEventType evtCode)
 	wxPoint mousePos( evt.GetPosition() );
 
 	//----------------------------------------------------------
-	// ÍÏ¶¯¸Ä±ä´°¿Ú´óĞ¡
+	// æ‹–åŠ¨æ”¹å˜çª—å£å¤§å°
 
 	switch( evtCode )
 	{
@@ -1136,8 +1136,8 @@ bool VdkWindow::HandleMouseEvent(wxMouseEvent& evt, VdkMouseEventType evtCode)
 		{
 			if( TestStyle( VWS_RESIZEABLE ) )
 			{
-				// ²»ÖªµÀÎªÊ²Ã´ÏµÍ³»áÔÚÍÏ¶¯µÄÊ±ºò·¢ËÍÊó±êÒÆ¶¯ÊÂ¼ş£¬
-				// Æ«Æ«ÎÒµÄ³ÌĞò¼ì²â²»µ½Êó±êÊÇÎ»ÓÚ´°¿Ú±ß½çÉÏµÄ
+				// ä¸çŸ¥é“ä¸ºä»€ä¹ˆç³»ç»Ÿä¼šåœ¨æ‹–åŠ¨çš„æ—¶å€™å‘é€é¼ æ ‡ç§»åŠ¨äº‹ä»¶ï¼Œ
+				// ååæˆ‘çš„ç¨‹åºæ£€æµ‹ä¸åˆ°é¼ æ ‡æ˜¯ä½äºçª—å£è¾¹ç•Œä¸Šçš„
 				if( TestState( VWST_DRAG_AND_RESIZING ) &&
 					wxGetMouseState().LeftIsDown() )
 				{
@@ -1174,9 +1174,9 @@ bool VdkWindow::HandleMouseEvent(wxMouseEvent& evt, VdkMouseEventType evtCode)
 			{
 				ResetRzCursor();
 
-				// ÕâÀï²»ÄÜÖ±½Ó RETURN(true) £¬·ñÔòÔÚÒ»¸ö¿¿½ü±ßÔµ
-				// µÄ¿Ø¼şÉÏ°´ÏÂÊó±ê£¬¿Ø¼ş¸Ä±äÁËÆä×ÔÉí×´Ì¬£¬È´ÎŞ·¨
-				// »ñÈ¡°´¼üÊÍ·ÅµÄÊÂ¼ş¡£
+				// è¿™é‡Œä¸èƒ½ç›´æ¥ RETURN(true) ï¼Œå¦åˆ™åœ¨ä¸€ä¸ªé è¿‘è¾¹ç¼˜
+				// çš„æ§ä»¶ä¸ŠæŒ‰ä¸‹é¼ æ ‡ï¼Œæ§ä»¶æ”¹å˜äº†å…¶è‡ªèº«çŠ¶æ€ï¼Œå´æ— æ³•
+				// è·å–æŒ‰é”®é‡Šæ”¾çš„äº‹ä»¶ã€‚
 			}
 
 			RemoveState( VWST_DRAG_AND_MOVING );
@@ -1190,17 +1190,17 @@ bool VdkWindow::HandleMouseEvent(wxMouseEvent& evt, VdkMouseEventType evtCode)
 	}
 
 	//----------------------------------------------------------
-	// ²éÕÒ VdkControl
+	// æŸ¥æ‰¾ VdkControl
 
-	VdkCtrlList::reverse_iterator iContainer( m_Ctrls.rend() ), // ¿ÉÄÜ¸Ä±ä
+	VdkCtrlList::reverse_iterator iContainer( m_Ctrls.rend() ), // å¯èƒ½æ”¹å˜
 								  rEnd( iContainer );
 	wxRect rect;
 	VdkControl*	pCtrl;
 
-	// ¼ÙÈç²»ÊÇÖ÷´°¿ÚÊ§È¥½¹µã»òÕß½«Êó±êÒÆ³öÖ÷´°¿Ú
+	// å‡å¦‚ä¸æ˜¯ä¸»çª—å£å¤±å»ç„¦ç‚¹æˆ–è€…å°†é¼ æ ‡ç§»å‡ºä¸»çª—å£
 	if( mousePos.x != MEANNINGLESS_MOUSE_COORD )
 	{
-		// ¼ÙÈçÉÏ´ÎÊÂ¼şÊ±ÕıÔÚÍÏ¶¯ VdkSlider £¬¼ÌĞø·¢ËÍµ½ÄÇ¸ö VdkSlider
+		// å‡å¦‚ä¸Šæ¬¡äº‹ä»¶æ—¶æ­£åœ¨æ‹–åŠ¨ VdkSlider ï¼Œç»§ç»­å‘é€åˆ°é‚£ä¸ª VdkSlider
 		if( evtCode == DRAGGING &&
 			ms_hovering &&
 		   !TestState( VWST_MOUSE_HOLD_ON ) )
@@ -1219,7 +1219,7 @@ bool VdkWindow::HandleMouseEvent(wxMouseEvent& evt, VdkMouseEventType evtCode)
 				m_mouseEventNotForMe = true;
 				win->HandleMouseEvent( evt, evtCode );
 
-				RETURN( true ); // Õâ¸öÊÂ¼şÊÇ²»ÊôÓÚÎÒÃÇµÄ
+				RETURN( true ); // è¿™ä¸ªäº‹ä»¶æ˜¯ä¸å±äºæˆ‘ä»¬çš„
 			}
 		}
 		else
@@ -1240,10 +1240,10 @@ bool VdkWindow::HandleMouseEvent(wxMouseEvent& evt, VdkMouseEventType evtCode)
 				bContains = pCtrl->HitTest( mousePos );
 				if( bContains )
 				{
-					// ¼ÙÈçÊÇ container£¬¼ÌĞø²éÕÒÆäËû¿Ø¼ş£¬µ«±£Áô container ÒÔ±¸ÓÃ
+					// å‡å¦‚æ˜¯ containerï¼Œç»§ç»­æŸ¥æ‰¾å…¶ä»–æ§ä»¶ï¼Œä½†ä¿ç•™ container ä»¥å¤‡ç”¨
 					if( pCtrl->TestStyle( VCS_CTRL_CONTAINER ) )
 					{
-						// Ö»±£ÁôµÚÒ»´ÎÕÒµ½µÄÄÇ¸ö container
+						// åªä¿ç•™ç¬¬ä¸€æ¬¡æ‰¾åˆ°çš„é‚£ä¸ª container
 						if( iContainer == rEnd )
 							iContainer = i;
 
@@ -1260,8 +1260,8 @@ bool VdkWindow::HandleMouseEvent(wxMouseEvent& evt, VdkMouseEventType evtCode)
 				}
 			} // end for
 
-			// ²»Ö±½Ó·µ»ØÊÇÒòÎª¿ÉÄÜÒª´¦ÀíÃ»ÓĞ»¹Ô­µÄ
-			// Ç°Ò»¸ö VdkControl
+			// ä¸ç›´æ¥è¿”å›æ˜¯å› ä¸ºå¯èƒ½è¦å¤„ç†æ²¡æœ‰è¿˜åŸçš„
+			// å‰ä¸€ä¸ª VdkControl
 			if( i == rEnd )
 			{
 				pCtrl = NULL;
@@ -1270,29 +1270,29 @@ bool VdkWindow::HandleMouseEvent(wxMouseEvent& evt, VdkMouseEventType evtCode)
 
 		//----------------------------------------------------------
 
-		// ³ÖĞø°´×¡Êó±êÊÂ¼ş
-		// <---²»ÒªÔÚÏß³ÌÀïÃæÆô¶¯»òÕßÍ£Ö¹Ò»¸ö Timer £¡---->
+		// æŒç»­æŒ‰ä½é¼ æ ‡äº‹ä»¶
+		// <---ä¸è¦åœ¨çº¿ç¨‹é‡Œé¢å¯åŠ¨æˆ–è€…åœæ­¢ä¸€ä¸ª Timer ï¼---->
 		if( TestState( VWST_MOUSE_HOLD_ON ) )
 		{
-			// ÔÚ³ÖĞø°´×¡µÄÍ¬Ò»¸ö VdkControl ÀïÔÊĞíÍÏ¶¯Ö¸Õë
+			// åœ¨æŒç»­æŒ‰ä½çš„åŒä¸€ä¸ª VdkControl é‡Œå…è®¸æ‹–åŠ¨æŒ‡é’ˆ
 			if( evtCode == DRAGGING && pCtrl == ms_hovering )
 			{
 				RETURN( true );
 			}
 
 			HandleMouseHoldOn( NORMAL, mousePos, NULL );
-			// ·µ»ØÊÇ±ÜÃâÔÙ´ÎÆÆ»µ×´Ì¬
+			// è¿”å›æ˜¯é¿å…å†æ¬¡ç ´åçŠ¶æ€
 			RETURN( true );
 		}
 	}
 
-	// ±ØĞëÍ¬Ê±¿¼ÂÇ Container ÀàĞÍµÄ¿Ø¼ş£¬
-	// ÒòÎªËüÃÇÒ²¿ÉÄÜ±»×÷Îªµ±Ç°¾ßÓĞĞü¸¡×´Ì¬µÄ¿Ø¼ş
+	// å¿…é¡»åŒæ—¶è€ƒè™‘ Container ç±»å‹çš„æ§ä»¶ï¼Œ
+	// å› ä¸ºå®ƒä»¬ä¹Ÿå¯èƒ½è¢«ä½œä¸ºå½“å‰å…·æœ‰æ‚¬æµ®çŠ¶æ€çš„æ§ä»¶
 	VdkControl* pCtrl2 = pCtrl;
 	if( !pCtrl2 && iContainer != rEnd )
 		pCtrl2 = *iContainer;
 
-	// ÊÇ·ñÊÇÏàÍ¬µÄ VdkControl
+	// æ˜¯å¦æ˜¯ç›¸åŒçš„ VdkControl
 	if( pCtrl2 &&
 		evtCode == HOVERING &&
 		pCtrl2 == ms_hovering &&
@@ -1303,11 +1303,11 @@ bool VdkWindow::HandleMouseEvent(wxMouseEvent& evt, VdkMouseEventType evtCode)
 
 	//----------------------------------------------------------
 
-	// »¹Ô­ÉÏÒ»¸ö VdkControl
+	// è¿˜åŸä¸Šä¸€ä¸ª VdkControl
 	if( ms_hovering && pCtrl2 != ms_hovering &&
-		ms_hovering->CanHandleEvent() ) // ÖîÈç¿Ø¼ş±»½ûÓÃ£¬²»Òª·¢ËÍ»¹Ô­ÊÂ¼ş
+		ms_hovering->CanHandleEvent() ) // è¯¸å¦‚æ§ä»¶è¢«ç¦ç”¨ï¼Œä¸è¦å‘é€è¿˜åŸäº‹ä»¶
 	{
-		// ´¦Àíµ± pCtrl ÊôÓÚÁíÒ»¸ö´°¿ÚµÄÇé¿ö
+		// å¤„ç†å½“ pCtrl å±äºå¦ä¸€ä¸ªçª—å£çš„æƒ…å†µ
 		VdkWindow* lastwindow( ms_hovering->GetVdkWindow() );
 
 		if( lastwindow != this )
@@ -1325,9 +1325,9 @@ bool VdkWindow::HandleMouseEvent(wxMouseEvent& evt, VdkMouseEventType evtCode)
 		hovering->HandleMouseEvent( e );
 	}
 
-	// ´¦Àí¾ßÓĞÊäÈë½¹µãµÄ¿Ø¼ş
+	// å¤„ç†å…·æœ‰è¾“å…¥ç„¦ç‚¹çš„æ§ä»¶
 	if( IsActivatableEvent( evtCode ) &&
-		pCtrl2 && // ÔÚ´°¿Ú¿Õ°×´¦µã»÷²»Ê§»îµ±Ç°½¹µã¿Ø¼ş
+		pCtrl2 && // åœ¨çª—å£ç©ºç™½å¤„ç‚¹å‡»ä¸å¤±æ´»å½“å‰ç„¦ç‚¹æ§ä»¶
 		m_focus != pCtrl2 )
 	{
 		DC_INSTANCE_HERE();
@@ -1335,11 +1335,11 @@ bool VdkWindow::HandleMouseEvent(wxMouseEvent& evt, VdkMouseEventType evtCode)
 	}
 
 	//----------------------------------------------------------
-	// ÕæÕı¿ªÊ¼´¦ÀíÊÂ¼ş
+	// çœŸæ­£å¼€å§‹å¤„ç†äº‹ä»¶
 
 PROCESSING_EVENTS:
 
-	if( pCtrl ) // ÕæµÄÔÚ VdkControl µÄÇøÓòÀï£¬²¢ÇÒ²»ÊÇÔÚµ÷Õû´°¿Ú´óĞ¡
+	if( pCtrl ) // çœŸçš„åœ¨ VdkControl çš„åŒºåŸŸé‡Œï¼Œå¹¶ä¸”ä¸æ˜¯åœ¨è°ƒæ•´çª—å£å¤§å°
 	{
 		m_nLastCtrlState = evtCode;
 		SetCtrlOnHover( pCtrl );
@@ -1349,15 +1349,15 @@ PROCESSING_EVENTS:
 
 		pCtrl->HandleMouseEvent( e );
 
-		// TODO: ÊÇ·ñÓ¦¸ÃÖØĞÂÕÒÁíÒ»¸ö·ûºÏÒªÇóµÄ VdkControl ÄØ£¿
+		// TODO: æ˜¯å¦åº”è¯¥é‡æ–°æ‰¾å¦ä¸€ä¸ªç¬¦åˆè¦æ±‚çš„ VdkControl å‘¢ï¼Ÿ
 		if( e.GetSkipped() )
 			goto FILTEREVENTAFTER;
 
-		// Ö´ĞĞµÄÊÇÒ»¸ö¹Ø±Õ/ÖØÖÃ´°¿ÚµÄÃüÁî
+		// æ‰§è¡Œçš„æ˜¯ä¸€ä¸ªå…³é—­/é‡ç½®çª—å£çš„å‘½ä»¤
 		if( TestState( VWST_EXITING ) || TestState( VWST_RESET ) )
 			RETURN( true );
 	}
-	else if( evtCode == RIGHT_UP && m_menu ) // ÏÔÊ¾Óë±¾ VdkWindow Ïà¹ØÁªµÄ²Ëµ¥
+	else if( evtCode == RIGHT_UP && m_menu ) // æ˜¾ç¤ºä¸æœ¬ VdkWindow ç›¸å…³è”çš„èœå•
 	{
 		if( GetMenuOnShow() )
 			HideMenu();
@@ -1366,7 +1366,7 @@ PROCESSING_EVENTS:
 
 		RETURN( true );
 	}
-	// ´¿´âÔÚ´°¿Ú¿Õ°×´¦ÉÏÒÆ¶¯
+	// çº¯ç²¹åœ¨çª—å£ç©ºç™½å¤„ä¸Šç§»åŠ¨
 	else if( iContainer == rEnd )
 	{
 		ResetCtrlOnHover();
@@ -1375,14 +1375,14 @@ PROCESSING_EVENTS:
 
 	if( pCtrl2 )
 	{
-		// Õâ¶Î´úÂëÊÇÎªÁË container ¶øÉè¼ÆµÄ
+		// è¿™æ®µä»£ç æ˜¯ä¸ºäº† container è€Œè®¾è®¡çš„
 		if((evtCode == LEFT_DOWN || evtCode == DLEFT_DOWN) &&
 			pCtrl2->TestStyle( VCS_HONLD_ON ) )
 		{
-			// ³ÖĞø°´×¡°´Å¥
+			// æŒç»­æŒ‰ä½æŒ‰é’®
 			HandleMouseHoldOn( LEFT_DOWN, mousePos, pCtrl2 );
 		}
-		// ½«ÊÂ¼şµ¼Ïò container
+		// å°†äº‹ä»¶å¯¼å‘ container
 		else if( pCtrl2->TestStyle( VCS_CTRL_CONTAINER ) && iContainer != rEnd )
 		{
 			DC_INSTANCE_HERE();
@@ -1396,20 +1396,20 @@ PROCESSING_EVENTS:
 			}
 			else
 			{
-				// ¼´Ê¹ÊÇ container Ò²Òª±£³ÖºÃ×´Ì¬
-				// ÀıÈçÖ±½ÓÍÏ¶¯ VdkSlider £¬¶ø²»ÊÇÍÏ¶¯ÊÖ±ú£¬
-				// ¾ÍÒ»¶¨ÒªÄÜ³ÖĞøÍÏ¶¯£¨Êó±êÀë¿ª¹ö¶¯Ìõ×÷ÓÃÓòºó²»ÄÜ
-				// È¡Ïû×´Ì¬£©
+				// å³ä½¿æ˜¯ container ä¹Ÿè¦ä¿æŒå¥½çŠ¶æ€
+				// ä¾‹å¦‚ç›´æ¥æ‹–åŠ¨ VdkSlider ï¼Œè€Œä¸æ˜¯æ‹–åŠ¨æ‰‹æŸ„ï¼Œ
+				// å°±ä¸€å®šè¦èƒ½æŒç»­æ‹–åŠ¨ï¼ˆé¼ æ ‡ç¦»å¼€æ»šåŠ¨æ¡ä½œç”¨åŸŸåä¸èƒ½
+				// å–æ¶ˆçŠ¶æ€ï¼‰
 				SetCtrlOnHover( pCtrl2 );
 				m_nLastCtrlState = evtCode;
 			}
 		}
 
 	}
-	else if( !GetMenuOnShow() ) // ´¿´âÔÚ´°¿Ú¿Õ°×´¦ÉÏÒÆ¶¯
+	else if( !GetMenuOnShow() ) // çº¯ç²¹åœ¨çª—å£ç©ºç™½å¤„ä¸Šç§»åŠ¨
 	{
 FILTEREVENTAFTER:
-		if( !FilterEventAfter( evt, evtCode ) ) // ²»¿ÉÔÚ´°Ìå¿Õ°×ÉÏÍÏ¶¯´°¿Ú
+		if( !FilterEventAfter( evt, evtCode ) ) // ä¸å¯åœ¨çª—ä½“ç©ºç™½ä¸Šæ‹–åŠ¨çª—å£
 		{
 			RETURN( !CanDragBySpace() );
 		}
@@ -1464,7 +1464,7 @@ void VdkWindow::ShowContextMenu(VdkControl* pCtrl, int x, int y, bool delay)
 			return;
 	}
 
-	// ²»ÖªµÀÎªÊ²Ã´²»ÄÜÒÆµ½ ShowContext ÉÏÃæ
+	// ä¸çŸ¥é“ä¸ºä»€ä¹ˆä¸èƒ½ç§»åˆ° ShowContext ä¸Šé¢
 	SetMenuOnShow( menu );
 
 	m_this->ClientToScreen( &x, &y );
@@ -1477,14 +1477,14 @@ void VdkWindow::HideMenu()
 	VdkMenu* menuOnShow = GetMenuOnShow();
 	if( menuOnShow )
 	{
-		// m_MenuOnShow = NULL ÔÚ OnMenuHid Àï½øĞĞ
+		// m_MenuOnShow = NULL åœ¨ OnMenuHid é‡Œè¿›è¡Œ
 		menuOnShow->Return();
 	}
 }
 
 void VdkWindow::OnMenuHid(VdkVObjEvent& e)
 {
-	// Ò»¶¨Òª½øĞĞÅĞ¶Ï£¡
+	// ä¸€å®šè¦è¿›è¡Œåˆ¤æ–­ï¼
 	if( GetMenuOnShow() == e.GetMenu() )
 		SetMenuOnShow( NULL );
 
@@ -1563,10 +1563,10 @@ wxSize VdkWindow::GetMinSize() const
 
 void VdkWindow::GetMinSize(int* w, int* h) const
 {
-	// ÕâÀïÎªÊ²Ã´ÒªÅªµÃÕâÃ´¸´ÔÓÄØ£¬ÒòÎª¶ÔÓÚÒ»Ğ©´°Ìå±³¾°Í¼Æ¬£¬ËäÈ»±ÈÊµ¼ÊµÄ³ÊÏÖ
-	// ÒªĞ¡£¬µ«ËüËõ·ÅÖÁËùĞèµÄ´óĞ¡Ö®ºóÊÇ²»ĞèÒªÔÙ¸Ä±ä´°Ìå´óĞ¡µÄÁË¡£ËùÒÔµÃµ½×îĞ¡
-	// ×îĞ¡µÄ´óĞ¡²¢ÎŞÒâÒå¡£ÒòÎª XRC ÎÄ¼şÖĞµÄ¿Ø¼ş´óĞ¡¡¢Î»ÖÃ¶¨ÒåÊÇ¸ù¾İËõ·ÅÖ®ºó
-	// µÄÄ¿±ê´°¿ÚµÄ´óĞ¡À´·ÅÖÃ¿Ø¼şÎ»ÖÃµÄ£¬ËùÒÔÎÒÃÇ·µ»Øµ±Ç°´°¿Ú´óĞ¡¡£
+	// è¿™é‡Œä¸ºä»€ä¹ˆè¦å¼„å¾—è¿™ä¹ˆå¤æ‚å‘¢ï¼Œå› ä¸ºå¯¹äºä¸€äº›çª—ä½“èƒŒæ™¯å›¾ç‰‡ï¼Œè™½ç„¶æ¯”å®é™…çš„å‘ˆç°
+	// è¦å°ï¼Œä½†å®ƒç¼©æ”¾è‡³æ‰€éœ€çš„å¤§å°ä¹‹åæ˜¯ä¸éœ€è¦å†æ”¹å˜çª—ä½“å¤§å°çš„äº†ã€‚æ‰€ä»¥å¾—åˆ°æœ€å°
+	// æœ€å°çš„å¤§å°å¹¶æ— æ„ä¹‰ã€‚å› ä¸º XRC æ–‡ä»¶ä¸­çš„æ§ä»¶å¤§å°ã€ä½ç½®å®šä¹‰æ˜¯æ ¹æ®ç¼©æ”¾ä¹‹å
+	// çš„ç›®æ ‡çª—å£çš„å¤§å°æ¥æ”¾ç½®æ§ä»¶ä½ç½®çš„ï¼Œæ‰€ä»¥æˆ‘ä»¬è¿”å›å½“å‰çª—å£å¤§å°ã€‚
 	if( TestStyle( VWS_RESIZEABLE ) )
 	{
 		if( w ) *w = m_nMinWidth;
@@ -1577,12 +1577,12 @@ void VdkWindow::GetMinSize(int* w, int* h) const
 }
 
 //////////////////////////////////////////////////////////////////////////
-// Ô­ VdkWindowResizer µÄ´úÂë
+// åŸ VdkWindowResizer çš„ä»£ç 
 //////////////////////////////////////////////////////////////////////////
 
 void VdkWindow::HandleRzCursor(const wxPoint& mousePos)
 {
-	wxASSERT_MSG( TestStyle( VWS_RESIZEABLE ), L"´°¿Ú±ØĞë¾ßÓĞ VWS_RESIZEABLE ·ç¸ñ£¡" );
+	wxASSERT_MSG( TestStyle( VWS_RESIZEABLE ), L"çª—å£å¿…é¡»å…·æœ‰ VWS_RESIZEABLE é£æ ¼ï¼" );
 
 	wxStockCursor cursorType( wxCURSOR_NONE );
 	m_rectCached = m_this->GetScreenRect();
@@ -1594,7 +1594,7 @@ void VdkWindow::HandleRzCursor(const wxPoint& mousePos)
 		maxY = m_rectCached.height;
 
 	enum {
-		GS_WINDOW_BORDER = 5, // Êó±êÖ¸ÕëÒÆ¶¯µ½ÕâĞ© Border ×é³ÉµÄÇøÓòÊ±»á¸Ä±ä
+		GS_WINDOW_BORDER = 5, // é¼ æ ‡æŒ‡é’ˆç§»åŠ¨åˆ°è¿™äº› Border ç»„æˆçš„åŒºåŸŸæ—¶ä¼šæ”¹å˜
 	};
 
 	m_dragAndResizeType = 0;
@@ -1651,18 +1651,18 @@ void VdkWindow::ResetRzCursor()
 
 void VdkWindow::EmulateDragAndResize(const wxPoint& mousePosClient)
 {
-	// ²»½ÓÊÕÍ»ÈçÆäÀ´µÄÍÏ¶¯ÊÂ¼ş
+	// ä¸æ¥æ”¶çªå¦‚å…¶æ¥çš„æ‹–åŠ¨äº‹ä»¶
 	if( (m_nLastMouseEvent != LEFT_DOWN) &&
 		(m_nLastMouseEvent != DRAGGING) )
 	{
 		return;
 	}
 
-	// ¶ÔÓÚ GTK ÏÂµÄÒìĞÍ´°¿Ú£¬²»ÄÜ½«´°¿ÚÒÆ³öÆÁÄ»·¶Î§£¬¶ÔÓÚËùÓĞ GTK ´°¿Ú£¬
-	// ²»ÄÜÓÃ Move() ½«ÆäÒÆ³öÆÁÄ»£ºÆæ¹ÖµÄ¹æ¶¨
+	// å¯¹äº GTK ä¸‹çš„å¼‚å‹çª—å£ï¼Œä¸èƒ½å°†çª—å£ç§»å‡ºå±å¹•èŒƒå›´ï¼Œå¯¹äºæ‰€æœ‰ GTK çª—å£ï¼Œ
+	// ä¸èƒ½ç”¨ Move() å°†å…¶ç§»å‡ºå±å¹•ï¼šå¥‡æ€ªçš„è§„å®š
 
 #ifdef __WXGTK__
-	// ²»ÄÜÌ«Æµ·±¸Ä±ä´°¿Ú´óĞ¡£¬ÎÒÃÇÈ¡ Windows µÄÖµ£º×îµÍ 40 ms
+	// ä¸èƒ½å¤ªé¢‘ç¹æ”¹å˜çª—å£å¤§å°ï¼Œæˆ‘ä»¬å– Windows çš„å€¼ï¼šæœ€ä½ 40 ms
 	wxMilliClock_t nTimeStamp = wxGetLocalTimeMillis();
 	if( (nTimeStamp - m_nLastTimeStamp) < 40 )
 		return;
@@ -1693,7 +1693,7 @@ void VdkWindow::EmulateDragAndResize(const wxPoint& mousePosClient)
 	{
 		rcNew.width = m_nMinWidth;
 
-		// ÕâÊ±ºò rc.x ÒÑÈ»Ô½¹ı´°¿ÚµÄ×ó±ß¿ò£¬´°¿Ú²»ÄÜÏòÓÒÒÆ
+		// è¿™æ—¶å€™ rc.x å·²ç„¶è¶Šè¿‡çª—å£çš„å·¦è¾¹æ¡†ï¼Œçª—å£ä¸èƒ½å‘å³ç§»
 		if( m_dragAndResizeType & vdkWEST )
 			rcNew.x = RightOf( m_rectCached ) - rcNew.width;
 	}
@@ -1702,7 +1702,7 @@ void VdkWindow::EmulateDragAndResize(const wxPoint& mousePosClient)
 	{
 		rcNew.height = m_nMinHeight;
 
-		// ÕâÊ±ºò rc.y ÒÑÈ»Ô½¹ı´°¿ÚµÄÉÏ±ß¿ò£¬´°¿Ú²»ÄÜÏòÏÂÒÆ
+		// è¿™æ—¶å€™ rc.y å·²ç„¶è¶Šè¿‡çª—å£çš„ä¸Šè¾¹æ¡†ï¼Œçª—å£ä¸èƒ½å‘ä¸‹ç§»
 		if( m_dragAndResizeType & vdkNORTH )
 			rcNew.y = BottomOf( m_rectCached ) - rcNew.height;
 	}
@@ -1722,21 +1722,21 @@ bool VdkWindow::Resize(int w, int h)
 bool VdkWindow::Resize(int x, int y, int w, int h, int sizeFlags)
 {
 	/*
-		ÕâÀïÓĞ¸ö·Ç³£Ææ¹ÖµÄÂß¼­¡£
-		SetSize Óöµ½µÄÇéĞÎÓĞ¼¸¸öÀàĞÍ£º
-		1¡¢²»¿É¸ü¸Ä´óĞ¡£¬Ìá¹©ÏàÍ¬´óĞ¡µÄ±³¾°Î»Í¼£»
-		2¡¢²»¿É¸ü¸Ä´óĞ¡£¬Ìá¹©Ğ¡ÓÚÒªÇó´óĞ¡µÄ±³¾°Î»Í¼£»
-		3¡¢¿É¸ü¸Ä´óĞ¡
+		è¿™é‡Œæœ‰ä¸ªéå¸¸å¥‡æ€ªçš„é€»è¾‘ã€‚
+		SetSize é‡åˆ°çš„æƒ…å½¢æœ‰å‡ ä¸ªç±»å‹ï¼š
+		1ã€ä¸å¯æ›´æ”¹å¤§å°ï¼Œæä¾›ç›¸åŒå¤§å°çš„èƒŒæ™¯ä½å›¾ï¼›
+		2ã€ä¸å¯æ›´æ”¹å¤§å°ï¼Œæä¾›å°äºè¦æ±‚å¤§å°çš„èƒŒæ™¯ä½å›¾ï¼›
+		3ã€å¯æ›´æ”¹å¤§å°
 
-		ÓĞÒ»¸öÔ­Ôò¾ÍÊÇ£¬Ò»¶¨Òª±£Ö¤ m_bmBuffered ÊÇÓĞĞ§µÄ¡£ËùÒÔ×îºó¼ÓÁËÒ»¸öÅĞ¶Ï¡£
+		æœ‰ä¸€ä¸ªåŸåˆ™å°±æ˜¯ï¼Œä¸€å®šè¦ä¿è¯ m_bmBuffered æ˜¯æœ‰æ•ˆçš„ã€‚æ‰€ä»¥æœ€ååŠ äº†ä¸€ä¸ªåˆ¤æ–­ã€‚
 	*/
 
 	bool resizeable = TestStyle( VWS_RESIZEABLE );
 
 	if( m_bkCanvas.CanResize() )
 	{
-		// Õâ¸öÌØĞÔÔÚ³ÌĞò³õÊ¼»¯Ê±Ò²ÄÜÓÃ£¨ wxWidgets »á¸ø´°¿ÚÒÔÄ¬ÈÏ´óĞ¡£©£¬
-		// ÒòÎª´ËÊ±»¹Ã»ÓĞ´´½¨ÈÎºÎ¿Ø¼ş£¬¹Êµ÷ÓÃ LayoutWidgets ¶Ô³ÌĞòÎŞÓ°Ïì
+		// è¿™ä¸ªç‰¹æ€§åœ¨ç¨‹åºåˆå§‹åŒ–æ—¶ä¹Ÿèƒ½ç”¨ï¼ˆ wxWidgets ä¼šç»™çª—å£ä»¥é»˜è®¤å¤§å°ï¼‰ï¼Œ
+		// å› ä¸ºæ­¤æ—¶è¿˜æ²¡æœ‰åˆ›å»ºä»»ä½•æ§ä»¶ï¼Œæ•…è°ƒç”¨ LayoutWidgets å¯¹ç¨‹åºæ— å½±å“
 		int ww, hh;
 		m_this->GetSize( &ww, &hh );
 
@@ -1753,7 +1753,7 @@ bool VdkWindow::Resize(int x, int y, int w, int h, int sizeFlags)
 		dX = w - m_bkCanvas.GetWidth();
 		dY = h - m_bkCanvas.GetHeight();
 
-		// ÊÇ·ñĞèÒªµ÷Õû±³¾°Î»Í¼µÄ´óĞ¡
+		// æ˜¯å¦éœ€è¦è°ƒæ•´èƒŒæ™¯ä½å›¾çš„å¤§å°
 		if( dX || dY )
 		{
 			if( !m_bkCanvas.Rescale( wxSize( w, h ) ) )
@@ -1770,7 +1770,7 @@ bool VdkWindow::Resize(int x, int y, int w, int h, int sizeFlags)
 		return false;
 	}
 
-	// Ìá½»¸ü¸Ä
+	// æäº¤æ›´æ”¹
 	DoResize( x, y, w, h, sizeFlags );
 
 	if( !IsBufferedBitmapOk() )
@@ -1787,7 +1787,7 @@ bool VdkWindow::Resize(int x, int y, int w, int h, int sizeFlags)
 	}
 
 	RemoveState( VWST_MAXIMIZING ); // TODO:
-	SetAddinState( VWST_REDRAW_ALL ); // È«²¿ÖØ»­
+	SetAddinState( VWST_REDRAW_ALL ); // å…¨éƒ¨é‡ç”»
 
 	return true;
 }
@@ -1797,21 +1797,21 @@ void VdkWindow::OnSize(wxSizeEvent& e)
 	wxSize newSize( e.GetSize() );
 
 	/*
-		ÕâÀïÓĞ¸ö·Ç³£Ææ¹ÖµÄÂß¼­¡£
-		SetSize Óöµ½µÄÇéĞÎÓĞ¼¸¸öÀàĞÍ£º
-		1¡¢²»¿É¸ü¸Ä´óĞ¡£¬Ìá¹©ÏàÍ¬´óĞ¡µÄ±³¾°Î»Í¼£»
-		2¡¢²»¿É¸ü¸Ä´óĞ¡£¬Ìá¹©Ğ¡ÓÚÒªÇó´óĞ¡µÄ±³¾°Î»Í¼£»
-		3¡¢¿É¸ü¸Ä´óĞ¡
+		è¿™é‡Œæœ‰ä¸ªéå¸¸å¥‡æ€ªçš„é€»è¾‘ã€‚
+		SetSize é‡åˆ°çš„æƒ…å½¢æœ‰å‡ ä¸ªç±»å‹ï¼š
+		1ã€ä¸å¯æ›´æ”¹å¤§å°ï¼Œæä¾›ç›¸åŒå¤§å°çš„èƒŒæ™¯ä½å›¾ï¼›
+		2ã€ä¸å¯æ›´æ”¹å¤§å°ï¼Œæä¾›å°äºè¦æ±‚å¤§å°çš„èƒŒæ™¯ä½å›¾ï¼›
+		3ã€å¯æ›´æ”¹å¤§å°
 
-		ÓĞÒ»¸öÔ­Ôò¾ÍÊÇ£¬Ò»¶¨Òª±£Ö¤ m_bmBuffered ÊÇÓĞĞ§µÄ¡£ËùÒÔ×îºó¼ÓÁËÒ»¸öÅĞ¶Ï¡£
+		æœ‰ä¸€ä¸ªåŸåˆ™å°±æ˜¯ï¼Œä¸€å®šè¦ä¿è¯ m_bmBuffered æ˜¯æœ‰æ•ˆçš„ã€‚æ‰€ä»¥æœ€ååŠ äº†ä¸€ä¸ªåˆ¤æ–­ã€‚
 	*/
 
 	bool resizeable = TestStyle( VWS_RESIZEABLE );
 
 	if( m_bkCanvas.CanResize() )
 	{
-		// Õâ¸öÌØĞÔÔÚ³ÌĞò³õÊ¼»¯Ê±Ò²ÄÜÓÃ£¨ wxWidgets »á¸ø´°¿ÚÒÔÄ¬ÈÏ´óĞ¡£©£¬
-		// ÒòÎª´ËÊ±»¹Ã»ÓĞ´´½¨ÈÎºÎ¿Ø¼ş£¬¹Êµ÷ÓÃ LayoutWidgets ¶Ô³ÌĞòÎŞÓ°Ïì
+		// è¿™ä¸ªç‰¹æ€§åœ¨ç¨‹åºåˆå§‹åŒ–æ—¶ä¹Ÿèƒ½ç”¨ï¼ˆ wxWidgets ä¼šç»™çª—å£ä»¥é»˜è®¤å¤§å°ï¼‰ï¼Œ
+		// å› ä¸ºæ­¤æ—¶è¿˜æ²¡æœ‰åˆ›å»ºä»»ä½•æ§ä»¶ï¼Œæ•…è°ƒç”¨ LayoutWidgets å¯¹ç¨‹åºæ— å½±å“
 		int ww, hh;
 		m_this->GetSize( &ww, &hh );
 
@@ -1828,7 +1828,7 @@ void VdkWindow::OnSize(wxSizeEvent& e)
 		dX = w - m_bkCanvas.GetWidth();
 		dY = h - m_bkCanvas.GetHeight();
 
-		// ÊÇ·ñĞèÒªµ÷Õû±³¾°Î»Í¼µÄ´óĞ¡
+		// æ˜¯å¦éœ€è¦è°ƒæ•´èƒŒæ™¯ä½å›¾çš„å¤§å°
 		if( dX || dY )
 		{
 			if( !m_bkCanvas.Rescale( wxSize( w, h ) ) )
@@ -1845,7 +1845,7 @@ void VdkWindow::OnSize(wxSizeEvent& e)
 		return false;
 	}
 
-	// Ìá½»¸ü¸Ä
+	// æäº¤æ›´æ”¹
 	DoResize( x, y, w, h, sizeFlags );
 
 	if( !IsBufferedBitmapOk() )
@@ -1862,7 +1862,7 @@ void VdkWindow::OnSize(wxSizeEvent& e)
 	}
 
 	RemoveState( VWST_MAXIMIZING );
-	SetAddinState( VWST_REDRAW_ALL ); // È«²¿ÖØ»­
+	SetAddinState( VWST_REDRAW_ALL ); // å…¨éƒ¨é‡ç”»
 }
 #endif
 
@@ -1895,7 +1895,7 @@ void VdkWindow::LayoutWidgets(int dX, int dY)
 }
 
 //////////////////////////////////////////////////////////////////////////
-// Ô­ VdkCtrlContainer µÄ´úÂë
+// åŸ VdkCtrlContainer çš„ä»£ç 
 //////////////////////////////////////////////////////////////////////////
 
 bool VdkWindow::RemoveCtrl(VdkControl* pCtrl)
@@ -1923,7 +1923,7 @@ void VdkWindow::AddCtrl(VdkControl* pCtrl)
 
 	m_Ctrls.push_back( pCtrl );
 
-	// ¼üÅÌµ¼º½ÊÂ¼ş
+	// é”®ç›˜å¯¼èˆªäº‹ä»¶
 	if( pCtrl->TestStyle( VCS_TAB_TRAVERSAL ) )
 	{
 		if( !m_tabOrderIter )
@@ -1936,10 +1936,10 @@ void VdkWindow::AddCtrl(VdkControl* pCtrl)
 
 	//----------------------------------------------------------
 
-	// Ò»ÇĞ¾ÍĞ÷£¬·¢ËÍ¡°CREATE¡±ÊÂ¼ş
+	// ä¸€åˆ‡å°±ç»ªï¼Œå‘é€â€œCREATEâ€äº‹ä»¶
 	pCtrl->HandleNotify( VdkNotify( VCN_CREATE ) );
 
-	// ¿ËÂ¡¶øÀ´µÄ¿Ø¼ş²»ĞèÖªÏş VdkWindow µ±Ç°´óĞ¡Óë³õÊ¼´óĞ¡Ö®¼äµÄ²îÖµ¡£
+	// å…‹éš†è€Œæ¥çš„æ§ä»¶ä¸éœ€çŸ¥æ™“ VdkWindow å½“å‰å¤§å°ä¸åˆå§‹å¤§å°ä¹‹é—´çš„å·®å€¼ã€‚
 	if( !pCtrl->TestState( VCST_CLONING ) )
 	{
 		LayoutCtrl( pCtrl );
@@ -2043,11 +2043,11 @@ void VdkWindow::FocusCtrl(VdkControl* pCtrl, wxDC* pDC)
 
 void VdkWindow::FocusCtrl(VdkControl* pCtrl, wxDC* pDC, int x, int y)
 {
-	wxASSERT_MSG( pCtrl, L"±ØĞëÌá¹©ÓĞĞ§µÄ¿Ø¼ş¾ä±ú¡£" );
+	wxASSERT_MSG( pCtrl, L"å¿…é¡»æä¾›æœ‰æ•ˆçš„æ§ä»¶å¥æŸ„ã€‚" );
 
 	if( m_focus == pCtrl )
 	{
-		// ±£ÏÕÒ»µã£¬ÖØĞÂ¼¤»îÒş²Ø¿Ø¼ş
+		// ä¿é™©ä¸€ç‚¹ï¼Œé‡æ–°æ¿€æ´»éšè—æ§ä»¶
 		if( m_focus )
 		{
 			FocusHiddenCtrl();
@@ -2071,7 +2071,7 @@ void VdkWindow::FocusCtrl(VdkControl* pCtrl, wxDC* pDC, int x, int y)
 	if( pCtrl )
 	{
 		SetCtrlOnFocus( pCtrl );
-		// Ò»¶¨ÒªÏÈ¼¤»îÒş²Ø¿Ø¼ş
+		// ä¸€å®šè¦å…ˆæ¿€æ´»éšè—æ§ä»¶
 		FocusHiddenCtrl();
 
 		VdkNotify n( VCN_FOCUS );
@@ -2086,7 +2086,7 @@ void VdkWindow::FocusCtrl(VdkControl* pCtrl, wxDC* pDC, int x, int y)
 void VdkWindow::FocusHiddenCtrl()
 {
 #ifdef __WXMSW__
-	// ²»ÄÜ½«½¹µãÒÆÖÁ²Ëµ¥´°ÌåÉÏ
+	// ä¸èƒ½å°†ç„¦ç‚¹ç§»è‡³èœå•çª—ä½“ä¸Š
 	if( IsMenuImpl() )
 		return;
 
@@ -2097,7 +2097,7 @@ void VdkWindow::FocusHiddenCtrl()
 									  wxSize( 1, 1 ),
 									  wxWANTS_CHARS );
 
-		// ±ØĞë±£Ö¤´°¿ÚÖĞÓĞÁ½¸ö¿Ø¼ş
+		// å¿…é¡»ä¿è¯çª—å£ä¸­æœ‰ä¸¤ä¸ªæ§ä»¶
 		new wxControl( m_panel, wxIdManager::ReserveId(),
 					   wxPoint( -200, -200 ),
 					   wxSize( 1, 1 ),
@@ -2107,8 +2107,8 @@ void VdkWindow::FocusHiddenCtrl()
 		m_hiddenCtrl->Bind( wxEVT_KEY_UP, &VdkWindow::OnKeyUp, this );
 		m_hiddenCtrl->Bind( wxEVT_CHAR, &VdkWindow::OnChars, this );
 
-		// wxWidgets »áÄ¬ÈÏ½«¡°Windows context menu¡±°´¼üÊÂ¼ş×ª»»³ÉÆÕÍ¨µÄ
-		// ÓÒ¼üµ¯ÆğÊÂ¼ş
+		// wxWidgets ä¼šé»˜è®¤å°†â€œWindows context menuâ€æŒ‰é”®äº‹ä»¶è½¬æ¢æˆæ™®é€šçš„
+		// å³é”®å¼¹èµ·äº‹ä»¶
 		m_hiddenCtrl->Bind( wxEVT_RIGHT_UP,
 							&VdkWindow::OnWindowMenuKeyUp,
 							this );
@@ -2184,7 +2184,7 @@ void VdkWindow::SetMenuOnShow(VdkMenu* menu)
 {
 	VdkMenu*& menuOnShow = GetMenuOnShow();
 
-	// ÏÔÊ¾Ö®Ç°Ã»ÓĞ½«ÕıÔÚÏÔÊ¾µÄÁíÍâÒ»¸ö²Ëµ¥Òş²Ø£¿
+	// æ˜¾ç¤ºä¹‹å‰æ²¡æœ‰å°†æ­£åœ¨æ˜¾ç¤ºçš„å¦å¤–ä¸€ä¸ªèœå•éšè—ï¼Ÿ
 	if( menu && menuOnShow && menu != menuOnShow )
 	{
 #ifdef __WXDEBUG__

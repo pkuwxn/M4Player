@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
 * Name:      VdkScrolledPanel.h
-* Purpose:   ¹ö¶¯Ãæ°å£¨ÄÜ×÷ÎªÆäËû¿Ø¼ş¸¸¿Ø¼şµÄ¹ö¶¯´°¿ÚÅÉÉúÀà£©ÉùÃ÷
+* Purpose:   æ»šåŠ¨é¢æ¿ï¼ˆèƒ½ä½œä¸ºå…¶ä»–æ§ä»¶çˆ¶æ§ä»¶çš„æ»šåŠ¨çª—å£æ´¾ç”Ÿç±»ï¼‰å£°æ˜
 * Author:    vanxining (vanxining@139.com)
 * Created:   2011-01-04
 * Copyright: vanxining
@@ -11,24 +11,24 @@
 #include "VdkScrolledWindow.h"
 #include "VdkScrollBar.h"
 
-/// \brief ¹ö¶¯Ãæ°åµÄÊµÏÖ»ùÀà
+/// \brief æ»šåŠ¨é¢æ¿çš„å®ç°åŸºç±»
 ///
-/// ¼ò»¯Éè¼ÆÑ¹Á¦£¬ËùÒÔ¼Ó¶àÁËÒ»²ã¼Ì³Ğ¡£
+/// ç®€åŒ–è®¾è®¡å‹åŠ›ï¼Œæ‰€ä»¥åŠ å¤šäº†ä¸€å±‚ç»§æ‰¿ã€‚
 class VdkScrolledPanelBase : public VdkWindowImpl< wxPanel >
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkScrolledPanelBase() {}
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkScrolledPanelBase(wxWindow* parent, long style = 0)
 		 : VdkWindowImpl< wxPanel >( style )
 	{
 		Create( parent, style );
 	}
 
-	/// \brief ³Ğµ£Êµ¼Ê¹¹½¨¹¤×÷
+	/// \brief æ‰¿æ‹…å®é™…æ„å»ºå·¥ä½œ
 	void Create(wxWindow* parent, long style = 0);
 
 private:
@@ -43,131 +43,131 @@ private:
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief ÄÜ×÷ÎªÒ»¸ö VdkWindow ×Ó¿Ø¼şµÄ¹ö¶¯Ãæ°å
+/// \brief èƒ½ä½œä¸ºä¸€ä¸ª VdkWindow å­æ§ä»¶çš„æ»šåŠ¨é¢æ¿
 class VdkScrolledPanel : public VdkScrolledPanelBase, 
 						 public VdkNativeCtrl< VdkScrolledPanel >,
 						 public VdkScrolled
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkScrolledPanel();
 
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	~VdkScrolledPanel();
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	///
-	/// Ò»¸ö VdkControl µÄÅÉÉúÀà¼ÙÈçÒªÊµÏÖ¶¯Ì¬´´½¨£¬ÔòÓ¦¸ÃÊµÏÖÕâ¸öº¯Êı¡£
-	/// \todo ¸¸¿Ø¼ş
+	/// ä¸€ä¸ª VdkControl çš„æ´¾ç”Ÿç±»å‡å¦‚è¦å®ç°åŠ¨æ€åˆ›å»ºï¼Œåˆ™åº”è¯¥å®ç°è¿™ä¸ªå‡½æ•°ã€‚
+	/// \todo çˆ¶æ§ä»¶
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief ¸ù¾İ¿Ø¼şÊıÁ¿¼ÆËãĞéÄâ»­²¼µÄ´óĞ¡
+	/// \brief æ ¹æ®æ§ä»¶æ•°é‡è®¡ç®—è™šæ‹Ÿç”»å¸ƒçš„å¤§å°
 	void CalcVirtualSize();
 
-	/// \brief ÉèÖÃÒÑ»º³åµÄË«»º³å»æÍ¼ÉÏÏÂÎÄµÄÄ³Ğ©³õÊ¼ÊôĞÔ
+	/// \brief è®¾ç½®å·²ç¼“å†²çš„åŒç¼“å†²ç»˜å›¾ä¸Šä¸‹æ–‡çš„æŸäº›åˆå§‹å±æ€§
 	virtual void PrepareCachedDC();
 
-	/// \brief ×Ó¿Ø¼şÊÇ·ñ´¦ÓÚ¿ÉÊÓÇøÓòÄÚ
+	/// \brief å­æ§ä»¶æ˜¯å¦å¤„äºå¯è§†åŒºåŸŸå†…
 	bool IsChildVisible(VdkControl* chd) const;
 
 protected:
 
 	//////////////////////////////////////////////////////////////////////////
-	// ´Î¼¶ÅÉÉúÀà±ØĞë¸²Ğ´
+	// æ¬¡çº§æ´¾ç”Ÿç±»å¿…é¡»è¦†å†™
 
-	// »ñÈ¡¹ö¶¯ÌõµÄ¸¸´°¿Ú
+	// è·å–æ»šåŠ¨æ¡çš„çˆ¶çª—å£
 	virtual VdkWindow* ParentWindow() const {
 		return dynamic_cast< VdkWindow * >( wxWindow::GetParent() );
 	}
 
-	// ¹ö¶¯ÌõµÄ¸¸¿Ø¼ş(¼ÙÈçÓĞ)
+	// æ»šåŠ¨æ¡çš„çˆ¶æ§ä»¶(å‡å¦‚æœ‰)
 	virtual VdkControl* ScrollBarParent() const { return (VdkControl *) this; }
 
-	// ¹ö¶¯ÌõµÄÏà¶ÔÎ»ÖÃ
+	// æ»šåŠ¨æ¡çš„ç›¸å¯¹ä½ç½®
 	virtual wxRect ScrollBarRect() const { return Rect00(); }
 
-	// »ñÈ¡¹ö¶¯Ìõ¶ÔÓ¦µÄ DC
+	// è·å–æ»šåŠ¨æ¡å¯¹åº”çš„ DC
 	virtual wxDC* GetScrollBarDC(wxDC* dc) const ;
 
-	// Ïú»Ù´Ó\link GetScrollBarDC \endlink »ñµÃµÄ DC
+	// é”€æ¯ä»\link GetScrollBarDC \endlink è·å¾—çš„ DC
 	virtual void DestroyScrollBarDC(wxDC* dc) const;/* { delete dc; }*/
 
-	// »ñÈ¡¹ö¶¯´°¿ÚµÄÃû×Ö
+	// è·å–æ»šåŠ¨çª—å£çš„åå­—
 	virtual const wxString& Name() const { return m_strName; }
 
-	// »ñÈ¡/ÉèÖÃ¹ö¶¯´°¿ÚµÄ·ç¸ñÊôĞÔ¼¯
+	// è·å–/è®¾ç½®æ»šåŠ¨çª—å£çš„é£æ ¼å±æ€§é›†
 	virtual long Style() const { return VdkWindow::GetStyle(); }
 
-	// »ñÈ¡/ÉèÖÃ¹ö¶¯´°¿ÚÏà¶ÔÓÚ¸¸¿Ø¼şµÄÏà¶ÔÎ»ÖÃ
+	// è·å–/è®¾ç½®æ»šåŠ¨çª—å£ç›¸å¯¹äºçˆ¶æ§ä»¶çš„ç›¸å¯¹ä½ç½®
 	/// 
-	/// ¼ÙÈçÃ»ÓĞ¸¸¿Ø¼ş£¬Ôò·µ»ØÖµÓë\link AbsoluteRect() \endlink ÏàÍ¬¡£
+	/// å‡å¦‚æ²¡æœ‰çˆ¶æ§ä»¶ï¼Œåˆ™è¿”å›å€¼ä¸\link AbsoluteRect() \endlink ç›¸åŒã€‚
 	/// \see AbsoluteRect
 	virtual wxRect& RelativeRect() { return m_Rect; }
 
-	// »ñÈ¡/ÉèÖÃ¹ö¶¯´°¿ÚÏà¶ÔÓÚ¶¥²ã VdkWindow µÄ¾ø¶ÔÎ»ÖÃ
+	// è·å–/è®¾ç½®æ»šåŠ¨çª—å£ç›¸å¯¹äºé¡¶å±‚ VdkWindow çš„ç»å¯¹ä½ç½®
 	virtual wxRect AbsoluteRect() const { return Rect00(); }
 
-	// ÔÚ´Ë¸üĞÂ/»æÖÆ¹ö¶¯´°¿Ú
+	// åœ¨æ­¤æ›´æ–°/ç»˜åˆ¶æ»šåŠ¨çª—å£
 	virtual void UpdateUI(wxDC& dc);
 
-	// ¼ì²âÊÇ·ñÒÑÔÚ XRC ÎÄ¼şÖĞ¶¨Òå²¢´´½¨ÁËĞèÒªµÄ¹ö¶¯Ìõ
+	// æ£€æµ‹æ˜¯å¦å·²åœ¨ XRC æ–‡ä»¶ä¸­å®šä¹‰å¹¶åˆ›å»ºäº†éœ€è¦çš„æ»šåŠ¨æ¡
 	///
-	/// ÓÃÓÚ¹ö¶¯´°¿Ú´´½¨È±Ê¡¹ö¶¯ÌõÇ°¡£
+	/// ç”¨äºæ»šåŠ¨çª—å£åˆ›å»ºç¼ºçœæ»šåŠ¨æ¡å‰ã€‚
 	virtual VdkScrollBar* ScrollBarExists() { return NULL; }
 
-	// ÏìÓ¦¹ö¶¯ÌõÏÔÊ¾/Òş²ØÊÂ¼şÍ¨Öª
+	// å“åº”æ»šåŠ¨æ¡æ˜¾ç¤º/éšè—äº‹ä»¶é€šçŸ¥
 	virtual void OnScrollBarShowHide(const VdkScrollBar* sb);
 
 	//////////////////////////////////////////////////////////////////////////
-	// ´Î¼¶ÅÉÉúÀà¿ÉÒÔ¸²Ğ´
+	// æ¬¡çº§æ´¾ç”Ÿç±»å¯ä»¥è¦†å†™
 
-	// ¾ö¶¨ĞèÒªÏÔÊ¾/Òş²ØµÄ×Ó¿Ø¼ş¡£
+	// å†³å®šéœ€è¦æ˜¾ç¤º/éšè—çš„å­æ§ä»¶ã€‚
 	virtual void DoRefreshState(wxDC& dc);
 
 	//////////////////////////////////////////////////////////////////////////
-	// ¼Ì³Ğ×Ô VdkControl
+	// ç»§æ‰¿è‡ª VdkControl
 
-	// »æÖÆ±ß¿ò
+	// ç»˜åˆ¶è¾¹æ¡†
 	virtual void DoDraw(wxDC& dc);
 
-	// ½ÓÊÕÍÏ¶¯ VdkSlider µÄÊó±êÊÂ¼ş
+	// æ¥æ”¶æ‹–åŠ¨ VdkSlider çš„é¼ æ ‡äº‹ä»¶
 	virtual void DoHandleMouseEvent(VdkMouseEvent& e);
 
-	// ½ÓÊÕ¿Ø¼şµÄÍ¨ÖªĞÅÏ¢
+	// æ¥æ”¶æ§ä»¶çš„é€šçŸ¥ä¿¡æ¯
 	virtual void DoHandleNotify(const VdkNotify& notice);
 
 	//////////////////////////////////////////////////////////////////////////
-	// ¼Ì³Ğ×Ô VdkScrolled
+	// ç»§æ‰¿è‡ª VdkScrolled
 
-	// Êó±ê¹öÂÖµÄÊÂ¼ş²»»á·¢ËÍµ½²Ëµ¥ÉÏµÄ¹ö¶¯Ãæ°å
-	// Í¬Ê±¸üÁéÃôµØ´¦ÀíÖ¸ÕëÒÆ¶¯ÊÂ¼ş
+	// é¼ æ ‡æ»šè½®çš„äº‹ä»¶ä¸ä¼šå‘é€åˆ°èœå•ä¸Šçš„æ»šåŠ¨é¢æ¿
+	// åŒæ—¶æ›´çµæ•åœ°å¤„ç†æŒ‡é’ˆç§»åŠ¨äº‹ä»¶
 	virtual void OnMouseEvent(VdkMouseEvent& e);
 
 	//////////////////////////////////////////////////////////////////////////
-	// ¼Ì³Ğ×Ô VdkWindow
+	// ç»§æ‰¿è‡ª VdkWindow
 
-	// ÔÚ VdkWindow ´¦ÀíÊó±êÊÂ¼şÖ®Ç°ĞŞÕıÆğÊ¼×ø±ê
+	// åœ¨ VdkWindow å¤„ç†é¼ æ ‡äº‹ä»¶ä¹‹å‰ä¿®æ­£èµ·å§‹åæ ‡
 	virtual bool FilterEventBefore(wxMouseEvent& evt, int evtCode);
 
-	// ´¦Àí·¢ÉúÎ´±»ÆäËû¿Ø¼ş´¦ÀíµÄ¹öÂÖÊÂ¼ş
+	// å¤„ç†å‘ç”Ÿæœªè¢«å…¶ä»–æ§ä»¶å¤„ç†çš„æ»šè½®äº‹ä»¶
 	virtual bool FilterEventAfter(wxMouseEvent& evt, int evtCode);
 
-	// ±ãÀûÖØÔØ£¬**·Ç¼Ì³Ğ**
+	// ä¾¿åˆ©é‡è½½ï¼Œ**éç»§æ‰¿**
 	bool FilterEventAfter(VdkMouseEvent& evt);
 
-	// ÔÚÍêÈ«ÖØ»­ÊÂ¼şÖĞÇå³ı±³¾°
+	// åœ¨å®Œå…¨é‡ç”»äº‹ä»¶ä¸­æ¸…é™¤èƒŒæ™¯
 	//
-	// VdkWindow ¶ÔÓÚ¹ö¶¯´°¿ÚÊÇºÁÎŞ¸ÅÄîµÄ£¬¹ÊËü²»ÖªµÀ×Ô¼ºÔÚ
-	// EraseBackground º¯ÊıÖĞ²Á³ıµÄ²¿·ÖÊÇÒ»¿ªÊ¼ÄÇÒ»ÆÁ¡£
+	// VdkWindow å¯¹äºæ»šåŠ¨çª—å£æ˜¯æ¯«æ— æ¦‚å¿µçš„ï¼Œæ•…å®ƒä¸çŸ¥é“è‡ªå·±åœ¨
+	// EraseBackground å‡½æ•°ä¸­æ“¦é™¤çš„éƒ¨åˆ†æ˜¯ä¸€å¼€å§‹é‚£ä¸€å±ã€‚
 	virtual void DoPaint(wxDC& dc);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	// ÓĞÒ»¸ö¿ÉÄÜ»áµ¼ÖÂ»ñÈ¡¹ö¶¯Ìõ×¨ÓĞ DC Ê±»á³öÏÖ²úÉúÁ½¸ö
-	// ¹ö¶¯ÌõËùÔÚ´°¿ÚµÄ VdkDC
-	// ¹ö¶¯ÊÂ¼ş²»ÊÇ·¢ËÍµ½µ±Ç°»î¶¯²Ëµ¥´°¿ÚµÄ£¬ËùÒÔÏò²Ëµ¥ÊµÌå´°Ìå´«²¥µÄ¹ı³ÌÖĞ
-	// »áÉêÇëÒ»´Î£¬¹ö¶¯Ãæ°åÖØ»­Ê±ÓÖ»áÉêÇëÒ»´Î
+	// æœ‰ä¸€ä¸ªå¯èƒ½ä¼šå¯¼è‡´è·å–æ»šåŠ¨æ¡ä¸“æœ‰ DC æ—¶ä¼šå‡ºç°äº§ç”Ÿä¸¤ä¸ª
+	// æ»šåŠ¨æ¡æ‰€åœ¨çª—å£çš„ VdkDC
+	// æ»šåŠ¨äº‹ä»¶ä¸æ˜¯å‘é€åˆ°å½“å‰æ´»åŠ¨èœå•çª—å£çš„ï¼Œæ‰€ä»¥å‘èœå•å®ä½“çª—ä½“ä¼ æ’­çš„è¿‡ç¨‹ä¸­
+	// ä¼šç”³è¯·ä¸€æ¬¡ï¼Œæ»šåŠ¨é¢æ¿é‡ç”»æ—¶åˆä¼šç”³è¯·ä¸€æ¬¡
 	mutable bool m_bUsingCachedSbDC;
 
 	DECLARE_DYNAMIC_VOBJECT

@@ -1,34 +1,34 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkControl.h"
 #include "VdkBitmapArray.h"
 
-/// \brief VdkButton ·ç¸ñÊôĞÔ¼¯
+/// \brief VdkButton é£æ ¼å±æ€§é›†
 enum VdkButtonStyle {
 
-	/// \brief ÅÉÉúÀàÆğÊ¼ÊôĞÔÎ»
+	/// \brief æ´¾ç”Ÿç±»èµ·å§‹å±æ€§ä½
 	VBS_USER					= VCS_USER + 5,
-	/// \brief ÄÜ·ñ¸Ä±ä´óĞ¡
+	/// \brief èƒ½å¦æ”¹å˜å¤§å°
 	VBS_RESIZEABLE				= 1 << ( VCS_USER + 0 ),
-	/// \brief Æ½ÆÌ»¹ÊÇÀ­Éì£¿
+	/// \brief å¹³é“ºè¿˜æ˜¯æ‹‰ä¼¸ï¼Ÿ
 	VBS_RESIZE_TYPE_TILE		= 1 << ( VCS_USER + 1 ),
-	/// \brief ÊÇ·ñÊ¹ÓÃ wxRegion ×÷Îª×÷ÓÃÓò±êÊ¶·û
+	/// \brief æ˜¯å¦ä½¿ç”¨ wxRegion ä½œä¸ºä½œç”¨åŸŸæ ‡è¯†ç¬¦
 	VBS_REGION					= 1 << ( VCS_USER + 2 ),
 };
 
-/// \brief VdkButton ÔËĞĞÊ±ÊôĞÔ¼¯
+/// \brief VdkButton è¿è¡Œæ—¶å±æ€§é›†
 enum VdkButtonState {
 
-	/// \brief ÅÉÉúÀàÆğÊ¼ÊôĞÔÎ»
+	/// \brief æ´¾ç”Ÿç±»èµ·å§‹å±æ€§ä½
 	VBST_USER					= VCST_USER + 5,
-	/// \brief ²»ÊÊÒËÊ¹ÓÃ wxRegion ×÷Îª×÷ÓÃÓò±êÊ¶·û
+	/// \brief ä¸é€‚å®œä½¿ç”¨ wxRegion ä½œä¸ºä½œç”¨åŸŸæ ‡è¯†ç¬¦
 	///
-	/// ´´½¨ wxRegion Ê§°Ü¡£
+	/// åˆ›å»º wxRegion å¤±è´¥ã€‚
 	VBST_REGION_FAILED			= 1 << ( VCST_USER + 0 ),
 };
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief Îª VdkButton ÉèÖÃ³õÊ¼»¯ĞÅÏ¢
+/// \brief ä¸º VdkButton è®¾ç½®åˆå§‹åŒ–ä¿¡æ¯
 class VdkButtonInitializer : public 
 	VdkCtrlInitializer< VdkButtonInitializer >
 {
@@ -36,38 +36,38 @@ public:
 
 	typedef VdkButtonInitializer Button;
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkButtonInitializer();
 
-	/// \brief ÉèÖÃ°´Å¥ËùÓÃµÄ±³¾°Î»Í¼
+	/// \brief è®¾ç½®æŒ‰é’®æ‰€ç”¨çš„èƒŒæ™¯ä½å›¾
 	/// \see fileName
 	Button& bitmap(const wxBitmap& bm) { BkGnd = bm; return *this; }
 
-	/// \brief ÉèÖÃ°´Å¥ËùÓÃµÄ±³¾°Î»Í¼ÎÄ¼şÔÚ´ÅÅÌÉÏµÄÎ»ÖÃ
+	/// \brief è®¾ç½®æŒ‰é’®æ‰€ç”¨çš„èƒŒæ™¯ä½å›¾æ–‡ä»¶åœ¨ç£ç›˜ä¸Šçš„ä½ç½®
 	Button& fileName(const wxString& s) { FileName = s; return *this; }
 
-	/// \brief ÉèÖÃ°´Å¥µÄ±êÌâÎÄ±¾
+	/// \brief è®¾ç½®æŒ‰é’®çš„æ ‡é¢˜æ–‡æœ¬
 	Button& caption(const wxString& s) { Caption = s; return *this; }
 
-	/// \brief ÉèÖÃ°´Å¥µÄ±êÌâÎÄ±¾¶ÔÆëÊôĞÔ
+	/// \brief è®¾ç½®æŒ‰é’®çš„æ ‡é¢˜æ–‡æœ¬å¯¹é½å±æ€§
 	Button& textAlign(align_type a) { TextAlign = a; return *this; }
 
-	/// \brief ÉèÖÃ°´Å¥ÊÇ·ñ¿ÉÒÔ¸Ä±ä´óĞ¡
+	/// \brief è®¾ç½®æŒ‰é’®æ˜¯å¦å¯ä»¥æ”¹å˜å¤§å°
 	Button& resizeable(bool b) { Resizeable = b; return *this; }
 
-	/// \brief ÉèÖÃ°´Å¥¿É¸Ä±ä´óĞ¡Ê±±³¾°Î»Í¼µÄÀ­Éì·½Ê½
+	/// \brief è®¾ç½®æŒ‰é’®å¯æ”¹å˜å¤§å°æ—¶èƒŒæ™¯ä½å›¾çš„æ‹‰ä¼¸æ–¹å¼
 	Button& tileType(VdkResizeableBitmapType type) {
 		TileType = type; return *this;
 	}
 
-	/// \brief ÉèÖÃ°´Å¥¿É¸Ä±ä´óĞ¡Ê±±³¾°Î»Í¼µÄµş·Å³¤¶È
+	/// \brief è®¾ç½®æŒ‰é’®å¯æ”¹å˜å¤§å°æ—¶èƒŒæ™¯ä½å›¾çš„å æ”¾é•¿åº¦
 	///
-	/// ´ÓÕıÖĞ¼äÏòÒ»±ßÀ©Õ¹µÄ³¤/¿í¶È¡£
+	/// ä»æ­£ä¸­é—´å‘ä¸€è¾¹æ‰©å±•çš„é•¿/å®½åº¦ã€‚
 	Button& tileLen(unsigned len) { TileLen = len; return *this; }
 
-	/// \brief ÉèÖÃ°´Å¥Òª·Ö¸î³ÉµÄ·İÊı
+	/// \brief è®¾ç½®æŒ‰é’®è¦åˆ†å‰²æˆçš„ä»½æ•°
 	///
-	/// ÒªÇó½«±íÏÖ°´Å¥µÄ¸÷ÖÖ×´Ì¬µÄÎ»Í¼ºÏ²¢ÔÚÒ»¸öÎ»Í¼Àï¡£
+	/// è¦æ±‚å°†è¡¨ç°æŒ‰é’®çš„å„ç§çŠ¶æ€çš„ä½å›¾åˆå¹¶åœ¨ä¸€ä¸ªä½å›¾é‡Œã€‚
 	Button& explode(unsigned e) { Expl = e; return *this; }
 
 private:
@@ -85,58 +85,58 @@ private:
 	friend class VdkButton;
 };
 
-/// \brief °´Å¥ÊÇ×î³£¼ûµÄGUI×é·Ö
+/// \brief æŒ‰é’®æ˜¯æœ€å¸¸è§çš„GUIç»„åˆ†
 ///
-/// Ò»¸ö°´Å¥ÓĞËÄÖÖ×´Ì¬£¨Æ½³£¡¢¸ßÁÁ¡¢°´ÏÂ¡¢Ê§»î£©¡£
-/// ÓÃ»§¿ÉÒÔÓÃµ¥»÷Êó±êÒ»´Î´Ó¶øÔÚËÄÖÖ×´Ì¬Ö®¼äÇĞ»»¡£
+/// ä¸€ä¸ªæŒ‰é’®æœ‰å››ç§çŠ¶æ€ï¼ˆå¹³å¸¸ã€é«˜äº®ã€æŒ‰ä¸‹ã€å¤±æ´»ï¼‰ã€‚
+/// ç”¨æˆ·å¯ä»¥ç”¨å•å‡»é¼ æ ‡ä¸€æ¬¡ä»è€Œåœ¨å››ç§çŠ¶æ€ä¹‹é—´åˆ‡æ¢ã€‚
 class VdkButton : public VdkControl
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkButton();
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief ¹¹½¨º¯Êı
+	/// \brief æ„å»ºå‡½æ•°
 	///
-	/// ÔÊĞí×Ô¶¨ÒåÎ»Í¼£¬Ö÷ÒªÊÇÒòÎª¿ÉÄÜÄ³Ğ©×¼±ê×¼¿Ø¼ş£¨Èç VdkCheckBox £©\n
-	/// ²»ĞèÒªÓÉÓÃ»§×Ô¼ºÖ¸¶¨Î»Í¼£¬¶øÓÖĞèÒª´Ó XRC ÎÄ¼şÖĞ¶¯Ì¬´´½¨£¬\n
-	/// ¹ÊËùÓÃÎ»Í¼Ö±½ÓÓÉÏµÍ³Éú³É»òÕß´Ó XPM ÎÄ¼şÔØÈë¡£
-	/// \attention Ö÷ÒªÓÉ VdkControl ÄÚ²¿µ÷ÓÃ£¬ÓÃÓÚÆäËü VdkControl \n
-	/// ÖĞµÄ VdkButton ¡£
+	/// å…è®¸è‡ªå®šä¹‰ä½å›¾ï¼Œä¸»è¦æ˜¯å› ä¸ºå¯èƒ½æŸäº›å‡†æ ‡å‡†æ§ä»¶ï¼ˆå¦‚ VdkCheckBox ï¼‰\n
+	/// ä¸éœ€è¦ç”±ç”¨æˆ·è‡ªå·±æŒ‡å®šä½å›¾ï¼Œè€Œåˆéœ€è¦ä» XRC æ–‡ä»¶ä¸­åŠ¨æ€åˆ›å»ºï¼Œ\n
+	/// æ•…æ‰€ç”¨ä½å›¾ç›´æ¥ç”±ç³»ç»Ÿç”Ÿæˆæˆ–è€…ä» XPM æ–‡ä»¶è½½å…¥ã€‚
+	/// \attention ä¸»è¦ç”± VdkControl å†…éƒ¨è°ƒç”¨ï¼Œç”¨äºå…¶å®ƒ VdkControl \n
+	/// ä¸­çš„ VdkButton ã€‚
 	VdkControl* Create(wxXmlNode* node,
 					   const wxBitmap& bm,
 					   int nExpl);
 
-	/// \brief ÔÚ´ËÖ´ĞĞÖ÷Òª¹¹½¨¹¤×÷
+	/// \brief åœ¨æ­¤æ‰§è¡Œä¸»è¦æ„å»ºå·¥ä½œ
 	void Create(const VdkButtonInitializer& init_data);
 
-	/// \brief ´´½¨±êÊ¶ wxRegion
+	/// \brief åˆ›å»ºæ ‡è¯† wxRegion
 	///
-	/// ¼ÙÈç¿Ø¼ş×÷ÓÃÓòÓÉ wxRegion À´±êÊ¶£¬ÔòĞèµ÷ÓÃ±¾º¯ÊıÀ´´´½¨±êÊ¶ wxRegion¡£\n
-	/// Õı³£µÄ VdkButton ÓÉ wxRect À´±êÊ¶×÷ÓÃÓò¡£
+	/// å‡å¦‚æ§ä»¶ä½œç”¨åŸŸç”± wxRegion æ¥æ ‡è¯†ï¼Œåˆ™éœ€è°ƒç”¨æœ¬å‡½æ•°æ¥åˆ›å»ºæ ‡è¯† wxRegionã€‚\n
+	/// æ­£å¸¸çš„ VdkButton ç”± wxRect æ¥æ ‡è¯†ä½œç”¨åŸŸã€‚
 	void CreateRegion();
 
-	/// \brief ±êÊ¶ wxRegion ÊÇ·ñÒÑÈ»±»ÕıÈ·´´½¨
+	/// \brief æ ‡è¯† wxRegion æ˜¯å¦å·²ç„¶è¢«æ­£ç¡®åˆ›å»º
 	bool IsRegionOk() const { return TestStyle( VBS_REGION ); }
 
-	/// \brief ´´½¨ wxRegion ×÷ÓÃÓòÊÇ·ñÊ§°ÜÁË
+	/// \brief åˆ›å»º wxRegion ä½œç”¨åŸŸæ˜¯å¦å¤±è´¥äº†
 	bool IsRegionCreationFailed() const {
 		return !TestState( VBST_REGION_FAILED );
 	}
 
-	/// \brief ÅĞ¶Ï\a mousePos ÊÇ·ñÎ»ÓÚ°´Å¥µÄ×÷ÓÃÓòÀï
+	/// \brief åˆ¤æ–­\a mousePos æ˜¯å¦ä½äºæŒ‰é’®çš„ä½œç”¨åŸŸé‡Œ
 	virtual bool HitTest(const wxPoint& mousePos) const;
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief Ä£ÄâÒ»´ÎÊó±êµ¥»÷ÊÂ¼ş
-	/// \attention ²»ÒªÔÙµ÷ÓÃÔ­À´µÄ»Øµ÷º¯Êı!
+	/// \brief æ¨¡æ‹Ÿä¸€æ¬¡é¼ æ ‡å•å‡»äº‹ä»¶
+	/// \attention ä¸è¦å†è°ƒç”¨åŸæ¥çš„å›è°ƒå‡½æ•°!
 	void EmuClick(wxDC& dc);
 
-	/// \brief °´Å¥µÄËùÓĞ×´Ì¬
+	/// \brief æŒ‰é’®çš„æ‰€æœ‰çŠ¶æ€
 	enum State {
 		NORMAL,
 		HOVERING,
@@ -144,98 +144,98 @@ public:
 		DISABLED,
 	};
 
-	/// \brief ½«°´Å¥µÄµ±Ç°×´Ì¬¸ü¸ÄÎª\a nState
+	/// \brief å°†æŒ‰é’®çš„å½“å‰çŠ¶æ€æ›´æ”¹ä¸º\a nState
 	virtual void Update(State nState, wxDC* pDC);
 
-	/// \brief µÃµ½°´Å¥ÉÏ´Î´¦ÓÚµÄ×´Ì¬
+	/// \brief å¾—åˆ°æŒ‰é’®ä¸Šæ¬¡å¤„äºçš„çŠ¶æ€
 	State GetLastState() const { return GetButtonState(); }
 
-	/// \brief °´Å¥ÊÇ·ñ´¦ÓÚ×ÔÎ¬»¤µÄ½ûÓÃ×´Ì¬
+	/// \brief æŒ‰é’®æ˜¯å¦å¤„äºè‡ªç»´æŠ¤çš„ç¦ç”¨çŠ¶æ€
 	///
-	/// ×¢Òâ£¬Õâ¸ö½ûÓÃ×´Ì¬Óë VDK Ô­Éú½ûÓÃ»úÖÆ²»Í¬¡£
+	/// æ³¨æ„ï¼Œè¿™ä¸ªç¦ç”¨çŠ¶æ€ä¸ VDK åŸç”Ÿç¦ç”¨æœºåˆ¶ä¸åŒã€‚
 	bool IsDisabled() const { return m_nState == DISABLED; }
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief µÃµ½ VdkButton µÄ´óĞ¡
+	/// \brief å¾—åˆ° VdkButton çš„å¤§å°
 	///
-	/// ÒÔ±³¾°Í¼Æ¬µÄ´óĞ¡Îª×¼£¬¿ÉÄÜ²»Í¬ÓÚ\link GetRect()\endlinkµÃµ½µÄ´óĞ¡¡£
+	/// ä»¥èƒŒæ™¯å›¾ç‰‡çš„å¤§å°ä¸ºå‡†ï¼Œå¯èƒ½ä¸åŒäº\link GetRect()\endlinkå¾—åˆ°çš„å¤§å°ã€‚
 	void GetSize(int* w, int* h) const;
 
-	/// \brief µÃµ½ VdkButton µÄ×îĞ¡´óĞ¡
+	/// \brief å¾—åˆ° VdkButton çš„æœ€å°å¤§å°
 	///
-	/// ¼´±³¾°Í¼Æ¬µÄ´óĞ¡¡£
+	/// å³èƒŒæ™¯å›¾ç‰‡çš„å¤§å°ã€‚
 	void GetMinSize(int* w, int* h) const;
 
-	/// \brief »ñÈ¡°´Å¥±êÌâ
+	/// \brief è·å–æŒ‰é’®æ ‡é¢˜
 	wxString GetCaption() { return m_strCaption; }
 
-	/// \brief ÉèÖÃ°´Å¥±êÌâ
+	/// \brief è®¾ç½®æŒ‰é’®æ ‡é¢˜
 	void SetCaption(const wxString& strCaption, wxDC* pDC);
 
-	/// \brief ¸Ä±ä VdkButton µÄ´óĞ¡
-	/// \return true: ²Ù×÷³É¹¦£¬false: ²Ù×÷Ê§°Ü¡£
+	/// \brief æ”¹å˜ VdkButton çš„å¤§å°
+	/// \return true: æ“ä½œæˆåŠŸï¼Œfalse: æ“ä½œå¤±è´¥ã€‚
 	bool Resize(int w, int h);
 
-	/// \brief ¸ù¾İ°´Å¥µÄ±êÌâ×Ô¶¯µ÷Õû´óĞ¡£¨¿í¶È£©
+	/// \brief æ ¹æ®æŒ‰é’®çš„æ ‡é¢˜è‡ªåŠ¨è°ƒæ•´å¤§å°ï¼ˆå®½åº¦ï¼‰
 	void Fit(wxDC* pDC);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief »ñÈ¡Ô­Ê¼Î»Í¼
+	/// \brief è·å–åŸå§‹ä½å›¾
 	///
-	/// ±¾º¯ÊıµÄÒ»¸öÖØÒªÓÃÍ¾ÊÇ¸´ÖÆÒ»¸ö°´Å¥¡£
+	/// æœ¬å‡½æ•°çš„ä¸€ä¸ªé‡è¦ç”¨é€”æ˜¯å¤åˆ¶ä¸€ä¸ªæŒ‰é’®ã€‚
 	const VdkBitmapArray& GetPrimaryBitmap() const;
 
 protected:
 
-	/// \brief ´¦ÀíÊó±êÊÂ¼ş
+	/// \brief å¤„ç†é¼ æ ‡äº‹ä»¶
 	virtual void DoHandleMouseEvent(VdkMouseEvent& e);
 
-	/// \brief »æÖÆ¿Ø¼ş
+	/// \brief ç»˜åˆ¶æ§ä»¶
 	virtual void DoDraw(wxDC& dc);
 
-	/// \brief ½ÓÊÕ¡¢´¦ÀíÍ¨ÖªĞÅÏ¢
+	/// \brief æ¥æ”¶ã€å¤„ç†é€šçŸ¥ä¿¡æ¯
 	virtual void DoHandleNotify(const VdkNotify& notice);
 
-	/// \brief ÉèÖÃ°´Å¥×´Ì¬
+	/// \brief è®¾ç½®æŒ‰é’®çŠ¶æ€
 	void SetButtonState(State state) { m_nState = state; }
 
-	/// \brief »ñÈ¡°´Å¥×´Ì¬
+	/// \brief è·å–æŒ‰é’®çŠ¶æ€
 	State GetButtonState() const { return m_nState; }
 
-	/// \brief ¸ù¾İ¶ÔÆë¼ÆËãÎÄ±¾Î»ÖÃ
+	/// \brief æ ¹æ®å¯¹é½è®¡ç®—æ–‡æœ¬ä½ç½®
 	void CalcTextPos();
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ¸Ä±ä´óĞ¡Ê±Æ½ÆÌÍ¼Æ¬µÄÖĞĞÄÁ½²à¶ÈÁ¿Ö®ºÍ
+	/// \brief æ”¹å˜å¤§å°æ—¶å¹³é“ºå›¾ç‰‡çš„ä¸­å¿ƒä¸¤ä¾§åº¦é‡ä¹‹å’Œ
 	int m_nTile;
 
-	/// \brief ÎÄ±¾¶ÔÆë
+	/// \brief æ–‡æœ¬å¯¹é½
 	align_type m_TextAlign;
 
-	/// \brief ¸÷¸ö×´Ì¬µÄ±³¾°Í¼Æ¬
+	/// \brief å„ä¸ªçŠ¶æ€çš„èƒŒæ™¯å›¾ç‰‡
 	VdkBitmapArray m_bmArray;
-	/// \brief Ô­Ê¼µÄÎ»Í¼¡°Êı×é¡±
+	/// \brief åŸå§‹çš„ä½å›¾â€œæ•°ç»„â€
 	/// 
-	/// ¿ÉÓÃÓÚ¸Ä±ä°´Å¥µÄ´óĞ¡£¨Èç¹ö¶¯ÌõÊÖ±úµÄ¸ß¶È£©µÈ¡£
+	/// å¯ç”¨äºæ”¹å˜æŒ‰é’®çš„å¤§å°ï¼ˆå¦‚æ»šåŠ¨æ¡æ‰‹æŸ„çš„é«˜åº¦ï¼‰ç­‰ã€‚
 	VdkBitmapArray m_bmPrimArray;
 
-	/// \brief °´Å¥ÎÄ±¾ËÄÖÜµÄ¿Õ°×
+	/// \brief æŒ‰é’®æ–‡æœ¬å››å‘¨çš„ç©ºç™½
 	int m_nPaddingX, m_nPaddingY;
 
-	/// \brief °´Å¥ÎÄ±¾
+	/// \brief æŒ‰é’®æ–‡æœ¬
 	wxString m_strCaption;
-	/// \brief ÎÄ±¾ÑÕÉ«
+	/// \brief æ–‡æœ¬é¢œè‰²
 	wxColour m_TextColor;
 
-	/// \brief Ê¹ÓÃ wxRegion ±êÊ¶²»¹æÔò¿Ø¼şµÄÌØÊâ×÷ÓÃÓò
+	/// \brief ä½¿ç”¨ wxRegion æ ‡è¯†ä¸è§„åˆ™æ§ä»¶çš„ç‰¹æ®Šä½œç”¨åŸŸ
 	wxRegion m_Region;
 
 private:
 
-	// °´Å¥µ±Ç°×´Ì¬
+	// æŒ‰é’®å½“å‰çŠ¶æ€
 	State m_nState;
 
 	DECLARE_CLONEABLE_VOBJECT( VdkButton )

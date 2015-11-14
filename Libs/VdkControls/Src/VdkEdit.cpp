@@ -1,4 +1,4 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkEdit.cpp
  * Purpose:   Code for VdkEdit implementation
  * Author:    vanxining (vanxining@139.com)
@@ -80,7 +80,7 @@ void VdkEdit::Create(const VdkEditInitializer& init_data)
 	VdkControl::Create( init_data );
 	SetAddinStyle( VCS_KEY_EVENT | VCS_ERASE_BG );
 
-	// ¸¸´°¿ÚÒ»¶¨ÒªÓĞÒ»¸öÃæ°å×÷ÎªÖ§³Å
+	// çˆ¶çª—å£ä¸€å®šè¦æœ‰ä¸€ä¸ªé¢æ¿ä½œä¸ºæ”¯æ’‘
 	wxASSERT( m_Window->TestStyle( VWS_BASE_PANEL ) );
 
 	m_validator = init_data.Validator;
@@ -92,7 +92,7 @@ void VdkEdit::Create(const VdkEditInitializer& init_data)
 
 	m_Window->AddPostDrawListener( this );
 
-	// ¿ªÊ¼ÉÁ¶¯¹â±ê
+	// å¼€å§‹é—ªåŠ¨å…‰æ ‡
 	Start( m_cursorSlice );
 }
 
@@ -157,7 +157,7 @@ int VdkEdit::RefrshFontHeight()
 void VdkEdit::PrepareDC(wxDC& dc)
 {
 	dc.GetDeviceOrigin( &m_dcOrigin.x, &m_dcOrigin.y );
-	//m_Window->ResetDcOrigin( dc ); // TODO: ÓĞÕâ¸ö±ØÒªÂğ£¿
+	//m_Window->ResetDcOrigin( dc ); // TODO: æœ‰è¿™ä¸ªå¿…è¦å—ï¼Ÿ
 
 	wxRect rc( GetAbsoluteRect() );
 	dc.SetDeviceOrigin( rc.x - m_xViewStart, rc.y );
@@ -196,7 +196,7 @@ void VdkEdit::DoDraw(wxDC& dc)
 
 		//-----------------------------------------
 
-		// »æÖÆÑ¡Ôñ±³¾°
+		// ç»˜åˆ¶é€‰æ‹©èƒŒæ™¯
 		if( IsSelected() && IsFocused() )
 		{
 			int selStart( wxMin( m_selEndPos, m_cursorPos ) );
@@ -229,7 +229,7 @@ void VdkEdit::ClearBgAndDrawBorder(wxDC& dc)
 	bg.Inflate( border ? 1 : 0 );
 	VdkUtil::ClrBkGnd( dc, bgBrush, bg );
 
-	// »æÖÆ±ß¿ò
+	// ç»˜åˆ¶è¾¹æ¡†
 	if( border )
 	{
 		dc.SetBrush( bgBrush );
@@ -257,7 +257,7 @@ void VdkEdit::DrawCaption(wxDC &dc)
 	dc.SetFont( m_Font );
 	dc.SetTextForeground( m_sstyle->m_TextColor );
 
-	// ÕâÀï²»ÓÃ¿¼ÂÇÑ¡ÖĞµÄÎÄ±¾ÊÇ·ñÎª²»¿É¼ûµÄ¿ØÖÆ×Ö·û
+	// è¿™é‡Œä¸ç”¨è€ƒè™‘é€‰ä¸­çš„æ–‡æœ¬æ˜¯å¦ä¸ºä¸å¯è§çš„æ§åˆ¶å­—ç¬¦
 	int selStart = m_selEndPos + m_textPadding,
 		selEnd = m_cursorPos + m_textPadding;
 
@@ -273,7 +273,7 @@ void VdkEdit::DrawCaption(wxDC &dc)
 	CharIter i( begin() ), last( end() );
 	for( ; i != last; ++i )
 	{
-		// ²»»­ÔÚ¿ÉÊÓ·¶Î§Ö®ÍâµÄ×Ö·û
+		// ä¸ç”»åœ¨å¯è§†èŒƒå›´ä¹‹å¤–çš„å­—ç¬¦
 		if( x > m_xViewStart + textAreaSize )
 			break;
 
@@ -357,7 +357,7 @@ void VdkEdit::DoHandleMouseEvent(VdkMouseEvent& e)
 			wxRect rc( GetAbsoluteRect() );
 			int x = 0;
 			int charWidth = 0;
-			// ĞŞÕıÊó±êÖ¸ÕëµÄÎ»ÖÃ
+			// ä¿®æ­£é¼ æ ‡æŒ‡é’ˆçš„ä½ç½®
 			int ptr = e.mousePos.x - (rc.x + m_textPadding) + m_xViewStart;
 
 			if( ptr < 0 )
@@ -371,7 +371,7 @@ void VdkEdit::DoHandleMouseEvent(VdkMouseEvent& e)
 
 				if( (x <= ptr) && (x + charWidth > ptr) )
 				{
-					// µã»÷´¦ÔÚ×Ö·ûµÄ×óÓÒÒ»°ë´¦Àí²»Í¬£¬ÔöÇ¿ÁéÃô¶È
+					// ç‚¹å‡»å¤„åœ¨å­—ç¬¦çš„å·¦å³ä¸€åŠå¤„ç†ä¸åŒï¼Œå¢å¼ºçµæ•åº¦
 					if( ptr > (float( x ) + charWidth / 2) )
 					{
 						++charAtPointer;
@@ -392,9 +392,9 @@ void VdkEdit::DoHandleMouseEvent(VdkMouseEvent& e)
 
 				break;
 			}
-			else // ÔÚ Edit ÉÏµã»÷
+			else // åœ¨ Edit ä¸Šç‚¹å‡»
 			{
-				// ¶ÔÓÒ¼ü²Ëµ¥½øĞĞÌØÊâ´¦Àí
+				// å¯¹å³é”®èœå•è¿›è¡Œç‰¹æ®Šå¤„ç†
 				if( e.evtCode == RIGHT_UP )
 				{
 					ResumeTimer();
@@ -404,7 +404,7 @@ void VdkEdit::DoHandleMouseEvent(VdkMouseEvent& e)
 
 					if( IsSelected() )
 					{
-						// ±ØĞëÊÖ¶¯¸üĞÂ»æÍ¼
+						// å¿…é¡»æ‰‹åŠ¨æ›´æ–°ç»˜å›¾
 						ShowCursorAtOnce( e.dc, false );
 						Draw( e.dc );
 
@@ -420,10 +420,10 @@ void VdkEdit::DoHandleMouseEvent(VdkMouseEvent& e)
 
 	case DLEFT_DOWN:
 
-		// ³ÖĞøÏÔÊ¾¹â±ê
+		// æŒç»­æ˜¾ç¤ºå…‰æ ‡
 		ShowCursorAtOnce( e.dc, true );
 
-		// Ñ¡ÔñÁ¬ĞøĞÔÎÄ±¾
+		// é€‰æ‹©è¿ç»­æ€§æ–‡æœ¬
 		SelectSuccessiveText( &e.dc );
 
 		break;
@@ -478,7 +478,7 @@ void VdkEdit::DoHandleNotify(const VdkNotify& notice)
 		notice.SetWparam( m_Rect.x );
 		notice.SetLparam( m_Rect.y );
 
-		// µ±×÷ÊÇ¼¤»îÊÂ¼şÀ´´¦Àí£¬¼ÌĞøÁ÷³Ì
+		// å½“ä½œæ˜¯æ¿€æ´»äº‹ä»¶æ¥å¤„ç†ï¼Œç»§ç»­æµç¨‹
 #endif
 
 	case VCN_FOCUS:
@@ -489,15 +489,15 @@ void VdkEdit::DoHandleNotify(const VdkNotify& notice)
 			MoveCursorOnScreen( m_cursorPos );
 #       endif
 
-			// ²»ÒªÔÚÕâÀïÇĞ»»¹â±êµÄÏÔÊ¾£¬¶øÊÇÓ¦¸ÃÓÉ DoHandleMouseEvent() À´¹ÜÀí
+			// ä¸è¦åœ¨è¿™é‡Œåˆ‡æ¢å…‰æ ‡çš„æ˜¾ç¤ºï¼Œè€Œæ˜¯åº”è¯¥ç”± DoHandleMouseEvent() æ¥ç®¡ç†
 
-			// ¼ÙÈçÕâÊÇÒ»¸ö¾­ÓÉ TAB traversal ¼¤·¢µÄ½¹µã×ªÒÆÊÂ¼ş£¬
-			// È«Ñ¡ËùÓĞÎÄ±¾
-			// TODO: ¼ì²âËã·¨¸Ä½ø£¿
+			// å‡å¦‚è¿™æ˜¯ä¸€ä¸ªç»ç”± TAB traversal æ¿€å‘çš„ç„¦ç‚¹è½¬ç§»äº‹ä»¶ï¼Œ
+			// å…¨é€‰æ‰€æœ‰æ–‡æœ¬
+			// TODO: æ£€æµ‹ç®—æ³•æ”¹è¿›ï¼Ÿ
 			wxRect rc( GetAbsoluteRect() );
 			if( !rc.Contains( notice.GetWparam(), notice.GetLparam() ) )
 			{
-				// ÎÒÃÇ±ØĞë×Ô¼ºÆô¶¯¹â±êµÄÏÔÊ¾
+				// æˆ‘ä»¬å¿…é¡»è‡ªå·±å¯åŠ¨å…‰æ ‡çš„æ˜¾ç¤º
 				if( pDC )
 					ShowCursorAtOnce( *pDC );
 
@@ -530,7 +530,7 @@ void VdkEdit::DoHandleNotify(const VdkNotify& notice)
 			wxMemoryDC mdc;
 			mdc.SetFont( m_Font );
 
-			// ¸üĞÂÎÄ±¾×Ü³¤¶È
+			// æ›´æ–°æ–‡æœ¬æ€»é•¿åº¦
 			m_total = 0;
 			CharIter i( begin() ), last( end() );
 			for( ; i != last; ++i )
@@ -539,14 +539,14 @@ void VdkEdit::DoHandleNotify(const VdkNotify& notice)
 				m_total += ch->UpdateSize( mdc );
 			}
 
-			// ¸üĞÂÑ¡ÔñÆğµã
+			// æ›´æ–°é€‰æ‹©èµ·ç‚¹
 			int cursorPos = GetCharOffset( m_cursorChar );
 			m_xViewStart = cursorPos - GetTextAreaSize();
 			TestViewStart();
 
 			MoveCursorOnScreen( cursorPos );
 
-			// ¸üĞÂÑ¡ÔñÖÕµã
+			// æ›´æ–°é€‰æ‹©ç»ˆç‚¹
 			if( !IsSelected() )
 			{
 				ResetSelEnd();
@@ -580,16 +580,16 @@ void VdkEdit::DoHandleKeyEvent(VdkKeyEvent& e)
 	{
 	case KEY_CHAR:
 		{
-			// ²»ÈİĞí±à¼­
+			// ä¸å®¹è®¸ç¼–è¾‘
 			if( !IsEditable() )
 				return;
 
 			wxChar ch( ke.GetUnicodeKey() );
 
-			// ²åÈë ASCII Âë»òÕßºº×Ö
+			// æ’å…¥ ASCII ç æˆ–è€…æ±‰å­—
 			if( ( ch > 0x1F && ch < 0x7F ) || ( ch > 0x7F ) )
 			{
-				// ³ÖĞøÏÔÊ¾¹â±ê
+				// æŒç»­æ˜¾ç¤ºå…‰æ ‡
 				ShowCursorAtOnce( e.dc, true );
 
 				if( IsSelected() )
@@ -597,7 +597,7 @@ void VdkEdit::DoHandleKeyEvent(VdkKeyEvent& e)
 
 				InsertChar( ch, true );
 
-				// ·¢ËÍÎÄ±¾¸Ä±äÊÂ¼ş
+				// å‘é€æ–‡æœ¬æ”¹å˜äº‹ä»¶
 				SendTextChangedMsg( &e.dc );
 			}
 
@@ -611,18 +611,18 @@ void VdkEdit::DoHandleKeyEvent(VdkKeyEvent& e)
 			{
 			case WXK_LEFT:
 
-				// ³ÖĞøÏÔÊ¾¹â±ê
+				// æŒç»­æ˜¾ç¤ºå…‰æ ‡
 				ShowCursorAtOnce( e.dc, true );
 
 			case WXK_HOME:
 				{
-					// ÒÑÑ¡ÔñÊ±²»ÒÆ¶¯¹â±ê
+					// å·²é€‰æ‹©æ—¶ä¸ç§»åŠ¨å…‰æ ‡
 					if( !ke.ShiftDown() )
 					{
 						CharIter cursorChar( m_cursorChar );
 						int cursorPos = m_cursorPos;
 
-						if( m_cursorPos > m_selEndPos ) // ÏòÓÒÑ¡Ôñ
+						if( m_cursorPos > m_selEndPos ) // å‘å³é€‰æ‹©
 						{
 							cursorPos = m_selEndPos;
 							cursorChar = m_selEndChar;
@@ -637,14 +637,14 @@ void VdkEdit::DoHandleKeyEvent(VdkKeyEvent& e)
 						}
 					}
 
-					// µ½ÁËµÚÒ»¸ö
+					// åˆ°äº†ç¬¬ä¸€ä¸ª
 					if( m_cursorChar == begin() )
 					{
 						ResumeTimer();
 						return;
 					}
 
-					// ÏÈ²»¸ü¸Äµ±Ç°×Ö·û£¬ÒÔ±¸ÊµÏÖ×Ö·ûµÄ¶àÑ¡
+					// å…ˆä¸æ›´æ”¹å½“å‰å­—ç¬¦ï¼Œä»¥å¤‡å®ç°å­—ç¬¦çš„å¤šé€‰
 					CharIter cursorChar( m_cursorChar );
 					int cursorPos = m_cursorPos;
 
@@ -677,17 +677,17 @@ void VdkEdit::DoHandleKeyEvent(VdkKeyEvent& e)
 
 			case WXK_RIGHT:
 
-				// ³ÖĞøÏÔÊ¾¹â±ê
+				// æŒç»­æ˜¾ç¤ºå…‰æ ‡
 				ShowCursorAtOnce( e.dc, true );
 
 			case WXK_END:
 				{
-					// ÒÑÑ¡ÔñÊ±²»ÒÆ¶¯¹â±ê
+					// å·²é€‰æ‹©æ—¶ä¸ç§»åŠ¨å…‰æ ‡
 					if( !ke.ShiftDown() )
 					{
 						int cursorPos( m_cursorPos );
 						CharIter cursorChar( m_cursorChar );
-						if( m_cursorPos < m_selEndPos ) // Ïò×óÑ¡Ôñ
+						if( m_cursorPos < m_selEndPos ) // å‘å·¦é€‰æ‹©
 						{
 							cursorPos = m_selEndPos;
 							cursorChar = m_selEndChar;
@@ -697,20 +697,20 @@ void VdkEdit::DoHandleKeyEvent(VdkKeyEvent& e)
 						{
 							SelectNone( cursorChar, cursorPos, &e.dc );
 
-							// ÏÈ²»ÒªÒÆ¶¯¹â±ê
+							// å…ˆä¸è¦ç§»åŠ¨å…‰æ ‡
 							if( keyCode == WXK_RIGHT )
 								break;
 						}
 					}
 
-					// µ½ÁË×îºóÒ»¸ö
+					// åˆ°äº†æœ€åä¸€ä¸ª
 					if( m_cursorChar == end() )
 					{
 						ResumeTimer();
 						return;
 					}
 
-					// ÏÈ²»¸ü¸Äµ±Ç°×Ö·û£¬ÒÔ±¸ÊµÏÖ×Ö·ûµÄ¶àÑ¡
+					// å…ˆä¸æ›´æ”¹å½“å‰å­—ç¬¦ï¼Œä»¥å¤‡å®ç°å­—ç¬¦çš„å¤šé€‰
 					CharIter cursorChar = m_cursorChar;
 					int cursorPos = m_cursorPos;
 
@@ -739,11 +739,11 @@ void VdkEdit::DoHandleKeyEvent(VdkKeyEvent& e)
 
 			case WXK_BACK:
 
-				// ²»ÈİĞí±à¼­
+				// ä¸å®¹è®¸ç¼–è¾‘
 				if( !IsEditable() )
 					return;
 
-				// ³ÖĞøÏÔÊ¾¹â±ê
+				// æŒç»­æ˜¾ç¤ºå…‰æ ‡
 				ShowCursorAtOnce( e.dc, true );
 
 				if( IsSelected() )
@@ -758,11 +758,11 @@ void VdkEdit::DoHandleKeyEvent(VdkKeyEvent& e)
 
 			case WXK_DELETE:
 
-				// ²»ÈİĞí±à¼­
+				// ä¸å®¹è®¸ç¼–è¾‘
 				if( !IsEditable() )
 					return;
 
-				// ³ÖĞøÏÔÊ¾¹â±ê
+				// æŒç»­æ˜¾ç¤ºå…‰æ ‡
 				ShowCursorAtOnce( e.dc, true );
 
 				if( IsSelected() )
@@ -841,14 +841,14 @@ void VdkEdit::DoHandleKeyEvent(VdkKeyEvent& e)
 					}
 
 					break;
-				} // ¼ÓËÙ¼ü´¦Àí
+				} // åŠ é€Ÿé”®å¤„ç†
 
-				// Ö±½ÓÈ¡ÏûÊÂ¼şµÄ´¦Àí
+				// ç›´æ¥å–æ¶ˆäº‹ä»¶çš„å¤„ç†
 
 			default:
 #				ifdef __WXMSW__
-				// ÔÚÃ¿´Î°´¼üÇ°¶¼¸üĞÂÊäÈë·¨´°¿ÚµÄÎ»ÖÃ£¬
-				// ÒòÎªÄ³Ğ©ÀÏÊ½µÄÊäÈë·¨µÄ¼æÈİĞÔ²»´óºÃ
+				// åœ¨æ¯æ¬¡æŒ‰é”®å‰éƒ½æ›´æ–°è¾“å…¥æ³•çª—å£çš„ä½ç½®ï¼Œ
+				// å› ä¸ºæŸäº›è€å¼çš„è¾“å…¥æ³•çš„å…¼å®¹æ€§ä¸å¤§å¥½
 				MoveCursorOnScreen( m_cursorPos );
 #				endif // __WXMSW__
 
@@ -872,7 +872,7 @@ void VdkEdit::PopupMenu(int x, int y)
 	if( !m_menu )
 		ImplementMenu();
 
-	// ÑÓ³ÙÏÔÊ¾²Ëµ¥£¬±ÜÃâÓÒ¼üµ¥»÷Ê±ÆÆ»µ¿Ø¼ş×´Ì¬
+	// å»¶è¿Ÿæ˜¾ç¤ºèœå•ï¼Œé¿å…å³é”®å•å‡»æ—¶ç ´åæ§ä»¶çŠ¶æ€
 	m_Window->ShowContextMenu( this, x, y, true );
 }
 
@@ -881,7 +881,7 @@ void VdkEdit::ImplementMenu()
 	VdkCtrlId id = VdkGetUniqueId( 20 );
 	m_menu = m_Window->CreateMenu( NULL, id );
 	m_menu->SetBestWidth( 150 );
-	// VMS_ERASE_ALL È·±£²Ëµ¥µÄÖØ»­±È½ÏË³³©£¬±ÜÃâ²ĞÁô
+	// VMS_ERASE_ALL ç¡®ä¿èœå•çš„é‡ç”»æ¯”è¾ƒé¡ºç•…ï¼Œé¿å…æ®‹ç•™
 	m_menu->SetAddinStyle( VMS_ERASE_ALL | VMS_SEND_PRESHOW_MSG );
 
 	m_menuId0 = id + 1;
@@ -891,17 +891,17 @@ void VdkEdit::ImplementMenu()
 	}
 
 	int i = -1;
-	m_menu->AppendItem( m_menuItems[++i]->caption( L"³·Ïú(&U)" ).id( ++id ) );
-	m_menu->AppendItem( m_menuItems[++i]->caption( L"ÖØ×ö(&R)" ).id( ++id ) );
+	m_menu->AppendItem( m_menuItems[++i]->caption( L"æ’¤é”€(&U)" ).id( ++id ) );
+	m_menu->AppendItem( m_menuItems[++i]->caption( L"é‡åš(&R)" ).id( ++id ) );
 	m_menu->AppendSeperator();
 
-	m_menu->AppendItem( m_menuItems[++i]->caption( L"¼ôÇĞ(&T)" ).id( ++id ) );
-	m_menu->AppendItem( m_menuItems[++i]->caption( L"¸´ÖÆ(&C)" ).id( ++id ) );
-	m_menu->AppendItem( m_menuItems[++i]->caption( L"Õ³Ìù(&P)" ).id( ++id ) );
-	m_menu->AppendItem( m_menuItems[++i]->caption( L"É¾³ı(&D)" ).id( ++id ) );
+	m_menu->AppendItem( m_menuItems[++i]->caption( L"å‰ªåˆ‡(&T)" ).id( ++id ) );
+	m_menu->AppendItem( m_menuItems[++i]->caption( L"å¤åˆ¶(&C)" ).id( ++id ) );
+	m_menu->AppendItem( m_menuItems[++i]->caption( L"ç²˜è´´(&P)" ).id( ++id ) );
+	m_menu->AppendItem( m_menuItems[++i]->caption( L"åˆ é™¤(&D)" ).id( ++id ) );
 	m_menu->AppendSeperator();
 
-	m_menu->AppendItem( m_menuItems[++i]->caption( L"È«Ñ¡(&A)" ).id( ++id ) );
+	m_menu->AppendItem( m_menuItems[++i]->caption( L"å…¨é€‰(&A)" ).id( ++id ) );
 
 	//------------------------------------------------
 
@@ -979,7 +979,7 @@ void VdkEdit::OnMenuEvent(VdkVObjEvent& e)
 		break;
 	}
 
-	// ±¯¾ç°¡£¬¸ÉÂïÒª¸ã¸ö¸üĞÂÇøÓòÄØ£¿ÀÏÊÇÔÚÕâÀï³ö´í
+	// æ‚²å‰§å•Šï¼Œå¹²å˜›è¦æä¸ªæ›´æ–°åŒºåŸŸå‘¢ï¼Ÿè€æ˜¯åœ¨è¿™é‡Œå‡ºé”™
 	VdkDC dc( m_Window );
 	Draw( dc );
 }
@@ -1064,7 +1064,7 @@ void VdkEdit::Insert(const wxString& strText, long pos, wxDC* pDC)
 	if( strText.empty() )
 		return;
 
-	// ¼ÙÈçÖ¸¶¨ÁË×Ö·ûĞòºÅ£¬È¡Ïûµ±Ç°Ñ¡Ôñ£¬²åÈëµ½Ö¸¶¨Î»ÖÃ
+	// å‡å¦‚æŒ‡å®šäº†å­—ç¬¦åºå·ï¼Œå–æ¶ˆå½“å‰é€‰æ‹©ï¼Œæ’å…¥åˆ°æŒ‡å®šä½ç½®
 	if( pos != wxNOT_FOUND )
 	{
 		wxASSERT( pos >= 0 );
@@ -1083,7 +1083,7 @@ void VdkEdit::Insert(const wxString& strText, long pos, wxDC* pDC)
 	}
 	else
 	{
-		// Ìæ»»ÒÑÑ¡
+		// æ›¿æ¢å·²é€‰
 		if( IsSelected() )
 			RemoveSelected( NULL );
 
@@ -1105,13 +1105,13 @@ void VdkEdit::Insert(const wxString& strText, long pos, wxDC* pDC)
 		SetUndoAction( action );
 	}
 
-	// ·¢ËÍÎÄ±¾¸Ä±äÊÂ¼ş
+	// å‘é€æ–‡æœ¬æ”¹å˜äº‹ä»¶
 	SendTextChangedMsg( pDC );
 }
 
 void VdkEdit::InsertChar(wxChar ch, bool saveUndo)
 {
-	// ±ØĞëÔÚ²åÈë×Ö·ûÖ®Ç°»ñÈ¡²åÈëµãĞÅÏ¢
+	// å¿…é¡»åœ¨æ’å…¥å­—ç¬¦ä¹‹å‰è·å–æ’å…¥ç‚¹ä¿¡æ¯
 	if( !IsOnUndoRedo() && saveUndo )
 	{
 		long pos( IndexOf( m_cursorChar ) );
@@ -1135,7 +1135,7 @@ void VdkEdit::InsertChar(wxChar ch, bool saveUndo)
 
 void VdkEdit::Backspace()
 {
-	// ¹â±êÎ»ÓÚ¿ªÍ·
+	// å…‰æ ‡ä½äºå¼€å¤´
 	if( m_cursorChar == begin() )
 		return;
 
@@ -1163,13 +1163,13 @@ void VdkEdit::Backspace()
 	delete *del;
 	m_text.erase( del );
 
-	// ¸üĞÂ²åÈëµã£¬²¢¾¡¿ÉÄÜ¶àÏÔÊ¾Ò»Ğ©¶îÍâµÄÎÄ±¾
+	// æ›´æ–°æ’å…¥ç‚¹ï¼Œå¹¶å°½å¯èƒ½å¤šæ˜¾ç¤ºä¸€äº›é¢å¤–çš„æ–‡æœ¬
 	SelectNone( m_cursorChar, m_cursorPos, NULL );
 }
 
 void VdkEdit::Delete()
 {
-	// ÄÚÈİÎª¿Õ»òµ±Ç°¹â±êÕıÔÚ×îÄ©Î²
+	// å†…å®¹ä¸ºç©ºæˆ–å½“å‰å…‰æ ‡æ­£åœ¨æœ€æœ«å°¾
 	if( m_cursorChar == end() )
 		return;
 
@@ -1185,8 +1185,8 @@ void VdkEdit::Delete()
 
 	//------------------------------------------------
 
-	// ²»ĞèÒª¶àÏÔÊ¾Ò»Ğ©¶îÍâµÄÎÄ±¾£¬ÒòÎªÖ®Ç°½«²åÈëµãÒÆµ½¿ÉÊÓÇøÓòµÄÄ©Î²
-	// Ê±ÒÑ¾­×öÁËÕâÒ»²½¹¤×÷
+	// ä¸éœ€è¦å¤šæ˜¾ç¤ºä¸€äº›é¢å¤–çš„æ–‡æœ¬ï¼Œå› ä¸ºä¹‹å‰å°†æ’å…¥ç‚¹ç§»åˆ°å¯è§†åŒºåŸŸçš„æœ«å°¾
+	// æ—¶å·²ç»åšäº†è¿™ä¸€æ­¥å·¥ä½œ
 	TestMaxViewStart();
 }
 
@@ -1290,14 +1290,14 @@ void VdkEdit::SetUndoAction(Action* action)
 
 	//------------------------------------------------
 
-	// Çå³ıÒÑÊ§Ğ§µÄ³·Ïú²Ù×÷
+	// æ¸…é™¤å·²å¤±æ•ˆçš„æ’¤é”€æ“ä½œ
 	ActionIter first( m_actions.begin() + m_nextUndo + 1 ),
 			   last( m_actions.end() );
 	xerase_ptrs( m_actions, first, last );
 
 	//------------------------------------------------
 
-	// ¼ì²é³·ÏúÁĞ±íÊÇ·ñÒÑÈ»ÂúÁË
+	// æ£€æŸ¥æ’¤é”€åˆ—è¡¨æ˜¯å¦å·²ç„¶æ»¡äº†
 	int size( m_actions.size() );
 	wxASSERT( size <= m_maxUndo );
 	if( size == m_maxUndo )
@@ -1316,7 +1316,7 @@ void VdkEdit::SetUndoAction(Action* action)
 
 	//------------------------------------------------
 
-	// ·¢ËÍÎÄ±¾¸Ä±äÊÂ¼ş
+	// å‘é€æ–‡æœ¬æ”¹å˜äº‹ä»¶
 
 	if( IsReadyForEvent() )
 	{
@@ -1336,7 +1336,7 @@ void VdkEdit::Undo(wxDC* pDC)
 		Action* action( m_actions[m_nextUndo] );
 		action->Exec( pDC );
 
-		// ÏòÇ°ÒÆ
+		// å‘å‰ç§»
 		--m_nextUndo;
 
 		//------------------------------------------------
@@ -1356,7 +1356,7 @@ void VdkEdit::Redo(wxDC* pDC)
 		Action* action( m_actions[m_nextUndo + 1] );
 		action->UnExec( pDC );
 
-		// ÏòÇ°ÒÆ
+		// å‘å‰ç§»
 		++m_nextUndo;
 
 		//------------------------------------------------
@@ -1375,8 +1375,8 @@ void VdkEdit::Backward(long step)
 
 	int dx( 0 );
 	CharIter curr( m_cursorChar ), first( begin() );
-	// ¼ÙÈçµ±Ç°¹â±êÎ»ÓÚÎÄ±¾¿òÄ©Î²£¬ÔòĞèÌØÊâ´¦Àí£¬ÒòÎª --last ²»ÄÜµÃµ½
-	// ×îºóÒ»¸ö×Ö·ûµÄµü´úÆ÷
+	// å‡å¦‚å½“å‰å…‰æ ‡ä½äºæ–‡æœ¬æ¡†æœ«å°¾ï¼Œåˆ™éœ€ç‰¹æ®Šå¤„ç†ï¼Œå› ä¸º --last ä¸èƒ½å¾—åˆ°
+	// æœ€åä¸€ä¸ªå­—ç¬¦çš„è¿­ä»£å™¨
 	if( curr == end() )
 	{
 		--step;
@@ -1439,25 +1439,25 @@ void VdkEdit::MoveToEnd(wxDC* pDC)
 
 void VdkEdit::SetInsertionPoint(const CharIter& pos, int cursorPos, wxDC* pDC)
 {
-	// ²»ĞèÒª¼ì²âÖ¸¶¨²åÈëµãÊÇ·ñÓëµ±Ç°²åÈëµãÎ»ÖÃÏàÍ¬£¬ÒòÎªÎÒÃÇ¿ÉÄÜ½ö½öÊÇĞèÒª
-	// ±¾º¯Êı¡°¶àÏÔÊ¾Ò»Ğ©¶îÍâµÄÎÄ±¾¡±Õâ¸ö¹¦ÄÜ
+	// ä¸éœ€è¦æ£€æµ‹æŒ‡å®šæ’å…¥ç‚¹æ˜¯å¦ä¸å½“å‰æ’å…¥ç‚¹ä½ç½®ç›¸åŒï¼Œå› ä¸ºæˆ‘ä»¬å¯èƒ½ä»…ä»…æ˜¯éœ€è¦
+	// æœ¬å‡½æ•°â€œå¤šæ˜¾ç¤ºä¸€äº›é¢å¤–çš„æ–‡æœ¬â€è¿™ä¸ªåŠŸèƒ½
 
 	if( cursorPos == wxNOT_FOUND )
 		cursorPos = GetCharOffset( pos );
 
-	// ´¦Àí¹ö¶¯
+	// å¤„ç†æ»šåŠ¨
 	int showArea( GetTextAreaSize() );
 	if( cursorPos > (m_xViewStart + showArea) ||
 		cursorPos < (m_xViewStart) )
 	{
-		// ²»ÄÜ½« maxAddIn ÉèÎª static µÄ£¬ÒòÎªÎÒÃÇµÄ m_Rect.width »á·¢Éú±ä»¯
+		// ä¸èƒ½å°† maxAddIn è®¾ä¸º static çš„ï¼Œå› ä¸ºæˆ‘ä»¬çš„ m_Rect.width ä¼šå‘ç”Ÿå˜åŒ–
 		const int maxAddIn = float( m_Rect.width ) * 0.3;
 
-		if( cursorPos > m_cursorPos ) // ÏòÓÒÒÆ¶¯¹â±ê
+		if( cursorPos > m_cursorPos ) // å‘å³ç§»åŠ¨å…‰æ ‡
 		{
 			m_xViewStart = cursorPos - showArea;
 
-			// ¶àÏÔÊ¾Ò»Ğ©¶îÍâµÄÎÄ±¾
+			// å¤šæ˜¾ç¤ºä¸€äº›é¢å¤–çš„æ–‡æœ¬
 			int addIn = 0, charsize;
 			CharIter i( pos ), last( end() );
 			for( ; i != last; ++i )
@@ -1480,7 +1480,7 @@ void VdkEdit::SetInsertionPoint(const CharIter& pos, int cursorPos, wxDC* pDC)
 		{
 			m_xViewStart = cursorPos;
 
-			// ¶àÏÔÊ¾Ò»Ğ©¶îÍâµÄÎÄ±¾
+			// å¤šæ˜¾ç¤ºä¸€äº›é¢å¤–çš„æ–‡æœ¬
 			int addIn = 0, charsize;
 			CharIter i( pos );
 			for( ; ; --i )
@@ -1506,7 +1506,7 @@ void VdkEdit::SetInsertionPoint(const CharIter& pos, int cursorPos, wxDC* pDC)
 	}
 
 	//------------------------------------------------
-	// Ìá½»¸ü¸Ä
+	// æäº¤æ›´æ”¹
 
 	m_cursorChar = pos;
 	MoveCursorOnScreen( cursorPos );
@@ -1573,9 +1573,9 @@ void VdkEdit::SelectSuccessiveText(wxDC* pDC)
 	type0 = GetCharType( first );
 	CharIter beg0( begin() );
 
-	// ÏòÇ°²éÕÒ
-	temp = first; // ²»ÄÜÊ©ĞĞ ++temp; µÄÓÅ»¯£¬·ñÔòÑ¡ÖĞ×îºóÒ»¸ö×Ö·ûÊ±»áµ¼ÖÂ
-	// ÏÂÃæµÄ´úÂë²»»áÖ´ĞĞ
+	// å‘å‰æŸ¥æ‰¾
+	temp = first; // ä¸èƒ½æ–½è¡Œ ++temp; çš„ä¼˜åŒ–ï¼Œå¦åˆ™é€‰ä¸­æœ€åä¸€ä¸ªå­—ç¬¦æ—¶ä¼šå¯¼è‡´
+	// ä¸‹é¢çš„ä»£ç ä¸ä¼šæ‰§è¡Œ
 	if( temp != end0 )
 	{
 		while( true )
@@ -1594,7 +1594,7 @@ void VdkEdit::SelectSuccessiveText(wxDC* pDC)
 
 	if( last != end0 )
 	{
-		// Ïòºó²éÕÒ
+		// å‘åæŸ¥æ‰¾
 		while( true )
 		{
 			type = GetCharType( last );
@@ -1618,7 +1618,7 @@ VdkEdit::CharType VdkEdit::GetCharType(const CharIter& iter)
 {
 	wxChar ch( (*iter)->get() );
 
-	// Ò»¶¨ÒªÏÈÅĞ¶ÏÖĞÎÄ×Ö·û£¬MS µÄ±¾µØ»¯»áµ·¹í
+	// ä¸€å®šè¦å…ˆåˆ¤æ–­ä¸­æ–‡å­—ç¬¦ï¼ŒMS çš„æœ¬åœ°åŒ–ä¼šæ£é¬¼
 	if( ch > 0x7F )
 		return CT_NON_ENGLISH;
 
@@ -1635,7 +1635,7 @@ VdkEdit::CharType VdkEdit::GetCharType(const CharIter& iter)
 	if( ispunct( ch ) )
 		return CT_PUNCTUATE;
 
-	wxASSERT_MSG( false, L"Î´Öª×Ö·ûÀàĞÍ¡£" );
+	wxASSERT_MSG( false, L"æœªçŸ¥å­—ç¬¦ç±»å‹ã€‚" );
 	return CT_NONE;
 }
 
@@ -1661,7 +1661,7 @@ void VdkEdit::RecoverChar(const CharIter& i, wxDC &dc)
 
 	wxBrush brush( m_sstyle->m_BgBrush );
 	if( IsSelected() &&
-		m_selEndPos > m_cursorPos && // Ïò×óÑ¡Ôñ
+		m_selEndPos > m_cursorPos && // å‘å·¦é€‰æ‹©
 		x == m_cursorPos + m_textPadding )
 	{
 		brush = m_sstyle->m_SelTextBgBrush;
@@ -1719,7 +1719,7 @@ void VdkEdit::DraggTo(const CharIter& i, int cursorPos, wxDC* pDC)
 	if( i == m_cursorChar )
 		return;
 
-	// ¹â±êËæ×ÅÖ¸ÕëÒÆ¶¯
+	// å…‰æ ‡éšç€æŒ‡é’ˆç§»åŠ¨
 	SetInsertionPoint( i, cursorPos, NULL );
 
 	if( pDC )
@@ -1748,7 +1748,7 @@ void VdkEdit::GetSelRange(CharIter& first, CharIter& last) const
 	first = m_cursorChar;
 	last = m_selEndChar;
 
-	// ÓĞ¿ÉÄÜÑ¡ÖĞµÄÎÄ±¾ÊÇ²»¿ÉÏÔÊ¾µÄ¿ØÖÆ×Ö·û
+	// æœ‰å¯èƒ½é€‰ä¸­çš„æ–‡æœ¬æ˜¯ä¸å¯æ˜¾ç¤ºçš„æ§åˆ¶å­—ç¬¦
 	if( m_selEndPos != m_cursorPos )
 	{
 		if( m_selEndPos < m_cursorPos )
@@ -1801,9 +1801,9 @@ void VdkEdit::DoRemove(const CharIter& first,
 	{
 		ch = *i;
 
-		// »ñÈ¡¿í¶È¸Ä±äÁ¿
+		// è·å–å®½åº¦æ”¹å˜é‡
 		dx += ch->GetWidth();
-		// ±£´æÒÑÉ¾³ı×Ö·û£¬Îª¡°³·Ïú¡±×ö×¼±¸
+		// ä¿å­˜å·²åˆ é™¤å­—ç¬¦ï¼Œä¸ºâ€œæ’¤é”€â€åšå‡†å¤‡
 		deleted.Append( ch->get() );
 	}
 
@@ -1846,7 +1846,7 @@ void VdkEdit::TestViewStart()
 	int maxViewStart = m_total - GetTextAreaSize();
 	if( m_xViewStart >= maxViewStart )
 	{
-		// Ä©Î²Ìí¼ÓÒ»¸ö m_textPadding
+		// æœ«å°¾æ·»åŠ ä¸€ä¸ª m_textPadding
 		m_xViewStart = maxViewStart + m_textPadding;
 	}
 }
@@ -2045,11 +2045,11 @@ void VdkEdit::InsRmv::UndoDel(wxDC* pDC)
 	wxString::size_type length( m_operand.length() );
 	if( length > 1 )
 	{
-		// É¾³ıµ¥¸ö×Ö·ûÊ±²»ÒªÑ¡ÖĞÕâ¸ö×Ö·û
+		// åˆ é™¤å•ä¸ªå­—ç¬¦æ—¶ä¸è¦é€‰ä¸­è¿™ä¸ªå­—ç¬¦
 		m_edit->SetSelection
 			( m_insertPoint, m_insertPoint + length, NULL );
 	}
-	// ¼ÙÈçÊ¹ÓÃ Delete ¼üÉ¾³ıÒ»¸ö¹â±êºóÃæµÄ×Ö·û£¬»Ö¸´ºóÇ°ÒÆ¹â±êÒ»¸ö×Ö·û
+	// å‡å¦‚ä½¿ç”¨ Delete é”®åˆ é™¤ä¸€ä¸ªå…‰æ ‡åé¢çš„å­—ç¬¦ï¼Œæ¢å¤åå‰ç§»å…‰æ ‡ä¸€ä¸ªå­—ç¬¦
 	else if( m_type == IRT_DEL )
 		m_edit->Backward( 1 );
 
@@ -2072,12 +2072,12 @@ VdkEditStaticStyle::VdkEditStaticStyle()
 
 }
 
-/// \brief VdkEdit ¾²Ì¬·ç¸ñ¹¤³§
+/// \brief VdkEdit é™æ€é£æ ¼å·¥å‚
 class VdkEditStaticStyleFactory
 {
 public:
 
-	/// \brief »ñÈ¡Ö¸¶¨µÄ¾²Ì¬·ç¸ñ
+	/// \brief è·å–æŒ‡å®šçš„é™æ€é£æ ¼
 	static VdkEditStaticStyle* GetStyle(VdkEditStaticStyleID id)
 	{
 		switch( id )
@@ -2092,7 +2092,7 @@ public:
 
 		default:
 
-			wxASSERT_MSG( false, "ÎŞĞ§·ç¸ñ±êÊ¶·û¡£" );
+			wxASSERT_MSG( false, "æ— æ•ˆé£æ ¼æ ‡è¯†ç¬¦ã€‚" );
 
 			return NULL;
 		}
@@ -2100,12 +2100,12 @@ public:
 
 private:
 
-	/// \brief »ñÈ¡ Word 2003 ÑùÊ½µÄ¾²Ì¬·ç¸ñ
+	/// \brief è·å– Word 2003 æ ·å¼çš„é™æ€é£æ ¼
 	class Word2003Style
 	{
 	public:
 
-		// ¹¹½¨º¯Êı
+		// æ„å»ºå‡½æ•°
 		static VdkEditStaticStyle* Implement()
 		{
 			++ms_refCount;
@@ -2121,7 +2121,7 @@ private:
 			return ms_style;
 		}
 
-		// ÒıÓÃ¼ÆÊı¼õÒ»
+		// å¼•ç”¨è®¡æ•°å‡ä¸€
 		static void Reset()
 		{
 			if( ms_refCount == 0 )
@@ -2143,12 +2143,12 @@ private:
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief »ñÈ¡ Windows Ä¬ÈÏÑùÊ½µÄ¾²Ì¬·ç¸ñ
+	/// \brief è·å– Windows é»˜è®¤æ ·å¼çš„é™æ€é£æ ¼
 	class WindowsNormalStyle
 	{
 	public:
 
-		// ¹¹½¨º¯Êı
+		// æ„å»ºå‡½æ•°
 		static VdkEditStaticStyle* Implement()
 		{
 			++ms_refCount;
@@ -2162,7 +2162,7 @@ private:
 			return ms_style;
 		}
 
-		// ÒıÓÃ¼ÆÊı¼õÒ»
+		// å¼•ç”¨è®¡æ•°å‡ä¸€
 		static void Reset()
 		{
 			if( ms_refCount == 0 )

@@ -1,28 +1,28 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkControl.h"
 #include <wx/hashmap.h>
 
 class VdkVObjEvent;
 class VdkToggleButton;
-/// \brief ÀàËÆÀÏ°æ QQ µÄÁªÏµÈË·Ö×éÇĞ»»ÁĞ±í
+/// \brief ç±»ä¼¼è€ç‰ˆ QQ çš„è”ç³»äººåˆ†ç»„åˆ‡æ¢åˆ—è¡¨
 class VdkSwitcher : public VdkCtrlHandler
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkSwitcher(){ Init(); }
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkSwitcher( VdkWindow* parent,
 			     const wxString& strName,
 			     const wxString& strFileName,
 			     const wxRect& rt,
 				 int nExpl = 3 );
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief Êµ¼Ê¹¹½¨º¯Êı
+	/// \brief å®é™…æ„å»ºå‡½æ•°
 	void Create( VdkWindow* win,
 				 const wxString& strName,
 				 const wxRect& rc,
@@ -31,33 +31,33 @@ public:
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ½ûÓÃ VdkSwitcher
+	/// \brief ç¦ç”¨ VdkSwitcher
 	void Disable(bool bDisabled, wxDC* pDC);
 
-	/// \brief ÇĞ»»µ½Ö¸¶¨Ïî
+	/// \brief åˆ‡æ¢åˆ°æŒ‡å®šé¡¹
 	void Switch(int id, wxDC* pDC);
 
-	/// \brief ÇĞ»»µ½Ö¸¶¨Ïî
+	/// \brief åˆ‡æ¢åˆ°æŒ‡å®šé¡¹
 	void Switch(VdkToggleButton* btn, wxDC* pDC);
 
-	/// \brief »ñÈ¡µ±Ç°»î¶¯µÄÑ¡ÏîÒ³
+	/// \brief è·å–å½“å‰æ´»åŠ¨çš„é€‰é¡¹é¡µ
 	int GetCurrentId() const { return m_curr; }
 
-	/// \brief Ìí¼ÓÑ¡ÏîÒ³
+	/// \brief æ·»åŠ é€‰é¡¹é¡µ
 	void AddTab(const wxString& strCaption, VdkControl* win);
 
-	/// \brief »ñÈ¡ÇĞ»»ÌõµÄ´óĞ¡
+	/// \brief è·å–åˆ‡æ¢æ¡çš„å¤§å°
 	int GetTabHeight() const { return m_h; };
 
 private:
 
-	/// \brief ³õÊ¼»¯¿Ø¼ş
+	/// \brief åˆå§‹åŒ–æ§ä»¶
 	void Init();
 
-	/// \brief ½ÓÊÕ¡¢´¦ÀíÍ¨ÖªĞÅÏ¢
+	/// \brief æ¥æ”¶ã€å¤„ç†é€šçŸ¥ä¿¡æ¯
 	virtual void DoHandleNotify(const VdkNotify& notice);
 
-	/// \brief ÇĞ»»±êÇ©Ò³Ê±ÓÃ
+	/// \brief åˆ‡æ¢æ ‡ç­¾é¡µæ—¶ç”¨
 	void OnSwitchTabs(VdkVObjEvent&);
 
 	void WalkCoords(int id);

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "VdkCheckBox.h"
 
 #include "VdkWindow.h"
@@ -46,7 +46,7 @@ void VdkCheckBox::Create(VdkWindow* Window, const wxString& strName, wxRect rc)
 	m_nPaddingY = ( m_bmArray.GetHeight() - h ) / 2;
 	m_bToggled = false;
 
-	// TODO: Í·ÌÛµÄÎÊÌâ£ºÓ¢ÎÄ²»»á±»¾«È·µØ»­µ½ÕıÈ·µÄÎ»ÖÃÉÏ
+	// TODO: å¤´ç–¼çš„é—®é¢˜ï¼šè‹±æ–‡ä¸ä¼šè¢«ç²¾ç¡®åœ°ç”»åˆ°æ­£ç¡®çš„ä½ç½®ä¸Š
 	SetAddinStyle( VCS_ERASE_BG );
 }
 

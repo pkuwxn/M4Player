@@ -1,4 +1,4 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkArtProvider.h
  * Purpose:   Code for VdkArtProvider declaration
  * Author:    vanxining (vanxining@139.com)
@@ -9,22 +9,22 @@
 #include <wx/artprov.h>
 #include "VdkBitmapArray.h"
 
-/// \brief ×Ô»­µÄÎÄ±¾¿ò¿Ø¼ş
+/// \brief è‡ªç”»çš„æ–‡æœ¬æ¡†æ§ä»¶
 ///
-/// ¹æ±Ü¼«¶ÈÂé·³µÄ×Ô»­¿Ø¼şÓëÔ­Éú¿Ø¼ş»ìºÏÊ¹ÓÃÊ±µÄ½¹µã×ªÒÆÎÊÌâ¡£
+/// è§„é¿æåº¦éº»çƒ¦çš„è‡ªç”»æ§ä»¶ä¸åŸç”Ÿæ§ä»¶æ··åˆä½¿ç”¨æ—¶çš„ç„¦ç‚¹è½¬ç§»é—®é¢˜ã€‚
 class VdkArtProvider : public wxArtProvider
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkArtProvider();
 
-	/// \brief »ñÈ¡Ö¸¶¨Î»ÖÃÉÏµÄĞ¡Î»Í¼
+	/// \brief è·å–æŒ‡å®šä½ç½®ä¸Šçš„å°ä½å›¾
 	VdkBitmapArrayId GetBitmaplet(int x, int y);
 
 protected:
 
-	/// \brief »ñÈ¡Ö¸¶¨Î»Í¼
+	/// \brief è·å–æŒ‡å®šä½å›¾
 	wxBitmap CreateBitmap(const wxArtID& id,
 						  const wxArtClient& client,
 						  const wxSize& size);

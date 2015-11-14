@@ -1,4 +1,4 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkMenuBar.h
  * Purpose:   Code for VdkMenuBar declaration
  * Author:    vanxining (vanxining@139.com)
@@ -13,23 +13,23 @@
 
 class VdkMenuBarEntryStyle;
 
-/// \brief VdkMenuBarEntry ËùĞèµÄ³õÊ¼»¯ĞÅÏ¢
+/// \brief VdkMenuBarEntry æ‰€éœ€çš„åˆå§‹åŒ–ä¿¡æ¯
 class VdkMenuBarEntryInitializer : public VdkButtonInitializer
 {
 public:
 
 	typedef VdkMenuBarEntryInitializer MenuBarEntry;
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkMenuBarEntryInitializer();
 
-	/// \brief ÉèÖÃËùÊôµÄ²Ëµ¥
+	/// \brief è®¾ç½®æ‰€å±çš„èœå•
 	MenuBarEntry& menu(VdkMenu* m) { Menu = m; return *this; }
 
-	/// \brief ´Ó\a s ÖĞ¶¯Ì¬Éú³ÉĞÂµÄ²Ëµ¥
+	/// \brief ä»\a s ä¸­åŠ¨æ€ç”Ÿæˆæ–°çš„èœå•
 	MenuBarEntry& menuTree(const wxString& s) { MenuTree = s; return *this; }
 
-	/// \brief ÉèÖÃ»æÖÆÊ±ËùÓÃµÄ·ç¸ñ
+	/// \brief è®¾ç½®ç»˜åˆ¶æ—¶æ‰€ç”¨çš„é£æ ¼
 	MenuBarEntry& drawStyle(VdkMenuBarEntryStyle* s) { DrawStyle = s; return *this; }
 
 private:
@@ -41,7 +41,7 @@ private:
 	friend class VdkMenuBarEntry;
 };
 
-/// \brief Îª VdkMenuBar ÉèÖÃÆ¤·ô
+/// \brief ä¸º VdkMenuBar è®¾ç½®çš®è‚¤
 class VdkMenuBarInitializer : 
 	public VdkCtrlInitializer< VdkMenuBarInitializer >
 {
@@ -49,10 +49,10 @@ public:
 
 	typedef VdkMenuBarInitializer MenuBar;
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkMenuBarInitializer();
 
-	/// \brief ÉèÖÃËùÓĞµÄ²Ëµ¥Ïî
+	/// \brief è®¾ç½®æ‰€æœ‰çš„èœå•é¡¹
 	MenuBar& menus(VdkMenuBarEntryInitializer menus[]) {
 		menuArray = menus; return *this;
 	}
@@ -68,45 +68,45 @@ private:
 class VdkMenuBarEntry;
 WX_DECLARE_LIST_PTR( VdkMenuBarEntry, ListOfEntry );
 
-/// \brief ²Ëµ¥À¸
+/// \brief èœå•æ 
 class VdkMenuBar : public VdkCtrlHandler, public VdkEventFilter
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkMenuBar();
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief ¹¹½¨¿Ø¼ş
+	/// \brief æ„å»ºæ§ä»¶
 	void Create(const VdkMenuBarInitializer& init_data);
 
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	~VdkMenuBar();
 	
-	/// \brief Íù²Ëµ¥À¸ÖĞÌí¼ÓÒ»Ïî
-	/// \param strCaption ±êÌâÎÄ±¾
-	/// \param menu ÓëÖ®Ïà¹ØÁªµÄ²Ëµ¥¾ä±ú
-	/// \param strMenuTree Èô\a menu Îª¿Õ£¬Ôò¿ÉÖ¸¶¨±¾²ÎÊı½øĞĞ¶¯Ì¬´´½¨
+	/// \brief å¾€èœå•æ ä¸­æ·»åŠ ä¸€é¡¹
+	/// \param strCaption æ ‡é¢˜æ–‡æœ¬
+	/// \param menu ä¸ä¹‹ç›¸å…³è”çš„èœå•å¥æŸ„
+	/// \param strMenuTree è‹¥\a menu ä¸ºç©ºï¼Œåˆ™å¯æŒ‡å®šæœ¬å‚æ•°è¿›è¡ŒåŠ¨æ€åˆ›å»º
 	VdkMenuBar& Append(wxString strCaption, 
 					   VdkMenu* menu, 
 					   const wxString& strMenuTree = wxEmptyString);
 
 public:
 
-	/// \brief ¹ıÂË²Ëµ¥µ¯³öºóÊó±êÒÆ¶¯ÊÂ¼ş
+	/// \brief è¿‡æ»¤èœå•å¼¹å‡ºåé¼ æ ‡ç§»åŠ¨äº‹ä»¶
 	virtual bool FilterEvent(const EventForFiltering& e);
 
 private:
 
-	// ´Ó¶ÑÉÏ´´½¨Ò»¸öĞÂÏîµÄ C++ ¶ÔÏó
+	// ä»å †ä¸Šåˆ›å»ºä¸€ä¸ªæ–°é¡¹çš„ C++ å¯¹è±¡
 	virtual VdkMenuBarEntry* CreateNewEntry(int& w, int& h);
 
-	// ²Á³ı±³¾°
+	// æ“¦é™¤èƒŒæ™¯
 	virtual void DoEraseBackground(wxDC& dc, const wxRect& rc);
 
-	// ´¦ÀíÍ¨ÖªĞÅÏ¢
+	// å¤„ç†é€šçŸ¥ä¿¡æ¯
 	virtual void DoHandleNotify(const VdkNotify& notice);
 
 	unsigned				m_total;
@@ -123,36 +123,36 @@ enum VdkMenuBarEntryStyleEnum {
 	VMBES_OFFICE2003,
 };
 
-/// \brief ²Ëµ¥À¸ÏîÄ¿µÄ¹²ÓÃ·ç¸ñ¶ÔÏó
+/// \brief èœå•æ é¡¹ç›®çš„å…±ç”¨é£æ ¼å¯¹è±¡
 class VdkMenuBarEntryStyle
 {
 public:
 
-	/// \brief ÉèÖÃÒ»Ïî±»¸ßÁÁÊ±±ß¿ò±íÏÖËùÓÃµÄÑÕÉ«
+	/// \brief è®¾ç½®ä¸€é¡¹è¢«é«˜äº®æ—¶è¾¹æ¡†è¡¨ç°æ‰€ç”¨çš„é¢œè‰²
 	VdkMenuBarEntryStyle& hilightBorderColour(const wxColour& color) {
 		m_hilightBorderPen.SetColour(color);
 		return *this;
 	}
 
-	/// \brief ÉèÖÃÒ»Ïî±»Ñ¡ÖĞÊ±±ß¿ò±íÏÖËùÓÃµÄÑÕÉ«
+	/// \brief è®¾ç½®ä¸€é¡¹è¢«é€‰ä¸­æ—¶è¾¹æ¡†è¡¨ç°æ‰€ç”¨çš„é¢œè‰²
 	VdkMenuBarEntryStyle& selectedBorderColour(const wxColour& color) {
 		m_selectedBorderPen.SetColour(color);
 		return *this;
 	}
 
-	/// \brief ÉèÖÃÒ»ÏîÕı³£×´Ì¬ÏÂµÄ±³¾°ÑÕÉ«
+	/// \brief è®¾ç½®ä¸€é¡¹æ­£å¸¸çŠ¶æ€ä¸‹çš„èƒŒæ™¯é¢œè‰²
 	VdkMenuBarEntryStyle& bgBrush(const wxBrush& brush) {
 		m_background = brush;
 		return *this;
 	}
 
-	/// \brief ÉèÖÃÒ»Ïî±»¸ßÁÁÊ±±íÏÖËùÓÃµÄÑÕÉ«
+	/// \brief è®¾ç½®ä¸€é¡¹è¢«é«˜äº®æ—¶è¡¨ç°æ‰€ç”¨çš„é¢œè‰²
 	VdkMenuBarEntryStyle& hilightColour(const wxColour& color) {
 		m_hilight.SetColour( color );
 		return *this;
 	}
 
-	/// \brief ÉèÖÃÒ»Ïî±»Ñ¡ÖĞÊ±±íÏÖËùÓÃµÄÑÕÉ«
+	/// \brief è®¾ç½®ä¸€é¡¹è¢«é€‰ä¸­æ—¶è¡¨ç°æ‰€ç”¨çš„é¢œè‰²
 	VdkMenuBarEntryStyle& selectedColour(const wxColour& color) {
 		m_selected.SetColour(color);
 		return *this;
@@ -169,34 +169,34 @@ private:
 	friend class VdkMenuBarEntry;
 };
 
-/// \brief ²Ëµ¥À¸ÖĞµÄÒ»¸öÏÂÀ­²Ëµ¥°´Å¥
+/// \brief èœå•æ ä¸­çš„ä¸€ä¸ªä¸‹æ‹‰èœå•æŒ‰é’®
 class VdkMenuBarEntry : public VdkMenuPopper
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkMenuBarEntry();
 
-	/// \brief ³Ğµ£Êµ¼Ê¹¹½¨¹¤×÷
+	/// \brief æ‰¿æ‹…å®é™…æ„å»ºå·¥ä½œ
 	void Create(const VdkMenuBarEntryInitializer& init_data);
 
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	~VdkMenuBarEntry();
 
 private:
 
-	/// \brief ¹¹½¨¿Ø¼ş
+	/// \brief æ„å»ºæ§ä»¶
 	void Init();
 
-	/// \brief ²Á³ı\a rc Ö¸¶¨µÄ¾ØĞÎ
-	/// \param rc ×ø±êÆğµãÎª¸¸¿Ø¼şµÄ×óÉÏ½Ç
+	/// \brief æ“¦é™¤\a rc æŒ‡å®šçš„çŸ©å½¢
+	/// \param rc åæ ‡èµ·ç‚¹ä¸ºçˆ¶æ§ä»¶çš„å·¦ä¸Šè§’
 	virtual void DoEraseBackground(wxDC& dc, const wxRect& rc);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	wxString m_strCaption;  // ²Ëµ¥Ïî±êÌâÎÄ±¾
+	wxString m_strCaption;  // èœå•é¡¹æ ‡é¢˜æ–‡æœ¬
 	VdkMenuBarEntryStyle* m_drawStyle;
 };
 
-/// \brief »ñÈ¡Ö¸¶¨²Ëµ¥·ç¸ñµÄ¶¨Òå
+/// \brief è·å–æŒ‡å®šèœå•é£æ ¼çš„å®šä¹‰
 VdkMenuBarEntryStyle* GetMenuBarEntryStyle(VdkMenuBarEntryStyleEnum sid);

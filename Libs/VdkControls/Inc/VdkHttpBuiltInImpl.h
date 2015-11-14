@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkHttpBuiltInImpl.h
- * Purpose:   Ê¹ÓÃÄÚ½¨µÄ wxHttp À´ÊµÏÖ VdkHTTP µÄ½Ó¿Ú
+ * Purpose:   ä½¿ç”¨å†…å»ºçš„ wxHttp æ¥å®ç° VdkHTTP çš„æ¥å£
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-18
  **************************************************************/
@@ -8,23 +8,23 @@
 #include "VdkHTTP.h"
 #include <wx/protocol/http.h>
 
-/// Ê¹ÓÃÄÚ½¨µÄ wxHttp À´ÊµÏÖ VdkHTTP µÄ½Ó¿Ú
+/// ä½¿ç”¨å†…å»ºçš„ wxHttp æ¥å®ç° VdkHTTP çš„æ¥å£
 class VdkHttpBuiltInImpl : public VdkHTTP
 {
 public:
 
-	/// ¹¹Ôìº¯Êı
+	/// æ„é€ å‡½æ•°
 	VdkHttpBuiltInImpl(const wxCSConv& conv);
 
-	/// ĞéÎö¹¹º¯Êı
+	/// è™šææ„å‡½æ•°
 	virtual ~VdkHttpBuiltInImpl();
 
 	//====================================================
 
-	/// ÆôÓÃ/½ûÓÃ GZip
+	/// å¯ç”¨/ç¦ç”¨ GZip
 	virtual void EnableGzip(GZipMode gzm);
 
-	/// GZip ÊÇ·ñÒÑÈ»ÆôÓÃ
+	/// GZip æ˜¯å¦å·²ç„¶å¯ç”¨
 	virtual bool IsGzipEnabled() const;
 
 	/// Set the default http timeout in seconds.

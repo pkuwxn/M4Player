@@ -1,30 +1,30 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkHttpWgetImpl.h
- * Purpose:   Ê¹ÓÃ wget À´ÊµÏÖ VdkHTTP µÄ½Ó¿Ú
+ * Purpose:   ä½¿ç”¨ wget æ¥å®ç° VdkHTTP çš„æ¥å£
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-17
  **************************************************************/
 #pragma once
 #include "VdkHTTP.h"
 
-/// Ê¹ÓÃ wget À´ÊµÏÖ VdkHTTP µÄ½Ó¿Ú
+/// ä½¿ç”¨ wget æ¥å®ç° VdkHTTP çš„æ¥å£
 class VdkHttpWgetImpl : public VdkHTTP
 {
 public:
 
-	/// ¹¹Ôìº¯Êı
+	/// æ„é€ å‡½æ•°
 	VdkHttpWgetImpl(const wxCSConv& conv);
 
-	/// ĞéÎö¹¹º¯Êı
+	/// è™šææ„å‡½æ•°
 	virtual ~VdkHttpWgetImpl();
 
 	/// HTTP Get
 	virtual bool Get(const wxString& url, wxString& result);
 
-	/// ÆôÓÃ/½ûÓÃ GZip
+	/// å¯ç”¨/ç¦ç”¨ GZip
 	virtual void EnableGzip(GZipMode gzm);
 
-	/// GZip ÊÇ·ñÒÑÈ»ÆôÓÃ
+	/// GZip æ˜¯å¦å·²ç„¶å¯ç”¨
 	virtual bool IsGzipEnabled() const;
 
 private:

@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkScalableBitmap.h
- * Purpose:   VdkScalableBitmap µÄÀàÉùÃ÷
+ * Purpose:   VdkScalableBitmap çš„ç±»å£°æ˜
  * Author:    vanxining (vanxining@139.com)
  * Created:   2011-03-11
  * Copyright: vanxining
@@ -8,85 +8,85 @@
 #pragma once
 #include "VdkDefs.h" // for VdkResizeableBitmapType
 
-/// \brief ¿ÉËõ·ÅÎ»Í¼µÄÄ£ÄâÊµÏÖ
+/// \brief å¯ç¼©æ”¾ä½å›¾çš„æ¨¡æ‹Ÿå®ç°
 class VdkScalableBitmap
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkScalableBitmap();
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkScalableBitmap(const wxBitmap& bm, 
 			  	      VdkResizeableBitmapType resizeType, 
 				      const wxRect& rcTile);
 
-	/// \brief ÉèÖÃÍ¼ÏñÊôĞÔ
+	/// \brief è®¾ç½®å›¾åƒå±æ€§
 	void Set(const wxBitmap& bm, 
 			 VdkResizeableBitmapType resizeType, 
 			 const wxRect& rcTile);
 
-	/// \brief É¾³ıÎ»Í¼
+	/// \brief åˆ é™¤ä½å›¾
 	void Reset();
 
-	/// \brief ¼ì²âÀ­ÉìÇøÓòÊÇ·ñÄÜ±»Ô­Ê¼Î»Í¼°üº¬£¬¼´¿ÉÒÔÓÃ×÷¸Ä±äÎ»Í¼´óĞ¡
+	/// \brief æ£€æµ‹æ‹‰ä¼¸åŒºåŸŸæ˜¯å¦èƒ½è¢«åŸå§‹ä½å›¾åŒ…å«ï¼Œå³å¯ä»¥ç”¨ä½œæ”¹å˜ä½å›¾å¤§å°
 	bool CanResize() const;
 
-	/// \brief Î»Í¼ÊÇ·ñÓĞĞ§
+	/// \brief ä½å›¾æ˜¯å¦æœ‰æ•ˆ
 	bool IsOk() const { return m_bitmap.IsOk(); }
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ½«Î»Í¼Ëõ·ÅÖÁÖ¸¶¨µÄ´óĞ¡
+	/// \brief å°†ä½å›¾ç¼©æ”¾è‡³æŒ‡å®šçš„å¤§å°
 	bool Rescale(const wxSize& newsize);
 
-	/// \brief »ñÈ¡Î»Í¼Ëõ·ÅºóµÄ¿í¶È
+	/// \brief è·å–ä½å›¾ç¼©æ”¾åçš„å®½åº¦
 	int GetWidth() const { return m_size.x; }
 
-	/// \brief »ñÈ¡Î»Í¼Ëõ·ÅºóµÄ¸ß¶È
+	/// \brief è·å–ä½å›¾ç¼©æ”¾åçš„é«˜åº¦
 	int GetHeight() const { return m_size.y; }
 
-	/// \brief »ñÈ¡Ô­Ê¼Î»Í¼µÄ´óĞ¡
+	/// \brief è·å–åŸå§‹ä½å›¾çš„å¤§å°
 	wxSize GetMinSize() const {
 		return wxSize( m_bitmap.GetWidth(), m_bitmap.GetHeight() );
 	}
 
-	/// \brief »ñÈ¡Î»Í¼Ëõ·ÅºóµÄ´óĞ¡
+	/// \brief è·å–ä½å›¾ç¼©æ”¾åçš„å¤§å°
 	const wxSize& GetSize() const { return m_size; }
 
-	/// \brief »ñÈ¡Î»Í¼À­ÉìÇøÓò
+	/// \brief è·å–ä½å›¾æ‹‰ä¼¸åŒºåŸŸ
 	const wxRect& GetTileArea() const { return m_rcTile; }
 
-	/// \brief ½«Î»Í¼¸´ÖÆµ½Ö¸¶¨ DC µÄ(\a x, \a y)´¦
+	/// \brief å°†ä½å›¾å¤åˆ¶åˆ°æŒ‡å®š DC çš„(\a x, \a y)å¤„
 	void Blit(wxDC& dc, wxCoord x, wxCoord y);
 
-	/// \brief ½«Î»Í¼Ö¸¶¨ÇøÓò¸´ÖÆµ½Ö¸¶¨ DC µÄ(\a rc.x, \a rc.y)´¦
+	/// \brief å°†ä½å›¾æŒ‡å®šåŒºåŸŸå¤åˆ¶åˆ°æŒ‡å®š DC çš„(\a rc.x, \a rc.y)å¤„
 	void BlitRect(wxDC& dc, const wxRect& rc);
 
-	//! ´´½¨Í¸Ã÷´°ÌåµÄ·½Ê½
+	//! åˆ›å»ºé€æ˜çª—ä½“çš„æ–¹å¼
 	enum WindowShapeMode {
-		WSM_LAYERED, ///< Ê¹ÓÃ²ã´Î´°¿Ú´´½¨Í¸Ã÷£¬½öÔÚ Windows ÏÂ¿ÉÓÃ
-		WSM_REGION, ///< Ê¹ÓÃ wxRegion ´´½¨Í¸Ã÷´°Ìå
+		WSM_LAYERED, ///< ä½¿ç”¨å±‚æ¬¡çª—å£åˆ›å»ºé€æ˜ï¼Œä»…åœ¨ Windows ä¸‹å¯ç”¨
+		WSM_REGION, ///< ä½¿ç”¨ wxRegion åˆ›å»ºé€æ˜çª—ä½“
 	};
 
-	/// \brief Ê¹ÓÃµ±Ç°Î»Í¼¡¢µ±Ç°´óĞ¡ÉèÖÃÖ¸¶¨·Ç¹ó×å´°¿ÚµÄ×÷ÓÃÓò
+	/// \brief ä½¿ç”¨å½“å‰ä½å›¾ã€å½“å‰å¤§å°è®¾ç½®æŒ‡å®šéè´µæ—çª—å£çš„ä½œç”¨åŸŸ
 	void WindowSetShape(wxTopLevelWindow* win, 
 						const wxColour& maskColor,
 						WindowShapeMode mode) const;
 
 private:
 
-	// µ¥¶ÀÉèÖÃÎ»Í¼
+	// å•ç‹¬è®¾ç½®ä½å›¾
 	void SetBitmap(const wxBitmap& bm);
 
 private:
 
-	wxBitmap m_bitmap; // Ô­Ê¼Î»Í¼
-	wxBitmap m_rescaled; // µ±Ç°Î»Í¼
+	wxBitmap m_bitmap; // åŸå§‹ä½å›¾
+	wxBitmap m_rescaled; // å½“å‰ä½å›¾
 
-	VdkResizeableBitmapType m_resizeType; // Î»Í¼Ëõ·Å·½Ê½
-	wxRect m_rcTile; // À­ÉìÇøÓò
-	wxRect m_rcTile_o; // Æ½ÆÌÀ­ÉìÊ±ÓÃÒÔÓÅ»¯µÄ¿ÉÉìËõÇøÓò
+	VdkResizeableBitmapType m_resizeType; // ä½å›¾ç¼©æ”¾æ–¹å¼
+	wxRect m_rcTile; // æ‹‰ä¼¸åŒºåŸŸ
+	wxRect m_rcTile_o; // å¹³é“ºæ‹‰ä¼¸æ—¶ç”¨ä»¥ä¼˜åŒ–çš„å¯ä¼¸ç¼©åŒºåŸŸ
 
-	wxSize m_size; // µ±Ç°Î»Í¼´óĞ¡
+	wxSize m_size; // å½“å‰ä½å›¾å¤§å°
 };

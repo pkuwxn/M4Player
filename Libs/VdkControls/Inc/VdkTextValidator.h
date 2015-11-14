@@ -1,31 +1,31 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkTextValidator.h
- * Purpose:   ¶¨Òå VdkTextValidator Àà
+ * Purpose:   å®šä¹‰ VdkTextValidator ç±»
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2011-7-31
  **************************************************************/
 #pragma once
 
-/// \brief wxTextValidator ÀàÖ»Ö§³ÖÔ­Éú¿Ø¼ş
+/// \brief wxTextValidator ç±»åªæ”¯æŒåŸç”Ÿæ§ä»¶
 class VdkTextValidator : public wxTextValidator
 {
 public:
 
-	/// \brief ¸´ÖÆ¹¹Ôìº¯Êı
+	/// \brief å¤åˆ¶æ„é€ å‡½æ•°
 	VdkTextValidator(const VdkTextValidator& v);
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkTextValidator(long style = wxFILTER_NONE, 
 					 wxString* valPtr = NULL);
 
-	/// \brief ¸´ÖÆ×Ô¼º
+	/// \brief å¤åˆ¶è‡ªå·±
 	virtual wxObject* Clone() const;
 
-	/// \brief ¸´ÖÆ×Ô¼º
+	/// \brief å¤åˆ¶è‡ªå·±
 	bool Copy(const VdkTextValidator& v);
 
-	/// \brief ÑéÖ¤Ö¸¶¨×Ö·û´®ÊÇ·ñ·ûºÏÒªÇó
-	/// \param str ÒªÑéÖ¤µÄ×Ö·û´®
-	/// \param parent µ¯³ö´íÎó¶Ô»°¿òÊ±¶Ô»°¿òµÄ¸¸´°¿Ú
+	/// \brief éªŒè¯æŒ‡å®šå­—ç¬¦ä¸²æ˜¯å¦ç¬¦åˆè¦æ±‚
+	/// \param str è¦éªŒè¯çš„å­—ç¬¦ä¸²
+	/// \param parent å¼¹å‡ºé”™è¯¯å¯¹è¯æ¡†æ—¶å¯¹è¯æ¡†çš„çˆ¶çª—å£
 	virtual bool Validate(const wxString& str, wxWindow* parent);
 };

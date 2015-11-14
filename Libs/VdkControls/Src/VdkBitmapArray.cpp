@@ -1,4 +1,4 @@
-/***************************************************************
+﻿/***************************************************************
  * Name:      VdkBitmapArray.cpp
  * Purpose:   Code for VdkBitmapArray implementation
  * Author:    vanxining (vanxining@139.com)

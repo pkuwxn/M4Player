@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkDefs.h"
 #include "VdkObject.h"
 #include "VdkEvent.h"
@@ -10,39 +10,39 @@
 
 class VdkMenu;
 
-/// \brief ÅÉÉú¿Ø¼şÀà×Ô»­µÄ·µ»ØÖµ
+/// \brief æ´¾ç”Ÿæ§ä»¶ç±»è‡ªç”»çš„è¿”å›å€¼
 ///
-/// Ö¸Ê¾¸¸ÀàºóĞøµÄ»æÖÆ²Ù×÷¡£
+/// æŒ‡ç¤ºçˆ¶ç±»åç»­çš„ç»˜åˆ¶æ“ä½œã€‚
 enum VdkCusdrawReturnFlag {
 
-	VCCDRF_DODEFAULT,       ///< °´Ô¤¶¨»æÖÆĞòÁĞ½øĞĞ
-	VCCDRF_SKIPDEFAULT,     ///< ÖĞ¶ÏÔ¤¶¨»æÖÆĞòÁĞ£¬Íê³É»æÖÆ
+	VCCDRF_DODEFAULT,       ///< æŒ‰é¢„å®šç»˜åˆ¶åºåˆ—è¿›è¡Œ
+	VCCDRF_SKIPDEFAULT,     ///< ä¸­æ–­é¢„å®šç»˜åˆ¶åºåˆ—ï¼Œå®Œæˆç»˜åˆ¶
 };
 
-/// \brief VdkControl µÄ·ç¸ñÊôĞÔ¼¯
+/// \brief VdkControl çš„é£æ ¼å±æ€§é›†
 enum VdkCtrlStyle {
 
-	/// \brief ÅÉÉúÀà·ç¸ñÎ»¶¨ÒåµÄÆğÊ¼Î»ĞòºÅ
+	/// \brief æ´¾ç”Ÿç±»é£æ ¼ä½å®šä¹‰çš„èµ·å§‹ä½åºå·
 	VCS_USER				= 15,
-	/// \brief ºöÂÔËùÓĞÊÂ¼ş£¨²»´¦ÀíÊÂ¼ş£©
+	/// \brief å¿½ç•¥æ‰€æœ‰äº‹ä»¶ï¼ˆä¸å¤„ç†äº‹ä»¶ï¼‰
 	VCS_IGNORE_ALL_EVENTS	= 1 << 0,
-	/// \brief ½«ÊÂ¼şµ¼Ïò¸¸¿Ø¼ş
+	/// \brief å°†äº‹ä»¶å¯¼å‘çˆ¶æ§ä»¶
 	VCS_REDIRECT_TO_PARENT	= 1 << 1,
-	/// \brief »æÖÆÊ±ÊÇ·ñĞèÒªÖØ»­±³¾°£¨ÔÚ¸¸´°¿ÚµÄ AddVdkControl ÖĞµ÷ÓÃ£©
+	/// \brief ç»˜åˆ¶æ—¶æ˜¯å¦éœ€è¦é‡ç”»èƒŒæ™¯ï¼ˆåœ¨çˆ¶çª—å£çš„ AddVdkControl ä¸­è°ƒç”¨ï¼‰
 	VCS_ERASE_BG			= 1 << 2,
-	/// \brief ÊÇ·ñÈİÆ÷¿Ø¼ş£¨ÔİÊ±Ö»ÓĞ VdkSlider ºÍ VdkScrollBar £©
-	/// \attention ×¢ÒâÓë VdkCtrlHandler µÄÇø±ğ£¡VdkCtrlHandler ²»´¦ÀíÊÂ¼ş£¬
-	/// ¶ø Container ´¦ÀíÊÂ¼ş£¬µ«ÓÅÏÈ¼¶½ÏÆÕÍ¨µÄ VdkControl ÒªµÍ¡£
+	/// \brief æ˜¯å¦å®¹å™¨æ§ä»¶ï¼ˆæš‚æ—¶åªæœ‰ VdkSlider å’Œ VdkScrollBar ï¼‰
+	/// \attention æ³¨æ„ä¸ VdkCtrlHandler çš„åŒºåˆ«ï¼VdkCtrlHandler ä¸å¤„ç†äº‹ä»¶ï¼Œ
+	/// è€Œ Container å¤„ç†äº‹ä»¶ï¼Œä½†ä¼˜å…ˆçº§è¾ƒæ™®é€šçš„ VdkControl è¦ä½ã€‚
 	VCS_CTRL_CONTAINER		= 1 << 3,
-	/// \brief VdkControlÊÇ·ñ¿É±»°´×¡Ê±²»¶Ï·¢ËÍÏàÍ¬µÄÊÂ¼ş
+	/// \brief VdkControlæ˜¯å¦å¯è¢«æŒ‰ä½æ—¶ä¸æ–­å‘é€ç›¸åŒçš„äº‹ä»¶
 	VCS_HONLD_ON			= 1 << 4,
-	/// \brief Ö»·¢ËÍÒ»´Î¸ßÁÁÊÂ¼ş£¬ºöÂÔÔÚ×÷ÓÃÓòÄÚ³ÖĞø»Î¶¯Ö¸Õë´øÀ´µÄ³ÖĞøÊÂ¼ş
+	/// \brief åªå‘é€ä¸€æ¬¡é«˜äº®äº‹ä»¶ï¼Œå¿½ç•¥åœ¨ä½œç”¨åŸŸå†…æŒç»­æ™ƒåŠ¨æŒ‡é’ˆå¸¦æ¥çš„æŒç»­äº‹ä»¶
 	VCS_ONESHOT_HOVERING	= 1 << 5,
-	/// \brief ÀàĞÍÊÇ·ñÎª VdkCtrlHandler
+	/// \brief ç±»å‹æ˜¯å¦ä¸º VdkCtrlHandler
 	VCS_HANDLER				= 1 << 6,
-	/// \brief Êó±êÖ¸ÕëÎ»ÓÚ¿Ø¼ş×÷ÓÃÓòÄÚÊ±ÊÇ·ñ½«Ö¸ÕëÖ¸¶¨Îª³¬Á´½Ó×´
+	/// \brief é¼ æ ‡æŒ‡é’ˆä½äºæ§ä»¶ä½œç”¨åŸŸå†…æ—¶æ˜¯å¦å°†æŒ‡é’ˆæŒ‡å®šä¸ºè¶…é“¾æ¥çŠ¶
 	VCS_HAND_CURSOR			= 1 << 7,
-	/// \brief ÇëÇó´¦Àí°´¼üÊÂ¼ş
+	/// \brief è¯·æ±‚å¤„ç†æŒ‰é”®äº‹ä»¶
 	VCS_KEY_EVENT			= 1 << 8,
 	/// \brief Use this to indicate that the window wants to get all char/key 
 	/// events for all keys - even for keys like TAB or ENTER which are usually 
@@ -52,37 +52,37 @@ enum VdkCtrlStyle {
 	/// you should call Navigate in response to the key events for Tab and 
 	/// Shift-Tab. 
 	VCS_WANTS_ALL_CHARS		= 1 << 9,
-	/// \brief ÔÊĞíÔÚ´°¿ÚÄÚ²¿Ê¹ÓÃ TAB ½øĞĞ½¹µã×ªÒÆ
+	/// \brief å…è®¸åœ¨çª—å£å†…éƒ¨ä½¿ç”¨ TAB è¿›è¡Œç„¦ç‚¹è½¬ç§»
 	VCS_TAB_TRAVERSAL		= 1 << 10,
-	/// \brief ÇëÇó´¦Àí·­ÒëºóµÄ°´¼üÊÂ¼ş£¨»ñÈ¡Êµ¼Ê±íÊ¾µÄ´úÂë£©
+	/// \brief è¯·æ±‚å¤„ç†ç¿»è¯‘åçš„æŒ‰é”®äº‹ä»¶ï¼ˆè·å–å®é™…è¡¨ç¤ºçš„ä»£ç ï¼‰
 	VCS_CHAR_EVENT			= 1 << 11,
-	/// \brief ÎŞ±ß¿ò
+	/// \brief æ— è¾¹æ¡†
 	VCS_BORDER_NONE			= 1 << 12,
-	/// \brief ¼òµ¥µÄÆ½Ãæ±ß¿ò
+	/// \brief ç®€å•çš„å¹³é¢è¾¹æ¡†
 	VCS_BORDER_SIMPLE		= 1 << 13,
-	/// \brief ÑÓÊ±·¢ËÍ VdkVObjEvent µ½ÒÑ×¢²áµÄÊÂ¼ş´¦ÀíÆ÷
+	/// \brief å»¶æ—¶å‘é€ VdkVObjEvent åˆ°å·²æ³¨å†Œçš„äº‹ä»¶å¤„ç†å™¨
 	///
-	/// Ò»°ãÓÃÓÚ²»Ï£Íû VdkVObjEvent ¸½´ø¿Ø¼ş¸¸´°¿ÚµÄ»æÍ¼ÉÏÏÂÎÄ£¬»òÕßĞèÒªÔÚ
-	/// ÊÂ¼ş´¦ÀíÆ÷ÖĞ´ò¿ªÒ»¸öÄ£Ì¬¶Ô»°¿òµÈÌØÊâÇé¿ö¡£
+	/// ä¸€èˆ¬ç”¨äºä¸å¸Œæœ› VdkVObjEvent é™„å¸¦æ§ä»¶çˆ¶çª—å£çš„ç»˜å›¾ä¸Šä¸‹æ–‡ï¼Œæˆ–è€…éœ€è¦åœ¨
+	/// äº‹ä»¶å¤„ç†å™¨ä¸­æ‰“å¼€ä¸€ä¸ªæ¨¡æ€å¯¹è¯æ¡†ç­‰ç‰¹æ®Šæƒ…å†µã€‚
 	VCS_DELAY_EVENT			= 1 << 14,
 };
 
-/// \brief VdkControl µÄÔËĞĞÊ±×´Ì¬ÊôĞÔ¼¯
+/// \brief VdkControl çš„è¿è¡Œæ—¶çŠ¶æ€å±æ€§é›†
 enum VdkCtrlState {
 
-	/// \brief ÅÉÉúÀà·ç¸ñÎ»¶¨ÒåµÄÆğÊ¼Î»ĞòºÅ
+	/// \brief æ´¾ç”Ÿç±»é£æ ¼ä½å®šä¹‰çš„èµ·å§‹ä½åºå·
 	VCST_USER				= 10,
 
-	/// \brief ¿Ø¼şÊÇ·ñÕıÔÚÖ´ĞĞ¿ËÂ¡²Ù×÷
+	/// \brief æ§ä»¶æ˜¯å¦æ­£åœ¨æ‰§è¡Œå…‹éš†æ“ä½œ
 	///
-	/// ¼ÙÈçÊÇ£¬Ôò½«¿Ø¼ş¼ÓÈëµ½ VdkWindow ¿Ø¼şÁĞ±íÖĞ²»ĞèÖªÏş
-	/// VdkWindow µ±Ç°´óĞ¡Óë³õÊ¼´óĞ¡Ö®¼äµÄ²îÖµ¡£
+	/// å‡å¦‚æ˜¯ï¼Œåˆ™å°†æ§ä»¶åŠ å…¥åˆ° VdkWindow æ§ä»¶åˆ—è¡¨ä¸­ä¸éœ€çŸ¥æ™“
+	/// VdkWindow å½“å‰å¤§å°ä¸åˆå§‹å¤§å°ä¹‹é—´çš„å·®å€¼ã€‚
 	VCST_CLONING			= 1 << 0,
 };
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief Îª VdkControl ÉèÖÃ³õÊ¼»¯ĞÅÏ¢
+/// \brief ä¸º VdkControl è®¾ç½®åˆå§‹åŒ–ä¿¡æ¯
 template< typename T >
 class VdkCtrlInitializer
 {
@@ -91,7 +91,7 @@ public:
 	typedef VdkCtrlInitializer Control;
 	typedef long align_type;
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkCtrlInitializer() : 
 		Id( wxID_ANY ), Win( NULL ), Parent( NULL ), 
 		AddToWindow( false ), Align( 0 ), Style( 0 ), 
@@ -100,47 +100,47 @@ public:
 
 	}
 
-	/// \brief ÉèÖÃ¿Ø¼ş ID
+	/// \brief è®¾ç½®æ§ä»¶ ID
 	T& id(int i) { Id = i; return static_cast< T& >( *this ); }
 
-	/// \brief ÉèÖÃËùÊôµÄ VdkWindow
+	/// \brief è®¾ç½®æ‰€å±çš„ VdkWindow
 	T& window(VdkWindow* w) { Win = w; return static_cast< T& >( *this ); }
 
-	/// \brief ÉèÖÃ¸¸¿Ø¼ş
+	/// \brief è®¾ç½®çˆ¶æ§ä»¶
 	T& parent(VdkControl* p) { Parent = p; return static_cast< T& >( *this ); }
 
-	/// \brief ¿Ø¼ş³õÊ¼»¯ºóÊÇ·ñÖ±½ÓÌí¼Óµ½ËùÊôµÄ VdkWindow µÄ¿Ø¼şÁĞ±íÖĞ
+	/// \brief æ§ä»¶åˆå§‹åŒ–åæ˜¯å¦ç›´æ¥æ·»åŠ åˆ°æ‰€å±çš„ VdkWindow çš„æ§ä»¶åˆ—è¡¨ä¸­
 	T& addToWindow(bool b) { AddToWindow = b; return static_cast< T& >( *this ); }
 
-	/// \brief ÉèÖÃ¿Ø¼şµÄÃû×Ö
+	/// \brief è®¾ç½®æ§ä»¶çš„åå­—
 	T& name(const wxString& s) { Name = s; return static_cast< T& >( *this ); }
 
-	/// \brief ÉèÖÃ¿Ø¼şµÄ×÷ÓÃÓò¡£µ± VdkWindow Îª×Ó´°¿ÚÊ±£¬
-	/// Rect.x ºÍ Rect.y ÒÔÖ÷´°¿Ú×óÉÏ½ÇµÄ×ø±êÎª¼ÆÁ¿Æğµã£¬\n
-	/// ¼´Õâ¸ö×ø±ê(Rect.x, Rect.y)ÊÇÏà¶Ô¶øÑÔµÄ
+	/// \brief è®¾ç½®æ§ä»¶çš„ä½œç”¨åŸŸã€‚å½“ VdkWindow ä¸ºå­çª—å£æ—¶ï¼Œ
+	/// Rect.x å’Œ Rect.y ä»¥ä¸»çª—å£å·¦ä¸Šè§’çš„åæ ‡ä¸ºè®¡é‡èµ·ç‚¹ï¼Œ\n
+	/// å³è¿™ä¸ªåæ ‡(Rect.x, Rect.y)æ˜¯ç›¸å¯¹è€Œè¨€çš„
 	T& rect(const wxRect& rc) { Rect = rc; return static_cast< T& >( *this ); }
 
-	/// \brief ÉèÖÃ¿Ø¼şµÄ×÷ÓÃÓò
+	/// \brief è®¾ç½®æ§ä»¶çš„ä½œç”¨åŸŸ
 	T& rect(int x, int y, int w, int h) { 
 		return rect( wxRect( x, y, w, h ) );
 	}
 
-	/// \brief ÉèÖÃ¿Ø¼şËùÓÃµÄ×ÖÌå
+	/// \brief è®¾ç½®æ§ä»¶æ‰€ç”¨çš„å­—ä½“
 	T& font(const wxFont& f) { Font = f; return static_cast< T& >( *this ); }
 
-	/// \brief ÉèÖÃ¿Ø¼şÏà¶ÔÓÚ¸¸¿Ø¼şµÄ¶ÔÆëÊôĞÔ
+	/// \brief è®¾ç½®æ§ä»¶ç›¸å¯¹äºçˆ¶æ§ä»¶çš„å¯¹é½å±æ€§
 	T& align(align_type a) { Align = a; return static_cast< T& >( *this ); }
 
-	/// \brief ÉèÖÃ¿Ø¼şµÄ<b>**¶îÍâ**</b>·ç¸ñ
+	/// \brief è®¾ç½®æ§ä»¶çš„<b>**é¢å¤–**</b>é£æ ¼
 	T& style(long s) { Style = s; return static_cast< T& >( *this ); }
 
-	/// \brief ÉèÖÃ¿Ø¼ş³õÊ¼»¯ºóÊÇ·ñÁ¢¼´ÏÔÊ¾
+	/// \brief è®¾ç½®æ§ä»¶åˆå§‹åŒ–åæ˜¯å¦ç«‹å³æ˜¾ç¤º
 	T& show(bool b) { Show = b; return static_cast< T& >( *this ); }
 
-	/// \brief ÉèÖÃ¿Ø¼ş³õÊ¼»¯ºóÊÇ·ñÁ¢¼´ÏÔÊ¾£¨²»±»¶³½á£©
+	/// \brief è®¾ç½®æ§ä»¶åˆå§‹åŒ–åæ˜¯å¦ç«‹å³æ˜¾ç¤ºï¼ˆä¸è¢«å†»ç»“ï¼‰
 	T& thaw(bool b) { Thaw = b; return static_cast< T& >( *this ); }
 
-	/// \brief Ç¿ÖÆ×ªĞÍÎªÅÉÉúÀà
+	/// \brief å¼ºåˆ¶è½¬å‹ä¸ºæ´¾ç”Ÿç±»
 	template< class DD >
 	DD& castTo() { return static_cast< DD& >( *this ); }
 
@@ -166,9 +166,9 @@ protected:
 class VdkCtrlParserCallback;
 class VdkCtrlParserInfo;
 
-/*!\brief ËùÓĞ virtual-controls µÄ»ùÀà
+/*!\brief æ‰€æœ‰ virtual-controls çš„åŸºç±»
  *
- * Õû¸ö VDK µÄ¸ù»ùÖ®Ò»¡££¨ÁíÒ»¸ù»ùÊÇ VdkWindow £©
+ * æ•´ä¸ª VDK çš„æ ¹åŸºä¹‹ä¸€ã€‚ï¼ˆå¦ä¸€æ ¹åŸºæ˜¯ VdkWindow ï¼‰
 **/
 class VdkControl : public VdkObject,
 				   public VdkUtil,
@@ -177,383 +177,383 @@ class VdkControl : public VdkObject,
 {
 public:
 
-	/// \brief ³õÊ¼»¯ VdkControl µÄ´´½¨»·¾³
-	/// \param maskColor Î»Í¼µÄÑÚÂëÉ«
-	/// \param strRootPath Æ¤·ôµÄ¸ùÄ¿Â¼Â·¾¶£¬
-	/// ËùÓĞ VdkControl ¹¹Ôìº¯ÊıÖĞÖ¸¶¨µÄÎÄ¼şÃû¶¼ÊÇÏà¶ÔÕâ¸ö \a strRootPath ¶øÑÔµÄ
+	/// \brief åˆå§‹åŒ– VdkControl çš„åˆ›å»ºç¯å¢ƒ
+	/// \param maskColor ä½å›¾çš„æ©ç è‰²
+	/// \param strRootPath çš®è‚¤çš„æ ¹ç›®å½•è·¯å¾„ï¼Œ
+	/// æ‰€æœ‰ VdkControl æ„é€ å‡½æ•°ä¸­æŒ‡å®šçš„æ–‡ä»¶åéƒ½æ˜¯ç›¸å¯¹è¿™ä¸ª \a strRootPath è€Œè¨€çš„
 	static void Initialize( const wxColour& maskColor, const wxString& strRootPath );
 
-	/// \brief ´Ó XML ÎÄ¼ş´´½¨ VdkControl ÌåÏµ
-	/// \return ·µ»Ø¶¯Ì¬Éú³ÉµÄµÚÒ»¸ö VdkControl ¾ä±ú¡£
+	/// \brief ä» XML æ–‡ä»¶åˆ›å»º VdkControl ä½“ç³»
+	/// \return è¿”å›åŠ¨æ€ç”Ÿæˆçš„ç¬¬ä¸€ä¸ª VdkControl å¥æŸ„ã€‚
 	static VdkControl* ParseObjects( const VdkCtrlParserInfo& info );
 
-	/// \brief »ñÈ¡µ±Ç°½ø³Ì¿Õ¼äµÄ¿Ø¼şÆ¤·ôÎ»Í¼µÄÍ¸Ã÷ÑÚÂëÉ«
+	/// \brief è·å–å½“å‰è¿›ç¨‹ç©ºé—´çš„æ§ä»¶çš®è‚¤ä½å›¾çš„é€æ˜æ©ç è‰²
 	static const wxColour& GetMaskColour() { return ms_maskColor; }
 
-	/// \brief ÉèÖÃµ±Ç°½ø³Ì¿Õ¼äµÄ¿Ø¼şÆ¤·ôÎ»Í¼µÄÍ¸Ã÷ÑÚÂëÉ«
+	/// \brief è®¾ç½®å½“å‰è¿›ç¨‹ç©ºé—´çš„æ§ä»¶çš®è‚¤ä½å›¾çš„é€æ˜æ©ç è‰²
 	static void SetMaskColour(const wxColour& color) { ms_maskColor = color; }
 
-	/// \brief »ñÈ¡µ±Ç°½ø³Ì¿Õ¼äµÄ¿Ø¼şÆ¤·ôÎÄ¼ş¸ùÄ¿Â¼
+	/// \brief è·å–å½“å‰è¿›ç¨‹ç©ºé—´çš„æ§ä»¶çš®è‚¤æ–‡ä»¶æ ¹ç›®å½•
 	static const wxString& GetRootPath() { return ms_rootPath; }
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ¿ËÂ¡Ç°²âÊÔÌá¹©µÄÔ­±¾¿Ø¼ş¾ä±úÊÇ·ñÀàĞÍÕıÈ·
+	/// \brief å…‹éš†å‰æµ‹è¯•æä¾›çš„åŸæœ¬æ§ä»¶å¥æŸ„æ˜¯å¦ç±»å‹æ­£ç¡®
 	///
-	/// ½öÔÚµ÷ÊÔ°æ±¾ÖĞÖ´ĞĞ²âÊÔ¡£
+	/// ä»…åœ¨è°ƒè¯•ç‰ˆæœ¬ä¸­æ‰§è¡Œæµ‹è¯•ã€‚
 	template< class DT >
 	static bool CheckSourceCtrl(VdkControl* pCtrl) {
 		return dynamic_cast< DT* >( pCtrl ) != NULL;
 	}
 
-	/// \brief ´Ó\a o ¿ËÂ¡
-	/// \param o ÓÃÒÔ¿ËÂ¡µÄÊµÌå
-	/// \param parent Ö¸¶¨µÄĞÂ¸¸¿Ø¼ş
+	/// \brief ä»\a o å…‹éš†
+	/// \param o ç”¨ä»¥å…‹éš†çš„å®ä½“
+	/// \param parent æŒ‡å®šçš„æ–°çˆ¶æ§ä»¶
 	virtual void Clone(VdkControl* o, VdkControl* parent);
 
-	/// \brief ´Ó\a o ¿ËÂ¡
+	/// \brief ä»\a o å…‹éš†
 	///
-	/// Óë Clone µÄ²»Í¬Ö÷ÒªÊÇ×Ô¶¯Ö¸¶¨Óë\a o ÏàÍ¬µÄ¸¸¿Ø¼ş£¬
-	/// ÒÔ¼°¿ËÂ¡³É¹¦ºó×Ô¶¯½«×Ô¼º¼ÓÈëµ½¸¸´°¿ÚµÄ¿Ø¼ş³Ø
-	/// \param o ÓÃÒÔ¿ËÂ¡µÄÊµÌå
+	/// ä¸ Clone çš„ä¸åŒä¸»è¦æ˜¯è‡ªåŠ¨æŒ‡å®šä¸\a o ç›¸åŒçš„çˆ¶æ§ä»¶ï¼Œ
+	/// ä»¥åŠå…‹éš†æˆåŠŸåè‡ªåŠ¨å°†è‡ªå·±åŠ å…¥åˆ°çˆ¶çª—å£çš„æ§ä»¶æ± 
+	/// \param o ç”¨ä»¥å…‹éš†çš„å®ä½“
 	void EasyClone(VdkControl* o)
 	{
 		Clone( o, o->GetParent() );
 		m_Window->AddCtrl( this );
 	}
 
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	virtual ~VdkControl();
 
 public:
 
-	/// \brief ÏìÓ¦ËùÊô VdkWindow µÄ¸Ä±ä´óĞ¡ÊÂ¼ş
+	/// \brief å“åº”æ‰€å± VdkWindow çš„æ”¹å˜å¤§å°äº‹ä»¶
 	void HandleResize(int dX, int dY);
 
-	/// \brief ´¦ÀíµÃµ½µÄÊó±êÊÂ¼ş
+	/// \brief å¤„ç†å¾—åˆ°çš„é¼ æ ‡äº‹ä»¶
 	///
-	/// ÅÉÉú¿Ø¼şÀà¾ßÌåÒªÖØÔØµÄĞéº¯ÊıÊÇ\link DoHandleMouseEvent \endlink ¡£
+	/// æ´¾ç”Ÿæ§ä»¶ç±»å…·ä½“è¦é‡è½½çš„è™šå‡½æ•°æ˜¯\link DoHandleMouseEvent \endlink ã€‚
 	void HandleMouseEvent(VdkMouseEvent& e);
 
-	/// \brief ´¦ÀíµÃµ½µÄ¼üÅÌÊÂ¼ş
+	/// \brief å¤„ç†å¾—åˆ°çš„é”®ç›˜äº‹ä»¶
 	///
-	/// ÅÉÉú¿Ø¼şÀà¾ßÌåÒªÖØÔØµÄĞéº¯ÊıÊÇ\link DoHandleKeyEvent \endlink ¡£
+	/// æ´¾ç”Ÿæ§ä»¶ç±»å…·ä½“è¦é‡è½½çš„è™šå‡½æ•°æ˜¯\link DoHandleKeyEvent \endlink ã€‚
 	void HandleKeyEvent(VdkKeyEvent& e);
 
-	/// \brief ½ÓÊÕ¡¢´¦ÀíÍ¨ÖªĞÅÏ¢
+	/// \brief æ¥æ”¶ã€å¤„ç†é€šçŸ¥ä¿¡æ¯
 	///
-	/// ÅÉÉú¿Ø¼şÀà¾ßÌåÒªÖØÔØµÄĞéº¯ÊıÊÇ\link DoHandleNotify \endlink ¡£
+	/// æ´¾ç”Ÿæ§ä»¶ç±»å…·ä½“è¦é‡è½½çš„è™šå‡½æ•°æ˜¯\link DoHandleNotify \endlink ã€‚
 	void HandleNotify(const VdkNotify& notice);
 
-	/// \brief Êó±êÖ¸ÕëÊÇ·ñÎ»ÓÚ¿Ø¼ş×÷ÓÃÓòÄÚ
+	/// \brief é¼ æ ‡æŒ‡é’ˆæ˜¯å¦ä½äºæ§ä»¶ä½œç”¨åŸŸå†…
 	bool ContainsPointerGlobally() const;
 
-	/// \brief ÅĞ¶ÏÊó±êÖ¸ÕëµÄÎ»ÖÃ\a mousePos ÊÇ·ñÎ»ÓÚ×Ô¼ºµÄ×÷ÓÃÓòÀï
+	/// \brief åˆ¤æ–­é¼ æ ‡æŒ‡é’ˆçš„ä½ç½®\a mousePos æ˜¯å¦ä½äºè‡ªå·±çš„ä½œç”¨åŸŸé‡Œ
 	virtual bool HitTest(const wxPoint& mousePos) const;
 
-	/// \brief ½«Ö¸¶¨µÄ\a rc ×ª»»³ÉÒÔ VdkWindow Îª¼ÆÁ¿ÆğµãµÄ×ø±ê
+	/// \brief å°†æŒ‡å®šçš„\a rc è½¬æ¢æˆä»¥ VdkWindow ä¸ºè®¡é‡èµ·ç‚¹çš„åæ ‡
 	///
-	/// ±¾º¯ÊıÓ¦¸ÃÓÉ×Ó¿Ø¼şÇëÇó¸¸¿Ø¼ş¡£\a rc µÄ¼ÆÁ¿ÆğµãÊÇ¸¸¿Ø¼ş×óÉÏ½Ç¡£
-	/// \note Ö÷ÒªÓÃÓÚÇ¶Ì×¿Ø¼ş£¬Í¬Ê± VdkScrolledWindow Ò²»áÊÜÒæ·ËÇ³¡£\n
-	/// \link GetAbsoluteRect() \endlink ¶Ô±¾º¯Êı½øĞĞÁË¼òµ¥µÄ·â×°¡£
+	/// æœ¬å‡½æ•°åº”è¯¥ç”±å­æ§ä»¶è¯·æ±‚çˆ¶æ§ä»¶ã€‚\a rc çš„è®¡é‡èµ·ç‚¹æ˜¯çˆ¶æ§ä»¶å·¦ä¸Šè§’ã€‚
+	/// \note ä¸»è¦ç”¨äºåµŒå¥—æ§ä»¶ï¼ŒåŒæ—¶ VdkScrolledWindow ä¹Ÿä¼šå—ç›ŠåŒªæµ…ã€‚\n
+	/// \link GetAbsoluteRect() \endlink å¯¹æœ¬å‡½æ•°è¿›è¡Œäº†ç®€å•çš„å°è£…ã€‚
 	/// \see GetAbsoluteRect
 	wxRect TranslateRect(const wxRect& rc) const;
 
-	/// \brief ½«Ö¸¶¨µÄ\a rc ×ª»»³ÉÒÔ¸¸¿Ø¼ş×óÉÏ½ÇÎª¼ÆÁ¿ÆğµãµÄ×ø±ê
+	/// \brief å°†æŒ‡å®šçš„\a rc è½¬æ¢æˆä»¥çˆ¶æ§ä»¶å·¦ä¸Šè§’ä¸ºè®¡é‡èµ·ç‚¹çš„åæ ‡
 	///
-	/// \a rc µÄ¼ÆÁ¿ÆğµãÊÇ VdkWindow ×óÉÏ½Ç¡£
-	/// ÓÃÓÚµ±Ç°×Ó¿Ø¼şÇëÇó¸¸¿Ø¼ş½«Ò»¸öÖ¸¶¨µÄ\a rc ×ª»»³ÉÓë×Ô¼ºÍ¬¼¶µÄ×ø±ê¡£
+	/// \a rc çš„è®¡é‡èµ·ç‚¹æ˜¯ VdkWindow å·¦ä¸Šè§’ã€‚
+	/// ç”¨äºå½“å‰å­æ§ä»¶è¯·æ±‚çˆ¶æ§ä»¶å°†ä¸€ä¸ªæŒ‡å®šçš„\a rc è½¬æ¢æˆä¸è‡ªå·±åŒçº§çš„åæ ‡ã€‚
 	wxRect DeTranslateRect(const wxRect& rc) const;
 
-	/// \brief ½«ÒÔ¸¸¿Ø¼ş×ø±êÎª¼ÆÁ¿µÄµã\a p ×ª»»³ÉÒÔ VdkWindow ×óÉÏ½ÇÎª¼ÆÁ¿ÆğµãµÄµã
+	/// \brief å°†ä»¥çˆ¶æ§ä»¶åæ ‡ä¸ºè®¡é‡çš„ç‚¹\a p è½¬æ¢æˆä»¥ VdkWindow å·¦ä¸Šè§’ä¸ºè®¡é‡èµ·ç‚¹çš„ç‚¹
 	/// \see DeTranslatePoint
 	wxPoint TranslatePoint(const wxPoint& p) const;
 
-	/// \brief ½«ÒÔ VdkWindow ×óÉÏ½ÇÎª¼ÆÁ¿ÆğµãµÄµã\a p ×ª»»³ÉÒÔ¸¸¿Ø¼ş×ø±êÎª¼ÆÁ¿µÄµã
+	/// \brief å°†ä»¥ VdkWindow å·¦ä¸Šè§’ä¸ºè®¡é‡èµ·ç‚¹çš„ç‚¹\a p è½¬æ¢æˆä»¥çˆ¶æ§ä»¶åæ ‡ä¸ºè®¡é‡çš„ç‚¹
 	/// \see TranslatePoint
 	wxPoint DeTranslatePoint(const wxPoint& p) const;
 
-	/// \brief ÊÊÅä×Ó¿Ø¼şµÄ»æÍ¼ DC
+	/// \brief é€‚é…å­æ§ä»¶çš„ç»˜å›¾ DC
 	///
-	/// Ò»°ãÓÉ¸¸´°¿Ú£¨ VdkWindow »òÕß VdkPanel µ÷ÓÃ£©¡£¿ÉÒÔ¼Ì³Ğ¸¸±²µÄ¸÷ÖÖ»æÍ¼ÊôĞÔ£¬
-	/// ÀıÈç×ÖÌå¡¢×ÖÌåÑÕÉ«¡¢×ø±ê×ª»»µÈ¡£
-	/// \return ¼ÙÈçĞŞ¸ÄÁË\a dc Ôò·µ»Ø true £¬ ·ñÔò false ¡£
+	/// ä¸€èˆ¬ç”±çˆ¶çª—å£ï¼ˆ VdkWindow æˆ–è€… VdkPanel è°ƒç”¨ï¼‰ã€‚å¯ä»¥ç»§æ‰¿çˆ¶è¾ˆçš„å„ç§ç»˜å›¾å±æ€§ï¼Œ
+	/// ä¾‹å¦‚å­—ä½“ã€å­—ä½“é¢œè‰²ã€åæ ‡è½¬æ¢ç­‰ã€‚
+	/// \return å‡å¦‚ä¿®æ”¹äº†\a dc åˆ™è¿”å› true ï¼Œ å¦åˆ™ false ã€‚
 	void TranslateDC(wxDC& dc) const;
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ÒÆ¶¯¿Ø¼şµ½ĞÂµÄÎ»ÖÃ
+	/// \brief ç§»åŠ¨æ§ä»¶åˆ°æ–°çš„ä½ç½®
 	void Move(int x, int y, wxDC* pDC = NULL) {
 		SetRect( x, y, m_Rect.width, m_Rect.height, pDC );
 	}
 
-	/// \brief ÖØÔØº¯Êı£¬½öÌá¹©±ãÀû
+	/// \brief é‡è½½å‡½æ•°ï¼Œä»…æä¾›ä¾¿åˆ©
 	void Move(const wxPoint& pos, wxDC* pDC = NULL) {
 		Move( pos.x, pos.y, pDC );
 	}
 
-	/// \brief Îª¿Ø¼şÉèÖÃĞÂµÄ´óĞ¡
+	/// \brief ä¸ºæ§ä»¶è®¾ç½®æ–°çš„å¤§å°
 	void SetSize(int w, int h, wxDC* pDC = NULL) {
 		SetRect( m_Rect.x, m_Rect.y, w, h, pDC );
 	}
 
-	/// \brief ÖØÔØº¯Êı£¬½öÌá¹©±ãÀû
+	/// \brief é‡è½½å‡½æ•°ï¼Œä»…æä¾›ä¾¿åˆ©
 	void SetSize(const wxSize& size, wxDC* pDC = NULL) {
 		SetSize( size.x, size.y, pDC );
 	}
 
-    /// \brief ÉèÖÃ¿Ø¼şµÄ×÷ÓÃÓò
+    /// \brief è®¾ç½®æ§ä»¶çš„ä½œç”¨åŸŸ
     ///
-    /// ×÷ÓÃÓòÊÇÏà¶ÔÓÚÆä¸¸¿Ø¼ş¶øÑÔµÄ¡£¶ÔÓÚÃ»ÓĞ¸¸¿Ø¼şµÄ VdkControl £¬
-	/// ÔòÊÇÏà¶ÔÓÚ VdkWindow ¡£
-	/// \param ´«ÈëÒ»¸öÓĞĞ§µÄ\a pDC ÓÃÒÔÇå³ı±³¾°¡¢ÖØ»­¿Ø¼ş¡£
+    /// ä½œç”¨åŸŸæ˜¯ç›¸å¯¹äºå…¶çˆ¶æ§ä»¶è€Œè¨€çš„ã€‚å¯¹äºæ²¡æœ‰çˆ¶æ§ä»¶çš„ VdkControl ï¼Œ
+	/// åˆ™æ˜¯ç›¸å¯¹äº VdkWindow ã€‚
+	/// \param ä¼ å…¥ä¸€ä¸ªæœ‰æ•ˆçš„\a pDC ç”¨ä»¥æ¸…é™¤èƒŒæ™¯ã€é‡ç”»æ§ä»¶ã€‚
 	void SetRect(int x, int y, int w, int h, wxDC* pDC = NULL);
 
-	/// \brief ÖØÔØº¯Êı£¬½öÌá¹©±ãÀû
+	/// \brief é‡è½½å‡½æ•°ï¼Œä»…æä¾›ä¾¿åˆ©
 	void SetRect(const wxRect& rc, wxDC* pDC = NULL) {
 		SetRect( rc.x, rc.y, rc.width, rc.height, pDC );
 	}
 
-    /// \brief »ñÈ¡¿Ø¼şÏà¶ÔÓÚËùÊô¸¸¿Ø¼şµÄ×÷ÓÃÓò
+    /// \brief è·å–æ§ä»¶ç›¸å¯¹äºæ‰€å±çˆ¶æ§ä»¶çš„ä½œç”¨åŸŸ
     /// \see GetAbsoluteRect
 	virtual wxRect GetRect() const { return m_Rect; }
 
-	/// \brief µÃµ½¿Ø¼şÏà¶ÔÓÚ¸¸¿Ø¼şµÄÎ»ÖÃ
+	/// \brief å¾—åˆ°æ§ä»¶ç›¸å¯¹äºçˆ¶æ§ä»¶çš„ä½ç½®
 	void GetPosition(int* x, int* y) const;
 
-	/// \brief µÃµ½¿Ø¼şÏà¶ÔÓÚ¸¸¿Ø¼şµÄÎ»ÖÃ
+	/// \brief å¾—åˆ°æ§ä»¶ç›¸å¯¹äºçˆ¶æ§ä»¶çš„ä½ç½®
 	wxPoint GetPosition() const { return wxPoint( m_Rect.x, m_Rect.y ); }
 
-	/// \brief µÃµ½¿Ø¼şµÄ¿í¶È/¸ß¶È
+	/// \brief å¾—åˆ°æ§ä»¶çš„å®½åº¦/é«˜åº¦
 	void GetSize(int* w, int* h) const;
 
-	/// \brief »ñÈ¡¿Ø¼şÏà¶ÔÓÚËùÊô VdkWindow µÄ×÷ÓÃÓò
+	/// \brief è·å–æ§ä»¶ç›¸å¯¹äºæ‰€å± VdkWindow çš„ä½œç”¨åŸŸ
 	/// \see GetRect
 	wxRect GetAbsoluteRect() const { return TranslateRect( m_Rect ); }
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief µ÷ÓÃ±¾º¯Êı½øĞĞ»æÖÆ
+	/// \brief è°ƒç”¨æœ¬å‡½æ•°è¿›è¡Œç»˜åˆ¶
 	///
-	/// ±¾º¯Êı»æÖÆ×Ô¼ººÍËùÓĞÊôÏÂ×Ó¿Ø¼ş¡£\n
-	/// ÅÉÉú¿Ø¼şÀà¾ßÌåÒªÖØÔØµÄĞéº¯ÊıÊÇ\link DoDraw \endlink ¡£
+	/// æœ¬å‡½æ•°ç»˜åˆ¶è‡ªå·±å’Œæ‰€æœ‰å±ä¸‹å­æ§ä»¶ã€‚\n
+	/// æ´¾ç”Ÿæ§ä»¶ç±»å…·ä½“è¦é‡è½½çš„è™šå‡½æ•°æ˜¯\link DoDraw \endlink ã€‚
 	/// \see DoDraw
 	void Draw(wxDC& dc);
 
-	/// \brief ²Á³ı\a rc Ö¸¶¨µÄ¾ØĞÎ
-	/// \param rc ×ø±êÆğµãÎª¸¸¿Ø¼şµÄ×óÉÏ½Ç£¬Óëµ±Ç°×÷ÓÃÓòÍ¬Æğµã
+	/// \brief æ“¦é™¤\a rc æŒ‡å®šçš„çŸ©å½¢
+	/// \param rc åæ ‡èµ·ç‚¹ä¸ºçˆ¶æ§ä»¶çš„å·¦ä¸Šè§’ï¼Œä¸å½“å‰ä½œç”¨åŸŸåŒèµ·ç‚¹
 	void EraseBackground(wxDC& dc, const wxRect& rc);
 
-	/// \brief ÉèÖÃ¿Ø¼ş»æÖÆÎÄ±¾Ê±ËùÓÃ×ÖÌå
+	/// \brief è®¾ç½®æ§ä»¶ç»˜åˆ¶æ–‡æœ¬æ—¶æ‰€ç”¨å­—ä½“
 	void SetFont(const wxFont& font, wxDC* pDC);
 
-	/// \brief »ñÈ¡¿Ø¼ş»æÖÆÎÄ±¾Ê±ËùÓÃ×ÖÌå
+	/// \brief è·å–æ§ä»¶ç»˜åˆ¶æ–‡æœ¬æ—¶æ‰€ç”¨å­—ä½“
 	const wxFont& GetFont() const { return m_Font; }
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief »ñÈ¡¿Ø¼şÏà¶ÔÓÚ¸¸¿Ø¼ş/ËùÊô VdkWindow µÄ¶ÔÆëÊôĞÔ
+	/// \brief è·å–æ§ä»¶ç›¸å¯¹äºçˆ¶æ§ä»¶/æ‰€å± VdkWindow çš„å¯¹é½å±æ€§
 	///
-	/// µ±Ã»ÓĞ¸¸¿Ø¼şÊ±£¬¶ÔÆäÊôĞÔÊÇÏà¶ÔÓÚËùÊô VdkWindow ¶øÑÔµÄ¡£
+	/// å½“æ²¡æœ‰çˆ¶æ§ä»¶æ—¶ï¼Œå¯¹å…¶å±æ€§æ˜¯ç›¸å¯¹äºæ‰€å± VdkWindow è€Œè¨€çš„ã€‚
 	align_type GetAlign() const { return m_align; }
 
-	/// \brief ÉèÖÃ¿Ø¼şÏà¶ÔÓÚ¸¸¿Ø¼ş/ËùÊô VdkWindow µÄ¶ÔÆëÊôĞÔ
+	/// \brief è®¾ç½®æ§ä»¶ç›¸å¯¹äºçˆ¶æ§ä»¶/æ‰€å± VdkWindow çš„å¯¹é½å±æ€§
 	///
-	/// µ±Ã»ÓĞ¸¸¿Ø¼şÊ±£¬¶ÔÆäÊôĞÔÊÇÏà¶ÔÓÚËùÊô VdkWindow ¶øÑÔµÄ¡£
+	/// å½“æ²¡æœ‰çˆ¶æ§ä»¶æ—¶ï¼Œå¯¹å…¶å±æ€§æ˜¯ç›¸å¯¹äºæ‰€å± VdkWindow è€Œè¨€çš„ã€‚
 	void SetAlign(const align_type& align) { m_align = align; }
 
-	/// \brief ´¦Àí¿Ø¼şÏà¶Ô¸¸¿Ø¼şµÄ¶ÔÆëÊôĞÔ
+	/// \brief å¤„ç†æ§ä»¶ç›¸å¯¹çˆ¶æ§ä»¶çš„å¯¹é½å±æ€§
 	///
-	/// ÀıÈçÏà¶Ô¸¸¿Ø¼ş/¸¸´°¿Ú¾ÓÖĞ¡¢ÓÒ¶ÔÆëµÈ¡£
+	/// ä¾‹å¦‚ç›¸å¯¹çˆ¶æ§ä»¶/çˆ¶çª—å£å±…ä¸­ã€å³å¯¹é½ç­‰ã€‚
 	void HandleRelativeAlign(align_type align);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ÉèÖÃ¿Ø¼ş ID
+	/// \brief è®¾ç½®æ§ä»¶ ID
 	void SetID(VdkCtrlId id);
 
-	/// \brief »ñÈ¡¿Ø¼ş ID
+	/// \brief è·å–æ§ä»¶ ID
 	VdkCtrlId GetID() const { return m_id; }
 
-	/// \brief ÉèÖÃ¿Ø¼şµÄÃû×Ö
+	/// \brief è®¾ç½®æ§ä»¶çš„åå­—
 	void SetName(const wxString& strName) { m_strName = strName; }
 
-	/// \brief »ñÈ¡¿Ø¼şµÄÃû×Ö
+	/// \brief è·å–æ§ä»¶çš„åå­—
 	wxString GetName() const { return m_strName; }
 
-	/// \brief µÃµ½¸¸´°¿ÚµÄ¾ä±ú
+	/// \brief å¾—åˆ°çˆ¶çª—å£çš„å¥æŸ„
 	VdkWindow* GetVdkWindow() const { return m_Window; }
 
-	/// \brief ÉèÖÃ¸¸´°¿ÚµÄ¾ä±ú
-	/// \attentiion Ö»Ó¦¸ÃÓÉ VDK ÄÚ²¿µ÷ÓÃ
+	/// \brief è®¾ç½®çˆ¶çª—å£çš„å¥æŸ„
+	/// \attentiion åªåº”è¯¥ç”± VDK å†…éƒ¨è°ƒç”¨
 	void SetVdkWindow(VdkWindow* win);
 
-	/// \brief ÖØĞÂÉèÖÃ¸¸´°¿Ú
+	/// \brief é‡æ–°è®¾ç½®çˆ¶çª—å£
 	bool ReAttachToWindow(VdkWindow* win);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ÉèÖÃ¸¸¿Ø¼ş
-	/// \param parent ¿ÉÒÔÎª NULL
+	/// \brief è®¾ç½®çˆ¶æ§ä»¶
+	/// \param parent å¯ä»¥ä¸º NULL
 	void SetParent(VdkControl* parent);
 
-	/// \brief »ñÈ¡¸¸¿Ø¼ş
+	/// \brief è·å–çˆ¶æ§ä»¶
 	VdkControl* GetParent() const { return m_parent; }
 
-	/// \brief »ñÈ¡¸ù¸¸¿Ø¼ş
+	/// \brief è·å–æ ¹çˆ¶æ§ä»¶
 	VdkControl* GetRootParent() const;
 
-	/// \brief »ñÈ¡×Ó¿Ø¼şÁ´±íµÄÇ°Ò»¸ö½áµã
+	/// \brief è·å–å­æ§ä»¶é“¾è¡¨çš„å‰ä¸€ä¸ªç»“ç‚¹
 	VdkControl* GetPrev() const { return m_prev; }
 
-	/// \brief ÉèÖÃ×Ó¿Ø¼şÁ´±íµÄÇ°Ò»¸ö½áµã
+	/// \brief è®¾ç½®å­æ§ä»¶é“¾è¡¨çš„å‰ä¸€ä¸ªç»“ç‚¹
 	void SetPrev(VdkControl* prev) { m_prev = prev; }
 
-	/// \brief »ñÈ¡×Ó¿Ø¼şÁ´±íµÄºóÒ»¸ö½áµã
+	/// \brief è·å–å­æ§ä»¶é“¾è¡¨çš„åä¸€ä¸ªç»“ç‚¹
 	VdkControl* GetNext() const { return m_next; }
 
-	/// \brief ÉèÖÃ×Ó¿Ø¼şÁ´±íµÄºóÒ»¸ö½áµã
+	/// \brief è®¾ç½®å­æ§ä»¶é“¾è¡¨çš„åä¸€ä¸ªç»“ç‚¹
 	void SetNext(VdkControl* next) { m_next = next; }
 
-	/// \brief »ñÈ¡×Ó¿Ø¼şÁ´±íµÄµÚÒ»¸ö½áµã
+	/// \brief è·å–å­æ§ä»¶é“¾è¡¨çš„ç¬¬ä¸€ä¸ªç»“ç‚¹
 	VdkControl* GetFirstChild() const { return m_firstChild; }
 
-	/// \brief ÔÚ×Ó¿Ø¼şÁ´±íÖĞÒÆ³ıÖ¸¶¨×Ó¿Ø¼ş
+	/// \brief åœ¨å­æ§ä»¶é“¾è¡¨ä¸­ç§»é™¤æŒ‡å®šå­æ§ä»¶
 	///
-	/// É¾³ıÒ»¸ö¿Ø¼şÊ±Ó¦¸ÃÏò¸¸¿Ø¼şµ÷ÓÃ¡£²»ÄÜÖ±½Ó delete ¡£
-	/// ±¾º¯Êı²»»á½Ó¹Ü\a pCtrl ¡£
+	/// åˆ é™¤ä¸€ä¸ªæ§ä»¶æ—¶åº”è¯¥å‘çˆ¶æ§ä»¶è°ƒç”¨ã€‚ä¸èƒ½ç›´æ¥ delete ã€‚
+	/// æœ¬å‡½æ•°ä¸ä¼šæ¥ç®¡\a pCtrl ã€‚
 	void RemoveChild(VdkControl* pCtrl);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ³·ÏúÏà¹ØÁªµÄ ToolTip
+	/// \brief æ’¤é”€ç›¸å…³è”çš„ ToolTip
 	void ResetToolTip();
 
-	/// \brief ÉèÖÃÏà¹ØÁªµÄ ToolTip
-	/// \param updateOnce ÊÇ·ñÁ¢¼´ÉèÖÃÖ÷´°¿ÚµÄ Tooltip £¬
-	/// ·ñÔò½«ÔÚ¿Ø¼şµÄ×÷ÓÃÓòÄÚÏÔÊ¾¡£
+	/// \brief è®¾ç½®ç›¸å…³è”çš„ ToolTip
+	/// \param updateOnce æ˜¯å¦ç«‹å³è®¾ç½®ä¸»çª—å£çš„ Tooltip ï¼Œ
+	/// å¦åˆ™å°†åœ¨æ§ä»¶çš„ä½œç”¨åŸŸå†…æ˜¾ç¤ºã€‚
 	void SetToolTip(const wxString& strToolTip, bool updateOnce = false);
 
-	/// \brief »ñÈ¡Ïà¹ØÁªµÄ ToolTip
+	/// \brief è·å–ç›¸å…³è”çš„ ToolTip
 	wxString GetToolTip() const { return m_strToolTip; }
 
 	/////////////////////////////////////////////////////////////////
 
-	/// \brief ½«Ò»¸ö VdkMenu ¹ØÁªµ½¿Ø¼şÉÏ
+	/// \brief å°†ä¸€ä¸ª VdkMenu å…³è”åˆ°æ§ä»¶ä¸Š
 	///
-	/// µ±¿Ø¼şÓĞÒÀ¸½µ½ÆäÉÏµÄ VdkMenu Ê±£¬°´ÓÒ¼ü»áÔÚÏàÓ¦Î»ÖÃµ¯³öÀ´¡£
+	/// å½“æ§ä»¶æœ‰ä¾é™„åˆ°å…¶ä¸Šçš„ VdkMenu æ—¶ï¼ŒæŒ‰å³é”®ä¼šåœ¨ç›¸åº”ä½ç½®å¼¹å‡ºæ¥ã€‚
 	void AttachMenu(VdkMenu* menu);
 
-	/// \brief µÃµ½Óë¿Ø¼şÏà¹ØÁªµÄ VdkMenu
+	/// \brief å¾—åˆ°ä¸æ§ä»¶ç›¸å…³è”çš„ VdkMenu
 	VdkMenu* GetMenu() const { return m_menu; }
 
-	/// \brief ÉèÖÃµ±Ç° VdkMenu µÄ¿É¼ûĞÔ
+	/// \brief è®¾ç½®å½“å‰ VdkMenu çš„å¯è§æ€§
 	///
-	/// Íâ²¿¿ØÖÆ¡£²Ëµ¥¿ÉÄÜÏûÊ§»òÕßÏÔÊ¾ÁË£¬½è´ËÍ¨Öª¿Ø¼ş¸üĞÂÄÚ²¿×´Ì¬¡£
+	/// å¤–éƒ¨æ§åˆ¶ã€‚èœå•å¯èƒ½æ¶ˆå¤±æˆ–è€…æ˜¾ç¤ºäº†ï¼Œå€Ÿæ­¤é€šçŸ¥æ§ä»¶æ›´æ–°å†…éƒ¨çŠ¶æ€ã€‚
 	void SetMenuState(bool bMenuOnShow, wxDC* pDC = NULL);
 
-	/// \brief Ïà¹ØÁªµÄ VdkMenu ÊÇ·ñÔÚÏÔÊ¾
+	/// \brief ç›¸å…³è”çš„ VdkMenu æ˜¯å¦åœ¨æ˜¾ç¤º
 	bool IsMenuOnShow() const;
 
 	/////////////////////////////////////////////////////////////////
 
-	/// \brief »ñÈ¡¿Ø¼şµÄ¿É¼ûĞÔ
+	/// \brief è·å–æ§ä»¶çš„å¯è§æ€§
 	///
-	/// ×¢ÒâÓë\link IsShown \endlink µÄ²»Í¬£º±¾º¯ÊıÍêÈ«ÓÉÓÃ»§¿ØÖÆ¿Ø¼ş×´Ì¬£¬
-	/// ¶ø\link IsShown \endlink ¿ÉÄÜ»áÓÉ VDK ¸Ä±ä¿Ø¼şµÄ¿É¼û×´Ì¬¡£
+	/// æ³¨æ„ä¸\link IsShown \endlink çš„ä¸åŒï¼šæœ¬å‡½æ•°å®Œå…¨ç”±ç”¨æˆ·æ§åˆ¶æ§ä»¶çŠ¶æ€ï¼Œ
+	/// è€Œ\link IsShown \endlink å¯èƒ½ä¼šç”± VDK æ”¹å˜æ§ä»¶çš„å¯è§çŠ¶æ€ã€‚
 	/// \see IsShown
 	bool IsOnShow() const;
 
-	/// \brief »ñÈ¡¿Ø¼şµÄ¿É¼ûĞÔ
+	/// \brief è·å–æ§ä»¶çš„å¯è§æ€§
 	/// \see IsOnShow IsFreezed IsShownOnScreen
 	bool IsShown() const;
 
-	/// \brief ¿Ø¼şÊÇ·ñÏÔÊ¾ÔÚÆÁÄ»ÉÏ
+	/// \brief æ§ä»¶æ˜¯å¦æ˜¾ç¤ºåœ¨å±å¹•ä¸Š
 	/// \see IsOnShow IsShown IsFreezed
 	bool IsShownOnScreen() const;
 
-	/// \brief ÉèÖÃ¿Ø¼şµÄ¿É¼ûĞÔ
+	/// \brief è®¾ç½®æ§ä»¶çš„å¯è§æ€§
 	/// \see IsShown IsOnShow IsShownOnScreen
 	void Show(bool bShow, wxDC* pDC);
 
-	/// \brief Òş²Ø¿Ø¼ş
-	/// \param pDC ²Á³ı±³¾°
+	/// \brief éšè—æ§ä»¶
+	/// \param pDC æ“¦é™¤èƒŒæ™¯
 	void Hide(wxDC* pDC) { Show( false, pDC ); }
 
-	/// \brief ¶³½áÒ»¸ö VdkControl µÄÏÔÊ¾×´Ì¬£¬Ê¹Ö®¼ä½Ó´ïµ½\n
-	/// \link Show() \endlink µÄĞ§¹û
+	/// \brief å†»ç»“ä¸€ä¸ª VdkControl çš„æ˜¾ç¤ºçŠ¶æ€ï¼Œä½¿ä¹‹é—´æ¥è¾¾åˆ°\n
+	/// \link Show() \endlink çš„æ•ˆæœ
 	///
-	/// ¿¼ÂÇÔÙÈı£¬¾ö¶¨Ìí¼ÓÕâÁ½¸öº¯Êı¡£°´ÕÕ¾­Ñé£¬¼ÙÈçÒªÒş²ØÒ»¸ö°´Å¥£¬\n
-	/// ÎÒÃÇ»áÖ±½ÓÓ¦ÓÃ\link Show() \endlink º¯Êı¡£µ«\link Show() \endlink \n
-	/// ÓĞÒ»¸öºÜ´óµÄ±×¶Ë£¬¾ÍÊÇÎŞ·¨Çø·ÖÊÇË­ÏÔÊ¾/Òş²Ø×Ô¼º£¨Ö¸ VdkControl ×ÔÉí£©£¬\n
-	/// ¼ÙÈçÒ»¸ö°´Å¥£¬Î»ÓÚÒ»¸ö VdkPanel ÉÏ£¬³ÌĞòÔ±ÔÚÄ³Ğ©´úÂëÖĞÒş²ØÁËËü¡£\n
-	/// ½Ó×ÅÓÃ»§ÇĞ»»µ½ÁíÒ»¸ö VdkPanel £¬ÄÇÃ´ VdkPanel Ò²»áÒş²ØËü¡£¶÷£¬Ã»ÎÊÌâ¡£\n
-	/// ÄÇÃ´£¬µ±ÓÃ»§ÇĞ»»»ØÕâ¸ö VdkPanel Ê±£¬ÎÊÌâÀ´ÁË¡£\n
-	/// VdkPanel ×Ô×÷Ö÷ÕÅµØÈÏÎªÕâ¸öÒş²ØµÄ°´Å¥ÊÇËü×Ô¼ºÒş²ØµÄ£¬ÓÚÊÇµ÷ÓÃ\n
-	/// \link Show() \endlink ÏÔÊ¾Ëü¡­¡­ÆäÊµ£¬Õâ¸ö°´Å¥ÊÇ³ÌĞòÔ±×Ô¼ºÒş²ØµÄ£¬\n
-	/// ¶øÇÒÕâ¸ö°´Å¥Ó¦¸ÃÓÉ³ÌĞòÔ±×Ô¼º¾ö¶¨Òª²»Òª\link Show() \endlink Ëü¡£\n
-	/// ÓÚÊÇ£¬\link Freeze() \endlink ºÍ\link Thaw() \endlink\n
-	/// ¾ÍÊÇÎªÁË½â¾öÕâÖÖ¾ÖÃæ¶øÌá³öÀ´µÄ¡£\n
-	/// VDK ÄÚ²¿¶ÔÎ´ÖªµÄ VdkControl ²»Ó¦¸Ãµ÷ÓÃ\link Show() \endlink ,\n
-	/// ¶øÊÇÔÚÒªÒş²ØÊ±µ÷ÓÃ\link Freeze() \endlink£¬ÖØĞÂÏÔÊ¾Ê±µ÷ÓÃ\n
-	/// \link Thaw() \endlink¡£
+	/// è€ƒè™‘å†ä¸‰ï¼Œå†³å®šæ·»åŠ è¿™ä¸¤ä¸ªå‡½æ•°ã€‚æŒ‰ç…§ç»éªŒï¼Œå‡å¦‚è¦éšè—ä¸€ä¸ªæŒ‰é’®ï¼Œ\n
+	/// æˆ‘ä»¬ä¼šç›´æ¥åº”ç”¨\link Show() \endlink å‡½æ•°ã€‚ä½†\link Show() \endlink \n
+	/// æœ‰ä¸€ä¸ªå¾ˆå¤§çš„å¼Šç«¯ï¼Œå°±æ˜¯æ— æ³•åŒºåˆ†æ˜¯è°æ˜¾ç¤º/éšè—è‡ªå·±ï¼ˆæŒ‡ VdkControl è‡ªèº«ï¼‰ï¼Œ\n
+	/// å‡å¦‚ä¸€ä¸ªæŒ‰é’®ï¼Œä½äºä¸€ä¸ª VdkPanel ä¸Šï¼Œç¨‹åºå‘˜åœ¨æŸäº›ä»£ç ä¸­éšè—äº†å®ƒã€‚\n
+	/// æ¥ç€ç”¨æˆ·åˆ‡æ¢åˆ°å¦ä¸€ä¸ª VdkPanel ï¼Œé‚£ä¹ˆ VdkPanel ä¹Ÿä¼šéšè—å®ƒã€‚æ©ï¼Œæ²¡é—®é¢˜ã€‚\n
+	/// é‚£ä¹ˆï¼Œå½“ç”¨æˆ·åˆ‡æ¢å›è¿™ä¸ª VdkPanel æ—¶ï¼Œé—®é¢˜æ¥äº†ã€‚\n
+	/// VdkPanel è‡ªä½œä¸»å¼ åœ°è®¤ä¸ºè¿™ä¸ªéšè—çš„æŒ‰é’®æ˜¯å®ƒè‡ªå·±éšè—çš„ï¼Œäºæ˜¯è°ƒç”¨\n
+	/// \link Show() \endlink æ˜¾ç¤ºå®ƒâ€¦â€¦å…¶å®ï¼Œè¿™ä¸ªæŒ‰é’®æ˜¯ç¨‹åºå‘˜è‡ªå·±éšè—çš„ï¼Œ\n
+	/// è€Œä¸”è¿™ä¸ªæŒ‰é’®åº”è¯¥ç”±ç¨‹åºå‘˜è‡ªå·±å†³å®šè¦ä¸è¦\link Show() \endlink å®ƒã€‚\n
+	/// äºæ˜¯ï¼Œ\link Freeze() \endlink å’Œ\link Thaw() \endlink\n
+	/// å°±æ˜¯ä¸ºäº†è§£å†³è¿™ç§å±€é¢è€Œæå‡ºæ¥çš„ã€‚\n
+	/// VDK å†…éƒ¨å¯¹æœªçŸ¥çš„ VdkControl ä¸åº”è¯¥è°ƒç”¨\link Show() \endlink ,\n
+	/// è€Œæ˜¯åœ¨è¦éšè—æ—¶è°ƒç”¨\link Freeze() \endlinkï¼Œé‡æ–°æ˜¾ç¤ºæ—¶è°ƒç”¨\n
+	/// \link Thaw() \endlinkã€‚
 	/// \see Thaw
 	/// \see Show
 	void Freeze();
 
-	/// \brief ½« VdkControl ´Ó¶³½áµÄ×´Ì¬ÖĞ½â·Å³öÀ´
+	/// \brief å°† VdkControl ä»å†»ç»“çš„çŠ¶æ€ä¸­è§£æ”¾å‡ºæ¥
 	void Thaw(wxDC* pDC);
 
-	/// \brief µ±Ç°ÊÇ·ñ±»¶³½á
+	/// \brief å½“å‰æ˜¯å¦è¢«å†»ç»“
 	bool IsFreezed() const { return m_freezed; }
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ¸üĞÂ¿Ø¼şµ±Ç°µÄÊäÈë½¹µã×´Ì¬
-	/// \attention ÉèÖÃµ±Ç°¾ßÓĞÊäÈë½¹µãµÄ¿Ø¼şÓ¦¸Ãµ÷ÓÃ
-	/// \link VdkWindow::FocusCtrl \endlink ¡£
+	/// \brief æ›´æ–°æ§ä»¶å½“å‰çš„è¾“å…¥ç„¦ç‚¹çŠ¶æ€
+	/// \attention è®¾ç½®å½“å‰å…·æœ‰è¾“å…¥ç„¦ç‚¹çš„æ§ä»¶åº”è¯¥è°ƒç”¨
+	/// \link VdkWindow::FocusCtrl \endlink ã€‚
 	void UpdateFocus(bool focus, wxDC* pDC = NULL);
 
-	/// \brief »ñÈ¡¿Ø¼şÊÇ·ñ¾ßÓĞÊäÈë½¹µã
+	/// \brief è·å–æ§ä»¶æ˜¯å¦å…·æœ‰è¾“å…¥ç„¦ç‚¹
 	bool IsFocused() const { return m_focused; }
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ÊÇ·ñÆôÓÃ
+	/// \brief æ˜¯å¦å¯ç”¨
 	bool IsEnabled() const { return m_enabled; }
 
-	/// \brief ½ûÓÃ/ÆôÓÃ VdkControl
+	/// \brief ç¦ç”¨/å¯ç”¨ VdkControl
 	void Enable(bool bEnabled, wxDC* pDC);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ÊÇ·ñÔÊĞí´¦ÀíÊÂ¼ş
+	/// \brief æ˜¯å¦å…è®¸å¤„ç†äº‹ä»¶
 	bool CanHandleEvent() const {
 		return IsShown() && IsEnabled();
 	}
 
-	/// \brief ÊÇ·ñÎª VdkControlHandler
+	/// \brief æ˜¯å¦ä¸º VdkControlHandler
 	bool IsCtrlHandler() const { return TestStyle( VCS_HANDLER ); }
 
-	/// \brief ÊÇ·ñÊÊºÏ¼¤·¢»Øµ÷º¯Êı
+	/// \brief æ˜¯å¦é€‚åˆæ¿€å‘å›è°ƒå‡½æ•°
 	bool IsReadyForEvent() const { return m_id != wxID_ANY; }
 
-	/// \brief ¼¤·¢¿Ø¼şµÄ»Øµ÷º¯Êı
+	/// \brief æ¿€å‘æ§ä»¶çš„å›è°ƒå‡½æ•°
 	void FireEvent(wxDC* pDC, void* extraData);
 
 	//////////////////////////////////////////////////////////////////////////
-	// ×Ó¿Ø¼şµü´úÆ÷
+	// å­æ§ä»¶è¿­ä»£å™¨
 
 	class ChildIterator;
 
-	/// \brief »ñÈ¡µÚÒ»¸ö×Ó¿Ø¼şµÄµü´úÆ÷
+	/// \brief è·å–ç¬¬ä¸€ä¸ªå­æ§ä»¶çš„è¿­ä»£å™¨
 	ChildIterator begin()
 	{
 		ChildIterator i( this );
 		return i;
 	}
 
-	/// \brief »ñÈ¡×îºóÒ»¸ö×Ó¿Ø¼şÖ®ÍâµÄµü´úÆ÷
+	/// \brief è·å–æœ€åä¸€ä¸ªå­æ§ä»¶ä¹‹å¤–çš„è¿­ä»£å™¨
 	ChildIterator end()
 	{
 		ChildIterator i( NULL );
@@ -562,163 +562,163 @@ public:
 
 protected:
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	///
-	/// Ò»¸ö VdkControl µÄÅÉÉúÀà¼ÙÈçÒªÊµÏÖ¶¯Ì¬´´½¨£¬ÔòÓ¦¸ÃÊµÏÖÕâ¸öº¯Êı
+	/// ä¸€ä¸ª VdkControl çš„æ´¾ç”Ÿç±»å‡å¦‚è¦å®ç°åŠ¨æ€åˆ›å»ºï¼Œåˆ™åº”è¯¥å®ç°è¿™ä¸ªå‡½æ•°
 	virtual void Create(wxXmlNode* node) {}
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
-	/// \attention ¹¹ÔìÒ»¸ö VdkControl Ç°±ØĞëÈ·±£ÑÚÂëÉ«ÒÑ¾­²¿Êğµ½Î»£¡
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
+	/// \attention æ„é€ ä¸€ä¸ª VdkControl å‰å¿…é¡»ç¡®ä¿æ©ç è‰²å·²ç»éƒ¨ç½²åˆ°ä½ï¼
 	/// \see Initialize
 	VdkControl();
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	void DoXrcCreate(wxXmlNode* node);
 
-	/// \brief XRC ¶¯Ì¬´´½¨µÄ¹²Í¬Âß¼­´¦Àí
+	/// \brief XRC åŠ¨æ€åˆ›å»ºçš„å…±åŒé€»è¾‘å¤„ç†
 	template< class D >
 	void Create(const VdkCtrlInitializer<D>& init_data);
 
-	/// \brief ´¦ÀíÊó±êÊÂ¼ş
+	/// \brief å¤„ç†é¼ æ ‡äº‹ä»¶
 	virtual void DoHandleMouseEvent(VdkMouseEvent& e);
 
-	/// \brief ´¦Àí¼üÅÌ°´¼üÊÂ¼ş
+	/// \brief å¤„ç†é”®ç›˜æŒ‰é”®äº‹ä»¶
 	virtual void DoHandleKeyEvent(VdkKeyEvent& e) {}
 
-	/// \brief ½ÓÊÕ¡¢´¦ÀíÍ¨ÖªĞÅÏ¢
+	/// \brief æ¥æ”¶ã€å¤„ç†é€šçŸ¥ä¿¡æ¯
 	virtual void DoHandleNotify(const VdkNotify& notice) {}
 
-	/// \brief SetRect Ê±¸üĞÂ×Ó¿Ø¼şµÄÎ»ÖÃÓĞÓÃ
+	/// \brief SetRect æ—¶æ›´æ–°å­æ§ä»¶çš„ä½ç½®æœ‰ç”¨
 	void HandleChildrenResize(int dX, int dY);
 
 private:
 
-	/// \brief ²Á³ı\a rc Ö¸¶¨µÄ¾ØĞÎ
-	/// \param rc ×ø±êÆğµãÎª¸¸¿Ø¼şµÄ×óÉÏ½Ç
+	/// \brief æ“¦é™¤\a rc æŒ‡å®šçš„çŸ©å½¢
+	/// \param rc åæ ‡èµ·ç‚¹ä¸ºçˆ¶æ§ä»¶çš„å·¦ä¸Šè§’
 	virtual void DoEraseBackground(wxDC& dc, const wxRect& rc) {}
 
-	/// \brief »æÖÆ¿Ø¼ş
+	/// \brief ç»˜åˆ¶æ§ä»¶
 	virtual void DoDraw(wxDC& dc) {}
 
-	/// \brief ÖØĞÂÉèÖÃ¸¸´°¿Ú
+	/// \brief é‡æ–°è®¾ç½®çˆ¶çª—å£
 	bool DoReAttachToWindow() { return true; }
 
-	/// \brief Ìí¼ÓÒ»¸öº¢×Ó
-	/// \attention ½÷É÷µ÷ÓÃ£¬Ó¦¸ÃÊ¹ÓÃ\link SetParent() \endlink¡£
+	/// \brief æ·»åŠ ä¸€ä¸ªå­©å­
+	/// \attention è°¨æ…è°ƒç”¨ï¼Œåº”è¯¥ä½¿ç”¨\link SetParent() \endlinkã€‚
 	void AddChild(VdkControl* chd);
 
-	/// \brief ·¢ËÍ¿Ø¼ş´óĞ¡¸Ä±äµÄÍ¨ÖªĞÅÏ¢
-	/// \param fromSetRect ÏûÏ¢ÊÇ·ñÀ´×Ô\link SetRect \endlink ¡£
+	/// \brief å‘é€æ§ä»¶å¤§å°æ”¹å˜çš„é€šçŸ¥ä¿¡æ¯
+	/// \param fromSetRect æ¶ˆæ¯æ˜¯å¦æ¥è‡ª\link SetRect \endlink ã€‚
 	void FireSizeNotify(int dX, int dY, bool fromSetRect = false, wxDC* pDC = NULL);
 
-	/// \brief ·¢ËÍ¿Ø¼şÎ»ÖÃ¸Ä±äµÄÍ¨ÖªĞÅÏ¢
+	/// \brief å‘é€æ§ä»¶ä½ç½®æ”¹å˜çš„é€šçŸ¥ä¿¡æ¯
 	void FireMoveNotify(int xPosChanged, int yPosChanged);
 
 protected:
 
-    /// \brief µ±Ç°½ø³Ì¿Õ¼äµÄ¿Ø¼şÆ¤·ôÎ»Í¼µÄÍ¸Ã÷ÑÚÂëÉ«
+    /// \brief å½“å‰è¿›ç¨‹ç©ºé—´çš„æ§ä»¶çš®è‚¤ä½å›¾çš„é€æ˜æ©ç è‰²
 	static wxColour			ms_maskColor;
 
-	/// \brief ËùÓĞ VdkControl ¹²ÓĞµÄÆ¤·ôÎÄ¼ş¸ùÄ¿Â¼
+	/// \brief æ‰€æœ‰ VdkControl å…±æœ‰çš„çš®è‚¤æ–‡ä»¶æ ¹ç›®å½•
 	static wxString			ms_rootPath;
 
-	/// \brief ÕıÔÚÏÔÊ¾ ToolTip µÄ VdkControl
+	/// \brief æ­£åœ¨æ˜¾ç¤º ToolTip çš„ VdkControl
 	static VdkControl*		ms_pToolTipOnShow;
 
 	/////////////////////////////////////////////////////////////////
 
-	VdkCtrlId				m_id; ///< ¿Ø¼ş ID £¬»Øµ÷º¯ÊıÊ±×ö±êÊ¶ÓÃ
+	VdkCtrlId				m_id; ///< æ§ä»¶ ID ï¼Œå›è°ƒå‡½æ•°æ—¶åšæ ‡è¯†ç”¨
 
-	/// \brief ¸¸Ç×
+	/// \brief çˆ¶äº²
 	VdkControl*				m_parent;
-	/// \brief µÚÒ»¸öº¢×Ó£¬Ïàµ±ÓÚÁ´±íÍ·
+	/// \brief ç¬¬ä¸€ä¸ªå­©å­ï¼Œç›¸å½“äºé“¾è¡¨å¤´
 	VdkControl*				m_firstChild;
-	/// \brief ¸ç¸ç
+	/// \brief å“¥å“¥
 	VdkControl*				m_prev;
-	/// \brief µÜµÜ
+	/// \brief å¼Ÿå¼Ÿ
 	VdkControl*				m_next;
 
-	/// \brief ¿Ø¼şÃû×Ö
+	/// \brief æ§ä»¶åå­—
 	wxString				m_strName;
 
-	/// \biref Ïà¶ÔÓÚ VdkWindow µÄ¶ÔÆë
+	/// \biref ç›¸å¯¹äº VdkWindow çš„å¯¹é½
 	align_type				m_align;
 
-	/// \brief ToolTipµÄÏÔÊ¾ÎÄ±¾
+	/// \brief ToolTipçš„æ˜¾ç¤ºæ–‡æœ¬
 	wxString				m_strToolTip;
 
-	/// \brief ¿Ø¼şÕ¼¾İµÄÇøÓò
+	/// \brief æ§ä»¶å æ®çš„åŒºåŸŸ
 	wxRect					m_Rect;
 
-	/// \brief °üº¬¿Ø¼şµÄ¶¥²ã´°¿Ú
+	/// \brief åŒ…å«æ§ä»¶çš„é¡¶å±‚çª—å£
 	VdkWindow*				m_Window;
 
-	/// \brief ¸¸´°¿Ú¾ä±ú
+	/// \brief çˆ¶çª—å£å¥æŸ„
 	wxWindow*				m_WindowImpl;
 
-	/// \brief Óë´Ë¿Ø¼şÏà¹ØÁªµÄ²Ëµ¥
+	/// \brief ä¸æ­¤æ§ä»¶ç›¸å…³è”çš„èœå•
 	VdkMenu*				m_menu;
 
-	/// \brief ¿Ø¼şÒªÊ¹ÓÃµÄ×ÖÌå
+	/// \brief æ§ä»¶è¦ä½¿ç”¨çš„å­—ä½“
 	wxFont					m_Font;
 
 private:
 
-	// µ±Ç°ÊÇ·ñÊÇ·ñÏÔÊ¾
+	// å½“å‰æ˜¯å¦æ˜¯å¦æ˜¾ç¤º
 	bool					m_shown;
-	// µ±Ç°ÊÇ·ñ¿ÉÓÃ
+	// å½“å‰æ˜¯å¦å¯ç”¨
 	bool					m_enabled;
-	// ÊÇ·ñ¾ßÓĞ¼üÅÌÊäÈë½¹µã
+	// æ˜¯å¦å…·æœ‰é”®ç›˜è¾“å…¥ç„¦ç‚¹
 	bool					m_focused;
-	// ÊÇ·ñ±»´¦ÓÚ±»¶³½áµÄ×´Ì¬
+	// æ˜¯å¦è¢«å¤„äºè¢«å†»ç»“çš„çŠ¶æ€
 	bool					m_freezed;
 
-	DECLARE_NO_COPY_CLASS( VdkControl )   // VdkControl ²»ÔÊĞí¸´ÖÆ
+	DECLARE_NO_COPY_CLASS( VdkControl )   // VdkControl ä¸å…è®¸å¤åˆ¶
 
 public:
 
-	/// \brief »ñÈ¡Ò»¸öĞÂµÄ¿Ø¼ş
-	/// \note ÓÃÓÚ¿Ø¼ş¿ËÂ¡¡£
+	/// \brief è·å–ä¸€ä¸ªæ–°çš„æ§ä»¶
+	/// \note ç”¨äºæ§ä»¶å…‹éš†ã€‚
 	virtual VdkControl* GetImitation() const {
 		return new VdkControl;
 	}
 
 public:
 
-    /// \brief ×Ó¿Ø¼şµü´úÆ÷
+    /// \brief å­æ§ä»¶è¿­ä»£å™¨
 	class ChildIterator
 	{
 	public:
 
-		/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+		/// \brief é»˜è®¤æ„é€ å‡½æ•°
 		ChildIterator() { Init(); }
-		/// \brief ¹¹Ôìº¯Êı
+		/// \brief æ„é€ å‡½æ•°
 		ChildIterator(VdkControl* pCtrl);
 
-		/// \brief Ç°×ÔÔö
+		/// \brief å‰è‡ªå¢
 		ChildIterator& operator ++(); // prefix ++
 
-		/// \brief ºó×ÔÔö
+		/// \brief åè‡ªå¢
 		ChildIterator operator ++(int); // postfix ++
 
-		/// \brief Ç°×Ô¼õ
+		/// \brief å‰è‡ªå‡
 		ChildIterator& operator --(); // prefix ++
 
-		/// \brief ºó×Ô¼õ
+		/// \brief åè‡ªå‡
 		ChildIterator operator --(int); // postfix ++
 
-		/// \brief È¡Öµ
+		/// \brief å–å€¼
 		VdkControl& operator* ();
 
-		/// \brief È¡Ö·
+		/// \brief å–å€
 		VdkControl* operator-> ();
 
-		/// \brief Ã÷È··½Ê½µÄÈ¡Ö·²Ù×÷
+		/// \brief æ˜ç¡®æ–¹å¼çš„å–å€æ“ä½œ
 		VdkControl* get() const { return m_curr; }
 
 	private:
 
-		// ³õÊ¼»¯µü´úÆ÷
+		// åˆå§‹åŒ–è¿­ä»£å™¨
 		void Init();
 
 	private:
@@ -787,36 +787,36 @@ void VdkControl::Create(const VdkCtrlInitializer< D >& init_data)
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief ²»Ğèµ÷ÓÃ\link VdkWindow::AddCtrl() \endlink µÄÄ»ºó¿Ø¼ş
+/// \brief ä¸éœ€è°ƒç”¨\link VdkWindow::AddCtrl() \endlink çš„å¹•åæ§ä»¶
 ///
-/// VdkControlHandlerÓë VdkControl ÓĞÊ²Ã´Çø±ğÄØ£¿×î´óµÄÇø±ğ¾ÍÊÇ£¬\n
-/// VdkControlHandler Ò»°ãÓµÓĞ×Ó¿Ø¼ş£¨»òĞí¿ÉÒÔ³ÆÖ®Îª¸´ºÏ¿Ø¼ş£©£¬\n
-/// µ«ËüÓÖ²»ĞèÒª´¦ÀíÊÂ¼ş£¨¿ÉÄÜĞèÒªÖØ»­±³¾°£©¡£
-/// ¼´¿ÉÒÔ¸²Ğ´\link VdkControl::DoDraw() \endlink £¬
-/// µ«²»ÄÜ¸²Ğ´\link VdkControl::DoHandleEvents() \endlink ¡£
+/// VdkControlHandlerä¸ VdkControl æœ‰ä»€ä¹ˆåŒºåˆ«å‘¢ï¼Ÿæœ€å¤§çš„åŒºåˆ«å°±æ˜¯ï¼Œ\n
+/// VdkControlHandler ä¸€èˆ¬æ‹¥æœ‰å­æ§ä»¶ï¼ˆæˆ–è®¸å¯ä»¥ç§°ä¹‹ä¸ºå¤åˆæ§ä»¶ï¼‰ï¼Œ\n
+/// ä½†å®ƒåˆä¸éœ€è¦å¤„ç†äº‹ä»¶ï¼ˆå¯èƒ½éœ€è¦é‡ç”»èƒŒæ™¯ï¼‰ã€‚
+/// å³å¯ä»¥è¦†å†™\link VdkControl::DoDraw() \endlink ï¼Œ
+/// ä½†ä¸èƒ½è¦†å†™\link VdkControl::DoHandleEvents() \endlink ã€‚
 class VdkCtrlHandler : public VdkControl
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkCtrlHandler();
 };
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief ¿Ø¼şÆ¤·ôÎ»Í¼ÎÄ¼ş²»´æÔÚÊ±Òı·¢µÄÒì³£
+/// \brief æ§ä»¶çš®è‚¤ä½å›¾æ–‡ä»¶ä¸å­˜åœ¨æ—¶å¼•å‘çš„å¼‚å¸¸
 class VdkExpectionImageNotFound
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	explicit VdkExpectionImageNotFound(const wxString& strError)
 		: m_strError( strError )
 	{
 
 	}
 
-	/// \brief Òì³£µÄÏêÏ¸ĞÅÏ¢
+	/// \brief å¼‚å¸¸çš„è¯¦ç»†ä¿¡æ¯
 	wxString GetMessage() const { return m_strError; }
 
 private:
@@ -826,15 +826,15 @@ private:
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief \link VdkControl::ParseObjects \endlink µÄ»Øµ÷¶ÔÏó
+/// \brief \link VdkControl::ParseObjects \endlink çš„å›è°ƒå¯¹è±¡
 class VdkCtrlParserCallback
 {
 public:
 
-	/// \brief »Øµ÷Í¨Öªº¯Êı
-	/// \param win \a pCtrl µÄ¸¸´°¿Ú
-	/// \param clName \a pCtrl µÄÀàÃû
-	/// \param pCtrl ÒÑ±»¹¹½¨³öÀ´µÄ¿Ø¼ş¶ÔÏó
+	/// \brief å›è°ƒé€šçŸ¥å‡½æ•°
+	/// \param win \a pCtrl çš„çˆ¶çª—å£
+	/// \param clName \a pCtrl çš„ç±»å
+	/// \param pCtrl å·²è¢«æ„å»ºå‡ºæ¥çš„æ§ä»¶å¯¹è±¡
 	virtual void Notify(VdkWindow* win, 
 						const wxString& clName, 
 						VdkControl* pCtrl) = 0;

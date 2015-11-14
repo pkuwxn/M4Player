@@ -1,28 +1,28 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      wxCharsetHelper.h
- * Purpose:   ×Ö·û¼¯±ãÀûº¯Êı
+ * Purpose:   å­—ç¬¦é›†ä¾¿åˆ©å‡½æ•°
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2011-8-20
  **************************************************************/
 #pragma once
 
-/// ×Ö·û¼¯±ãÀû¾²Ì¬¹¤¾ßÀà
+/// å­—ç¬¦é›†ä¾¿åˆ©é™æ€å·¥å…·ç±»
 class wxCharsetHelper
 {
 public:
 
-	/// Òª½øĞĞµÄ HTTP ²Ù×÷£¨GET/POST£©
+	/// è¦è¿›è¡Œçš„ HTTP æ“ä½œï¼ˆGET/POSTï¼‰
 	enum UrlAction {
 		UA_GET,
 		UA_POST,
 	};
 
-	/// @brief ×ªÒå½«Òª HTTP GET/POST µÄÊı¾İ
-	/// @param str Òª×ªÒåµÄ×Ö·û´®
-	/// @parma conv Òª×ªÒå³ÉµÄ×Ö·û¼¯×ª»»Æ÷
+	/// @brief è½¬ä¹‰å°†è¦ HTTP GET/POST çš„æ•°æ®
+	/// @param str è¦è½¬ä¹‰çš„å­—ç¬¦ä¸²
+	/// @parma conv è¦è½¬ä¹‰æˆçš„å­—ç¬¦é›†è½¬æ¢å™¨
 	static wxString Escape(const wxString& str, const wxMBConv& conv);
 
-	/// @brief ½« URL ±àÂë×ª»»»Ø³É GB2312 ¸ñÊ½µÄ×Ö·û´®
+	/// @brief å°† URL ç¼–ç è½¬æ¢å›æˆ GB2312 æ ¼å¼çš„å­—ç¬¦ä¸²
 	static wxString UnescapeFromAnsi(const char* str);
 
 	/// Utf8 -> wx Unicode
@@ -30,12 +30,12 @@ public:
 
 private:
 
-	// ½« URL ±àÂë¸ñÊ½µÄ %XX ×ª»»³É char µÄ¸¨Öúº¯Êı
+	// å°† URL ç¼–ç æ ¼å¼çš„ %XX è½¬æ¢æˆ char çš„è¾…åŠ©å‡½æ•°
 	static char StrToBin(const char* str);
 	static char CharToInt(const char ch);
 };
 
-// »ñÈ¡ GBK µÄ wxCSConv ¶ÔÏó
+// è·å– GBK çš„ wxCSConv å¯¹è±¡
 #ifdef __WXMSW__
 #   define GetGbkConv() wxMBConv& conv = wxConvLocal
 #else

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #ifdef __WXMSW__
 
@@ -38,9 +38,9 @@ private:
 	static wxBrush					m_selectedBrush;
 	static wxBrush					m_selectedBrushChecked;
 
-	static bool						m_bLeftBitmapInited;	// ×ó¶Ë½¥±äÉ«ÌõÊÇ·ñÒÑ¾­³õÊ¼»¯
-	static wxBitmap					m_leftBar;				// ×ó¶Ë½¥±äÉ«Ìõ
-	static wxBitmap					m_leftBarForSep;		// ×ó¶Ë½¥±äÉ«Ìõ
+	static bool						m_bLeftBitmapInited;	// å·¦ç«¯æ¸å˜è‰²æ¡æ˜¯å¦å·²ç»åˆå§‹åŒ–
+	static wxBitmap					m_leftBar;				// å·¦ç«¯æ¸å˜è‰²æ¡
+	static wxBitmap					m_leftBarForSep;		// å·¦ç«¯æ¸å˜è‰²æ¡
 };
 
 #else

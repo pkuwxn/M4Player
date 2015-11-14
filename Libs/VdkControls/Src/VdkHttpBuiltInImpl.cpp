@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkHttpBuiltInImpl.cpp
- * Purpose:   Ê¹ÓÃÄÚ½¨µÄ wxHTTP À´ÊµÏÖ VdkHTTP µÄ½Ó¿Ú
+ * Purpose:   ä½¿ç”¨å†…å»ºçš„ wxHTTP æ¥å®ç° VdkHTTP çš„æ¥å£
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-18
  **************************************************************/
@@ -16,7 +16,7 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-// ¸ñÊ½»¯ wxHTTP ´íÎóĞÅÏ¢
+// æ ¼å¼åŒ– wxHTTP é”™è¯¯ä¿¡æ¯
 static const wxChar* FormatProtocolError(wxProtocolError err);
 
 VdkHttpBuiltInImpl::VdkHttpBuiltInImpl(const wxCSConv& conv)

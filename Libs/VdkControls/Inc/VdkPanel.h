@@ -1,4 +1,4 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkPanel.h
  * Purpose:   Code for VListCtrl implementation
  * Author:    Ning (vanxining@139.com)
@@ -9,36 +9,36 @@
 #include "VdkControl.h"
 class RedrawCallback;
 
-/*!\brief ÀàËÆÓÚ wxPanel µÄ×Ó¿Ø¼ş×éºÏ¿Ø¼ş
+/*!\brief ç±»ä¼¼äº wxPanel çš„å­æ§ä»¶ç»„åˆæ§ä»¶
  *
- * VdkPanel ÍùÍùÓÃÓÚ×éÖ¯Ò»×éÂß¼­ĞÔ½ÏÇ¿µÄ¿Ø¼ş¡£ÀıÈçÑ¡Ïî¿¨ÇĞ»»ÏÔÊ¾ÁíÒ»Ì×¿Ø¼ş¡£
+ * VdkPanel å¾€å¾€ç”¨äºç»„ç»‡ä¸€ç»„é€»è¾‘æ€§è¾ƒå¼ºçš„æ§ä»¶ã€‚ä¾‹å¦‚é€‰é¡¹å¡åˆ‡æ¢æ˜¾ç¤ºå¦ä¸€å¥—æ§ä»¶ã€‚
 **/
 class VdkPanel : public VdkCtrlHandler
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkPanel();
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	~VdkPanel();
 
-	/// \brief Ö´ĞĞÊµ¼Ê¹¹½¨²Ù×÷
+	/// \brief æ‰§è¡Œå®é™…æ„å»ºæ“ä½œ
 	void Create(VdkWindow* parent, const wxString& strName, const wxRect& rc);
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
 	/////////////////////////////////////////////////////////////////////////
 
-	/// \brief ÉèÖÃ»Øµ÷»æÖÆ¶ÔÏó
+	/// \brief è®¾ç½®å›è°ƒç»˜åˆ¶å¯¹è±¡
 	void SetRedrawCallback(RedrawCallback* Redrawer) { m_redrawer = Redrawer; }
 
 private:
 
-	/// \brief ²Á³ı±³¾°
+	/// \brief æ“¦é™¤èƒŒæ™¯
 	virtual void DoEraseBackground(wxDC& dc, const wxRect& rc);
 
-	/// \brief »æÖÆ¿Ø¼ş
+	/// \brief ç»˜åˆ¶æ§ä»¶
 	virtual void DoDraw(wxDC& dc);
 
 	//////////////////////////////////////////////////////////////////////////

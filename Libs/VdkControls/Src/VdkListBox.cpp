@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "VdkListBox.h"
 
 #ifdef __WXMSW__

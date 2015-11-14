@@ -1,4 +1,4 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkDefs.h
  * Author:    vanxining (vanxining@139.com)
  * Created:   2010-02-01
@@ -7,51 +7,51 @@
 #pragma once
 #include "VdkCommon.h"
 
-/// \brief VDK Êó±êÊÂ¼þ
+/// \brief VDK é¼ æ ‡äº‹ä»¶
 enum VdkMouseEventType {
 
-	NORMAL,						///< Õý³£×´Ì¬
-	HOVERING = 1,				///< Êó±êÖÃÓÚÆäÉÏ
+	NORMAL,						///< æ­£å¸¸çŠ¶æ€
+	HOVERING = 1,				///< é¼ æ ‡ç½®äºŽå…¶ä¸Š
 
-	LEFT_DOWN,					///< Êó±ê×ó¼ü°´ÏÂ
-	LEFT_UP,					///< Êó±ê×ó¼üÊÍ·Å
-	DLEFT_DOWN,					///< Êó±ê×ó¼üË«»÷
-	RIGHT_UP,					///< Êó±êÓÒ¼üµ¯Æð
-	DRAGGING,					///< Êó±êÍÏ¶¯
+	LEFT_DOWN,					///< é¼ æ ‡å·¦é”®æŒ‰ä¸‹
+	LEFT_UP,					///< é¼ æ ‡å·¦é”®é‡Šæ”¾
+	DLEFT_DOWN,					///< é¼ æ ‡å·¦é”®åŒå‡»
+	RIGHT_UP,					///< é¼ æ ‡å³é”®å¼¹èµ·
+	DRAGGING,					///< é¼ æ ‡æ‹–åŠ¨
 
-	WHEEL_UP,					///< Êó±ê¹öÂÖÏòÏÂ¹ö¶¯
-	WHEEL_DOWN,					///< Êó±ê¹öÂÖÏòÉÏ¹ö¶¯
-	SCROLLING_UP,				///< ÊúÖ± VdkSlider ÏòÉÏÍÏ¶¯
-	SCROLLING_DOWN,				///< ÊúÖ± VdkSlider ÏòÏÂÍÏ¶¯
+	WHEEL_UP,					///< é¼ æ ‡æ»šè½®å‘ä¸‹æ»šåŠ¨
+	WHEEL_DOWN,					///< é¼ æ ‡æ»šè½®å‘ä¸Šæ»šåŠ¨
+	SCROLLING_UP,				///< ç«–ç›´ VdkSlider å‘ä¸Šæ‹–åŠ¨
+	SCROLLING_DOWN,				///< ç«–ç›´ VdkSlider å‘ä¸‹æ‹–åŠ¨
 
-	MOUSE_LEAVE,				///< Êó±êÀë¿ª¿Ø¼þ×÷ÓÃÓò
-	MOUSE_LEAVE_WINDOW,			///< Êó±êÀë¿ª VdkWindow ×÷ÓÃÓò
+	MOUSE_LEAVE,				///< é¼ æ ‡ç¦»å¼€æŽ§ä»¶ä½œç”¨åŸŸ
+	MOUSE_LEAVE_WINDOW,			///< é¼ æ ‡ç¦»å¼€ VdkWindow ä½œç”¨åŸŸ
 
-	MOUSE_HOLD_ON_RELEASED,		///< ÊÍ·Å³ÖÐø°´×¡µÄÊó±ê×ó¼ü
+	MOUSE_HOLD_ON_RELEASED,		///< é‡Šæ”¾æŒç»­æŒ‰ä½çš„é¼ æ ‡å·¦é”®
 };
 
-/// \brief VDK °´¼üÊÂ¼þ
+/// \brief VDK æŒ‰é”®äº‹ä»¶
 enum VdkKeyEventType {
 
-	KEY_DOWN,	///< °´¼ü±»°´ÏÂ
-	KEY_UP,	///< °´¼üµ¯Æð
-	KEY_CHAR,	///< ÒÑ·­ÒëµÄ°´¼ü
+	KEY_DOWN,	///< æŒ‰é”®è¢«æŒ‰ä¸‹
+	KEY_UP,	///< æŒ‰é”®å¼¹èµ·
+	KEY_CHAR,	///< å·²ç¿»è¯‘çš„æŒ‰é”®
 };
 
-/// \brief VDK Í¨ÖªÐÅÏ¢
+/// \brief VDK é€šçŸ¥ä¿¡æ¯
 enum VdkCtrlNotifyCode {
 
 	//////////////////////////////////////////////////////////////////////////
-	// ´´½¨¡¢Ïú»Ù
+	// åˆ›å»ºã€é”€æ¯
 
 	VCN_CREATE,
 	VCN_DESTROY,
-	VCN_BIND_TO_ANOTHER_PARENT, ///< °ó¶¨µ½ÁíÍâµÄ¸¸´°¿ÚÉÏ
+	VCN_BIND_TO_ANOTHER_PARENT, ///< ç»‘å®šåˆ°å¦å¤–çš„çˆ¶çª—å£ä¸Š
 
-	VCN_ID_CHANGED, ///< ¿Ø¼þ ID ·¢Éú¸Ä±ä
+	VCN_ID_CHANGED, ///< æŽ§ä»¶ ID å‘ç”Ÿæ”¹å˜
 
 	//////////////////////////////////////////////////////////////////////////
-	// ¿ÉÊÓ×´Ì¬
+	// å¯è§†çŠ¶æ€
 
 	VCN_FONT_CHANGED,
 	VCN_SHOW,
@@ -61,39 +61,39 @@ enum VdkCtrlNotifyCode {
 	VCN_ENABLED,
 	VCN_DISABLED,
 
-	VCN_PARENT_SHOW, /*! ¸¸´°¿ÚÏÔÊ¾ */
-	VCN_PARENT_HID, /*! ¸¸´°¿ÚÒþ²Ø */
+	VCN_PARENT_SHOW, /*! çˆ¶çª—å£æ˜¾ç¤º */
+	VCN_PARENT_HID, /*! çˆ¶çª—å£éšè— */
 
 	//////////////////////////////////////////////////////////////////////////
-	// ½¹µã
+	// ç„¦ç‚¹
 
-	VCN_FOCUS, ///< »ñµÃ½¹µã
-	VCN_LOST_FOCUS, ///< Ê§È¥½¹µã
+	VCN_FOCUS, ///< èŽ·å¾—ç„¦ç‚¹
+	VCN_LOST_FOCUS, ///< å¤±åŽ»ç„¦ç‚¹
 
-	VCN_MENU_HID, ///< ÒÀ¸½µÄµ¯³ö²Ëµ¥±»Òþ²ØÁË
+	VCN_MENU_HID, ///< ä¾é™„çš„å¼¹å‡ºèœå•è¢«éšè—äº†
 
 	//////////////////////////////////////////////////////////////////////////
-	// ³ß´ç
+	// å°ºå¯¸
 
-	VCN_POSITION_CHANGED,   ///< SetRect ÖÐµÄ¿Ø¼þÎ»ÖÃ¸Ä±ä
-	VCN_SIZE_CHANGED,		///< SetRect ÖÐµÄÇøÓò´óÐ¡¸Ä±ä
-	/// \brief VdkWindow ´óÐ¡¸Ä±ä
-	/// \note Óë VCN_SIZE_CHANGED ÏàÇø·ÖÖ÷ÒªÊÇ±¾ÊÂ¼þ¿ÉÄÜ»áÔÙ´Î¸ü¸Ä¿Ø¼þµÄ´óÐ¡£¬
-	/// Ôì³ÉÖØ¸´
+	VCN_POSITION_CHANGED,   ///< SetRect ä¸­çš„æŽ§ä»¶ä½ç½®æ”¹å˜
+	VCN_SIZE_CHANGED,		///< SetRect ä¸­çš„åŒºåŸŸå¤§å°æ”¹å˜
+	/// \brief VdkWindow å¤§å°æ”¹å˜
+	/// \note ä¸Ž VCN_SIZE_CHANGED ç›¸åŒºåˆ†ä¸»è¦æ˜¯æœ¬äº‹ä»¶å¯èƒ½ä¼šå†æ¬¡æ›´æ”¹æŽ§ä»¶çš„å¤§å°ï¼Œ
+	/// é€ æˆé‡å¤
 	VCN_WINDOW_RESIZED,
-	/// \brief ´°¿Ú¿ÉÊÓÆðÊ¼µã¸Ä±äÁË£¬ÏûÏ¢µÄÁ½¸ö²ÎÊýÎªÐÂµÄ¿ÉÊÓÆðÊ¼µã
-	/// \note ×¢Òâ²»ÊÇÔ­µã£¬¶øÊÇ»æÍ¼ DC µÄÎïÀíÆðÊ¼×ø±ê¡£
+	/// \brief çª—å£å¯è§†èµ·å§‹ç‚¹æ”¹å˜äº†ï¼Œæ¶ˆæ¯çš„ä¸¤ä¸ªå‚æ•°ä¸ºæ–°çš„å¯è§†èµ·å§‹ç‚¹
+	/// \note æ³¨æ„ä¸æ˜¯åŽŸç‚¹ï¼Œè€Œæ˜¯ç»˜å›¾ DC çš„ç‰©ç†èµ·å§‹åæ ‡ã€‚
 	VCN_WINDOW_ORIGIN_CHANGED, 
 };
 
-/// ¿É¸Ä±ä´óÐ¡µÄÎ»Í¼ÒÔºÎÖÖ·½Ê½À©´ó£¨Æ½ÆÌ»òÕßÀ­Éì£©
+/// å¯æ”¹å˜å¤§å°çš„ä½å›¾ä»¥ä½•ç§æ–¹å¼æ‰©å¤§ï¼ˆå¹³é“ºæˆ–è€…æ‹‰ä¼¸ï¼‰
 enum VdkResizeableBitmapType {
 
-	RESIZE_TYPE_TILE, ///< Æ½ÆÌ
-	RESIZE_TYPE_STRETCH ///< À­Éì
+	RESIZE_TYPE_TILE, ///< å¹³é“º
+	RESIZE_TYPE_STRETCH ///< æ‹‰ä¼¸
 };
 
-// ¶ÔÆëÊôÐÔ
+// å¯¹é½å±žæ€§
 enum VdkAlignment {
 
 	vdkALIGN_INVALID		= 0,
@@ -113,7 +113,7 @@ enum VdkAlignment {
 							  vdkALIGN_BOTTOM,
 };
 
-// ·½ÏòÊôÐÔ
+// æ–¹å‘å±žæ€§
 enum VdkDirection {
 
 	vdkDIRECTION_INVALID	= 0,
@@ -133,7 +133,7 @@ enum VdkDirection {
 							  vdkNORTH,
 };
 
-/// \brief ¿Ø¼þ¶ÔÆëÊôÐÔ
+/// \brief æŽ§ä»¶å¯¹é½å±žæ€§
 enum AlignType {
 
 	ALIGN_LEFT				= 0,
@@ -143,25 +143,25 @@ enum AlignType {
 	ALIGN_CENTER_X_Y		= 1 << 3,
 	ALIGN_CENTER_X			= 1 << 4,
 	ALIGN_CENTER_Y			= 1 << 5,
-	/// \brief ÓëÖ÷´°ÌåµÄ´óÐ¡¸Ä±äÍ¬²½£¬¼´Í¬Ôö¼õÏàµÈ²îÁ¿
+	/// \brief ä¸Žä¸»çª—ä½“çš„å¤§å°æ”¹å˜åŒæ­¥ï¼Œå³åŒå¢žå‡ç›¸ç­‰å·®é‡
 	ALIGN_SYNC_X_Y			= 1 << 6,
 	ALIGN_SYNC_X			= 1 << 7,
 	ALIGN_SYNC_Y			= 1 << 8,
 
-	/// \brief Ô­Éú¿Ø¼þ×¨ÓÃ
+	/// \brief åŽŸç”ŸæŽ§ä»¶ä¸“ç”¨
 	///
-	/// ¼ÙÈçÒ»¸ö VdkNativeCtrl Ã»ÓÐÈÎºÎ¶ÔÆëÐÅÏ¢µÄ»°£¬ÊÇÎÞ·¨¸üÐÂ×Ô¼ºµÄÎ»ÖÃµÄ¡£\n
-	/// ÒòÎªÃ»ÓÐÈÎºÎ¶ÔÆäÐÅÏ¢£¬¶ÔÆëµ÷ÓÃ\link VdkControl::HandleResize \endlink 
-	/// ÊÇÃ»ÓÐÈÎºÎ×÷ÓÃµÄ¡£Òò´Ë£¬Õâ¸öÊôÐÔÖ»ÊÇÒ»¸öÐéÄâµÄÖµ£¬Ê¹µÃ VDK 
-	/// ÈÏÎª¶ÔÎÒÃÇµÄÔ­Éú¿Ø¼þÊÇ±ØÒªµÄ¡£ÕâÑù£¬VdkNativeCtrl Ä£°åÀà±ãÄÜË³Àû¸üÐÂÒ»¸ö
-	/// VdkNativeCtrl Ïà¶ÔÓÚ VdkWindow ×óÉÏ½ÇµÄ¾ø¶ÔÎ»ÖÃ¡£
+	/// å‡å¦‚ä¸€ä¸ª VdkNativeCtrl æ²¡æœ‰ä»»ä½•å¯¹é½ä¿¡æ¯çš„è¯ï¼Œæ˜¯æ— æ³•æ›´æ–°è‡ªå·±çš„ä½ç½®çš„ã€‚\n
+	/// å› ä¸ºæ²¡æœ‰ä»»ä½•å¯¹å…¶ä¿¡æ¯ï¼Œå¯¹é½è°ƒç”¨\link VdkControl::HandleResize \endlink 
+	/// æ˜¯æ²¡æœ‰ä»»ä½•ä½œç”¨çš„ã€‚å› æ­¤ï¼Œè¿™ä¸ªå±žæ€§åªæ˜¯ä¸€ä¸ªè™šæ‹Ÿçš„å€¼ï¼Œä½¿å¾— VDK 
+	/// è®¤ä¸ºå¯¹æˆ‘ä»¬çš„åŽŸç”ŸæŽ§ä»¶æ˜¯å¿…è¦çš„ã€‚è¿™æ ·ï¼ŒVdkNativeCtrl æ¨¡æ¿ç±»ä¾¿èƒ½é¡ºåˆ©æ›´æ–°ä¸€ä¸ª
+	/// VdkNativeCtrl ç›¸å¯¹äºŽ VdkWindow å·¦ä¸Šè§’çš„ç»å¯¹ä½ç½®ã€‚
 	ALIGN_NATIVE_CTRL		= 1 << 9,
 };
 
-/// \brief ÎÄ±¾¶ÔÆëÊôÐÔ
+/// \brief æ–‡æœ¬å¯¹é½å±žæ€§
 enum VdkTextAlign {
 
-	TEXT_ALIGN_LEFT			= ALIGN_LEFT, ///< ×ó¶ÔÆë
+	TEXT_ALIGN_LEFT			= ALIGN_LEFT, ///< å·¦å¯¹é½
 	TEXT_ALIGN_RIGHT		= ALIGN_RIGHT,
 	TEXT_ALIGN_TOP			= ALIGN_TOP,
 	TEXT_ALIGN_BOTTOM		= ALIGN_BOTTOM,

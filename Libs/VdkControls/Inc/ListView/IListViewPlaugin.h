@@ -1,89 +1,89 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      IListViewPlaugin.h
- * Purpose:   VdkListView µÄ²å¼ş½Ó¿ÚÉùÃ÷
+ * Purpose:   VdkListView çš„æ’ä»¶æ¥å£å£°æ˜
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-3-3
  **************************************************************/
 #pragma once
 
-// µ¥Ñ¡¡¢¶àÑ¡ LvpClick
-// ¸Ä±ä´óĞ¡Ê±¸ù¾İ°Ù·Ö±È¶¯Ì¬µ÷ÕûÁĞ¿í LvpColumnAutoAjuster
-// Í¨¹ıÍÏ¶¯¸Ä±äÏîÄ¿ÅÅĞò LvpDraggAndReorder
-// ¸ôĞĞ±äÉ« LvpCrossColor
-// Êó±ê»¬¹ıÊ±¸ßÁÁËùÔÚĞĞ LvpHilighter
-// ÅÅĞò LvpSorter
-// ±êÌâÀ¸ LvpHeader
+// å•é€‰ã€å¤šé€‰ LvpClick
+// æ”¹å˜å¤§å°æ—¶æ ¹æ®ç™¾åˆ†æ¯”åŠ¨æ€è°ƒæ•´åˆ—å®½ LvpColumnAutoAjuster
+// é€šè¿‡æ‹–åŠ¨æ”¹å˜é¡¹ç›®æ’åº LvpDraggAndReorder
+// éš”è¡Œå˜è‰² LvpCrossColor
+// é¼ æ ‡æ»‘è¿‡æ—¶é«˜äº®æ‰€åœ¨è¡Œ LvpHilighter
+// æ’åº LvpSorter
+// æ ‡é¢˜æ  LvpHeader
 
 class VdkMouseEvent;
 class VdkKeyEvent;
 class VdkListView;
 
-/// VdkListView µÄ²å¼ş½Ó¿ÚÉùÃ÷
+/// VdkListView çš„æ’ä»¶æ¥å£å£°æ˜
 class IListViewPlaugin
 {
 public:
 
 	typedef VdkListView ListView;
 
-	/// ¹¹Ôìº¯Êı
+	/// æ„é€ å‡½æ•°
 	IListViewPlaugin(ListView* list)
 		: m_list( list )
 	{
 		wxASSERT( m_list );
 	}
 
-	/// ĞéÎö¹¹º¯Êı
+	/// è™šææ„å‡½æ•°
 	virtual ~IListViewPlaugin() {}
 
 public:
 
-	/// »ñÈ¡ VdkListView ¶ÔÏó
+	/// è·å– VdkListView å¯¹è±¡
 	ListView* GetListView() const { return m_list; }
 
-	/// ÊÇ·ñ¿ÉÒÔ±» VdkListView °²È«É¾³ı
+	/// æ˜¯å¦å¯ä»¥è¢« VdkListView å®‰å…¨åˆ é™¤
 	///
-	/// ¼ÙÈç²å¼ş¾ßÓĞ¶àÖØ¼Ì³ĞµÄÀà²ã´Î½á¹¹£¬ÄÇÃ´Ó¦¸ÃĞ¡ĞÄ´¦Àí²å¼şµÄÉúÃüÖÜÆÚ¡£
+	/// å‡å¦‚æ’ä»¶å…·æœ‰å¤šé‡ç»§æ‰¿çš„ç±»å±‚æ¬¡ç»“æ„ï¼Œé‚£ä¹ˆåº”è¯¥å°å¿ƒå¤„ç†æ’ä»¶çš„ç”Ÿå‘½å‘¨æœŸã€‚
 	virtual bool CanDestoryByListView() const { return true; }
 
 public:
 
-    /// ²Á³ıÔ­ÓĞÄÚÈİ£¬»æÖÆ±³¾°
+    /// æ“¦é™¤åŸæœ‰å†…å®¹ï¼Œç»˜åˆ¶èƒŒæ™¯
     virtual void OnEraseRow(int row, wxDC& dc) {}
     
-    /// ÍÏ¶¯ÊÂ¼ş
-    /// @param rowAtPointer µ±Ç°Êó±êÖ¸ÕëÏÂ¶ÔÓ¦µÄÏîÄ¿
+    /// æ‹–åŠ¨äº‹ä»¶
+    /// @param rowAtPointer å½“å‰é¼ æ ‡æŒ‡é’ˆä¸‹å¯¹åº”çš„é¡¹ç›®
     virtual void OnDragg(int rowAtPointer, VdkMouseEvent& e) {}
     
-    /// Êó±êË«»÷ÊÂ¼ş
+    /// é¼ æ ‡åŒå‡»äº‹ä»¶
     virtual void OnDClick(int rowAtPointer, VdkMouseEvent& e) {}
     
-    /// Êó±ê×ó¼ü°´ÏÂ
+    /// é¼ æ ‡å·¦é”®æŒ‰ä¸‹
     virtual void OnClickDown(int rowAtPointer, VdkMouseEvent& e) {}
-    /// Êó±ê×ó¼üµ¯Æğ
+    /// é¼ æ ‡å·¦é”®å¼¹èµ·
     virtual void OnClickUp(int rowAtPointer, VdkMouseEvent& e) {}
     
-    /// Êó±êÓÒ¼üµ¯Æğ
+    /// é¼ æ ‡å³é”®å¼¹èµ·
     virtual void OnRightUp(int rowAtPointer, VdkMouseEvent& e) {}
     
-    /// ¼üÅÌ°´¼üÊÂ¼ş
+    /// é”®ç›˜æŒ‰é”®äº‹ä»¶
     virtual void OnKey(VdkKeyEvent& ke) {}
     
-    /// ¿Ø¼şÎ»ÖÃ¸Ä±ä
+    /// æ§ä»¶ä½ç½®æ”¹å˜
     /// TODO:
     virtual void OnMove(int dx, int dy) {}
     
-    /// ¿Ø¼ş´óĞ¡¸Ä±ä
+    /// æ§ä»¶å¤§å°æ”¹å˜
     virtual void OnSize(int dx, int dy) {}
 
 public:
 
-	/// Êı¾İÊÊÅäÆ÷³ÖÓĞÕßÍ¨ÖªÁĞ±í¿òĞòºÅÎª@a row µÄĞÂÏî±»¼ÓÈë
+	/// æ•°æ®é€‚é…å™¨æŒæœ‰è€…é€šçŸ¥åˆ—è¡¨æ¡†åºå·ä¸º@a row çš„æ–°é¡¹è¢«åŠ å…¥
 	virtual void OnItemAdd(size_t row) {}
 
-	/// Êı¾İÊÊÅäÆ÷³ÖÓĞÕßÍ¨ÖªÁĞ±í¿òĞòºÅÎª@a row µÄÏî±»ÒÆ³ı
+	/// æ•°æ®é€‚é…å™¨æŒæœ‰è€…é€šçŸ¥åˆ—è¡¨æ¡†åºå·ä¸º@a row çš„é¡¹è¢«ç§»é™¤
 	virtual void OnItemRemove(size_t row) {}
 
-	/// Êı¾İÊÊÅäÆ÷³ÖÓĞÕßÍ¨ÖªÁĞ±í¿òËùÓĞÊı¾İÏî¾ùÒÑ±»ÒÆ³ı
+	/// æ•°æ®é€‚é…å™¨æŒæœ‰è€…é€šçŸ¥åˆ—è¡¨æ¡†æ‰€æœ‰æ•°æ®é¡¹å‡å·²è¢«ç§»é™¤
 	virtual void OnClear() {}
 
 private:

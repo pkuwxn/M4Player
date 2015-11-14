@@ -1,19 +1,19 @@
-#pragma once
+ï»¿#pragma once
 
 class VdkWindow;
 class VdkScrollBar;
 #include "VdkControl.h"
 
-/*!\brief ¹ö¶¯´°¿ÚµÄÊµÏÖ»ùÀà
+/*!\brief æ»šåŠ¨çª—å£çš„å®ç°åŸºç±»
  * 
- * ´Î¼¶ÅÉÉúÀà±ØĞëÌá¹©ÈçÏÂ¼¸¸öÍ¨ÖªÏûÏ¢ºÍÊó±êÊÂ¼ş£º
+ * æ¬¡çº§æ´¾ç”Ÿç±»å¿…é¡»æä¾›å¦‚ä¸‹å‡ ä¸ªé€šçŸ¥æ¶ˆæ¯å’Œé¼ æ ‡äº‹ä»¶ï¼š
  * 
- * Í¨ÖªĞÅÏ¢£º
+ * é€šçŸ¥ä¿¡æ¯ï¼š
  * VCN_CREATE
  * VCN_SIZE_CHANGED
  * VCN_WINDOW_RESIZED
  * 
- * Êó±êÊÂ¼ş£º
+ * é¼ æ ‡äº‹ä»¶ï¼š
  * SCROLLING_UP
  * SCROLLING_DOWN
  * WHEEL_UP
@@ -23,206 +23,206 @@ class VdkScrolled
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkScrolled();
 
-	/// \brief ´Ó\a o ¿ËÂ¡
+	/// \brief ä»\a o å…‹éš†
 	void Clone(VdkScrolled* o, VdkScrollBar* scrollbar);
 
-	/// \brief Ë¢ĞÂ¹ö¶¯´°¿Ú×´Ì¬
+	/// \brief åˆ·æ–°æ»šåŠ¨çª—å£çŠ¶æ€
 	///
-	/// Ö÷ÒªÊÇ¹ö¶¯´°¿ÚÊ±£¬ĞèÒª¸üĞÂ¹ö¶¯ÌõÎ»ÖÃ¡£
+	/// ä¸»è¦æ˜¯æ»šåŠ¨çª—å£æ—¶ï¼Œéœ€è¦æ›´æ–°æ»šåŠ¨æ¡ä½ç½®ã€‚
 	void RefreshState(wxDC* pDC);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ÉèÖÃĞéÄâ»­²¼µÄ´óĞ¡
+	/// \brief è®¾ç½®è™šæ‹Ÿç”»å¸ƒçš„å¤§å°
 	void SetVirtualSize(int x, int y, wxDC* pDC = NULL);
 
-	/// \brief Ò»¸öÌİ¶ÈµÄ´óĞ¡
+	/// \brief ä¸€ä¸ªæ¢¯åº¦çš„å¤§å°
 	///
-	/// ÀıÈç¹ö¶¯Ò»´Î¹öÂÖĞéÄâ»­²¼¹ö¶¯Èı¸öÌİ¶È£¬ÄÇÃ´ĞéÄâ»­²¼ÏÂÒÆµÄÏñËØÊı:
-	/// 3 * ÏàÓ¦×ø±êÖáµÄÌİ¶È
+	/// ä¾‹å¦‚æ»šåŠ¨ä¸€æ¬¡æ»šè½®è™šæ‹Ÿç”»å¸ƒæ»šåŠ¨ä¸‰ä¸ªæ¢¯åº¦ï¼Œé‚£ä¹ˆè™šæ‹Ÿç”»å¸ƒä¸‹ç§»çš„åƒç´ æ•°:
+	/// 3 * ç›¸åº”åæ ‡è½´çš„æ¢¯åº¦
 	void SetScrollRate(int xstep, int ystep);
 
-	/// \brief »ñÈ¡Á½¸ö·½ÏòÉÏÊó±ê¹öÂÖÌİ¶ÈµÄ´óĞ¡
+	/// \brief è·å–ä¸¤ä¸ªæ–¹å‘ä¸Šé¼ æ ‡æ»šè½®æ¢¯åº¦çš„å¤§å°
 	/// \see SetScrollRate
 	void GetScrollRate(int* xstep, int* ystep) const;
 
-	/// \brief Ã¿´ÎÊó±ê¹öÂÖ»¬¶¯Ê±·­¹ıµÄĞĞÊı
+	/// \brief æ¯æ¬¡é¼ æ ‡æ»šè½®æ»‘åŠ¨æ—¶ç¿»è¿‡çš„è¡Œæ•°
 	void SetLinesUpDown(int lines) { m_linesUpDown = lines; }
 
-	/// \brief Ã¿´ÎÊó±ê¹öÂÖ»¬¶¯Ê±·­¹ıµÄĞĞÊı
+	/// \brief æ¯æ¬¡é¼ æ ‡æ»šè½®æ»‘åŠ¨æ—¶ç¿»è¿‡çš„è¡Œæ•°
 	int GetLinesUpDown() const { return m_linesUpDown; }
 
-	/// \brief ÉèÖÃÆğÊ¼ĞĞºÅ
+	/// \brief è®¾ç½®èµ·å§‹è¡Œå·
 	void SetViewStart(int x, int y, wxDC* pDC);
 
-	/// \brief »ñÈ¡ÆğÊ¼ĞĞºÅ
+	/// \brief è·å–èµ·å§‹è¡Œå·
 	///
-	/// ĞĞºÅ * yStep = ¿ÉÊÓÆğÊ¼×ø±ê¡£
+	/// è¡Œå· * yStep = å¯è§†èµ·å§‹åæ ‡ã€‚
 	/// \see GetViewStartCoord
 	virtual void GetViewStart(int* x, int* y) const;
 
-	/// \brief »ñÈ¡×î´ó¿ÉÄÜµÄÆğÊ¼ĞòºÅ
+	/// \brief è·å–æœ€å¤§å¯èƒ½çš„èµ·å§‹åºå·
 	virtual void GetMaxViewStart(int* x, int* y) const;
 
-	/// \brief »ñÈ¡ĞéÄâ»­²¼µÄ´óĞ¡
+	/// \brief è·å–è™šæ‹Ÿç”»å¸ƒçš„å¤§å°
 	void GetVirtualSize(int* w, int* h) const;
 
-	/// \brief »ñÈ¡ÆğÊ¼×ø±ê
+	/// \brief è·å–èµ·å§‹åæ ‡
 	/// \see GetViewStart
 	void GetViewStartCoord(int* x, int* y) const;
 
-	/// \brief »ñÈ¡×î´óÆğÊ¼×ø±ê
+	/// \brief è·å–æœ€å¤§èµ·å§‹åæ ‡
 	/// \see GetMaxViewStart
 	void GetMaxViewStartCoord(int* x, int* y) const;
 
-	/// \brief »ñÈ¡¹ö¶¯ÌõµÄÖ»¶Á¾ä±ú
+	/// \brief è·å–æ»šåŠ¨æ¡çš„åªè¯»å¥æŸ„
 	VdkScrollBar* GetScrollBar() const { return m_pScrollBar; }
 
-	/// \brief ¹ö¶¯µ½Ö¸¶¨°Ù·Ö±È
+	/// \brief æ»šåŠ¨åˆ°æŒ‡å®šç™¾åˆ†æ¯”
 	/// \param progress 0 <= \a progress <= 1
 	void GoTo(double progress, wxDC* pDC);
 
-	/// \brief »ñÈ¡µ±Ç°¿ÉÊÓÎ»ÖÃµÄ°Ù·Ö±È
+	/// \brief è·å–å½“å‰å¯è§†ä½ç½®çš„ç™¾åˆ†æ¯”
 	virtual double GetProgress() const;
 
 public:
 
 	//////////////////////////////////////////////////////////////////////////
-	// ÕâÁ½¸öº¯Êı½ö¹©ÄÚ²¿µ÷ÓÃ£¬¼ÙÈçÄã²»ÖªµÀ×Ô¼ºÔÚ¸ÉÊ²Ã´£¬²»Òªµ÷ÓÃËüÃÇ£¡
+	// è¿™ä¸¤ä¸ªå‡½æ•°ä»…ä¾›å†…éƒ¨è°ƒç”¨ï¼Œå‡å¦‚ä½ ä¸çŸ¥é“è‡ªå·±åœ¨å¹²ä»€ä¹ˆï¼Œä¸è¦è°ƒç”¨å®ƒä»¬ï¼
 
-	/// \brief »æÍ¼Ç°µÄ×¼±¸¹¤×÷
+	/// \brief ç»˜å›¾å‰çš„å‡†å¤‡å·¥ä½œ
 	///
-	/// ÀıÈçÕıÈ·ÉèÖÃ DC µÄÆğÊ¼µã¡£
+	/// ä¾‹å¦‚æ­£ç¡®è®¾ç½® DC çš„èµ·å§‹ç‚¹ã€‚
 	void PrepareDC(wxDC& dc);
 
-	/// \brief »æÍ¼ºóµÄÇåÀí¡¢»¹Ô­¹¤×÷
+	/// \brief ç»˜å›¾åçš„æ¸…ç†ã€è¿˜åŸå·¥ä½œ
 	void RestoreDC(wxDC& dc);
 
 protected:
 
 	//////////////////////////////////////////////////////////////////////////
-	// ¹ö¶¯ÌõÏà¹Ø
+	// æ»šåŠ¨æ¡ç›¸å…³
 
-	/// \brief ¸üĞÂ¹ö¶¯Ìõ×´Ì¬
+	/// \brief æ›´æ–°æ»šåŠ¨æ¡çŠ¶æ€
 	void CalcScrollBarSize(wxDC* pDC);
 
-	/// \brief ¹ö¶¯ÌõµÄ·ç¸ñÊôĞÔ¶ÔÏó¶¨Òå
+	/// \brief æ»šåŠ¨æ¡çš„é£æ ¼å±æ€§å¯¹è±¡å®šä¹‰
 	struct ScrollBarStyle {
 
-		wxString* strFileNames; ///< ¹ö¶¯ÌõËùÓÃµÄÎ»Í¼ÎÄ¼şÃûÊı×é
-		int nExpl; ///< ¹ö¶¯ÌõÊÖ±úËùÓÃÎ»Í¼µÄ·Ö¸î·İÊı
-		VdkResizeableBitmapType nThumbTileType; ///< ÉèÖÃ¹ö¶¯ÌõÊÖ±úËùÓÃÎ»Í¼µÄÀ­Éì·½Ê½
-		int nThumbTile; ///< ¹ö¶¯ÌõÊÖ±úËùÓÃÎ»Í¼µÄÀ­Éìµş·Å³¤¶È
+		wxString* strFileNames; ///< æ»šåŠ¨æ¡æ‰€ç”¨çš„ä½å›¾æ–‡ä»¶åæ•°ç»„
+		int nExpl; ///< æ»šåŠ¨æ¡æ‰‹æŸ„æ‰€ç”¨ä½å›¾çš„åˆ†å‰²ä»½æ•°
+		VdkResizeableBitmapType nThumbTileType; ///< è®¾ç½®æ»šåŠ¨æ¡æ‰‹æŸ„æ‰€ç”¨ä½å›¾çš„æ‹‰ä¼¸æ–¹å¼
+		int nThumbTile; ///< æ»šåŠ¨æ¡æ‰‹æŸ„æ‰€ç”¨ä½å›¾çš„æ‹‰ä¼¸å æ”¾é•¿åº¦
 	};
 
-	/// \brief ¸ü¸Ä¹ö¶¯ÌõÆ¤·ô
+	/// \brief æ›´æ”¹æ»šåŠ¨æ¡çš®è‚¤
 	virtual void SetScrollBarStyle(ScrollBarStyle& style);
 
 private:
 
-	/// \brief ¼ÆËã×î´óÔÊĞíÆğÊ¼×ø±ê
+	/// \brief è®¡ç®—æœ€å¤§å…è®¸èµ·å§‹åæ ‡
 	void CalcMaxViewStart();
 
 protected:
 
 	//////////////////////////////////////////////////////////////////////////
-	// ÓÉ´Î¼¶ÅÉÉúÀà·Ö·¢µÄÊÂ¼ş
+	// ç”±æ¬¡çº§æ´¾ç”Ÿç±»åˆ†å‘çš„äº‹ä»¶
 
-	/// \brief ÔÚ´Ë³õÊ¼»¯ DC £¬×¼±¸»æÖÆ
+	/// \brief åœ¨æ­¤åˆå§‹åŒ– DC ï¼Œå‡†å¤‡ç»˜åˆ¶
 	///
-	/// ÅÉÉúÀàÊµÏÖ\link OnDraw \endlink ¼´¿É¡£
+	/// æ´¾ç”Ÿç±»å®ç°\link OnDraw \endlink å³å¯ã€‚
 	void Paint(wxDC& dc);
 
-	/// \brief ´¦ÀíÊó±êÊÂ¼ş
-	/// \warning VdkMouseEvent ÖĞ°üº¬µÄÊó±êÎ»ÖÃÓ¦¸ÃÒÔ¹ö¶¯´°¿Ú×óÉÏ½ÇÎªÆğÊ¼µã¡£
+	/// \brief å¤„ç†é¼ æ ‡äº‹ä»¶
+	/// \warning VdkMouseEvent ä¸­åŒ…å«çš„é¼ æ ‡ä½ç½®åº”è¯¥ä»¥æ»šåŠ¨çª—å£å·¦ä¸Šè§’ä¸ºèµ·å§‹ç‚¹ã€‚
 	void MouseEvent(VdkMouseEvent& e);
 
-	/// \brief ´¦Àí¼üÅÌ°´¼üÊÂ¼ş
+	/// \brief å¤„ç†é”®ç›˜æŒ‰é”®äº‹ä»¶
 	void KeyEvent(VdkKeyEvent& e);
 
-	/// \brief ½ÓÊÕ¡¢´¦ÀíÍ¨ÖªĞÅÏ¢
+	/// \brief æ¥æ”¶ã€å¤„ç†é€šçŸ¥ä¿¡æ¯
 	void Notify(const VdkNotify& notice);
 
 private:
 
 	//////////////////////////////////////////////////////////////////////////
-	// ´Î¼¶ÅÉÉúÀà±ØĞë¸²Ğ´
+	// æ¬¡çº§æ´¾ç”Ÿç±»å¿…é¡»è¦†å†™
 
-	/// \brief »ñÈ¡¹ö¶¯ÌõµÄ¸¸´°¿Ú
+	/// \brief è·å–æ»šåŠ¨æ¡çš„çˆ¶çª—å£
 	virtual VdkWindow* ParentWindow() const = 0;
 
-	/// \brief ¹ö¶¯ÌõµÄ¸¸¿Ø¼ş(¼ÙÈçÓĞ)
+	/// \brief æ»šåŠ¨æ¡çš„çˆ¶æ§ä»¶(å‡å¦‚æœ‰)
 	virtual VdkControl* ScrollBarParent() const = 0;
 
-	/// \brief ¹ö¶¯ÌõµÄÏà¶ÔÎ»ÖÃ
+	/// \brief æ»šåŠ¨æ¡çš„ç›¸å¯¹ä½ç½®
 	virtual wxRect ScrollBarRect() const = 0;
 
-	/// \brief »ñÈ¡¹ö¶¯Ìõ¶ÔÓ¦µÄ DC
+	/// \brief è·å–æ»šåŠ¨æ¡å¯¹åº”çš„ DC
 	virtual wxDC* GetScrollBarDC(wxDC* dc) const = 0;
 
-	/// \brief Ïú»Ù´Ó\link GetScrollBarDC \endlink »ñµÃµÄ DC
+	/// \brief é”€æ¯ä»\link GetScrollBarDC \endlink è·å¾—çš„ DC
 	/// \see GetScrollBarDC
 	virtual void DestroyScrollBarDC(wxDC* dc) const = 0;
 
-	/// \brief »ñÈ¡¹ö¶¯´°¿ÚµÄÃû×Ö
+	/// \brief è·å–æ»šåŠ¨çª—å£çš„åå­—
 	virtual const wxString& Name() const = 0;
 
-	/// \brief »ñÈ¡/ÉèÖÃ¹ö¶¯´°¿ÚµÄ·ç¸ñÊôĞÔ¼¯
+	/// \brief è·å–/è®¾ç½®æ»šåŠ¨çª—å£çš„é£æ ¼å±æ€§é›†
 	virtual long Style() const = 0;
 
-	/// \brief »ñÈ¡/ÉèÖÃ¹ö¶¯´°¿ÚÏà¶ÔÓÚ¸¸¿Ø¼şµÄÏà¶ÔÎ»ÖÃ
+	/// \brief è·å–/è®¾ç½®æ»šåŠ¨çª—å£ç›¸å¯¹äºçˆ¶æ§ä»¶çš„ç›¸å¯¹ä½ç½®
 	/// 
-	/// ¼ÙÈçÃ»ÓĞ¸¸¿Ø¼ş£¬Ôò·µ»ØÖµÓë\link AbsoluteRect() \endlink ÏàÍ¬¡£
+	/// å‡å¦‚æ²¡æœ‰çˆ¶æ§ä»¶ï¼Œåˆ™è¿”å›å€¼ä¸\link AbsoluteRect() \endlink ç›¸åŒã€‚
 	/// \see AbsoluteRect
 	virtual wxRect& RelativeRect() = 0;
 
-	/// \brief »ñÈ¡/ÉèÖÃ¹ö¶¯´°¿ÚÏà¶ÔÓÚ¶¥²ã VdkWindow µÄ¾ø¶ÔÎ»ÖÃ
+	/// \brief è·å–/è®¾ç½®æ»šåŠ¨çª—å£ç›¸å¯¹äºé¡¶å±‚ VdkWindow çš„ç»å¯¹ä½ç½®
 	virtual wxRect AbsoluteRect() const = 0;
 
-	/// \brief ÔÚ´Ë¸üĞÂ/»æÖÆ¹ö¶¯´°¿Ú
+	/// \brief åœ¨æ­¤æ›´æ–°/ç»˜åˆ¶æ»šåŠ¨çª—å£
 	virtual void UpdateUI(wxDC& dc) = 0;
 
-	/// \brief ¼ì²âÊÇ·ñÒÑÔÚ XRC ÎÄ¼şÖĞ¶¨Òå²¢´´½¨ÁËĞèÒªµÄ¹ö¶¯Ìõ
+	/// \brief æ£€æµ‹æ˜¯å¦å·²åœ¨ XRC æ–‡ä»¶ä¸­å®šä¹‰å¹¶åˆ›å»ºäº†éœ€è¦çš„æ»šåŠ¨æ¡
 	///
-	/// ÓÃÓÚ¹ö¶¯´°¿Ú´´½¨È±Ê¡¹ö¶¯ÌõÇ°¡£
+	/// ç”¨äºæ»šåŠ¨çª—å£åˆ›å»ºç¼ºçœæ»šåŠ¨æ¡å‰ã€‚
 	virtual VdkScrollBar* ScrollBarExists() = 0;
 
-	/// \brief ÏìÓ¦¹ö¶¯ÌõÏÔÊ¾/Òş²ØÊÂ¼şÍ¨Öª
+	/// \brief å“åº”æ»šåŠ¨æ¡æ˜¾ç¤º/éšè—äº‹ä»¶é€šçŸ¥
 	virtual void OnScrollBarShowHide(const VdkScrollBar* sb) = 0;
 
 	//////////////////////////////////////////////////////////////////////////
-	// ´Î¼¶ÅÉÉúÀà¿ÉÒÔ¸²Ğ´
+	// æ¬¡çº§æ´¾ç”Ÿç±»å¯ä»¥è¦†å†™
 
-	/// \brief »æÍ¼Ç°µÄ×¼±¸¹¤×÷
+	/// \brief ç»˜å›¾å‰çš„å‡†å¤‡å·¥ä½œ
 	///
-	/// ÀıÈçÕıÈ·ÉèÖÃ DC µÄÆğÊ¼µã¡£
-	/// \warning ´ËÊ± DC µÄÆğÊ¼µãÎª (0, 0) ¡£
+	/// ä¾‹å¦‚æ­£ç¡®è®¾ç½® DC çš„èµ·å§‹ç‚¹ã€‚
+	/// \warning æ­¤æ—¶ DC çš„èµ·å§‹ç‚¹ä¸º (0, 0) ã€‚
 	virtual void DoPrepareDC(wxDC& dc) {}
 
-	/// \brief »æÍ¼ºóµÄÇåÀí¡¢»¹Ô­¹¤×÷
+	/// \brief ç»˜å›¾åçš„æ¸…ç†ã€è¿˜åŸå·¥ä½œ
 	virtual void DoRestoreDC(wxDC& dc) {}
 
 	//////////////////////////////////////////////////////////////////////////
-	// ´Î´Î¼¶ÅÉÉúÀà¿ÉÒÔ¸²Ğ´
+	// æ¬¡æ¬¡çº§æ´¾ç”Ÿç±»å¯ä»¥è¦†å†™
 
-	/// \brief Ë¢ĞÂ¹ö¶¯´°¿Ú
+	/// \brief åˆ·æ–°æ»šåŠ¨çª—å£
 	virtual void DoRefreshState(wxDC& dc) {}
 
-protected: // ÒÔÏÂÕâĞ©ÊÂ¼ş´¦Àíº¯Êı¶¼ĞèÒªÊµÌåÅÉÉúÀàÏò»ùÀà·ÖÅÉ
+protected: // ä»¥ä¸‹è¿™äº›äº‹ä»¶å¤„ç†å‡½æ•°éƒ½éœ€è¦å®ä½“æ´¾ç”Ÿç±»å‘åŸºç±»åˆ†æ´¾
 
-	/// \brief ÔÚ´Ë»æÍ¼
+	/// \brief åœ¨æ­¤ç»˜å›¾
 	virtual void OnDraw(wxDC& dc) {}
 
-	/// \brief ÏìÓ¦Êó±êÊÂ¼ş
+	/// \brief å“åº”é¼ æ ‡äº‹ä»¶
 	virtual void OnMouseEvent(VdkMouseEvent& e) {}
 
-	/// \brief ÏìÓ¦¼üÅÌÊÂ¼ş
+	/// \brief å“åº”é”®ç›˜äº‹ä»¶
 	virtual void OnKeyEvent(VdkKeyEvent& e) {}
 
-	/// \brief ½ÓÊÕ¡¢´¦ÀíÍ¨ÖªĞÅÏ¢
+	/// \brief æ¥æ”¶ã€å¤„ç†é€šçŸ¥ä¿¡æ¯
 	virtual void OnNotify(const VdkNotify& notice) {}
 
 private:
@@ -237,7 +237,7 @@ private:
 	int					m_yViewStart;
 	int					m_yViewStartMax;
 
-	int					m_linesUpDown;		///< Ã¿´ÎÊó±ê¹öÂÖ»¬¶¯Ê±·­¹ıµÄĞĞÊı
+	int					m_linesUpDown;		///< æ¯æ¬¡é¼ æ ‡æ»šè½®æ»‘åŠ¨æ—¶ç¿»è¿‡çš„è¡Œæ•°
 
 	//////////////////////////////////////////////////////////////////////////
 
@@ -248,140 +248,140 @@ private:
 
 enum VdkScrolledWindowStyle {
 
-	/// \brief ÅÉÉúÀà·ç¸ñÊôĞÔµÄÆğÊ¼ ID
+	/// \brief æ´¾ç”Ÿç±»é£æ ¼å±æ€§çš„èµ·å§‹ ID
 	VSWS_USER					= ( VCS_USER + 10 ),
-	/// \brief ²»´´½¨¹ö¶¯Ìõ
+	/// \brief ä¸åˆ›å»ºæ»šåŠ¨æ¡
 	VSWS_NO_SCROLLBAR			= ( 1 << ( VCS_USER + 0 ) ),
-	/// \brief Ê¼ÖÕÏÔÊ¾¹ö¶¯Ìõ£¨²»ÂúÒ»ÆÁÊ±½ûÓÃ¹ö¶¯Ìõ¶ø²»ÊÇÒş²Ø£©
+	/// \brief å§‹ç»ˆæ˜¾ç¤ºæ»šåŠ¨æ¡ï¼ˆä¸æ»¡ä¸€å±æ—¶ç¦ç”¨æ»šåŠ¨æ¡è€Œä¸æ˜¯éšè—ï¼‰
 	VSWS_ALWAYS_SHOW_SCROLLBAR	= ( 1 << ( VCS_USER + 1 ) ),
 };
 
-/// \brief VdkScrolledWindow µÄÔËĞĞÊ±ÊôĞÔ¼¯Î»¶¨Òå
+/// \brief VdkScrolledWindow çš„è¿è¡Œæ—¶å±æ€§é›†ä½å®šä¹‰
 enum VdkScrolledWindowState {
 
-	/// \brief ÅÉÉúÀà·ç¸ñÊôĞÔµÄÆğÊ¼ ID
+	/// \brief æ´¾ç”Ÿç±»é£æ ¼å±æ€§çš„èµ·å§‹ ID
 	VSWST_USER				= ( VCST_USER + 10 ),
 };
 
-/*!\brief ¹ö¶¯´°¿ÚµÄ VDK ÊµÏÖ
+/*!\brief æ»šåŠ¨çª—å£çš„ VDK å®ç°
  *
- * ÒÔÇ°²»¶®¹ö¶¯´°¿ÚµÄ¾Ş´óÒâÒå£¬¶øÉµºõºõµØÊ¹ÓÃ·ÇÔ­Éú¹ö¶¯´°¿ÚÀ´Ä£ÄâÕâÖÖĞ§¹û£¬
- * ÊÂÊµÖ¤Ã÷£¬ÕâÖÖÅ¬Á¦Ì«Ã»ÒâÒå£¡Æ½°×ÎŞ¹ÊµØ¼«´óµØÔö¼ÓÁË»ùÓÚ¹ö¶¯´°¿ÚµÄ¿Ø¼şµÄÊµÏÖ¸´ÔÓĞÔ¡£\n
- * ÑªÀáµÄ½ÌÑµ¡£
+ * ä»¥å‰ä¸æ‡‚æ»šåŠ¨çª—å£çš„å·¨å¤§æ„ä¹‰ï¼Œè€Œå‚»ä¹ä¹åœ°ä½¿ç”¨éåŸç”Ÿæ»šåŠ¨çª—å£æ¥æ¨¡æ‹Ÿè¿™ç§æ•ˆæœï¼Œ
+ * äº‹å®è¯æ˜ï¼Œè¿™ç§åŠªåŠ›å¤ªæ²¡æ„ä¹‰ï¼å¹³ç™½æ— æ•…åœ°æå¤§åœ°å¢åŠ äº†åŸºäºæ»šåŠ¨çª—å£çš„æ§ä»¶çš„å®ç°å¤æ‚æ€§ã€‚\n
+ * è¡€æ³ªçš„æ•™è®­ã€‚
  *
- * \attention ±ØĞëÉèÖÃ m_physicRect£¬ÓÈÆäÊÇĞŞ¸ÄÁË m_Rect µÄÇé¿öÏÂ£¡
+ * \attention å¿…é¡»è®¾ç½® m_physicRectï¼Œå°¤å…¶æ˜¯ä¿®æ”¹äº† m_Rect çš„æƒ…å†µä¸‹ï¼
 **/
 class VdkScrolledWindow : public VdkControl, public VdkScrolled
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkScrolledWindow(long style = 0);
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief ´Ó\a o ¿ËÂ¡
+	/// \brief ä»\a o å…‹éš†
 	void Clone(VdkScrolledWindow* o);
 
-	/// \brief »ñÈ¡°üº¬¹ö¶¯ÌõµÄ×÷ÓÃÓò
+	/// \brief è·å–åŒ…å«æ»šåŠ¨æ¡çš„ä½œç”¨åŸŸ
 	///
-	/// m_Rect Ä¬ÈÏ²»°üº¬¹ö¶¯ÌõµÄ×÷ÓÃÓò¡£
+	/// m_Rect é»˜è®¤ä¸åŒ…å«æ»šåŠ¨æ¡çš„ä½œç”¨åŸŸã€‚
 	wxRect GetLogicalRect() const;
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ÉèÖÃ±ß½çÑÕÉ«
+	/// \brief è®¾ç½®è¾¹ç•Œé¢œè‰²
 	void SetBorderColour(const wxColour& color){ m_borderColor = color; }
 
-	/// \brief »ñÈ¡±ß½çÑÕÉ«
+	/// \brief è·å–è¾¹ç•Œé¢œè‰²
 	wxColour GetBorderColour() const { return m_borderColor; }
 
 private:
 
 	//////////////////////////////////////////////////////////////////////////
-	// ´Î¼¶ÅÉÉúÀà±ØĞë¸²Ğ´
+	// æ¬¡çº§æ´¾ç”Ÿç±»å¿…é¡»è¦†å†™
 
-	/// \brief »ñÈ¡¹ö¶¯ÌõµÄ¸¸´°¿Ú
+	/// \brief è·å–æ»šåŠ¨æ¡çš„çˆ¶çª—å£
 	virtual VdkWindow* ParentWindow() const { return m_Window; }
 
-	/// \brief ¹ö¶¯ÌõµÄ¸¸¿Ø¼ş(¼ÙÈçÓĞ)
+	/// \brief æ»šåŠ¨æ¡çš„çˆ¶æ§ä»¶(å‡å¦‚æœ‰)
 	virtual VdkControl* ScrollBarParent() const {
 		return (VdkControl *)( this );
 	}
 
-	/// \brief ¹ö¶¯ÌõµÄÏà¶ÔÎ»ÖÃ
+	/// \brief æ»šåŠ¨æ¡çš„ç›¸å¯¹ä½ç½®
 	virtual wxRect ScrollBarRect() const {
 		return wxRect( 0, 0, m_Rect.width, m_Rect.height );
 	}
 
-	/// \brief »ñÈ¡¹ö¶¯Ìõ¶ÔÓ¦µÄ DC
+	/// \brief è·å–æ»šåŠ¨æ¡å¯¹åº”çš„ DC
 	virtual wxDC* GetScrollBarDC(wxDC* dc) const { return dc; }
 
-	/// \brief Ïú»Ù´Ó\link GetScrollBarDC \endlink »ñµÃµÄ DC
+	/// \brief é”€æ¯ä»\link GetScrollBarDC \endlink è·å¾—çš„ DC
 	virtual void DestroyScrollBarDC(wxDC* dc) const {}
 
-	/// \brief »ñÈ¡¹ö¶¯´°¿ÚµÄÃû×Ö
+	/// \brief è·å–æ»šåŠ¨çª—å£çš„åå­—
 	virtual const wxString& Name() const { return m_strName; }
 
-	/// \brief »ñÈ¡/ÉèÖÃ¹ö¶¯´°¿ÚµÄ·ç¸ñÊôĞÔ¼¯
+	/// \brief è·å–/è®¾ç½®æ»šåŠ¨çª—å£çš„é£æ ¼å±æ€§é›†
 	virtual long Style() const { return GetStyle(); }
 
 protected:
 
-	/// \brief »ñÈ¡/ÉèÖÃ¹ö¶¯´°¿ÚÏà¶ÔÓÚ¸¸¿Ø¼şµÄÏà¶ÔÎ»ÖÃ
+	/// \brief è·å–/è®¾ç½®æ»šåŠ¨çª—å£ç›¸å¯¹äºçˆ¶æ§ä»¶çš„ç›¸å¯¹ä½ç½®
 	/// 
-	/// ¼ÙÈçÃ»ÓĞ¸¸¿Ø¼ş£¬Ôò·µ»ØÖµÓë\link AbsoluteRect() \endlink ÏàÍ¬¡£
+	/// å‡å¦‚æ²¡æœ‰çˆ¶æ§ä»¶ï¼Œåˆ™è¿”å›å€¼ä¸\link AbsoluteRect() \endlink ç›¸åŒã€‚
 	/// \see AbsoluteRect
 	virtual wxRect& RelativeRect() { return m_Rect; }
 
-	/// \brief »ñÈ¡/ÉèÖÃ¹ö¶¯´°¿ÚÏà¶ÔÓÚ¶¥²ã VdkWindow µÄ¾ø¶ÔÎ»ÖÃ
+	/// \brief è·å–/è®¾ç½®æ»šåŠ¨çª—å£ç›¸å¯¹äºé¡¶å±‚ VdkWindow çš„ç»å¯¹ä½ç½®
 	virtual wxRect AbsoluteRect() const { return GetAbsoluteRect(); }
 
 private:
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void OnXrcCreate(wxXmlNode* node) {}
 
-	/// \brief ÔÚ´Ë¸üĞÂ/»æÖÆ¹ö¶¯´°¿Ú
+	/// \brief åœ¨æ­¤æ›´æ–°/ç»˜åˆ¶æ»šåŠ¨çª—å£
 	virtual void UpdateUI(wxDC& dc) { Draw( dc ); }
 
-	/// \brief ¼ì²âÊÇ·ñÒÑÔÚ XRC ÎÄ¼şÖĞ¶¨Òå²¢´´½¨ÁËĞèÒªµÄ¹ö¶¯Ìõ
+	/// \brief æ£€æµ‹æ˜¯å¦å·²åœ¨ XRC æ–‡ä»¶ä¸­å®šä¹‰å¹¶åˆ›å»ºäº†éœ€è¦çš„æ»šåŠ¨æ¡
 	///
-	/// ÓÃÓÚ¹ö¶¯´°¿Ú´´½¨È±Ê¡¹ö¶¯ÌõÇ°¡£
+	/// ç”¨äºæ»šåŠ¨çª—å£åˆ›å»ºç¼ºçœæ»šåŠ¨æ¡å‰ã€‚
 	virtual VdkScrollBar* ScrollBarExists();
 
-	/// \brief ÏìÓ¦¹ö¶¯ÌõÏÔÊ¾/Òş²ØÊÂ¼şÍ¨Öª
+	/// \brief å“åº”æ»šåŠ¨æ¡æ˜¾ç¤º/éšè—äº‹ä»¶é€šçŸ¥
 	virtual void OnScrollBarShowHide(const VdkScrollBar* sb);
 
 	//////////////////////////////////////////////////////////////////////////
-	// ´Î¼¶ÅÉÉúÀà¿ÉÒÔ¸²Ğ´
+	// æ¬¡çº§æ´¾ç”Ÿç±»å¯ä»¥è¦†å†™
 
-	/// \brief »æÍ¼Ç°µÄ×¼±¸¹¤×÷
+	/// \brief ç»˜å›¾å‰çš„å‡†å¤‡å·¥ä½œ
 	///
-	/// ÀıÈçÕıÈ·ÉèÖÃ DC µÄÆğÊ¼µã¡£
-	/// \warning ´ËÊ± DC µÄÆğÊ¼µãÎª (0, 0) ¡£
+	/// ä¾‹å¦‚æ­£ç¡®è®¾ç½® DC çš„èµ·å§‹ç‚¹ã€‚
+	/// \warning æ­¤æ—¶ DC çš„èµ·å§‹ç‚¹ä¸º (0, 0) ã€‚
 	virtual void DoPrepareDC(wxDC& dc);
 
-	/// \brief »æÍ¼ºóµÄÇåÀí¡¢»¹Ô­¹¤×÷
+	/// \brief ç»˜å›¾åçš„æ¸…ç†ã€è¿˜åŸå·¥ä½œ
 	virtual void DoRestoreDC(wxDC& dc);
 
-	/// \brief Ë¢ĞÂ¹ö¶¯´°¿Ú
+	/// \brief åˆ·æ–°æ»šåŠ¨çª—å£
 	virtual void DoRefreshState(wxDC& dc);
 
 	//////////////////////////////////////////////////////////////////////////
-	// ¼Ì³Ğ×Ô VdkControl
+	// ç»§æ‰¿è‡ª VdkControl
 
-	/// \brief ÔÚ´Ë»æÖÆÈ«²¿ÄÚÈİ
+	/// \brief åœ¨æ­¤ç»˜åˆ¶å…¨éƒ¨å†…å®¹
 	virtual void DoDraw(wxDC& dc);
 
-	/// \brief ´¦ÀíÊó±êÊÂ¼ş
+	/// \brief å¤„ç†é¼ æ ‡äº‹ä»¶
 	virtual void DoHandleMouseEvent(VdkMouseEvent& e);
 
-	/// \brief ´¦Àí¼üÅÌ°´¼üÊÂ¼ş
+	/// \brief å¤„ç†é”®ç›˜æŒ‰é”®äº‹ä»¶
 	virtual void DoHandleKeyEvent(VdkKeyEvent& e) { KeyEvent( e ); }
 
-	/// \brief ½ÓÊÕ¡¢´¦ÀíÍ¨ÖªĞÅÏ¢
+	/// \brief æ¥æ”¶ã€å¤„ç†é€šçŸ¥ä¿¡æ¯
 	virtual void DoHandleNotify(const VdkNotify& notice) {
 		Notify( notice );
 	}

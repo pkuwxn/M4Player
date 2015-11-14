@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      LvpHeaderCtrl.cpp
- * Purpose:   VdkListView ±êÌâÀ¸
+ * Purpose:   VdkListView æ ‡é¢˜æ 
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-26
  **************************************************************/
@@ -19,7 +19,7 @@
 //////////////////////////////////////////////////////////////////////////
 
 enum {
-	STD_HEIGHT = 20, // ±êÌâÀ¸¸ß¶È
+	STD_HEIGHT = 20, // æ ‡é¢˜æ é«˜åº¦
 };
 
 LvpHeaderCtrl::LvpHeaderCtrl(ListView* listview)
@@ -35,7 +35,7 @@ LvpHeaderCtrl::LvpHeaderCtrl(ListView* listview)
 	rcListView.height -= STD_HEIGHT;
 	listview->SetRect( rcListView );
 
-	// ÎÒÃÇ×Ô¼º»­±ß¿ò
+	// æˆ‘ä»¬è‡ªå·±ç”»è¾¹æ¡†
 	listview->RemoveStyle( VCS_BORDER_SIMPLE );
 
 	SetVdkWindow( listview->GetVdkWindow() );
@@ -57,7 +57,7 @@ void LvpHeaderCtrl::DoDraw(wxDC& dc)
 {
 	ListView* listview = GetListView();
 
-	// »æÖÆ±ß¿ò
+	// ç»˜åˆ¶è¾¹æ¡†
 	wxPen borderPen( listview->GetBorderColour() );
 	dc.SetPen( borderPen );
 

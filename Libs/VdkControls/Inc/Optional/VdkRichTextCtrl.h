@@ -1,20 +1,20 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkNativeCtrl.h"
 #include <wx/richtext/richtextctrl.h>
 
-/// \brief ·â×°¸»ÎÄ±¾±à¼­¿ò
+/// \brief å°è£…å¯Œæ–‡æœ¬ç¼–è¾‘æ¡†
 class VdkRichTextCtrl : public wxRichTextCtrl, 
 						public VdkNativeCtrl< VdkRichTextCtrl >
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkRichTextCtrl(){ Init(); }
 
-	/// \brief ¶¯Ì¬´´½¨
+	/// \brief åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief ¹¹½¨¿Ø¼ş
+	/// \brief æ„å»ºæ§ä»¶
 	void Create( VdkWindow* win, 
 				 const wxString& strName, 
 				 const wxRect& rc, 
@@ -22,10 +22,10 @@ public:
 
 private:
 
-	/// \brief ³õÊ¼»¯¿Ø¼ş
+	/// \brief åˆå§‹åŒ–æ§ä»¶
 	void Init();
 
-	/// \brief »æÖÆ¿Ø¼ş
+	/// \brief ç»˜åˆ¶æ§ä»¶
 	virtual void DoDraw(wxDC* pDC);
 
 	//////////////////////////////////////////////////////////////////////////

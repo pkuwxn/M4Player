@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #if defined(__WXMSW__) && !defined(NOT_USE_EXTMENU)
 
 #include "ExtMenuItem.h"
@@ -29,15 +29,15 @@ public:
 		return new ExtMenuItem(this, wxID_SEPARATOR);
 	}
 
-	/// \brief µÃµ½µ±Ç°ÕıÔÚ»î¶¯µÄ ExtMenu
+	/// \brief å¾—åˆ°å½“å‰æ­£åœ¨æ´»åŠ¨çš„ ExtMenu
 	static HWND GetActiveExtMenu();
 
-	/// \brief ÆôÓÃ²Ëµ¥Tooltip
+	/// \brief å¯ç”¨èœå•Tooltip
 	static void InstallMenuTips(wxWindow* win);
 
 private:
 
-	/// \brief ÔÚÕâÀïÊ¹²Ëµ¥Æ½Ãæ»¯£¨È¥³ı±ß¿ò£©
+	/// \brief åœ¨è¿™é‡Œä½¿èœå•å¹³é¢åŒ–ï¼ˆå»é™¤è¾¹æ¡†ï¼‰
 	static void InitExtMenu();
 
 	static HRESULT CALLBACK TryHookMenuWnd(int code, WPARAM wParam, LPARAM lParam);
@@ -49,11 +49,11 @@ private:
 
 private:
 
-	static size_t					m_refCount;				/// \brief Ò»¹²¹ÒÔØÁË¶àÉÙ´Î¹³×Ó
-	static VectorOfMenuHwndInfo		m_menuHandles;			/// \brief ËùÓĞMenuµÄHandle
+	static size_t					m_refCount;				/// \brief ä¸€å…±æŒ‚è½½äº†å¤šå°‘æ¬¡é’©å­
+	static VectorOfMenuHwndInfo		m_menuHandles;			/// \brief æ‰€æœ‰Menuçš„Handle
 
-	static WNDPROC					m_oldMenuWndProc;		/// \brief ²Ëµ¥Ô­À´µÄ´°¿Úº¯Êı
-	static WNDPROC					m_oldMainWndProc;		/// \brief ÒªÏÔÊ¾²Ëµ¥ÌáÊ¾µÄ´°¿ÚµÄÔ­´°¿Úº¯Êı
+	static WNDPROC					m_oldMenuWndProc;		/// \brief èœå•åŸæ¥çš„çª—å£å‡½æ•°
+	static WNDPROC					m_oldMainWndProc;		/// \brief è¦æ˜¾ç¤ºèœå•æç¤ºçš„çª—å£çš„åŸçª—å£å‡½æ•°
 };
 
 #else

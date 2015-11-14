@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <wchar.h>
 
 class wxFile;
@@ -8,16 +8,16 @@ class wxXmlNode;
 
 //////////////////////////////////////////////////////////////////////////
 
-/// ±È½ÏÁ½¸öÕûÊı;
+/// æ¯”è¾ƒä¸¤ä¸ªæ•´æ•°;
 int CompareInts(int n1, int n2);
 
-/// \brief ¸´ÖÆÎÄ±¾
+/// \brief å¤åˆ¶æ–‡æœ¬
 bool CopyText(const wxString& strText);
 
-/// \brief ¼ôÌù°åÄÚÊÇ·ñ´æÓĞÎÄ±¾
+/// \brief å‰ªè´´æ¿å†…æ˜¯å¦å­˜æœ‰æ–‡æœ¬
 bool IsTextOnClipborad();
 
-/// \brief Çå¿ÕÈİÆ÷£¬²¢É¾³ıÆäÄÚµÄÖ¸Õë
+/// \brief æ¸…ç©ºå®¹å™¨ï¼Œå¹¶åˆ é™¤å…¶å†…çš„æŒ‡é’ˆ
 template< class T >
 void ClearPtrContainer(T& container)
 {
@@ -26,7 +26,7 @@ void ClearPtrContainer(T& container)
 		delete *i;
 }
 
-/// ±éÀúÈİÆ÷½øĞĞËÑË÷
+/// éå†å®¹å™¨è¿›è¡Œæœç´¢
 template< class Iter, class T >
 Iter SearchContainer(Iter beg, Iter end, const T& data)
 {
@@ -42,7 +42,7 @@ Iter SearchContainer(Iter beg, Iter end, const T& data)
 	return i;
 }
 
-/// \brief Çå¿ÕÍ¼ÈİÆ÷£¬²¢É¾³ıÆäÄÚµÄÖ¸Õë
+/// \brief æ¸…ç©ºå›¾å®¹å™¨ï¼Œå¹¶åˆ é™¤å…¶å†…çš„æŒ‡é’ˆ
 template< class T >
 void ClearPtrMap(T& container)
 {
@@ -51,77 +51,77 @@ void ClearPtrMap(T& container)
 		delete (*i).second;
 }
 
-/// \brief Çå¿Õ wxRect
+/// \brief æ¸…ç©º wxRect
 inline wxRect& ZeroRect(wxRect& rc)
 {
 	rc.x = rc.y = rc.width = rc.height = 0;
 	return rc;
 }
 
-/// \brief Çå¿Õ wxPoint
+/// \brief æ¸…ç©º wxPoint
 inline wxPoint& ZeroPoint(wxPoint& pt)
 {
 	pt.x = pt.y = 0;
 	return pt;
 }
 
-/// \brief °²È«¸´ÖÆÕû¸öÎ»Í¼
+/// \brief å®‰å…¨å¤åˆ¶æ•´ä¸ªä½å›¾
 inline wxBitmap DuplicateBitmap(wxBitmap& bmp)
 {
 	wxRect rc( 0, 0, bmp.GetWidth(), bmp.GetHeight() );
 	return bmp.GetSubBitmap( rc );
 }
 
-/// \brief ´ÓÎ»Í¼µÄ±³¾°É«´´½¨ÑÚÂëÎ»Í¼
+/// \brief ä»ä½å›¾çš„èƒŒæ™¯è‰²åˆ›å»ºæ©ç ä½å›¾
 ///
-/// Í¸Ã÷ÇøÓò½«ÊÇ¾ßÓĞ³ı±³¾°É«Ö®ÍâµÄÑÕÉ«µÄÇøÓò¡£
-/// \note ±¾º¯Êı»á½«±³¾°É«×ªÎª°×É«£¬ÆäÓà×ª»»ÎªºÚÉ«¡£
+/// é€æ˜åŒºåŸŸå°†æ˜¯å…·æœ‰é™¤èƒŒæ™¯è‰²ä¹‹å¤–çš„é¢œè‰²çš„åŒºåŸŸã€‚
+/// \note æœ¬å‡½æ•°ä¼šå°†èƒŒæ™¯è‰²è½¬ä¸ºç™½è‰²ï¼Œå…¶ä½™è½¬æ¢ä¸ºé»‘è‰²ã€‚
 void TransparentBmp(wxBitmap& bmp, const wxColour& bgColour);
 
-/// \brief »ñÈ¡Í¼ÏñµÄÀàĞÍ
+/// \brief è·å–å›¾åƒçš„ç±»å‹
 wxBitmapType TestImageType(wxInputStream* is);
 wxBitmapType TestImageType(char* data);
 
-/// \brief ½«Ò»¸ö wxDateTime ¸ñÊ½»¯Îª ISO ¸ñÊ½ÎÄ±¾
+/// \brief å°†ä¸€ä¸ª wxDateTime æ ¼å¼åŒ–ä¸º ISO æ ¼å¼æ–‡æœ¬
 ///
-/// ĞÎÈç 2010-09-24T15:09:33
-/// wxWidgets 2.9+ µÄ wxDateTime ÒÑÔ­ÉúÌá¹©Ö§³Ö
+/// å½¢å¦‚ 2010-09-24T15:09:33
+/// wxWidgets 2.9+ çš„ wxDateTime å·²åŸç”Ÿæä¾›æ”¯æŒ
 wxString GetISODateTime(const wxDateTime& dt);
 
-/// \brief ²úÉúÒ»¸öËæ»úÊı
+/// \brief äº§ç”Ÿä¸€ä¸ªéšæœºæ•°
 int Rand(int max);
 
-/// \brief µÃµ½\a num µÄÎ»Êı
+/// \brief å¾—åˆ°\a num çš„ä½æ•°
 int GetNumBitCount(int num);
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief Ğ´Èë´ú±í UTF-8 ±àÂëµÄÎÄ¼şÍ·£¨BOM£©
+/// \brief å†™å…¥ä»£è¡¨ UTF-8 ç¼–ç çš„æ–‡ä»¶å¤´ï¼ˆBOMï¼‰
 void WriteUtf8BOM(wxFile& f);
 
-/// \brief ÎÄ¼şÊÇ·ñÊ¹ÓÃ UTF-8 ±àÂë
+/// \brief æ–‡ä»¶æ˜¯å¦ä½¿ç”¨ UTF-8 ç¼–ç 
 bool IsEncodedInUtf8(const char* header);
 
 enum RA_FileEncoding {
 
-	RA_ANSI,	/// < Windows Ä¬ÈÏ±àÂë£¨¶ÔÓÚÖĞÎÄÊÇGB2312£©
+	RA_ANSI,	/// < Windows é»˜è®¤ç¼–ç ï¼ˆå¯¹äºä¸­æ–‡æ˜¯GB2312ï¼‰
 	RA_UTF8,	/// < UTF-8
 	RA_UNICODE	/// < Unicode
 };
 
-/// \brief ¶ÁÈ¡ÎÄ±¾ÎÄ¼şµÄËùÓĞÄÚÈİ
+/// \brief è¯»å–æ–‡æœ¬æ–‡ä»¶çš„æ‰€æœ‰å†…å®¹
 wxString ReadAll(const wxString& strFileName, RA_FileEncoding type);
 
-/// \brief Ê¹ÓÃ strcmp À´±È½ÏÁ½¸ö Unicode ×Ö·û´®
+/// \brief ä½¿ç”¨ strcmp æ¥æ¯”è¾ƒä¸¤ä¸ª Unicode å­—ç¬¦ä¸²
 ///
-/// Ã²ËÆÖĞÎÄµÄ Unicode ±àÂë²»ÊÇÒÔÆ´ÒôË³ĞòÀ´ÅÅÁĞµÄ¡£
+/// è²Œä¼¼ä¸­æ–‡çš„ Unicode ç¼–ç ä¸æ˜¯ä»¥æ‹¼éŸ³é¡ºåºæ¥æ’åˆ—çš„ã€‚
 int CompareUnicodeStrings(const wxString& s1, const wxString& s2);
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief ½«ÊäÈë·¨´°¿ÚÒÆµ½Ö¸¶¨Î»ÖÃ
+/// \brief å°†è¾“å…¥æ³•çª—å£ç§»åˆ°æŒ‡å®šä½ç½®
 ///
-/// Î»ÖÃ(\a x, \a y)ÒÔ\a win ×óÉÏ½ÇÎª×ø±êÆğÊ¼µã¡£
+/// ä½ç½®(\a x, \a y)ä»¥\a win å·¦ä¸Šè§’ä¸ºåæ ‡èµ·å§‹ç‚¹ã€‚
 void MoveImeWindow(wxWindow* win, int x, int y);
 
 /// @Override
@@ -129,14 +129,14 @@ inline void MoveImeWindow(wxWindow* win, const wxPoint& pos) {
 	MoveImeWindow( win, pos.x, pos.y );
 }
 
-/// \brief µ±Ç°ÊäÈë·¨´°¿ÚÊÇ·ñ¿É¼û
+/// \brief å½“å‰è¾“å…¥æ³•çª—å£æ˜¯å¦å¯è§
 bool IsImeWindowVisiable(wxWindow* win);
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief ½«´°¿ÚÒÆµ½Ö¸¶¨Î»ÖÃ
+/// \brief å°†çª—å£ç§»åˆ°æŒ‡å®šä½ç½®
 ///
-/// ÓÃ´¦Ö÷ÒªÌåÏÖÔÚ GTK+ ÕâÖÖÒì²½ GUI Ä£ĞÍÏÂÃæ¡£
+/// ç”¨å¤„ä¸»è¦ä½“ç°åœ¨ GTK+ è¿™ç§å¼‚æ­¥ GUI æ¨¡å‹ä¸‹é¢ã€‚
 void MoveWindowSynchronously(wxWindow* win, int x, int y);
 /// @Override
 inline void MoveWindowSynchronously(wxWindow* win, const wxPoint& pos) {
@@ -145,17 +145,17 @@ inline void MoveWindowSynchronously(wxWindow* win, const wxPoint& pos) {
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief ³Ö¾Ã»¯¶ÁÈë¡¢Ğ´Èë·¢Éú´íÎó
+/// \brief æŒä¹…åŒ–è¯»å…¥ã€å†™å…¥å‘ç”Ÿé”™è¯¯
 class serialize_bad_format {};
 
-/// \brief ÍùÁ÷ÀïĞ´ÈëÒ»¸öÕûĞÍÊı
+/// \brief å¾€æµé‡Œå†™å…¥ä¸€ä¸ªæ•´å‹æ•°
 template< class V, class OutStream >
 void WriteVar(OutStream& fout, V data)
 {
 	fout.Write( &data, sizeof( data ) );
 }
 
-/// \brief ´ÓÁ÷Àï¶ÁÈëÒ»¸öÕûĞÍÊı
+/// \brief ä»æµé‡Œè¯»å…¥ä¸€ä¸ªæ•´å‹æ•°
 template< class V, class InStream >
 V ReadVar(InStream& fin)
 {
@@ -165,83 +165,83 @@ V ReadVar(InStream& fin)
 	return ret;
 }
 
-/// \brief ÍùÁ÷ÀïĞ´ÈëÒ»¸ö×Ö·û´®
+/// \brief å¾€æµé‡Œå†™å…¥ä¸€ä¸ªå­—ç¬¦ä¸²
 ///
-/// ÏÈĞ´Èë×Ö·û´®µÄ³¤¶È£¬È»ºóÊÇ×Ö·û´®£¬Ã»ÓĞ×Ö·û´®Ä©Î²µÄ¡°0¡±
+/// å…ˆå†™å…¥å­—ç¬¦ä¸²çš„é•¿åº¦ï¼Œç„¶åæ˜¯å­—ç¬¦ä¸²ï¼Œæ²¡æœ‰å­—ç¬¦ä¸²æœ«å°¾çš„â€œ0â€
 void WriteString(wxOutputStream& fout, const wxString& s);
 
-/// \brief ´ÓÁ÷ÖĞ¶ÁÈëÒ»¸ö×Ö·û´®
+/// \brief ä»æµä¸­è¯»å…¥ä¸€ä¸ªå­—ç¬¦ä¸²
 wxString ReadString(wxInputStream& fin);
 
-/// \brief ´ÓÄÚ´æÁ÷ÖĞ¶ÁÈëÒ»¸ö×Ö·û´®
+/// \brief ä»å†…å­˜æµä¸­è¯»å…¥ä¸€ä¸ªå­—ç¬¦ä¸²
 wxString ReadString(wxMemoryInputStream& min);
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief »­Ò»¸ö¾ØĞÎ
+/// \brief ç”»ä¸€ä¸ªçŸ©å½¢
 ///
-/// ²»Ìî³ä£¬Ö»ÊÇ»­±ß¿ò¡£
+/// ä¸å¡«å……ï¼Œåªæ˜¯ç”»è¾¹æ¡†ã€‚
 void DrawRectangle(wxDC& dc, const wxRect& rc);
 
-/// \brief ÔÚÒ»¸ö×Ö·û´®ÖĞÕÒ³öÄÇ¸öÓĞ¿ì½İ¼üµÄ×Ö·û£¬Èç¡°&N¡±£¬
-/// È»ºóÖ»ÔÚÕâ¸ö×Ö·ûÏÂÃæ»­Ò»ÌõÏÂ»®Ïß
+/// \brief åœ¨ä¸€ä¸ªå­—ç¬¦ä¸²ä¸­æ‰¾å‡ºé‚£ä¸ªæœ‰å¿«æ·é”®çš„å­—ç¬¦ï¼Œå¦‚â€œ&Nâ€ï¼Œ
+/// ç„¶ååªåœ¨è¿™ä¸ªå­—ç¬¦ä¸‹é¢ç”»ä¸€æ¡ä¸‹åˆ’çº¿
 void DrawHotKeyCaption( const wxString& strText,
 						wxDC& dc,
 						int x,
 						int y );
 
-/// \brief µÃµ½ÏµÍ³Ïà¹ØµÄ RamDisk µÄÂ·¾¶
+/// \brief å¾—åˆ°ç³»ç»Ÿç›¸å…³çš„ RamDisk çš„è·¯å¾„
 ///
-/// Windows ÏÂÎª Z:\ £¬Linux ÏÂÎª /dev/shm/ ¡£
+/// Windows ä¸‹ä¸º Z:\ ï¼ŒLinux ä¸‹ä¸º /dev/shm/ ã€‚
 wxString GetRamDiskPath(const wchar_t* szFileName);
 
-/// \brief ½«Ö¸¶¨ wxBitmap ±£´æµ½ÄÚ´æÅÌÉÏ
+/// \brief å°†æŒ‡å®š wxBitmap ä¿å­˜åˆ°å†…å­˜ç›˜ä¸Š
 void RandSave(const wxBitmap& bm, const wchar_t* szPostfix = NULL);
 
-/// \brief ½« DC ÖĞÖ¸¶¨ÇøÓòµÄÄÚÈİ±£´æµ½ÄÚ´æÅÌÉÏ
+/// \brief å°† DC ä¸­æŒ‡å®šåŒºåŸŸçš„å†…å®¹ä¿å­˜åˆ°å†…å­˜ç›˜ä¸Š
 void RandSaveDC(wxDC& dc, const wxRect& rt, const wchar_t* szPostfix = NULL);
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief Ö±½Ó»ñÈ¡Ö¸¶¨Ãû×Ö×Ó½áµãµÄ²¼¶ûÖµ
+/// \brief ç›´æ¥è·å–æŒ‡å®šåå­—å­ç»“ç‚¹çš„å¸ƒå°”å€¼
 bool XmlGetContentOfBoolean(wxXmlNode* xmlNode, bool defv = false);
 
-/// \brief Ö±½Ó»ñÈ¡Ö¸¶¨Ãû×Ö×Ó½áµãµÄÊıÖµ
+/// \brief ç›´æ¥è·å–æŒ‡å®šåå­—å­ç»“ç‚¹çš„æ•°å€¼
 int XmlGetContentOfNum(wxXmlNode* xmlNode, int defaultValue = 0);
 
-/// \brief Ö±½Ó»ñÈ¡Ö¸¶¨Ãû×Ö×Ó½áµãµÄÎÄ±¾
+/// \brief ç›´æ¥è·å–æŒ‡å®šåå­—å­ç»“ç‚¹çš„æ–‡æœ¬
 wxString XmlGetChildContent(wxXmlNode* node, const wxString& strChdName,
 							const wxString& defaultValue = wxEmptyString);
 
-/// \brief ²éÕÒÃûÎª\a strName µÄ×Ó½áµã
+/// \brief æŸ¥æ‰¾åä¸º\a strName çš„å­ç»“ç‚¹
 wxXmlNode* FindChildNode(wxXmlNode* xmlNode, const wxString& strName);
 
-/// \brief ²éÕÒÍ¬ÃûµÄĞÖµÜ½áµã
+/// \brief æŸ¥æ‰¾åŒåçš„å…„å¼Ÿç»“ç‚¹
 wxXmlNode* FindSibling(wxXmlNode* node);
 
-/// \brief ÉèÖÃ XML ½áµãµÄÎÄ±¾ÄÚÈİ
+/// \brief è®¾ç½® XML ç»“ç‚¹çš„æ–‡æœ¬å†…å®¹
 void XmlSetContent(wxXmlNode* node, const wxString& strContent);
 
-/// \brief ²åÈëÒ»¸öĞÂµÄ½áµã
+/// \brief æ’å…¥ä¸€ä¸ªæ–°çš„ç»“ç‚¹
 wxXmlNode* XmlInsertChild(wxXmlNode* parent, const wxString& strName,
 						  const wxString& strContent);
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief ÊÇ·ñÒÑÈ»ÉèÖÃ¿ª»úÆô¶¯
+/// \brief æ˜¯å¦å·²ç„¶è®¾ç½®å¼€æœºå¯åŠ¨
 bool wxIsAutoStart(const wxString& strAppName);
 
-/// \brief ÉèÖÃ¿ª»úÆô¶¯
+/// \brief è®¾ç½®å¼€æœºå¯åŠ¨
 bool wxAutoStart(const wxString& strAppName,
 				 const wxString& strAppPath,
 				 bool bAdd = true);
 
-/// \brief Ò»¸ö±ãÀûµÄ×ÖÌå´´½¨º¯Êı
+/// \brief ä¸€ä¸ªä¾¿åˆ©çš„å­—ä½“åˆ›å»ºå‡½æ•°
 wxFont wxEasyCreatFont(const wxString& strFaceName = wxEmptyString,
 					   int nPointSize = 9,
 					   bool bBold = false);
 
-/// \brief µÃµ½×ÖÌåµÄ¾«È·¸ß¶È
+/// \brief å¾—åˆ°å­—ä½“çš„ç²¾ç¡®é«˜åº¦
 int wxGetFontHeight(const wxFont& font, wxWindow* win);
 
 //////////////////////////////////////////////////////////////////////////
@@ -267,48 +267,48 @@ int wxGetFontHeight(const wxFont& font, wxWindow* win);
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief ·µ»ØÎ»ÓÚ¾ØĞÎµÄÓÒ²¿µÚÒ»¸öµã(Õâ¸öµã²¢²»ÊôÓÚ¸Ã¾ØĞÎ)
+/// \brief è¿”å›ä½äºçŸ©å½¢çš„å³éƒ¨ç¬¬ä¸€ä¸ªç‚¹(è¿™ä¸ªç‚¹å¹¶ä¸å±äºè¯¥çŸ©å½¢)
 inline int RightOf (const wxRect& rc) { return rc.x + rc.width; }
 
-/// \brief ·µ»ØÎ»ÓÚ¾ØĞÎµÄµ×²¿µÚÒ»¸öµã(Õâ¸öµã²¢²»ÊôÓÚ¸Ã¾ØĞÎ)
+/// \brief è¿”å›ä½äºçŸ©å½¢çš„åº•éƒ¨ç¬¬ä¸€ä¸ªç‚¹(è¿™ä¸ªç‚¹å¹¶ä¸å±äºè¯¥çŸ©å½¢)
 inline int BottomOf(const wxRect& rc) { return rc.y + rc.height; }
 
-/// \brief ½«¾ØĞÎ¶ÔÏó±íÊ¾Îª¡°x, y, width, height¡±µÄ¸ñÊ½
+/// \brief å°†çŸ©å½¢å¯¹è±¡è¡¨ç¤ºä¸ºâ€œx, y, width, heightâ€çš„æ ¼å¼
 ///
-/// ²»»á³öÏÖ¡°(¡±¡°)¡±¡£
+/// ä¸ä¼šå‡ºç°â€œ(â€â€œ)â€ã€‚
 wxString RectToString(const wxRect& rc);
 
-/// \brief ´òÓ¡Ò»¸ö¾ØĞÎ¶ÔÏó
+/// \brief æ‰“å°ä¸€ä¸ªçŸ©å½¢å¯¹è±¡
 void Print(const wxRect& rc, const wxString& desc = wxEmptyString);
 
-/// \brief ½«µã¶ÔÏó±íÊ¾Îª¡°x, y¡±µÄ¸ñÊ½
+/// \brief å°†ç‚¹å¯¹è±¡è¡¨ç¤ºä¸ºâ€œx, yâ€çš„æ ¼å¼
 ///
-/// ²»»á³öÏÖ¡°(¡±¡°)¡±¡£
+/// ä¸ä¼šå‡ºç°â€œ(â€â€œ)â€ã€‚
 wxString PointToString(const wxPoint& point);
 
-/// \brief ´òÓ¡Ò»¸öµã¶ÔÏó
+/// \brief æ‰“å°ä¸€ä¸ªç‚¹å¯¹è±¡
 void Print(const wxPoint& point, const wxString& desc = wxEmptyString);
 
-/// \brief ½«·½ÏòÊôĞÔ×ª»»³ÉÏàÓ¦µÄÎÄ±¾ĞÎÊ½£¨VdkDirection£©
+/// \brief å°†æ–¹å‘å±æ€§è½¬æ¢æˆç›¸åº”çš„æ–‡æœ¬å½¢å¼ï¼ˆVdkDirectionï¼‰
 wxString DirectionToString(unsigned d);
 
-/// \brief ½«¶ÔÆëÊôĞÔ×ª»»³ÉÏàÓ¦µÄÎÄ±¾ĞÎÊ½£¨VdkAlignment£©
+/// \brief å°†å¯¹é½å±æ€§è½¬æ¢æˆç›¸åº”çš„æ–‡æœ¬å½¢å¼ï¼ˆVdkAlignmentï¼‰
 wxString AlignmentToString(unsigned align);
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief »ñÈ¡¼üÅÌ°´¼ü±êÊ¶·ûµÄ×Ö·û´®±íÊ¾
+/// \brief è·å–é”®ç›˜æŒ‰é”®æ ‡è¯†ç¬¦çš„å­—ç¬¦ä¸²è¡¨ç¤º
 wxString GetKeyCodeName(int keycode);
 
 #ifdef __WXDEBUG__
 
-	/// \brief »ñÈ¡ VDK ÊÂ¼ş£¨event£©±êÊ¶·ûµÄ×Ö·û´®±íÊ¾
+	/// \brief è·å– VDK äº‹ä»¶ï¼ˆeventï¼‰æ ‡è¯†ç¬¦çš„å­—ç¬¦ä¸²è¡¨ç¤º
 	const wxChar* GetEventName(int evtCode);
-	/// \brief »ñÈ¡ VDK Í¨Öª£¨notice£©±êÊ¶·ûµÄ×Ö·û´®±íÊ¾
+	/// \brief è·å– VDK é€šçŸ¥ï¼ˆnoticeï¼‰æ ‡è¯†ç¬¦çš„å­—ç¬¦ä¸²è¡¨ç¤º
 	const wxChar* GetNoticeName(int notice);
 
 #	ifdef __WXMSW__
-		/// \brief »ñÈ¡ Win32 SDK ÏûÏ¢µÄ×Ö·û´®±íÊ¾
+		/// \brief è·å– Win32 SDK æ¶ˆæ¯çš„å­—ç¬¦ä¸²è¡¨ç¤º
 		const wxChar* wxGetMessageName(int message);
 #	endif // __WXMSW__
 
@@ -316,7 +316,7 @@ wxString GetKeyCodeName(int keycode);
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief ¶àĞĞ½¥±äÉ«ÎÄ±¾ÖĞµÄÒ»ĞĞ
+/// \brief å¤šè¡Œæ¸å˜è‰²æ–‡æœ¬ä¸­çš„ä¸€è¡Œ
 struct GtmTextLine {
 
 	wxString s;
@@ -325,12 +325,12 @@ struct GtmTextLine {
 
 WX_DECLARE_OBJARRAY( GtmTextLine, ArrayOfGtmTextLines );
 
-/// \brief ´´½¨½¥±äÉ«ÎÄ±¾Àà
+/// \brief åˆ›å»ºæ¸å˜è‰²æ–‡æœ¬ç±»
 ///
-/// ÓÃÓÚÏŞÖÆÃüÃû¿Õ¼ä£¬±ÜÃâÎÛÈ¾¡£
+/// ç”¨äºé™åˆ¶å‘½åç©ºé—´ï¼Œé¿å…æ±¡æŸ“ã€‚
 struct GradientTextMethod
 {
-	/// \brief ´´½¨½¥±äÉ«ÎÄ±¾
+	/// \brief åˆ›å»ºæ¸å˜è‰²æ–‡æœ¬
 	static void Draw(wxDC& dc,
 					 const wxFont& font,
 					 const wxBrush& BgBrush,
@@ -343,7 +343,7 @@ struct GradientTextMethod
 
 private:
 
-	// Ö´ĞĞÊµ¼Ê»æÍ¼²Ù×÷
+	// æ‰§è¡Œå®é™…ç»˜å›¾æ“ä½œ
 	static void DrawText(wxDC& dc, int rowHeight, int y, 
 						 const ArrayOfGtmTextLines& lines);
 };

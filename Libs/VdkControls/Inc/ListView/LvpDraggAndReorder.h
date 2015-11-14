@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      LvpDraggAndReorder.h
- * Purpose:   ÊµÏÖ VdkListView Í¨¹ıÍÏ¶¯¸Ä±äÏîÄ¿ÅÅĞò
+ * Purpose:   å®ç° VdkListView é€šè¿‡æ‹–åŠ¨æ”¹å˜é¡¹ç›®æ’åº
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-3-3
  **************************************************************/
@@ -8,38 +8,38 @@
 #include "LvpClick.h"
 #include <wx/vector.h>
 
-/// ÊµÏÖ VdkListView Í¨¹ıÍÏ¶¯¸Ä±äÏîÄ¿ÅÅĞò
+/// å®ç° VdkListView é€šè¿‡æ‹–åŠ¨æ”¹å˜é¡¹ç›®æ’åº
 class LvpDraggAndReorder : public LvpClick
 {
 public:
 
-	/// ĞĞºÅ¸ú×ÙÆ÷
+	/// è¡Œå·è·Ÿè¸ªå™¨
 	/// 
-	/// ±£´æÒ»Ğ©ĞĞºÅ£¬²¢¶ÔÆä½øĞĞ¸ú×Ù£¬Ê¹Ö®ÔÚÍÏ¶¯Ä³ĞĞÖ®ºó£¬
-	/// ÆäÓàÏîÄ¿µÄĞĞºÅÈÔÈ»ÄÜÔÚĞÂÁĞ±íÖĞ±£³ÖÕıÈ·¡£
+	/// ä¿å­˜ä¸€äº›è¡Œå·ï¼Œå¹¶å¯¹å…¶è¿›è¡Œè·Ÿè¸ªï¼Œä½¿ä¹‹åœ¨æ‹–åŠ¨æŸè¡Œä¹‹åï¼Œ
+	/// å…¶ä½™é¡¹ç›®çš„è¡Œå·ä»ç„¶èƒ½åœ¨æ–°åˆ—è¡¨ä¸­ä¿æŒæ­£ç¡®ã€‚
 	class RowTracker
 	{
 	public:
 
-		/// ¼àÌıĞĞÍÏ¶¯ÊÂ¼ş
+		/// ç›‘å¬è¡Œæ‹–åŠ¨äº‹ä»¶
 		class MoveListener
 		{
 		public:
 
-			/// ĞĞºÅÎª@a row µÄĞĞ´Ó@a row ÍÏµ½@a dst
+			/// è¡Œå·ä¸º@a row çš„è¡Œä»@a row æ‹–åˆ°@a dst
 			virtual void OnRowMove(int row, int dst) = 0;
 		};
 
-		/// ¹¹Ôìº¯Êı
+		/// æ„é€ å‡½æ•°
 		RowTracker(MoveListener& listener);
 
-		/// Çå¿ÕËùÓĞÒÑ×¢²áµÄĞĞºÅ
+		/// æ¸…ç©ºæ‰€æœ‰å·²æ³¨å†Œçš„è¡Œå·
 		void Clear();
 
-		/// ×¢²áÒ»ĞĞ
+		/// æ³¨å†Œä¸€è¡Œ
 		void AddRow(int& row);
 
-		/// ½«ĞĞºÅÎª@a row µÄĞĞ´Ó@a row ÍÏµ½@a dst
+		/// å°†è¡Œå·ä¸º@a row çš„è¡Œä»@a row æ‹–åˆ°@a dst
 		void Move(int row, int dst);
 
 	private:
@@ -48,7 +48,7 @@ public:
 		MoveListener& m_listener;
 	};
     
-	/// ¹¹Ôìº¯Êı
+	/// æ„é€ å‡½æ•°
 	LvpDraggAndReorder(ListView* list, SelectMode sm, 
 					   const wxBrush& selected, 
 					   const wxPen& draggTarget,
@@ -65,8 +65,8 @@ private:
 
 private:
 
-	int m_lastDraggTarget; // µ±ÍÏ¶¯ÌõÄ¿½øĞĞÖØÅÅÊ±µ±Ç°µÄÖØÅÅÄ¿±ê
-	RowTracker m_rowTracker; // ĞĞºÅ¸ú×ÙÆ÷
+	int m_lastDraggTarget; // å½“æ‹–åŠ¨æ¡ç›®è¿›è¡Œé‡æ’æ—¶å½“å‰çš„é‡æ’ç›®æ ‡
+	RowTracker m_rowTracker; // è¡Œå·è·Ÿè¸ªå™¨
 
-	wxPen m_draggTarget; // ÍÏ¶¯ÏîÄ¿Ê±±íÊ¾Ä¿±êÎ»ÖÃµÄÏßÌõÑÕÉ«
+	wxPen m_draggTarget; // æ‹–åŠ¨é¡¹ç›®æ—¶è¡¨ç¤ºç›®æ ‡ä½ç½®çš„çº¿æ¡é¢œè‰²
 };

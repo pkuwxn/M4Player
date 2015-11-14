@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "VdkCaptionBar.h"
 #include "VdkWindow.h"
 #include "VdkButton.h"
@@ -18,12 +18,12 @@ void VdkCaptionBar::Create(wxXmlNode* node)
 {
 	DoXrcCreate( node );
 
-	SetAddinStyle( VCS_CTRL_CONTAINER ); // ÓÅÏÈ¼¶½ÏµÍ
+	SetAddinStyle( VCS_CTRL_CONTAINER ); // ä¼˜å…ˆçº§è¾ƒä½
 	m_align |= ALIGN_SYNC_X;
 
 	//================================================
 
-	// ÕâÀïÓ¦¸ÃÈ¡¶¨Òå XRC ÎÄ¼şÊ±´°Ìå±³¾°Î»Í¼µÄ×îĞ¡Öµ
+	// è¿™é‡Œåº”è¯¥å–å®šä¹‰ XRC æ–‡ä»¶æ—¶çª—ä½“èƒŒæ™¯ä½å›¾çš„æœ€å°å€¼
 	int minw = m_Window->GetMinSize().x;
 	int x = minw - XmlGetContentOfNum( FindChildNode( node, L"padding-right" ), 0 );
 	int y = XmlGetContentOfNum( FindChildNode( node, L"padding-top" ), 0 );
@@ -85,7 +85,7 @@ void VdkCaptionBar::Create(wxXmlNode* node)
 	int specHeight = XmlGetContentOfNum( FindChildNode( node, L"height" ), 0 );
 	m_Rect.height = (specHeight > 0) ? specHeight : h;
 
-	// ±êÌâÓÉ VDK Ä¬ÈÏ´¦Àí£¨Ì«¶à¿É¶¨ÒåµÄ¶«Î÷ÁË£©
+	// æ ‡é¢˜ç”± VDK é»˜è®¤å¤„ç†ï¼ˆå¤ªå¤šå¯å®šä¹‰çš„ä¸œè¥¿äº†ï¼‰
 	ParseObjects( VdkCtrlParserInfo().window( m_Window ).node( node ) );
 }
 

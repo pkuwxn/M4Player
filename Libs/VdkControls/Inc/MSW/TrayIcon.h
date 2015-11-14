@@ -1,49 +1,49 @@
-#pragma once
+ï»¿#pragma once
 #include <wx/taskbar.h>
 
 class VdkWindow;
 
-/// \brief ±ØÒª²Ëµ¥ÏîËùÓÃµÄ ID
+/// \brief å¿…è¦èœå•é¡¹æ‰€ç”¨çš„ ID
 enum EssentialMenuItems {
 	TI_MENU_EXIT = wxID_HIGHEST + 1000,
 	TI_FLASH_TIMER
 };
 
-/// \brief µ±Ç°ÍĞÅÌÍ¼±êËù´¦µÄ×´Ì¬
+/// \brief å½“å‰æ‰˜ç›˜å›¾æ ‡æ‰€å¤„çš„çŠ¶æ€
 enum TrayIconState {
-	TI_STATE_NOMAL, ///< Õı³£
-	TI_STATE_HID, ///< Òş²Ø
-	TI_STATE_FLASHING, ///< ÉÁË¸
+	TI_STATE_NOMAL, ///< æ­£å¸¸
+	TI_STATE_HID, ///< éšè—
+	TI_STATE_FLASHING, ///< é—ªçƒ
 };
 
-/// \brief Ô­ÓĞ wxTrayIcon µÄÀ©Õ¹Àà£¬Ìí¼ÓÁËÍ¼±êÉÁË¸µÈÌØĞÔ
+/// \brief åŸæœ‰ wxTrayIcon çš„æ‰©å±•ç±»ï¼Œæ·»åŠ äº†å›¾æ ‡é—ªçƒç­‰ç‰¹æ€§
 class TrayIcon : public wxTaskBarIcon
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	TrayIcon( VdkWindow* frame, 
 			  const wxIcon& icon,
 			  wxString strTrunkTooltip );
 
-	/// \brief ÉèÖÃÏà¹ØÁªµÄ´°Ìå
+	/// \brief è®¾ç½®ç›¸å…³è”çš„çª—ä½“
 	void SetMainFrame(VdkWindow* frame);
 
-	/// \brief Éú³Éµ¯³ö²Ëµ¥
+	/// \brief ç”Ÿæˆå¼¹å‡ºèœå•
 	virtual wxMenu* CreatePopupMenu();
 
-	/// \brief »ñÈ¡Í¼±êÌáÊ¾ĞÅÏ¢
+	/// \brief è·å–å›¾æ ‡æç¤ºä¿¡æ¯
 	wxString GetToolTip() { return m_strTooltip; }
-	/// \brief ÉèÖÃÍ¼±êÌáÊ¾ĞÅÏ¢
+	/// \brief è®¾ç½®å›¾æ ‡æç¤ºä¿¡æ¯
 	void SetToolTip(wxString strTooltip);
 
-	/// \brief ÉÁË¸ÈÎÎñÀ¸Í¼±ê
+	/// \brief é—ªçƒä»»åŠ¡æ å›¾æ ‡
 	void Flash(bool bEnabled = true);
 	
-	/// \brief µÃµ½µ±Ç°ÍĞÅÌÍ¼±êËù´¦µÄ×´Ì¬£¨Flashing,etc.£©
+	/// \brief å¾—åˆ°å½“å‰æ‰˜ç›˜å›¾æ ‡æ‰€å¤„çš„çŠ¶æ€ï¼ˆFlashing,etc.ï¼‰
 	TrayIconState GetState() const { return m_state; }
 
-	/// \brief Òş²Ø/ÏÔÊ¾Í¼±ê
+	/// \brief éšè—/æ˜¾ç¤ºå›¾æ ‡
 	void Hide(bool bToHide = true);
 
 private:
@@ -59,11 +59,11 @@ private:
 
 	NOTIFYICONDATA				m_nid;
 
-	bool						m_bNull; ///<ÊÇ·ñÕıÔÚÏÔÊ¾¿Õ°×Í¼±ê£¨ÓÃÓÚÉÁË¸ºó»¹Ô­£©
-	TrayIconState				m_state; ///<µ±Ç°ÍĞÅÌÍ¼±êËù´¦µÄ×´Ì¬£¨Flashing,etc.£©
+	bool						m_bNull; ///<æ˜¯å¦æ­£åœ¨æ˜¾ç¤ºç©ºç™½å›¾æ ‡ï¼ˆç”¨äºé—ªçƒåè¿˜åŸï¼‰
+	TrayIconState				m_state; ///<å½“å‰æ‰˜ç›˜å›¾æ ‡æ‰€å¤„çš„çŠ¶æ€ï¼ˆFlashing,etc.ï¼‰
 
-	wxTimer						m_timer; ///<¸÷ÖÖ¿ÉÄÜĞèÒªÓÃµ½ Timer µÄÏÔÊ¾¹¦ÄÜËùÓÃ Timer
-	wxString					m_strTrunkTooltip; ///<ÓÃÓÚµÚÒ»ĞĞµÄÏÔÊ¾£¬Çø·Ö¶à¸ö³ÌĞòÍ¬Ê±ÔËĞĞµÄÇé¿ö
+	wxTimer						m_timer; ///<å„ç§å¯èƒ½éœ€è¦ç”¨åˆ° Timer çš„æ˜¾ç¤ºåŠŸèƒ½æ‰€ç”¨ Timer
+	wxString					m_strTrunkTooltip; ///<ç”¨äºç¬¬ä¸€è¡Œçš„æ˜¾ç¤ºï¼ŒåŒºåˆ†å¤šä¸ªç¨‹åºåŒæ—¶è¿è¡Œçš„æƒ…å†µ
 
 	DECLARE_EVENT_TABLE()
 };

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "VdkWindowSplitter.h"
 #include "VdkWindow.h"
 
@@ -19,7 +19,7 @@ void VdkWindowSplitter::Init()
 	m_min = 100;
 
 #if 0
-	// ����Ҫȥ��������ԣ��������ָ��Ĵ�����ܲ�����
+	// 必须要去除这个属性，否则鼠标指针的处理会很不灵敏
 	RemoveStyle( VCS_ONESHOT_HOVERING );
 #endif
 }
@@ -96,23 +96,23 @@ void VdkWindowSplitter::DoHandleMouseEvent(VdkMouseEvent& e)
 
 			if( m_bVertical )
 			{
-				// �����˳����Բ��ܴ���dY �������������ڵĴ��������б�����ͬ��
+				// 下面的顺序绝对不能错，dY 在两个两个窗口的处理过程中必须相同！
 				int dY( e.mousePos.y - m_lastY );
 				wxRect rc1( m_win1->GetRect() );
 				wxRect rc2( m_win2->GetRect() );
 
-				// �����϶�
+				// 向上拖动
 				if( dY < 0 && rc1.height == m_min )
 					return;
-				// �����϶�
+				// 向下拖动
 				if( dY > 0 && rc2.height == m_min )
 					return;
 
-				// �����϶�ʹ������Ŀؼ��߶�С����Сֵ
+				// 向上拖动使得上面的控件高度小于最小值
 				if( rc1.height + dY < m_min )
 					dY = m_min - rc1.height;
 
-				// �����϶�ʹ������Ŀؼ��߶�С����Сֵ
+				// 向下拖动使得下面的控件高度小于最小值
 				if( rc2.height - dY < m_min )
 					dY = rc2.height - m_min;
 
@@ -123,15 +123,15 @@ void VdkWindowSplitter::DoHandleMouseEvent(VdkMouseEvent& e)
 				rc2.height -= dY;
 				m_win2->SetRect( rc2, &e.dc );
 
-				// �޸��Լ��������򣬵��ҽ������ؼ�����
-				// ��ǰ��������������ؼ�֮һ
+				// 修改自己的作用域，当且仅当父控件不是
+				// 当前正在拉锯的两个控件之一
 				if( m_parent != m_win1 && m_parent != m_win2 )
 					m_Rect.y += dY;
 
-				// ���浱ǰ���λ��
+				// 保存当前鼠标位置
 				m_lastY = e.mousePos.y;
 
-				// �ػ��ؼ�
+				// 重画控件
 				Draw( e.dc );
 			}
 

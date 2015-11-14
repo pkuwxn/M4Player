@@ -1,4 +1,4 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkEdit.h
  * Purpose:   Code for VdkEdit declaration
  * Author:    vanxining (vanxining@139.com)
@@ -17,40 +17,40 @@
 class VdkEdit;
 class VdkTextValidator;
 
-/// \brief VdkEdit µÄ·ç¸ñÊôĞÔ¼¯
+/// \brief VdkEdit çš„é£æ ¼å±æ€§é›†
 enum VdkEditStyle {
 
-	/// \brief ÅÉÉúÀà·ç¸ñÊôĞÔ¼¯Î»ĞòºÅ
+	/// \brief æ´¾ç”Ÿç±»é£æ ¼å±æ€§é›†ä½åºå·
 	VES_USER					= VCS_USER + 10,
 
-	/// \brief ·¢ËÍÎÄ±¾¿òÎÄ±¾¸Ä±äÊÂ¼ş
+	/// \brief å‘é€æ–‡æœ¬æ¡†æ–‡æœ¬æ”¹å˜äº‹ä»¶
 	VES_TEXT_CHANGED_MSG		= 1 << ( VCS_USER + 0 ),
 };
 
-/// \brief VdkEdit µÄÔËĞĞÊ±×´Ì¬ÊôĞÔ¼¯
+/// \brief VdkEdit çš„è¿è¡Œæ—¶çŠ¶æ€å±æ€§é›†
 enum VdkEditState {
 
-	/// \brief ÅÉÉúÀà×´Ì¬Î»ĞòºÅ
+	/// \brief æ´¾ç”Ÿç±»çŠ¶æ€ä½åºå·
 	VEST_USER					= VCST_USER + 10,
 
-	/// \brief ¹â±êÕıÔÚÏÔÊ¾
+	/// \brief å…‰æ ‡æ­£åœ¨æ˜¾ç¤º
 	///
-	/// ÓëÖ®Ïà·´µÄ×´Ì¬ÊÇ¹â±êÕıºÃ´¦ÓÚÒş²Ø×´Ì¬
+	/// ä¸ä¹‹ç›¸åçš„çŠ¶æ€æ˜¯å…‰æ ‡æ­£å¥½å¤„äºéšè—çŠ¶æ€
 	VEST_CURSOR_ON				= 1 << ( VCST_USER + 0 ),
 
-	/// \brief ÕıÔÚ³·ÏúÉÏÒ»´ÎµÄ²Ù×÷
-	/// \note Ö÷ÒªÊÇ¿¼ÂÇµ½Ò»´Î²åÈë¡¢É¾³ı¶à¸ö×Ö·ûÓëÒ»´Î²åÈë¡¢
-	/// É¾³ıÒ»¸ö×Ö·ûµÄ´¦ÀíÓĞ²îÒì¡£ÔÚ´¦Àí¶à¸ö×Ö·ûµÄÇé¿öÊ±Ñ¹ÖÆ
-	/// µ¥¸ö×Ö·û³·Ïú¶ÔÏóµÄÉú³É¡£
+	/// \brief æ­£åœ¨æ’¤é”€ä¸Šä¸€æ¬¡çš„æ“ä½œ
+	/// \note ä¸»è¦æ˜¯è€ƒè™‘åˆ°ä¸€æ¬¡æ’å…¥ã€åˆ é™¤å¤šä¸ªå­—ç¬¦ä¸ä¸€æ¬¡æ’å…¥ã€
+	/// åˆ é™¤ä¸€ä¸ªå­—ç¬¦çš„å¤„ç†æœ‰å·®å¼‚ã€‚åœ¨å¤„ç†å¤šä¸ªå­—ç¬¦çš„æƒ…å†µæ—¶å‹åˆ¶
+	/// å•ä¸ªå­—ç¬¦æ’¤é”€å¯¹è±¡çš„ç”Ÿæˆã€‚
 	VEST_UNDO_REDOING			= 1 << ( VCST_USER + 1 ),
 
-	/// \brief µ±Ç°±£´æµÄ¾²Ì¬·ç¸ñÊÇ·ñÎ»ÓÚÈ«¾Ö³£Á¿Êı¾İÇø
+	/// \brief å½“å‰ä¿å­˜çš„é™æ€é£æ ¼æ˜¯å¦ä½äºå…¨å±€å¸¸é‡æ•°æ®åŒº
 	VEST_SSTYLE_GLOBAL_STATIC	= 1 << ( VCST_USER + 2 ),
 };
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief Îª VdkLabel ÉèÖÃ³õÊ¼»¯ĞÅÏ¢
+/// \brief ä¸º VdkLabel è®¾ç½®åˆå§‹åŒ–ä¿¡æ¯
 class VdkEditInitializer : public 
 	VdkCtrlInitializer< VdkEditInitializer >
 {
@@ -58,35 +58,35 @@ public:
 
 	typedef VdkEditInitializer Edit;
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkEditInitializer();
 
-	/// \brief ³õÊ¼ÎÄ±¾
+	/// \brief åˆå§‹æ–‡æœ¬
 	Edit& text(const wxString& s) { Text = s; return *this; }
 
-	/// \brief ÎÄ±¾¶ÔÆëÊôĞÔ
+	/// \brief æ–‡æœ¬å¯¹é½å±æ€§
 	Edit& textAlign(align_type a) { TextAlign = a; return *this; }
 
-	/// \brief ÎÄ±¾ÑÕÉ«
+	/// \brief æ–‡æœ¬é¢œè‰²
 	Edit& textColor(const wxColour& color) { TextColor = color; return *this; }
 
-	/// \brief ±³¾°ÑÕÉ«
+	/// \brief èƒŒæ™¯é¢œè‰²
 	Edit& bgColor(const wxColour& color) { BgColor = color; return *this; }
 
-	/// \brief ÊäÈëÑéÖ¤Æ÷
+	/// \brief è¾“å…¥éªŒè¯å™¨
 	Edit& validator(const VdkTextValidator& v);
 
-	/// \brief ÊÇ·ñÔÊĞí±à¼­
+	/// \brief æ˜¯å¦å…è®¸ç¼–è¾‘
 	Edit& editable(bool b) { Editable = b; return *this; }
 
 protected:
 
-	wxString Text; ///< ³õÊ¼ÎÄ±¾
-	align_type TextAlign; ///< ÎÄ±¾¶ÔÆëÊôĞÔ
-	wxColour TextColor; ///< ÎÄ±¾ÑÕÉ«
-	wxColour BgColor; ///< ±³¾°ÑÕÉ«
-	VdkTextValidator* Validator; ///< ÊäÈëÑéÖ¤Æ÷
-	bool Editable; ///< ÊÇ·ñÔÊĞí±à¼­
+	wxString Text; ///< åˆå§‹æ–‡æœ¬
+	align_type TextAlign; ///< æ–‡æœ¬å¯¹é½å±æ€§
+	wxColour TextColor; ///< æ–‡æœ¬é¢œè‰²
+	wxColour BgColor; ///< èƒŒæ™¯é¢œè‰²
+	VdkTextValidator* Validator; ///< è¾“å…¥éªŒè¯å™¨
+	bool Editable; ///< æ˜¯å¦å…è®¸ç¼–è¾‘
 
 	friend class VdkEdit;
 };
@@ -95,186 +95,186 @@ protected:
 
 class VdkEditStaticStyle;
 
-/*! ¿ÉÑ¡µÄÔ¤¶¨Òå¾²Ì¬±³¾°¶¨Òå */
+/*! å¯é€‰çš„é¢„å®šä¹‰é™æ€èƒŒæ™¯å®šä¹‰ */
 enum VdkEditStaticStyleID {
 
-	VESS_BEGIN, /*! ÄÚ²¿Ê¹ÓÃ */
+	VESS_BEGIN, /*! å†…éƒ¨ä½¿ç”¨ */
 
-	VESS_MS_WORD_2003, /*! ±³¾°Îª°×É«£¬Ñ¡ÔñµÄÎÄ±¾Îª±³¾°ÎªºÚÉ« */
-	VESS_MS_WINDOWS, /*! ±³¾°Îª°×É«£¬Ñ¡ÔñµÄÎÄ±¾Îª±³¾°ÎªÀ¶É« */
+	VESS_MS_WORD_2003, /*! èƒŒæ™¯ä¸ºç™½è‰²ï¼Œé€‰æ‹©çš„æ–‡æœ¬ä¸ºèƒŒæ™¯ä¸ºé»‘è‰² */
+	VESS_MS_WINDOWS, /*! èƒŒæ™¯ä¸ºç™½è‰²ï¼Œé€‰æ‹©çš„æ–‡æœ¬ä¸ºèƒŒæ™¯ä¸ºè“è‰² */
 
-	VESS_END, /*! ÄÚ²¿Ê¹ÓÃ */
+	VESS_END, /*! å†…éƒ¨ä½¿ç”¨ */
 };
 
 //////////////////////////////////////////////////////////////////////////
-/// \brief ×Ô»­µÄÎÄ±¾¿ò¿Ø¼ş
+/// \brief è‡ªç”»çš„æ–‡æœ¬æ¡†æ§ä»¶
 ///
-/// ¹æ±Ü¼«¶ÈÂé·³µÄ×Ô»­¿Ø¼şÓëÔ­Éú¿Ø¼ş»ìºÏÊ¹ÓÃÊ±µÄ½¹µã×ªÒÆÎÊÌâ¡£
+/// è§„é¿æåº¦éº»çƒ¦çš„è‡ªç”»æ§ä»¶ä¸åŸç”Ÿæ§ä»¶æ··åˆä½¿ç”¨æ—¶çš„ç„¦ç‚¹è½¬ç§»é—®é¢˜ã€‚
 class VdkEdit : public VdkControl,
 				public wxTextEntryBase,
-				public wxTimer, // ÒòÎªÊÂ¼ş´¦Àí»úÖÆµÄÏŞÖÆ£¬±ØĞë¹«ÓĞ¼Ì³Ğ
+				public wxTimer, // å› ä¸ºäº‹ä»¶å¤„ç†æœºåˆ¶çš„é™åˆ¶ï¼Œå¿…é¡»å…¬æœ‰ç»§æ‰¿
 				public VdkDcPostListener
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkEdit();
 
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	~VdkEdit();
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief Êµ¼Ê¹¹½¨º¯Êı
+	/// \brief å®é™…æ„å»ºå‡½æ•°
 	void Create(const VdkEditInitializer& init_data);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ÑéÖ¤ÓÃ»§ÊäÈëµÄÎÄ±¾ÊÇ·ñ·ûºÏÒªÇó
+	/// \brief éªŒè¯ç”¨æˆ·è¾“å…¥çš„æ–‡æœ¬æ˜¯å¦ç¬¦åˆè¦æ±‚
 	bool Validate() const;
 
-	/// \brief ÉèÖÃÊäÈëÑéÖ¤Æ÷
+	/// \brief è®¾ç½®è¾“å…¥éªŒè¯å™¨
 	void SetValidator(const VdkTextValidator& v);
 
-	/// \brief »ñÈ¡µ±Ç°ÎÄ±¾Öµ
+	/// \brief è·å–å½“å‰æ–‡æœ¬å€¼
 	wxString GetValue() const { return DoGetValue(); }
 
-	/// \brief ÉèÖÃµ±Ç°ÎÄ±¾Öµ
+	/// \brief è®¾ç½®å½“å‰æ–‡æœ¬å€¼
 	void SetValue(const wxString& strText, wxDC* pDC = NULL);
 
-	/// \brief »ñÈ¡ÎÄ±¾¿òÄÚµÄ×Ö·ûÊıÁ¿
+	/// \brief è·å–æ–‡æœ¬æ¡†å†…çš„å­—ç¬¦æ•°é‡
 	int GetLength() const { return m_text.size(); }
 
-	/// \brief ÔÚÖ¸¶¨Î»ÖÃ\a pos ´¦²åÈëÎÄ±¾
-	/// \param pos Èô²»Îª wxNOT_FOUND £¬Ôò»á³·ÏúÈÎºÎÒÑÑ¡ÔñµÄÎÄ±¾£¬
-	/// ²¢½«¹â±êÒÆ¶¯µ½×îºóÒ»¸ö±»²åÈëµÄ×Ö·ûºóÃæ¡£\n
-	/// ÈôÎª wxNOT_FOUND £¬ÔòÔÚµ±Ç°²åÈëµã´¦²åÈëÎÄ±¾£¬Ìæ»»µôÒÑÑ¡ÔñÎÄ±¾¡£
+	/// \brief åœ¨æŒ‡å®šä½ç½®\a pos å¤„æ’å…¥æ–‡æœ¬
+	/// \param pos è‹¥ä¸ä¸º wxNOT_FOUND ï¼Œåˆ™ä¼šæ’¤é”€ä»»ä½•å·²é€‰æ‹©çš„æ–‡æœ¬ï¼Œ
+	/// å¹¶å°†å…‰æ ‡ç§»åŠ¨åˆ°æœ€åä¸€ä¸ªè¢«æ’å…¥çš„å­—ç¬¦åé¢ã€‚\n
+	/// è‹¥ä¸º wxNOT_FOUND ï¼Œåˆ™åœ¨å½“å‰æ’å…¥ç‚¹å¤„æ’å…¥æ–‡æœ¬ï¼Œæ›¿æ¢æ‰å·²é€‰æ‹©æ–‡æœ¬ã€‚
 	void Insert(const wxString& strText, long pos, wxDC* pDC = NULL);
 
-	/// \breif Ïòµ±Ç°Î»ÖÃÌí¼ÓÎÄ±¾
+	/// \breif å‘å½“å‰ä½ç½®æ·»åŠ æ–‡æœ¬
 	///
-	/// »áÊ¹ÒÑÑ¡ÔñµÄÎÄ±¾ÖÃ¿Õ¡£
+	/// ä¼šä½¿å·²é€‰æ‹©çš„æ–‡æœ¬ç½®ç©ºã€‚
 	virtual void WriteText(const wxString& text);
 
-	/// \brief É¾³ı[\a from, \a to)Çø¼äµÄÎÄ±¾
-	/// \note ±¾º¯Êı»á³·ÏúÈÎºÎÒÑÑ¡ÔñµÄÎÄ±¾£¬²¢½«¹â±êÒÆ¶¯µ½\a to Ö¸¶¨µÄ×Ö·û¡£
-	/// \attention Çø¼ä²»°üº¬\a to ¡£
+	/// \brief åˆ é™¤[\a from, \a to)åŒºé—´çš„æ–‡æœ¬
+	/// \note æœ¬å‡½æ•°ä¼šæ’¤é”€ä»»ä½•å·²é€‰æ‹©çš„æ–‡æœ¬ï¼Œå¹¶å°†å…‰æ ‡ç§»åŠ¨åˆ°\a to æŒ‡å®šçš„å­—ç¬¦ã€‚
+	/// \attention åŒºé—´ä¸åŒ…å«\a to ã€‚
 	virtual void Remove(long from, long to) {
 		Remove( from, to, NULL );
 	}
 
-	/// \brief É¾³ıÎÄ±¾£¬Ìá¹©Ñ¡ÏîÊÇ·ñÖØ»­¿Ø¼ş
+	/// \brief åˆ é™¤æ–‡æœ¬ï¼Œæä¾›é€‰é¡¹æ˜¯å¦é‡ç”»æ§ä»¶
 	void Remove(long from, long to, wxDC* pDC);
 
-	/// \brief ¸´ÖÆÒÑÑ¡ÔñÎÄ±¾
+	/// \brief å¤åˆ¶å·²é€‰æ‹©æ–‡æœ¬
 	virtual void Copy();
 
-	/// \brief ³·ÏúÉÏ´Î²Ù×÷
+	/// \brief æ’¤é”€ä¸Šæ¬¡æ“ä½œ
 	void Undo(wxDC* pDC);
 
-	/// \brief ÖØ×öÉÏ´Î²Ù×÷
+	/// \brief é‡åšä¸Šæ¬¡æ“ä½œ
 	virtual void Redo() { Redo( NULL ); }
 
-	/// \brief ÖØ×öÉÏ´Î²Ù×÷
+	/// \brief é‡åšä¸Šæ¬¡æ“ä½œ
 	void Redo(wxDC* pDC);
 
-	/// \brief ÄÜ·ñ³·ÏúÉÏ´Î²Ù×÷
+	/// \brief èƒ½å¦æ’¤é”€ä¸Šæ¬¡æ“ä½œ
 	virtual bool CanUndo() const;
 
-	/// \brief ÄÜ·ñÖØ×öÉÏ´Î²Ù×÷
+	/// \brief èƒ½å¦é‡åšä¸Šæ¬¡æ“ä½œ
 	virtual bool CanRedo() const;
 
-	/// \brief Çå¿ÕÎÄ±¾
+	/// \brief æ¸…ç©ºæ–‡æœ¬
 	void Clear() { Clear( NULL ); }
 
-	/// \brief Çå¿ÕÎÄ±¾
+	/// \brief æ¸…ç©ºæ–‡æœ¬
 	void Clear(wxDC* pDC);
 
 	// insertion point
 	// ---------------
 
-	/// \brief ÉèÖÃµ±Ç°¹â±êÎ»ÖÃ
+	/// \brief è®¾ç½®å½“å‰å…‰æ ‡ä½ç½®
 	virtual void SetInsertionPoint(long pos) {
 		SetInsertionPoint( pos, NULL );
 	}
 
-	/// \brief ½«¹â±êÒÆ¶¯µ½Ä©Î²
+	/// \brief å°†å…‰æ ‡ç§»åŠ¨åˆ°æœ«å°¾
 	void MoveToEnd(wxDC* pDC);
 
-	/// \brief ÉèÖÃµ±Ç°¹â±êÎ»ÖÃ
+	/// \brief è®¾ç½®å½“å‰å…‰æ ‡ä½ç½®
 	void SetInsertionPoint(long pos, wxDC* pDC);
 
-	/// \brief »ñÈ¡µ±Ç°¹â±êÎ»ÖÃ
+	/// \brief è·å–å½“å‰å…‰æ ‡ä½ç½®
 	virtual long GetInsertionPoint() const;
 
-	/// \brief »ñÈ¡ÉÏ´Î¹â±êÎ»ÖÃ
+	/// \brief è·å–ä¸Šæ¬¡å…‰æ ‡ä½ç½®
 	virtual long GetLastPosition() const;
 
-	/// \brief Ñ¡ÔñËùÓĞÎÄ±¾
+	/// \brief é€‰æ‹©æ‰€æœ‰æ–‡æœ¬
 	virtual void SelectAll() { SelectAll( NULL ); }
 
-	/// \brief Ñ¡ÔñËùÓĞÎÄ±¾
+	/// \brief é€‰æ‹©æ‰€æœ‰æ–‡æœ¬
 	void SelectAll(wxDC* pDC);
 
-	/// \brief ½«¹â±êÏòÇ°/ºóÒÆ¶¯
+	/// \brief å°†å…‰æ ‡å‘å‰/åç§»åŠ¨
 	void Forward(long step);
 
-	/// \brief ½«¹â±êÏòÇ°/ºóÒÆ¶¯
+	/// \brief å°†å…‰æ ‡å‘å‰/åç§»åŠ¨
 	void Backward(long step);
 
-	/// \brief Ñ¡È¡[\a from, \a to]Çø¼äµÄÎÄ±¾
+	/// \brief é€‰å–[\a from, \a to]åŒºé—´çš„æ–‡æœ¬
 	void SetSelection(long from, long to, wxDC* pDC);
 
-	/// \brief »ñÈ¡Ñ¡È¡Çø¼äµÄÉÏÏÂÏŞ
+	/// \brief è·å–é€‰å–åŒºé—´çš„ä¸Šä¸‹é™
 	virtual void GetSelection(long *from, long *to) const;
 
-	/// \brief »ñÈ¡µ±Ç°ÒÑ±»Ñ¡È¡µÄÎÄ±¾
+	/// \brief è·å–å½“å‰å·²è¢«é€‰å–çš„æ–‡æœ¬
 	virtual wxString GetStringSelection() const;
 
 	// status
 	// ------
 
-	/// \brief ÊÇ·ñÔÊĞí±à¼­
+	/// \brief æ˜¯å¦å…è®¸ç¼–è¾‘
 	virtual bool IsEditable() const;
 
-	/// \brief ÉèÖÃ¿ÉÔÊĞí±à¼­×´Ì¬
+	/// \brief è®¾ç½®å¯å…è®¸ç¼–è¾‘çŠ¶æ€
 	virtual void SetEditable(bool editable) {
 		SetEditable( editable, NULL );
 	}
 
-	/// \brief ÉèÖÃ¿ÉÔÊĞí±à¼­×´Ì¬
+	/// \brief è®¾ç½®å¯å…è®¸ç¼–è¾‘çŠ¶æ€
 	void SetEditable(bool editable, wxDC* pDC);
 
-	// ½çÃæ»æÖÆ
+	// ç•Œé¢ç»˜åˆ¶
 	// ------
 
-	/// \brief ÉèÖÃ¾²Ì¬·ç¸ñ
+	/// \brief è®¾ç½®é™æ€é£æ ¼
 	void SetStaticStyle(VdkEditStaticStyle* sstyle);
 
-	/// \brief ÉèÖÃ¾²Ì¬·ç¸ñ
+	/// \brief è®¾ç½®é™æ€é£æ ¼
 	void SetStaticStyle(VdkEditStaticStyleID id);
 
-	/// \brief »ñÈ¡µ±Ç°ÕıÊ¹ÓÃµÄ¾²Ì¬·ç¸ñ
+	/// \brief è·å–å½“å‰æ­£ä½¿ç”¨çš„é™æ€é£æ ¼
 	VdkEditStaticStyle* GetStaticStyle() const;
 
 public:
 
-	/// \brief ÊÇ·ñÄÜ¹»¸´ÖÆ
+	/// \brief æ˜¯å¦èƒ½å¤Ÿå¤åˆ¶
 	virtual bool CanCopy() const;
 
-	/// \brief ÊÇ·ñÄÜ¹»¼ôÇĞ
+	/// \brief æ˜¯å¦èƒ½å¤Ÿå‰ªåˆ‡
 	virtual bool CanCut() const;
 
-	/// \brief ÊÇ·ñÄÜ¹»Õ³Ìù
+	/// \brief æ˜¯å¦èƒ½å¤Ÿç²˜è´´
 	virtual bool CanPaste() const;
 
 protected:
 
-	/// \brief »ñÈ¡ÎÄ±¾ÄÚÈİ
+	/// \brief è·å–æ–‡æœ¬å†…å®¹
 	virtual wxString DoGetValue() const;
 
-	/// \brief »ñÈ¡Ô­Éú¾ä±ú
+	/// \brief è·å–åŸç”Ÿå¥æŸ„
 	///
 	/// override this to return the associated window, it will be used for event
 	/// generation and also by generic hints implementation
@@ -282,135 +282,135 @@ protected:
 
 private:
 
-	// ¼ôÇĞÒÑÑ¡ÔñÎÄ±¾
+	// å‰ªåˆ‡å·²é€‰æ‹©æ–‡æœ¬
 	virtual void Cut() { DoCut( NULL ); }
-	// Õ³Ìù¼ôÌù°åÖĞµÄÎÄ±¾
+	// ç²˜è´´å‰ªè´´æ¿ä¸­çš„æ–‡æœ¬
 	virtual void Paste() { DoPaste( NULL ); }
 
-	// ³·ÏúÉÏ´Î²Ù×÷
+	// æ’¤é”€ä¸Šæ¬¡æ“ä½œ
 	virtual void Undo() { Undo( NULL ); }
 
-	// Ñ¡È¡[\a from, \a to]Çø¼äµÄÎÄ±¾
+	// é€‰å–[\a from, \a to]åŒºé—´çš„æ–‡æœ¬
 	virtual void SetSelection(long from, long to) {
 		SetSelection( from, to, NULL );
 	}
 
-	// ÊÇ·ñÕıÔÚÖ´ĞĞ¡°³·Ïú¡±¡¢¡°ÖØ×ö¡±
+	// æ˜¯å¦æ­£åœ¨æ‰§è¡Œâ€œæ’¤é”€â€ã€â€œé‡åšâ€
 	bool IsOnUndoRedo() const;
 
 private:
 
-	// »æÖÆÉÁ¶¯¹â±ê
+	// ç»˜åˆ¶é—ªåŠ¨å…‰æ ‡
 	void DrawCursor(wxDC& dc);
 
-	// Á¢¼´ÏÔÊ¾¹â±ê
+	// ç«‹å³æ˜¾ç¤ºå…‰æ ‡
 	void ShowCursorAtOnce(wxDC& dc, bool stopTimer = false);
 
-	// ÒÆ¶¯¹â±êµ½ĞÂµÄÎ»ÖÃ(²¢¸üĞÂÔÚÆÁÄ»ÉÏµÄÎ»ÖÃ)
+	// ç§»åŠ¨å…‰æ ‡åˆ°æ–°çš„ä½ç½®(å¹¶æ›´æ–°åœ¨å±å¹•ä¸Šçš„ä½ç½®)
 	void MoveCursorOnScreen(int cursorPos);
 
-	// ÊÇ·ñÓ¦¸ÃÉÁ¶¯¹â±ê
+	// æ˜¯å¦åº”è¯¥é—ªåŠ¨å…‰æ ‡
 	bool ShouldFlashCursor();
 
-	// Ö´ĞĞÌá½»Ç°»æÍ¼²Ù×÷
+	// æ‰§è¡Œæäº¤å‰ç»˜å›¾æ“ä½œ
 	virtual void OnPost(wxDC& dc);
 
-	// ¼ÌĞø Timer µÄÖ´ĞĞ
+	// ç»§ç»­ Timer çš„æ‰§è¡Œ
 	void ResumeTimer();
 
-	// ·¢ËÍÎÄ±¾¸Ä±äÊÂ¼ş
+	// å‘é€æ–‡æœ¬æ”¹å˜äº‹ä»¶
 	void SendTextChangedMsg(wxDC* pDC);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	// »æÖÆ¿Ø¼ş
+	// ç»˜åˆ¶æ§ä»¶
 	virtual void DoDraw(wxDC& dc);
 
-	// ¼Ì³Ğ×Ô wxTimer £¬ÉÁ¶¯¹â±ê
+	// ç»§æ‰¿è‡ª wxTimer ï¼Œé—ªåŠ¨å…‰æ ‡
 	virtual void Notify();
 
-	// ´¦ÀíÊó±êÊÂ¼ş
+	// å¤„ç†é¼ æ ‡äº‹ä»¶
 	virtual void DoHandleMouseEvent(VdkMouseEvent& e);
 
-	// ½ÓÊÕ¡¢´¦ÀíÍ¨ÖªĞÅÏ¢
+	// æ¥æ”¶ã€å¤„ç†é€šçŸ¥ä¿¡æ¯
 	virtual void DoHandleNotify(const VdkNotify& notice);
 
-	// ´¦Àí¼üÅÌ°´¼üÊÂ¼ş
+	// å¤„ç†é”®ç›˜æŒ‰é”®äº‹ä»¶
 	virtual void DoHandleKeyEvent(VdkKeyEvent& e);
 
-	// ´¦Àíµ¯³ö²Ëµ¥ÊÂ¼ş
+	// å¤„ç†å¼¹å‡ºèœå•äº‹ä»¶
 	void OnMenuEvent(VdkVObjEvent& e);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	// ¸ù¾İµ±Ç°×ÖÌåË¢ĞÂ×ÖÌå¸ß¶È
+	// æ ¹æ®å½“å‰å­—ä½“åˆ·æ–°å­—ä½“é«˜åº¦
 	int RefrshFontHeight();
 
-	// ÊÊÅä DC
+	// é€‚é… DC
 	void PrepareDC(wxDC& dc);
 
-	// »¹Ô­ÒÑÊÊÅäµÄ DC
+	// è¿˜åŸå·²é€‚é…çš„ DC
 	void RestoreDC(wxDC& dc);
 
-	// »æÖÆÎÄ±¾
+	// ç»˜åˆ¶æ–‡æœ¬
 	void DrawCaption(wxDC& dc);
 
-	// Çå³ıËùÓĞÒÑ»æÖÆµÄÄÚÈİ²¢¸ù¾İ¿Ø¼ş×´Ì¬»æÖÆ±ß¿ò
+	// æ¸…é™¤æ‰€æœ‰å·²ç»˜åˆ¶çš„å†…å®¹å¹¶æ ¹æ®æ§ä»¶çŠ¶æ€ç»˜åˆ¶è¾¹æ¡†
 	void ClearBgAndDrawBorder(wxDC& dc);
 
-	// »ñÈ¡ÎÄ±¾ÏÔÊ¾·¶Î§µÄ¿í¶È
+	// è·å–æ–‡æœ¬æ˜¾ç¤ºèŒƒå›´çš„å®½åº¦
 	int GetTextAreaSize() const;
 
-	// »ñÈ¡¼ôÇĞÇøÓòµÄ¿í¶È
+	// è·å–å‰ªåˆ‡åŒºåŸŸçš„å®½åº¦
 	// 
-	// ×¢ÒâÓë \link GetTextAreaSize \endlink µÄ²»Í¬£º
-	// ±¾º¯Êı»¹Ğè¿¼ÂÇ¹â±êÎ»ÓÚ×îºóÊ±ĞèÒªÏÔÊ¾¿Õ¼ä¡£
+	// æ³¨æ„ä¸ \link GetTextAreaSize \endlink çš„ä¸åŒï¼š
+	// æœ¬å‡½æ•°è¿˜éœ€è€ƒè™‘å…‰æ ‡ä½äºæœ€åæ—¶éœ€è¦æ˜¾ç¤ºç©ºé—´ã€‚
 	int GetCanvasWidth() const;
 
-	// ³õÊ¼»¯ÓÒ¼ü²Ëµ¥
+	// åˆå§‹åŒ–å³é”®èœå•
 	void ImplementMenu();
 
-	// µ¯³öÓÒ¼ü²Ëµ¥
-	// \a x ÒÔ¸¸´°¿Ú×óÉÏ½ÇÎª¼ÆÁ¿ÆğÊ¼×ø±ê
-	// \a y ÒÔ¸¸´°¿Ú×óÉÏ½ÇÎª¼ÆÁ¿ÆğÊ¼×ø±ê
-	// \note Ò»°ã¶øÑÔ£¬DoHandleMouseEvent µÃµ½µÄÖ¸Õë×ø±ê¼´Îª
-	// ÒÔ¸¸´°¿Ú×óÉÏ½ÇÎª¼ÆÁ¿ÆğÊ¼×ø±ê¡£
+	// å¼¹å‡ºå³é”®èœå•
+	// \a x ä»¥çˆ¶çª—å£å·¦ä¸Šè§’ä¸ºè®¡é‡èµ·å§‹åæ ‡
+	// \a y ä»¥çˆ¶çª—å£å·¦ä¸Šè§’ä¸ºè®¡é‡èµ·å§‹åæ ‡
+	// \note ä¸€èˆ¬è€Œè¨€ï¼ŒDoHandleMouseEvent å¾—åˆ°çš„æŒ‡é’ˆåæ ‡å³ä¸º
+	// ä»¥çˆ¶çª—å£å·¦ä¸Šè§’ä¸ºè®¡é‡èµ·å§‹åæ ‡ã€‚
 	void PopupMenu(int x, int y);
 
-	// Õ³Ìù²¢ÖØ»­
+	// ç²˜è´´å¹¶é‡ç”»
 	void DoPaste(wxDC* pDC);
 
-	// ¼ôÇĞ²¢ÖØ»­
+	// å‰ªåˆ‡å¹¶é‡ç”»
 	void DoCut(wxDC* pDC);
 
-	// ±£´æµ±Ç°×´Ì¬£¬ÓÃÓÚ³·Ïú²Ù×÷
+	// ä¿å­˜å½“å‰çŠ¶æ€ï¼Œç”¨äºæ’¤é”€æ“ä½œ
 	void SaveCurrentState();
 
 private:
 
-	bool m_editable; // ÊÇ·ñÔÊĞí±à¼­
-	VdkTextValidator* m_validator; // ÊäÈëÑéÖ¤Æ÷
-	VdkEditStaticStyle* m_sstyle; // ÎÄ±¾¿òµÄ¾²Ì¬·ç¸ñ
+	bool m_editable; // æ˜¯å¦å…è®¸ç¼–è¾‘
+	VdkTextValidator* m_validator; // è¾“å…¥éªŒè¯å™¨
+	VdkEditStaticStyle* m_sstyle; // æ–‡æœ¬æ¡†çš„é™æ€é£æ ¼
 
-	align_type m_TextAlign; // ÎÄ±¾¶ÔÆëÊôĞÔ
+	align_type m_TextAlign; // æ–‡æœ¬å¯¹é½å±æ€§
 
-	int m_cursorSlice; // ¹â±êÉÁ¶¯Ê±¼ä¼ä¸ô
-	int m_cursorSize; // ¹â±êÊúÏßµÄ¿í¶È
-	int m_textPadding; // ÎÄ±¾Ö®¼äµÄ¼äÏ¶
+	int m_cursorSlice; // å…‰æ ‡é—ªåŠ¨æ—¶é—´é—´éš”
+	int m_cursorSize; // å…‰æ ‡ç«–çº¿çš„å®½åº¦
+	int m_textPadding; // æ–‡æœ¬ä¹‹é—´çš„é—´éš™
 
-	VdkCtrlId m_menuId0; // ²Ëµ¥Ïî ID µÄÆğÊ¼ ID £¬¼´¡°³·Ïú/ÖØ×ö¡±
-
-	//////////////////////////////////////////////////////////////////////////
-	// ¿Ø¼ş»æÍ¼ÊôĞÔ
-
-	int m_fontHeight; // ×ÖÌå¸ß¶È
-	int m_yFix; // Ê¹ÎÄ±¾ºÍ¹â±ê¾ÓÖĞÏÔÊ¾
-
-	wxRect m_dcClippingBoxOrigin; // ÓÃÓÚ»Ö¸´ DC Ô­À´µÄ¼ôÇĞÇøÓò
-	wxPoint m_dcOrigin; // ÓÃÓÚ»Ö¸´ DC Ô­À´µÄÎïÀíÆğÊ¼×ø±ê
+	VdkCtrlId m_menuId0; // èœå•é¡¹ ID çš„èµ·å§‹ ID ï¼Œå³â€œæ’¤é”€/é‡åšâ€
 
 	//////////////////////////////////////////////////////////////////////////
-	// ¶¯Ì¬¸ü¸Ä²Ëµ¥Ïî×´Ì¬
+	// æ§ä»¶ç»˜å›¾å±æ€§
+
+	int m_fontHeight; // å­—ä½“é«˜åº¦
+	int m_yFix; // ä½¿æ–‡æœ¬å’Œå…‰æ ‡å±…ä¸­æ˜¾ç¤º
+
+	wxRect m_dcClippingBoxOrigin; // ç”¨äºæ¢å¤ DC åŸæ¥çš„å‰ªåˆ‡åŒºåŸŸ
+	wxPoint m_dcOrigin; // ç”¨äºæ¢å¤ DC åŸæ¥çš„ç‰©ç†èµ·å§‹åæ ‡
+
+	//////////////////////////////////////////////////////////////////////////
+	// åŠ¨æ€æ›´æ”¹èœå•é¡¹çŠ¶æ€
 
 	enum VdkEditMenuId {
 
@@ -425,33 +425,33 @@ private:
 
 		//---------------------------------
 
-		VEM_ITEM_COUNT = 7, // ²Ëµ¥Ïî×ÜÊı
+		VEM_ITEM_COUNT = 7, // èœå•é¡¹æ€»æ•°
 	};
 
-	VdkMenuItem* m_menuItems[VEM_ITEM_COUNT]; // ÓëÎÄ±¾¿òÏà¹ØÁªµÄ²Ëµ¥Ïî
+	VdkMenuItem* m_menuItems[VEM_ITEM_COUNT]; // ä¸æ–‡æœ¬æ¡†ç›¸å…³è”çš„èœå•é¡¹
 
 private:
 
-	// Ò»¸ö×Ö·û(ÏíÔªÄ£Ê½)
+	// ä¸€ä¸ªå­—ç¬¦(äº«å…ƒæ¨¡å¼)
 	class Character
 	{
 	public:
 
-		// »ñÈ¡×Ö·ûÎ¨Ò»¾ä±ú
+		// è·å–å­—ç¬¦å”¯ä¸€å¥æŸ„
 		static Character* GetInstance(wxChar ch);
 
-		// É¾³ıËùÓĞÒÑ·ÖÅäµÄ¶Ñ¶ÔÏó
+		// åˆ é™¤æ‰€æœ‰å·²åˆ†é…çš„å †å¯¹è±¡
 		static void DeleteAllInstances();
 
-		// »æÖÆ×Ö·û
+		// ç»˜åˆ¶å­—ç¬¦
 		void Draw(wxDC& dc, int x, int y);
 
-		// »ñÈ¡±£´æµÄ×Ö·û
+		// è·å–ä¿å­˜çš„å­—ç¬¦
 		wxChar get() const { return m_char; }
 
 	private:
 
-		// ¹¹Ôìº¯Êı
+		// æ„é€ å‡½æ•°
 		Character(wxChar ch) : m_char( ch ) {}
 
 	private:
@@ -467,31 +467,31 @@ private:
 		static CharacterPool ms_pool;
 	};
 
-	// Ò»¸ö×Ö·û(Ìí¼ÓÁË VdkEdit µÄ¶îÍâĞÅÏ¢)
+	// ä¸€ä¸ªå­—ç¬¦(æ·»åŠ äº† VdkEdit çš„é¢å¤–ä¿¡æ¯)
 	class EditChar
 	{
 	public:
 
-		// ¹¹Ôìº¯Êı
+		// æ„é€ å‡½æ•°
 		EditChar(wxChar ch, wxDC& dc);
 
-		// ¹¹Ôìº¯Êı
+		// æ„é€ å‡½æ•°
 		EditChar(wxChar ch, wxCoord width, wxCoord height);
 
-		// »æÖÆ×Ö·û
+		// ç»˜åˆ¶å­—ç¬¦
 		void Draw(wxDC& dc, wxCoord x, wxCoord y);
 
-		// ÏìÓ¦×ÖÌå¸Ä±äÊÂ¼ş
-		// \return ·µ»ØĞÂµÄ¿í¶È¡£
+		// å“åº”å­—ä½“æ”¹å˜äº‹ä»¶
+		// \return è¿”å›æ–°çš„å®½åº¦ã€‚
 		int UpdateSize(wxDC& dc);
 
-		// »ñÈ¡±£´æµÄ×Ö·û
+		// è·å–ä¿å­˜çš„å­—ç¬¦
 		wxChar get() const { return m_char->get(); }
 
-		// »ñÈ¡×Ö·û¿í¶È
+		// è·å–å­—ç¬¦å®½åº¦
 		wxCoord GetWidth() const { return m_width; }
 
-		// »ñÈ¡×Ö·û¸ß¶È
+		// è·å–å­—ç¬¦é«˜åº¦
 		wxCoord GetHeight() const { return m_height; }
 
 	private:
@@ -508,290 +508,290 @@ private:
 
 	//////////////////////////////////////////////////////////////////////////
 
-	// ·µ»Ø×Ö·ûµü´úÆ÷µÄ¿ªÍ·
+	// è¿”å›å­—ç¬¦è¿­ä»£å™¨çš„å¼€å¤´
 	CharIter begin() { return m_text.begin(); }
 
-	// ·µ»Ø×Ö·ûµü´úÆ÷µÄ½áÎ²µÄ³¬Ô½
+	// è¿”å›å­—ç¬¦è¿­ä»£å™¨çš„ç»“å°¾çš„è¶…è¶Š
 	CharIter end() { return m_text.end(); }
 
-	// ·µ»Ø×Ö·ûµü´úÆ÷µÄ¿ªÍ·
+	// è¿”å›å­—ç¬¦è¿­ä»£å™¨çš„å¼€å¤´
 	CharIter_Const begin() const { return m_text.begin(); }
 
-	// ·µ»Ø×Ö·ûµü´úÆ÷µÄ½áÎ²µÄ³¬Ô½
+	// è¿”å›å­—ç¬¦è¿­ä»£å™¨çš„ç»“å°¾çš„è¶…è¶Š
 	CharIter_Const end() const { return m_text.end(); }
 
-	// »ñÈ¡×îºóÒ»¸öÓĞÒâÒå×Ö·ûµÄµü´úÆ÷
+	// è·å–æœ€åä¸€ä¸ªæœ‰æ„ä¹‰å­—ç¬¦çš„è¿­ä»£å™¨
 	CharIter GetLastChar();
 
-	// »ñÈ¡Ö¸¶¨Î»ÖÃ×Ö·ûµÄµü´úÆ÷
+	// è·å–æŒ‡å®šä½ç½®å­—ç¬¦çš„è¿­ä»£å™¨
 	CharIter GetCharIterator(long pos);
 
-	// »ñÈ¡×Ö·ûµü´úÆ÷µÄĞòºÅ
+	// è·å–å­—ç¬¦è¿­ä»£å™¨çš„åºå·
 	long IndexOf(const CharIter& i);
 
-	// »ñÈ¡Ö¸¶¨Çø¼äµÄÆğÖ¹µü´úÆ÷
+	// è·å–æŒ‡å®šåŒºé—´çš„èµ·æ­¢è¿­ä»£å™¨
 	bool GetRangeInterators(long from, long to, CharIter& first, CharIter& last);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	// ÔÚµ±Ç°¹â±êºó²åÈëÒ»¸ö×Ö·û
-	// \param ÊÇ·ñ±£´æµ±Ç°×´Ì¬ÓÃÓÚ¡°³·Ïú¡±¡¢¡°ÖØ×ö¡±¡£
-	// \note Ò»°ã¶øÑÔ£¬¼ÙÈçÖ»ÊÇ²åÈëµ¥¸ö×Ö·ûÒ»°ã¶¼ĞèÒª£¬
-	// µ«´óÅúÁ¿²åÈë×Ö·ûÊ±Ò²ĞèÒªÃ¿´Î²åÈëÒ»¸ö×Ö·û£¬
-	// ÕâÊ±ºòÖ»ĞèÒªÔÚÅúÁ¿²åÈëµÄº¯ÊıÀï±£´æ×´Ì¬¡£
+	// åœ¨å½“å‰å…‰æ ‡åæ’å…¥ä¸€ä¸ªå­—ç¬¦
+	// \param æ˜¯å¦ä¿å­˜å½“å‰çŠ¶æ€ç”¨äºâ€œæ’¤é”€â€ã€â€œé‡åšâ€ã€‚
+	// \note ä¸€èˆ¬è€Œè¨€ï¼Œå‡å¦‚åªæ˜¯æ’å…¥å•ä¸ªå­—ç¬¦ä¸€èˆ¬éƒ½éœ€è¦ï¼Œ
+	// ä½†å¤§æ‰¹é‡æ’å…¥å­—ç¬¦æ—¶ä¹Ÿéœ€è¦æ¯æ¬¡æ’å…¥ä¸€ä¸ªå­—ç¬¦ï¼Œ
+	// è¿™æ—¶å€™åªéœ€è¦åœ¨æ‰¹é‡æ’å…¥çš„å‡½æ•°é‡Œä¿å­˜çŠ¶æ€ã€‚
 	void InsertChar(wxChar ch, bool saveUndo);
 
-	// É¾³ıµ±Ç°¹â±êÇ°µÄ×Ö·û
+	// åˆ é™¤å½“å‰å…‰æ ‡å‰çš„å­—ç¬¦
 	void Backspace();
 
-	// É¾³ıµ±Ç°¹â±êºóµÄ×Ö·û
+	// åˆ é™¤å½“å‰å…‰æ ‡åçš„å­—ç¬¦
 	void Delete();
 
-	// »ñÈ¡×Ö·û¿í¶È
+	// è·å–å­—ç¬¦å®½åº¦
 	void GetCharSize(wxChar ch, wxCoord* w, wxCoord* h);
 
-	// »ñÈ¡Ö¸¶¨ EditChar Ïà¶ÔÓÚ×ó±ß¾àµÄÆ«ÒÆ
-	// \note ²»°üÀ¨ÎÄ±¾×ó±ß¾à
+	// è·å–æŒ‡å®š EditChar ç›¸å¯¹äºå·¦è¾¹è·çš„åç§»
+	// \note ä¸åŒ…æ‹¬æ–‡æœ¬å·¦è¾¹è·
 	int GetCharOffset(const CharIter& ch);
 
-	// »Ö¸´×Ö·û
+	// æ¢å¤å­—ç¬¦
 	//
-	// °üÀ¨Çå³ı¿ÉÄÜµÄ¹â±ê²ĞÁôÓ°Ïñ¡£
+	// åŒ…æ‹¬æ¸…é™¤å¯èƒ½çš„å…‰æ ‡æ®‹ç•™å½±åƒã€‚
 	void RecoverChar(const CharIter& i, wxDC &dc);
 
-	// ÉèÖÃµ±Ç°¹â±êÎ»ÖÃ
+	// è®¾ç½®å½“å‰å…‰æ ‡ä½ç½®
 	//
-	// ÈçĞèÖØ»­Õû¸ö¿Ø¼ş£¬ÇëÇëÎğÌá¹©\a pDC £¬¶øÊÇÔÚ±¾º¯ÊıÖ®ºóµ÷ÓÃ
-	// \link VdkControl::Draw \endlink¡£
-	// \param pos ¹â±êÎ»ÓÚÄÄ¸ö×Ö·ûÖ®ºó£¬Âß¼­Î»ÖÃ
-	// \param cursorPos ¹â±êµÄÏÔÊ¾×ø±ê£¬²»°üÀ¨ÎÄ±¾×ó±ß¾à£¬¼ÙÈçÎª wxNOT_FOUND 
-	// Ôò×Ô¶¯¼ÆËã
-	// \param pDC Ö»»áÖØ»­¹â±ê£¬²»»áÖØ»­Õû¸ö¿Ø¼ş
+	// å¦‚éœ€é‡ç”»æ•´ä¸ªæ§ä»¶ï¼Œè¯·è¯·å‹¿æä¾›\a pDC ï¼Œè€Œæ˜¯åœ¨æœ¬å‡½æ•°ä¹‹åè°ƒç”¨
+	// \link VdkControl::Draw \endlinkã€‚
+	// \param pos å…‰æ ‡ä½äºå“ªä¸ªå­—ç¬¦ä¹‹åï¼Œé€»è¾‘ä½ç½®
+	// \param cursorPos å…‰æ ‡çš„æ˜¾ç¤ºåæ ‡ï¼Œä¸åŒ…æ‹¬æ–‡æœ¬å·¦è¾¹è·ï¼Œå‡å¦‚ä¸º wxNOT_FOUND 
+	// åˆ™è‡ªåŠ¨è®¡ç®—
+	// \param pDC åªä¼šé‡ç”»å…‰æ ‡ï¼Œä¸ä¼šé‡ç”»æ•´ä¸ªæ§ä»¶
 	void SetInsertionPoint(const CharIter& pos, int cursorPos, wxDC* pDC);
 
-	// Ñ¡È¡[\a from, \a to)Çø¼äµÄÎÄ±¾
-	// \param to ²»°üÀ¨´Ë×Ö·û¡£
+	// é€‰å–[\a from, \a to)åŒºé—´çš„æ–‡æœ¬
+	// \param to ä¸åŒ…æ‹¬æ­¤å­—ç¬¦ã€‚
 	void SetSelection(const CharIter& from, const CharIter& to, wxDC* pDC);
 
-	// Ñ¡ÔñÁ¬ĞøĞÔµÄÎÄ±¾
+	// é€‰æ‹©è¿ç»­æ€§çš„æ–‡æœ¬
 	void SelectSuccessiveText(wxDC* pDC);
 
-	// ×Ö·ûÀàĞÍ
+	// å­—ç¬¦ç±»å‹
 	enum CharType {
 
-		CT_NONE, // Î´³õÊ¼»¯µÄÀàĞÍ
-		CT_SPACE, // ¿Õ°×·û
-		CT_ALPHA, // Ó¢ÎÄ×Ö·û¡¢Êı×Ö
-		CT_NON_ENGLISH, // ·ÇÓ¢ÎÄ×Ö·û£¬µ«¿ÉÒÔ±íÊ¾³öÀ´
-		CT_PUNCTUATE, // ±êµã·ûºÅ
+		CT_NONE, // æœªåˆå§‹åŒ–çš„ç±»å‹
+		CT_SPACE, // ç©ºç™½ç¬¦
+		CT_ALPHA, // è‹±æ–‡å­—ç¬¦ã€æ•°å­—
+		CT_NON_ENGLISH, // éè‹±æ–‡å­—ç¬¦ï¼Œä½†å¯ä»¥è¡¨ç¤ºå‡ºæ¥
+		CT_PUNCTUATE, // æ ‡ç‚¹ç¬¦å·
 	};
 
-	// »ñÈ¡×Ö·ûÀàĞÍ
+	// è·å–å­—ç¬¦ç±»å‹
 	CharType GetCharType(const CharIter& ch);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	// ²âÊÔµ±Ç°ÎïÀíÆğÊ¼×ø±êÊÇ·ñºÏºõÒªÇó(ÉÏÏÂÏŞ)
+	// æµ‹è¯•å½“å‰ç‰©ç†èµ·å§‹åæ ‡æ˜¯å¦åˆä¹è¦æ±‚(ä¸Šä¸‹é™)
 	void TestViewStart();
 
-	// Î¬»¤×î´ó¿ÉÄÜÎïÀíÆğÊ¼×ø±êµÄÕıÈ·ĞÔ
+	// ç»´æŠ¤æœ€å¤§å¯èƒ½ç‰©ç†èµ·å§‹åæ ‡çš„æ­£ç¡®æ€§
 	///
-	// Ò»°ãÓÃÓÚÔÚ×îºóÒ»ÆÁÄÚÈİµÄÇøÓòÀïÉ¾³ı×Ö·ûºó¸üĞÂÆğÊ¼×ø±ê¡£
+	// ä¸€èˆ¬ç”¨äºåœ¨æœ€åä¸€å±å†…å®¹çš„åŒºåŸŸé‡Œåˆ é™¤å­—ç¬¦åæ›´æ–°èµ·å§‹åæ ‡ã€‚
 	void TestMaxViewStart();
 
-	// ½«ÒÑÑ¡ÔñÎÄ±¾À©Õ¹µ½Ö¸¶¨\a i ×Ö·û
-	// \param cursorPos ²»°üÀ¨ÎÄ±¾×ó±ß¾à£¬¼ÙÈçÎª wxNOT_FOUND Ôò×Ô¶¯¼ÆËã
+	// å°†å·²é€‰æ‹©æ–‡æœ¬æ‰©å±•åˆ°æŒ‡å®š\a i å­—ç¬¦
+	// \param cursorPos ä¸åŒ…æ‹¬æ–‡æœ¬å·¦è¾¹è·ï¼Œå‡å¦‚ä¸º wxNOT_FOUND åˆ™è‡ªåŠ¨è®¡ç®—
 	void DraggTo(const CharIter& i, int cursorPos, wxDC* pDC);
 
-	// ÊÇ·ñ´æÔÚÒÑÑ¡ÔñµÄÎÄ±¾
+	// æ˜¯å¦å­˜åœ¨å·²é€‰æ‹©çš„æ–‡æœ¬
 	bool IsSelected() const;
 
-	// ÖØÖÃÑ¡ÔñÖÕµã(ÎŞÈÎºÎÑ¡Ôñ)
+	// é‡ç½®é€‰æ‹©ç»ˆç‚¹(æ— ä»»ä½•é€‰æ‹©)
 	void ResetSelEnd();
 
-	// È¡ÏûÑ¡ÔñÈÎºÎÑ¡Ïî
-	// \param i Í¬Ê±½«¹â±êÒÆ¶¯µ½\a i Ç°Ãæ
-	// \param cursorPos ¹â±ê»æÖÆÎ»ÖÃ
+	// å–æ¶ˆé€‰æ‹©ä»»ä½•é€‰é¡¹
+	// \param i åŒæ—¶å°†å…‰æ ‡ç§»åŠ¨åˆ°\a i å‰é¢
+	// \param cursorPos å…‰æ ‡ç»˜åˆ¶ä½ç½®
 	void SelectNone(const CharIter& i, int cursorPos, wxDC* pDC);
 
-	// É¾³ıËùÓĞÒÑÑ¡ÔñµÄÎÄ±¾
+	// åˆ é™¤æ‰€æœ‰å·²é€‰æ‹©çš„æ–‡æœ¬
 	void RemoveSelected(wxDC* pDC);
 
-	// »ñÈ¡ÒÑÑ¡ÔñÎÄ±¾µÄÆğÊ¼Çø¼äµÄµü´úÆ÷±íÊ¾
+	// è·å–å·²é€‰æ‹©æ–‡æœ¬çš„èµ·å§‹åŒºé—´çš„è¿­ä»£å™¨è¡¨ç¤º
 	void GetSelRange(CharIter& first, CharIter& last) const;
 
-	// É¾³ıÖ¸¶¨Çø¼äÄÚµÄÎÄ±¾
+	// åˆ é™¤æŒ‡å®šåŒºé—´å†…çš„æ–‡æœ¬
 	//
-	// ²»°üÀ¨\a last Ö¸¶¨µÄ×Ö·û¡£Ö´ĞĞºó»á½«¹â±êÒÆ¶¯µ½\a last ¡£
-	// \param from ¿ÉÒÔÌá¹©ÆğÊ¼×Ö·ûµÄĞòºÅ£¬Ìá¸ß±£´æ³·ÏúĞÅÏ¢µÄĞ§ÂÊ¡£
+	// ä¸åŒ…æ‹¬\a last æŒ‡å®šçš„å­—ç¬¦ã€‚æ‰§è¡Œåä¼šå°†å…‰æ ‡ç§»åŠ¨åˆ°\a last ã€‚
+	// \param from å¯ä»¥æä¾›èµ·å§‹å­—ç¬¦çš„åºå·ï¼Œæé«˜ä¿å­˜æ’¤é”€ä¿¡æ¯çš„æ•ˆç‡ã€‚
 	void DoRemove(const CharIter& first, const CharIter& last, long from, wxDC* pDC);
 
 private:
 
 	//////////////////////////////////////////////////////////////////////////
-	// ¿Ø¼ş×´Ì¬
+	// æ§ä»¶çŠ¶æ€
 
-	Characters m_text; // µ±Ç°ÎÄ±¾
+	Characters m_text; // å½“å‰æ–‡æœ¬
 
-	int m_cursorPos; // ¹â±êµ±Ç°Î»ÖÃ£¬ÒÔÏñËØ¼ÆËã¶ø²»ÊÇ×Ö·û£¨¿¼ÂÇµ½²»µÈ¿í×Ö·û£©
-	CharIter m_cursorChar; // ¹â±êºóÃæµÄ×Ö·û
+	int m_cursorPos; // å…‰æ ‡å½“å‰ä½ç½®ï¼Œä»¥åƒç´ è®¡ç®—è€Œä¸æ˜¯å­—ç¬¦ï¼ˆè€ƒè™‘åˆ°ä¸ç­‰å®½å­—ç¬¦ï¼‰
+	CharIter m_cursorChar; // å…‰æ ‡åé¢çš„å­—ç¬¦
 
-	int m_selEndPos; // Ñ¡Ôñ·¶Î§µÄ½áÊø×ø±ê
-	CharIter m_selEndChar; // Ñ¡Ôñ·¶Î§µÄ½áÊøºóµÄµÚÒ»¸ö×Ö·û£¬Óë STL µÄ¸ÅÄîÏàÍ¬
+	int m_selEndPos; // é€‰æ‹©èŒƒå›´çš„ç»“æŸåæ ‡
+	CharIter m_selEndChar; // é€‰æ‹©èŒƒå›´çš„ç»“æŸåçš„ç¬¬ä¸€ä¸ªå­—ç¬¦ï¼Œä¸ STL çš„æ¦‚å¿µç›¸åŒ
 
-	int m_total; // ×Ö·û´®×Ü³¤¶È
-	int m_xViewStart; // Ò»ĞĞÏÔÊ¾²»ÏÂÊ±ÆğÊ¼»æÖÆ×ø±ê
+	int m_total; // å­—ç¬¦ä¸²æ€»é•¿åº¦
+	int m_xViewStart; // ä¸€è¡Œæ˜¾ç¤ºä¸ä¸‹æ—¶èµ·å§‹ç»˜åˆ¶åæ ‡
 
 	//////////////////////////////////////////////////////////////////////////
-	// ³·Ïú±à¼­µÄÊµÏÖ
+	// æ’¤é”€ç¼–è¾‘çš„å®ç°
 
-	// Îª¡°³·Ïú¡±±£´æµÄ×´Ì¬ĞÅÏ¢
+	// ä¸ºâ€œæ’¤é”€â€ä¿å­˜çš„çŠ¶æ€ä¿¡æ¯
 	class Action
 	{
 	public:
 
-		// ¹¹Ôìº¯Êı
+		// æ„é€ å‡½æ•°
 		Action(VdkEdit* edit, long insertPoint)
 			: m_edit( edit ), m_insertPoint( insertPoint )
 		{
 
 		}
 
-		// ĞéÎö¹¹º¯Êı
+		// è™šææ„å‡½æ•°
 		virtual ~Action() {}
 
-		// ³·Ïú²Ù×÷
+		// æ’¤é”€æ“ä½œ
 		virtual void Exec(wxDC* pDC) = 0;
 
-		// »Ø¸´²Ù×÷
+		// å›å¤æ“ä½œ
 		virtual void UnExec(wxDC* pDC) = 0;
 
 	protected:
 
-		VdkEdit* m_edit; // ÎÄ±¾¿ò¿Ø¼ş
-		long m_insertPoint; // ³·Ïú²Ù×÷µÄ²åÈëµã
+		VdkEdit* m_edit; // æ–‡æœ¬æ¡†æ§ä»¶
+		long m_insertPoint; // æ’¤é”€æ“ä½œçš„æ’å…¥ç‚¹
 	};
 
-	int m_maxUndo; // ×î´ó¿É¡°³·Ïú¡±µÄ²½Êı
+	int m_maxUndo; // æœ€å¤§å¯â€œæ’¤é”€â€çš„æ­¥æ•°
 
 	typedef wxVector< Action* > Actions;
 	typedef Actions::iterator ActionIter;
 
-	Actions m_actions; // ¡°³·Ïú¡±¡¢¡°ÖØ×ö¡±ÁĞ±í
-	int m_nextUndo; // ÏÂÒ»´Î¡°³·Ïú¡±ËùÖ´ĞĞµÄ²Ù×÷
+	Actions m_actions; // â€œæ’¤é”€â€ã€â€œé‡åšâ€åˆ—è¡¨
+	int m_nextUndo; // ä¸‹ä¸€æ¬¡â€œæ’¤é”€â€æ‰€æ‰§è¡Œçš„æ“ä½œ
 
 	//////////////////////////////////////////////////////////////////////////
 
-	// Îª²åÈëÉ¾³ı×Ö·ûµÄ²Ù×÷±£´æ×´Ì¬ĞÅÏ¢
+	// ä¸ºæ’å…¥åˆ é™¤å­—ç¬¦çš„æ“ä½œä¿å­˜çŠ¶æ€ä¿¡æ¯
 	class InsRmv : public Action
 	{
 	public:
 
-		// ²Ù×÷µÄÀàĞÍ
+		// æ“ä½œçš„ç±»å‹
 		enum ActionType {
-			IRT_INSERT, // ²åÈëÎÄ±¾
-			IRT_DEL,	// Ê¹ÓÃÉ¾³ı¼üÉ¾³ıµ¥¸ö×Ö·û
-			IRT_BACK,	// Ê¹ÓÃÍË¸ñ¼üÉ¾³ıµ¥¸ö×Ö·û
-			IRT_REMOVE,	// É¾³ı¶à¸ö×Ö·û
+			IRT_INSERT, // æ’å…¥æ–‡æœ¬
+			IRT_DEL,	// ä½¿ç”¨åˆ é™¤é”®åˆ é™¤å•ä¸ªå­—ç¬¦
+			IRT_BACK,	// ä½¿ç”¨é€€æ ¼é”®åˆ é™¤å•ä¸ªå­—ç¬¦
+			IRT_REMOVE,	// åˆ é™¤å¤šä¸ªå­—ç¬¦
 		};
 
-		// ¹¹Ôìº¯Êı
+		// æ„é€ å‡½æ•°
 		InsRmv(VdkEdit* edit, long insertPoint, wxString operand, ActionType type)
 			: Action( edit, insertPoint ), m_operand( operand ), m_type( type )
 		{
 			wxASSERT( m_operand.length() > 0 );
 		}
 
-		// ³·Ïú²Ù×÷
+		// æ’¤é”€æ“ä½œ
 		virtual void Exec(wxDC* pDC);
 
-		// »Ø¸´²Ù×÷
+		// å›å¤æ“ä½œ
 		virtual void UnExec(wxDC* pDC);
 
 	private:
 
-		// ³·Ïú²åÈë
+		// æ’¤é”€æ’å…¥
 		void UndoIns(wxDC* pDC);
 
-		// ³·ÏúÉ¾³ı
+		// æ’¤é”€åˆ é™¤
 		void UndoDel(wxDC* pDC);
 
-		// ±£´æµÄĞĞÎªÊÇ·ñÉ¾³ı×Ö·û
+		// ä¿å­˜çš„è¡Œä¸ºæ˜¯å¦åˆ é™¤å­—ç¬¦
 		bool IsDelOperation() const {
 			return m_type != IRT_INSERT;
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 
-		wxString m_operand; // ±»²Ù×÷µÄ×Ö·û
-		ActionType m_type; // ²Ù×÷µÄÀàĞÍ
+		wxString m_operand; // è¢«æ“ä½œçš„å­—ç¬¦
+		ActionType m_type; // æ“ä½œçš„ç±»å‹
 	};
 
-	// ÉèÖÃ¡°³·Ïú¡±ĞĞÎª¶ÔÏó
+	// è®¾ç½®â€œæ’¤é”€â€è¡Œä¸ºå¯¹è±¡
 	void SetUndoAction(Action* action);
 
-	// ±£´æÉ¾³ı×Ö·ûÊ±µÄ¡°³·Ïú¡±ĞÅÏ¢
+	// ä¿å­˜åˆ é™¤å­—ç¬¦æ—¶çš„â€œæ’¤é”€â€ä¿¡æ¯
 	//
-	// ÒòÎªÉ¾³ı·Ö¡°ÍË¸ñ¡±ºÍ¡°É¾³ı¡±¡£
+	// å› ä¸ºåˆ é™¤åˆ†â€œé€€æ ¼â€å’Œâ€œåˆ é™¤â€ã€‚
 	void SaveDeleteCharState(const CharIter& insertPoint, InsRmv::ActionType type);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	static size_t ms_editCount; // µ±´ËÖµ½µÎª 0 Ê±É¾³ıÒÑ·ÖÅäµÄ Character ¶Ñ¶ÔÏó
+	static size_t ms_editCount; // å½“æ­¤å€¼é™ä¸º 0 æ—¶åˆ é™¤å·²åˆ†é…çš„ Character å †å¯¹è±¡
 
 	DECLARE_CLONEABLE_VOBJECT( VdkEdit )
 };
 
-/// \brief Á÷Ê½²Ù×÷·ûº¯Êı
+/// \brief æµå¼æ“ä½œç¬¦å‡½æ•°
 VdkEdit& operator << (VdkEdit& edit, int num);
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief VdkEdit µÄ¾²Ì¬·ç¸ñ
+/// \brief VdkEdit çš„é™æ€é£æ ¼
 class VdkEditStaticStyle
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkEditStaticStyle();
 
-	/// \brief ÉèÖÃÎÄ±¾ÑÕÉ«
+	/// \brief è®¾ç½®æ–‡æœ¬é¢œè‰²
 	VdkEditStaticStyle& textColor(const wxColour& color) {
 		m_TextColor = color;
 		return *this;
 	}
 
-	/// \brief ÉèÖÃ±³¾°»­Ë¢
+	/// \brief è®¾ç½®èƒŒæ™¯ç”»åˆ·
 	VdkEditStaticStyle& bgBrush(const wxBrush& brush) {
 		m_BgBrush = brush;
 		return *this;
 	}
 
-	/// \brief ÉèÖÃÒÑÑ¡ÔñÎÄ±¾µÄ±³¾°»­Ë¢
+	/// \brief è®¾ç½®å·²é€‰æ‹©æ–‡æœ¬çš„èƒŒæ™¯ç”»åˆ·
 	VdkEditStaticStyle& selTextBgBrush(const wxBrush& brush) {
 		m_SelTextBgBrush = brush;
 		return *this;
 	}
 
-	/// \brief ÉèÖÃ²»¿É±à¼­Ê±µÄ±³¾°»­Ë¢
+	/// \brief è®¾ç½®ä¸å¯ç¼–è¾‘æ—¶çš„èƒŒæ™¯ç”»åˆ·
 	VdkEditStaticStyle& uneditableBgBrush(const wxBrush& brush) {
 		m_UneditableBgBrush = brush;
 		return *this;
 	}
 
-	/// \brief ÉèÖÃ±ß¿òÑùÊ½
+	/// \brief è®¾ç½®è¾¹æ¡†æ ·å¼
 	VdkEditStaticStyle& normalBorder(const wxPen& pen) {
 		m_NormalBorder = pen;
 		return *this;
 	}
 
-	/// \brief ÉèÖÃ±ß¿òÑùÊ½
+	/// \brief è®¾ç½®è¾¹æ¡†æ ·å¼
 	VdkEditStaticStyle& innerBorder(const wxPen& pen) {
 		m_InnerBorder = pen;
 		return *this;
 	}
 
-	/// \brief ÉèÖÃ±ß¿òÑùÊ½
+	/// \brief è®¾ç½®è¾¹æ¡†æ ·å¼
 	VdkEditStaticStyle& outerBorder(const wxPen& pen) {
 		m_OuterBorder = pen;
 		return *this;
@@ -799,13 +799,13 @@ public:
 
 	typedef void (*Resetter)();
 
-	/// \brief ÉèÖÃÒıÓÃ¼ÆÊı¹ÜÀíÆ÷
+	/// \brief è®¾ç½®å¼•ç”¨è®¡æ•°ç®¡ç†å™¨
 	VdkEditStaticStyle& resetter(Resetter rst) {
 		m_Resetter = rst;
 		return *this;
 	}
 
-	/// \brief ÒıÓÃ¼ÆÊı¼õÒ»
+	/// \brief å¼•ç”¨è®¡æ•°å‡ä¸€
 	void decRef() {
 		
 		if( m_Resetter )
@@ -816,18 +816,18 @@ public:
 
 private:
 
-	wxColour m_TextColor; // ÎÄ±¾ÑÕÉ«
+	wxColour m_TextColor; // æ–‡æœ¬é¢œè‰²
 
-	// ±ß¿òÑùÊ½(ÑÕÉ«¡¢ÏßÌõµã×´µÈ)
-	wxPen m_NormalBorder; // Õı³£×´Ì¬ÏÂ±ß½ç
-	wxPen m_InnerBorder; // ¸ßÁÁÊ±ÄÚ±ß½ç
-	wxPen m_OuterBorder; // ¸ßÁÁÊ±Íâ±ß½ç
+	// è¾¹æ¡†æ ·å¼(é¢œè‰²ã€çº¿æ¡ç‚¹çŠ¶ç­‰)
+	wxPen m_NormalBorder; // æ­£å¸¸çŠ¶æ€ä¸‹è¾¹ç•Œ
+	wxPen m_InnerBorder; // é«˜äº®æ—¶å†…è¾¹ç•Œ
+	wxPen m_OuterBorder; // é«˜äº®æ—¶å¤–è¾¹ç•Œ
 
-	wxBrush m_BgBrush; // ±³¾°»­Ë¢
-	wxBrush m_SelTextBgBrush; // ÒÑÑ¡ÔñÎÄ±¾µÄ±³¾°»­Ë¢
-	wxBrush m_UneditableBgBrush; // ²»¿É±à¼­Ê±µÄ±³¾°»­Ë¢
+	wxBrush m_BgBrush; // èƒŒæ™¯ç”»åˆ·
+	wxBrush m_SelTextBgBrush; // å·²é€‰æ‹©æ–‡æœ¬çš„èƒŒæ™¯ç”»åˆ·
+	wxBrush m_UneditableBgBrush; // ä¸å¯ç¼–è¾‘æ—¶çš„èƒŒæ™¯ç”»åˆ·
 
-	Resetter m_Resetter; // ÒıÓÃ¼ÆÊı¹ÜÀíº¯Êı
+	Resetter m_Resetter; // å¼•ç”¨è®¡æ•°ç®¡ç†å‡½æ•°
 
 	friend class VdkEdit;
 };

@@ -1,4 +1,4 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkSidePanel.h
  * Purpose:   Code for VdkSidePanel declaration
  * Author:    vanxining (vanxining@139.com)
@@ -8,30 +8,30 @@
 #pragma once
 #include "VdkControl.h"
 
-/// \brief VdkSidePanel µÄ·ç¸ñÊôĞÔ¼¯
+/// \brief VdkSidePanel çš„é£æ ¼å±æ€§é›†
 enum VdkSidePanelStyle {
 
 };
 
-/// \brief VdkSidePanel µÄÔËĞĞÊ±×´Ì¬ÊôĞÔ¼¯
+/// \brief VdkSidePanel çš„è¿è¡Œæ—¶çŠ¶æ€å±æ€§é›†
 enum VdkSidePanelState {
 
 };
 
-/// \brief ÀàËÆ Office 2003 µÄ²à±ßÀ¸
+/// \brief ç±»ä¼¼ Office 2003 çš„ä¾§è¾¹æ 
 class VdkSidePanel : public VdkControl
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkSidePanel();
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
 private:
 
-	/// \brief »æÖÆ¿Ø¼ş
+	/// \brief ç»˜åˆ¶æ§ä»¶
 	virtual void DoDraw(wxDC& dc);
 
 private:

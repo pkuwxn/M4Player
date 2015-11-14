@@ -1,23 +1,23 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkMenuPopper.h"
 
 class VdkMenu;
-/// \brief ComboBox µÄÒ»ÖÖ±äÖÖ£¬²»Ìá¹©ÎÄ±¾¿ò±à¼­Ñ¡ÖĞÖµ
+/// \brief ComboBox çš„ä¸€ç§å˜ç§ï¼Œä¸æä¾›æ–‡æœ¬æ¡†ç¼–è¾‘é€‰ä¸­å€¼
 class VdkChoiceCtrl : public VdkMenuPopper
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkChoiceCtrl();
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief µ£ÈÎÖ÷Òª¹¹½¨¹¤×÷
-	/// \param Window ¸¸´°¿Ú
-	/// \param strName ¿Ø¼şÃû×Ö£¨±êÊ¶·û£©
-	/// \param rt ¿Ø¼ş×÷ÓÃÓò
-	/// \param strChoirces ³õÊ¼»¯ºóµÄËùÓĞÑ¡Ïî£¨Ñ¡Ïî¼äÊ¹ÓÃ°ë½Ç·ÖºÅ¡°;¡±·Ö¸î£©
+	/// \brief æ‹…ä»»ä¸»è¦æ„å»ºå·¥ä½œ
+	/// \param Window çˆ¶çª—å£
+	/// \param strName æ§ä»¶åå­—ï¼ˆæ ‡è¯†ç¬¦ï¼‰
+	/// \param rt æ§ä»¶ä½œç”¨åŸŸ
+	/// \param strChoirces åˆå§‹åŒ–åçš„æ‰€æœ‰é€‰é¡¹ï¼ˆé€‰é¡¹é—´ä½¿ç”¨åŠè§’åˆ†å·â€œ;â€åˆ†å‰²ï¼‰
 	void Create(VdkWindow* Window, 
 				const wxString& strName, 
 				const wxRect& rc,
@@ -25,23 +25,23 @@ public:
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ÔÚ\a index Ö¸¶¨µÄÎ»ÖÃ²åÈëÒ»¸öÏîÄ¿
+	/// \brief åœ¨\a index æŒ‡å®šçš„ä½ç½®æ’å…¥ä¸€ä¸ªé¡¹ç›®
 	void InsertItem(int index, const wxString& strLabel);
 
-	/// \brief Ñ¡ÔñÖ¸¶¨ĞòºÅµÄÏî
+	/// \brief é€‰æ‹©æŒ‡å®šåºå·çš„é¡¹
 	void Select(int index, wxDC* pDC);
 
-	/// \brief µÃµ½ÒÑÑ¡ÏîµÄ ID
-	/// \return ¼ÙÈçµ±Ç°ÎŞÑ¡ÖĞÏî£¬·µ»Ø-1
+	/// \brief å¾—åˆ°å·²é€‰é¡¹çš„ ID
+	/// \return å‡å¦‚å½“å‰æ— é€‰ä¸­é¡¹ï¼Œè¿”å›-1
 	int GetSelected() const { return m_selected; }
 
-	/// \brief µÃµ½ÉÏ´ÎÑ¡ÖĞÏîµÄ ID
-	/// \return ¼ÙÈçÉÏ´ÎÎŞÑ¡ÖĞÏî£¬·µ»Ø-1
+	/// \brief å¾—åˆ°ä¸Šæ¬¡é€‰ä¸­é¡¹çš„ ID
+	/// \return å‡å¦‚ä¸Šæ¬¡æ— é€‰ä¸­é¡¹ï¼Œè¿”å›-1
 	int GetLastSelected() const { return m_lastSelected; }
 
 private:
 
-	/// \brief ÏìÓ¦²Ëµ¥ÏîÑ¡Ôñ
+	/// \brief å“åº”èœå•é¡¹é€‰æ‹©
 	void OnDropDownMenu(VdkVObjEvent&);
 
 	int m_selected;

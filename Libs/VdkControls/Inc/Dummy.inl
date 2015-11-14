@@ -1,4 +1,4 @@
-#ifdef USE_APP
+﻿#ifdef USE_APP
 #	include "VdkApp.h"
 #	undef USE_APP
 #	define USE_APP VdkApp App;

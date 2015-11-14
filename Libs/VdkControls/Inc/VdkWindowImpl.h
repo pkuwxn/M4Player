@@ -1,4 +1,4 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkWindowImpl.h
  * Author:    Ning (vanxining@139.com)
  * Created:   2011-02-13
@@ -11,15 +11,15 @@
 #include <wx/display.h>
 #include <wx/xml/xml.h>
 
-/// \brief VdkWindow µÄÊÊÅäÀà
+/// \brief VdkWindow çš„é€‚é…ç±»
 ///
-/// Ê¹ VdkWindow ÄÜÊÊÅä¸÷ÖÖ´°ÌåÀàĞÍ£¬Èç wxDialog¡¢wxWindow¡¢wxPanel µÈ¡£
+/// ä½¿ VdkWindow èƒ½é€‚é…å„ç§çª—ä½“ç±»å‹ï¼Œå¦‚ wxDialogã€wxWindowã€wxPanel ç­‰ã€‚
 template< class T >
 class VdkWindowImpl: public T, public VdkWindow
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkWindowImpl(long style = 0)
 		: VdkWindow( this, style )
 	{
@@ -29,36 +29,36 @@ public:
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief VdkWindow µÄÊÊÅäÀàÖĞ¿ÉÒÔ×÷Îª¶¥²ã´°¿ÚµÄÊÊÅäÀà
+/// \brief VdkWindow çš„é€‚é…ç±»ä¸­å¯ä»¥ä½œä¸ºé¡¶å±‚çª—å£çš„é€‚é…ç±»
 ///
-/// ¶¥²ã´°¿ÚÖ±½ÓÓë´°¿Ú¹ÜÀíÆ÷½øĞĞ½»»¥£¬ÀıÈçÄÜ×îĞ¡»¯¡¢×î´ó»¯µÈ¡£
+/// é¡¶å±‚çª—å£ç›´æ¥ä¸çª—å£ç®¡ç†å™¨è¿›è¡Œäº¤äº’ï¼Œä¾‹å¦‚èƒ½æœ€å°åŒ–ã€æœ€å¤§åŒ–ç­‰ã€‚
 template< class T >
 class VdkTopLevelWindow : public VdkWindowImpl< T >
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkTopLevelWindow(wxWindow* parent, 
 					  const wxString& title, 
 					  long style, 
 					  long vstyle);
 
-	/// \brief XRC ¶¯Ì¬´´½¨µÄ±ãÀûº¯Êı
+	/// \brief XRC åŠ¨æ€åˆ›å»ºçš„ä¾¿åˆ©å‡½æ•°
 	virtual bool FromXrc(const wxString& xrcFileName, MapOfCtrlIdInfo* ids = NULL);
 
-	/// \brief ÒıÈë´°¿Ú×î´ó´óĞ¡×÷ÎªÏŞÖÆ
+	/// \brief å¼•å…¥çª—å£æœ€å¤§å¤§å°ä½œä¸ºé™åˆ¶
 	virtual wxSize GetMaxSize() const;
 
 private:
 
-	// ÅÉÉúÀà¿ÉÒÔÔÚ´Ë¶Ô´°¿Ú XRC ¶¨Òå×öÒ»Ğ©ÌØÊâ´¦Àí
+	// æ´¾ç”Ÿç±»å¯ä»¥åœ¨æ­¤å¯¹çª—å£ XRC å®šä¹‰åšä¸€äº›ç‰¹æ®Šå¤„ç†
 	virtual void HackXrc(wxXmlNode* winRoot) {}
 
-	// ¸Ä±ä´°¿Ú´óĞ¡
+	// æ”¹å˜çª—å£å¤§å°
 	virtual void DoResize(int w, int h, int width, int height, 
 						  int sizeFlags = wxSIZE_AUTO);
 
-	// ×îĞ¡»¯
+	// æœ€å°åŒ–
 	virtual void DoMinimize() { this->Iconize( true ); }
 };
 
@@ -80,7 +80,7 @@ VdkTopLevelWindow< T >::VdkTopLevelWindow(wxWindow* parent,
 			   wxFRAME_SHAPED |
 			   wxBORDER_NONE |
 			   wxCLIP_CHILDREN/* |
-			   wxCLIP_SIBLINGS */); // ¼ÓÁËÕâ¸ö»á³öÏÖ±ß¿ò
+			   wxCLIP_SIBLINGS */); // åŠ äº†è¿™ä¸ªä¼šå‡ºç°è¾¹æ¡†
 
 #ifdef __WXDEBUG__
 	this->SetDebugCaption(title);
@@ -96,7 +96,7 @@ bool VdkTopLevelWindow< T >::FromXrc(const wxString& xrcFileName,
 	wxXmlNode* root = docSkin.GetRoot();
 	if( (root == NULL) || (root->GetName() != L"resource") )
 	{
-		wxLogError( L"Æ¤·ô XML ÎÄ¼ş²»´æÔÚ»òÕß¸ñÊ½´íÎó:\r\n%s", xrcPath );
+		wxLogError( L"çš®è‚¤ XML æ–‡ä»¶ä¸å­˜åœ¨æˆ–è€…æ ¼å¼é”™è¯¯:\r\n%s", xrcPath );
 		return false;
 	}
 
@@ -119,12 +119,12 @@ wxSize VdkTopLevelWindow< T >::GetMaxSize() const
 template< class T >
 void VdkTopLevelWindow<T>::DoResize(int x, int y, int w, int h, int sizeFlags)
 {
-	// ¼ÙÈçÊÇÏàÍ¬µÄ´óĞ¡¾ÍÖ±½Ó SetShape
+	// å‡å¦‚æ˜¯ç›¸åŒçš„å¤§å°å°±ç›´æ¥ SetShape
 	this->SetSize( x, y, w, h, sizeFlags );
 
 	if( this->IsMaximized() )
 	{
-		// TODO: ²ãµş´°¿ÚÊ±µÄÇé¿ö
+		// TODO: å±‚å çª—å£æ—¶çš„æƒ…å†µ
 		this->SetShape( wxRegion() );
 	}
 	else

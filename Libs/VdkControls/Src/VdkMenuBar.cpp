@@ -1,4 +1,4 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkMenuBar.cpp
  * Purpose:   Code for VdkMenuBar implementation
  * Author:    vanxining (vanxining@139.com)
@@ -38,8 +38,8 @@ IMPLEMENT_DYNAMIC_VOBJECT( VdkMenuBar );
 #include <wx/listimpl.cpp>
 WX_DEFINE_LIST( ListOfEntry );
 
-const static int wAddIn = 4; // ×óÓÒ¸÷ÔöÌíµÄ³¤¶È
-const static int hAddIn = 3; // ÉÏÏÂ¸÷ÔöÌíµÄ³¤¶È
+const static int wAddIn = 4; // å·¦å³å„å¢æ·»çš„é•¿åº¦
+const static int hAddIn = 3; // ä¸Šä¸‹å„å¢æ·»çš„é•¿åº¦
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -123,7 +123,7 @@ bool VdkMenuBar::FilterEvent(const EventForFiltering& e)
 {
 	wxPoint mousePos( e.mouseEvent().GetPosition() );
 
-	// ²»¹ÜÊ²Ã´ÊÂ¼ş£¬Ö»ÒªÎ»ÓÚ²Ëµ¥À¸×÷ÓÃÓòÄÚÎÒÃÇ¶¼ÒªÀ¹½Ø
+	// ä¸ç®¡ä»€ä¹ˆäº‹ä»¶ï¼Œåªè¦ä½äºèœå•æ ä½œç”¨åŸŸå†…æˆ‘ä»¬éƒ½è¦æ‹¦æˆª
 	if( HitTest( mousePos ) )
 	{
 		VdkControl::ChildIterator i;
@@ -138,13 +138,13 @@ bool VdkMenuBar::FilterEvent(const EventForFiltering& e)
 			VdkControl::ChildIterator j;
 			for( j = begin(); j != end(); ++j )
 			{
-				if( j->IsMenuOnShow() ) // ÕıÔÚÏÔÊ¾²Ëµ¥µÄ°´Å¥
+				if( j->IsMenuOnShow() ) // æ­£åœ¨æ˜¾ç¤ºèœå•çš„æŒ‰é’®
 					break;
 			}
 
 			if( j != end() )
 			{
-				// ÏÔÊ¾ĞÂµÄ²Ëµ¥
+				// æ˜¾ç¤ºæ–°çš„èœå•
 				if( i != j )
 				{
 					m_Window->HideMenu();
@@ -157,7 +157,7 @@ bool VdkMenuBar::FilterEvent(const EventForFiltering& e)
 
 				return true;
 			}
-			// ¼ÙÈç»¹Ã»ÓĞÏÔÊ¾²Ëµ¥£¬Ö±½Ó·µ»Ø£¨µ¥»÷²ÅÏÔÊ¾²Ëµ¥£©
+			// å‡å¦‚è¿˜æ²¡æœ‰æ˜¾ç¤ºèœå•ï¼Œç›´æ¥è¿”å›ï¼ˆå•å‡»æ‰æ˜¾ç¤ºèœå•ï¼‰
 		}
 
 	}
@@ -242,15 +242,15 @@ void VdkMenuBarEntry::DoEraseBackground(wxDC& dc, const wxRect& rc)
 		dc.SetPen( m_drawStyle->m_selectedBorderPen );
 		dc.SetBrush( m_drawStyle->m_selected );
 
-		// ×ó±ß²»Òª GetRight() + 1 £¬ÕâÑù»áÓëÓÒ±ßµÄ¾ØĞÎÖØºÏ
-		// ÏÂ±ßµÄ + 1 £¬ÕâÑù¿ÉÒÔ±£Ö¤Óë²Ëµ¥ºÜºÃµÄ½ÓºÏ
+		// å·¦è¾¹ä¸è¦ GetRight() + 1 ï¼Œè¿™æ ·ä¼šä¸å³è¾¹çš„çŸ©å½¢é‡åˆ
+		// ä¸‹è¾¹çš„ + 1 ï¼Œè¿™æ ·å¯ä»¥ä¿è¯ä¸èœå•å¾ˆå¥½çš„æ¥åˆ
 
-		// ×ó¡ı
+		// å·¦â†“
 		dc.DrawLine( m_Rect.x, m_Rect.y, m_Rect.x, m_Rect.GetBottom() + 1 );
-		// ÓÒ¡ı
+		// å³â†“
 		dc.DrawLine( m_Rect.GetRight(), m_Rect.y,
 					 m_Rect.GetRight(), m_Rect.GetBottom() + 1 );
-		// ÉÏ¡ú
+		// ä¸Šâ†’
 		dc.DrawLine( m_Rect.x, m_Rect.y, m_Rect.GetRight(), m_Rect.y );
 
 		break;

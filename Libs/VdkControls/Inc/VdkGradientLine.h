@@ -1,22 +1,22 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkLabel.h"
 
-/// \brief Ò»¶Î¾ßÓĞ½¥±äĞ§¹ûµÄ·Ö¸îÏß
+/// \brief ä¸€æ®µå…·æœ‰æ¸å˜æ•ˆæœçš„åˆ†å‰²çº¿
 class VdkGradientLine : public VdkLabel
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkGradientLine();
 
 private:
 
-	// »æÖÆ¿Ø¼ş
+	// ç»˜åˆ¶æ§ä»¶
 	virtual void DoDraw(wxDC& dc);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	int				m_dxLine; // ½¥±äÉ«Ìõ x ÖáÉÏµÄ»æÍ¼ÆğÊ¼µã
+	int				m_dxLine; // æ¸å˜è‰²æ¡ x è½´ä¸Šçš„ç»˜å›¾èµ·å§‹ç‚¹
 	int				m_dyLine;
 
 	wxBitmap		m_gradientLine;

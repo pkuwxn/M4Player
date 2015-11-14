@@ -1,4 +1,4 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkSearchCtrl.h
  * Purpose:   Code for VdkSearchCtrl declaration
  * Author:    vanxining (vanxining@139.com)
@@ -9,7 +9,7 @@
 #include "VdkControl.h"
 #include "VdkBitmapArray.h"
 
-/// \brief Îª VdkSearchCtrl ÉèÖÃ³õÊ¼»¯ĞÅÏ¢
+/// \brief ä¸º VdkSearchCtrl è®¾ç½®åˆå§‹åŒ–ä¿¡æ¯
 class VdkSearchCtrlInitializer : 
 	public VdkCtrlInitializer< VdkSearchCtrlInitializer >
 {
@@ -21,41 +21,41 @@ private:
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief VdkSearchCtrl µÄ·ç¸ñÊôĞÔ¼¯
+/// \brief VdkSearchCtrl çš„é£æ ¼å±æ€§é›†
 enum VdkSearchCtrlStyle {
 };
 
 class VdkEdit;
 class VdkButton;
-/// \brief ±ê×¼»¯µÄËÑË÷¿ò
+/// \brief æ ‡å‡†åŒ–çš„æœç´¢æ¡†
 class VdkSearchCtrl : public VdkCtrlHandler
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkSearchCtrl();
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief Êµ¼Ê¹¹½¨º¯Êı
+	/// \brief å®é™…æ„å»ºå‡½æ•°
 	void Create(const VdkSearchCtrlInitializer& init_data);
 
-	/// \brief »ñÈ¡ÎÄ±¾¿ò
+	/// \brief è·å–æ–‡æœ¬æ¡†
 	VdkEdit* GetEditCtrl() { return m_edit; }
 
-	/// \brief »ñÈ¡ÎÄ±¾¿òµÄ¿Ø¼ş±êÊ¶·û
+	/// \brief è·å–æ–‡æœ¬æ¡†çš„æ§ä»¶æ ‡è¯†ç¬¦
 	VdkCtrlId GetEditID() const;
 
 private:
 
-	/// \brief »æÖÆ¿Ø¼ş
+	/// \brief ç»˜åˆ¶æ§ä»¶
 	virtual void DoDraw(wxDC& dc);
 
-	/// \brief ²Á³ı±³¾°
+	/// \brief æ“¦é™¤èƒŒæ™¯
 	virtual void DoEraseBackground(wxDC& dc, const wxRect& rc);
 
-	/// \brief ½ÓÊÕ¡¢´¦ÀíÍ¨ÖªĞÅÏ¢
+	/// \brief æ¥æ”¶ã€å¤„ç†é€šçŸ¥ä¿¡æ¯
 	virtual void DoHandleNotify(const VdkNotify& notice);
 
 	//////////////////////////////////////////////////////////////////////////
@@ -63,13 +63,13 @@ private:
 	VdkEdit* m_edit;
 	VdkButton* m_button;
 
-	VdkBitmapArray m_bmpBorder; // ±ß¿òÎ»Í¼
+	VdkBitmapArray m_bmpBorder; // è¾¹æ¡†ä½å›¾
 
-	int m_borderWeight; // ±ß¿ò¿í¶È
-	int m_radius; // Ô²½Ç¾ØĞÎĞ¡ÇúÔ²°ë¾¶
+	int m_borderWeight; // è¾¹æ¡†å®½åº¦
+	int m_radius; // åœ†è§’çŸ©å½¢å°æ›²åœ†åŠå¾„
 
-	wxPen m_borderPen; // Õı³£Ä£Ê½ÏÂ±ß¿ò
-	wxPen m_hilightPen; // ¸ßÁÁ±ß¿ò
+	wxPen m_borderPen; // æ­£å¸¸æ¨¡å¼ä¸‹è¾¹æ¡†
+	wxPen m_hilightPen; // é«˜äº®è¾¹æ¡†
 
 	DECLARE_DYNAMIC_VOBJECT
 };

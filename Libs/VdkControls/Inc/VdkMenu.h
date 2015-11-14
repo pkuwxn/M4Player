@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkMenuImplBase.h
- * Purpose:   Ò»¸ö»ùÓÚ VdkWindow µÄ¸»ĞÎÊ½×Ô»æ²Ëµ¥
+ * Purpose:   ä¸€ä¸ªåŸºäº VdkWindow çš„å¯Œå½¢å¼è‡ªç»˜èœå•
  * Author:    vanxining (vanxining@139.com)
  * Created:   2011-02-26
  * Copyright: vanxining
@@ -11,47 +11,47 @@
 #include "VdkUtil.h"
 #include "VdkCtrlId.h"
 
-/// \brief ²Ëµ¥ÏîµÄÀàĞÍ
+/// \brief èœå•é¡¹çš„ç±»å‹
 enum VdkMenuType {
 
-	MIT_NORMAL,	///< ÆÕÍ¨Ïî
-	MIT_SEPERATOR, ///< ·Ö¸ôÌõ
-	MIT_USER_DEFINED, ///< ÓÃ»§×Ô¶¨Òå¿Ø¼ş
+	MIT_NORMAL,	///< æ™®é€šé¡¹
+	MIT_SEPERATOR, ///< åˆ†éš”æ¡
+	MIT_USER_DEFINED, ///< ç”¨æˆ·è‡ªå®šä¹‰æ§ä»¶
 };
 
 //////////////////////////////////////////////////////////////////////////
 
 enum VdkMenuStyle {
 
-	/// \brief ÊÇ·ñÊ¹ÓÃ×ó±ßµÄĞ¡Î»Í¼
+	/// \brief æ˜¯å¦ä½¿ç”¨å·¦è¾¹çš„å°ä½å›¾
 	VMS_BITMAP						= 1 << 0,
-	/// \brief ÊÇ·ñ²»ÒªÌí¼ÓÈÎºÎ¶îÍâµÄ¿Õ°×
+	/// \brief æ˜¯å¦ä¸è¦æ·»åŠ ä»»ä½•é¢å¤–çš„ç©ºç™½
 	///
-	/// Ö÷ÒªÊ¹µÃ²Ëµ¥ÉÏµÄÓÃ»§×Ô¶¨Òå¿Ø¼şÄÜ¹»¾«È·¿ØÖÆ²Ëµ¥ÊµÌå´°ÌåµÄ´óĞ¡¡£
+	/// ä¸»è¦ä½¿å¾—èœå•ä¸Šçš„ç”¨æˆ·è‡ªå®šä¹‰æ§ä»¶èƒ½å¤Ÿç²¾ç¡®æ§åˆ¶èœå•å®ä½“çª—ä½“çš„å¤§å°ã€‚
 	VMS_NO_EXTRA_SPACE				= 1 << 1,
-	/// \brief ²»ÒªÑÓ³ÙÒ»¶ÎÊ±¼äºóÉ¾³ı²Ëµ¥ÊµÌå´°Ìå
+	/// \brief ä¸è¦å»¶è¿Ÿä¸€æ®µæ—¶é—´ååˆ é™¤èœå•å®ä½“çª—ä½“
 	VMS_NO_AUTO_DELETE				= 1 << 2,
-	/// \brief ÖØ»­Ç°²Á³ıÒ»ÇĞÄÚÈİ
+	/// \brief é‡ç”»å‰æ“¦é™¤ä¸€åˆ‡å†…å®¹
 	VMS_ERASE_ALL					= 1 << 3,
-	/// \brief ÊÇ·ñĞèÒª·¢ËÍ²Ëµ¥Ô¤´´½¨ÏûÏ¢
+	/// \brief æ˜¯å¦éœ€è¦å‘é€èœå•é¢„åˆ›å»ºæ¶ˆæ¯
 	///
-	/// ¿ÉÓÃÓÚ´´½¨Ç°Ôö¼õ²Ëµ¥Ïî¡£
+	/// å¯ç”¨äºåˆ›å»ºå‰å¢å‡èœå•é¡¹ã€‚
 	VMS_SEND_PRECREATE_MSG			= 1 << 7,
-	/// \brief ÊÇ·ñĞèÒª·¢ËÍ²Ëµ¥Ô¤ÏÔÊ¾ÏûÏ¢
+	/// \brief æ˜¯å¦éœ€è¦å‘é€èœå•é¢„æ˜¾ç¤ºæ¶ˆæ¯
 	///
-	/// ¿ÉÓÃÓÚ²Ëµ¥Ã¿´ÎÏÔÊ¾Ç°Ôö¼õ²Ëµ¥Ïî¡£
+	/// å¯ç”¨äºèœå•æ¯æ¬¡æ˜¾ç¤ºå‰å¢å‡èœå•é¡¹ã€‚
 	VMS_SEND_PRESHOW_MSG			= 1 << 8,
-	/// \brief ·¢ËÍ²Ëµ¥Ïî±»Ñ¡ÔñÊÂ¼ş(µ±²Ëµ¥ÏîÃ»ÓĞ¾ßÌåIDĞÅÏ¢Ê±)
+	/// \brief å‘é€èœå•é¡¹è¢«é€‰æ‹©äº‹ä»¶(å½“èœå•é¡¹æ²¡æœ‰å…·ä½“IDä¿¡æ¯æ—¶)
 	VMS_SEND_GLOBAL_SELECTED_MSG	= 1 << 9,
 };
 
-/// \brief ²Ëµ¥Ëù´¦µÄ×´Ì¬
+/// \brief èœå•æ‰€å¤„çš„çŠ¶æ€
 enum VdkMenuState {
 
-	/// \brief ÊÇ·ñÒÑÈ»³õÊ¼»¯
+	/// \brief æ˜¯å¦å·²ç„¶åˆå§‹åŒ–
 	///
-	/// ¶à´ËÒ»¾ÙÊÇ¿¼ÂÇµ½¿ÉÄÜ³õÊ¼»¯ºó²»Ò»¶¨À´µÃ¼°ÖØ»­£¬
-	/// ¹Ê VDK ±£´æµÄ×´Ì¬ÊÇÎ´³õÊ¼»¯£¬µ¼ÖÂÔÙ´Î³õÊ¼»¯
+	/// å¤šæ­¤ä¸€ä¸¾æ˜¯è€ƒè™‘åˆ°å¯èƒ½åˆå§‹åŒ–åä¸ä¸€å®šæ¥å¾—åŠé‡ç”»ï¼Œ
+	/// æ•… VDK ä¿å­˜çš„çŠ¶æ€æ˜¯æœªåˆå§‹åŒ–ï¼Œå¯¼è‡´å†æ¬¡åˆå§‹åŒ–
 	VMST_INITIALIZED				= 1 << 0,
 };
 
@@ -64,59 +64,59 @@ class VdkMenuCtrlHandler;
 class VdkControl;
 class VdkVObjEvent;
 
-/// \brief ÉÏÏÂÎÄ²Ëµ¥
+/// \brief ä¸Šä¸‹æ–‡èœå•
 class VdkMenu : public VdkClientDataOwner,
 				public VdkStyleAndStateOwner
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkMenu(int mid, VdkWindow* win, VdkMenu* parent);
 
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	~VdkMenu();
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ´ÓÄ©Î²Ìí¼ÓÒ»Ïî
+	/// \brief ä»æœ«å°¾æ·»åŠ ä¸€é¡¹
 	void AppendItem(VdkMenuItem* item);
 
-	/// \brief ´ÓÄ©Î²Ìí¼ÓÒ»Ïî
+	/// \brief ä»æœ«å°¾æ·»åŠ ä¸€é¡¹
 	void AppendItem(const wxString& strCaption);
 
-	/// \brief ´ÓÄ©Î²Ìí¼ÓÒ»Ïî
+	/// \brief ä»æœ«å°¾æ·»åŠ ä¸€é¡¹
 	void AppendItem(VdkMenuItem& item) { AppendItem( &item ); }
 
-	/// \brief Íù²Ëµ¥Ä©Î²Ìí¼ÓÒ»¸ö·Ö¸ôÌõ
+	/// \brief å¾€èœå•æœ«å°¾æ·»åŠ ä¸€ä¸ªåˆ†éš”æ¡
 	void AppendSeperator();
 
-	/// \brief »ñÈ¡²Ëµ¥×Ü¹²µÄÏîÊı
+	/// \brief è·å–èœå•æ€»å…±çš„é¡¹æ•°
 	size_t GetItemCount() const;
 
-	/// \brief ²Ëµ¥ÊÇ·ñÎª¿Õ(Î´³õÊ¼»¯)
+	/// \brief èœå•æ˜¯å¦ä¸ºç©º(æœªåˆå§‹åŒ–)
 	bool IsEmpty() const;
 
-	/// \brief »ñÈ¡Ö¸¶¨²Ëµ¥Ïî
+	/// \brief è·å–æŒ‡å®šèœå•é¡¹
 	VdkMenuItem* GetItem(size_t i);
 
-	/// \brief »ñÈ¡¾ßÓĞÖ¸¶¨ ID µÄ²Ëµ¥Ïî
+	/// \brief è·å–å…·æœ‰æŒ‡å®š ID çš„èœå•é¡¹
 	VdkMenuItem* FindItem(VdkCtrlId id);
 
-	/// \brief »ñÈ¡¾ßÓĞÖ¸¶¨ ID µÄ²Ëµ¥Ïî
+	/// \brief è·å–å…·æœ‰æŒ‡å®š ID çš„èœå•é¡¹
 	VdkMenuItem* FindCheckedItem();
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ½«Ö¸¶¨¿Ø¼şÒÀ¸½µ½²Ëµ¥ÉÏ
+	/// \brief å°†æŒ‡å®šæ§ä»¶ä¾é™„åˆ°èœå•ä¸Š
 	void AttachCtrl(VdkMenuCtrlHandler* hdler);
 
-	/// \brief ´ÓÒÀ¸½ÁĞ±íÖĞÉ¾³ıÖ¸¶¨¿Ø¼ş
+	/// \brief ä»ä¾é™„åˆ—è¡¨ä¸­åˆ é™¤æŒ‡å®šæ§ä»¶
 	void DeAttachCtrl(VdkMenuCtrlHandler* hdler);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ÔÚ<b>**ÒÔÆÁÄ»¼ÆÁ¿**</b>µÄÎ»ÖÃ(\a x, \a y)´¦ÏÔÊ¾²Ëµ¥
-	/// \param pCtrl Óë²Ëµ¥Ïà¹ØÁªµÄ¿Ø¼ş¾ä±ú£¬Îª¿ÕÔòÓë\a window Ïà¹ØÁª
+	/// \brief åœ¨<b>**ä»¥å±å¹•è®¡é‡**</b>çš„ä½ç½®(\a x, \a y)å¤„æ˜¾ç¤ºèœå•
+	/// \param pCtrl ä¸èœå•ç›¸å…³è”çš„æ§ä»¶å¥æŸ„ï¼Œä¸ºç©ºåˆ™ä¸\a window ç›¸å…³è”
 	void ShowContext(int x, int y, VdkControl* pCtrl);
 
     /**
@@ -126,76 +126,76 @@ public:
 		ShowContext( pos.x, pos.y, pCtrl );
 	}
 
-	/// \brief Òş²Ø²Ëµ¥
+	/// \brief éšè—èœå•
 	void Return();
 
-	/// \brief »ñÈ¡²Ëµ¥µÄ×æÏÈ
-	/// \return ÎŞ¸¸²Ëµ¥Ê±·µ»Ø×ÔÉí¡£
+	/// \brief è·å–èœå•çš„ç¥–å…ˆ
+	/// \return æ— çˆ¶èœå•æ—¶è¿”å›è‡ªèº«ã€‚
 	VdkMenu* GetRootMenu();
 
-	/// \brief »ñÈ¡¸¸²Ëµ¥
+	/// \brief è·å–çˆ¶èœå•
 	VdkMenu* GetParentMenu() const { return m_parent; }
 
-	/// \brief »ñÈ¡ÊµÌå´°Ìå
+	/// \brief è·å–å®ä½“çª—ä½“
 	VdkMenuImpl* GetImpl() const { return m_impl.GetImpl(); }
 
-	/// \brief »ñÈ¡ÊµÌå´°Ìå¶ÔÓ¦µÄ VdkWindow
+	/// \brief è·å–å®ä½“çª—ä½“å¯¹åº”çš„ VdkWindow
 	VdkWindow* GetVdkWindowImpl() const;
 
-	/// \brief »ñÈ¡¸¸´°¿Ú
+	/// \brief è·å–çˆ¶çª—å£
 	VdkWindow* GetVdkWindow() const { return m_window; }
 
-	/// \brief »ñÈ¡µ±Ç°ÕıÔÚÏÔÊ¾µÄ×îºóÒ»¸ö²ã´ÎµÄ×Ó²Ëµ¥
+	/// \brief è·å–å½“å‰æ­£åœ¨æ˜¾ç¤ºçš„æœ€åä¸€ä¸ªå±‚æ¬¡çš„å­èœå•
 	VdkMenu* GetLastShownMenu() const;
 
-	/// \brief ²Ëµ¥µ±Ç°ÊÇ·ñÕıÔÚ´¦ÓÚ»î¶¯×´Ì¬
+	/// \brief èœå•å½“å‰æ˜¯å¦æ­£åœ¨å¤„äºæ´»åŠ¨çŠ¶æ€
 	bool IsShown() const { return m_impl.IsShown(); }
 
-	/// \brief ´´½¨ VdkMenuItemImpl
+	/// \brief åˆ›å»º VdkMenuItemImpl
 	void ImplementMenu();
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief Êó±êÖ¸ÕëÊÇ·ñÎ»ÓÚ²Ëµ¥´°ÌåÄÚ
+	/// \brief é¼ æ ‡æŒ‡é’ˆæ˜¯å¦ä½äºèœå•çª—ä½“å†…
 	///
-	/// ÓÃÓÚÅĞ¶ÏÖ¸ÕëÊÇ·ñ×ªÒÆÖÁ×Ó²Ëµ¥×÷ÓÃÓòÄÚ¡£
+	/// ç”¨äºåˆ¤æ–­æŒ‡é’ˆæ˜¯å¦è½¬ç§»è‡³å­èœå•ä½œç”¨åŸŸå†…ã€‚
 	bool ContainsPointerGlobally() const ;
 
-	/// \brief Êó±êÖ¸ÕëÊÇ·ñÎ»ÓÚ²Ëµ¥´°ÌåÄÚ
+	/// \brief é¼ æ ‡æŒ‡é’ˆæ˜¯å¦ä½äºèœå•çª—ä½“å†…
 	///
-	/// ÓÃÓÚÅĞ¶ÏÖ¸ÕëÊÇ·ñ×ªÒÆÖÁ×Ó²Ëµ¥×÷ÓÃÓòÄÚ¡£
+	/// ç”¨äºåˆ¤æ–­æŒ‡é’ˆæ˜¯å¦è½¬ç§»è‡³å­èœå•ä½œç”¨åŸŸå†…ã€‚
 	bool ContainsPointer(const wxPoint& mousePos) const;
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ÉèÖÃ²Ëµ¥µÄ×î¼Ñ¿í¶È
+	/// \brief è®¾ç½®èœå•çš„æœ€ä½³å®½åº¦
 	///
-	/// µ±²Ëµ¥Õı³£ËùĞè¿í¶ÈĞ¡ÓÚ\a w Ê±£¬²Ëµ¥ÈÔÈ»»áÀ©Õ¹µ½\a w µÄ³¤¶È¡£
+	/// å½“èœå•æ­£å¸¸æ‰€éœ€å®½åº¦å°äº\a w æ—¶ï¼Œèœå•ä»ç„¶ä¼šæ‰©å±•åˆ°\a w çš„é•¿åº¦ã€‚
 	void SetBestWidth(int w);
 
-	/// \brief ÊÇ·ñÒÑÈ»³õÊ¼»¯
+	/// \brief æ˜¯å¦å·²ç„¶åˆå§‹åŒ–
 	bool IsInitialized() const { return TestState( VMST_INITIALIZED ); }
 
-	/// \brief ÏìÓ¦ÊµÌå´°ÌåµÄÏú»ÙÊÂ¼ş
+	/// \brief å“åº”å®ä½“çª—ä½“çš„é”€æ¯äº‹ä»¶
 	void OnMenuImplDestroy();
 
 private:
 
-	// ¼ÆËã²Ëµ¥¿í¶È
+	// è®¡ç®—èœå•å®½åº¦
 	void CalcMenuWidth();
 
-	// ¼ÆËãÒÀ¸½µ½²Ëµ¥µÄ¿Ø¼şµÄ×î´ó¿í¶È£¬ÒÔÈ·¶¨²Ëµ¥µÄºÏÊÊ¿í¶È
-	// ·µ»Ø²Ëµ¥ĞÂ¿í¶ÈÓë¾É¿í¶ÈÖ®¼äµÄ²îÖµ¡£
+	// è®¡ç®—ä¾é™„åˆ°èœå•çš„æ§ä»¶çš„æœ€å¤§å®½åº¦ï¼Œä»¥ç¡®å®šèœå•çš„åˆé€‚å®½åº¦
+	// è¿”å›èœå•æ–°å®½åº¦ä¸æ—§å®½åº¦ä¹‹é—´çš„å·®å€¼ã€‚
 	int MeasureOnMenuCtrls();
 
-	// µ¥»÷ÊÂ¼şµÄÖĞ×ª´¦Àí
+	// å•å‡»äº‹ä»¶çš„ä¸­è½¬å¤„ç†
 	static void OnSelect(VdkVObjEvent& e);
 
-	// ·¢ËÍ²Ëµ¥Ô¤´´½¨¡¢Ô¤ÏÔÊ¾ĞÅÏ¢
-	// ½ÓÊÜÕß¿ÉÔÚ²Ëµ¥ÊµÌå´°Ìå´´½¨Ç°»òÃ¿´ÎÏÔÊ¾Ç°Ö´ĞĞÔö¼õ¡¢½ûÓÃ²Ëµ¥ÏîµÈ²Ù×÷¡£
+	// å‘é€èœå•é¢„åˆ›å»ºã€é¢„æ˜¾ç¤ºä¿¡æ¯
+	// æ¥å—è€…å¯åœ¨èœå•å®ä½“çª—ä½“åˆ›å»ºå‰æˆ–æ¯æ¬¡æ˜¾ç¤ºå‰æ‰§è¡Œå¢å‡ã€ç¦ç”¨èœå•é¡¹ç­‰æ“ä½œã€‚
 	void SendPreOperateMessage(VdkMenuStyle style);
 
-	// ´¥·¢Ñ¡ÖĞÊÂ¼ş
+	// è§¦å‘é€‰ä¸­äº‹ä»¶
 	void FireEvent(VdkMenuItem* item);
 
 private:
@@ -203,15 +203,15 @@ private:
 	VdkWindow* m_window;
 	VdkMenu* m_parent;
 
-	VdkCtrlId m_id; // ²Ëµ¥ ID
-	static VdkCtrlId m_fakeId; // ¼Ù²Ëµ¥Ïî ID £¬ÓÃÓÚÊÂ¼şÖĞ×ª´¦Àí
+	VdkCtrlId m_id; // èœå• ID
+	static VdkCtrlId m_fakeId; // å‡èœå•é¡¹ ID ï¼Œç”¨äºäº‹ä»¶ä¸­è½¬å¤„ç†
 
 	int m_width;
 	int m_height;
-	int m_bestWidth; // ×î¼Ñ¿í¶È£¬²»Ó¦¸ÃĞ¡ÓÚ¸ÃÖµ
+	int m_bestWidth; // æœ€ä½³å®½åº¦ï¼Œä¸åº”è¯¥å°äºè¯¥å€¼
 	int	m_maxTextWidth;
 
-	VdkControl* m_pRelativeCtrl; // Ïà¹ØÁªµÄ¿Ø¼ş£¬ÓÃÓÚÍ¨Öª¿Ø¼ş²Ëµ¥Òş²Ø
+	VdkControl* m_pRelativeCtrl; // ç›¸å…³è”çš„æ§ä»¶ï¼Œç”¨äºé€šçŸ¥æ§ä»¶èœå•éšè—
 
 private:
 
@@ -225,64 +225,64 @@ public:
 
 	typedef item_list_iterator_Const ItemIter_Const;
 
-	/// \brief ·µ»Ø²Ëµ¥Ïî³£Á¿µü´úÆ÷µÄÆğÊ¼
+	/// \brief è¿”å›èœå•é¡¹å¸¸é‡è¿­ä»£å™¨çš„èµ·å§‹
 	ItemIter_Const begin() const { return m_items.begin(); }
 
-	/// \brief ·µ»Ø²Ëµ¥Ïî³£Á¿µü´úÆ÷µÄÖÕÖ¹
+	/// \brief è¿”å›èœå•é¡¹å¸¸é‡è¿­ä»£å™¨çš„ç»ˆæ­¢
 	ItemIter_Const end() const { return m_items.end(); }
 
 	typedef item_list_iterator ItemIter;
 
-	/// \brief ·µ»Ø²Ëµ¥Ïîµü´úÆ÷µÄÆğÊ¼
+	/// \brief è¿”å›èœå•é¡¹è¿­ä»£å™¨çš„èµ·å§‹
 	ItemIter begin() { return m_items.begin(); }
 
-	/// \brief ·µ»Ø²Ëµ¥Ïîµü´úÆ÷µÄÖÕÖ¹
+	/// \brief è¿”å›èœå•é¡¹è¿­ä»£å™¨çš„ç»ˆæ­¢
 	ItemIter end() { return m_items.end(); }
 
 private:
 
 	item_list m_items;
-	OnMenuCtrls m_attached; // ÒÀ¸½ÓÚÆäÉÏµÄÓÃ»§×Ô¶¨Òå¿Ø¼ş
+	OnMenuCtrls m_attached; // ä¾é™„äºå…¶ä¸Šçš„ç”¨æˆ·è‡ªå®šä¹‰æ§ä»¶
 
 	//////////////////////////////////////////////////////////////////////////
-	/// \brief Ê¹ÓÃ¶ÔÏó¶Ô²Ëµ¥ÊµÌå´°ÌåµÄÉúÃüÖÜÆÚ½øĞĞÓĞĞ§¹ÜÀí
+	/// \brief ä½¿ç”¨å¯¹è±¡å¯¹èœå•å®ä½“çª—ä½“çš„ç”Ÿå‘½å‘¨æœŸè¿›è¡Œæœ‰æ•ˆç®¡ç†
 	///
-	/// ¼´ĞèÒªÏÔÊ¾²Ëµ¥Ê±´´½¨ÊµÌå´°Ìå£¬²Ëµ¥±»Òş²Ø/Ñ¡ÖĞºóÁ¢¼´Ïú»ÙÊµÌå´°Ìå¡£
+	/// å³éœ€è¦æ˜¾ç¤ºèœå•æ—¶åˆ›å»ºå®ä½“çª—ä½“ï¼Œèœå•è¢«éšè—/é€‰ä¸­åç«‹å³é”€æ¯å®ä½“çª—ä½“ã€‚
 	class VdkMenuPtr : public wxTimer
 	{
 	public:
 
-		/// \brief ¹¹Ôìº¯Êı
+		/// \brief æ„é€ å‡½æ•°
 		VdkMenuPtr(VdkMenu* menu);
 
-		/// \brief Îö¹¹º¯Êı
+		/// \brief ææ„å‡½æ•°
 		~VdkMenuPtr();
 
-		/// \brief Ê¹¶ÔÏóÄÜÏñÆÕÍ¨Ö¸ÕëÒ»ÑùÔË×÷
+		/// \brief ä½¿å¯¹è±¡èƒ½åƒæ™®é€šæŒ‡é’ˆä¸€æ ·è¿ä½œ
 		VdkMenuImpl* operator -> ();
 
-		/// \brief »ñÈ¡Êµ¼Ê´°Ìå¶ÔÏó
+		/// \brief è·å–å®é™…çª—ä½“å¯¹è±¡
 		VdkMenuImpl* GetImpl() const { return m_impl; }
 
-		/// \brief ´´½¨Êµ¼Ê´°Ìå¶ÔÏó
+		/// \brief åˆ›å»ºå®é™…çª—ä½“å¯¹è±¡
 		void Implement();
 
-		/// \brief Ïú»ÙÊµÌå´°Ìå
-		/// \param delAtOnce ÊÇ·ñÁ¢¼´Ïú»Ù´°Ìå
+		/// \brief é”€æ¯å®ä½“çª—ä½“
+		/// \param delAtOnce æ˜¯å¦ç«‹å³é”€æ¯çª—ä½“
 		void Release(bool delAtOnce);
 
-		/// \brief µ±Ç°ÊµÌå´°ÌåÊÇ·ñ´æÔÚ
+		/// \brief å½“å‰å®ä½“çª—ä½“æ˜¯å¦å­˜åœ¨
 		bool IsValid() const { return m_impl != NULL; }
 
-		/// \brief µ±Ç°ÊµÌå´°ÌåÊÇ·ñ´æÔÚ
+		/// \brief å½“å‰å®ä½“çª—ä½“æ˜¯å¦å­˜åœ¨
 		bool IsShown() const;
 
 	private:
 
-		// À´×Ô wxTimer£¬×÷ÓÃÎªÑÓ³ÙÉ¾³ıÊµÌå²Ëµ¥´°Ìå
+		// æ¥è‡ª wxTimerï¼Œä½œç”¨ä¸ºå»¶è¿Ÿåˆ é™¤å®ä½“èœå•çª—ä½“
 		virtual void Notify();
 
-		// ÏìÓ¦ÊµÌå´°ÌåµÄÏú»ÙÊÂ¼ş
+		// å“åº”å®ä½“çª—ä½“çš„é”€æ¯äº‹ä»¶
 		void OnImplDestroy(wxWindowDestroyEvent&);
 
 		//////////////////////////////////////////////////////////////////////////
@@ -306,135 +306,135 @@ public:
 private:
 
 	//////////////////////////////////////////////////////////////////////////
-	// \brief ²Ëµ¥ÏÔÊ¾·ç¸ñ¶¨Òå
+	// \brief èœå•æ˜¾ç¤ºé£æ ¼å®šä¹‰
 	class StaticStyle {
 	public:
 
-		int rowHeight; ///< ²Ëµ¥Ïî¸ß
-		int borderWeight; ///< ±ß¿ò¿í¶È
-		int padding; ///< ¸ßÁÁÌõÓë²Ëµ¥±ß¿òÖ®¼äµÄ¾àÀë
-		int textPaddingCount; ///< ÎÄ±¾Óë×ó±ßÎ»Í¼ÇøÓòÖ®¼äµÄ¾àÀë£¨ÒÔ×Ö·ûÊı¼Æ£©
-		int bitmapRegion; ///< ×ó±ßÏÔÊ¾Î»Í¼µÄÇøÓòµÄ¿í¶È
-		int rightArrowSize; ///< ´ú±í×Ó²Ëµ¥µÄÓÒ±ß¼ıÍ·¿í¶È
-		int subMainGap; ///< ×Ó²Ëµ¥Óë¸¸²Ëµ¥Ö®¼äµÄ¼äÏ¶¿í¶È
-		/// \brief ²Ëµ¥ÎÄ±¾¸÷²¿·ÖÖ®¼äµÄ¼äÏ¶¿í¶È£¬ÈçÓÒ¼ıÍ·Óë¼ÓËÙ¼üÖ®¼ä
+		int rowHeight; ///< èœå•é¡¹é«˜
+		int borderWeight; ///< è¾¹æ¡†å®½åº¦
+		int padding; ///< é«˜äº®æ¡ä¸èœå•è¾¹æ¡†ä¹‹é—´çš„è·ç¦»
+		int textPaddingCount; ///< æ–‡æœ¬ä¸å·¦è¾¹ä½å›¾åŒºåŸŸä¹‹é—´çš„è·ç¦»ï¼ˆä»¥å­—ç¬¦æ•°è®¡ï¼‰
+		int bitmapRegion; ///< å·¦è¾¹æ˜¾ç¤ºä½å›¾çš„åŒºåŸŸçš„å®½åº¦
+		int rightArrowSize; ///< ä»£è¡¨å­èœå•çš„å³è¾¹ç®­å¤´å®½åº¦
+		int subMainGap; ///< å­èœå•ä¸çˆ¶èœå•ä¹‹é—´çš„é—´éš™å®½åº¦
+		/// \brief èœå•æ–‡æœ¬å„éƒ¨åˆ†ä¹‹é—´çš„é—´éš™å®½åº¦ï¼Œå¦‚å³ç®­å¤´ä¸åŠ é€Ÿé”®ä¹‹é—´
 		int componentPaddingCount;
 
-		wxColour bgColor; ///< ²Ëµ¥±³¾°ÑÕÉ«
-		wxBrush bitmapRegionBrush; ///< ×ó±ßÏÔÊ¾Î»Í¼µÄÇøÓòËùÓÃµÄ»­Ë¢
-		wxBrush hilightBrush; ///< ²Ëµ¥Ïî¸ßÁÁÊ±ËùÓÃµÄ»­Ë¢
-		wxBrush checkedBrush; ///< Ñ¡ÖĞÏîÆÕÍ¨×´Ì¬ÏÂ»æÖÆÊ±ËùÓÃµÄ»­Ë¢
-		wxBrush checkedHilightBrush; ///< Ñ¡ÖĞÏî¸ßÁÁÊ±»æÖÆËùÓÃµÄ»­Ë¢
-		wxPen hilightBorderPen; ///< ²Ëµ¥Ïî¸ßÁÁÊ±µÄ±ß¿òÑÕÉ«
-		wxPen borderPen; ///< ²Ëµ¥±ß¿òÑÕÉ«
+		wxColour bgColor; ///< èœå•èƒŒæ™¯é¢œè‰²
+		wxBrush bitmapRegionBrush; ///< å·¦è¾¹æ˜¾ç¤ºä½å›¾çš„åŒºåŸŸæ‰€ç”¨çš„ç”»åˆ·
+		wxBrush hilightBrush; ///< èœå•é¡¹é«˜äº®æ—¶æ‰€ç”¨çš„ç”»åˆ·
+		wxBrush checkedBrush; ///< é€‰ä¸­é¡¹æ™®é€šçŠ¶æ€ä¸‹ç»˜åˆ¶æ—¶æ‰€ç”¨çš„ç”»åˆ·
+		wxBrush checkedHilightBrush; ///< é€‰ä¸­é¡¹é«˜äº®æ—¶ç»˜åˆ¶æ‰€ç”¨çš„ç”»åˆ·
+		wxPen hilightBorderPen; ///< èœå•é¡¹é«˜äº®æ—¶çš„è¾¹æ¡†é¢œè‰²
+		wxPen borderPen; ///< èœå•è¾¹æ¡†é¢œè‰²
 
-		wxFont menuFont; ///< ²Ëµ¥ËùÓÃ×ÖÌå
-		// ²Ëµ¥ÒÑÑ¡Ê±±íÏÖËùÓÃµÄµÄ¶Ô¹´£¬wxWidgets »æÖÆÊ±»áÌí¼Ó°×É«µÄ±³¾°
+		wxFont menuFont; ///< èœå•æ‰€ç”¨å­—ä½“
+		// èœå•å·²é€‰æ—¶è¡¨ç°æ‰€ç”¨çš„çš„å¯¹å‹¾ï¼ŒwxWidgets ç»˜åˆ¶æ—¶ä¼šæ·»åŠ ç™½è‰²çš„èƒŒæ™¯
 		wxBitmap checkMark;
 
 	} * m_sstyle;
 
 	//////////////////////////////////////////////////////////////////////////
-	// \brief ²Ëµ¥ÏÔÊ¾·ç¸ñ¶¨Òå¹¤³§
+	// \brief èœå•æ˜¾ç¤ºé£æ ¼å®šä¹‰å·¥å‚
 	class StyleFactory
 	{
 	public:
 
-		/// \brief »ñÈ¡Ö¸¶¨·ç¸ñµÄ¶¨Òå
+		/// \brief è·å–æŒ‡å®šé£æ ¼çš„å®šä¹‰
 		static StaticStyle* GetStyle(MenuStyle);
 
 	private:
 
-		/// \brief ÉèÖÃ·ç¸ñµÄ¹²Í¬ÊôĞÔ
+		/// \brief è®¾ç½®é£æ ¼çš„å…±åŒå±æ€§
 		static void InitStyle(StaticStyle& sstyle);
 
-		/// \brief »ñÈ¡ MS Office 2003 ·ç¸ñµÄ¶¨Òå
+		/// \brief è·å– MS Office 2003 é£æ ¼çš„å®šä¹‰
 		static StaticStyle* GetOffice2003Style();
 
-		/// \brief »ñÈ¡ TM2009 ·ç¸ñµÄ¶¨Òå
+		/// \brief è·å– TM2009 é£æ ¼çš„å®šä¹‰
 		static StaticStyle* GetTM2009Style();
 	};
 
 public:
 
-	/// \brief Ñ¡Ôñ²Ëµ¥»æÖÆÊ±ËùÓÃµÄ·ç¸ñ
+	/// \brief é€‰æ‹©èœå•ç»˜åˆ¶æ—¶æ‰€ç”¨çš„é£æ ¼
 	bool SelectStaticStyle(MenuStyle style);
 
-	/// \brief »ñÈ¡×ó±ßÏÔÊ¾Î»Í¼µÄÇøÓòµÄ¿í¶È
+	/// \brief è·å–å·¦è¾¹æ˜¾ç¤ºä½å›¾çš„åŒºåŸŸçš„å®½åº¦
 	int GetBitmapRegionWidth() const { return m_sstyle->bitmapRegion; }
 
-	/// \brief »ñÈ¡²Ëµ¥Ïî¸ß
+	/// \brief è·å–èœå•é¡¹é«˜
 	int GetRowHeight() const { return m_sstyle->rowHeight; }
 
-	/// \brief »ñÈ¡²Ëµ¥ÎÄ±¾Óë²Ëµ¥×ó±ß¾àµÄ¾àÀë
-	/// \return ²»°üÀ¨²Ëµ¥±ß¿ò
+	/// \brief è·å–èœå•æ–‡æœ¬ä¸èœå•å·¦è¾¹è·çš„è·ç¦»
+	/// \return ä¸åŒ…æ‹¬èœå•è¾¹æ¡†
 	int GetTextPaddingToLeft() const ;
 
-	/// \brief »ñÈ¡²Ëµ¥ÎÄ±¾Óë²Ëµ¥ÓÒ±ß¾àÖ®¼äµÄ¾àÀë
+	/// \brief è·å–èœå•æ–‡æœ¬ä¸èœå•å³è¾¹è·ä¹‹é—´çš„è·ç¦»
 	///
-	/// ÓëÓÒ±ß¾à»ò×ó±ßÉ«ÌõÓÒ²àµÄ¾àÀë¡£
+	/// ä¸å³è¾¹è·æˆ–å·¦è¾¹è‰²æ¡å³ä¾§çš„è·ç¦»ã€‚
 	int GetTextPaddingToRight() const ;
 
-	/// \brief »ñÈ¡²Ëµ¥±ß¿ò¿í¶È
+	/// \brief è·å–èœå•è¾¹æ¡†å®½åº¦
 	int GetBorderWeight() const { return m_sstyle->borderWeight; }
 
-	/// \brief »ñÈ¡×Ó²Ëµ¥µÄÓÒ±ß¼ıÍ·¿í¶È
+	/// \brief è·å–å­èœå•çš„å³è¾¹ç®­å¤´å®½åº¦
 	int GetRightArrowSize() const { return m_sstyle->rightArrowSize; }
 
-	/// \brief »ñÈ¡×ó±ßÏÔÊ¾Î»Í¼µÄÇøÓòµÄ»­Ë¢
+	/// \brief è·å–å·¦è¾¹æ˜¾ç¤ºä½å›¾çš„åŒºåŸŸçš„ç”»åˆ·
 	const wxBrush& GetBitmapRegionBrush() const {
 		return m_sstyle->bitmapRegionBrush;
 	}
 
-	/// \brief »ñÈ¡¸ßÁÁÏîËùÓÃµÄ»­Ë¢
+	/// \brief è·å–é«˜äº®é¡¹æ‰€ç”¨çš„ç”»åˆ·
 	const wxBrush& GetHilightBrush() const { return m_sstyle->hilightBrush; }
 
-	/// \brief »ñÈ¡Ñ¡ÖĞÏîÆÕÍ¨×´Ì¬ÏÂ»æÖÆÊ±ËùÓÃµÄ»­Ë¢
+	/// \brief è·å–é€‰ä¸­é¡¹æ™®é€šçŠ¶æ€ä¸‹ç»˜åˆ¶æ—¶æ‰€ç”¨çš„ç”»åˆ·
 	const wxBrush& GetCheckedBrush() const { return m_sstyle->checkedBrush; }
 
-	/// \brief »ñÈ¡Ñ¡ÖĞÏî¸ßÁÁÊ±»æÖÆËùÓÃµÄ»­Ë¢
+	/// \brief è·å–é€‰ä¸­é¡¹é«˜äº®æ—¶ç»˜åˆ¶æ‰€ç”¨çš„ç”»åˆ·
 	const wxBrush& GetCheckedHilightBrush() const {
 		return m_sstyle->checkedHilightBrush;
 	}
 
-	/// \brief »ñÈ¡²Ëµ¥Ïî¸ßÁÁÊ±µÄ±ß¿òÑÕÉ«
+	/// \brief è·å–èœå•é¡¹é«˜äº®æ—¶çš„è¾¹æ¡†é¢œè‰²
 	wxPen GetHilightBorderPen() const { return m_sstyle->hilightBorderPen; }
 
-	/// \brief »ñÈ¡²Ëµ¥±ß¿òÑÕÉ«
+	/// \brief è·å–èœå•è¾¹æ¡†é¢œè‰²
 	wxPen GetBorderPen() const { return m_sstyle->borderPen; }
 
-	/// \brief »ñÈ¡×Ó²Ëµ¥Óë¸¸²Ëµ¥Ö®¼äµÄ¼äÏ¶¿í¶È
+	/// \brief è·å–å­èœå•ä¸çˆ¶èœå•ä¹‹é—´çš„é—´éš™å®½åº¦
 	int GetSubMainGap() const { return m_sstyle->subMainGap; }
 
-	/// \brief »æÖÆ²Ëµ¥ÏîÑ¡ÖĞÊ±µÄ¶Ô¹´
+	/// \brief ç»˜åˆ¶èœå•é¡¹é€‰ä¸­æ—¶çš„å¯¹å‹¾
 	void DrawCheckMark(wxDC& dc, int x, int y) const ;
 };
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief ²Ëµ¥ÏîµÄ·ç¸ñÊôĞÔ¼¯
+/// \brief èœå•é¡¹çš„é£æ ¼å±æ€§é›†
 enum VdkMenuItemStyle {
 
-	VMIS_CHECKABLE		= 1 << 0, ///< ÔÊĞíÑ¡ÖĞ/²»Ñ¡ÖĞ
+	VMIS_CHECKABLE		= 1 << 0, ///< å…è®¸é€‰ä¸­/ä¸é€‰ä¸­
 };
 
-/// \brief ²Ëµ¥ÏîµÄÔËĞĞÊ±×´Ì¬ÊôĞÔ¼¯
+/// \brief èœå•é¡¹çš„è¿è¡Œæ—¶çŠ¶æ€å±æ€§é›†
 enum VdkMenuItemState {
 
-	VMIST_CHECKED		= 1 << 0, ///< ÊÇ·ñÒÑ±»Ñ¡ÖĞ
-	VMIST_DISABLED		= 1 << 1, ///< ÊÇ·ñÒÑ±»½ûÓÃ
+	VMIST_CHECKED		= 1 << 0, ///< æ˜¯å¦å·²è¢«é€‰ä¸­
+	VMIST_DISABLED		= 1 << 1, ///< æ˜¯å¦å·²è¢«ç¦ç”¨
 };
 
 //////////////////////////////////////////////////////////////////////////
-/// \brief ²Ëµ¥µÄÒ»Ïî
+/// \brief èœå•çš„ä¸€é¡¹
 ///
-/// °üÀ¨·Ö¸ôÌõ¡£
+/// åŒ…æ‹¬åˆ†éš”æ¡ã€‚
 class VdkMenuItem : public VdkClientDataOwner,
 					public VdkStyleAndStateOwner
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkMenuItem(VdkMenuType type = MIT_NORMAL)
 		: nType( type ),
 		  nID( -1 ),
@@ -445,72 +445,72 @@ public:
 
 	}
 
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	~VdkMenuItem();
 
-	/// \brief »ñÈ¡²Ëµ¥ÏîµÄÀàĞÍ
+	/// \brief è·å–èœå•é¡¹çš„ç±»å‹
 	VdkMenuType type() const { return nType; }
 
-	/// \brief »ñÈ¡²Ëµ¥Ïî ID
+	/// \brief è·å–èœå•é¡¹ ID
 	VdkCtrlId id() const { return nID; }
 
-	/// \brief ÉèÖÃ²Ëµ¥Ïî ID
+	/// \brief è®¾ç½®èœå•é¡¹ ID
 	VdkMenuItem& id(VdkCtrlId i) { nID = i; return *this; }
 
-	/// \brief »ñÈ¡²Ëµ¥ÏîµÄ±êÌâÎÄ±¾
+	/// \brief è·å–èœå•é¡¹çš„æ ‡é¢˜æ–‡æœ¬
 	const wxString& caption() const { return strCaption; }
 
-	/// \brief ÉèÖÃ²Ëµ¥ÏîµÄ±êÌâÎÄ±¾
+	/// \brief è®¾ç½®èœå•é¡¹çš„æ ‡é¢˜æ–‡æœ¬
 	VdkMenuItem& caption(const wxString& s) {
 		strCaption = s; return *this;
 	}
 
-	/// \brief »ñÈ¡²Ëµ¥Ïî¼ÓËÙ¼üÃèÊöÎÄ±¾
+	/// \brief è·å–èœå•é¡¹åŠ é€Ÿé”®æè¿°æ–‡æœ¬
 	const wxString& accelString() const { return strAccel; }
 
-	/// \brief ÉèÖÃ²Ëµ¥Ïî¼ÓËÙ¼üÃèÊöÎÄ±¾
+	/// \brief è®¾ç½®èœå•é¡¹åŠ é€Ÿé”®æè¿°æ–‡æœ¬
 	VdkMenuItem& accelString(const wxString& s) {
 		strAccel = s; return *this;
 	}
 
-	/// \brief »ñÈ¡²Ëµ¥Ïî¼ÓËÙ¼üÃèÊöÎÄ±¾µÄ¿í¶È
+	/// \brief è·å–èœå•é¡¹åŠ é€Ÿé”®æè¿°æ–‡æœ¬çš„å®½åº¦
 	int accelStringWidth() { return nAcceStrWidth; }
 
-	/// \brief ÊÇ·ñÉèÖÃÁË×ó²àÎ»Í¼
+	/// \brief æ˜¯å¦è®¾ç½®äº†å·¦ä¾§ä½å›¾
 	bool isBitmapOk() const { return BitmapId.IsOk(); }
 
-	/// \brief »ñÈ¡Î»Í¼ ID
+	/// \brief è·å–ä½å›¾ ID
 	const VdkBitmapArrayId& bmpArrayID() const { return BitmapId; }
 
-	/// \brief ÉèÖÃÎ»Í¼ ID
+	/// \brief è®¾ç½®ä½å›¾ ID
 	VdkMenuItem& bmpArrayID(const VdkBitmapArrayId& i) {
 		BitmapId = i; return *this;
 	}
 
-	/// \brief »ñÈ¡×Ó²Ëµ¥¾ä±ú
+	/// \brief è·å–å­èœå•å¥æŸ„
 	VdkMenu* subMenu() const { return pSubMenu; }
 
-	/// \brief ÉèÖÃ×Ó²Ëµ¥¾ä±ú
+	/// \brief è®¾ç½®å­èœå•å¥æŸ„
 	VdkMenuItem& subMenu(VdkMenu* sm) { pSubMenu = sm; return *this; }
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ÉèÖÃ²Ëµ¥Ïîµ±Ç°ÊÇ·ñÔÊĞí±»Ñ¡ÖĞ
+	/// \brief è®¾ç½®èœå•é¡¹å½“å‰æ˜¯å¦å…è®¸è¢«é€‰ä¸­
 	VdkMenuItem& checkable(bool b);
 
-	/// \brief ²âÊÔ²Ëµ¥Ïîµ±Ç°ÊÇ·ñÔÊĞí±»Ñ¡ÖĞ
+	/// \brief æµ‹è¯•èœå•é¡¹å½“å‰æ˜¯å¦å…è®¸è¢«é€‰ä¸­
 	bool checkable() const  { return TestStyle( VMIS_CHECKABLE ); }
 
-	/// \brief ÉèÖÃ²Ëµ¥Ïîµ±Ç°ÊÇ·ñÒÑ±»Ñ¡ÖĞ
+	/// \brief è®¾ç½®èœå•é¡¹å½“å‰æ˜¯å¦å·²è¢«é€‰ä¸­
 	VdkMenuItem& checked(bool b);
 
-	/// \brief ²âÊÔ²Ëµ¥Ïîµ±Ç°ÊÇ·ñÒÑ±»Ñ¡ÖĞ
+	/// \brief æµ‹è¯•èœå•é¡¹å½“å‰æ˜¯å¦å·²è¢«é€‰ä¸­
 	bool checked() const  { return TestState( VMIST_CHECKED ); }
 
-	/// \brief ½ûÓÃ²Ëµ¥Ïî
+	/// \brief ç¦ç”¨èœå•é¡¹
 	VdkMenuItem& disabled(bool d);
 
-	/// \brief ²âÊÔ²Ëµ¥ÏîÊÇ·ñÒÑ±»½ûÓÃ
+	/// \brief æµ‹è¯•èœå•é¡¹æ˜¯å¦å·²è¢«ç¦ç”¨
 	bool disabled() const { return TestState( VMIST_DISABLED ); }
 
 private:
@@ -529,17 +529,17 @@ private:
 	friend class VdkMenu;
 };
 
-/// \brief ±ãÀûº¯Êı£¬ÔÚ¶ÑÉÏĞÂ´´½¨Ò»¸ö²Ëµ¥Ïî
+/// \brief ä¾¿åˆ©å‡½æ•°ï¼Œåœ¨å †ä¸Šæ–°åˆ›å»ºä¸€ä¸ªèœå•é¡¹
 inline VdkMenuItem* NewMenuItem() { return new VdkMenuItem(); }
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief ÔÊĞíÔÚ VdkMenu ÉÏÏÔÊ¾ÆÕÍ¨ VdkControl µÄÊÊÅäÆ÷Àà
+/// \brief å…è®¸åœ¨ VdkMenu ä¸Šæ˜¾ç¤ºæ™®é€š VdkControl çš„é€‚é…å™¨ç±»
 class VdkMenuCtrlHandler
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkMenuCtrlHandler()
 		: m_pCtrl( NULL ),
 		  m_id( VdkGetUniqueId() ),
@@ -551,16 +551,16 @@ public:
 
 	}
 
-	/// \brief ĞéÎö¹¹º¯Êı
+	/// \brief è™šææ„å‡½æ•°
 	virtual ~VdkMenuCtrlHandler() {}
 
-	/// \brief ÊµÀı»¯Òª¸½¼Óµ½ VdkMenu ÉÏµÄ¿Ø¼ş
+	/// \brief å®ä¾‹åŒ–è¦é™„åŠ åˆ° VdkMenu ä¸Šçš„æ§ä»¶
 	virtual VdkControl* Implement(VdkWindow* menuWin, const wxPoint& pos) = 0;
 
-	/// \brief »ñÈ¡¿Ø¼ş¾ä±ú
+	/// \brief è·å–æ§ä»¶å¥æŸ„
 	VdkControl* GetCtrl() const { return m_pCtrl; }
 
-	/// \brief »ñÈ¡¿Ø¼şÓë²Ëµ¥Ö®¼äµÄÄÚ±ß¾à
+	/// \brief è·å–æ§ä»¶ä¸èœå•ä¹‹é—´çš„å†…è¾¹è·
 	void GetPaddings(int* l, int* t, int* r, int* b) {
 		if( l ) *l = m_paddingLeft;
 		if( t ) *t = m_paddingTop;
@@ -568,41 +568,41 @@ public:
 		if( b ) *b = m_paddingBottom;
 	}
 
-	/// \brief ÖØÖÃ¿Ø¼ş¾ä±ú
+	/// \brief é‡ç½®æ§ä»¶å¥æŸ„
 	void Reset();
 
 protected:
 
-	/// \brief ±£´æ¿Ø¼ş×´Ì¬
+	/// \brief ä¿å­˜æ§ä»¶çŠ¶æ€
 	virtual void SaveState() {}
 
-	/// \brief »¹Ô­¿Ø¼ş×´Ì¬
+	/// \brief è¿˜åŸæ§ä»¶çŠ¶æ€
 	virtual void RestoreState() {}
 
 	//////////////////////////////////////////////////////////////////////////
 
-	VdkControl* m_pCtrl; ///< ¿Ø¼ş¾ä±ú
-	VdkCtrlId m_id; ///< ¿Ø¼ş ID
+	VdkControl* m_pCtrl; ///< æ§ä»¶å¥æŸ„
+	VdkCtrlId m_id; ///< æ§ä»¶ ID
 
-	int m_paddingLeft; ///< ¿Ø¼şÓë²Ëµ¥×ó±ß½çÖ®¼äµÄ¾àÀë
-	int m_paddingTop; ///< ¿Ø¼şÓë²Ëµ¥¶¥²¿ÄÚ±ß½çÖ®¼äµÄ¾àÀë
-	int m_paddingRight; ///< ¿Ø¼şÓë²Ëµ¥ÓÒ±ß½çÖ®¼äµÄ¾àÀë
-	int m_paddingBottom; ///< ¿Ø¼şÓë²Ëµ¥µ×²¿ÄÚ±ß½çÖ®¼äµÄ¾àÀë
+	int m_paddingLeft; ///< æ§ä»¶ä¸èœå•å·¦è¾¹ç•Œä¹‹é—´çš„è·ç¦»
+	int m_paddingTop; ///< æ§ä»¶ä¸èœå•é¡¶éƒ¨å†…è¾¹ç•Œä¹‹é—´çš„è·ç¦»
+	int m_paddingRight; ///< æ§ä»¶ä¸èœå•å³è¾¹ç•Œä¹‹é—´çš„è·ç¦»
+	int m_paddingBottom; ///< æ§ä»¶ä¸èœå•åº•éƒ¨å†…è¾¹ç•Œä¹‹é—´çš„è·ç¦»
 };
 
-/// \brief ½áºÏ XRC »úÖÆµÄÒ»¸ö¼òÒ×°ó¶¨Àà
+/// \brief ç»“åˆ XRC æœºåˆ¶çš„ä¸€ä¸ªç®€æ˜“ç»‘å®šç±»
 class VdkMenuXrcCtrlWrapper : public VdkMenuCtrlHandler
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkMenuXrcCtrlWrapper(const wxString& strXmlData)
 		: m_strXmlData( strXmlData )
 	{
 		wxASSERT( !strXmlData.empty() );
 	}
 
-	/// \brief ÊµÀı»¯Òª¸½¼Óµ½ VdkMenu ÉÏµÄ¿Ø¼ş
+	/// \brief å®ä¾‹åŒ–è¦é™„åŠ åˆ° VdkMenu ä¸Šçš„æ§ä»¶
 	virtual VdkControl* Implement(VdkWindow* menuWin, const wxPoint& pos);
 
 private:
@@ -610,19 +610,19 @@ private:
 	wxString m_strXmlData;
 };
 
-/// \brief ½áºÏ¿Ø¼ş¿ËÂ¡»úÖÆµÄÒ»¸ö¼òÒ×°ó¶¨Àà
+/// \brief ç»“åˆæ§ä»¶å…‹éš†æœºåˆ¶çš„ä¸€ä¸ªç®€æ˜“ç»‘å®šç±»
 class VdkMenuCloneableCtrlWrapper : public VdkMenuCtrlHandler
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkMenuCloneableCtrlWrapper(VdkWindow* parent, const wxString& strName)
 		: m_Window( parent ), m_strName( strName )
 	{
 		wxASSERT( parent && !strName.IsEmpty() );
 	}
 
-	/// \brief ÊµÀı»¯Òª¸½¼Óµ½ VdkMenu ÉÏµÄ¿Ø¼ş
+	/// \brief å®ä¾‹åŒ–è¦é™„åŠ åˆ° VdkMenu ä¸Šçš„æ§ä»¶
 	virtual VdkControl* Implement(VdkWindow* menuWin, const wxPoint& pos);
 
 private:
@@ -636,35 +636,35 @@ private:
 #include <wx/hashmap.h>
 WX_DECLARE_HASH_MAP( int, wxString, wxIntegerHash, wxIntegerEqual, MenuGenItemMap );
 
-/// \brief ´ÓÒ»¸ö¡°ID-×Ö·û´®¡±¶ÔÓ¦Í¼ÖĞ´´½¨ÕûÌ×²Ëµ¥
+/// \brief ä»ä¸€ä¸ªâ€œID-å­—ç¬¦ä¸²â€å¯¹åº”å›¾ä¸­åˆ›å»ºæ•´å¥—èœå•
 struct MenuGenerator {
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	MenuGenerator(int menuID, VdkMenu* p = NULL)
 		: mid( menuID ), parent( p ) 
 	{
 
 	}
 
-	/// \brief Çå¿ÕËùÓĞÁô´æĞÅÏ¢£¬ÎªÏÂ´Î´´½¨×öÇåÀí¹¤×÷
+	/// \brief æ¸…ç©ºæ‰€æœ‰ç•™å­˜ä¿¡æ¯ï¼Œä¸ºä¸‹æ¬¡åˆ›å»ºåšæ¸…ç†å·¥ä½œ
 	void Clear();
 
-	/// \brief ¡°ID-×Ö·û´®¡±¶ÔÓ¦Í¼
+	/// \brief â€œID-å­—ç¬¦ä¸²â€å¯¹åº”å›¾
 	MenuGenItemMap itemMap;
-	int mid; ///< ²Ëµ¥ ID
-	VdkMenu* parent; ///< ¸¸²Ëµ¥
+	int mid; ///< èœå• ID
+	VdkMenu* parent; ///< çˆ¶èœå•
 };
 
-/// \brief ´ÓÒ»¸ö°üº¬¹ØÏµÊ÷µÄ×Ö·û´®´´½¨ÕûÌ×²Ëµ¥
+/// \brief ä»ä¸€ä¸ªåŒ…å«å…³ç³»æ ‘çš„å­—ç¬¦ä¸²åˆ›å»ºæ•´å¥—èœå•
 ///
-/// Ê¾Àı£º×Ö·û´®¡°CMCC WLAN;<SEP>;»ªÄÏÀí¹¤´óÑ§Í¼Êé¹İ¡±½«Éú³ÉÁ½¸ö²Ëµ¥Ïî
-/// ºÍÒ»¸ö½«Á½Õß¸ô¿ªµÄ·Ö¸ôÌõ¡£
-/// \attention ±¾º¯Êı²»Ö§³Ö²ãµş²Ëµ¥¡£
+/// ç¤ºä¾‹ï¼šå­—ç¬¦ä¸²â€œCMCC WLAN;<SEP>;åå—ç†å·¥å¤§å­¦å›¾ä¹¦é¦†â€å°†ç”Ÿæˆä¸¤ä¸ªèœå•é¡¹
+/// å’Œä¸€ä¸ªå°†ä¸¤è€…éš”å¼€çš„åˆ†éš”æ¡ã€‚
+/// \attention æœ¬å‡½æ•°ä¸æ”¯æŒå±‚å èœå•ã€‚
 VdkMenu* GenerateMenu(VdkWindow* parent, const MenuGenerator& menuTree);
 
-/// \brief ´ÓÒ»¸ö°üº¬¹ØÏµÊ÷µÄ×Ö·û´®´´½¨ÕûÌ×²Ëµ¥
+/// \brief ä»ä¸€ä¸ªåŒ…å«å…³ç³»æ ‘çš„å­—ç¬¦ä¸²åˆ›å»ºæ•´å¥—èœå•
 ///
-/// Ê¾Àı£º×Ö·û´®¡°CMCC WLAN;<SEP>;»ªÄÏÀí¹¤´óÑ§Í¼Êé¹İ¡±½«Éú³ÉÁ½¸ö²Ëµ¥Ïî
-/// ºÍÒ»¸ö½«Á½Õß¸ô¿ªµÄ·Ö¸ôÌõ¡£
-/// \attention ±¾º¯Êı²»Ö§³Ö²ãµş²Ëµ¥¡£
+/// ç¤ºä¾‹ï¼šå­—ç¬¦ä¸²â€œCMCC WLAN;<SEP>;åå—ç†å·¥å¤§å­¦å›¾ä¹¦é¦†â€å°†ç”Ÿæˆä¸¤ä¸ªèœå•é¡¹
+/// å’Œä¸€ä¸ªå°†ä¸¤è€…éš”å¼€çš„åˆ†éš”æ¡ã€‚
+/// \attention æœ¬å‡½æ•°ä¸æ”¯æŒå±‚å èœå•ã€‚
 VdkMenu* GenerateMenu(int mid, VdkWindow* parent, const wxString& strMenuTree);

@@ -1,4 +1,4 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkCtrlParserInfo.h
  * Author:    Ning (vanxining@139.com)
  * Created:   2011-02-23
@@ -18,31 +18,31 @@ typedef VdkCtrlIdInfo* VdkCtrlIdInfoPtr;
 WX_DECLARE_STRING_HASH_MAP( VdkCtrlIdInfoPtr, MapOfCtrlIdInfo );
 typedef MapOfCtrlIdInfo::iterator IdInfoIter;
 
-/// \brief XRC ½âÊÍ¹ı³ÌµÄµ÷ÓÃĞÅÏ¢
+/// \brief XRC è§£é‡Šè¿‡ç¨‹çš„è°ƒç”¨ä¿¡æ¯
 class VdkCtrlParserInfo
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
     VdkCtrlParserInfo();
 
-	/// \brief ÉèÖÃÏÂ¼¶¿Ø¼şËùÊôµÄ¸¸´°¿Ú
+	/// \brief è®¾ç½®ä¸‹çº§æ§ä»¶æ‰€å±çš„çˆ¶çª—å£
 	VdkCtrlParserInfo& window(VdkWindow* win) { Window = win; return *this; }
 
-	/// \brief ÉèÖÃÏÂ¼¶¿Ø¼şËùÊôµÄ¸¸¿Ø¼ş
+	/// \brief è®¾ç½®ä¸‹çº§æ§ä»¶æ‰€å±çš„çˆ¶æ§ä»¶
 	VdkCtrlParserInfo& parent(VdkControl* p) { Parent = p; return *this; }
 
-	/// \brief ÉèÖÃ XRC ¸ù½Úµã
+	/// \brief è®¾ç½® XRC æ ¹èŠ‚ç‚¹
 	///
-	/// ËüµÄÖ±½Ó×Ó½ÚµãÓ¦ÎªÓĞĞ§µÄ XRC ¶¨Òå£¬¶ø·ÇÖ±½ÓÌá¹©µÚÒ»¸ö×Ö×Ó¿Ø¼şµÄ XRC ¶¨Òå¡£
+	/// å®ƒçš„ç›´æ¥å­èŠ‚ç‚¹åº”ä¸ºæœ‰æ•ˆçš„ XRC å®šä¹‰ï¼Œè€Œéç›´æ¥æä¾›ç¬¬ä¸€ä¸ªå­—å­æ§ä»¶çš„ XRC å®šä¹‰ã€‚
 	VdkCtrlParserInfo& node(wxXmlNode* n) { Node = n; return *this; }
 
-	/// \brief ÉèÖÃ½âÎö¹ı³ÌµÄ»Øµ÷¶ÔÏó
+	/// \brief è®¾ç½®è§£æè¿‡ç¨‹çš„å›è°ƒå¯¹è±¡
 	VdkCtrlParserInfo& callback(VdkCtrlParserCallback* c) {
 		Callback = c; return *this;
 	}
 
-	/// \brief ÉèÖÃ¿Ø¼ş ID - Ãû×Ö ¶ÔÓ¦Í¼
+	/// \brief è®¾ç½®æ§ä»¶ ID - åå­— å¯¹åº”å›¾
 	VdkCtrlParserInfo& ids(MapOfCtrlIdInfo* ids_) { IDs = ids_; return *this; }
 
 private:
@@ -56,33 +56,33 @@ private:
 	friend class VdkControl;
 };
 
-/// \brief ½âÊÍ XRC ÎÄ¼şÊ±£¬Ã¿¸ö¿Ø¼şµÄ¶îÍâĞÅÏ¢
+/// \brief è§£é‡Š XRC æ–‡ä»¶æ—¶ï¼Œæ¯ä¸ªæ§ä»¶çš„é¢å¤–ä¿¡æ¯
 ///
-/// Èç¿Ø¼ş ID ¡¢¾ä±úµÈ¡£
+/// å¦‚æ§ä»¶ ID ã€å¥æŸ„ç­‰ã€‚
 class VdkCtrlIdInfo
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
     VdkCtrlIdInfo(VdkCtrlId id, VdkControl** ptr = NULL);
 
-	/// \brief ÉèÖÃ¿Ø¼ş ID
+	/// \brief è®¾ç½®æ§ä»¶ ID
 	VdkCtrlIdInfo& id(VdkCtrlId id) { Id = id; return *this; }
 
-	/// \brief »ñÈ¡¿Ø¼ş ID
+	/// \brief è·å–æ§ä»¶ ID
 	///
-	/// VdkWindow ²¹³äÉèÖÃÖ¸ÕëËùÓÃ¡£
+	/// VdkWindow è¡¥å……è®¾ç½®æŒ‡é’ˆæ‰€ç”¨ã€‚
 	VdkCtrlId id() const { return Id; }
 
-	/// \brief »ñÈ¡¿Ø¼ş¾ä±úµÄµØÖ·
+	/// \brief è·å–æ§ä»¶å¥æŸ„çš„åœ°å€
 	///
-	/// VdkWindow ²¹³äÉèÖÃÖ¸ÕëËùÓÃ¡£
+	/// VdkWindow è¡¥å……è®¾ç½®æŒ‡é’ˆæ‰€ç”¨ã€‚
 	VdkControl** ptr() const { return Ptr; }
 
-	/// \brief ÉèÖÃ¿Ø¼ş¾ä±úµÄµØÖ·
+	/// \brief è®¾ç½®æ§ä»¶å¥æŸ„çš„åœ°å€
 	VdkCtrlIdInfo& ptr(VdkControl** ptr_) { Ptr = ptr_; return *this; }
 
-	/// \brief »ñÈ¡¿Ø¼ş¾ä±ú
+	/// \brief è·å–æ§ä»¶å¥æŸ„
 	template< class T >
 	T* ptr() const { return (T*) *Ptr; }
 
@@ -95,7 +95,7 @@ private:
 };
 
 //////////////////////////////////////////////////////////////////////////
-// TODO: Ìí¼Ó×¢ÊÍ
+// TODO: æ·»åŠ æ³¨é‡Š
 
 #define BindCtrl( name, id, ptr ) \
 	BindCtrl_Named( ids, name, id, ptr )

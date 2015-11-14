@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkCtrlId.h
- * Purpose:   VdkCtrlId µÄ¶¨Òå£¬ÓÃÓÚ¼õÉÙÒÀÀµ¡¢ÃâÓÚÖØ¸´¶¨Òå
+ * Purpose:   VdkCtrlId çš„å®šä¹‰ï¼Œç”¨äºå‡å°‘ä¾èµ–ã€å…äºé‡å¤å®šä¹‰
  * Author:    vanxining (vanxining@139.com)
  * Created:   2010-12-03
  * Copyright: vanxining
@@ -10,6 +10,6 @@
 typedef int VdkCtrlId;
 const VdkCtrlId VC_ID_ANY = -1;
 
-/// \brief »ñÈ¡Î¨Ò»µÄ¿Ø¼ş ID
-/// \param advanced ÔÚ´Ë»ù´¡ÉÏÎª±¾´Îµ÷ÓÃ±£Áô¶àÉÙ¸ö ID
+/// \brief è·å–å”¯ä¸€çš„æ§ä»¶ ID
+/// \param advanced åœ¨æ­¤åŸºç¡€ä¸Šä¸ºæœ¬æ¬¡è°ƒç”¨ä¿ç•™å¤šå°‘ä¸ª ID
 VdkCtrlId VdkGetUniqueId(int advanced = 1);

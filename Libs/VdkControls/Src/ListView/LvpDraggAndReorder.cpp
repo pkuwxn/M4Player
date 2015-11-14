@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      LvpDraggAndReorder.cpp
- * Purpose:   ÊµÏÖ VdkListView Í¨¹ıÍÏ¶¯¸Ä±äÏîÄ¿ÅÅĞò
+ * Purpose:   å®ç° VdkListView é€šè¿‡æ‹–åŠ¨æ”¹å˜é¡¹ç›®æ’åº
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-3-3
  **************************************************************/
@@ -26,7 +26,7 @@ void LvpDraggAndReorder::RowTracker::Move(int row, int dst)
 	wxASSERT( row != dst );
 	int delta = row - dst;
 
-	// ÏòÏÂÍÏ¶¯
+	// å‘ä¸‹æ‹–åŠ¨
 	if( delta < 0 )
 	{
 		wxVector< int* >::iterator iter( m_rows.begin() );
@@ -51,7 +51,7 @@ void LvpDraggAndReorder::RowTracker::Move(int row, int dst)
 		wxVector< int* >::iterator iter( m_rows.begin() );
 		for( ; iter != m_rows.end(); ++iter )
 		{
-			// Ä¿±ê(º¬)ÓëÔ´Ö®¼ä
+			// ç›®æ ‡(å«)ä¸æºä¹‹é—´
 			if( **iter >= dst && **iter < row )
 			{
 				++(**iter);
@@ -98,7 +98,7 @@ void LvpDraggAndReorder::OnDragg(int rowAtPointer, VdkMouseEvent& e)
 
 	VdkListView* list = GetListView();
 
-	// ¼ÌĞøÏò¿´²»µ½µÄµØ·½ÍÏ¶¯
+	// ç»§ç»­å‘çœ‹ä¸åˆ°çš„åœ°æ–¹æ‹–åŠ¨
 	if( m_lastDraggTarget == rowAtPointer )
 	{
 		int shownItems = list->GetShownItems();
@@ -110,7 +110,7 @@ void LvpDraggAndReorder::OnDragg(int rowAtPointer, VdkMouseEvent& e)
 			( (rowAtPointer >= base + shownItems - 1) &&
 			   rowAtPointer != list->GetAdapter()->GetRowCount() - 1 ) )
 		{
-			// Ä£Äâ·¢ËÍ»¬ÂÖÊÂ¼şµ½¿Ø¼ş
+			// æ¨¡æ‹Ÿå‘é€æ»‘è½®äº‹ä»¶åˆ°æ§ä»¶
 			int fakeEventCode;
 
 			if( rowAtPointer == base )
@@ -124,12 +124,12 @@ void LvpDraggAndReorder::OnDragg(int rowAtPointer, VdkMouseEvent& e)
 				fakeEventCode = WHEEL_DOWN;
 			}
 
-			/* ÕâÀï²»ÄÜÓÃ VdkDcDeviceOriginSaver£¬¶øÓ¦¸ÃÖ±½ÓÖØĞÂÉè¶¨ DC £¬
-			 * ÖØĞÂÉèÖÃÕıÈ·µÄ²Ã¼ôÇøÓò */
+			/* è¿™é‡Œä¸èƒ½ç”¨ VdkDcDeviceOriginSaverï¼Œè€Œåº”è¯¥ç›´æ¥é‡æ–°è®¾å®š DC ï¼Œ
+			 * é‡æ–°è®¾ç½®æ­£ç¡®çš„è£å‰ªåŒºåŸŸ */
 			VdkMouseEvent fakeEvent( fakeEventCode, wxDefaultPosition, e.dc );
 			list->HandleMouseEvent( fakeEvent );
 
-			// ÖØĞÂÉè¶¨ DC
+			// é‡æ–°è®¾å®š DC
 			list->PrepareDC( e.dc );
 		}
 		else
@@ -143,7 +143,7 @@ void LvpDraggAndReorder::OnDragg(int rowAtPointer, VdkMouseEvent& e)
 		list->UpdateRow( m_lastDraggTarget, e.dc );
 	}
 
-	// ±ÜÃâÍÏ¶¯ÊÂ¼şÌ«¹ıÁéÃô£¬Ä¿±êÎªÒÑÑ¡ÏîÊ±²»Òª»­°×Ïß
+	// é¿å…æ‹–åŠ¨äº‹ä»¶å¤ªè¿‡çµæ•ï¼Œç›®æ ‡ä¸ºå·²é€‰é¡¹æ—¶ä¸è¦ç”»ç™½çº¿
 	if( selItems.Index( rowAtPointer ) == wxNOT_FOUND )
 	{
 		int rowHeight = list->GetRowHeight();
@@ -160,7 +160,7 @@ void LvpDraggAndReorder::OnClickUp(int rowAtPointer, VdkMouseEvent& e)
 {
 	if( m_lastDraggTarget == wxNOT_FOUND )
 	{
-		// »ùÀàĞèÒªÒ»¶¨µÄ´¦Àí
+		// åŸºç±»éœ€è¦ä¸€å®šçš„å¤„ç†
 		LvpClick::OnClickUp( rowAtPointer, e );
 
 		return;
@@ -174,16 +174,16 @@ void LvpDraggAndReorder::OnClickUp(int rowAtPointer, VdkMouseEvent& e)
 	ArrayOfSortedInts& selItems = GetSelItems();
 	wxASSERT( !selItems.empty() );
 
-	// ½«×Ô¼ºÒÆ¶¯µ½ÒÑÑ¡ÌõÄ¿µÄÏÖÎ»ÖÃ£¿
+	// å°†è‡ªå·±ç§»åŠ¨åˆ°å·²é€‰æ¡ç›®çš„ç°ä½ç½®ï¼Ÿ
 	if( selItems.Index( rowAtPointer ) != wxNOT_FOUND )
 	{
-		// È¡ÏûÒÑ»­ÔÚ½çÃæÉÏµÄºáÏß
+		// å–æ¶ˆå·²ç”»åœ¨ç•Œé¢ä¸Šçš„æ¨ªçº¿
 		list->UpdateRow( rowAtPointer, e.dc );
 		return;
 	}
 
 	//---------------------------------------------------------------
-	// ±£´æÒª¸ú×ÙµÄĞĞºÅ
+	// ä¿å­˜è¦è·Ÿè¸ªçš„è¡Œå·
 
 	m_rowTracker.Clear();
 
@@ -201,20 +201,20 @@ void LvpDraggAndReorder::OnClickUp(int rowAtPointer, VdkMouseEvent& e)
 
 	int insertPoint = dst;
 
-	// ¿ªÊ¼ÒÆ¶¯
+	// å¼€å§‹ç§»åŠ¨
 	int forValidating = dst - 1;
 	for( int i = 0; i < numSel; i++ )
 	{
 		int origin = selItems[i];
 		m_rowTracker.Move( selItems[i], insertPoint );
 		
-		// ÏòÉÏÍÏ¶¯
+		// å‘ä¸Šæ‹–åŠ¨
 		if( origin > insertPoint )
 		{
 			insertPoint++;
 		}
 
-		//// È·±£ÒÆ¶¯³É¹¦
+		//// ç¡®ä¿ç§»åŠ¨æˆåŠŸ
 		//wxASSERT( selItems[i] == ++forValidating );
 	}
 

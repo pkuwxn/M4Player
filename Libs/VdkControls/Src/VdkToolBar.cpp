@@ -1,4 +1,4 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkToolBar.cpp
  * Purpose:   Code for VdkToolBar implementation
  * Author:    vanxining (vanxining@139.com)
@@ -19,12 +19,12 @@ IMPLEMENT_DYNAMIC_VOBJECT( VdkToolBar );
 
 //////////////////////////////////////////////////////////////////////////
 
-// ¹¤¾ßÀ¸µÄÒ»Ïî
+// å·¥å…·æ çš„ä¸€é¡¹
 class VdkToolBarEntry : public VdkButton
 {
 public:
 
-	// ¹¹Ôìº¯Êý
+	// æž„é€ å‡½æ•°
 	VdkToolBarEntry(VdkToolBar* toolbar, const VdkBitmapArrayId& bid)
 		: m_toolbar( toolbar ),
 		  m_bid( bid )
@@ -34,7 +34,7 @@ public:
 
 private:
 
-	// ²Á³ý±³¾°
+	// æ“¦é™¤èƒŒæ™¯
 	virtual void DoEraseBackground(wxDC& dc, const wxRect& rc)
 	{
 		VdkToolBarStaticStyle* sstyle = m_toolbar->GetStaticStyle();
@@ -60,7 +60,7 @@ private:
 		}
 	}
 
-	// »æÖÆ¿Ø¼þ
+	// ç»˜åˆ¶æŽ§ä»¶
 	virtual void DoDraw(wxDC& dc)
 	{
 		VdkToolBarStaticStyle* sstyle = m_toolbar->GetStaticStyle();
@@ -76,12 +76,12 @@ private:
 	VdkBitmapArrayId m_bid;
 };
 
-// ¹¤¾ßÀ¸·Ö¸ô·û
+// å·¥å…·æ åˆ†éš”ç¬¦
 class VdkToolBarSeperator : public VdkControl
 {
 public:
 
-	// ¹¹Ôìº¯Êý
+	// æž„é€ å‡½æ•°
 	VdkToolBarSeperator(VdkToolBar* toolbar, const wxRect& rc)
 	{
 		SetVdkWindow( toolbar->GetVdkWindow() );
@@ -95,7 +95,7 @@ public:
 
 private:
 
-	// »æÖÆ¿Ø¼þ
+	// ç»˜åˆ¶æŽ§ä»¶
 	virtual void DoDraw(wxDC& dc)
 	{
 		dc.SetPen( *wxGREY_PEN );
@@ -105,18 +105,18 @@ private:
 	}
 };
 
-const static int gs_sideHandle = 8; // ¿ÉÍÏ¶¯µÄÊÖ±úÇøÓò¿í¶È
+const static int gs_sideHandle = 8; // å¯æ‹–åŠ¨çš„æ‰‹æŸ„åŒºåŸŸå®½åº¦
 class VdkToolBarLeftSideHandle : public VdkControl
 {
 public:
 
-	// Ä¬ÈÏ¹¹Ôìº¯Êý
+	// é»˜è®¤æž„é€ å‡½æ•°
 	VdkToolBarLeftSideHandle() : m_toolbar( NULL )
 	{
 
 	}
 
-	// ¹¹Ôìº¯Êý
+	// æž„é€ å‡½æ•°
 	VdkToolBarLeftSideHandle(VdkToolBar* toolbar)
 		: m_toolbar( toolbar )
 	{
@@ -136,13 +136,13 @@ public:
 
 private:
 
-	// »æÖÆ¿Ø¼þ
+	// ç»˜åˆ¶æŽ§ä»¶
 	virtual void DoDraw(wxDC& dc)
 	{
 		VdkToolBarStaticStyle* sstyle = m_toolbar->GetStaticStyle();
 		const static int s_points = 4;
 
-		// ²Á³ý±³¾°
+		// æ“¦é™¤èƒŒæ™¯
 		VdkDcClippingRegionDestroyer destroyer( dc, m_Rect );
 		dc.SetPen( *wxTRANSPARENT_PEN );
 		dc.SetBrush( sstyle->bgBrush() );
@@ -163,7 +163,7 @@ private:
 			dc.DrawRectangle( x, y, 2, 2 );
 	}
 
-	// ´¦ÀíÊó±êÊÂ¼þ
+	// å¤„ç†é¼ æ ‡äº‹ä»¶
 	virtual void DoHandleMouseEvent(VdkMouseEvent& e)
 	{
 		switch( e.evtCode )
@@ -192,12 +192,12 @@ private:
 	VdkToolBar* m_toolbar;
 };
 
-// ¹¤¾ßÀ¸×îÓÒ±ßµÄÏÂÀ­ÊÖ±ú
+// å·¥å…·æ æœ€å³è¾¹çš„ä¸‹æ‹‰æ‰‹æŸ„
 class VdkToolBarRightSideHandle : public VdkControl
 {
 public:
 
-	// ¹¹Ôìº¯Êý
+	// æž„é€ å‡½æ•°
 	VdkToolBarRightSideHandle(VdkToolBar* toolbar)
 		: m_toolbar( toolbar )
 	{
@@ -217,10 +217,10 @@ public:
 
 private:
 
-	// »æÖÆ¿Ø¼þ
+	// ç»˜åˆ¶æŽ§ä»¶
 	virtual void DoDraw(wxDC& dc)
 	{
-		// ²Á³ý±³¾°
+		// æ“¦é™¤èƒŒæ™¯
 		VdkDcClippingRegionDestroyer destroyer( dc, m_Rect );
 		dc.SetPen( *wxTRANSPARENT_PEN );
 		dc.SetBrush( m_toolbar->GetStaticStyle()->bgBrush() );

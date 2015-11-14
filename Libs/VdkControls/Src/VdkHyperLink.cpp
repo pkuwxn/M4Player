@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "VdkHyperLink.h"
 #include "wxUtil.h"
 
@@ -38,7 +38,7 @@ void VdkHyperLink::Create(VdkWindow* Window,
 	m_strUrl = strUrl;
 	m_strCaption = strCaption;
 
-	// TODO: ÊÇ·ñÓ¦¸Ã¼Ì³Ğ×Ô VdkLabel £¿·ñÔòÎÄ±¾¾ÓÖĞ²¿·ÖµÄ´úÂëÎŞ·¨ÖØÓÃ
+	// TODO: æ˜¯å¦åº”è¯¥ç»§æ‰¿è‡ª VdkLabel ï¼Ÿå¦åˆ™æ–‡æœ¬å±…ä¸­éƒ¨åˆ†çš„ä»£ç æ— æ³•é‡ç”¨
 	/**/
 	if( !m_strCaption.IsEmpty() )
 	{
@@ -63,7 +63,7 @@ void VdkHyperLink::DoDraw(wxDC& dc)
 		dc.SetTextForeground( m_pen.GetColour() );
 		dc.DrawText( m_strCaption, m_Rect.x, m_Rect.y + m_yFix );
 
-		int y = m_Rect.GetBottom() - m_yFix + 1; // +1 ÊÇÔö¼ÓÒ»µã¾àÀë
+		int y = m_Rect.GetBottom() - m_yFix + 1; // +1 æ˜¯å¢åŠ ä¸€ç‚¹è·ç¦»
 		dc.SetPen( m_pen );
 		dc.DrawLine( m_Rect.x, y, m_Rect.x + m_Rect.width, y );
 	}

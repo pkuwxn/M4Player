@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "VdkChoiceCtrl.h"
 
 #include "VdkMenu.h"
@@ -17,8 +17,8 @@
 IMPLEMENT_DYNAMIC_VOBJECT( VdkChoiceCtrl );
 
 enum {
-	CNST_FIXED_HEIGHT = 22, // ¿Ø¼þµÄ¹Ì¶¨¸ß¶È
-	CNST_DROP_DOWN_EXPL = 4, // ÓÒ²àÏÂÀ­°´Å¥µÄÇÐ·ÖÐ¡Í¼Êý
+	CNST_FIXED_HEIGHT = 22, // æŽ§ä»¶çš„å›ºå®šé«˜åº¦
+	CNST_DROP_DOWN_EXPL = 4, // å³ä¾§ä¸‹æ‹‰æŒ‰é’®çš„åˆ‡åˆ†å°å›¾æ•°
 };
 
 VdkChoiceCtrl::VdkChoiceCtrl()
@@ -33,7 +33,7 @@ void VdkChoiceCtrl::Create(wxXmlNode* node)
 			GetXrcTextBlock( node ) );
 
 	//-----------------------------------------
-	// ³õÊ¼Öµ
+	// åˆå§‹å€¼
 	int defSel = XmlGetContentOfNum
 		( FindChildNode( node, L"default" ), wxNOT_FOUND );
 
@@ -84,7 +84,7 @@ void VdkChoiceCtrl::Create(VdkWindow* Window,
 		item->id( id );
 	}
 
-	// ×¢Òâ²Ëµ¥ÊÂ¼þ·¢ËÍµ½´°¿Ú£¬¶ø²»ÊÇÆäÉÏµÄÃæ°å£¨¼ÙÈçÓÐ£©
+	// æ³¨æ„èœå•äº‹ä»¶å‘é€åˆ°çª—å£ï¼Œè€Œä¸æ˜¯å…¶ä¸Šçš„é¢æ¿ï¼ˆå‡å¦‚æœ‰ï¼‰
 	m_Window->GetWindowHandle()->Bind( wxEVT_VOBJ, 
 									   &VdkChoiceCtrl::OnDropDownMenu, 
 									   this, menuId, id );

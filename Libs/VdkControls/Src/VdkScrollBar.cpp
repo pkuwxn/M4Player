@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "VdkScrollBar.h"
 
 #include "VdkWindow.h"
@@ -25,10 +25,10 @@ void VdkScrollBar::Init()
 	m_pGoDown = NULL;
 	m_bNotHoldOn = false;
 
-	// VdkSlider ÊÇ container£¬Í¬Ê± VdkScrollBar ±È VdkSlider ºó¼ÓÈë
-	// VdkWindow µÄ¿Õ¼äÁÐ±í£¬ÄÇÎªÊ²Ã´ VdkScrollBar ÐèÒªÊÇ container ÄØ£¿
-	// ÕâÑùÆñ²»ÊÇÊ¹µÃ VdkSlider ÓÀÔ¶¶¼ÎÞ·¨½ÓÊÕµ½Êó±êÐü¸¡ÔÚËüÖ®ÉÏµÄÏûÏ¢ÁËÂð£¿
-	// ÒòÎª³ÖÐø°´×¡Êó±êÊÂ¼þ²»ÄÜÓÉ VdkSlider À´´¦Àí¡ª¡ª±¾À´¾Í²»ÊÇÓ¦¸ÃÓÉËüÀ´´¦Àí¡£
+	// VdkSlider æ˜¯ containerï¼ŒåŒæ—¶ VdkScrollBar æ¯” VdkSlider åŽåŠ å…¥
+	// VdkWindow çš„ç©ºé—´åˆ—è¡¨ï¼Œé‚£ä¸ºä»€ä¹ˆ VdkScrollBar éœ€è¦æ˜¯ container å‘¢ï¼Ÿ
+	// è¿™æ ·å²‚ä¸æ˜¯ä½¿å¾— VdkSlider æ°¸è¿œéƒ½æ— æ³•æŽ¥æ”¶åˆ°é¼ æ ‡æ‚¬æµ®åœ¨å®ƒä¹‹ä¸Šçš„æ¶ˆæ¯äº†å—ï¼Ÿ
+	// å› ä¸ºæŒç»­æŒ‰ä½é¼ æ ‡äº‹ä»¶ä¸èƒ½ç”± VdkSlider æ¥å¤„ç†â€”â€”æœ¬æ¥å°±ä¸æ˜¯åº”è¯¥ç”±å®ƒæ¥å¤„ç†ã€‚
 	SetAddinStyle( VCS_CTRL_CONTAINER | VCS_HONLD_ON );
 }
 
@@ -82,9 +82,9 @@ void VdkScrollBar::Create(const VdkScrollBarInitializer& init_data)
 	VdkScrollBarInitializer& init_data_ref = 
 		const_cast< VdkScrollBarInitializer& >( init_data );
 
-	// ±ØÐëÒª±È VdkSlider ³Ù¼ÓÈë VdkWindow µÄ¿Ø¼þÁÐ±í
-	// ÎÒÃÇ±ØÐë±£Ö¤ VdkScrollBar µÄÓÅÏÈ¼¶±È VdkSlider ¸ß£¬
-	// ¼´ÏÈ´¦ÀíÄ³Ð©ÊÂ¼þ£¬Èç³ÖÐø°´×¡Êó±êµÄ LEFT_DOWN ºÍ MOUSE_HOLD_ON_RELEASED µÈµÈ¡£
+	// å¿…é¡»è¦æ¯” VdkSlider è¿ŸåŠ å…¥ VdkWindow çš„æŽ§ä»¶åˆ—è¡¨
+	// æˆ‘ä»¬å¿…é¡»ä¿è¯ VdkScrollBar çš„ä¼˜å…ˆçº§æ¯” VdkSlider é«˜ï¼Œ
+	// å³å…ˆå¤„ç†æŸäº›äº‹ä»¶ï¼Œå¦‚æŒç»­æŒ‰ä½é¼ æ ‡çš„ LEFT_DOWN å’Œ MOUSE_HOLD_ON_RELEASED ç­‰ç­‰ã€‚
 	init_data_ref.addToWindow( false );
 	VdkControl::Create( init_data_ref );
 
@@ -104,14 +104,14 @@ void VdkScrollBar::Create(const VdkScrollBarInitializer& init_data)
 	}
 
 	//////////////////////////////////////////////////////////////////////////
-	// rc ²»ÊÇ VdkScrollBar µÄÊµ¼ÊÎ»ÖÃ£¬¶øÊÇÒ»¸öÈÃ VdkScrollBar ¾ÓÓÒÏÔÊ¾µÄÇøÓò
+	// rc ä¸æ˜¯ VdkScrollBar çš„å®žé™…ä½ç½®ï¼Œè€Œæ˜¯ä¸€ä¸ªè®© VdkScrollBar å±…å³æ˜¾ç¤ºçš„åŒºåŸŸ
 
 	wxBitmap& bmBtns = init_data.BitmapArray[0];
 
 	int btnWidth( bmBtns.GetWidth() / init_data.Expl );
 	int btnHeight( bmBtns.GetHeight() / 2 );
 
-	// ÐÞÕý x ×ø±ê£¬²Î¼ûµÚÒ»¾ä×¢ÊÍ(ÕâÀï²»ÄÜÓÃ rt.GetRight() ,·ñÔòÉÙ1)
+	// ä¿®æ­£ x åæ ‡ï¼Œå‚è§ç¬¬ä¸€å¥æ³¨é‡Š(è¿™é‡Œä¸èƒ½ç”¨ rt.GetRight() ,å¦åˆ™å°‘1)
 	m_Rect.x = m_Rect.x + m_Rect.width - btnWidth;
 	m_Rect.y = m_Rect.y + btnHeight;
 	m_Rect.width = btnWidth;
@@ -119,12 +119,12 @@ void VdkScrollBar::Create(const VdkScrollBarInitializer& init_data)
 
 	//////////////////////////////////////////////////////////////////////////
 
-	// ÓÃÓÚÌáÈ¡ÏòÉÏ¡¢ÏòÏÂ°´Å¥
+	// ç”¨äºŽæå–å‘ä¸Šã€å‘ä¸‹æŒ‰é’®
 	wxRect rcSubBitmap( 0, 0, btnWidth * init_data.Expl, btnHeight );
 	wxBitmap bmSub( VdkUtil::GetSubBitmapWithoutMask( bmBtns, rcSubBitmap ) );
 
 	//----------------------------------------------------
-	// Ìí¼ÓÏòÉÏ°´Å¥
+	// æ·»åŠ å‘ä¸ŠæŒ‰é’®
 
 	wxRect btRect( 0, - btnHeight, btnWidth, btnHeight );
 
@@ -140,7 +140,7 @@ void VdkScrollBar::Create(const VdkScrollBarInitializer& init_data)
 					 explode( init_data.Expl ) );
 		
 	//----------------------------------------------------
-	// Ìí¼ÓÏòÏÂ°´Å¥
+	// æ·»åŠ å‘ä¸‹æŒ‰é’®
 
 	rcSubBitmap.y += btnHeight;
 	bmSub = VdkUtil::GetSubBitmapWithoutMask( bmBtns, rcSubBitmap );
@@ -159,7 +159,7 @@ void VdkScrollBar::Create(const VdkScrollBarInitializer& init_data)
 					   explode( init_data.Expl ) );
 
 	//----------------------------------------------------
-	// Ìí¼Ó VdkSlider
+	// æ·»åŠ  VdkSlider
 
 	init_data_ref.BitmapArray[0] = init_data_ref.BitmapArray[2];
 	init_data_ref.BitmapArray[2] = init_data_ref.BitmapArray[1];
@@ -182,7 +182,7 @@ void VdkScrollBar::Create(const VdkScrollBarInitializer& init_data)
 	m_pSlider->SetBackground( wxBrush( wxColour( 251,251,249 ) ) );
 
 	//////////////////////////////////////////////////////////////////////////
-	// ´¦ÀíÒ»Ð©³ÉÔ±Êý¾Ý
+	// å¤„ç†ä¸€äº›æˆå‘˜æ•°æ®
 
 	if( addToWindow )
 		m_Window->AddCtrl( this );
@@ -209,7 +209,7 @@ void VdkScrollBar::DoHandleMouseEvent(VdkMouseEvent& e)
 		wxRect rcThumb( m_pSlider->GetThumb()->GetAbsoluteRect() );
 		switch( e.evtCode )
 		{
-		// ³ÖÐø°´×¡Êó±ê×ó¼ü
+		// æŒç»­æŒ‰ä½é¼ æ ‡å·¦é”®
 		case MOUSE_HOLD_ON_RELEASED:
 
 			m_pSlider->ResetDirection();
@@ -221,22 +221,22 @@ void VdkScrollBar::DoHandleMouseEvent(VdkMouseEvent& e)
 			VdkSlider::SliderDirection nDirection, nLastDirection;
 			nDirection = m_pSlider->GetDirection( e.mousePos.y, nLastDirection );
 
-			// ÊÖ±ú±»Òþ²Øºóµã»÷¿Õ°×´¦ÎÞ·¨ÅÐ¶Ï¾¿¾¹ÓÃ»§ÊÇÏëÏòÏÂ¹ö¶¯»¹ÊÇÏà·´£¬
-			// ¹ÊÖ±½Ó¶ªÆúÕâ¸öÊÂ¼þ£¬²»×÷´¦Àí¡£
+			// æ‰‹æŸ„è¢«éšè—åŽç‚¹å‡»ç©ºç™½å¤„æ— æ³•åˆ¤æ–­ç©¶ç«Ÿç”¨æˆ·æ˜¯æƒ³å‘ä¸‹æ»šåŠ¨è¿˜æ˜¯ç›¸åï¼Œ
+			// æ•…ç›´æŽ¥ä¸¢å¼ƒè¿™ä¸ªäº‹ä»¶ï¼Œä¸ä½œå¤„ç†ã€‚
 			if( nDirection == VdkSlider::SD_NONE )
 				break;
 
-			// Âß¼­£ºÒªÏë¶Ï¶¨±¾´Î°´×¡°´Å¥ÊÂ¼þÊ±ÎÞÒâÒåµÄ£¬ÔòÊ×ÏÈÉÏ´Î¹ö¶¯·½Ïò
-			// ±ØÐëÊÇÓÐÒâÒåµÄ£¬·ñÔòµÚÒ»´Î¾ÍÊÇ°´×¡°´¼üÊ±±ØÐëÕýÈ·ÏìÓ¦¡£Æä´ÎÉÏ´Î
-			// ¹ö¶¯·½ÏòÓë±¾´Î²»Í¬£¨ÊÖ±ú³öÏÖÀ´»ØÌøÔ¾Ê±¾Í»áµ¼ÖÂ³öÏÖ²»Í¬£©¡£×îºó
-			// ÉÏ´Î¹ö¶¯µÄ·½Ïò²»ÄÜÊÇÀ´Ô´ÓÚÊó±ê¹öÂÖ£¬¼´°´×¡°´¼üºÍÊó±ê¹öÂÖÊÇÁ½Ìõ
-			// ²»Í¬µÄÏß£¬Êó±ê¹öÂÖÔì³ÉµÄ×´Ì¬×ª»»²»ÄÜÓ¦ÓÃÓë³ÖÐø°´×¡°´¼ü¡£
+			// é€»è¾‘ï¼šè¦æƒ³æ–­å®šæœ¬æ¬¡æŒ‰ä½æŒ‰é’®äº‹ä»¶æ—¶æ— æ„ä¹‰çš„ï¼Œåˆ™é¦–å…ˆä¸Šæ¬¡æ»šåŠ¨æ–¹å‘
+			// å¿…é¡»æ˜¯æœ‰æ„ä¹‰çš„ï¼Œå¦åˆ™ç¬¬ä¸€æ¬¡å°±æ˜¯æŒ‰ä½æŒ‰é”®æ—¶å¿…é¡»æ­£ç¡®å“åº”ã€‚å…¶æ¬¡ä¸Šæ¬¡
+			// æ»šåŠ¨æ–¹å‘ä¸Žæœ¬æ¬¡ä¸åŒï¼ˆæ‰‹æŸ„å‡ºçŽ°æ¥å›žè·³è·ƒæ—¶å°±ä¼šå¯¼è‡´å‡ºçŽ°ä¸åŒï¼‰ã€‚æœ€åŽ
+			// ä¸Šæ¬¡æ»šåŠ¨çš„æ–¹å‘ä¸èƒ½æ˜¯æ¥æºäºŽé¼ æ ‡æ»šè½®ï¼Œå³æŒ‰ä½æŒ‰é”®å’Œé¼ æ ‡æ»šè½®æ˜¯ä¸¤æ¡
+			// ä¸åŒçš„çº¿ï¼Œé¼ æ ‡æ»šè½®é€ æˆçš„çŠ¶æ€è½¬æ¢ä¸èƒ½åº”ç”¨ä¸ŽæŒç»­æŒ‰ä½æŒ‰é”®ã€‚
 			if( nLastDirection && nDirection != nLastDirection && !m_bNotHoldOn )
 				break;
 
 			m_bNotHoldOn = false;
 
-			// ÎÒÃÇ¸ü¸ÄÁËÊÂ¼þ±êÊ¶Âë£¬ËùÒÔÐÂ½¨Ò»¸öÊÂ¼þ¶ÔÏó
+			// æˆ‘ä»¬æ›´æ”¹äº†äº‹ä»¶æ ‡è¯†ç ï¼Œæ‰€ä»¥æ–°å»ºä¸€ä¸ªäº‹ä»¶å¯¹è±¡
 			VdkMouseEvent fakeEvent( e );
 			if( fakeEvent.mousePos.y < rcThumb.y )
 			{
@@ -289,7 +289,7 @@ void VdkScrollBar::SetThumbHeight(int height, wxDC* pDC)
 	if( min > height )
 		height = min;
 
-	// ¿ÉÓÃ¸ß¶È±ÈÒªÇóµÄÐ¡£¬ÈÝ²»ÏÂÊÖ±ú
+	// å¯ç”¨é«˜åº¦æ¯”è¦æ±‚çš„å°ï¼Œå®¹ä¸ä¸‹æ‰‹æŸ„
 	if( height >= m_Rect.height )
 	{
 		if( pThumb->IsOnShow() )
@@ -357,7 +357,7 @@ void VdkScrollBar::DoHandleNotify(const VdkNotify& notice)
 			bool enable = IsEnabled();
 			wxDC* pDC( notice.GetVObjDC() );
 
-			// ÏÔÊ¾/Òþ²ØÊÖ±ú
+			// æ˜¾ç¤º/éšè—æ‰‹æŸ„
 			if( m_pSlider )
 			{
 				VdkButton* thumb = 
@@ -365,7 +365,7 @@ void VdkScrollBar::DoHandleNotify(const VdkNotify& notice)
 
 				if( enable )
 				{
-					// ÊÖ±ú¿É¼ûÐÔ±ØÐëÓë¹ö¶¯ÌõÍ¬²½
+					// æ‰‹æŸ„å¯è§æ€§å¿…é¡»ä¸Žæ»šåŠ¨æ¡åŒæ­¥
 					if( !thumb->IsOnShow() && IsOnShow() )
 						thumb->Show( true, pDC );
 				}
@@ -399,7 +399,7 @@ wxBitmap* VdkScrollBar::GetBitmapArray(wxString strFileNames[3], int& nExpl)
 	{
 		nExpl = 4;
 
-		// ÔØÈëÄ¬ÈÏÆ¤·ô
+		// è½½å…¥é»˜è®¤çš®è‚¤
 		wxBitmap bmAll( SB_xpm );
 
 		// bmBtns

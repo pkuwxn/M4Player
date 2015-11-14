@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "VdkSlider.h"
 #include "VdkDC.h"
 #include "VdkButton.h"
@@ -34,7 +34,7 @@ VdkSliderInitializer::~VdkSliderInitializer()
 
 IMPLEMENT_CLONEABLE_VOBJECT( VdkSlider, VdkControl );
 
-// ÓÃÓÚ»Øµ÷º¯Êý£¨ÍÏ¶¯µÄ×îÐ¡¼ä¸ô40ms£©
+// ç”¨äºŽå›žè°ƒå‡½æ•°ï¼ˆæ‹–åŠ¨çš„æœ€å°é—´éš”40msï¼‰
 const static int gs_minCallbackInternal = 40;
 
 void VdkSlider::Init()
@@ -115,7 +115,7 @@ void VdkSlider::Create(const VdkSliderInitializer& init_data)
 	wxBitmap& bmFull = init_data.BitmapArray[1];
 	wxBitmap& bmThumb = init_data.BitmapArray[2];
 
-    // ¼ÙÈçÊÖ±úÎ»Í¼ÎÞÐ§£¬ÉúÔìÒ»¸ö¸øËü
+    // å‡å¦‚æ‰‹æŸ„ä½å›¾æ— æ•ˆï¼Œç”Ÿé€ ä¸€ä¸ªç»™å®ƒ
     // TODO
 	bool thumbIsOk = bmThumb.IsOk();
 	if( !thumbIsOk )
@@ -130,7 +130,7 @@ void VdkSlider::Create(const VdkSliderInitializer& init_data)
 		int nThumbHeight = bmThumb.GetHeight();
 		rcThumb.y = ( m_Rect.height - nThumbHeight ) / 2;
 
-		// Ê¹×Ô¼ºµÄ×÷ÓÃÓò°ü¹üÊÖ±ú£¬·ñÔò VdkSlider ²»»áÖØ»­±³¾°
+		// ä½¿è‡ªå·±çš„ä½œç”¨åŸŸåŒ…è£¹æ‰‹æŸ„ï¼Œå¦åˆ™ VdkSlider ä¸ä¼šé‡ç”»èƒŒæ™¯
 		if( nThumbHeight > m_Rect.height )
 		{
 			m_Rect.y -= - rcThumb.y;
@@ -160,7 +160,7 @@ void VdkSlider::Create(const VdkSliderInitializer& init_data)
 		int nThumbWidth = bmThumb.GetWidth() / init_data.Expl;
 		rcThumb.x = ( m_Rect.width - nThumbWidth ) / 2;
 
-		// Ê¹×Ô¼ºµÄ×÷ÓÃÓò°ü¹üÊÖ±ú£¬·ñÔò VdkSlider ²»»áÖØ»­±³¾°
+		// ä½¿è‡ªå·±çš„ä½œç”¨åŸŸåŒ…è£¹æ‰‹æŸ„ï¼Œå¦åˆ™ VdkSlider ä¸ä¼šé‡ç”»èƒŒæ™¯
 		if( nThumbWidth > m_Rect.width )
 		{
 			m_Rect.x -= -rcThumb.x;
@@ -280,7 +280,7 @@ void VdkSlider::DoEraseBackground(wxDC& dc, const wxRect& rc)
 		{
 			int dX = ( m_Rect.width - m_bmFull.GetWidth() ) / 2;
 			int dY = ( m_Rect.height - m_bmFull.GetHeight() ) / 2;
-			// dX < 0 Ê±£¬É«Ìõ±È VdkSlider µÄ×÷ÓÃÓò¿í
+			// dX < 0 æ—¶ï¼Œè‰²æ¡æ¯” VdkSlider çš„ä½œç”¨åŸŸå®½
 			int srcX = dX < 0 ? -dX : 0;
 			int srcY = dY < 0 ? -dY : 0;
 			int destX = dX > 0 ? m_Rect.x + dX : m_Rect.x;
@@ -311,22 +311,22 @@ void VdkSlider::DoDraw(wxDC& dc)
 	else
 		state = VdkButton::NORMAL;
 
-    // ¹ö¶¯ÌõÊÇ¿ÉÒÔ×Ô×ßµÄ£¬¹ÊÊÖ±ú¿ÉÄÜ²»Öª²»¾õ¼ä×ßµ½ÁËÖ¸ÕëÏÂ
+    // æ»šåŠ¨æ¡æ˜¯å¯ä»¥è‡ªèµ°çš„ï¼Œæ•…æ‰‹æŸ„å¯èƒ½ä¸çŸ¥ä¸è§‰é—´èµ°åˆ°äº†æŒ‡é’ˆä¸‹
 	if( state == VdkButton::NORMAL )
 	{
 		if( m_pThumb->ContainsPointerGlobally() )
 			state = VdkButton::HOVERING;
 	}
 
-	// Ö»Ðè¸üÐÂ°´Å¥µÄ×´Ì¬£¬ÖØ»­ÊÂ¼þÓÉ VDK ·Ö·¢
+	// åªéœ€æ›´æ–°æŒ‰é’®çš„çŠ¶æ€ï¼Œé‡ç”»äº‹ä»¶ç”± VDK åˆ†å‘
 	m_pThumb->Update( state, NULL );
 }
 
 void VdkSlider::DoHandleMouseEvent(VdkMouseEvent& e)
 {
 	int evtCode = e.evtCode;
-	// µ±ÔÚÊÖ±úÉÏ·¢Éú¹öÂÖÊÂ¼þ£¬½«ÆäÖØ¶¨ÏòÖÁ VdkScrollBar ¡£
-	// ¶ø·¢ÉúÔÚ VdkSlider ÉÏµÄ¹öÂÖÊÂ¼þÒÑ±» VdkScrollBar ÇÀÏÈ´¦Àí¡£
+	// å½“åœ¨æ‰‹æŸ„ä¸Šå‘ç”Ÿæ»šè½®äº‹ä»¶ï¼Œå°†å…¶é‡å®šå‘è‡³ VdkScrollBar ã€‚
+	// è€Œå‘ç”Ÿåœ¨ VdkSlider ä¸Šçš„æ»šè½®äº‹ä»¶å·²è¢« VdkScrollBar æŠ¢å…ˆå¤„ç†ã€‚
 	if( (evtCode == WHEEL_UP) || (evtCode == WHEEL_DOWN) )
 	{
 		if( m_parent )
@@ -341,7 +341,7 @@ void VdkSlider::DoHandleMouseEvent(VdkMouseEvent& e)
 		{
 		case NORMAL:
 
-			// ÕâÊÇÓÉ¡°¼´µã¼´´ï¡±ÌØÐÔ¼¤·¢µÄ£¬ºöÂÔËü
+			// è¿™æ˜¯ç”±â€œå³ç‚¹å³è¾¾â€ç‰¹æ€§æ¿€å‘çš„ï¼Œå¿½ç•¥å®ƒ
 			if( TestState( VSST_LAST_CLICK_TO_GO ) )
 			{
 				wxASSERT( TestStyle( VSS_CLICK_TO_GO ) );
@@ -352,9 +352,9 @@ void VdkSlider::DoHandleMouseEvent(VdkMouseEvent& e)
 
 			m_imp.Release();
 
-            // ÍÏ¶¯ÊÖ±ú·Å¿ªºó£¬²»ÔÙÔÚÊÖ±ú×÷ÓÃÓòÄÚ£º
-			// ÊÖ±úÉÏ´ÎµÄ×´Ì¬²»»áÊÇ DRAGGING £¬ÒòÎªËüÖ±½ÓºöÂÔ DRAGGING ÊÂ¼þ£¬
-			// ²»´¦ÀíÒò´ËÒ²¾Í²»»áÎ¬³ÖÕâ¸ö×´Ì¬£¬ËüÎ¬³ÖµÄÊÇ LEFT_DOWN
+            // æ‹–åŠ¨æ‰‹æŸ„æ”¾å¼€åŽï¼Œä¸å†åœ¨æ‰‹æŸ„ä½œç”¨åŸŸå†…ï¼š
+			// æ‰‹æŸ„ä¸Šæ¬¡çš„çŠ¶æ€ä¸ä¼šæ˜¯ DRAGGING ï¼Œå› ä¸ºå®ƒç›´æŽ¥å¿½ç•¥ DRAGGING äº‹ä»¶ï¼Œ
+			// ä¸å¤„ç†å› æ­¤ä¹Ÿå°±ä¸ä¼šç»´æŒè¿™ä¸ªçŠ¶æ€ï¼Œå®ƒç»´æŒçš„æ˜¯ LEFT_DOWN
 			if( m_pThumb && m_pThumb->GetLastState() == VdkButton::PUSHED )
 			{
 				if( IsReadyForEvent() )
@@ -369,7 +369,7 @@ void VdkSlider::DoHandleMouseEvent(VdkMouseEvent& e)
 
 			m_imp.Release();
 
-			// Ö»ÊÇÔÚÊÖ±úÉÏµã»÷Ò»ÏÂ£¬²»ÍÏ¶¯
+			// åªæ˜¯åœ¨æ‰‹æŸ„ä¸Šç‚¹å‡»ä¸€ä¸‹ï¼Œä¸æ‹–åŠ¨
 			if( TestState( VSST_DONT_FIRE_EVENT ) )
 			{
 				RemoveState( VSST_DONT_FIRE_EVENT );
@@ -382,12 +382,12 @@ void VdkSlider::DoHandleMouseEvent(VdkMouseEvent& e)
 				m_pThumb->Update( VdkButton::HOVERING, &e.dc );
 			}
 
-			// Ö±½ÓÔÚ¹ö¶¯ÌõÉÏµ¥»÷£¬´ËÊ±ÊÖ±úÃ»ÓÐ½ÓÊÕµ½ HOVERING ÊÂ¼þ£¬
-			// ¹ÊÊó±êÖ¸Õë²»»á±ä»¯
+			// ç›´æŽ¥åœ¨æ»šåŠ¨æ¡ä¸Šå•å‡»ï¼Œæ­¤æ—¶æ‰‹æŸ„æ²¡æœ‰æŽ¥æ”¶åˆ° HOVERING äº‹ä»¶ï¼Œ
+			// æ•…é¼ æ ‡æŒ‡é’ˆä¸ä¼šå˜åŒ–
 			if( TestStyle( VCS_HAND_CURSOR ) )
 				m_Window->AssignCursor( wxCursor( wxCURSOR_HAND ) );
 
-			// ÔÚÊÖ±úÉÏÊÍ·ÅÊó±êÖ¸Õë
+			// åœ¨æ‰‹æŸ„ä¸Šé‡Šæ”¾é¼ æ ‡æŒ‡é’ˆ
             if( IsReadyForEvent() )
                 FireEvent( &e.dc, (void *) NORMAL );
 
@@ -395,14 +395,14 @@ void VdkSlider::DoHandleMouseEvent(VdkMouseEvent& e)
 
 		case LEFT_DOWN:
 			{
-				// ±£´æÊó±êµÄµ±Ç°Î»ÖÃ
+				// ä¿å­˜é¼ æ ‡çš„å½“å‰ä½ç½®
 				wxRect rcThumb( m_pThumb->GetAbsoluteRect() );
 				m_imp.ptr = ( m_bVertical ? (e.mousePos.y - rcThumb.y) :
 											(e.mousePos.x - rcThumb.x) );
 
 				//==================================================
 
-				// Ç¦Ö±¹ö¶¯ÌõÔÝÊ±²»Ìá¹©¡°¼´µã¼´ÖÁ¡±µÄÌØÐÔ
+				// é“…ç›´æ»šåŠ¨æ¡æš‚æ—¶ä¸æä¾›â€œå³ç‚¹å³è‡³â€çš„ç‰¹æ€§
 				if( m_bVertical || !TestStyle( VSS_CLICK_TO_GO ) )
 				{
 					break;
@@ -415,7 +415,7 @@ void VdkSlider::DoHandleMouseEvent(VdkMouseEvent& e)
 					SetAddinState( VSST_DONT_FIRE_EVENT );
 				}
 
-				// È·¶¨ÐèÒªÒÆ¶¯ÊÖ±úµ½Ö¸ÕëËù´¦Î»ÖÃ
+				// ç¡®å®šéœ€è¦ç§»åŠ¨æ‰‹æŸ„åˆ°æŒ‡é’ˆæ‰€å¤„ä½ç½®
 				if( go )
 				{
 					SetAddinState( VSST_LAST_CLICK_TO_GO );
@@ -448,7 +448,7 @@ void VdkSlider::DoHandleMouseEvent(VdkMouseEvent& e)
 				break;
 			}
 
-		// ÊÖ±ú±£³Ö×´Ì¬±ØÐë£¬²»ÄÜÌø¹ý
+		// æ‰‹æŸ„ä¿æŒçŠ¶æ€å¿…é¡»ï¼Œä¸èƒ½è·³è¿‡
 		case HOVERING:
 			break;
 
@@ -461,12 +461,12 @@ void VdkSlider::DoHandleMouseEvent(VdkMouseEvent& e)
 		return;
 	}
 
-	// ±ðÈËµÄÍÏ¶¯ÊÂ¼þ
+	// åˆ«äººçš„æ‹–åŠ¨äº‹ä»¶
 	if( !m_imp.IsOk() )
 		return;
 
-	// Ö±½ÓÍÏ¶¯ VdkSlider µÄ¿Õ°×´¦£¬
-	// µ«¼´µã¼´ÖÁµÄ VdkSlider ÔÊÐíÍÏ¶¯¿Õ°×´¦
+	// ç›´æŽ¥æ‹–åŠ¨ VdkSlider çš„ç©ºç™½å¤„ï¼Œ
+	// ä½†å³ç‚¹å³è‡³çš„ VdkSlider å…è®¸æ‹–åŠ¨ç©ºç™½å¤„
 	if( !m_pThumb->GetAbsoluteRect().Contains( e.mousePos ) &&
 		!m_imp.IsOk() &&
 		!TestStyle( VSS_CLICK_TO_GO ) )
@@ -474,10 +474,10 @@ void VdkSlider::DoHandleMouseEvent(VdkMouseEvent& e)
 		return;
 	}
 
-	// Çå³ý²»Òª·¢ËÍÊÂ¼þµÄ±êÖ¾Î»
+	// æ¸…é™¤ä¸è¦å‘é€äº‹ä»¶çš„æ ‡å¿—ä½
 	RemoveState( VSST_DONT_FIRE_EVENT );
 
-	// ÕýÊ½´¦ÀíÍÏ¶¯ÊÂ¼þ
+	// æ­£å¼å¤„ç†æ‹–åŠ¨äº‹ä»¶
 	wxRect rcHandle( m_pThumb->GetRect() ),
 		   rcThis( GetAbsoluteRect() );
 
@@ -492,11 +492,11 @@ void VdkSlider::DoHandleMouseEvent(VdkMouseEvent& e)
 		rcHandle.y = m_imp.curr;
 	}
 
-	// Ò»¶¨ÒªÉèÖÃ pDC£¬ »¹Ô­Ô­À´Î»ÖÃµÄ±³¾°£¨ VdkSlider ²»Ò»¶¨»áÍêÈ«¸²¸ÇÊÖ±úµÄ×÷ÓÃÓò£©
+	// ä¸€å®šè¦è®¾ç½® pDCï¼Œ è¿˜åŽŸåŽŸæ¥ä½ç½®çš„èƒŒæ™¯ï¼ˆ VdkSlider ä¸ä¸€å®šä¼šå®Œå…¨è¦†ç›–æ‰‹æŸ„çš„ä½œç”¨åŸŸï¼‰
 	m_pThumb->SetRect( rcHandle, &e.dc );
 	Draw( e.dc );
 
-	// ÍÏ¶¯µÄÖÐÍ¾Í¨Öª
+	// æ‹–åŠ¨çš„ä¸­é€”é€šçŸ¥
 	wxMilliClock_t curr( wxGetLocalTimeMillis() );
 	if( curr - m_dragTimeStamp >= gs_minCallbackInternal )
 	{
@@ -558,7 +558,7 @@ VdkSlider::SliderDirection VdkSlider::GetDirection
 	else
 	{
 		if( (curr > m_imp.curr + m_imp.bmHandle.work_side) ||
-			// ÕâÖÖÇé¿öÊÊÓÃÓÚÊÖ±ú±»Òþ²Øºó£ºÎÒÃÇ¾ö¶¨´ËÊ±²»¸üÐÂ 
+			// è¿™ç§æƒ…å†µé€‚ç”¨äºŽæ‰‹æŸ„è¢«éšè—åŽï¼šæˆ‘ä»¬å†³å®šæ­¤æ—¶ä¸æ›´æ–° 
 			// m_imp.bmHandle.work_side
 			(curr > m_Rect.height) )
 		{
@@ -583,13 +583,13 @@ double VdkSlider::GetProgress(wxRect* pRect) const
 
 void VdkSlider::UpdateThumbState(wxDC* pDC)
 {
-	/* ÔÚÕâÀï³ÔÁËÒ»¸ö´ó¿÷£¬²»ÄÜÅÐ¶ÏÊÖ±úÊÇ·ñÏÔÊ¾£º
+	/* åœ¨è¿™é‡Œåƒäº†ä¸€ä¸ªå¤§äºï¼Œä¸èƒ½åˆ¤æ–­æ‰‹æŸ„æ˜¯å¦æ˜¾ç¤ºï¼š
 	 * if( !m_pThumb->IsShown() )
 	 *		return;
-	 * ·ñÔò±»ÔÝÊ±¶³½á¶ø²»ÊÇÒþ²ØµÄÊÖ±ú£¨Èç VdkTab ÖÐµÄÊÖ±ú£©²»ÄÜÈçÊµ·´Ó³
-	 * ÊÖ±ú×÷ÓÃÓò£¨ m_imp.bmHandle.work_side £©µÄ¸ü¸Ä
+	 * å¦åˆ™è¢«æš‚æ—¶å†»ç»“è€Œä¸æ˜¯éšè—çš„æ‰‹æŸ„ï¼ˆå¦‚ VdkTab ä¸­çš„æ‰‹æŸ„ï¼‰ä¸èƒ½å¦‚å®žåæ˜ 
+	 * æ‰‹æŸ„ä½œç”¨åŸŸï¼ˆ m_imp.bmHandle.work_side ï¼‰çš„æ›´æ”¹
 	 */
-	// ÕâÀï±ØÐëÊÇÒþ²ØµÄ¶ø²»ÊÇ±»¶³½áµÄ
+	// è¿™é‡Œå¿…é¡»æ˜¯éšè—çš„è€Œä¸æ˜¯è¢«å†»ç»“çš„
 	if( !m_pThumb->IsOnShow() )
 		return;
 
@@ -674,7 +674,7 @@ void VdkSlider::SliderImp::MoveTo(double p)
 
 	int end( bmFull.work_side - bmHandle.work_side );
 	if( end < 0 )
-		end = 0; // ÊÖ±úÒòÎªÈÝÄÉ²»ÏÂ±»Òþ²ØÁË
+		end = 0; // æ‰‹æŸ„å› ä¸ºå®¹çº³ä¸ä¸‹è¢«éšè—äº†
 
 	percent = p;
 	curr = end * percent;

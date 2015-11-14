@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "VdkSwitcher.h"
 
 #include "VdkDC.h"
@@ -88,9 +88,9 @@ void VdkSwitcher::Switch(VdkToggleButton* btn, wxDC* pDC)
 	if( m_last )
 	{
 		int idLast = m_tabs[m_last].id;
-		if( idLast > id ) // ¡ý
+		if( idLast > id ) // â†“
 			ResetCoords(id+1);
-		else // ¡ü
+		else // â†‘
 			ResetCoords(-id);
 
 		m_last->Toggle(false, NULL);
@@ -171,7 +171,7 @@ void VdkSwitcher::AddTab(const wxString& strCaption, VdkControl* win)
 	if( win )
 	{
 		m_Window->AddCtrl( win );
-		ti.rc.width = win->GetRect().width; // ÐèÒª¼õÈ¥¹ö¶¯ÌõµÄ¿í¶È
+		ti.rc.width = win->GetRect().width; // éœ€è¦å‡åŽ»æ»šåŠ¨æ¡çš„å®½åº¦
 
 		win->SetParent( this );
 		win->SetRect( ti.rc );
@@ -223,7 +223,7 @@ void VdkSwitcher::ResetCoords(int id)
 	tab_map::iterator i;
 	for( i = m_tabs.begin(); i != m_tabs.end(); ++i )
 	{
-		if( id > 0 ) // ´ËID¼°´ËIDÒÔÏÂ»Ö¸´
+		if( id > 0 ) // æ­¤IDåŠæ­¤IDä»¥ä¸‹æ¢å¤
 		{
 			if( i->second.id >= id )
 			{
@@ -233,7 +233,7 @@ void VdkSwitcher::ResetCoords(int id)
 				i->second.button->SetRect( rc, NULL );
 			}
 		}
-		else // ´ËID¼°´ËIDÒÔÉÏ»Ö¸´
+		else // æ­¤IDåŠæ­¤IDä»¥ä¸Šæ¢å¤
 		{
 			if( i->second.id <= -id )
 			{

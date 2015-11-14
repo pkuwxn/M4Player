@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkDefs.h"
 #include "VdkDC.h"
 
@@ -22,136 +22,136 @@ class VdkWindow;
 class VdkMenu;
 class VdkMenuItem;
 
-/// \brief Á¬Ğø¶à´Î·¢ËÍÍ¬ÑùÊó±êÊÂ¼şµÄ´¥·¢Æ÷
+/// \brief è¿ç»­å¤šæ¬¡å‘é€åŒæ ·é¼ æ ‡äº‹ä»¶çš„è§¦å‘å™¨
 class MouseHoldTimer : public wxTimer
 {
 public:
 
-	/// \brief ÔÚ´¥·¢Æ÷ÄÚ²úÉú²¢·¢ËÍÒ»´ÎÒª³ÖĞø·¢ËÍµÄÊÂ¼ş
+	/// \brief åœ¨è§¦å‘å™¨å†…äº§ç”Ÿå¹¶å‘é€ä¸€æ¬¡è¦æŒç»­å‘é€çš„äº‹ä»¶
 	virtual void Notify();
 
-	/// \brief Æô¶¯´¥·¢Æ÷
+	/// \brief å¯åŠ¨è§¦å‘å™¨
 	void Start(VdkControl* pCtrl, int evtCode, const wxPoint& Point);
 
-	/// \brief µÃµ½´¥·¢Æ÷µÄÄ¿±ê¿Ø¼ş
+	/// \brief å¾—åˆ°è§¦å‘å™¨çš„ç›®æ ‡æ§ä»¶
 	VdkControl* GetCtrl() const { return m_pCtrl; }
 
 private:
 
-	VdkControl*	m_pCtrl;		// Òª´¦ÀíµÄ VdkControl
-	int			m_evtCode;		// Òª³ÖĞø·¢ËÍµÄÊÂ¼ş ID
-	wxPoint		m_Point;		// Òª³ÖĞø·¢ËÍ³öÈ¥µÄÊó±êÖ¸ÕëÎ»ÖÃ
+	VdkControl*	m_pCtrl;		// è¦å¤„ç†çš„ VdkControl
+	int			m_evtCode;		// è¦æŒç»­å‘é€çš„äº‹ä»¶ ID
+	wxPoint		m_Point;		// è¦æŒç»­å‘é€å‡ºå»çš„é¼ æ ‡æŒ‡é’ˆä½ç½®
 };
 
 //////////////////////////////////////////////////////////////////////////
 
 #if 1
-/// \brief VDK ¼üÅÌºÍÊó±êÊÂ¼şµÄ»ùÀà
+/// \brief VDK é”®ç›˜å’Œé¼ æ ‡äº‹ä»¶çš„åŸºç±»
 class VdkEvent
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkEvent(int e, wxDC& d);
 
-	/// \brief Ìø¹ı±¾ÊÂ¼ş
+	/// \brief è·³è¿‡æœ¬äº‹ä»¶
 	///
-	/// ¸æÖªÊÂ¼ş·¢ËÍÕßÍ£Ö¹¶Ô±¾ÊÂ¼şµÄºóĞø´¦Àí¡£
+	/// å‘ŠçŸ¥äº‹ä»¶å‘é€è€…åœæ­¢å¯¹æœ¬äº‹ä»¶çš„åç»­å¤„ç†ã€‚
 	void Skip(bool skip) { m_bSkipped = skip; }
 
-	/// \brief ÊÂ¼şÊÇ·ñ±»È¡Ïû
+	/// \brief äº‹ä»¶æ˜¯å¦è¢«å–æ¶ˆ
 	bool GetSkipped() const { return m_bSkipped; }
 
 	//////////////////////////////////////////////////////////////////////////
 
-	int evtCode; ///< Êó±êÊÂ¼şÀàĞÍ
-	wxDC& dc; ///< ¸½¼ÓµÄ»æÍ¼ÉÏÏÂÎÄ
+	int evtCode; ///< é¼ æ ‡äº‹ä»¶ç±»å‹
+	wxDC& dc; ///< é™„åŠ çš„ç»˜å›¾ä¸Šä¸‹æ–‡
 
-	bool controlDown; ///< ¼üÅÌÉÏµÄ Ctrl ¼üÊÇ·ñÕıÔÚ°´ÏÂ
-	bool shiftDown; ///< ¼üÅÌÉÏµÄ Shift ¼üÊÇ·ñÕıÔÚ°´ÏÂ
+	bool controlDown; ///< é”®ç›˜ä¸Šçš„ Ctrl é”®æ˜¯å¦æ­£åœ¨æŒ‰ä¸‹
+	bool shiftDown; ///< é”®ç›˜ä¸Šçš„ Shift é”®æ˜¯å¦æ­£åœ¨æŒ‰ä¸‹
 
 private:
 
 	bool m_bSkipped;
 };
 
-/// \brief ´ú±íÒ»¸öÊó±êÊÂ¼ş
+/// \brief ä»£è¡¨ä¸€ä¸ªé¼ æ ‡äº‹ä»¶
 class VdkMouseEvent : public VdkEvent
 {
 public:
 
-	/// ¹¹Ôìº¯Êı
+	/// æ„é€ å‡½æ•°
 	VdkMouseEvent(int e, const wxPoint& m, wxDC& d);
 
-	/// ¹¹Ôìº¯Êı
+	/// æ„é€ å‡½æ•°
 	VdkMouseEvent(wxMouseEvent& e, int code, wxDC& d);
 
-	/// »ñÈ¡Óë wxWidgets µÄ¶ÔÓ¦ÊÂ¼ş¶ÔÏó
+	/// è·å–ä¸ wxWidgets çš„å¯¹åº”äº‹ä»¶å¯¹è±¡
 	wxMouseEvent* GetNativeEventObj() const { return m_nativeEventObj; }
 
 public:
 
-	wxPoint mousePos; ///< Ö¸ÕëÎ»ÖÃ
+	wxPoint mousePos; ///< æŒ‡é’ˆä½ç½®
 
 private:
 
-	wxMouseEvent* m_nativeEventObj; // wxWidgets µÄ¶ÔÓ¦ÊÂ¼ş¶ÔÏó
+	wxMouseEvent* m_nativeEventObj; // wxWidgets çš„å¯¹åº”äº‹ä»¶å¯¹è±¡
 };
 
-/// \brief ´ú±íÒ»¸ö¼üÅÌ°´¼üÊÂ¼ş
+/// \brief ä»£è¡¨ä¸€ä¸ªé”®ç›˜æŒ‰é”®äº‹ä»¶
 class VdkKeyEvent : public VdkEvent
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkKeyEvent(VdkKeyEventType type, wxKeyEvent& e, wxDC& dcref);
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkKeyEvent(VdkKeyEventType type, int keyCode, wxDC& dcref);
 
-	/// \brief »ñÈ¡ wxWidgets ¶ÔÓ¦µÄÊÂ¼ş¶ÔÏó
+	/// \brief è·å– wxWidgets å¯¹åº”çš„äº‹ä»¶å¯¹è±¡
 	wxKeyEvent* GetNativeObj() { return m_nativeEventObj; }
 
-	/// \brief »ñÈ¡ÊÂ¼ş¸½´øµÄ¼üÅÌ×Ö·û´úÂë
+	/// \brief è·å–äº‹ä»¶é™„å¸¦çš„é”®ç›˜å­—ç¬¦ä»£ç 
 	int GetKeyCode() const { return m_keyCode; }
 
 private:
 
-	int m_keyCode; // °´¼ü´úÂë
-	wxKeyEvent* m_nativeEventObj; // wxWidgets ¶ÔÓ¦µÄÊÂ¼ş¶ÔÏó
+	int m_keyCode; // æŒ‰é”®ä»£ç 
+	wxKeyEvent* m_nativeEventObj; // wxWidgets å¯¹åº”çš„äº‹ä»¶å¯¹è±¡
 };
 #endif
 
-/// \brief ´Ó±ê×¼ wx Êó±êÊÂ¼şµ½ VDK µÄ¶ÔÓ¦¶¨Òå
+/// \brief ä»æ ‡å‡† wx é¼ æ ‡äº‹ä»¶åˆ° VDK çš„å¯¹åº”å®šä¹‰
 VdkMouseEventType FromStd(const wxMouseEvent& e);
 
 //////////////////////////////////////////////////////////////////////////
-/// \brief ´ú±íÒ»¸ö Vdk ·Ö·¢µÄÍ¨Öª
+/// \brief ä»£è¡¨ä¸€ä¸ª Vdk åˆ†å‘çš„é€šçŸ¥
 class VdkNotify
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkNotify(VdkCtrlNotifyCode notice);
 
-	/// \brief ÉèÖÃÍ¨Öª±êÊ¶·û
+	/// \brief è®¾ç½®é€šçŸ¥æ ‡è¯†ç¬¦
 	void SetNotifyCode(VdkCtrlNotifyCode notice) {
 		m_notice = notice;
 	}
 
-	/// \brief »ñÈ¡Í¨Öª±êÊ¶·û
+	/// \brief è·å–é€šçŸ¥æ ‡è¯†ç¬¦
 	VdkCtrlNotifyCode GetNotifyCode() const { return m_notice; }
 
-	/// \brief ÉèÖÃ¸½¼ÓÕûÊı
+	/// \brief è®¾ç½®é™„åŠ æ•´æ•°
 	void SetInt(int data) { m_int = data; }
 
-	/// \brief »ñÈ¡¸½¼ÓÕûÊı
+	/// \brief è·å–é™„åŠ æ•´æ•°
 	int GetInt() const { return m_int; }
 
-	/// \brief ÉèÖÃ¸½¼ÓÕûÊı
+	/// \brief è®¾ç½®é™„åŠ æ•´æ•°
 	void SetLong(long data) { m_long = data; }
 
-	/// \brief »ñÈ¡¸½¼ÓÕûÊı
+	/// \brief è·å–é™„åŠ æ•´æ•°
 	long GetLong() const { return m_long; }
 
 #   ifndef WPARAM
@@ -162,22 +162,22 @@ public:
 	typedef unsigned int LPARAM;
 #   endif
 
-	/// \brief ÉèÖÃ WPARAM
+	/// \brief è®¾ç½® WPARAM
 	void SetWparam(WPARAM wParam) { m_wParam = wParam; }
 
-	/// \brief »ñÈ¡ WPARAM
+	/// \brief è·å– WPARAM
 	WPARAM GetWparam() const { return m_wParam; }
 
-	/// \brief ÉèÖÃ LPARAM
+	/// \brief è®¾ç½® LPARAM
 	void SetLparam(LPARAM lParam) { m_lParam = lParam; }
 
-	/// \brief »ñÈ¡ LPARAM
+	/// \brief è·å– LPARAM
 	LPARAM GetLparam() const { return m_lParam; }
 
-	/// \brief »ñÈ¡ DC
+	/// \brief è·å– DC
 	void SetVObjDC(wxDC* pDC) { m_pDC = pDC; }
 
-	/// \brief »ñÈ¡ DC
+	/// \brief è·å– DC
 	wxDC* GetVObjDC() const { return m_pDC; }
 
 private:
@@ -192,46 +192,46 @@ private:
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief Íâ²¿ÊÂ¼ş¹ıÂËÆ÷
+/// \brief å¤–éƒ¨äº‹ä»¶è¿‡æ»¤å™¨
 class VdkEventFilter
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkEventFilter(VdkWindow* win = NULL);
 
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	~VdkEventFilter();
 
-	/// \brief ÔİÍ£¹ıÂË²Ù×÷
+	/// \brief æš‚åœè¿‡æ»¤æ“ä½œ
 	void Pause() { m_paused = true; }
 
-	/// \brief ¼ÌĞø¹ıÂË²Ù×÷
+	/// \brief ç»§ç»­è¿‡æ»¤æ“ä½œ
 	void Resume() { m_paused = false; }
 
-	/// \brief ¹ıÂËÆ÷ÊÇ·ñ´¦ÓÚ»î¶¯×´Ì¬
+	/// \brief è¿‡æ»¤å™¨æ˜¯å¦å¤„äºæ´»åŠ¨çŠ¶æ€
 	bool IsActive() const { return !m_paused; }
 
-	/// \brief Òª¹ıÂËµÄÊÂ¼şµÄÏêÏ¸ĞÅÏ¢
+	/// \brief è¦è¿‡æ»¤çš„äº‹ä»¶çš„è¯¦ç»†ä¿¡æ¯
 	class EventForFiltering	{
 	public:
 
-		/// \brief ¹¹Ôìº¯Êı
+		/// \brief æ„é€ å‡½æ•°
 		EventForFiltering( VdkWindow* window, int evtCode )
 			: m_window( window ), m_evtCode( evtCode ) {}
 
-		/// \brief »ñÈ¡´°¿Ú
+		/// \brief è·å–çª—å£
 		VdkWindow* window() const { return m_window; }
 
-		/// \brief »ñÈ¡ÊÂ¼şÀàĞÍ
+		/// \brief è·å–äº‹ä»¶ç±»å‹
 		int evtCode() const { return m_evtCode; }
 
-		/// \brief ÉèÖÃÊó±êÊÂ¼ş¶ÔÏó
+		/// \brief è®¾ç½®é¼ æ ‡äº‹ä»¶å¯¹è±¡
 		EventForFiltering& mouseEvent(const wxMouseEvent& e) {
 			m_mouseEvent = e; return *this;
 		}
 
-		/// \brief »ñÈ¡Êó±êÊÂ¼ş¶ÔÏó
+		/// \brief è·å–é¼ æ ‡äº‹ä»¶å¯¹è±¡
 		const wxMouseEvent& mouseEvent() const { return m_mouseEvent;	}
 
 	private:
@@ -241,7 +241,7 @@ public:
 		wxMouseEvent m_mouseEvent;
 	};
 
-	/// \brief ÔÚ´Ë¹ıÂËÀàĞÍÎª\a evtCode µÄÊÂ¼ş
+	/// \brief åœ¨æ­¤è¿‡æ»¤ç±»å‹ä¸º\a evtCode çš„äº‹ä»¶
 	virtual bool FilterEvent(const EventForFiltering& e) = 0;
 
 private:
@@ -263,67 +263,67 @@ private:
 
 enum VdkExtraMessageID {
 
-	/// \brief ÓÃ»§¿ÉÓÃµÄ×Ô¶¨ÒåÏûÏ¢ÆğÊ¼ ID
+	/// \brief ç”¨æˆ·å¯ç”¨çš„è‡ªå®šä¹‰æ¶ˆæ¯èµ·å§‹ ID
 	VEMC_USER					= -19900905 * 2,
 	
-	/// \brief Í¨ÖªÖ÷´°¿ÚÏÔÊ¾µ¯³ö²Ëµ¥
+	/// \brief é€šçŸ¥ä¸»çª—å£æ˜¾ç¤ºå¼¹å‡ºèœå•
 	///
-	/// ±ØĞëÔÚÖ÷Ïß³ÌÖĞµ÷ÓÃÏÔÊ¾º¯Êı£¬·ñÔò¸¸´°¿Ú»áÊ§È¥½¹µã¡£
-	/// ÁíÒ»ÖÖÇé¿öÊÇµ¯³ö´°¿Ú»áÊ¹¸¸´°¿ÚÖØ»­£¬´Ó¶øÆÆ»µ VdkDC ÖĞÎ¬³ÖµÄ×´Ì¬¡£
-	/// ¹Ê½«Êµ¼ÊÏÔÊ¾²Ëµ¥µÄ´úÂëÑÓºóÖ´ĞĞ¡£
+	/// å¿…é¡»åœ¨ä¸»çº¿ç¨‹ä¸­è°ƒç”¨æ˜¾ç¤ºå‡½æ•°ï¼Œå¦åˆ™çˆ¶çª—å£ä¼šå¤±å»ç„¦ç‚¹ã€‚
+	/// å¦ä¸€ç§æƒ…å†µæ˜¯å¼¹å‡ºçª—å£ä¼šä½¿çˆ¶çª—å£é‡ç”»ï¼Œä»è€Œç ´å VdkDC ä¸­ç»´æŒçš„çŠ¶æ€ã€‚
+	/// æ•…å°†å®é™…æ˜¾ç¤ºèœå•çš„ä»£ç å»¶åæ‰§è¡Œã€‚
 	VEMC_SHOW_CONTEXT_MENU		= -19900905,
-	/// \brief Í¨ÖªÖ÷´°¿Ú²Ëµ¥ÒÑÒş²Ø£¬¸üĞÂÏà¹Ø×´Ì¬
+	/// \brief é€šçŸ¥ä¸»çª—å£èœå•å·²éšè—ï¼Œæ›´æ–°ç›¸å…³çŠ¶æ€
 	VEMC_MENU_HID,
 };
 
-/// \brief ¿Ø¼ş¡¢²Ëµ¥µÄ»Øµ÷º¯ÊıĞÅÏ¢
+/// \brief æ§ä»¶ã€èœå•çš„å›è°ƒå‡½æ•°ä¿¡æ¯
 class VdkVObjEvent : public wxCommandEvent
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkVObjEvent(int id = wxID_ANY);
 
-	/// \brief ¸´ÖÆ¹¹Ôìº¯Êı
+	/// \brief å¤åˆ¶æ„é€ å‡½æ•°
 	VdkVObjEvent(const VdkVObjEvent& other);
 
-	/// \brief wxWidgets RTTI ±ØĞë
+	/// \brief wxWidgets RTTI å¿…é¡»
 	virtual wxEvent* Clone() const { return new VdkVObjEvent( *this ); }
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief »ñÈ¡ DC
+	/// \brief è·å– DC
 	void SetVObjDC(wxDC* pDC) { m_pDC = pDC; }
 
-	/// \brief »ñÈ¡ DC
+	/// \brief è·å– DC
 	wxDC* GetVObjDC() const { return m_pDC; }
 
-	/// \brief ÉèÖÃ²Ëµ¥¾ä±ú
+	/// \brief è®¾ç½®èœå•å¥æŸ„
 	void SetMenu(VdkMenu* menu) { m_menu = menu; }
 
-	/// \brief ×÷Îª²Ëµ¥»Øµ÷Ê±»ñÈ¡²Ëµ¥¾ä±ú
+	/// \brief ä½œä¸ºèœå•å›è°ƒæ—¶è·å–èœå•å¥æŸ„
 	VdkMenu* GetMenu() const { return m_menu; }
 
-	/// \brief ÉèÖÃ²Ëµ¥Ïî¾ä±ú
+	/// \brief è®¾ç½®èœå•é¡¹å¥æŸ„
 	void SetMenuItem(VdkMenuItem* item) { m_menuItem = item; }
 
-	/// \brief ×÷Îª²Ëµ¥»Øµ÷Ê±»ñÈ¡²Ëµ¥Ïî¾ä±ú
+	/// \brief ä½œä¸ºèœå•å›è°ƒæ—¶è·å–èœå•é¡¹å¥æŸ„
 	VdkMenuItem* GetMenuItem() const { return m_menuItem; }
 
-	/// \brief ÉèÖÃÏà¹ØÁªµÄ¿Ø¼ş¾ä±ú
+	/// \brief è®¾ç½®ç›¸å…³è”çš„æ§ä»¶å¥æŸ„
 	void SetCtrl(VdkControl* pCtrl) { m_pCtrl = pCtrl; }
 
-	/// \brief »ñÈ¡Ïà¹ØÁªµÄ¿Ø¼ş¾ä±ú
+	/// \brief è·å–ç›¸å…³è”çš„æ§ä»¶å¥æŸ„
 	VdkControl* GetCtrl() const { return m_pCtrl; }
 
-	/// \brief »ñÈ¡Ïà¹ØÁªµÄ¿Ø¼ş¾ä±ú
+	/// \brief è·å–ç›¸å…³è”çš„æ§ä»¶å¥æŸ„
 	template< class T >
 	T* GetCtrl() const { return (T*) m_pCtrl; }
 
-	/// \brief ÉèÖÃ¼üÅÌ°´¼üÊÂ¼ş¸½¼ÓµÄ°´¼ü±êÊ¶·û
+	/// \brief è®¾ç½®é”®ç›˜æŒ‰é”®äº‹ä»¶é™„åŠ çš„æŒ‰é”®æ ‡è¯†ç¬¦
 	void SetKeyCode(int k) { m_keyCode = k; }
 
-	/// \brief ÉèÖÃ¼üÅÌ°´¼üÊÂ¼ş¸½¼ÓµÄ°´¼ü±êÊ¶·û
+	/// \brief è®¾ç½®é”®ç›˜æŒ‰é”®äº‹ä»¶é™„åŠ çš„æŒ‰é”®æ ‡è¯†ç¬¦
 	int GetKeyCode() { return m_keyCode; }
 
 private:
@@ -343,22 +343,22 @@ vdkDECLARE_EVENT( wxEVT_VOBJ, VdkVObjEvent );
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief VdkWindow µÚÒ»´ÎÏÔÊ¾Ê±·¢ËÍµÄÏûÏ¢±êÊ¶·û
+/// \brief VdkWindow ç¬¬ä¸€æ¬¡æ˜¾ç¤ºæ—¶å‘é€çš„æ¶ˆæ¯æ ‡è¯†ç¬¦
 class VdkWindowFirstShownEvent : public wxCommandEvent
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkWindowFirstShownEvent(VdkWindow* win);
 
-	/// \brief wxWidgets RTTI ±ØĞë
+	/// \brief wxWidgets RTTI å¿…é¡»
 	virtual wxEvent *Clone() const {
 		return new VdkWindowFirstShownEvent( *this );
 	}
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief »ñÈ¡¹ØÁªµÄ VdkWindow
+	/// \brief è·å–å…³è”çš„ VdkWindow
 	VdkWindow* GetWindow() const { return m_window; }
 
 private:

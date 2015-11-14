@@ -1,4 +1,4 @@
-/***************************************************************
+Ôªø/***************************************************************
  * Name:      VdkUtil.cpp
  * Purpose:   Code for VdkUtil implementation
  * Author:    vanxining (vanxining@139.com)
@@ -56,7 +56,7 @@ bool VdkUtil::LoadMaskBitmap(wxBitmap& bitmap, const wxString& path)
 	}
 	else
 	{
-		wxLogDebug( L"[VdkUtil::ImRead]Œﬁ∑®‘ÿ»Î%s°£\n", path );
+		wxLogDebug( L"[VdkUtil::ImRead]Êó†Ê≥ïËΩΩÂÖ•%s„ÄÇ\n", path );
 		return false;
 	}
 
@@ -142,36 +142,36 @@ wxBitmap VdkUtil::TileBitmap(wxBitmap& bm,
 	int bottomCoord = rcTile.y + rcTile.height,
 		rightCoord = rcTile.x + rcTile.width;
 
-	// ∏¥÷∆µΩÀƒ∏ˆΩ«
-	dcDest.Blit( 0, 0, left, top, &dcSrc, 0, 0, wxCOPY, mask ); // ◊Û…œΩ«
+	// Â§çÂà∂Âà∞Âõõ‰∏™Ëßí
+	dcDest.Blit( 0, 0, left, top, &dcSrc, 0, 0, wxCOPY, mask ); // Â∑¶‰∏äËßí
 	dcDest.Blit( 0, h - bottom, left, bottom, &dcSrc, 
-				 0, bottomCoord, wxCOPY, mask ); // ◊Ûœ¬Ω«
+				 0, bottomCoord, wxCOPY, mask ); // Â∑¶‰∏ãËßí
 	dcDest.Blit( w - right, 0, right, top, &dcSrc, 
-				 rightCoord, 0, wxCOPY, mask ); // ”“…œΩ«
+				 rightCoord, 0, wxCOPY, mask ); // Âè≥‰∏äËßí
 	dcDest.Blit( w - right, h - bottom, right, bottom, &dcSrc,
-				 rightCoord, bottomCoord, wxCOPY, mask ); // ”“œ¬Ω«
+				 rightCoord, bottomCoord, wxCOPY, mask ); // Âè≥‰∏ãËßí
 
 	int newMidWidth = w - left - right,
 		newMidHeight = h - top - bottom;
 
-	// ∂•≤ø∆Ω∆Ã
+	// È°∂ÈÉ®Âπ≥Èì∫
     TileDraw_X( wxRect( left, 0, rcTile.width, top ), dcSrc,
                 wxRect( left, 0, newMidWidth, top ), dcDest, mask );
-	// µ◊≤ø∆Ω∆Ã
+	// Â∫ïÈÉ®Âπ≥Èì∫
     TileDraw_X( wxRect( left, bottomCoord, rcTile.width, bottom ), dcSrc,
 				wxRect( left, h - bottom, newMidWidth, bottom ), dcDest, mask );
-	// ◊Û±ﬂ∆Ω∆Ã
+	// Â∑¶ËæπÂπ≥Èì∫
     TileDraw_Y( wxRect( 0, top, left, rcTile.height ), dcSrc,
                 wxRect( 0, top, left, newMidHeight ), dcDest, mask );
-	// ”“±ﬂ∆Ω∆Ã
+	// Âè≥ËæπÂπ≥Èì∫
     TileDraw_Y( wxRect( rightCoord, top, right, rcTile.height ), dcSrc,
                 wxRect( w - right, top, right, newMidHeight ), dcDest, mask );
 
-	// ÷––ƒ∆Ω∆Ã
+	// ‰∏≠ÂøÉÂπ≥Èì∫
 	int yTile( static_cast< float > ( newMidHeight ) / rcTile.height );
 	int Rest( newMidHeight - rcTile.height * yTile );
 
-	// ÷¥–– yTile ¥ŒÀÆ∆Ω∆Ω∆Ã
+	// ÊâßË°å yTile Ê¨°Ê∞¥Âπ≥Âπ≥Èì∫
 	for( int i = 0; i < yTile ; i++ )
 	{
 		TileDraw_X
@@ -180,7 +180,7 @@ wxBitmap VdkUtil::TileBitmap(wxBitmap& bm,
 			  dcDest, mask );
 	}
 
-	// y ÷·∑ΩœÚ…œ £”‡“ªµ„µ„
+	// y ËΩ¥ÊñπÂêë‰∏äÂâ©‰Ωô‰∏ÄÁÇπÁÇπ
 	if( Rest )
 	{
 		TileDraw_X
@@ -209,7 +209,7 @@ void VdkUtil::TileDrawBitmap(wxDC& dc,
     if( !bm.IsOk() )
         return;
 
-	if( h ) //  ˙÷±∆Ω∆Ã
+	if( h ) // Á´ñÁõ¥Âπ≥Èì∫
 	{
 		int nBase = rcTile.y;
 		int nTileHeight = rcTile.height;
@@ -221,14 +221,14 @@ void VdkUtil::TileDrawBitmap(wxDC& dc,
 		int nTileCount = float( newMidHeight ) / nTileHeight;
 		int nRest = newMidHeight - nTileHeight * nTileCount;
 
-		// ∂•≤ø
+		// È°∂ÈÉ®
 		dc.Blit( x, y, bw, nBase, &mdc, 0, 0 );
-		// µ◊≤ø
+		// Â∫ïÈÉ®
 		dc.Blit( x, y + h - nBottom,
 				 bw, nBottom,
 				 &mdc,
 				 0, rcTile.y + rcTile.height );
-		// ÷–º‰
+		// ‰∏≠Èó¥
 		for( int i = 0 ; i < nTileCount; i++ )
 		{
 			dc.Blit( x, y + nBase + i * nTileHeight,
@@ -236,7 +236,7 @@ void VdkUtil::TileDrawBitmap(wxDC& dc,
 					 &mdc, 0, nBase );
 		}
 
-		//  £”‡µƒ°¢–°”⁄ nTileCount µƒ≤ø∑÷
+		// Ââ©‰ΩôÁöÑ„ÄÅÂ∞è‰∫é nTileCount ÁöÑÈÉ®ÂàÜ
 		if( nRest )
 		{
 			dc.Blit( x, y + h - nBottom - nRest,
@@ -257,14 +257,14 @@ void VdkUtil::TileDrawBitmap(wxDC& dc,
 		int nTileCount = float( newMidWidth )/ nTileWidth;
 		int nRest = newMidWidth - nTileWidth * nTileCount;
 
-		// ◊Û±ﬂ
+		// Â∑¶Ëæπ
 		dc.Blit( x, y, nBase, bh, &mdc, 0, 0 );
-		// ”“±ﬂ
+		// Âè≥Ëæπ
 		dc.Blit( x + w - nRight, y,
 				 nRight, bh,
 				 &mdc,
 				 rcTile.x + rcTile.width, 0 );
-		// ÷–º‰
+		// ‰∏≠Èó¥
 		for( int i = 0; i < nTileCount; i++ )
 		{
 			dc.Blit( x + nBase + i * nTileWidth, y,
@@ -272,7 +272,7 @@ void VdkUtil::TileDrawBitmap(wxDC& dc,
 					 &mdc, nBase, 0 );
 		}
 
-		//  £”‡µƒ°¢–°”⁄ nTileCount µƒ≤ø∑÷
+		// Ââ©‰ΩôÁöÑ„ÄÅÂ∞è‰∫é nTileCount ÁöÑÈÉ®ÂàÜ
 		if( nRest )
 		{
 			dc.Blit( x + w - nRight - nRest, y,
@@ -304,7 +304,7 @@ void VdkUtil::TileDraw_X(const wxRect& rcSrc, wxDC& dcSrc,
 	int nTileCount = float( newMidWidth ) / nTileWidth;
 	int nRest = newMidWidth - rcSrc.width * nTileCount;
 
-	// ÷–º‰
+	// ‰∏≠Èó¥
 	for( int i = 0; i < nTileCount; i++ )
 	{
 		dcDest.Blit( x + i * nTileWidth, y,
@@ -314,7 +314,7 @@ void VdkUtil::TileDraw_X(const wxRect& rcSrc, wxDC& dcSrc,
 					 wxCOPY, mask );
 	}
 
-	//  £”‡µƒ°¢–°”⁄ nTileWidth µƒ≤ø∑÷
+	// Ââ©‰ΩôÁöÑ„ÄÅÂ∞è‰∫é nTileWidth ÁöÑÈÉ®ÂàÜ
 	if( nRest )
 	{
 		dcDest.Blit( x + w - nRest, y,
@@ -347,7 +347,7 @@ void VdkUtil::TileDraw_Y(const wxRect& rcSrc, wxDC& dcSrc,
 	int nTileCount = float( newMidHeight ) / nTileHeight;
 	int nRest = newMidHeight - nTileHeight * nTileCount;
 
-	// ÷–º‰
+	// ‰∏≠Èó¥
 	for( int i = 0 ; i < nTileCount; i++ )
 	{
 		dcDest.Blit( x, y + i * nTileHeight,
@@ -358,7 +358,7 @@ void VdkUtil::TileDraw_Y(const wxRect& rcSrc, wxDC& dcSrc,
 					 wxCOPY, mask );
 	}
 
-	//  £”‡µƒ°¢–°”⁄ nTileHeight µƒ≤ø∑÷
+	// Ââ©‰ΩôÁöÑ„ÄÅÂ∞è‰∫é nTileHeight ÁöÑÈÉ®ÂàÜ
 	if( nRest )
 	{
 		dcDest.Blit( x, y + h - nRest,
@@ -396,15 +396,15 @@ void VdkUtil::InflateDrawByCenter(wxBitmap& bm,
 	width = bm.GetWidth();
 	height = bm.GetHeight();
 
-	left = center.x; // ◊Û±ﬂ≤ª±‰µƒ≥§∂»
-	right = width - (center.x + center.width); // ”“±ﬂ
+	left = center.x; // Â∑¶Ëæπ‰∏çÂèòÁöÑÈïøÂ∫¶
+	right = width - (center.x + center.width); // Âè≥Ëæπ
 
-	top = center.y; // …œ±ﬂ
-	bottom = height - (center.y + center.height); // œ¬±ﬂ
+	top = center.y; // ‰∏äËæπ
+	bottom = height - (center.y + center.height); // ‰∏ãËæπ
 
 	//---------------------------------------------------
 
-	// ƒø±ÍŒªÕºøÌ∂»∫Õ∏ﬂ∂»
+	// ÁõÆÊ†á‰ΩçÂõæÂÆΩÂ∫¶ÂíåÈ´òÂ∫¶
 	int xDest( newsize.x - left - right ),
 		yDest( newsize.y - top - bottom );
 
@@ -412,10 +412,10 @@ void VdkUtil::InflateDrawByCenter(wxBitmap& bm,
 
 	//---------------------------------------------------
 
-	// ◊¯±Í
+	// ÂùêÊ†á
 	int bottom2( newsize.y - bottom ), right2( newsize.x - right );
 
-	// ∏¥÷∆µΩÀƒ∏ˆΩ«
+	// Â§çÂà∂Âà∞Âõõ‰∏™Ëßí
 	dc.Blit( 0, 0, left, top, &mdc, 0, 0 );
 	dc.Blit( 0, bottom2, left, bottom, &mdc, 0, height - bottom );
 	dc.Blit( right2, 0, right, top, &mdc, width - right, 0 );
@@ -425,31 +425,31 @@ void VdkUtil::InflateDrawByCenter(wxBitmap& bm,
 	wxBitmap bmTemp;
 
 	StretchBlit( dc,
-				 wxRect( 0, top, left, yDest ), // ◊Û±ﬂ
+				 wxRect( 0, top, left, yDest ), // Â∑¶Ëæπ
 				 mdc,
 				 wxRect( 0, top, left, center.height ),
 				 bmTemp );
 
 	StretchBlit( dc,
-				 wxRect( left, 0, xDest, top ), // …œ±ﬂ
+				 wxRect( left, 0, xDest, top ), // ‰∏äËæπ
 				 mdc,
 				 wxRect( left, 0, center.width, top ),
 				 bmTemp );
 
 	StretchBlit( dc,
-				 wxRect( right2, top, right, yDest ), // ”“±ﬂ
+				 wxRect( right2, top, right, yDest ), // Âè≥Ëæπ
 				 mdc,
 				 wxRect( width - right, top, right, center.height ),
 				 bmTemp );
 
 	StretchBlit( dc,
-				 wxRect( left, bottom2, xDest, bottom ), // œ¬±ﬂ
+				 wxRect( left, bottom2, xDest, bottom ), // ‰∏ãËæπ
 				 mdc,
 				 wxRect( left, height - bottom, center.width, bottom ),
 				 bmTemp );
 
 	StretchBlit( dc,
-				 wxRect( left, top, xDest, yDest ), // ÷–º‰
+				 wxRect( left, top, xDest, yDest ), // ‰∏≠Èó¥
 				 mdc,
 				 wxRect( left, top, center.width, center.height ),
 				 bmTemp );
@@ -667,7 +667,7 @@ bool VdkUtil::ImRead(wxBitmap& bm, const wxString& path)
 
 	wxFileName filename( path );
 	wxString ext( filename.GetExt() );
-	// ƒø±ÍÕºœÒ∏Ò Ω
+	// ÁõÆÊ†áÂõæÂÉèÊ†ºÂºè
 	wxBitmapType imageType;
 
 	if( ext.CmpNoCase( L"bmp" ) == 0 )
@@ -725,8 +725,8 @@ bool VdkUtil::ImRead(wxBitmap& bm, const wxString& path)
 #endif
 	else
 	{
-		wxLogDebug( L"[VdkUtil::ImRead]≤ª÷ß≥÷µƒÕºœÒ∏Ò Ω°£\n"
-					L"µ±«∞÷ß≥÷: .BMP;.ICO;.PNG;.JPG/.JPEG;.GIF°£" );
+		wxLogDebug( L"[VdkUtil::ImRead]‰∏çÊîØÊåÅÁöÑÂõæÂÉèÊ†ºÂºè„ÄÇ\n"
+					L"ÂΩìÂâçÊîØÊåÅ: .BMP;.ICO;.PNG;.JPG/.JPEG;.GIF„ÄÇ" );
 
 		return false;
 	}
@@ -739,7 +739,7 @@ TextInfo VdkUtil::GetXrcTextInfo(wxXmlNode* xmlNode, wxWindow* window)
 	TextInfo ti;
 	wxXmlNode* chd;
 
-	// Œƒ±æ—’…´
+	// ÊñáÊú¨È¢úËâ≤
 	chd = FindChildNode( xmlNode, L"font-color" );
 	if( chd )
 	{
@@ -750,7 +750,7 @@ TextInfo VdkUtil::GetXrcTextInfo(wxXmlNode* xmlNode, wxWindow* window)
 	else
 		ti.foreground = *wxBLACK;
 
-	// ◊÷∫≈
+	// Â≠óÂè∑
 	int nFontSize = 9;
 	chd = FindChildNode( xmlNode, L"font-size" );
 	if( chd )
@@ -760,7 +760,7 @@ TextInfo VdkUtil::GetXrcTextInfo(wxXmlNode* xmlNode, wxWindow* window)
 			strFontSize.ToLong( (long *) &nFontSize );
 	}
 
-	//  «∑Ò¥÷ÃÂ
+	// ÊòØÂê¶Á≤ó‰Ωì
 	bool bBold = false;
 	chd = FindChildNode( xmlNode, L"bold" );
 	if( chd )
@@ -770,7 +770,7 @@ TextInfo VdkUtil::GetXrcTextInfo(wxXmlNode* xmlNode, wxWindow* window)
 			bBold = true;
 	}
 
-	// ◊÷ÃÂ√˚
+	// Â≠ó‰ΩìÂêç
 	wxString strFontName;
 	if( window )
 	{
@@ -794,7 +794,7 @@ TextInfo VdkUtil::GetXrcTextInfo(wxXmlNode* xmlNode, wxWindow* window)
 
 	//////////////////////////////////////////////////////////////////////////
 
-	// Œƒ±æ±ﬂæ‡
+	// ÊñáÊú¨ËæπË∑ù
 	ti.xPadding = gs_invalidPadding;
 	ti.yPadding = gs_invalidPadding;
 	ti.xPadding = XmlGetContentOfNum

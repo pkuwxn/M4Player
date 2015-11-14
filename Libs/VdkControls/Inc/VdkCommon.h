@@ -1,12 +1,12 @@
-/***************************************************************
+﻿/***************************************************************
  * Name:      VdkCommon.h
- * Purpose:   һЩ���ݽṹ�Ķ���
+ * Purpose:   一些数据结构的定义
  * Author:    vanxining (vanxining@139.com)
  * Created:   2011-07-27
  **************************************************************/
 #pragma once
 
-// �����Ӧ������������֮ǰʹ�ã���Ϊ����Ҳ������һ��Ԥ����
+// 这个宏应该在类型声明之前使用，因为我们也进行了一次预声明
 #define VDK_DECLARE_WX_PTR_LIST( T, Name, Iter ) \
 	class T; \
 	VDK_DECLARE_WX_PTR_LIST_NO_FORWARD_DECL( T, Name, Iter )

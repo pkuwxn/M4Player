@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "VdkControl.h"
 
 #include "VdkMenu.h"
@@ -28,7 +28,7 @@ void VdkControl::Initialize(const wxColour& maskColor, const wxString& rootPath)
 
 VdkControl* VdkControl::ParseObjects(const VdkCtrlParserInfo& info)
 {
-	wxASSERT_MSG( info.Node, L"XML ½ÚµãÎª¿Õ¡£" );
+	wxASSERT_MSG( info.Node, L"XML èŠ‚ç‚¹ä¸ºç©ºã€‚" );
 
 	wxString className;
 	VdkControl *pCtrl = NULL, *firstCtrl = NULL;
@@ -45,14 +45,14 @@ VdkControl* VdkControl::ParseObjects(const VdkCtrlParserInfo& info)
 
 			if( !pCtrl )
 			{
-				wxLogDebug(L"ÎŞ·¨ÊµÀı»¯ `%s` ÀàĞÍ¡£", className);
+				wxLogDebug(L"æ— æ³•å®ä¾‹åŒ– `%s` ç±»å‹ã€‚", className);
 			}
 			else
 			{
 				if( !firstCtrl )
 					firstCtrl = pCtrl;
 
-				// »ù±¾ĞÅÏ¢
+				// åŸºæœ¬ä¿¡æ¯
 				pCtrl->m_Window = info.Window;
 				pCtrl->m_WindowImpl = info.Window->GetHandle();
 
@@ -78,7 +78,7 @@ VdkControl* VdkControl::ParseObjects(const VdkCtrlParserInfo& info)
 
 				//-------------------------------------
 
-				// ²éÕÒ¿Ø¼şµÄ ID
+				// æŸ¥æ‰¾æ§ä»¶çš„ ID
 				if( info.IDs )
 				{
 					IdInfoIter iter( info.IDs->find( pCtrl->m_strName ) );
@@ -98,7 +98,7 @@ VdkControl* VdkControl::ParseObjects(const VdkCtrlParserInfo& info)
 
 				//-------------------------------------
 
-				// »Øµ÷º¯Êı
+				// å›è°ƒå‡½æ•°
 				if( info.Callback )
 					info.Callback->Notify( info.Window, className, pCtrl );
 			}
@@ -133,7 +133,7 @@ VdkControl::~VdkControl()
 {
 	wxASSERT( m_Window );
 
-	// ¼ÙÈçÊÇÕı³£µÄ RESET £¬²»ĞíÕâÃ´Âé·³
+	// å‡å¦‚æ˜¯æ­£å¸¸çš„ RESET ï¼Œä¸è®¸è¿™ä¹ˆéº»çƒ¦
 	if( !m_Window->TestState( VWST_RESET ) )
 	{
 		VdkControl* chd = m_firstChild;
@@ -181,7 +181,7 @@ void VdkControl::FireEvent(wxDC* pDC, void* extraData)
 		e->SetCtrl( this );
 		e->SetClientData( extraData );
 
-		// ±ØĞë±£Ö¤ pDC µÄÓĞĞ§ĞÔ
+		// å¿…é¡»ä¿è¯ pDC çš„æœ‰æ•ˆæ€§
 		if( pDC && !TestStyle( VCS_DELAY_EVENT ) &&
 			!m_Window->TestStyle( VWS_MENU_IMPL ) )
 		{
@@ -264,7 +264,7 @@ void VdkControl::Show(bool bShow, wxDC* pDC)
 
 	if( pDC )
 	{
-		m_shown ? Draw( *pDC ) : // ²Á³ı²ĞÁôµÄ±³¾°
+		m_shown ? Draw( *pDC ) : // æ“¦é™¤æ®‹ç•™çš„èƒŒæ™¯
 			EraseBackground( *pDC, m_Rect );
 	}
 }
@@ -399,7 +399,7 @@ void VdkControl::SetID(VdkCtrlId id)
 
 void VdkControl::SetVdkWindow(VdkWindow* win)
 {
-    wxASSERT_MSG( win, L"¸¸´°¿Ú²»¿ÉÎª¿Õ¡£" );
+    wxASSERT_MSG( win, L"çˆ¶çª—å£ä¸å¯ä¸ºç©ºã€‚" );
     if( m_Window && m_WindowImpl )
         return;
 
@@ -410,7 +410,7 @@ void VdkControl::SetVdkWindow(VdkWindow* win)
 
 bool VdkControl::ReAttachToWindow(VdkWindow* win)
 {
-    wxASSERT_MSG( win, L"¸¸´°¿Ú²»¿ÉÎª¿Õ¡£" );
+    wxASSERT_MSG( win, L"çˆ¶çª—å£ä¸å¯ä¸ºç©ºã€‚" );
 	m_Window = NULL;
 	m_WindowImpl = NULL;
 
@@ -484,7 +484,7 @@ bool VdkControl::HitTest(const wxPoint& mousePos) const
 
 bool VdkControl::ContainsPointerGlobally() const
 {
-    // GTK ÏÂ¿ÉÄÜ»áÒı·¢Ò»¸ö ASSERT(´ËÊ±´°¿ÚÉĞÎ´´´½¨³öÀ´)
+    // GTK ä¸‹å¯èƒ½ä¼šå¼•å‘ä¸€ä¸ª ASSERT(æ­¤æ—¶çª—å£å°šæœªåˆ›å»ºå‡ºæ¥)
     if( m_Window->IsInitializing() )
         return false;
 
@@ -502,7 +502,7 @@ wxRect VdkControl::TranslateRect(const wxRect& rc) const
 
 	while( pCtrl )
 	{
-		// ´«ÈëÀ´µÄ rc ÊÇÒ»¸ö×Ó¿Ø¼şµÄ×÷ÓÃÓò
+		// ä¼ å…¥æ¥çš„ rc æ˜¯ä¸€ä¸ªå­æ§ä»¶çš„ä½œç”¨åŸŸ
 		if( pCtrl != this )
 		{
 			ret.x += pCtrl->m_Rect.x;
@@ -593,7 +593,7 @@ void VdkControl::Draw(wxDC& dc)
 		if( m_parent )
 			TranslateDC( dc );
 		/*
-		// »æÖÆ¾ßÓĞ½¹µãÊ±µÄ±ß¿ò
+		// ç»˜åˆ¶å…·æœ‰ç„¦ç‚¹æ—¶çš„è¾¹æ¡†
 		if( TestState( VCST_ONFOCUS ) )
 		{
 			static wxPen dashPen( *wxBLACK_DASHED_PEN );
@@ -647,7 +647,7 @@ void VdkControl::HandleMouseEvent(VdkMouseEvent& e)
 
 	case DRAGGING:
 		{
-			// ÎÒÃÇ²»ĞèÒªËùÓĞÍ»ÈçÆäÀ´¶øÎŞÈÎºÎÀ´ÓÉµÄÍÏ¶¯ÊÂ¼ş
+			// æˆ‘ä»¬ä¸éœ€è¦æ‰€æœ‰çªå¦‚å…¶æ¥è€Œæ— ä»»ä½•æ¥ç”±çš„æ‹–åŠ¨äº‹ä»¶
 			VdkMouseEventType lastMouseEvt = m_Window->GetLastMouseEvent();
 			if( lastMouseEvt != LEFT_DOWN && lastMouseEvt != DRAGGING )
 			{
@@ -668,10 +668,10 @@ void VdkControl::HandleMouseEvent(VdkMouseEvent& e)
 
 	if( e.evtCode == DRAGGING &&
 		e.GetSkipped() &&
-	   !IsEnabled() && // ²»¿ÉÍÏ¶¯ÒÑ½ûÓÃµÄ¿Ø¼ş
+	   !IsEnabled() && // ä¸å¯æ‹–åŠ¨å·²ç¦ç”¨çš„æ§ä»¶
 	   !m_Window->CanDragBySpace() )
 	{
-		// Ö»ÓĞÔÚ´°¿Ú¿Õ°×´¦²ÅÄÜÍÏ¶¯´°¿Ú
+		// åªæœ‰åœ¨çª—å£ç©ºç™½å¤„æ‰èƒ½æ‹–åŠ¨çª—å£
 		e.Skip(false);
 	}
 }
@@ -720,7 +720,7 @@ void VdkControl::HandleResize(int dX, int dY)
 
 	if( m_firstChild )
 	{
-		// ĞŞ¸ÄÎª¸¸¿Ø¼şµÄ¸Ä±äÁ¿
+		// ä¿®æ”¹ä¸ºçˆ¶æ§ä»¶çš„æ”¹å˜é‡
 		int dX = m_Rect.width - rc.width;
 		int dY = m_Rect.height - rc.height;
 
@@ -728,9 +728,9 @@ void VdkControl::HandleResize(int dX, int dY)
 			HandleChildrenResize( dX, dY );
 	}
 
-	// Ó¦¸ÃÔÚÒ»ÇĞ¾ÍĞ÷Ö®ºó·¢ËÍ VCN_WINDOW_RESIZED ÊÂ¼ş
-	// ÀıÈç¹ö¶¯´°¿ÚÔÚ´°¿Ú´óĞ¡¸Ä±äÖ®ºó¸üĞÂ¹ö¶¯Ìõ¸ß¶È£¬¸üĞÂÊ±¹ö¶¯ÌõÓ¦¸ÃÓ¦¸ÃÒª
-	// ÖªÏ¤´°¿Ú´óĞ¡ÒÑ¾­¸Ä±ä
+	// åº”è¯¥åœ¨ä¸€åˆ‡å°±ç»ªä¹‹åå‘é€ VCN_WINDOW_RESIZED äº‹ä»¶
+	// ä¾‹å¦‚æ»šåŠ¨çª—å£åœ¨çª—å£å¤§å°æ”¹å˜ä¹‹åæ›´æ–°æ»šåŠ¨æ¡é«˜åº¦ï¼Œæ›´æ–°æ—¶æ»šåŠ¨æ¡åº”è¯¥åº”è¯¥è¦
+	// çŸ¥æ‚‰çª—å£å¤§å°å·²ç»æ”¹å˜
 	FireSizeNotify( dX, dY, false );
 
 	int xPosChanged( m_Rect.x - rc.x );
@@ -801,7 +801,7 @@ void VdkControl::SetRect(int x, int y, int w, int h, wxDC* pDC)
 	int xPosChanged( x - m_Rect.x );
 	int yPosChanged( y - m_Rect.y );
 
-	// Çå³ı¾É±³¾°
+	// æ¸…é™¤æ—§èƒŒæ™¯
 	if( pDC )
 		EraseBackground( *pDC, m_Rect );
 
@@ -812,7 +812,7 @@ void VdkControl::SetRect(int x, int y, int w, int h, wxDC* pDC)
 
 	if( dX || dY )
 	{
-		// ×Ó¿Ø¼ş²»»á×Ô¶¯½øĞĞÊÊÅä
+		// å­æ§ä»¶ä¸ä¼šè‡ªåŠ¨è¿›è¡Œé€‚é…
 		HandleChildrenResize( dX, dY );
 		FireSizeNotify( dX, dY, true, pDC );
 	}
@@ -820,7 +820,7 @@ void VdkControl::SetRect(int x, int y, int w, int h, wxDC* pDC)
 	if( xPosChanged || yPosChanged )
 		FireMoveNotify( xPosChanged, yPosChanged );
 
-	// »æÖÆĞÂµÄÄÚÈİ
+	// ç»˜åˆ¶æ–°çš„å†…å®¹
 	if( pDC )
 		Draw( *pDC );
 }

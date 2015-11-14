@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "VdkButton.h"
 #include "VdkWindow.h"
 #include "VdkSlider.h"
@@ -49,7 +49,7 @@ VdkControl* VdkButton::Create(wxXmlNode* node,
 							  const wxBitmap& bm,
 							  int nExpl)
 {
-	// °´Å¥ÎÄ±¾
+	// æŒ‰é’®æ–‡æœ¬
 	wxString strCaption( GetXrcTextBlock( node ) );
 	if( !strCaption.IsEmpty() )
 	{
@@ -65,7 +65,7 @@ VdkControl* VdkButton::Create(wxXmlNode* node,
 		m_TextColor = ti.foreground;
 	}
 
-	// ÌáÊ¾ĞÅÏ¢
+	// æç¤ºä¿¡æ¯
 	wxXmlNode* chd = NULL;
 	chd = FindChildNode( node, L"tip" );
 	if( chd )
@@ -73,7 +73,7 @@ VdkControl* VdkButton::Create(wxXmlNode* node,
 		SetToolTip( chd->GetNodeContent() );
 	}
 
-	// ÊÇ·ñ¿ÉÒÔÒş²Ø
+	// æ˜¯å¦å¯ä»¥éšè—
 	wxString val( XmlGetChildContent( node, L"transparent" ) );
 	if( val.CmpNoCase( L"true" ) == 0 )
 		SetAddinStyle( VCS_ERASE_BG );
@@ -83,7 +83,7 @@ VdkControl* VdkButton::Create(wxXmlNode* node,
 	if( strFit.CmpNoCase( L"true" ) == 0 )
 		bFit = true;
 
-	// TODO: TileLen ¶ÁÈë
+	// TODO: TileLen è¯»å…¥
 
 	Create( VdkButtonInitializer().
 		    window( m_Window ).
@@ -129,7 +129,7 @@ void VdkButton::Create(const VdkButtonInitializer& init_data)
 			if( init_data.TileType == RESIZE_TYPE_TILE )
 				SetAddinStyle( VBS_RESIZE_TYPE_TILE );
 
-			// ÕâÀï¸Ğ¾õ·Ç³£Ææ¹Ö£¬²»ÄÜÔÚ Ubuntu/GTK ÏÂÓÃ GetSubBitmap
+			// è¿™é‡Œæ„Ÿè§‰éå¸¸å¥‡æ€ªï¼Œä¸èƒ½åœ¨ Ubuntu/GTK ä¸‹ç”¨ GetSubBitmap
 			wxBitmap bmPrimitive
 				( init_data.BkGnd.GetWidth(), init_data.BkGnd.GetHeight() );
 			wxMemoryDC mdc( bmPrimitive );
@@ -140,7 +140,7 @@ void VdkButton::Create(const VdkButtonInitializer& init_data)
 		}
 	}
 
-	// Ö»´¦ÀíµÚÒ»´Î HOVERING ÊÂ¼ş
+	// åªå¤„ç†ç¬¬ä¸€æ¬¡ HOVERING äº‹ä»¶
 	SetAddinStyle( VCS_ONESHOT_HOVERING );
 }
 
@@ -164,8 +164,8 @@ void VdkButton::Clone(VdkButton* o)
 
 void VdkButton::GetSize(int* w, int* h) const
 {
-	// µ± VdkButton ×÷ÎªÆäËû¿Ø¼şµÄ×Ó¿Ø¼şÊ±£¬
-	// Æä³õÊ¼×÷ÓÃÓò£¨ XRC ÎÄ¼şÖĞ¶¨Òå£©¿ÉÄÜÎª¿Õ
+	// å½“ VdkButton ä½œä¸ºå…¶ä»–æ§ä»¶çš„å­æ§ä»¶æ—¶ï¼Œ
+	// å…¶åˆå§‹ä½œç”¨åŸŸï¼ˆ XRC æ–‡ä»¶ä¸­å®šä¹‰ï¼‰å¯èƒ½ä¸ºç©º
 
 	if( w )
 		*w = (m_Rect.width  == 0) ? m_bmArray.GetWidth()  : m_Rect.width;
@@ -196,13 +196,13 @@ void VdkButton::Update(VdkButton::State nState, wxDC* pDC)
 	
 	//===================================================
 
-	// Ò»¸ö°´Å¥ÒªÓĞ¡°½ûÓÃ¡±µÄ×´Ì¬£¬ÖÁÉÙÒªÓĞ 4 ¸ö×´Ì¬µÄÍ¼
+	// ä¸€ä¸ªæŒ‰é’®è¦æœ‰â€œç¦ç”¨â€çš„çŠ¶æ€ï¼Œè‡³å°‘è¦æœ‰ 4 ä¸ªçŠ¶æ€çš„å›¾
 	if( m_bmArray.GetExplNum() < 4 )
     {
         wxASSERT( m_nState != DISABLED );
     }
 
-	// TODO: ²¹³äÎªÊ²Ã´×´Ì¬ÏàÍ¬²»ÄÜÓÅ»¯µô±¾´ÎÖØ»­µÄÀíÓÉ
+	// TODO: è¡¥å……ä¸ºä»€ä¹ˆçŠ¶æ€ç›¸åŒä¸èƒ½ä¼˜åŒ–æ‰æœ¬æ¬¡é‡ç”»çš„ç†ç”±
 	SetButtonState( nState );
 
 	if( pDC )
@@ -215,10 +215,10 @@ void VdkButton::DoDraw(wxDC& dc)
 
 	if( !m_strCaption.IsEmpty() )
 	{
-		// Expl == 4±íÃ÷ÕâÊÇÒ»¸ö±ê×¼4×´Ì¬°´Å¥£¬¼ÙÈç
-		// Expl < 4£¬±íÃ÷Õâ°´Å¥²»Ö§³Ö½ûÓÃ×´Ì¬£»
-		// Expl > 4£¬ÀıÈç VdkCheckBox £¬4ÒÑ¾­±»ÆäÖØĞÂÖ¸¶¨
-		// µÄ×´Ì¬²ÎÊıÕ¼¾İ£¬ËûÃÇ×Ô¼º»á´¦ÀíÎÄ±¾ÑÕÉ«
+		// Expl == 4è¡¨æ˜è¿™æ˜¯ä¸€ä¸ªæ ‡å‡†4çŠ¶æ€æŒ‰é’®ï¼Œå‡å¦‚
+		// Expl < 4ï¼Œè¡¨æ˜è¿™æŒ‰é’®ä¸æ”¯æŒç¦ç”¨çŠ¶æ€ï¼›
+		// Expl > 4ï¼Œä¾‹å¦‚ VdkCheckBox ï¼Œ4å·²ç»è¢«å…¶é‡æ–°æŒ‡å®š
+		// çš„çŠ¶æ€å‚æ•°å æ®ï¼Œä»–ä»¬è‡ªå·±ä¼šå¤„ç†æ–‡æœ¬é¢œè‰²
 		if( m_nState != DISABLED || m_bmArray.GetExplNum() != 4  )
 			dc.SetTextForeground( m_TextColor );
 		else
@@ -243,7 +243,7 @@ void VdkButton::DoHandleMouseEvent(VdkMouseEvent& e)
 	
 	//===================================================
 
-	int evtCode = e.evtCode; // ·ÀÖ¹ evtCode »á±»¸¸¿Ø¼ş¸Ä±ä
+	int evtCode = e.evtCode; // é˜²æ­¢ evtCode ä¼šè¢«çˆ¶æ§ä»¶æ”¹å˜
 
 	if( m_parent &&
 		TestStyle( VCS_REDIRECT_TO_PARENT ) &&
@@ -276,9 +276,9 @@ void VdkButton::DoHandleMouseEvent(VdkMouseEvent& e)
 
 		case LEFT_UP:
 		{
-			// Ô­ÏÈ²»ÊÇ°´ÏÂÕâ¸ö°´Å¥µÄÇé¿ö²»ÄÜ×÷Ä¬ÈÏ´¦Àí
-			// ÀıÈçÔ­±¾°´ÏÂµÄÊÇÁíÒ»¸ö°´Å¥£¬È´²»·ÅÆğÊó±ê¶øÊÇ½«Ö¸ÕëÍÏµ½
-			// ÁíÒ»¸ö°´Å¥ÉÏ
+			// åŸå…ˆä¸æ˜¯æŒ‰ä¸‹è¿™ä¸ªæŒ‰é’®çš„æƒ…å†µä¸èƒ½ä½œé»˜è®¤å¤„ç†
+			// ä¾‹å¦‚åŸæœ¬æŒ‰ä¸‹çš„æ˜¯å¦ä¸€ä¸ªæŒ‰é’®ï¼Œå´ä¸æ”¾èµ·é¼ æ ‡è€Œæ˜¯å°†æŒ‡é’ˆæ‹–åˆ°
+			// å¦ä¸€ä¸ªæŒ‰é’®ä¸Š
 			if( m_nState == PUSHED )
 				fireEvent = true;
 
@@ -293,8 +293,8 @@ void VdkButton::DoHandleMouseEvent(VdkMouseEvent& e)
 
 		default:
 
-			// ×¢ÒâÊÇ²»·ûÒªÇóµÄÊÂ¼şÀàĞÍ»áÖ±½Ó·µ»Ø£¬
-			// ËùÒÔ²»ĞèÒª¿¼ÂÇ¸¸¿Ø¼şÊÇ·ñÔÊĞíÌø¹ı±¾ÊÂ¼ş
+			// æ³¨æ„æ˜¯ä¸ç¬¦è¦æ±‚çš„äº‹ä»¶ç±»å‹ä¼šç›´æ¥è¿”å›ï¼Œ
+			// æ‰€ä»¥ä¸éœ€è¦è€ƒè™‘çˆ¶æ§ä»¶æ˜¯å¦å…è®¸è·³è¿‡æœ¬äº‹ä»¶
 			if( !m_parent )
 				e.Skip( true );
 
@@ -303,7 +303,7 @@ void VdkButton::DoHandleMouseEvent(VdkMouseEvent& e)
 
 	Update( state, &e.dc );
 
-	// ¶Ô»Øµ÷º¯ÊıµÄµ÷ÓÃ·Åµ½×îºó½øĞĞ£¬ÒòÎªÓÃ»§¿ÉÄÜÔÚÆä´úÂëÖĞ¸Ä±ä°´Å¥µÄ×´Ì¬
+	// å¯¹å›è°ƒå‡½æ•°çš„è°ƒç”¨æ”¾åˆ°æœ€åè¿›è¡Œï¼Œå› ä¸ºç”¨æˆ·å¯èƒ½åœ¨å…¶ä»£ç ä¸­æ”¹å˜æŒ‰é’®çš„çŠ¶æ€
 	if( fireEvent && IsReadyForEvent() )
 		FireEvent( &e.dc, NULL );
 }
@@ -327,7 +327,7 @@ void VdkButton::DoHandleNotify(const VdkNotify& notice)
 	{
 	case VCN_DISABLED:
 
-		// ¸üĞÂÄÚ²¿Öµ
+		// æ›´æ–°å†…éƒ¨å€¼
 		if( m_bmArray.GetExplNum() >= 4 )
 			SetButtonState( DISABLED );
 
@@ -350,7 +350,7 @@ bool VdkButton::Resize(int newwidth, int newheight)
 	if( !TestStyle( VBS_RESIZEABLE ) )
 		return false;
 
-	// m_nTile Îª0±íÃ÷²»ÄÜ¸Ä±ä´óĞ¡
+	// m_nTile ä¸º0è¡¨æ˜ä¸èƒ½æ”¹å˜å¤§å°
 	if( m_nTile == 0 )
 		return false;
 
@@ -387,8 +387,8 @@ bool VdkButton::Resize(int newwidth, int newheight)
 						( bmTmp, rcTile, wxSize( w, newheight ) );
 				}
 
-				// ²»ÖªµÀ wxBitmap::SetHeight Õâ¸öº¯ÊıµÄ³õÊ¼Éè¼ÆË¼ÏëÊÇ·ñÕâÑù£¬
-				// ¾ÍÊÇÊ¹¸ßµÄ Bitmap ´Ó GetHeight() ÌåÏÖµÃĞ¡Ò»µã¡£
+				// ä¸çŸ¥é“ wxBitmap::SetHeight è¿™ä¸ªå‡½æ•°çš„åˆå§‹è®¾è®¡æ€æƒ³æ˜¯å¦è¿™æ ·ï¼Œ
+				// å°±æ˜¯ä½¿é«˜çš„ Bitmap ä» GetHeight() ä½“ç°å¾—å°ä¸€ç‚¹ã€‚
 				bmTmp.SetHeight( h );
                 mdc.SelectObject( bmTmp );
                 mdcDest.Blit( i * w, 0, w, newheight, &mdc, 0, 0, wxCOPY, true );
@@ -433,7 +433,7 @@ bool VdkButton::Resize(int newwidth, int newheight)
 				if( newwidth == w )
 					continue;
 
-				// ±ß±ß½Ç½Çµ¥´¿À­Éì»áµ¼ÖÂ±äĞÎ¡¢Ä£ºı»¯
+				// è¾¹è¾¹è§’è§’å•çº¯æ‹‰ä¼¸ä¼šå¯¼è‡´å˜å½¢ã€æ¨¡ç³ŠåŒ–
 				bmArray[i] = InflateBitmapByCenter
 					( bmArray[i], rcTile, wxSize( newwidth, h ) );
 			}
@@ -486,8 +486,8 @@ void VdkButton::CalcTextPos()
 		if( m_TextAlign & TEXT_ALIGN_CENTER_X_Y  )
 			m_nPaddingX = ( m_Rect.width - w ) / 2;
 		else if( m_TextAlign & TEXT_ALIGN_RIGHT  )
-			m_nPaddingX = m_Rect.width - w - 5; // -5 ÊÇÎªÁË¼Ó¶àµãÈİ´í
-		else // ×ó¶ÔÆë
+			m_nPaddingX = m_Rect.width - w - 5; // -5 æ˜¯ä¸ºäº†åŠ å¤šç‚¹å®¹é”™
+		else // å·¦å¯¹é½
 			m_nPaddingX = m_WindowImpl->GetCharWidth();
 	}
 
@@ -566,7 +566,7 @@ void VdkButton::CreateRegion()
 	}
 }
 
-// TODO: »¹Ğè×ÁÄ¥ÕâÀï
+// TODO: è¿˜éœ€ç¢ç£¨è¿™é‡Œ
 const VdkBitmapArray& VdkButton::GetPrimaryBitmap() const
 {
 	return m_bmPrimArray.IsOk() ? m_bmPrimArray : m_bmArray;
@@ -587,7 +587,7 @@ void VdkWindow::InitRegionButtons()
 		if( !vb )
 			continue;
 
-		// ²»ÊÊºÏ×÷Îª RegionButton »òÕßÒÑ¾­×¼±¸ºÃÇøÓòÔòÍË³öµ±´ÎÑ­»·
+		// ä¸é€‚åˆä½œä¸º RegionButton æˆ–è€…å·²ç»å‡†å¤‡å¥½åŒºåŸŸåˆ™é€€å‡ºå½“æ¬¡å¾ªç¯
 		if( !vb->IsRegionCreationFailed() || vb->IsRegionOk() )
 			continue;
 
@@ -602,13 +602,13 @@ void VdkWindow::InitRegionButtons()
 			if( !vb2 )
 				continue;
 
-			// ²»ÊÊºÏ×÷Îª RegionButton »òÕßÒÑ¾­×¼±¸ºÃÇøÓòÔòÍË³öµ±´ÎÑ­»·
+			// ä¸é€‚åˆä½œä¸º RegionButton æˆ–è€…å·²ç»å‡†å¤‡å¥½åŒºåŸŸåˆ™é€€å‡ºå½“æ¬¡å¾ªç¯
 			if( !vb2->IsRegionCreationFailed() || vb2->IsRegionOk() )
 				continue;
 
 			if( vb2->GetAbsoluteRect().Intersects( rc ) )
 			{
-				// Íâ²¿Ñ­»·µÄ°´Å¥ÊÇ·ñÒÑÈ»×¼±¸ºÃÑ­»·
+				// å¤–éƒ¨å¾ªç¯çš„æŒ‰é’®æ˜¯å¦å·²ç„¶å‡†å¤‡å¥½å¾ªç¯
 				if( vb->IsRegionCreationFailed() && !vb->IsRegionOk() )
 					vb->CreateRegion();
 

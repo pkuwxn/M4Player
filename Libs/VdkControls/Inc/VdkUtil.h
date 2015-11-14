@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkUtil.h
- * Purpose:   VdkUtil µÄÍ·ÎÄ¼ş
+ * Purpose:   VdkUtil çš„å¤´æ–‡ä»¶
  * Author:    vanxining (vanxining@139.com)
  * Created:   2011-02-15
  * Copyright: vanxining
@@ -13,120 +13,120 @@ class wxXmlNode;
 
 typedef unsigned long align_type;
 
-/// \brief Çø·ÖÒ»¸öÓÃÓÚÉú³É wxRect µÄ×Ö·û´®ÊÇÓÃ Windows ·½Ê½»¹ÊÇ wxWidgets ·½Ê½À´±íÏÖµÄ
+/// \brief åŒºåˆ†ä¸€ä¸ªç”¨äºç”Ÿæˆ wxRect çš„å­—ç¬¦ä¸²æ˜¯ç”¨ Windows æ–¹å¼è¿˜æ˜¯ wxWidgets æ–¹å¼æ¥è¡¨ç°çš„
 enum RectType {
 
-	PRT_POSITION,	///< Windows ·½Ê½£¬ËÄ¸öÊı×ÖµÄºóÁ½Î»¶¨ÒåÁË¾ØĞÎµÄÓÒÏÂ½ÇµãµÄ×ø±ê
-	PRT_RECTANGLE	///< wxWidgets ·½Ê½£¬ËÄ¸öÊı×ÖµÄºóÁ½Î»¶¨ÒåÁË¾ØĞÎµÄ³¤ºÍ¿í
+	PRT_POSITION,	///< Windows æ–¹å¼ï¼Œå››ä¸ªæ•°å­—çš„åä¸¤ä½å®šä¹‰äº†çŸ©å½¢çš„å³ä¸‹è§’ç‚¹çš„åæ ‡
+	PRT_RECTANGLE	///< wxWidgets æ–¹å¼ï¼Œå››ä¸ªæ•°å­—çš„åä¸¤ä½å®šä¹‰äº†çŸ©å½¢çš„é•¿å’Œå®½
 };
 
-/// \brief ´ÓÒ»¸ö XRC ¶¨ÒåÖĞÌáÈ¡ÎÄ±¾ÊôĞÔ
+/// \brief ä»ä¸€ä¸ª XRC å®šä¹‰ä¸­æå–æ–‡æœ¬å±æ€§
 struct TextInfo {
 
-	wxFont			font;			///< ×ÖÌå
-	wxColour		background;		///< ÎÄ±¾Ç°¾°É«
-	wxColour		foreground;		///< ÎÄ±¾±³¾°É«
+	wxFont			font;			///< å­—ä½“
+	wxColour		background;		///< æ–‡æœ¬å‰æ™¯è‰²
+	wxColour		foreground;		///< æ–‡æœ¬èƒŒæ™¯è‰²
 
-	int				xPadding;		///< ÎÄ±¾¾à×÷ÓÃÓò×ó±ßµÄ¾àÀë
-	int				yPadding;		///< ÎÄ±¾¾à×÷ÓÃÓòÓÒ±ßµÄ¾àÀë
+	int				xPadding;		///< æ–‡æœ¬è·ä½œç”¨åŸŸå·¦è¾¹çš„è·ç¦»
+	int				yPadding;		///< æ–‡æœ¬è·ä½œç”¨åŸŸå³è¾¹çš„è·ç¦»
 };
 
-/// \brief ´ÓÒ»¸ö XRC ¶¨ÒåÖĞÌáÈ¡±³¾°ÊôĞÔ
+/// \brief ä»ä¸€ä¸ª XRC å®šä¹‰ä¸­æå–èƒŒæ™¯å±æ€§
 ///
-/// µ±Ç°Ö÷ÒªÓ¦ÓÃÓÚ VdkPanel µÄ±³¾°É«ºÍ±ß¿òµÄ¶¨Òå
+/// å½“å‰ä¸»è¦åº”ç”¨äº VdkPanel çš„èƒŒæ™¯è‰²å’Œè¾¹æ¡†çš„å®šä¹‰
 struct BackgroundInfo {
 
 	wxColour		bgColor;
 	wxPen			borderPen;
 };
 
-/// \brief ´ÓÒ»¸ö XRC ¶¨ÒåÖĞÌáÈ¡½¥±äÉ«±³¾°µÄÊôĞÔ
+/// \brief ä»ä¸€ä¸ª XRC å®šä¹‰ä¸­æå–æ¸å˜è‰²èƒŒæ™¯çš„å±æ€§
 ///
-/// µ±Ç°Ö÷ÒªÓ¦ÓÃÓÚ VdkPanel µÄ±³¾°É«
+/// å½“å‰ä¸»è¦åº”ç”¨äº VdkPanel çš„èƒŒæ™¯è‰²
 struct GradientBgInfo {
 
-	wxColour		beg;			///< ÆğÊ¼É«
-	wxColour		end;			///< ÖÕÖ¹É«
-	wxDirection		direction;		///< ·½Ïò£¨¶«ÄÏÎ÷±±ÖĞµÄÒ»¸ö£©
+	wxColour		beg;			///< èµ·å§‹è‰²
+	wxColour		end;			///< ç»ˆæ­¢è‰²
+	wxDirection		direction;		///< æ–¹å‘ï¼ˆä¸œå—è¥¿åŒ—ä¸­çš„ä¸€ä¸ªï¼‰
 };
 
 //////////////////////////////////////////////////////////////////////////
-/// \brief ÅÉÉúÀà±£´æµÄ·ç¸ñÊôĞÔ¼¯ºÍÔËĞĞÊ±ÊôĞÔ¼¯
+/// \brief æ´¾ç”Ÿç±»ä¿å­˜çš„é£æ ¼å±æ€§é›†å’Œè¿è¡Œæ—¶å±æ€§é›†
 class VdkStyleAndStateOwner
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkStyleAndStateOwner(long style = 0, long state = 0)
 		: m_style( style ), m_state( state )
 	{
 
 	}
 
-	/// \brief »ñÈ¡µ±Ç°¿Ø¼şµÄÊôĞÔ£¨·ç¸ñ£©¼¯
+	/// \brief è·å–å½“å‰æ§ä»¶çš„å±æ€§ï¼ˆé£æ ¼ï¼‰é›†
 	long GetStyle() const { return m_style; }
 
-	/// \brief ÉèÖÃµ±Ç°¿Ø¼şµÄÊôĞÔ£¨·ç¸ñ£©¼¯
+	/// \brief è®¾ç½®å½“å‰æ§ä»¶çš„å±æ€§ï¼ˆé£æ ¼ï¼‰é›†
 	void SetStyle(long style) { m_style = style; }
 
-	/// \brief ½«Ö¸¶¨ÖµÓëµ±Ç°·ç¸ñÊôĞÔ¼¯Ïà»ò
+	/// \brief å°†æŒ‡å®šå€¼ä¸å½“å‰é£æ ¼å±æ€§é›†ç›¸æˆ–
 	void SetAddinStyle(long style) { m_style |= style; }
 
-	/// \brief ÒÆ³ıµ±Ç°·ç¸ñÊôĞÔ¼¯µÄÖ¸¶¨ÊôĞÔ\a style
+	/// \brief ç§»é™¤å½“å‰é£æ ¼å±æ€§é›†çš„æŒ‡å®šå±æ€§\a style
 	void RemoveStyle(long style) { m_style &= ~style; }
 
-	/// \brief È¡·´µ±Ç°·ç¸ñÊôĞÔ¼¯ÖĞµÄÖ¸¶¨ÊôĞÔ\a style
+	/// \brief å–åå½“å‰é£æ ¼å±æ€§é›†ä¸­çš„æŒ‡å®šå±æ€§\a style
 	void ReverseStyle(long style) { m_style ^= style; }
 
-	/// \brief ²âÊÔµ±Ç°·ç¸ñÊôĞÔ¼¯ÖĞÊÇ·ñÉèÖÃÓĞÖ¸¶¨ÊôĞÔ\a style
+	/// \brief æµ‹è¯•å½“å‰é£æ ¼å±æ€§é›†ä¸­æ˜¯å¦è®¾ç½®æœ‰æŒ‡å®šå±æ€§\a style
 	bool TestStyle(long style) const { return (m_style & style) != 0; }
 
-	/// \brief »ñÈ¡µ±Ç°´°¿ÚµÄÔËĞĞÊ±×´Ì¬ÊôĞÔ¼¯
+	/// \brief è·å–å½“å‰çª—å£çš„è¿è¡Œæ—¶çŠ¶æ€å±æ€§é›†
 	long GetState() const { return m_state; }
 
-	/// \brief ÉèÖÃµ±Ç°´°¿ÚµÄÔËĞĞÊ±×´Ì¬ÊôĞÔ¼¯
+	/// \brief è®¾ç½®å½“å‰çª—å£çš„è¿è¡Œæ—¶çŠ¶æ€å±æ€§é›†
 	void SetState(long state) { m_state = state; }
 
-	/// \brief ½«Ö¸¶¨ÖµÓëµ±Ç°ÔËĞĞÊ±×´Ì¬ÊôĞÔ¼¯Ïà»ò
+	/// \brief å°†æŒ‡å®šå€¼ä¸å½“å‰è¿è¡Œæ—¶çŠ¶æ€å±æ€§é›†ç›¸æˆ–
 	void SetAddinState(long state) { m_state |= state; }
 
-	/// \brief ÒÆ³ıµ±Ç°ÔËĞĞÊ±×´Ì¬ÊôĞÔ¼¯ÖĞµÄÖ¸¶¨ÊôĞÔ\a state
+	/// \brief ç§»é™¤å½“å‰è¿è¡Œæ—¶çŠ¶æ€å±æ€§é›†ä¸­çš„æŒ‡å®šå±æ€§\a state
 	void RemoveState(long state) { m_state &= ~state; }
 
-	/// \brief È¡·´µ±Ç°ÔËĞĞÊ±×´Ì¬ÊôĞÔ¼¯ÖĞµÄÖ¸¶¨ÊôĞÔ\a state
+	/// \brief å–åå½“å‰è¿è¡Œæ—¶çŠ¶æ€å±æ€§é›†ä¸­çš„æŒ‡å®šå±æ€§\a state
 	void ReverseState(long state) { m_state ^= state; }
 
-	/// \brief ²âÊÔµ±Ç°ÔËĞĞÊ±×´Ì¬ÊôĞÔ¼¯ÖĞÊÇ·ñÉèÖÃÓĞÖ¸¶¨ÊôĞÔ\a state
+	/// \brief æµ‹è¯•å½“å‰è¿è¡Œæ—¶çŠ¶æ€å±æ€§é›†ä¸­æ˜¯å¦è®¾ç½®æœ‰æŒ‡å®šå±æ€§\a state
 	///
-	/// \param state Èô´«µİ X | Y ÕâÖÖ»òÖµ£¬ÔòÒâÒåÎªÖ»Òª X ºÍ Y ÖĞÈÎÒâÒ»Î»±»
-	/// ÉèÖÃ¼´·µ»ØÕæ¡£
+	/// \param state è‹¥ä¼ é€’ X | Y è¿™ç§æˆ–å€¼ï¼Œåˆ™æ„ä¹‰ä¸ºåªè¦ X å’Œ Y ä¸­ä»»æ„ä¸€ä½è¢«
+	/// è®¾ç½®å³è¿”å›çœŸã€‚
 	bool TestState(long state) const { return (m_state & state) != 0; }
 
 private:
 
-	long			m_style; ///< ¿Ø¼ş·ç¸ñ¼¯
-	long			m_state; ///< ¿Ø¼şÔËĞĞÊ±ÊôĞÔ¼¯£¬±ÜÃâ´óÁ¿Ê¹ÓÃ²¼¶û±äÁ¿
+	long			m_style; ///< æ§ä»¶é£æ ¼é›†
+	long			m_state; ///< æ§ä»¶è¿è¡Œæ—¶å±æ€§é›†ï¼Œé¿å…å¤§é‡ä½¿ç”¨å¸ƒå°”å˜é‡
 };
 
 //////////////////////////////////////////////////////////////////////////
-/// \brief ÅÉÉúÀà±£´æµÄÒ»¸öÓëÀàÏà¹ØµÄ¡¢VDK ±£Ö¤²»»áÓëÖ®ËûÓÃµÄÖ¸Õë
+/// \brief æ´¾ç”Ÿç±»ä¿å­˜çš„ä¸€ä¸ªä¸ç±»ç›¸å…³çš„ã€VDK ä¿è¯ä¸ä¼šä¸ä¹‹ä»–ç”¨çš„æŒ‡é’ˆ
 class VdkClientDataOwner
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkClientDataOwner() : m_clientData( NULL ) {}
 
-	/// \brief »ñÈ¡±£´æµÄÒ»¸öÓÃ»§Ö¸¶¨µÄ¿ÕÖ¸Õë
+	/// \brief è·å–ä¿å­˜çš„ä¸€ä¸ªç”¨æˆ·æŒ‡å®šçš„ç©ºæŒ‡é’ˆ
 	void* GetClientData() const { return m_clientData; }
 
-	/// \brief ÉèÖÃ¿Ø¼ş±£´æµÄÒ»¸öÓÃ»§×Ô¶¨ÒåµÄ¿ÕÖ¸Õë
+	/// \brief è®¾ç½®æ§ä»¶ä¿å­˜çš„ä¸€ä¸ªç”¨æˆ·è‡ªå®šä¹‰çš„ç©ºæŒ‡é’ˆ
 	VdkClientDataOwner* SetClientData(void* clientData) {
 		m_clientData = clientData;
 		return this;
 	}
 
-	/// \brief Ç¿ÖÆ×ªĞÍÎªÅÉÉúÀà
+	/// \brief å¼ºåˆ¶è½¬å‹ä¸ºæ´¾ç”Ÿç±»
 	template< class DD >
 	DD& castTo() { return static_cast< DD& >( *this ); }
 
@@ -136,78 +136,78 @@ private:
 };
 
 //////////////////////////////////////////////////////////////////////////
-/// \brief Ò»¸ö¾²Ì¬¹¤¾ßÀà£¬°üº¬´óÁ¿±ãÀûº¯Êı
+/// \brief ä¸€ä¸ªé™æ€å·¥å…·ç±»ï¼ŒåŒ…å«å¤§é‡ä¾¿åˆ©å‡½æ•°
 class VdkUtil
 {
 public:
 
-	/// \brief ½«Ö¸¶¨ DC µÄÄ³ÇøÓòÓÃÄ³Ë¢×ÓÇå¿Õ
+	/// \brief å°†æŒ‡å®š DC çš„æŸåŒºåŸŸç”¨æŸåˆ·å­æ¸…ç©º
 	static void ClrBkGnd(wxDC& dc, const wxBrush& bgBrush, 
 						 const wxRect& rc);
 
-	/// \brief ½«Ö¸¶¨ DC µÄÄ³ÇøÓò±£´æµ½´ÅÅÌÉÏ
+	/// \brief å°†æŒ‡å®š DC çš„æŸåŒºåŸŸä¿å­˜åˆ°ç£ç›˜ä¸Š
 	static void SaveDC(wxDC& dc, const wxRect& rc, 
 					   const wxChar* szSubfix = NULL);
 
-	/// \brief ²âÊÔÊÂ¼ş±êÊ¶·ûÊÇ·ñÊó±ê×ó¼ü¼¤·¢µÄÊÂ¼ş
+	/// \brief æµ‹è¯•äº‹ä»¶æ ‡è¯†ç¬¦æ˜¯å¦é¼ æ ‡å·¦é”®æ¿€å‘çš„äº‹ä»¶
 	static bool IsLeftButtonEvent(int evtCode);
 
 	//---------------------------------------------------
 
-	/// \brief »ñÈ¡µ±Ç°½ø³Ì¿Õ¼äµÄ¿Ø¼şÆ¤·ôÏà¹ØÎÄ¼şµÄ¸ùÄ¿Â¼
+	/// \brief è·å–å½“å‰è¿›ç¨‹ç©ºé—´çš„æ§ä»¶çš®è‚¤ç›¸å…³æ–‡ä»¶çš„æ ¹ç›®å½•
 	static wxString GetFilePath(const wxString& strFileName);
 
-    /// \brief ´Ó XRC ÎÄ¼şÖĞ½âÎö <position> ½áµã
+    /// \brief ä» XRC æ–‡ä»¶ä¸­è§£æ <position> ç»“ç‚¹
     /// \see GetXrcRect
 	static wxRect ParseRect(wxXmlNode* xmlNode);
 
-	/// \brief Ö±½Ó´Ó×Ö·û´®\a strRect ÖĞ½âÎö³öÒ»¸ö wxRect
-	/// \param nType ¿ÉÄÜÈ¡Öµ: \n PRT_RECTANGLE wxWidgets ·½Ê½µÄ wxRect \n
-	/// PRT_POSITION Windows SDK ·½Ê½
+	/// \brief ç›´æ¥ä»å­—ç¬¦ä¸²\a strRect ä¸­è§£æå‡ºä¸€ä¸ª wxRect
+	/// \param nType å¯èƒ½å–å€¼: \n PRT_RECTANGLE wxWidgets æ–¹å¼çš„ wxRect \n
+	/// PRT_POSITION Windows SDK æ–¹å¼
 	/// \see RectType
 	static wxRect ParseRect(const wxString& strRect, RectType nType);
 
-    /// \brief ½«Î»Í¼Æ½¾ù·Ö¸î³É\a nExpl ²¿·Ö
+    /// \brief å°†ä½å›¾å¹³å‡åˆ†å‰²æˆ\a nExpl éƒ¨åˆ†
 	static wxBitmap* ExplodeBitmap(const wxBitmap& bmOld, int nExpl);
 
-	/// \brief ²»ÖªµÀÎªÊ²Ã´ÓĞÊ±ºò wxBitmap::GetSubBitmap »áµÃ²»µ½ÕıÈ·µÄ½á¹û
+	/// \brief ä¸çŸ¥é“ä¸ºä»€ä¹ˆæœ‰æ—¶å€™ wxBitmap::GetSubBitmap ä¼šå¾—ä¸åˆ°æ­£ç¡®çš„ç»“æœ
 	static wxBitmap GetSubBitmapWithoutMask
 		(const wxBitmap& bmp, const wxRect& subRegion);
 
-	/// \brief ´ÓÎÄ¼şÂ·¾¶\a path ÖĞÔØÈëÎ»Í¼
+	/// \brief ä»æ–‡ä»¶è·¯å¾„\a path ä¸­è½½å…¥ä½å›¾
 	///
-	/// ÔØÈëÎ»Í¼ºó»á×öÒ»Ğ©±ØÒªµÄ³õÊ¼»¯¹¤×÷£¬ÈçÉèÖÃÍ¸Ã÷É«µÈ¡£
-	/// µ÷ÓÃÕßÓ¦±£Ö¤\a path ×Ö·û´®Ç°ºó²»º¬¿Õ¸ñ¡£
+	/// è½½å…¥ä½å›¾åä¼šåšä¸€äº›å¿…è¦çš„åˆå§‹åŒ–å·¥ä½œï¼Œå¦‚è®¾ç½®é€æ˜è‰²ç­‰ã€‚
+	/// è°ƒç”¨è€…åº”ä¿è¯\a path å­—ç¬¦ä¸²å‰åä¸å«ç©ºæ ¼ã€‚
 	static bool LoadMaskBitmap(wxBitmap& bitmap, const wxString& path);
 
-	/// \brief ÎªÎ»Í¼´´½¨ÑÚÂëÎ»Í¼
+	/// \brief ä¸ºä½å›¾åˆ›å»ºæ©ç ä½å›¾
 	static void CreateMask(wxBitmap& bitmap, const wxColour* pMaskColor = NULL);
 
-	/// \brief ´ÓÎÄ¼şÂ·¾¶\a path ÖĞÔØÈë¶àÖÖ¸ñÊ½µÄÍ¼Æ¬
+	/// \brief ä»æ–‡ä»¶è·¯å¾„\a path ä¸­è½½å…¥å¤šç§æ ¼å¼çš„å›¾ç‰‡
 	///
-	/// Ö§³ÖµÄÎÄ¼ş¸ñÊ½£º .BMP¡¢.PNG¡¢.JPG/.JPEG¡¢.GIF¡¢.ICO µÈ¡£
-	/// µ÷ÓÃÕßÓ¦±£Ö¤\a path ×Ö·û´®Ç°ºó²»º¬¿Õ¸ñ¡£
-	/// ¶ÔÓÚ .ICO (Windows Í¼±ê) ÎÄ¼ş£¬Ö»»áÔØÈë 16 * 16 ´óĞ¡µÄ×ÓÍ¼¡£
-	/// ¶ÔÓÚ .BMP (Windows Î»Í¼) ÎÄ¼ş£¬²»»á×Ô¶¯´´½¨Í¸Ã÷Î»Í¼¡£
+	/// æ”¯æŒçš„æ–‡ä»¶æ ¼å¼ï¼š .BMPã€.PNGã€.JPG/.JPEGã€.GIFã€.ICO ç­‰ã€‚
+	/// è°ƒç”¨è€…åº”ä¿è¯\a path å­—ç¬¦ä¸²å‰åä¸å«ç©ºæ ¼ã€‚
+	/// å¯¹äº .ICO (Windows å›¾æ ‡) æ–‡ä»¶ï¼Œåªä¼šè½½å…¥ 16 * 16 å¤§å°çš„å­å›¾ã€‚
+	/// å¯¹äº .BMP (Windows ä½å›¾) æ–‡ä»¶ï¼Œä¸ä¼šè‡ªåŠ¨åˆ›å»ºé€æ˜ä½å›¾ã€‚
 	static bool ImRead(wxBitmap& bm, const wxString& path);
 
-	/// \brief ´Ó¶ş½øÖÆ´úÂëÖĞÔØÈë PNG Í¼Æ¬
+	/// \brief ä»äºŒè¿›åˆ¶ä»£ç ä¸­è½½å…¥ PNG å›¾ç‰‡
 	static wxBitmap LoadPngFromRawData(const unsigned char* raw, int size);
 
-	/// \brief Æ½ÆÌÎ»Í¼
+	/// \brief å¹³é“ºä½å›¾
 	///
-	/// ¿ÉÒÔÍ¬Ê±Ö¸¶¨ĞÂµÄ¸ß¶ÈºÍ¿í¶È¡£Ò²¿ÉÖ»Ö¸¶¨ÆäÖĞÒ»¸ö£¬¶ø½«ÁíÒ»¸öÊµ²ÎÉèÎª 0 ¡£
-	/// \param mask ÊÇ·ñÊ¹ÓÃÑÚÂëÎ»Í¼½øĞĞ¸´ÖÆ
+	/// å¯ä»¥åŒæ—¶æŒ‡å®šæ–°çš„é«˜åº¦å’Œå®½åº¦ã€‚ä¹Ÿå¯åªæŒ‡å®šå…¶ä¸­ä¸€ä¸ªï¼Œè€Œå°†å¦ä¸€ä¸ªå®å‚è®¾ä¸º 0 ã€‚
+	/// \param mask æ˜¯å¦ä½¿ç”¨æ©ç ä½å›¾è¿›è¡Œå¤åˆ¶
 	/// \see StretchBitmap
 	static wxBitmap TileBitmap(wxBitmap& bm,
 							   int w, int h,
 							   const wxRect& rcTile,
 							   bool mask = true);
 
-	/// \brief Æ½ÆÌ»æÖÆÎ»Í¼
+	/// \brief å¹³é“ºç»˜åˆ¶ä½å›¾
 	///
-	/// ¿ÉÒÔÍ¬Ê±Ö¸¶¨ĞÂµÄ¸ß¶ÈºÍ¿í¶È¡£Ò²¿ÉÖ»Ö¸¶¨ÆäÖĞÒ»¸ö£¬¶ø½«ÁíÒ»¸öÊµ²ÎÉèÎª 0 ¡£
-	/// ±¾º¯ÊıÊÇÎªÁË²»±£´æÌ«¶à²»±ØÒªµÄÎ»Í¼±äÁ¿¶øÉèÁ¢¡£
+	/// å¯ä»¥åŒæ—¶æŒ‡å®šæ–°çš„é«˜åº¦å’Œå®½åº¦ã€‚ä¹Ÿå¯åªæŒ‡å®šå…¶ä¸­ä¸€ä¸ªï¼Œè€Œå°†å¦ä¸€ä¸ªå®å‚è®¾ä¸º 0 ã€‚
+	/// æœ¬å‡½æ•°æ˜¯ä¸ºäº†ä¸ä¿å­˜å¤ªå¤šä¸å¿…è¦çš„ä½å›¾å˜é‡è€Œè®¾ç«‹ã€‚
 	/// \see StretchBitmap, TileBitmap
 	static void TileDrawBitmap(wxDC& dc,
 							   wxBitmap& bm,
@@ -217,92 +217,92 @@ public:
 							   int h,
 							   const wxRect& rcTile);
 
-	/// \brief À­ÉìÎ»Í¼
-	/// \param dcsrc Ô­Ê¼ DC
-	/// \param dcdest Ä¿±ê DC
-	/// \param src Ô­Ê¼ÇøÓò
-	/// \param dest Ä¿±êÇøÓò£¨Ö¸¶¨ÆğµãºÍ´óĞ¡£©
-	/// \param bmTmp ±ÜÃâ¶à´Î·ÖÅäÁÙÊ±Î»Í¼µÄ¿ªÏú
+	/// \brief æ‹‰ä¼¸ä½å›¾
+	/// \param dcsrc åŸå§‹ DC
+	/// \param dcdest ç›®æ ‡ DC
+	/// \param src åŸå§‹åŒºåŸŸ
+	/// \param dest ç›®æ ‡åŒºåŸŸï¼ˆæŒ‡å®šèµ·ç‚¹å’Œå¤§å°ï¼‰
+	/// \param bmTmp é¿å…å¤šæ¬¡åˆ†é…ä¸´æ—¶ä½å›¾çš„å¼€é”€
 	static void StretchBlit(wxDC& dcdest,
 							const wxRect& src,
 							wxDC& dcsrc,
 							const wxRect& dest,
 							wxBitmap& bmTmp);
 
-	/// \brief ´ÓÖĞ¼äÀ©Õ¹Î»Í¼
+	/// \brief ä»ä¸­é—´æ‰©å±•ä½å›¾
 	///
-	/// ¿ÉÒÔÍ¬Ê±Ö¸¶¨ĞÂµÄ¸ß¶ÈºÍ¿í¶È¡£±¾º¯Êı´æÔÚµÄÒâÒåÊÇÀ­ÉìÎ»Í¼£¬
-	/// Ê¹±ß½ç²»±äĞÎ£¨¶ÔÓÚ VdkWindow µÄ±³¾°Î»Í¼¼«ÎªÖØÒª£©¡£
+	/// å¯ä»¥åŒæ—¶æŒ‡å®šæ–°çš„é«˜åº¦å’Œå®½åº¦ã€‚æœ¬å‡½æ•°å­˜åœ¨çš„æ„ä¹‰æ˜¯æ‹‰ä¼¸ä½å›¾ï¼Œ
+	/// ä½¿è¾¹ç•Œä¸å˜å½¢ï¼ˆå¯¹äº VdkWindow çš„èƒŒæ™¯ä½å›¾æä¸ºé‡è¦ï¼‰ã€‚
 	/// \see InflateDrawByCenter
 	static wxBitmap InflateBitmapByCenter(wxBitmap& bm,
 									      const wxRect& center,
 									      const wxSize& szDest);
 
-	/// \brief ´ÓÖĞ¼äÀ©Õ¹Î»Í¼
+	/// \brief ä»ä¸­é—´æ‰©å±•ä½å›¾
 	///
-	/// ¿ÉÒÔÍ¬Ê±Ö¸¶¨ĞÂµÄ¸ß¶ÈºÍ¿í¶È¡£±¾º¯Êı´æÔÚµÄÒâÒåÊÇÀ­ÉìÎ»Í¼£¬
-	/// Ê¹±ß½ç²»±äĞÎ£¨¶ÔÓÚ VdkWindow µÄ±³¾°Î»Í¼¼«ÎªÖØÒª£©¡£
+	/// å¯ä»¥åŒæ—¶æŒ‡å®šæ–°çš„é«˜åº¦å’Œå®½åº¦ã€‚æœ¬å‡½æ•°å­˜åœ¨çš„æ„ä¹‰æ˜¯æ‹‰ä¼¸ä½å›¾ï¼Œ
+	/// ä½¿è¾¹ç•Œä¸å˜å½¢ï¼ˆå¯¹äº VdkWindow çš„èƒŒæ™¯ä½å›¾æä¸ºé‡è¦ï¼‰ã€‚
 	/// \see StretchBitmap
 	static void InflateDrawByCenter(wxBitmap& bm,
 									wxDC& dc, 
 									const wxSize& newsize, 
 									const wxRect& center);
 
-    /// \brief ´Ó XRC ÎÄ¼şÖĞ½âÎö <align> ½áµã(»òÆäËûÖ¸¶¨µÄÃûÎª\a strNodeName 
-    /// µÄ½áµã)
+    /// \brief ä» XRC æ–‡ä»¶ä¸­è§£æ <align> ç»“ç‚¹(æˆ–å…¶ä»–æŒ‡å®šçš„åä¸º\a strNodeName 
+    /// çš„ç»“ç‚¹)
 	static align_type GetXrcAlign(wxXmlNode* xmlNode,
 								  wxString strNodeName = wxEmptyString);
 
-    /// \brief ´Ó XRC ÎÄ¼şÖĞ½âÎö <text-align> ½áµã
+    /// \brief ä» XRC æ–‡ä»¶ä¸­è§£æ <text-align> ç»“ç‚¹
 	static align_type GetXrcTextAlign(wxXmlNode* xmlNode)
 	{
 		return GetXrcAlign( xmlNode, L"text-align" );
 	}
 
-	/// \brief ´Ó XRC ÎÄ¼şÖĞ½âÎö <rect> ½áµã
+	/// \brief ä» XRC æ–‡ä»¶ä¸­è§£æ <rect> ç»“ç‚¹
 	///
-	/// ±¾º¯ÊıÖ»ÄÜ½âÎö wxWidgets ·½Ê½µÄ <rect> ½áµã¡£
-	/// ÈçĞèÒª½âÎö Windows ·½Ê½±íÊ¾µÄ½áµã£¨Í¬Ê±½áµãÃûÓ¦Îª position £©£¬
-	/// ÇëÊ¹ÓÃ\link ParseRect \endlink º¯Êı¡£
+	/// æœ¬å‡½æ•°åªèƒ½è§£æ wxWidgets æ–¹å¼çš„ <rect> ç»“ç‚¹ã€‚
+	/// å¦‚éœ€è¦è§£æ Windows æ–¹å¼è¡¨ç¤ºçš„ç»“ç‚¹ï¼ˆåŒæ—¶ç»“ç‚¹ååº”ä¸º position ï¼‰ï¼Œ
+	/// è¯·ä½¿ç”¨\link ParseRect \endlink å‡½æ•°ã€‚
 	/// \see ParseRect
 	static wxRect GetXrcRect(wxXmlNode* xmlNode);
 
-	/// \brief ´Ó XRC ÎÄ¼şÖĞ½âÎö <name> ½áµã
+	/// \brief ä» XRC æ–‡ä»¶ä¸­è§£æ <name> ç»“ç‚¹
 	static wxString GetXrcName(wxXmlNode* xmlNode);
 
-	/// \brief ´Ó XRC ÎÄ¼şÖĞ½âÎö½ô¸ú×Å\a xmlNode µÄÊ×¸ö´¿ÎÄ±¾×Ó½áµã
+	/// \brief ä» XRC æ–‡ä»¶ä¸­è§£æç´§è·Ÿç€\a xmlNode çš„é¦–ä¸ªçº¯æ–‡æœ¬å­ç»“ç‚¹
 	///
-	/// Õâ¸ö½Úµã±ØĞëÊÇÒ»¸ö´¿ÎÄ±¾½áµã¡£VDK »áÈ¥µôµÃµ½ÎÄ±¾µÄÊ×Î²¿Õ¸ñ¡£
+	/// è¿™ä¸ªèŠ‚ç‚¹å¿…é¡»æ˜¯ä¸€ä¸ªçº¯æ–‡æœ¬ç»“ç‚¹ã€‚VDK ä¼šå»æ‰å¾—åˆ°æ–‡æœ¬çš„é¦–å°¾ç©ºæ ¼ã€‚
 	static wxString GetXrcTextBlock(wxXmlNode* xmlNode);
 
-	/// \brief ´Ó XRC ÎÄ¼şÖĞ½âÎö <image> ½áµã
+	/// \brief ä» XRC æ–‡ä»¶ä¸­è§£æ <image> ç»“ç‚¹
 	///
-	/// ´ËÊ± <image> ½áµãÖ¸¶¨µÄÎÄ¼ş¸ñÊ½¿ÉÒÔÊÇ .BMP¡¢.PNG¡¢.JPG/.JPEG¡¢
-	/// .GIF ËÄÖÖ¸ñÊ½¡£
-	/// »á¸ù¾İ VdkControl ÄÚ±£´æµÄÍ¸Ã÷É«´´½¨ÏàÓ¦µÄÎ»Í¼ÑÚÂë¶ÔÏó¡£
+	/// æ­¤æ—¶ <image> ç»“ç‚¹æŒ‡å®šçš„æ–‡ä»¶æ ¼å¼å¯ä»¥æ˜¯ .BMPã€.PNGã€.JPG/.JPEGã€
+	/// .GIF å››ç§æ ¼å¼ã€‚
+	/// ä¼šæ ¹æ® VdkControl å†…ä¿å­˜çš„é€æ˜è‰²åˆ›å»ºç›¸åº”çš„ä½å›¾æ©ç å¯¹è±¡ã€‚
 	static bool GetXrcImage(wxXmlNode* xmlNode, wxBitmap& bm);
 
-	/// \brief ´Ó XRC ÎÄ¼şÖĞ½âÎöÓëÎÄ±¾»æÖÆÏà¹ØµÄÊôĞÔ¡£Èç×ÖºÅ¡¢×ÖÌå¡¢ÑÕÉ«µÈµÈ¡£
-	/// \param window ¼ÙÈç XRC ÎÄ¼ş²»ÉùÃ÷Ïà¹ØĞÅÏ¢£¬Ôò¸Ã´°¿ÚµÄÏà¹ØĞÅÏ¢¿É¹©²Î¿¼
+	/// \brief ä» XRC æ–‡ä»¶ä¸­è§£æä¸æ–‡æœ¬ç»˜åˆ¶ç›¸å…³çš„å±æ€§ã€‚å¦‚å­—å·ã€å­—ä½“ã€é¢œè‰²ç­‰ç­‰ã€‚
+	/// \param window å‡å¦‚ XRC æ–‡ä»¶ä¸å£°æ˜ç›¸å…³ä¿¡æ¯ï¼Œåˆ™è¯¥çª—å£çš„ç›¸å…³ä¿¡æ¯å¯ä¾›å‚è€ƒ
 	static TextInfo GetXrcTextInfo(wxXmlNode* xmlNode, 
 								   wxWindow* window = NULL);
 
-	/// \brief ´Ó XRC ÎÄ¼şÖĞ½âÎö <gradient-bg> ½áµã£¨½¥±äÉ«±³¾°£©
+	/// \brief ä» XRC æ–‡ä»¶ä¸­è§£æ <gradient-bg> ç»“ç‚¹ï¼ˆæ¸å˜è‰²èƒŒæ™¯ï¼‰
 	static GradientBgInfo* GetXrcGradientBgInfo(wxXmlNode* xmlNode);
 
-	/// \brief ´Ó XRC ÎÄ¼şÖĞ½âÎö <bg> ½áµã£¨±³¾°¶¨Òå£©
+	/// \brief ä» XRC æ–‡ä»¶ä¸­è§£æ <bg> ç»“ç‚¹ï¼ˆèƒŒæ™¯å®šä¹‰ï¼‰
 	static BackgroundInfo* GetXrcBgInfo(wxXmlNode* xmlNode);
 
 private:
 
-	/// \brief ÑØ X Öá·½ÏòÆ½ÆÌ»æÖÆ
+	/// \brief æ²¿ X è½´æ–¹å‘å¹³é“ºç»˜åˆ¶
 	static void TileDraw_X(const wxRect& rcSrc, 
 						   wxDC& dcSrc, 
 						   const wxRect& rcDest, 
 						   wxDC& dcDest, 
 						   bool mask = false);
 
-	/// \brief ÑØ Y Öá·½ÏòÆ½ÆÌ»æÖÆ
+	/// \brief æ²¿ Y è½´æ–¹å‘å¹³é“ºç»˜åˆ¶
 	static void TileDraw_Y(const wxRect& rcSrc, 
 						   wxDC& dcSrc, 
 						   const wxRect& rcDest, 

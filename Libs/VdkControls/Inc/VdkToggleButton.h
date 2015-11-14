@@ -1,78 +1,78 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkButton.h"
 
-/// \brief VdkToggleButton µÄ·ç¸ñÊôĞÔ¼¯
+/// \brief VdkToggleButton çš„é£æ ¼å±æ€§é›†
 enum VdkToggleButtonStyle {
 
-	/// \brief ÅÉÉúÀàÆäÊµÊôĞÔÎ»ĞòºÅ
+	/// \brief æ´¾ç”Ÿç±»å…¶å®å±æ€§ä½åºå·
 	VTBS_USER				= VBS_USER + 5,
 	/// \see VdkToggleButton::SetOwnerControl
 	VTBS_OWNER_CONTROL		= 1 << ( VBS_USER + 0 ),
 };
 
-/// \brief VdkToggleButton µÄÔËĞĞÊ±×´Ì¬ÊôĞÔ¼¯
+/// \brief VdkToggleButton çš„è¿è¡Œæ—¶çŠ¶æ€å±æ€§é›†
 enum VdkToggleButtonState {
 
-	/// \brief ÅÉÉúÀàÆğÊ¼ÊôĞÔÎ»ĞòºÅ
+	/// \brief æ´¾ç”Ÿç±»èµ·å§‹å±æ€§ä½åºå·
 	VTBST_USER				= VBST_USER + 5,
-	/// \brief ÊÇ·ñÒÑ¾­±»°´ÏÂ
+	/// \brief æ˜¯å¦å·²ç»è¢«æŒ‰ä¸‹
 	VTBST_TOGGLED			= 1 << ( VBST_USER + 0 ),
-	/// \brief ÊÇ·ñ´¦ÓÚ³ÖĞø°´ÏÂ×´Ì¬£¨¿ÉÄÜÄ³¸öºÄÊ±²Ù×÷ĞèÒª¶ÀÕ¼£©
+	/// \brief æ˜¯å¦å¤„äºæŒç»­æŒ‰ä¸‹çŠ¶æ€ï¼ˆå¯èƒ½æŸä¸ªè€—æ—¶æ“ä½œéœ€è¦ç‹¬å ï¼‰
 	VTBST_PUSHED			= 1 << ( VBST_USER + 1 ),
-	/// \brief ¼´½«Òª±»°´ÏÂ
+	/// \brief å³å°†è¦è¢«æŒ‰ä¸‹
 	VTBST_TO_BE_PUSHED		= 1 << ( VBST_USER + 2 ),
-	/// \brief ÒòÎª VdkToggledButton ´¦ÓÚ°´ÏÂ×´Ì¬Ê±£¬m_nState 
-	/// Ê¼ÖÕÎª VBS_PUSHED£¨LEFT_DOWN£©£¬Òò´ËÎŞ·¨Çø·ÖÕâ¸ö×´Ì¬ÊÇÓÉÊó±êÊÂ¼şÔì³ÉµÄ£¬
-	/// »¹ÊÇ VdkToggleButton Ëù´¦µÄ×´Ì¬£¬¹ÊÌí¼ÓÕâÒ»¶ş½øÖÆÎ»¼ÓÒÔÇø·Ö
+	/// \brief å› ä¸º VdkToggledButton å¤„äºæŒ‰ä¸‹çŠ¶æ€æ—¶ï¼Œm_nState 
+	/// å§‹ç»ˆä¸º VBS_PUSHEDï¼ˆLEFT_DOWNï¼‰ï¼Œå› æ­¤æ— æ³•åŒºåˆ†è¿™ä¸ªçŠ¶æ€æ˜¯ç”±é¼ æ ‡äº‹ä»¶é€ æˆçš„ï¼Œ
+	/// è¿˜æ˜¯ VdkToggleButton æ‰€å¤„çš„çŠ¶æ€ï¼Œæ•…æ·»åŠ è¿™ä¸€äºŒè¿›åˆ¶ä½åŠ ä»¥åŒºåˆ†
 	VTBST_LAST_LEFT_DOWN	= 1 << ( VBST_USER + 3 ),
 };
 
-/// \brief ²»»á×Ô¶¯µ¯Æğ¡¢»Ö¸´Ô­ÓĞ×´Ì¬µÄ°´Å¥
+/// \brief ä¸ä¼šè‡ªåŠ¨å¼¹èµ·ã€æ¢å¤åŸæœ‰çŠ¶æ€çš„æŒ‰é’®
 class VdkToggleButton : public VdkButton
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkToggleButton();
 
 	/////////////////////////////////////////////////////////////////
 
-	/// \brief Ê¹°´Å¥±£³Ö°´ÏÂ×´Ì¬£¬²»ÏìÓ¦ÊÂ¼ş
+	/// \brief ä½¿æŒ‰é’®ä¿æŒæŒ‰ä¸‹çŠ¶æ€ï¼Œä¸å“åº”äº‹ä»¶
 	///
-	/// ÕâÊÇÒ»ÖÖ¡°Î´À´Ì¬¡±£¬¼´ÏÂÒ»´Îµã»÷»áÊ¹°´Å¥±£³Ö°´ÏÂ×´Ì¬£¬\n
-	/// ²»ÔÚÏìÓ¦ÈÎºÎÊÂ¼ş£¬Ö±µ½ÓÃ»§ÔÙ´Îµ÷ÓÃ±¾º¯Êı½â³ıÕâÖÖ×´Ì¬\n
-	/// £¨Ê¹\a bPushed Îª false £©¡£
+	/// è¿™æ˜¯ä¸€ç§â€œæœªæ¥æ€â€ï¼Œå³ä¸‹ä¸€æ¬¡ç‚¹å‡»ä¼šä½¿æŒ‰é’®ä¿æŒæŒ‰ä¸‹çŠ¶æ€ï¼Œ\n
+	/// ä¸åœ¨å“åº”ä»»ä½•äº‹ä»¶ï¼Œç›´åˆ°ç”¨æˆ·å†æ¬¡è°ƒç”¨æœ¬å‡½æ•°è§£é™¤è¿™ç§çŠ¶æ€\n
+	/// ï¼ˆä½¿\a bPushed ä¸º false ï¼‰ã€‚
 	void PushButton(bool bPushed, wxDC* pDC);
 
-	/// \brief ÇĞ»»°´Å¥×´Ì¬
+	/// \brief åˆ‡æ¢æŒ‰é’®çŠ¶æ€
 	void Toggle(bool bToggled, wxDC* pDC = NULL, bool bFireCallback = false);
 
-	/// \brief °´Å¥ÊÇ·ñÒÑ¾­±»°´ÏÂ
+	/// \brief æŒ‰é’®æ˜¯å¦å·²ç»è¢«æŒ‰ä¸‹
 	bool IsToggled() const { return TestState( VTBST_TOGGLED ); }
 
-	/// \brief °´Å¥ÊÇ·ñ´¦ÓÚ³ÖĞø°´ÏÂ×´Ì¬
+	/// \brief æŒ‰é’®æ˜¯å¦å¤„äºæŒç»­æŒ‰ä¸‹çŠ¶æ€
 	bool IsPushed() const { return TestState( VTBST_PUSHED ); }
 
-	/// \brief °´Å¥ÊÇ·ñ¼´½«Òª±»°´ÏÂ
+	/// \brief æŒ‰é’®æ˜¯å¦å³å°†è¦è¢«æŒ‰ä¸‹
 	bool IsToBePushed() const { return TestState( VTBST_TO_BE_PUSHED ); }
 	
-	/// \brief °´Å¥µÄµ¯ÆğÊÇ·ñ´¦ÓÚÓÃ»§¿ØÖÆµÄ×´Ì¬ÏÂ
+	/// \brief æŒ‰é’®çš„å¼¹èµ·æ˜¯å¦å¤„äºç”¨æˆ·æ§åˆ¶çš„çŠ¶æ€ä¸‹
 	///
-	/// ´ËÊ± VDK ²»¶Ô°´Å¥½ÓÊÕµ½µÄÊÂ¼ş×÷ÈÎºÎÄ¬ÈÏ·´Ó¦¡£
+	/// æ­¤æ—¶ VDK ä¸å¯¹æŒ‰é’®æ¥æ”¶åˆ°çš„äº‹ä»¶ä½œä»»ä½•é»˜è®¤ååº”ã€‚
 	/// \see SetOwnerControl
 	bool IsOwnerControl() const { return TestStyle( VTBS_OWNER_CONTROL ); }
 
-	/// \brief ÉèÖÃ°´Å¥±»°´ÏÂÊ±ÔÙ´Îµã»÷Ê±ÊÇ·ñÓÉÓÃ»§¿ØÖÆµ¯ÆğÓë·ñ
+	/// \brief è®¾ç½®æŒ‰é’®è¢«æŒ‰ä¸‹æ—¶å†æ¬¡ç‚¹å‡»æ—¶æ˜¯å¦ç”±ç”¨æˆ·æ§åˆ¶å¼¹èµ·ä¸å¦
 	///
-	/// µ±°´Å¥´¦ÓÚ¡°³ÖĞø°´ÏÂ¡±(Toggleed)µÄ×´Ì¬Ê±£¬Éè¶¨ÔÙ´Îµ¥»÷ËüÊ±ÓÉµ÷ÓÃÕß¾ö¶¨\n
-	/// ¿ØÖÆÊÇ·ñĞèÒªÈ¡·´¶ÔÏóÄÚ²¿×´Ì¬±äÁ¿¡£
+	/// å½“æŒ‰é’®å¤„äºâ€œæŒç»­æŒ‰ä¸‹â€(Toggleed)çš„çŠ¶æ€æ—¶ï¼Œè®¾å®šå†æ¬¡å•å‡»å®ƒæ—¶ç”±è°ƒç”¨è€…å†³å®š\n
+	/// æ§åˆ¶æ˜¯å¦éœ€è¦å–åå¯¹è±¡å†…éƒ¨çŠ¶æ€å˜é‡ã€‚
 	void SetOwnerControl(bool bEnabled = true){
 		SetAddinStyle( VTBS_OWNER_CONTROL );
 	}
 	
 protected:
 
-	/// \brief ´¦ÀíÊó±êÊÂ¼ş
+	/// \brief å¤„ç†é¼ æ ‡äº‹ä»¶
 	virtual void DoHandleMouseEvent(VdkMouseEvent& e);
 
 	DECLARE_DYNAMIC_VOBJECT

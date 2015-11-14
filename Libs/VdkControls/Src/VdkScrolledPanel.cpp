@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkScrolledPanel.cpp
- * Purpose:   ¹ö¶¯Ãæ°å£¨ÄÜ×÷ÎªÆäËû¿Ø¼þ¸¸¿Ø¼þµÄ¹ö¶¯´°¿ÚÅÉÉúÀà£©ÊµÏÖ
+ * Purpose:   æ»šåŠ¨é¢æ¿ï¼ˆèƒ½ä½œä¸ºå…¶ä»–æŽ§ä»¶çˆ¶æŽ§ä»¶çš„æ»šåŠ¨çª—å£æ´¾ç”Ÿç±»ï¼‰å®žçŽ°
  * Author:    vanxining (vanxining@139.com)
  * Created:   2011-01-04
  * Copyright: vanxining
@@ -32,14 +32,14 @@ void VdkScrolledPanelBase::Create(wxWindow* parent, long style)
 					 wxDefaultSize,
 					 style | wxCLIP_CHILDREN );
 
-	// ÖÁÉÙÒª±£³ÖÖ÷´°¿ÚÓÐÁ½¸öÔ­Éú¿Ø¼þ
+	// è‡³å°‘è¦ä¿æŒä¸»çª—å£æœ‰ä¸¤ä¸ªåŽŸç”ŸæŽ§ä»¶
 	new wxStaticText( parent, -1,
 					  wxEmptyString,
 					  wxPoint( -1, -1 ) );
 
 	//=====================================================
 
-	// ÉèÖÃÃæ°å²»¿ÉÍÏ¶¯
+	// è®¾ç½®é¢æ¿ä¸å¯æ‹–åŠ¨
 	RemoveStyle( VWS_DRAGGABLE );
 }
 
@@ -84,7 +84,7 @@ void VdkScrolledPanel::DoDraw(wxDC& dc)
 
 	VdkScrollBar* psb = GetScrollBar();
 	if( psb && psb->IsShown() )
-		rc.width += psb->GetRect().width; // ¼ÓÉÏ¹ö¶¯ÌõµÄ¿í¶È
+		rc.width += psb->GetRect().width; // åŠ ä¸Šæ»šåŠ¨æ¡çš„å®½åº¦
 
 	DrawRectangle( dc, rc );
 }
@@ -111,8 +111,8 @@ void VdkScrolledPanel::DoHandleNotify(const VdkNotify& notice)
 	{
 	case VCN_CREATE:
 	{
-		// ÒòÎª¹ö¶¯Ìõ²»ÊôÓÚ¹ö¶¯Ãæ°å£¨ÊôÓÚ¹ö¶¯Ãæ°åµÄ¸¸´°¿Ú£©£¬
-		// ¹ÊËõÐ¡Ãæ°åÊ¹¹ö¶¯ÌõÏÔÊ¾³öÀ´
+		// å› ä¸ºæ»šåŠ¨æ¡ä¸å±žäºŽæ»šåŠ¨é¢æ¿ï¼ˆå±žäºŽæ»šåŠ¨é¢æ¿çš„çˆ¶çª—å£ï¼‰ï¼Œ
+		// æ•…ç¼©å°é¢æ¿ä½¿æ»šåŠ¨æ¡æ˜¾ç¤ºå‡ºæ¥
 		VdkScrollBar* psb = GetScrollBar();
 		if( psb )
 		{
@@ -189,7 +189,7 @@ bool VdkScrolledPanel::FilterEventBefore(wxMouseEvent& evt, int evtCode)
     ret = FilterEventAfter( evt, evtCode );
 #endif
     
-	// ²»Òª´¦ÀíÀë¿ª´°¿ÚµÄÊó±êÊÂ¼þ
+	// ä¸è¦å¤„ç†ç¦»å¼€çª—å£çš„é¼ æ ‡äº‹ä»¶
 	if( Rect00().Contains( evt.GetX(), evt.GetY() ) )
 	{
 		int y;
@@ -277,7 +277,7 @@ void VdkScrolledPanel::OnMouseEvent(VdkMouseEvent& e)
 				wxASSERT( *ctrl == GetCtrlOnHover() );
 			}
 
-			// Ìø¹ý±¾ÊÂ¼þµÄºóÐø´¦Àí£¬È·±£ÎÒÃÇ¶Ô HilightCtrl µÄµ÷ÓÃµÄÓÐÐ§ÐÔ
+			// è·³è¿‡æœ¬äº‹ä»¶çš„åŽç»­å¤„ç†ï¼Œç¡®ä¿æˆ‘ä»¬å¯¹ HilightCtrl çš„è°ƒç”¨çš„æœ‰æ•ˆæ€§
 			e.Skip( true );
 
 			break;
@@ -321,7 +321,7 @@ void VdkScrolledPanel::PrepareCachedDC()
 
 void VdkScrolledPanel::DoPaint(wxDC& dc)
 {
-	// ²Á³ýÕýÔÚÏÔÊ¾µÄ²¿·Ö
+	// æ“¦é™¤æ­£åœ¨æ˜¾ç¤ºçš„éƒ¨åˆ†
 	wxRect rc( Rect00() );
 	GetViewStartCoord( NULL, &rc.y );
 
@@ -336,8 +336,8 @@ wxDC* VdkScrolledPanel::GetScrollBarDC(wxDC*) const
 	
 	if( cached )
 	{
-		wxLogDebug( L"[%s:%d]Êµ¼Ê²»Ó¦¸Ã³öÏÖÕâÖÖÇé¿ö: "
-					L"Ê¹ÓÃÒÑ±»»º´æµÄ¹ö¶¯Ìõ´°¿ÚDC[%s:%d]¡£",
+		wxLogDebug( L"[%s:%d]å®žé™…ä¸åº”è¯¥å‡ºçŽ°è¿™ç§æƒ…å†µ: "
+					L"ä½¿ç”¨å·²è¢«ç¼“å­˜çš„æ»šåŠ¨æ¡çª—å£DC[%s:%d]ã€‚",
 					__FILE__, __LINE__,
 					window->GetDebugCaption(),
 					long( cached ) );
@@ -362,6 +362,6 @@ void VdkScrolledPanel::DestroyScrollBarDC(wxDC* dc) const
 
 void VdkScrolledPanel::UpdateUI(wxDC& dc)
 {
-	VdkWindow::SetAddinState( VWST_RESET ); // Ç¿ÖÆË¢ÐÂÈ«²¿ÄÚÈÝ
+	VdkWindow::SetAddinState( VWST_RESET ); // å¼ºåˆ¶åˆ·æ–°å…¨éƒ¨å†…å®¹
 	Refresh( true );
 }

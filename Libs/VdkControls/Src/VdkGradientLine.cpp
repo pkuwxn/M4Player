@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "VdkGradientLine.h"
 
 #ifdef __WXMSW__
@@ -32,7 +32,7 @@ void VdkGradientLine::DoDraw(wxDC& dc)
 		else
 		{
 			dc.GetTextExtent( m_strCaption, &w, &h );
-			m_dxLine = w + dc.GetCharWidth(); // ¼ÓÒ»¸ö¿Õ°×·ûÓÃÒÔ·Ö¸î			
+			m_dxLine = w + dc.GetCharWidth(); // åŠ ä¸€ä¸ªç©ºç™½ç¬¦ç”¨ä»¥åˆ†å‰²			
 		}
 
 		m_dyLine = ( h - 1 ) / 2;

@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      LvpHeaderCtrl.h
- * Purpose:   VdkListView ±êÌâÀ¸
+ * Purpose:   VdkListView æ ‡é¢˜æ 
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-26
  **************************************************************/
@@ -8,19 +8,19 @@
 #include "IListViewPlaugin.h"
 #include "VdkControl.h"
 
-/// ÊµÏÖ VdkListView Êó±ê»¬¹ıÊ±¸ßÁÁËùÔÚĞĞ
+/// å®ç° VdkListView é¼ æ ‡æ»‘è¿‡æ—¶é«˜äº®æ‰€åœ¨è¡Œ
 class LvpHeaderCtrl : public VdkControl, public IListViewPlaugin
 {
 public:
 
-	/// ¹¹Ôìº¯Êı
+	/// æ„é€ å‡½æ•°
 	LvpHeaderCtrl(ListView* listview);
 
 private:
 
 	virtual bool CanDestoryByListView() const { return false; }
 
-	// »æÖÆ¿Ø¼ş
+	// ç»˜åˆ¶æ§ä»¶
 	virtual void DoDraw(wxDC& dc);
 
 private:

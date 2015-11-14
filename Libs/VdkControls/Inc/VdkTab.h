@@ -1,111 +1,111 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkControl.h"
 
 class VdkToggleButton;
 class VdkPanel;
 
-/// \brief VdkTab ·ç¸ñÊôĞÔ
+/// \brief VdkTab é£æ ¼å±æ€§
 enum VdkTabStyle {
 
-	/// \brief ÅÉÉúÀà·ç¸ñÎ»¶¨ÒåµÄÆğÊ¼Î»ĞòºÅ
+	/// \brief æ´¾ç”Ÿç±»é£æ ¼ä½å®šä¹‰çš„èµ·å§‹ä½åºå·
 	VTABS_USER					= ( VCS_USER + 5 ),
 
-	/// \brief ÊÇ·ñ»æÖÆÑ¡Ïî¿¨±ß¿ò
+	/// \brief æ˜¯å¦ç»˜åˆ¶é€‰é¡¹å¡è¾¹æ¡†
 	VTABS_TAB_BORDER			= 1 << ( VCS_USER + 0 ),
 };
 
-/*!\brief Ñ¡Ïî¿¨
+/*!\brief é€‰é¡¹å¡
  *
- * Ò»¸öÊ±¿ÌÖ»ÔÊĞíÒ»¸öÒ³Ãæ±»¼¤»î£¬ÆäËû´¦ÓÚÒş²ØµÄ×´Ì¬¡£
+ * ä¸€ä¸ªæ—¶åˆ»åªå…è®¸ä¸€ä¸ªé¡µé¢è¢«æ¿€æ´»ï¼Œå…¶ä»–å¤„äºéšè—çš„çŠ¶æ€ã€‚
 **/
 class VdkTab : public VdkCtrlHandler, public VdkCtrlParserCallback
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkTab();
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	~VdkTab();
 
-	/// \brief Ìí¼ÓÒ»¸ö¿Ø¼şµ½µÚ\a page ¸öÒ³Ãæ
+	/// \brief æ·»åŠ ä¸€ä¸ªæ§ä»¶åˆ°ç¬¬\a page ä¸ªé¡µé¢
 	/// 
-	/// Í¬Ê±»á½«¿Ø¼şÌí¼Óµ½Ò³ÃæÃæ°å( \link VdkPanel \endlink )µÄ¿Ø¼şÁĞ±íÖĞ¡£
+	/// åŒæ—¶ä¼šå°†æ§ä»¶æ·»åŠ åˆ°é¡µé¢é¢æ¿( \link VdkPanel \endlink )çš„æ§ä»¶åˆ—è¡¨ä¸­ã€‚
 	void AddCtrlToPage(int page, VdkControl* pCtrl);
 
-	/// \brief Ìí¼ÓÒ»¸öĞÂµÄÒ³Ãæ
+	/// \brief æ·»åŠ ä¸€ä¸ªæ–°çš„é¡µé¢
 	/// 
-	/// \attention ´ËÇ°Ñ¡Ïî¿¨±ØĞëÒÑÓĞÒ³Ãæ´æÔÚ¡£
-	/// \return ·µ»ØĞÂÒ³ÃæµÄ¾ä±ú¡£
+	/// \attention æ­¤å‰é€‰é¡¹å¡å¿…é¡»å·²æœ‰é¡µé¢å­˜åœ¨ã€‚
+	/// \return è¿”å›æ–°é¡µé¢çš„å¥æŸ„ã€‚
 	VdkPanel* AddPage(const wxString& caption);
 
-	/// \brief ÒÆ³ıµÚ\a id ¸öÒ³Ãæ
+	/// \brief ç§»é™¤ç¬¬\a id ä¸ªé¡µé¢
 	void RemovePage(int id, wxDC* pDC);
 
-	/// \brief ÇĞ»»µ½µÚ\a id ¸öÒ³Ãæ
+	/// \brief åˆ‡æ¢åˆ°ç¬¬\a id ä¸ªé¡µé¢
 	void Toggle(int id, wxDC* pDC);
 
-	/// \brief µÃµ½Ò³ÃæÊıÄ¿
+	/// \brief å¾—åˆ°é¡µé¢æ•°ç›®
 	int GetPageCount() const;
 
-	/// \brief »ñÈ¡µ±Ç°Ñ¡ÖĞµÄÒ³Ãæ
+	/// \brief è·å–å½“å‰é€‰ä¸­çš„é¡µé¢
 	int GetValue() const;
 
-	/// \brief »Øµ÷Í¨Öªº¯Êı
+	/// \brief å›è°ƒé€šçŸ¥å‡½æ•°
 	///
-	/// À´×Ô \link VdkCtrlParserCallback \endlink
+	/// æ¥è‡ª \link VdkCtrlParserCallback \endlink
 	virtual void Notify(VdkWindow* win, 
 						const wxString& clName,
 						VdkControl* pCtrl);
 
 private:
 
-	// ÓÉÏà¹ØÁªµÄ°´Å¥µÃµ½Ò³Ãæ ID
+	// ç”±ç›¸å…³è”çš„æŒ‰é’®å¾—åˆ°é¡µé¢ ID
 	int GetPageIdFromHandle(VdkToggleButton* pCtrl) const;
 
-	// »æÖÆ¿Ø¼ş
+	// ç»˜åˆ¶æ§ä»¶
 	virtual void DoDraw(wxDC& dc);
 
-	// ´¦ÀíÊó±êÊÂ¼ş
+	// å¤„ç†é¼ æ ‡äº‹ä»¶
 	virtual void DoHandleMouseEvent(VdkMouseEvent& e);
 
-	// ¹¤¾ßÀ¸°´Å¥µÄÊÂ¼ş´¦Àíº¯Êı
+	// å·¥å…·æ æŒ‰é’®çš„äº‹ä»¶å¤„ç†å‡½æ•°
 	void OnToolBarEvents(VdkVObjEvent&);
 
-	// ·¢ËÍ±ê×¼ wx ÊÂ¼ş
+	// å‘é€æ ‡å‡† wx äº‹ä»¶
 	void SendWxEvent(int index, int lastindex) const;
 
 	//////////////////////////////////////////////////////////////////////////
 
-	// Ñ¡Ïî¿¨ĞÅÏ¢¼¯ºÏ
+	// é€‰é¡¹å¡ä¿¡æ¯é›†åˆ
 	struct PageInfo {
 
-        VdkToggleButton* btn; // Ïà¹ØÁªµÄ°´Å¥
-        VdkPanel* panel; // Ïà¹ØÁªµÄÒ³Ãæ
+        VdkToggleButton* btn; // ç›¸å…³è”çš„æŒ‰é’®
+        VdkPanel* panel; // ç›¸å…³è”çš„é¡µé¢
     };
 
-	wxVector<PageInfo *> m_pages; // ËùÓĞÒ³Ãæ
+	wxVector<PageInfo *> m_pages; // æ‰€æœ‰é¡µé¢
 
 	//////////////////////////////////////////////////////////////////////////
 
-	int m_padding; // °´Å¥Ö®¼äµÄ¼äÏ¶
+	int m_padding; // æŒ‰é’®ä¹‹é—´çš„é—´éš™
 
-	// µ±Ç°¼¤»îµÄ°´Å¥
+	// å½“å‰æ¿€æ´»çš„æŒ‰é’®
 	VdkToggleButton* m_currToggled;
 	
 	DECLARE_DYNAMIC_VOBJECT
 };
 
 //////////////////////////////////////////////////////////////////////////
-/// \brief VdkTab ×¨ÓÃÊÂ¼şÍ¨ÖªÀà
+/// \brief VdkTab ä¸“ç”¨äº‹ä»¶é€šçŸ¥ç±»
 class VdkTabEvent : public VdkVObjEvent
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkTabEvent(VdkTab* tab, int index, int lastindex);
 
 private:

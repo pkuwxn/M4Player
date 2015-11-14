@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "MSW/TrayIcon.h"
 
 #ifdef _MSC_VER
@@ -15,7 +15,7 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-// Í¨ÖªÖ÷Ïß³Ì¼¤·¢Timer
+// é€šçŸ¥ä¸»çº¿ç¨‹æ¿€å‘Timer
 extern const wxEventType wxEVT_TI_TIMERUSER;
 const wxEventType wxEVT_TI_TIMERUSER = wxNewEventType();
 
@@ -176,7 +176,7 @@ wxMenu* TrayIcon::CreatePopupMenu()
 {
 	ExtMenu* popup = new ExtMenu;
 
-	popup->Append(TI_MENU_EXIT, L"ÍË³ö(&E)");
+	popup->Append(TI_MENU_EXIT, L"é€€å‡º(&E)");
 	return popup;
 }
 

@@ -1,31 +1,31 @@
-#pragma once
+ï»¿#pragma once
 
 class VdkWindow;
 #include "VdkControl.h"
 
-/*!\brief Ò»¸ö¾²Ì¬Í¼ÏñÀà
+/*!\brief ä¸€ä¸ªé™æ€å›¾åƒç±»
  * 
- * ¿ÉÒÔÊµÏÖÀàËÆ¿É»»·ôÈí¼şµÄ¡°µ×ÎÆ¡±¹¦ÄÜ¡£\n
- * ÎªÊµÏÖµ×ÎÆ¹¦ÄÜ£¬½¨Òé½« XRC ÎÄ¼şÖĞ±¾Àà¶¨ÒåµÄÎ»ÖÃ·Åµ½ÎÄ¼ş×î¿ªÍ·£¬\n
- * ÕâÑù±ã²»»á¸²¸ÇºóĞø×Ó¿Ø¼şµÄ»æÖÆºÍÊÂ¼ş´¦Àí¡£\n
- * Í¼ÏñÎÄ¼ş¿ÉÒÔÊÇ .BMP¡¢.PNG¡¢.JPG/.JPEG¡¢.GIF ËÄÖÖ¸ñÊ½Ö®Ò»¡£
+ * å¯ä»¥å®ç°ç±»ä¼¼å¯æ¢è‚¤è½¯ä»¶çš„â€œåº•çº¹â€åŠŸèƒ½ã€‚\n
+ * ä¸ºå®ç°åº•çº¹åŠŸèƒ½ï¼Œå»ºè®®å°† XRC æ–‡ä»¶ä¸­æœ¬ç±»å®šä¹‰çš„ä½ç½®æ”¾åˆ°æ–‡ä»¶æœ€å¼€å¤´ï¼Œ\n
+ * è¿™æ ·ä¾¿ä¸ä¼šè¦†ç›–åç»­å­æ§ä»¶çš„ç»˜åˆ¶å’Œäº‹ä»¶å¤„ç†ã€‚\n
+ * å›¾åƒæ–‡ä»¶å¯ä»¥æ˜¯ .BMPã€.PNGã€.JPG/.JPEGã€.GIF å››ç§æ ¼å¼ä¹‹ä¸€ã€‚
 **/
 class VdkStaticImage : public VdkControl
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkStaticImage() {}
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief ¹¹½¨¿Ø¼ş
-	/// \param Window ¸¸´°¿Ú
-	/// \param strName ¿Ø¼ş±êÊ¶·û
-	/// \param rc ¿Ø¼ş×÷ÓÃÓò
-	/// \param bm ÒªÏÔÊ¾µÄÎ»Í¼
-	/// \param rescaleBitmap ÊÇ·ñËõ·ÅÎ»Í¼ÒÔÊÊÓ¦¿Ø¼şÔ­¶¨×÷ÓÃÓò
+	/// \brief æ„å»ºæ§ä»¶
+	/// \param Window çˆ¶çª—å£
+	/// \param strName æ§ä»¶æ ‡è¯†ç¬¦
+	/// \param rc æ§ä»¶ä½œç”¨åŸŸ
+	/// \param bm è¦æ˜¾ç¤ºçš„ä½å›¾
+	/// \param rescaleBitmap æ˜¯å¦ç¼©æ”¾ä½å›¾ä»¥é€‚åº”æ§ä»¶åŸå®šä½œç”¨åŸŸ
 	void Create(VdkWindow* Window, 
 				const wxString& strName, 
 				const wxRect& rc, 
@@ -34,18 +34,18 @@ public:
 
 protected:
 
-	/// \brief »æÖÆ¿Ø¼ş
+	/// \brief ç»˜åˆ¶æ§ä»¶
 	virtual void DoDraw(wxDC& dc);
 
-	/// \brief »ñÈ¡ÒªÏÔÊ¾µÄÍ¼Ïñ
+	/// \brief è·å–è¦æ˜¾ç¤ºçš„å›¾åƒ
 	const wxBitmap& GetImage() const { return m_image; }
 
-	/// \brief ÉèÖÃÒªÏÔÊ¾µÄÍ¼Ïñ
+	/// \brief è®¾ç½®è¦æ˜¾ç¤ºçš„å›¾åƒ
 	void SetImage(const wxBitmap& image) { m_image = image; }
 
 private:
 
-    // ÒªÏÔÊ¾µÄÍ¼Ïñ
+    // è¦æ˜¾ç¤ºçš„å›¾åƒ
 	wxBitmap		m_image;
 
 	DECLARE_DYNAMIC_VOBJECT

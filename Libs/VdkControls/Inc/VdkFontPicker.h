@@ -1,40 +1,40 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkButton.h"
 
-/// \brief ×ÖÌåÑ¡ÔñÆ÷
+/// \brief å­—ä½“é€‰æ‹©å™¨
 class VdkFontPicker : public VdkButton
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkFontPicker(){}
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief ÉèÖÃµ±Ç°×ÖÌå
+	/// \brief è®¾ç½®å½“å‰å­—ä½“
 	const wxFont& SetSelectedFont(const wxString& strDesc, wxDC* pDC);
 
-	/// \brief ÉèÖÃµ±Ç°×ÖÌå
+	/// \brief è®¾ç½®å½“å‰å­—ä½“
 	const wxFont& SetSelectedFont(const wxFont& font, wxDC* pDC);
 
-	/// \brief »ñÈ¡ÓÃ»§ÒÑÑ¡µÄ×ÖÌå
+	/// \brief è·å–ç”¨æˆ·å·²é€‰çš„å­—ä½“
 	const wxFont& GetSelectedFont() const { return m_selectedFont; }
 
-	/// \brief ¸ù¾İÓÃ»§ÒÑÑ¡µÄ×ÖÌåµÃµ½¿É¶ÁÎÄ±¾
+	/// \brief æ ¹æ®ç”¨æˆ·å·²é€‰çš„å­—ä½“å¾—åˆ°å¯è¯»æ–‡æœ¬
 	wxString BuildString(wxFont* pFont = NULL);
 
-	/// \brief ¸ù¾İ¿É¶ÁÎÄ±¾Éú³ÉÖ¸¶¨µÄ×ÖÌå
+	/// \brief æ ¹æ®å¯è¯»æ–‡æœ¬ç”ŸæˆæŒ‡å®šçš„å­—ä½“
 	static wxFont GetFontFromDescString(const wxString& strDesc);
 
 private:
 
-	// ´ò¿ª×ÖÌåÑ¡Ôñ¶Ô»°¿ò
+	// æ‰“å¼€å­—ä½“é€‰æ‹©å¯¹è¯æ¡†
 	virtual void DoHandleMouseEvent(VdkMouseEvent& e);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	wxFont m_selectedFont; // Ñ¡ÖĞµÄ×ÖÌå
+	wxFont m_selectedFont; // é€‰ä¸­çš„å­—ä½“
 
 	DECLARE_DYNAMIC_VOBJECT
 };

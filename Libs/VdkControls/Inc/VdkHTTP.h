@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkHTTP.h
- * Purpose:   wxHttpHelper µÄÊµÌåÀà
+ * Purpose:   wxHttpHelper çš„å®ä½“ç±»
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-17
  **************************************************************/
@@ -9,27 +9,27 @@
 
 class wxMemoryOutputStream;
 
-/// wxHttpHelper µÄÊµÌåÀà
+/// wxHttpHelper çš„å®ä½“ç±»
 class VdkHTTP
 {
 public:
 
-	/// Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// é»˜è®¤æ„é€ å‡½æ•°
 	VdkHTTP(const wxCSConv& conv);
 
-	/// ĞéÎö¹¹º¯Êı
+	/// è™šææ„å‡½æ•°
 	virtual ~VdkHTTP() {}
 
-	/// @brief ¼ì²âËùÌá¹©µÄ×Ö·û´®ÖĞÀàËÆÓÚ¡°charset=XXX¡±×Ö´®Ëù´ú±íµÄ×Ö·û¼¯
+	/// @brief æ£€æµ‹æ‰€æä¾›çš„å­—ç¬¦ä¸²ä¸­ç±»ä¼¼äºâ€œcharset=XXXâ€å­—ä¸²æ‰€ä»£è¡¨çš„å­—ç¬¦é›†
 	///
-	/// @a p µÄÀ´Ô´¿ÉÄÜÊÇ HTTP Header ÖĞµÄ¡°Content-Type¡±£¬Ò²¿ÉÒÔÊÇ
-	/// HTML Ô´ÂëÖĞµÄ¡°meta¡±±êÇ©¡¢XML ´úÂëÖĞµÄ¡°encoding¡±ÊôĞÔ¡£
+	/// @a p çš„æ¥æºå¯èƒ½æ˜¯ HTTP Header ä¸­çš„â€œContent-Typeâ€ï¼Œä¹Ÿå¯ä»¥æ˜¯
+	/// HTML æºç ä¸­çš„â€œmetaâ€æ ‡ç­¾ã€XML ä»£ç ä¸­çš„â€œencodingâ€å±æ€§ã€‚
 	static wxString DetectCharset(const char* p);
 
-	/// ÉèÖÃÏµÍ³±¾µØÄ¬ÈÏ¶à×Ö½Ú×Ö·û¼¯×ª»»Æ÷
+	/// è®¾ç½®ç³»ç»Ÿæœ¬åœ°é»˜è®¤å¤šå­—èŠ‚å­—ç¬¦é›†è½¬æ¢å™¨
 	void SetAnsiLocalConv(const wxCSConv& conv);
 
-	/// »ñÈ¡¶ÔÏó°ó¶¨µÄÏµÍ³±¾µØÄ¬ÈÏ¶à×Ö½Ú×Ö·û¼¯×ª»»Æ÷
+	/// è·å–å¯¹è±¡ç»‘å®šçš„ç³»ç»Ÿæœ¬åœ°é»˜è®¤å¤šå­—èŠ‚å­—ç¬¦é›†è½¬æ¢å™¨
 	const wxMBConv& GetAnsiLocalConv() const;
 
 	//================================================
@@ -39,16 +39,16 @@ public:
 
 	//================================================
 
-	/// ¿ØÖÆ GZip µÄÆôÓÃÓë·ñ
+	/// æ§åˆ¶ GZip çš„å¯ç”¨ä¸å¦
 	enum GZipMode {
-		GZM_ENABLED, ///< ÆôÓÃ GZip
-		GZM_DISABLED, ///< ½ûÓÃ GZip
+		GZM_ENABLED, ///< å¯ç”¨ GZip
+		GZM_DISABLED, ///< ç¦ç”¨ GZip
 	};
 
-	/// ÆôÓÃ/½ûÓÃ GZip
+	/// å¯ç”¨/ç¦ç”¨ GZip
 	virtual void EnableGzip(GZipMode gzm) = 0;
 
-	/// GZip ÊÇ·ñÒÑÈ»ÆôÓÃ
+	/// GZip æ˜¯å¦å·²ç„¶å¯ç”¨
 	virtual bool IsGzipEnabled() const = 0;
 
 	/// Set the default http timeout in seconds.

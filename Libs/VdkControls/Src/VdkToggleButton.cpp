@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "VdkToggleButton.h"
 
 #include "VdkWindow.h"
@@ -66,7 +66,7 @@ void VdkToggleButton::Toggle(bool bToggled, wxDC* pDC, bool bFireCallback)
 
 void VdkToggleButton::DoHandleMouseEvent(VdkMouseEvent& e)
 {
-	// ºÄÊ±²Ù×÷¶ÀÕ¼°´Å¥
+	// è€—æ—¶æ“ä½œç‹¬å æŒ‰é’®
 	if( IsPushed() )
 		return;
 
@@ -76,7 +76,7 @@ void VdkToggleButton::DoHandleMouseEvent(VdkMouseEvent& e)
 	{
 		case NORMAL:
 		case HOVERING:
-			// ToggleButton µ¯ÆğÊó±êÊ±²»Ó¦ÓĞ Hovering µÄ×´Ì¬
+			// ToggleButton å¼¹èµ·é¼ æ ‡æ—¶ä¸åº”æœ‰ Hovering çš„çŠ¶æ€
 			if( IsToggled() )
 				return;
 
@@ -96,10 +96,10 @@ void VdkToggleButton::DoHandleMouseEvent(VdkMouseEvent& e)
 				RemoveState( VTBST_LAST_LEFT_DOWN );
 
 				if( !IsOwnerControl() )
-					ReverseState( VTBST_TOGGLED ); // !!!È¡·´!!!°´ÏÂ×´Ì¬
+					ReverseState( VTBST_TOGGLED ); // !!!å–å!!!æŒ‰ä¸‹çŠ¶æ€
 
-				// ToggleButton µ¯ÆğÊó±êÊ±²»Ó¦ÓĞ Hovering µÄ×´Ì¬
-				// Í¬Àí PushedButton
+				// ToggleButton å¼¹èµ·é¼ æ ‡æ—¶ä¸åº”æœ‰ Hovering çš„çŠ¶æ€
+				// åŒç† PushedButton
 				if( IsToggled() )
 				{
 					if( IsToBePushed() )
@@ -108,15 +108,15 @@ void VdkToggleButton::DoHandleMouseEvent(VdkMouseEvent& e)
 						RemoveState( VTBST_TO_BE_PUSHED );
 					}
 
-					// Ã»±»°´ÏÂÊ±ÊÂ¼şÓÉ VdkButton ¼¤·¢
+					// æ²¡è¢«æŒ‰ä¸‹æ—¶äº‹ä»¶ç”± VdkButton æ¿€å‘
 					if( IsReadyForEvent() )
 						FireEvent( &e.dc, NULL );
 
 					return;
 				}
 			}
-			// ÔÚÁíÍâµÄ¿Ø¼şÉÏÍÏ¶¯Ê±£¬ÔÚ VdkToggledButton ÉÏ·Å¿ªÖ¸Õë£¬
-			// ´ËÊ±²»Òª¸Ä±ä VdkToggledButton µÄÈÎºÎ×´Ì¬
+			// åœ¨å¦å¤–çš„æ§ä»¶ä¸Šæ‹–åŠ¨æ—¶ï¼Œåœ¨ VdkToggledButton ä¸Šæ”¾å¼€æŒ‡é’ˆï¼Œ
+			// æ­¤æ—¶ä¸è¦æ”¹å˜ VdkToggledButton çš„ä»»ä½•çŠ¶æ€
 			else if( IsToggled() )
 				return;
 
@@ -132,7 +132,7 @@ void VdkToggleButton::DoHandleMouseEvent(VdkMouseEvent& e)
 
 	VdkButton::DoHandleMouseEvent( e );
 
-	// ±ØĞëÁ½Õß¶¼ÒªÌø¹ı±¾ÊÂ¼ş
+	// å¿…é¡»ä¸¤è€…éƒ½è¦è·³è¿‡æœ¬äº‹ä»¶
 	if( !skip )
 		e.Skip( false );
 }

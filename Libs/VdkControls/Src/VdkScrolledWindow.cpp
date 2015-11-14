@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////
+ï»¿///////////////////////////////////////////////////////////////////////////////
 // Name:        VdkListCtrl.cpp
 // Purpose:     Implementation of VdkListCtrl
 // Author:      Wang Xiaoning
@@ -158,7 +158,7 @@ void VdkScrolled::CalcMaxViewStart()
 
 	if( m_yVirtualSize < rc.height )
 	{
-		// ¸üĞÂ m_yViewStart
+		// æ›´æ–° m_yViewStart
 		m_yViewStart = m_yViewStartMax = 0;
 		return;
 	}
@@ -168,7 +168,7 @@ void VdkScrolled::CalcMaxViewStart()
 	if( yViewStartMax > m_yViewStartMax )
 		m_yViewStartMax++;
 
-	// ¸üĞÂ m_yViewStart
+	// æ›´æ–° m_yViewStart
 	if( m_yViewStart > m_yViewStartMax )
 		m_yViewStart = m_yViewStartMax;
 }
@@ -205,14 +205,14 @@ void VdkScrolled::CalcScrollBarSize(wxDC* dc)
 			int h;
 			m_pScrollBar->GetSize( NULL, &h );
 
-			// ±¾º¯ÊıÖ»¸ºÔğ½¨Òé¹ö¶¯ÌõµÄ¸ß¶È£¬ÖÁÓÚ¾ßÌåµÄ²Ù×÷£¬
-			// ¼´¹ö¶¯ÌõÊÇ·ñ½ÓÊÜÓÉ VdkScrollBar::SetThumbHeight ¸ºÔğ
+			// æœ¬å‡½æ•°åªè´Ÿè´£å»ºè®®æ»šåŠ¨æ¡çš„é«˜åº¦ï¼Œè‡³äºå…·ä½“çš„æ“ä½œï¼Œ
+			// å³æ»šåŠ¨æ¡æ˜¯å¦æ¥å—ç”± VdkScrollBar::SetThumbHeight è´Ÿè´£
 			m_pScrollBar->SetThumbHeight
 				( h * ( static_cast< double >( rc.height ) / m_yVirtualSize ), NULL);
-			// ¸üĞÂ¹ö¶¯ÌõÎ»ÖÃ£¨¹ö¶¯´°¿ÚµÄ×î´óÏÔÊ¾Æğµã¿ÉÄÜÒÑ¸Ä±ä£©
+			// æ›´æ–°æ»šåŠ¨æ¡ä½ç½®ï¼ˆæ»šåŠ¨çª—å£çš„æœ€å¤§æ˜¾ç¤ºèµ·ç‚¹å¯èƒ½å·²æ”¹å˜ï¼‰
 			m_pScrollBar->GoTo( GetProgress(), pDC );
 		}
-		else // Ò»ÆÁ×ã¹»ÏÔÊ¾
+		else // ä¸€å±è¶³å¤Ÿæ˜¾ç¤º
 		{
 			if( Style() & VSWS_ALWAYS_SHOW_SCROLLBAR )
 			{
@@ -259,7 +259,7 @@ void VdkScrolled::Notify(const VdkNotify& notice)
 	{
 		if( !m_pScrollBar && !( Style() & VSWS_NO_SCROLLBAR ) )
 		{
-			// ¼ì²âÊÇ·ñÒÑÔÚ XRC ÎÄ¼şÖĞ¶¨Òå²¢´´½¨ÁËĞèÒªµÄ¹ö¶¯Ìõ
+			// æ£€æµ‹æ˜¯å¦å·²åœ¨ XRC æ–‡ä»¶ä¸­å®šä¹‰å¹¶åˆ›å»ºäº†éœ€è¦çš„æ»šåŠ¨æ¡
 			m_pScrollBar = ScrollBarExists();
 			if( !m_pScrollBar )
 			{
@@ -285,7 +285,7 @@ void VdkScrolled::Notify(const VdkNotify& notice)
 			}
 		}
 
-		// Îª¹ö¶¯ÌõÌÚ³ö¿Õ¼ä
+		// ä¸ºæ»šåŠ¨æ¡è…¾å‡ºç©ºé—´
 		if( m_pScrollBar )
 		{
 			if( Style() & VSWS_ALWAYS_SHOW_SCROLLBAR )
@@ -345,7 +345,7 @@ void VdkScrolled::MouseEvent(VdkMouseEvent& e)
 
 	case WHEEL_DOWN:
 	
-		// m_linesUpDown == 0 ±íÃ÷²»ĞèÒª´¦ÀíÊó±ê¹öÂÖÊÂ¼ş
+		// m_linesUpDown == 0 è¡¨æ˜ä¸éœ€è¦å¤„ç†é¼ æ ‡æ»šè½®äº‹ä»¶
 		if( m_linesUpDown == 0 || m_yViewStart == m_yViewStartMax )
 			break;
 
@@ -385,7 +385,7 @@ PROCESS_SCROLLING:
 		break;
 	}
 
-	// ¹ö¶¯´°¿ÚÎ»ÓÚÍ¬Ò»¸ö´°¿ÚÊ±
+	// æ»šåŠ¨çª—å£ä½äºåŒä¸€ä¸ªçª—å£æ—¶
 	VdkDcDeviceOriginSaver saver( e.dc );
 	PrepareDC( e.dc );
 	
@@ -412,7 +412,7 @@ void VdkScrolled::SetScrollBarStyle(ScrollBarStyle& style)
 
 void VdkScrolled::GoTo(double progress, wxDC* pDC)
 {
-	// +1 ÊÇÎªÁË±ÜÃâ¸¡µãÔËËãµÄ¾«¶ÈËğÊ§
+	// +1 æ˜¯ä¸ºäº†é¿å…æµ®ç‚¹è¿ç®—çš„ç²¾åº¦æŸå¤±
 	int yViewStart = m_yViewStartMax * progress;
 	if( yViewStart )
 		yViewStart++;
@@ -448,13 +448,13 @@ void VdkScrolledWindow::Create(wxXmlNode* node)
 void VdkScrolledWindow::Clone(VdkScrolledWindow* o)
 {
 	wxASSERT_MSG( CheckSourceCtrl< VdkScrollBar >( m_firstChild ), 
-		L"´íÎóµÄ¹ö¶¯Ìõ¡£" );
+		L"é”™è¯¯çš„æ»šåŠ¨æ¡ã€‚" );
 
 	VdkScrollBar* scrollbar = (VdkScrollBar *) m_firstChild;
 	VdkScrolled::Clone( o, scrollbar );
 	m_borderColor = o->m_borderColor;
 
-	// ³õÊ¼×´Ì¬ÊÇ²»ÏÔÊ¾¹ö¶¯ÌõµÄ£¬½«¹ö¶¯´°¿ÚĞŞÕıÎªÕıÈ·µÄ×÷ÓÃÓò
+	// åˆå§‹çŠ¶æ€æ˜¯ä¸æ˜¾ç¤ºæ»šåŠ¨æ¡çš„ï¼Œå°†æ»šåŠ¨çª—å£ä¿®æ­£ä¸ºæ­£ç¡®çš„ä½œç”¨åŸŸ
 	if( !TestStyle( VSWS_ALWAYS_SHOW_SCROLLBAR ) &&
 		scrollbar->IsOnShow() )
 	{
@@ -476,7 +476,7 @@ wxRect VdkScrolledWindow::GetLogicalRect() const
 
 VdkScrollBar* VdkScrolledWindow::ScrollBarExists()
 {
-	// ¹ö¶¯ÌõÊÇ·ñÒÑÈ»´æÔÚ
+	// æ»šåŠ¨æ¡æ˜¯å¦å·²ç„¶å­˜åœ¨
 	ChildIterator chd;
 	VdkScrollBar* psb = NULL;
 	for( chd = begin(); chd != end(); ++chd )
@@ -509,13 +509,13 @@ void VdkScrolledWindow::DoDraw(wxDC& dc)
 		DrawRectangle( dc, GetLogicalRect().Inflate( 1 ) );
 	}
 
-	// Ïò»ùÀà·Ö·¢ÖØ»­ÊÂ¼ş
+	// å‘åŸºç±»åˆ†å‘é‡ç”»äº‹ä»¶
 	Paint( dc );
 }
 
 void VdkScrolledWindow::DoHandleMouseEvent(VdkMouseEvent& e)
 {
-	// ½«Êó±êÎ»ÖÃ¸ÄÎªÒÔ¹ö¶¯Ãæ°å×óÉÏ½ÇÎªÆğÊ¼µã
+	// å°†é¼ æ ‡ä½ç½®æ”¹ä¸ºä»¥æ»šåŠ¨é¢æ¿å·¦ä¸Šè§’ä¸ºèµ·å§‹ç‚¹
 	e.mousePos = DeTranslatePoint( e.mousePos );
 	MouseEvent( e );
 }

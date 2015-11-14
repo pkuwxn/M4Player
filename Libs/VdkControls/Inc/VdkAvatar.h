@@ -1,32 +1,32 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkStaticImage.h"
 
-/// \brief ÏÔÊ¾Ò»¸ö¾ßÓĞÔ²½ÇĞ§¹ûÍ·Ïñ
+/// \brief æ˜¾ç¤ºä¸€ä¸ªå…·æœ‰åœ†è§’æ•ˆæœå¤´åƒ
 class VdkAvatar : public VdkStaticImage
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	VdkAvatar();
 
-	/// \brief ¶¯Ì¬´´½¨
+	/// \brief åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief ÉèÖÃÇúÂÊ
+	/// \brief è®¾ç½®æ›²ç‡
 	void SetRadius(int radius) { m_radius = radius; }
 
 private:
 
-	/// \brief »æÖÆ¿Ø¼ş
+	/// \brief ç»˜åˆ¶æ§ä»¶
 	virtual void DoDraw(wxDC& dc);
 
-	/// \brief ´¦ÀíÊó±êÊÂ¼ş
+	/// \brief å¤„ç†é¼ æ ‡äº‹ä»¶
 	virtual void DoHandleMouseEvent(VdkMouseEvent& e);
 
 	int						m_radius;
 	wxPen					m_borderPen;
 
-	VdkMouseEventType		m_ptrState; // µ±Ç°Êó±êÖ¸ÕëµÄ×´Ì¬
+	VdkMouseEventType		m_ptrState; // å½“å‰é¼ æ ‡æŒ‡é’ˆçš„çŠ¶æ€
 
 	DECLARE_DYNAMIC_VOBJECT
 };

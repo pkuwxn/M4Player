@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "VdkPanel.h"
 
 #include "VdkWindow.h"
@@ -27,8 +27,8 @@ void VdkPanel::Create(wxXmlNode* node)
 {
 	Create( m_Window, GetXrcName(node), GetXrcRect(node) );
 
-	// VdkTab ¸½¼ÓµÄ VdkPanel ²»ĞèÒªÌá¹© <rect> ½áµã£¬
-	// Òò´Ë VdkPanel ÔÚ³õÊ¼»¯Ê± m_Rect ÊÇ¿ÕµÄ
+	// VdkTab é™„åŠ çš„ VdkPanel ä¸éœ€è¦æä¾› <rect> ç»“ç‚¹ï¼Œ
+	// å› æ­¤ VdkPanel åœ¨åˆå§‹åŒ–æ—¶ m_Rect æ˜¯ç©ºçš„
 	if( m_Rect.IsEmpty() )
 	{
 		m_Rect = m_parent->GetRect();

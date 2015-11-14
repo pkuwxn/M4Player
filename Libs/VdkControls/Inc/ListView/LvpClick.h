@@ -1,60 +1,60 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      LvpClick.h
- * Purpose:   ÊµÏÖ VdkListView µ¥Ñ¡¡¢¶àÑ¡
+ * Purpose:   å®ç° VdkListView å•é€‰ã€å¤šé€‰
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-3-3
  **************************************************************/
 #pragma once
 #include "IListViewPlaugin.h"
 
-/// ÊµÏÖ VdkListView µ¥Ñ¡¡¢¶àÑ¡
+/// å®ç° VdkListView å•é€‰ã€å¤šé€‰
 class LvpClick : public IListViewPlaugin
 {
 public:
 
-	//! µ¥Ñ¡/¶àÑ¡
+	//! å•é€‰/å¤šé€‰
 	enum SelectMode {
-		SM_SINGLE, ///< µ¥Ñ¡
-		SM_MULTI, ///< ¶àÑ¡
+		SM_SINGLE, ///< å•é€‰
+		SM_MULTI, ///< å¤šé€‰
 	};
 
-	/// ¹¹Ôìº¯Êı
+	/// æ„é€ å‡½æ•°
 	LvpClick(ListView* list, SelectMode sm, const wxBrush& selected);
 
-	/// Ñ¡ÖĞµÚ@a index Ïî
+	/// é€‰ä¸­ç¬¬@a index é¡¹
 	///
-	/// µ±Ç°ËùÓĞÑ¡Ôñ»á±»Çå¿Õ¡£
+	/// å½“å‰æ‰€æœ‰é€‰æ‹©ä¼šè¢«æ¸…ç©ºã€‚
 	void Select(int index, wxDC* pDC);
 
-	/// Ñ¡ÖĞ[@a index, end) Çø¼äÖĞµÄËùÓĞÏîÄ¿
+	/// é€‰ä¸­[@a index, end) åŒºé—´ä¸­çš„æ‰€æœ‰é¡¹ç›®
 	///
-	/// µ±Ç°ËùÓĞÑ¡Ôñ»á±»Çå¿Õ£¬ÇÒ½öÔÚ¶àÑ¡Ä£Ê½ÖĞÓĞĞ§¡£
-	/// @attention Çø¼äÎªÓÒ¿ªÇø¼ä¡£
+	/// å½“å‰æ‰€æœ‰é€‰æ‹©ä¼šè¢«æ¸…ç©ºï¼Œä¸”ä»…åœ¨å¤šé€‰æ¨¡å¼ä¸­æœ‰æ•ˆã€‚
+	/// @attention åŒºé—´ä¸ºå³å¼€åŒºé—´ã€‚
 	void Select(int beg, int end, wxDC* pDC);
 
-	/// Ñ¡ÖĞÖ¸¶¨Êı×éÖĞµÄËùÓĞÏîÄ¿
+	/// é€‰ä¸­æŒ‡å®šæ•°ç»„ä¸­çš„æ‰€æœ‰é¡¹ç›®
 	///
-	/// µ±Ç°ËùÓĞÑ¡Ôñ»á±»Çå¿Õ¡£
+	/// å½“å‰æ‰€æœ‰é€‰æ‹©ä¼šè¢«æ¸…ç©ºã€‚
 	void Select(const wxArrayInt& items, wxDC* pDC);
 
-	/// Çå³ıÒÑÑ¡ÔñµÄÁĞ±íÏî
+	/// æ¸…é™¤å·²é€‰æ‹©çš„åˆ—è¡¨é¡¹
 	///
-	/// ²»»áÖØ»­¿Ø¼ş£¬±ØĞëÏÔÊ½µ÷ÓÃ VdkListView::RefreshState() ¡£
+	/// ä¸ä¼šé‡ç”»æ§ä»¶ï¼Œå¿…é¡»æ˜¾å¼è°ƒç”¨ VdkListView::RefreshState() ã€‚
 	void SelectNone();
 
-	/// »ñÈ¡Ñ¡ÔñÄ£Ê½
+	/// è·å–é€‰æ‹©æ¨¡å¼
 	SelectMode GetSelectMode() const {
 		return m_multiSel ? SM_MULTI : SM_SINGLE;
 	}
 
-	/// ÉèÖÃÑ¡ÔñÄ£Ê½
+	/// è®¾ç½®é€‰æ‹©æ¨¡å¼
 	///
-	/// Õâ¸öº¯ÊıÒ»°ã´ÓÍâ²¿Ö±½Óµ÷ÓÃ£¬ÄÚ²¿ÊµÏÖ»áÁÙÊ±ÖØÉè pDC µÄ»æÍ¼ÆğÊ¼µã£¬
-	/// ²¢ÔÚ·µ»ØÊ±»Ö¸´¡£
-	/// ¸±×÷ÓÃ£º»áÇå¿Õµ±Ç°ËùÓĞÑ¡Ôñ¡£
+	/// è¿™ä¸ªå‡½æ•°ä¸€èˆ¬ä»å¤–éƒ¨ç›´æ¥è°ƒç”¨ï¼Œå†…éƒ¨å®ç°ä¼šä¸´æ—¶é‡è®¾ pDC çš„ç»˜å›¾èµ·å§‹ç‚¹ï¼Œ
+	/// å¹¶åœ¨è¿”å›æ—¶æ¢å¤ã€‚
+	/// å‰¯ä½œç”¨ï¼šä¼šæ¸…ç©ºå½“å‰æ‰€æœ‰é€‰æ‹©ã€‚
 	void SetSelectMode(SelectMode sm, wxDC* pDC);
 
-	/// ´æÈ¡Ñ¡ÖĞÏîµÄ±³¾°»­Ë¢
+	/// å­˜å–é€‰ä¸­é¡¹çš„èƒŒæ™¯ç”»åˆ·
 	wxBrush GetSelectedBrush() const { return m_selected; }
 	void SetSelectedBrush(const wxBrush& brush) { m_selected = brush; }
 
@@ -74,7 +74,7 @@ public:
 		virtual void OnItemClick(LvpClick* parent, int index, wxDC& dc) = 0;
 	};
 
-	/// ÉèÖÃÏîÄ¿µã»÷¼àÌıÆ÷
+	/// è®¾ç½®é¡¹ç›®ç‚¹å‡»ç›‘å¬å™¨
 	void SetOnItemClickListener(OnItemClickListener* listener) {
 		m_clickListener = listener;
 	}
@@ -82,7 +82,7 @@ public:
 public:
 
 	WX_DEFINE_SORTED_ARRAY_INT( int, ArrayOfSortedInts );
-	/// »ñÈ¡±»Ñ¡ÖĞµÄĞĞ
+	/// è·å–è¢«é€‰ä¸­çš„è¡Œ
 	const ArrayOfSortedInts& GetSelItems() const { return m_selItems; }
     
 protected:
@@ -111,40 +111,40 @@ private:
 
 private:
 
-	// ´¦Àí°´×¡ Shift ¼üÊ±°´¶¯ÉÏÏÂµ¼º½¼üµÄ°´¼üÊÂ¼ş
+	// å¤„ç†æŒ‰ä½ Shift é”®æ—¶æŒ‰åŠ¨ä¸Šä¸‹å¯¼èˆªé”®çš„æŒ‰é”®äº‹ä»¶
 	//
-	// Ä£ÄâÊó±êµã»÷£¬ÓÉÊó±êÊÂ¼ş´¦Àíº¯ÊıÀ´´¦Àí¡£
+	// æ¨¡æ‹Ÿé¼ æ ‡ç‚¹å‡»ï¼Œç”±é¼ æ ‡äº‹ä»¶å¤„ç†å‡½æ•°æ¥å¤„ç†ã€‚
 	void OnShiftUpDownKeys(int currSel, wxDC& dc);
 
-	/// ÊÇ·ñ´¦ÓÚÈ«Ñ¡µÄ×´Ì¬ÖĞ
+	/// æ˜¯å¦å¤„äºå…¨é€‰çš„çŠ¶æ€ä¸­
 	bool IsAllSelected();
 
-	// Çå³ıÒÑÑ¡ÔñµÄÁĞ±íÏî£¬ÄÚ²¿µ÷ÓÃ
+	// æ¸…é™¤å·²é€‰æ‹©çš„åˆ—è¡¨é¡¹ï¼Œå†…éƒ¨è°ƒç”¨
 	void SelectNone(wxDC* pDC);
 
-	// ¸üĞÂ×îºóµã»÷µÄÑ¡Ïî
+	// æ›´æ–°æœ€åç‚¹å‡»çš„é€‰é¡¹
 	// 
-	// Ö÷ÒªÊÇÎªÁËÖ»±£ÁôÒ»¸öĞŞ¸Ä m_lastSelected ±äÁ¿µÄÈë¿Ú¡£
+	// ä¸»è¦æ˜¯ä¸ºäº†åªä¿ç•™ä¸€ä¸ªä¿®æ”¹ m_lastSelected å˜é‡çš„å…¥å£ã€‚
 	void UpdateVeryLastSel(int row);
 
 protected:
 
-	/// »ñÈ¡¶àÏîÑ¡ÔñÊ±Ö¸¶¨µÄµÚÒ»ÏîµÄ ID
+	/// è·å–å¤šé¡¹é€‰æ‹©æ—¶æŒ‡å®šçš„ç¬¬ä¸€é¡¹çš„ ID
 	int& GetSelStart() { return m_selStart; }
 
-	/// »ñÈ¡×îºóµã»÷µÄÑ¡Ïî
+	/// è·å–æœ€åç‚¹å‡»çš„é€‰é¡¹
 	int& GetVeryLastClicked() { return m_veryLastClicked; }
 
-	/// »ñÈ¡±»Ñ¡ÖĞµÄĞĞ
+	/// è·å–è¢«é€‰ä¸­çš„è¡Œ
 	ArrayOfSortedInts& GetSelItems() { return m_selItems; }
 
 private:
 
-	bool m_multiSel; // ÊÇ·ñÆôÓÃ¶àÑ¡
+	bool m_multiSel; // æ˜¯å¦å¯ç”¨å¤šé€‰
 
-	wxBrush m_selected; // Ñ¡ÖĞÏîµÄ±³¾°»­Ë¢
-	int m_selStart; // ¶àÏîÑ¡ÔñÊ±Ö¸¶¨µÄµÚÒ»ÏîµÄ ID
-	int m_veryLastClicked; // ×îºóµã»÷µÄÑ¡Ïî£¬ÓÃÓÚ¡°ÉÏ¡±¡°ÏÂ¡±¼üµÄ´¦Àí
+	wxBrush m_selected; // é€‰ä¸­é¡¹çš„èƒŒæ™¯ç”»åˆ·
+	int m_selStart; // å¤šé¡¹é€‰æ‹©æ—¶æŒ‡å®šçš„ç¬¬ä¸€é¡¹çš„ ID
+	int m_veryLastClicked; // æœ€åç‚¹å‡»çš„é€‰é¡¹ï¼Œç”¨äºâ€œä¸Šâ€â€œä¸‹â€é”®çš„å¤„ç†
 
 	ArrayOfSortedInts m_selItems;
 

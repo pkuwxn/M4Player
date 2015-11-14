@@ -1,32 +1,32 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkShortcutCtrl.h
- * Purpose:   ÒÔ¿ÉÊÓ»¯µÄ·½Ê½¶¨Òå¼üÅÌ¿ì½İ¼ü
+ * Purpose:   ä»¥å¯è§†åŒ–çš„æ–¹å¼å®šä¹‰é”®ç›˜å¿«æ·é”®
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-3-18
  **************************************************************/
 #pragma once
 #include "VdkEdit.h"
 
-/// ÒÔ¿ÉÊÓ»¯µÄ·½Ê½¶¨Òå¼üÅÌ¿ì½İ¼ü
+/// ä»¥å¯è§†åŒ–çš„æ–¹å¼å®šä¹‰é”®ç›˜å¿«æ·é”®
 class VdkShortcutCtrl : public VdkEdit
 {
 public:
 
-	/// Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// é»˜è®¤æ„é€ å‡½æ•°
 	VdkShortcutCtrl();
 
-	/// XRC ¶¯Ì¬´´½¨
+	/// XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// ÉèÖÃµ±Ç°ÏÔÊ¾µÄ¿ì½İ¼ü
+	/// è®¾ç½®å½“å‰æ˜¾ç¤ºçš„å¿«æ·é”®
 	void SetShortcut(int modifiers, int keycode, wxDC* pDC);
 
-	/// Çå¿Õµ±Ç°¿ì½İ¼ü
+	/// æ¸…ç©ºå½“å‰å¿«æ·é”®
 	void Clear(wxDC* pDC);
 
 private:
 
-	// ´¦Àí¼üÅÌ°´¼üÊÂ¼ş
+	// å¤„ç†é”®ç›˜æŒ‰é”®äº‹ä»¶
 	virtual void DoHandleKeyEvent(VdkKeyEvent& e);
 
 private:

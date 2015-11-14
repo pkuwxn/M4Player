@@ -1,6 +1,6 @@
-/***************************************************************
+О╩©/***************************************************************
  * Name:      VdkShortcutCtrl.cpp
- * Purpose:   рт©ийс╩╞╣д╥╫й╫╤╗рЕ╪Эел©Л╫щ╪Э
+ * Purpose:   Д╩╔Е▐╞Х╖├Е▄√Г └Ф√╧Е╪▐Е╝ Д╧┴И■╝Г⌡≤Е©╚Ф█╥И■╝
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-3-18
  **************************************************************/
@@ -77,7 +77,7 @@ void VdkShortcutCtrl::SetShortcut(int modifiers, int keycode, wxDC* pDC)
 	m_modifiers = modifiers;
 	m_keycode = keycode;
 
-	SetValue( caption.empty() ? L"нч" : caption, pDC );
+	SetValue( caption.empty() ? L"Ф≈═" : caption, pDC );
 }
 
 void VdkShortcutCtrl::Clear(wxDC* pDC)
@@ -85,7 +85,7 @@ void VdkShortcutCtrl::Clear(wxDC* pDC)
 	m_modifiers = 0;
 	m_keycode = WXK_NONE;
 
-	SetValue( L"нч", pDC );
+	SetValue( L"Ф≈═", pDC );
 }
 
 void VdkShortcutCtrl::DoHandleKeyEvent(VdkKeyEvent& e)
@@ -149,7 +149,7 @@ void VdkShortcutCtrl::DoHandleKeyEvent(VdkKeyEvent& e)
 	case WXK_RETURN:
 	case WXK_BACK:
 
-		// гЕ©у╣╠г╟ря╟╢об╣д©Л╫щ╪Э
+		// Ф╦┘Г╘╨Е╫⌠Е┴█Е╥╡Ф▄┴Д╦▀Г └Е©╚Ф█╥И■╝
 		modifiers = 0;
 		keycode = 0;
 		break;

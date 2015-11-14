@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "VdkRichLabel.h"
 
 #include "VdkWindow.h"
@@ -11,7 +11,7 @@
 
 IMPLEMENT_DYNAMIC_VOBJECT(VdkRichLabel);
 
-// Á½ĞĞÎÄ±¾Ö®¼äµÄ¼ä¸ô¾àÀë£¬ÓÃÓÚ¶àĞĞ VdkRichLabel
+// ä¸¤è¡Œæ–‡æœ¬ä¹‹é—´çš„é—´éš”è·ç¦»ï¼Œç”¨äºå¤šè¡Œ VdkRichLabel
 static const int gTextInternal = 5;
 
 //////////////////////////////////////////////////////////////////////////
@@ -41,7 +41,7 @@ void VdkRichLabel::PrepareRect()
 	mdc.SetFont(m_Font);
 
 	//////////////////////////////////////////////////////////////////////////
-	// Ê×ÏÈ·ÖÎöÒª×ÅÉ«µÄÎÄ±¾
+	// é¦–å…ˆåˆ†æè¦ç€è‰²çš„æ–‡æœ¬
 	/*
 	ColorTextNode ctn;
 	wxString strText, strAttriName, strAttriValue;
@@ -57,16 +57,16 @@ void VdkRichLabel::PrepareRect()
 	wxString::iterator p, base;
 
 	int max(m_Rect.GetWidth());
-	wxASSERT_MSG( max >= mdc.GetCharWidth()*2, L"m_RectµÄ¿í¶ÈÌ«Ğ¡¡£" );
+	wxASSERT_MSG( max >= mdc.GetCharWidth()*2, L"m_Rectçš„å®½åº¦å¤ªå°ã€‚" );
 
 	const wchar_t* alphas =   L"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	const wchar_t* urlchars = L"1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                              L"abcdefghijklmnopqrstuvwxyz/,:.&?#=;-";
-	const wchar_t* symbols =  L"!),.:;?]}¡§¡¤¡¦¡¥¨D¡¬¡¯¡±¡­¡Ã¡¢¡£¡¨¡©¡µ¡·¡¹¡»¡¿¡³"
-                             L"¡½£¡£¢£§£©£¬£®£º£»£¿£İ£à£ü£ı¡«¡é";
+	const wchar_t* symbols =  L"!),.:;?]}Â¨Â·Ë‡Ë‰â€•â€–â€™â€â€¦âˆ¶ã€ã€‚ã€ƒã€…ã€‰ã€‹ã€ã€ã€‘ã€•"
+                             L"ã€—ï¼ï¼‚ï¼‡ï¼‰ï¼Œï¼ï¼šï¼›ï¼Ÿï¼½ï½€ï½œï½ï½ï¿ ";
 
 	////////////////////////////////////
-	// ½âÊÍ¡¢·Ö½â URL
+	// è§£é‡Šã€åˆ†è§£ URL
 
 	wxString::size_type beg, end;
 	beg = strCaption.find( L"http://" );
@@ -115,7 +115,7 @@ void VdkRichLabel::PrepareRect()
 	int i = 0,
 		size = exts.Count(),
 		last = 0,
-		curr = 0;				// µ±Ç°ÒÑ´¦ÀíµÄ³¤¶È
+		curr = 0;				// å½“å‰å·²å¤„ç†çš„é•¿åº¦
 
 	for( ; i < size; ++i )
 	{
@@ -130,18 +130,18 @@ void VdkRichLabel::PrepareRect()
 				p = strCaption.begin() + i;
 				base = strCaption.begin() + last;
 
-				// ²»ÄÜ½Ø¶ÏÍêÕûµÄÓ¢ÎÄµ¥´Ê
+				// ä¸èƒ½æˆªæ–­å®Œæ•´çš„è‹±æ–‡å•è¯
 				if( wcschr(alphas, *p) )
 				{
 					p--;
 					while( wcschr(alphas, *p) && p >= base )
 						p--;
 
-					if( p != base ) // Ì«³¤ÎŞ·¨·Ö´Ê
+					if( p != base ) // å¤ªé•¿æ— æ³•åˆ†è¯
 						i = p - strCaption.begin();
 				}
 
-				// ²»ÄÜ·ÅÔÚÒ»¾ä»°¿ªÍ·µÄ±êµã
+				// ä¸èƒ½æ”¾åœ¨ä¸€å¥è¯å¼€å¤´çš„æ ‡ç‚¹
 				if( wcschr(symbols, *p) )
 				{
 					p--;
@@ -247,7 +247,7 @@ void VdkRichLabel::DrawUrl(int& UrlIndex,
 		dc.SetPen( oldPen );
 		dc.SetTextForeground( m_TextColor );
 
-		// URLµÄÓÒ±ß²¿·Ö
+		// URLçš„å³è¾¹éƒ¨åˆ†
 		len = strUrlAll.Len();
 		if( beg2 <= len )
 			len = beg2 - end;
@@ -260,7 +260,7 @@ void VdkRichLabel::DrawUrl(int& UrlIndex,
 			x += w;
 		}
 
-		// ÊÇ·ñ³¬³öÔÚ·Ç³£³¤¶È
+		// æ˜¯å¦è¶…å‡ºåœ¨éå¸¸é•¿åº¦
 		len = strUrlAll.Len();
 		if( end >= len )
 			end = len - 1;
@@ -297,12 +297,12 @@ bool VdkRichLabel::GetUbbNode(wxString& strUbb,
 		{
 			if( comma != wxString::npos )
 			{
-				// Ó¦¸ÃÊÇÒ»¸öUBBÊôĞÔÖµÁË
+				// åº”è¯¥æ˜¯ä¸€ä¸ªUBBå±æ€§å€¼äº†
 				// e.g. [color:red]%d[/color]
 				strName = strUbb.Mid(beg, comma-beg);
 				strAttriValue = strUbb.Mid(comma+1, end-comma-1);
 
-				// ÔÙ½øĞĞÅĞ¶Ï£¬¿´ÊôĞÔ×Ö·û´®ÊÇ·ñ±ÕºÏ
+				// å†è¿›è¡Œåˆ¤æ–­ï¼Œçœ‹å±æ€§å­—ç¬¦ä¸²æ˜¯å¦é—­åˆ
 				// cbeg == close_beg
 				wxString strCloseTag;
 				strCloseTag.Printf(L"[/%s]", strName.c_str());
@@ -317,7 +317,7 @@ bool VdkRichLabel::GetUbbNode(wxString& strUbb,
 
 					return true;
 				}
-				else // ²¢²»Åä¶Ô
+				else // å¹¶ä¸é…å¯¹
 				{
 					strName = wxEmptyString;
 					strAttriValue = wxEmptyString;
@@ -367,7 +367,7 @@ void VdkRichLabel::DoHandleMouseEvent(VdkMouseEvent& e)
 			}
 		}
 
-		// ÕÒ²»µ½·ûºÏÒªÇóµÄ URL, »Ö¸´Êó±êÖ¸Õë
+		// æ‰¾ä¸åˆ°ç¬¦åˆè¦æ±‚çš„ URL, æ¢å¤é¼ æ ‡æŒ‡é’ˆ
 	}
 
 	case NORMAL:

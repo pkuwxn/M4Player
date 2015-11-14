@@ -1,26 +1,26 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkControl.h"
 
-/// \brief Ô­Éú¿Ø¼şµÄ°ü×°Àà£¬Ê¹Ö®ÄÜ¶ÔÄ³Ğ©ÒâÒåÏàÍ¬µÄ²Ù×÷×ö³öÕıÈ·ÏìÓ¦
+/// \brief åŸç”Ÿæ§ä»¶çš„åŒ…è£…ç±»ï¼Œä½¿ä¹‹èƒ½å¯¹æŸäº›æ„ä¹‰ç›¸åŒçš„æ“ä½œåšå‡ºæ­£ç¡®å“åº”
 template< class D >
 class VdkNativeCtrl : public VdkControl
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	VdkNativeCtrl()	{ m_align |= ALIGN_NATIVE_CTRL;	}
 
-	/// \brief »ñÈ¡Ô­Éú¾ä±ú
+	/// \brief è·å–åŸç”Ÿå¥æŸ„
 	const D* GetNativeHandle() const {
 		return static_cast< const  D* >( this );
 	}
 
-	/// \brief »ñÈ¡Ô­Éú¾ä±ú(·Çconst)
+	/// \brief è·å–åŸç”Ÿå¥æŸ„(éconst)
 	D* GetNativeHandle() {
 		return static_cast< D* >( this );
 	}
 
-	/// \brief Í³Ò»´¦Àí¸Ä±ä´óĞ¡ÊÂ¼ş
+	/// \brief ç»Ÿä¸€å¤„ç†æ”¹å˜å¤§å°äº‹ä»¶
 	virtual void UpdateSize() {
 		static_cast< D* >( this )->wxWindow::
 			SetSize( GetAbsoluteRect() );
@@ -28,7 +28,7 @@ public:
 
 protected:
 
-	/// \brief ½ÓÊÕ¡¢´¦ÀíÍ¨ÖªĞÅÏ¢
+	/// \brief æ¥æ”¶ã€å¤„ç†é€šçŸ¥ä¿¡æ¯
 	virtual void DoHandleNotify(const VdkNotify& notice)
 	{
 		switch( notice.GetNotifyCode() )

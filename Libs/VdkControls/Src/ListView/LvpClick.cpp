@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      LvpClick.cpp
- * Purpose:   ÊµÏÖ VdkListView µ¥Ñ¡¡¢¶àÑ¡
+ * Purpose:   å®ç° VdkListView å•é€‰ã€å¤šé€‰
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-3-3
  **************************************************************/
@@ -44,7 +44,7 @@ void LvpClick::OnClickDown(int rowAtPointer, VdkMouseEvent& e)
 
 	if( e.shiftDown && m_multiSel )
 	{
-		// ÓÃ»§µã»÷ÁËÁĞ±í¿ò×îºóµÄ¿Õ°×£¬Ö±½Ó¶ªÆúÕâ¸öÊÂ¼ş
+		// ç”¨æˆ·ç‚¹å‡»äº†åˆ—è¡¨æ¡†æœ€åçš„ç©ºç™½ï¼Œç›´æ¥ä¸¢å¼ƒè¿™ä¸ªäº‹ä»¶
 		if( rowAtPointer == wxNOT_FOUND )
 			return;
 
@@ -52,23 +52,23 @@ void LvpClick::OnClickDown(int rowAtPointer, VdkMouseEvent& e)
 		{
 			int nFirst, nLast;
 
-			// ÏòÏÂ¶àÑ¡
+			// å‘ä¸‹å¤šé€‰
 			if( rowAtPointer >= m_selStart )
 			{
 				nFirst = m_selStart;
 				nLast = rowAtPointer;
 			}
-			else if( rowAtPointer < m_selStart ) // ÏòÉÏ¶àÑ¡
+			else if( rowAtPointer < m_selStart ) // å‘ä¸Šå¤šé€‰
 			{
 				nFirst = rowAtPointer;
 				nLast = m_selStart;
 			}
 
-			int base; // ÕıÔÚÏÔÊ¾µÄµÚÒ»ĞĞ
+			int base; // æ­£åœ¨æ˜¾ç¤ºçš„ç¬¬ä¸€è¡Œ
 			list->GetViewStart( NULL, &base );
 
-			int i; // ÊÇ m_selItems ±£´æµÄ¡¢ÊôÓÚ VdkListCtrl µÄ index£¬Êµ¼ÊÊı×Ö
-			// Çå¿Õ nFirst Ö®Ç°²»ÔÙÊÇ±»Ñ¡ÖĞµÄÏîÄ¿
+			int i; // æ˜¯ m_selItems ä¿å­˜çš„ã€å±äº VdkListCtrl çš„ indexï¼Œå®é™…æ•°å­—
+			// æ¸…ç©º nFirst ä¹‹å‰ä¸å†æ˜¯è¢«é€‰ä¸­çš„é¡¹ç›®
 			i = m_selItems[0];
 			while( i < nFirst )
 			{
@@ -80,7 +80,7 @@ void LvpClick::OnClickDown(int rowAtPointer, VdkMouseEvent& e)
 				i = m_selItems[0];
 			}
 
-			// Çå¿Õ nLast Ö®ºó²»ÔÙÊÇ±»Ñ¡ÖĞµÄÏîÄ¿
+			// æ¸…ç©º nLast ä¹‹åä¸å†æ˜¯è¢«é€‰ä¸­çš„é¡¹ç›®
 			i = m_selItems[ m_selItems.size() - 1 ];
 			while( i > nLast )
 			{
@@ -94,7 +94,7 @@ void LvpClick::OnClickDown(int rowAtPointer, VdkMouseEvent& e)
 
 			for( int j = nFirst; j <= nLast; j++ )
 			{
-				// ²»ÒªÖØ¸´Ìí¼ÓÌõÄ¿
+				// ä¸è¦é‡å¤æ·»åŠ æ¡ç›®
 				if( m_selItems.Index( j ) == wxNOT_FOUND )
 				{
 					m_selItems.Add( j );
@@ -108,7 +108,7 @@ void LvpClick::OnClickDown(int rowAtPointer, VdkMouseEvent& e)
 		else
 		{
 			m_selItems.Add( rowAtPointer );
-			m_selStart = rowAtPointer; // ×îºó±»Ñ¡ÖĞµÄÒ»¸öÌõÄ¿×÷ÎªÆğµã
+			m_selStart = rowAtPointer; // æœ€åè¢«é€‰ä¸­çš„ä¸€ä¸ªæ¡ç›®ä½œä¸ºèµ·ç‚¹
 
 			list->UpdateRow( rowAtPointer, e.dc );
 		}
@@ -124,16 +124,16 @@ void LvpClick::OnClickDown(int rowAtPointer, VdkMouseEvent& e)
 
 			if( m_multiSel )
 			{
-				// ¶àÑ¡
+				// å¤šé€‰
 				if( e.controlDown && selected )
 				{
 					m_selItems.Remove( rowAtPointer );
 				}
-				// TODO: ÕâÀïÓ¦¸ÃÇø·ÖÊó±ê×ó¼ü°´ÏÂºÍµ¯ÆğµÄÇé¿ö£¬ÀıÈçÍÏ¶¯¶àÑ¡
-				// ÏîÄ¿
+				// TODO: è¿™é‡Œåº”è¯¥åŒºåˆ†é¼ æ ‡å·¦é”®æŒ‰ä¸‹å’Œå¼¹èµ·çš„æƒ…å†µï¼Œä¾‹å¦‚æ‹–åŠ¨å¤šé€‰
+				// é¡¹ç›®
 				else if( !selected )
 				{
-					if( !e.controlDown ) // Çå¿ÕÆäËûÑ¡Ôñ
+					if( !e.controlDown ) // æ¸…ç©ºå…¶ä»–é€‰æ‹©
 					{
 						SelectNone( &e.dc );
 					}
@@ -154,12 +154,12 @@ void LvpClick::OnClickDown(int rowAtPointer, VdkMouseEvent& e)
 				}
 			}
 
-			m_selStart = rowAtPointer; // ½«×îºó±»Ñ¡ÖĞµÄÒ»¸öÌõÄ¿×÷ÎªÆğµã
+			m_selStart = rowAtPointer; // å°†æœ€åè¢«é€‰ä¸­çš„ä¸€ä¸ªæ¡ç›®ä½œä¸ºèµ·ç‚¹
 			UpdateVeryLastSel( rowAtPointer );
 
 			list->UpdateRow( rowAtPointer, e.dc );
 		}
-		else // ÔÚ×îºóµÄ¿Õ°×´¦µ¥»÷£¬Ó¦¸ÃÇå¿ÕÒÑÑ¡ÔñµÄÌõÄ¿
+		else // åœ¨æœ€åçš„ç©ºç™½å¤„å•å‡»ï¼Œåº”è¯¥æ¸…ç©ºå·²é€‰æ‹©çš„æ¡ç›®
 		{
 			SelectNone( &e.dc );
 		}
@@ -200,23 +200,23 @@ void LvpClick::Select(int index, wxDC* pDC)
 	m_selStart = index;
 	UpdateVeryLastSel( index );
 
-	// ²»ÄÜÖ±½Óµ÷ÓÃ Draw() £¬ÒòÎªÒª¸üĞÂ¹ö¶¯Ìõ
+	// ä¸èƒ½ç›´æ¥è°ƒç”¨ Draw() ï¼Œå› ä¸ºè¦æ›´æ–°æ»šåŠ¨æ¡
 	lv->RefreshState( pDC );
 }
 
 void LvpClick::Select(int beg, int end, wxDC* pDC)
 {
-	wxASSERT_MSG( false, L"Î´ÊµÏÖ" );
+	wxASSERT_MSG( false, L"æœªå®ç°" );
 }
 
 void LvpClick::Select(const wxArrayInt& items, wxDC* pDC)
 {
-	wxASSERT_MSG( false, L"Î´ÊµÏÖ" );
+	wxASSERT_MSG( false, L"æœªå®ç°" );
 }
 
 void LvpClick::SelectNone()
 {
-	wxASSERT_MSG( false, L"Î´ÊµÏÖ" );
+	wxASSERT_MSG( false, L"æœªå®ç°" );
 }
 
 void LvpClick::SelectNone(wxDC* pDC)
@@ -224,7 +224,7 @@ void LvpClick::SelectNone(wxDC* pDC)
 	m_selStart = wxNOT_FOUND;
 	UpdateVeryLastSel( wxNOT_FOUND );
 
-	// ×¢Òâ if-else ½á¹ûµÄ´úÂëÈßÓà£¡
+	// æ³¨æ„ if-else ç»“æœçš„ä»£ç å†—ä½™ï¼
 	if( pDC )
 	{
 		ArrayOfSortedInts selItems( m_selItems );
@@ -245,7 +245,7 @@ void LvpClick::SelectNone(wxDC* pDC)
 
 void LvpClick::SetSelectMode(SelectMode sm, wxDC* pDC)
 {
-	// ×¢ÒâÕâÀïµÄ´úÂëÈßÓà£¡
+	// æ³¨æ„è¿™é‡Œçš„ä»£ç å†—ä½™ï¼
 	if( pDC )
 	{
 		VdkListView* list = GetListView();
@@ -321,10 +321,10 @@ void LvpClick::OnPageDown(VdkKeyEvent& e)
 	list->GetViewStart( NULL, &base );
 
 	int shownItems = list->GetShownItems();
-	// - 1 ÊÇÎªÁË½«ÒÑÑ¡ÏîÒÆ¶¯µ½¿ÉÊÓÇøÓò×îºóÒ»ĞĞ
+	// - 1 æ˜¯ä¸ºäº†å°†å·²é€‰é¡¹ç§»åŠ¨åˆ°å¯è§†åŒºåŸŸæœ€åä¸€è¡Œ
 	int bottom = base + shownItems - 1;
 	if( list->GetRect().height % list->GetRowHeight() )
-		bottom -= 1; // ×îºóÒ»ĞĞÏÔÊ¾²»È«
+		bottom -= 1; // æœ€åä¸€è¡Œæ˜¾ç¤ºä¸å…¨
 
 	int numRows = list->GetAdapter()->GetRowCount();
 	if( bottom >= numRows )
@@ -334,7 +334,7 @@ void LvpClick::OnPageDown(VdkKeyEvent& e)
 
 	int currSel = m_selItems.empty() ? wxNOT_FOUND : m_selItems[0];
 
-	// µÚÒ»ÆÁÏÈ½«Ñ¡ÔñÏîÒÆ¶¯µ½¿ÉÊÓÇøÓòµ×²¿
+	// ç¬¬ä¸€å±å…ˆå°†é€‰æ‹©é¡¹ç§»åŠ¨åˆ°å¯è§†åŒºåŸŸåº•éƒ¨
 	if( currSel == wxNOT_FOUND || currSel != bottom )
 	{
 		SelectNone( &e.dc );
@@ -344,7 +344,7 @@ void LvpClick::OnPageDown(VdkKeyEvent& e)
 	}
 	else
 	{
-		// ÔÙÏÂ¾Í³¬³ö·¶Î§ÁË
+		// å†ä¸‹å°±è¶…å‡ºèŒƒå›´äº†
 		if( bottom == numRows - 1 )
 			return;
 
@@ -373,7 +373,7 @@ void LvpClick::OnPageUp(VdkKeyEvent& e)
 	int shownItems = list->GetShownItems();
 	int currSel = m_selItems.empty() ? wxNOT_FOUND : m_selItems[0];
 
-	// µÚÒ»ÆÁÏÈ½«Ñ¡ÔñÏîÒÆ¶¯µ½¿ÉÊÓÇøÓò¶¥²¿
+	// ç¬¬ä¸€å±å…ˆå°†é€‰æ‹©é¡¹ç§»åŠ¨åˆ°å¯è§†åŒºåŸŸé¡¶éƒ¨
 	if( currSel == wxNOT_FOUND || currSel != base )
 	{
 		SelectNone( &e.dc );
@@ -461,8 +461,8 @@ void LvpClick::OnDown(VdkKeyEvent& e)
 		currSel = wxNOT_FOUND;
 	}
 
-	// Ê¹ÓÃÊó±ê×îºóÑ¡ÔñµÄÒ»ÏîÀ´È·¶¨ÏÂÒ»ÒªÑ¡µÄÌõÄ¿
-	// TODO: È«Ñ¡Ê±´ËÖµÈçºÎ£¿
+	// ä½¿ç”¨é¼ æ ‡æœ€åé€‰æ‹©çš„ä¸€é¡¹æ¥ç¡®å®šä¸‹ä¸€è¦é€‰çš„æ¡ç›®
+	// TODO: å…¨é€‰æ—¶æ­¤å€¼å¦‚ä½•ï¼Ÿ
 	if( m_veryLastClicked != wxNOT_FOUND )
 		currSel = m_veryLastClicked;
 	else
@@ -470,7 +470,7 @@ void LvpClick::OnDown(VdkKeyEvent& e)
 
 	currSel++;
 
-	// ³¬³ö·¶Î§
+	// è¶…å‡ºèŒƒå›´
 	if( size_t( currSel ) >= list->GetAdapter()->GetRowCount() )
 		return;
 
@@ -480,7 +480,7 @@ void LvpClick::OnDown(VdkKeyEvent& e)
 		{
 			OnShiftUpDownKeys( currSel, e.dc );
 		}
-		else // Ô­ÏÈÃ»ÓĞÈÎºÎÑ¡Ôñ
+		else // åŸå…ˆæ²¡æœ‰ä»»ä½•é€‰æ‹©
 		{
 			return;
 		}
@@ -495,11 +495,11 @@ void LvpClick::OnDown(VdkKeyEvent& e)
 		list->UpdateRow( currSel, e.dc );
 	}
 
-	// ÏÂÒÆ¿ÉÊÓÇøÓò
+	// ä¸‹ç§»å¯è§†åŒºåŸŸ
 	int bottom = base + shownItems - 1;
-	// - 1 ÊÇÎªÁË½«ÒÑÑ¡ÏîÒÆ¶¯µ½¿ÉÊÓÇøÓò×îºóÒ»ĞĞ
+	// - 1 æ˜¯ä¸ºäº†å°†å·²é€‰é¡¹ç§»åŠ¨åˆ°å¯è§†åŒºåŸŸæœ€åä¸€è¡Œ
 	if( list->GetRect().height % list->GetRowHeight() )
-		bottom -= 1; // ×îºóÒ»ĞĞÏÔÊ¾²»È«
+		bottom -= 1; // æœ€åä¸€è¡Œæ˜¾ç¤ºä¸å…¨
 
 	if( bottom < currSel )
 	{
@@ -524,11 +524,11 @@ void LvpClick::OnUp(VdkKeyEvent& e)
 	}
 
 	int bottom = base + shownItems - 1;
-	// - 1 ÊÇÎªÁË½«ÒÑÑ¡ÏîÒÆ¶¯µ½¿ÉÊÓÇøÓò×îºóÒ»ĞĞ
+	// - 1 æ˜¯ä¸ºäº†å°†å·²é€‰é¡¹ç§»åŠ¨åˆ°å¯è§†åŒºåŸŸæœ€åä¸€è¡Œ
 	if( list->GetRect().height % list->GetRowHeight() )
-		bottom -= 1; // ×îºóÒ»ĞĞÏÔÊ¾²»È«
+		bottom -= 1; // æœ€åä¸€è¡Œæ˜¾ç¤ºä¸å…¨
 
-	// Ê¹ÓÃ×îºóÑ¡ÔñµÄÒ»ÏîÀ´È·¶¨ÏÂÒ»ÒªÑ¡µÄÌõÄ¿
+	// ä½¿ç”¨æœ€åé€‰æ‹©çš„ä¸€é¡¹æ¥ç¡®å®šä¸‹ä¸€è¦é€‰çš„æ¡ç›®
 	if( m_veryLastClicked != wxNOT_FOUND )
 		currSel = m_veryLastClicked;
 	else
@@ -536,7 +536,7 @@ void LvpClick::OnUp(VdkKeyEvent& e)
 
 	currSel--;
 
-	// ³¬³ö·¶Î§
+	// è¶…å‡ºèŒƒå›´
 	if( currSel < 0 )
 		return;
 
@@ -546,7 +546,7 @@ void LvpClick::OnUp(VdkKeyEvent& e)
 		{
 			OnShiftUpDownKeys( currSel, e.dc );
 		}
-		else // Ô­ÏÈÃ»ÓĞÈÎºÎÑ¡Ôñ
+		else // åŸå…ˆæ²¡æœ‰ä»»ä½•é€‰æ‹©
 		{
 			return;
 		}
@@ -561,7 +561,7 @@ void LvpClick::OnUp(VdkKeyEvent& e)
 		list->UpdateRow( currSel, e.dc );
 	}
 
-	// ÉÏÒÆ¿ÉÊÓÇøÓò
+	// ä¸Šç§»å¯è§†åŒºåŸŸ
 	if( base > currSel )
 	{
 		list->SetViewStart( 0, currSel, &e.dc );

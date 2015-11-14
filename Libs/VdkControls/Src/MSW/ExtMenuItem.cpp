@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #ifdef __WXMSW__
 
 #include "MSW/ExtMenuItem.h"
@@ -332,7 +332,7 @@ bool ExtMenuItem::OnDrawItem(wxDC& dc,
 
 void ExtMenuItem::DrawColorRect(wxDC& dc, wxRect rt, wxODStatus st)
 {
-	// »­µ×²¿µÄÉ«Çø
+	// ç”»åº•éƒ¨çš„è‰²åŒº
 
 	int rx(1+(LEFTBAR_WIDTH-CHECKRECT_HEIGHT)/2), 
 		ry(rt.y+(MENU_HEIGHT-CHECKRECT_HEIGHT)/2);

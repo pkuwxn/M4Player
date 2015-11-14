@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      VdkHttpThread.h
- * Purpose:   Ò»¸öÔÚÏß³ÌÖĞÒì²½Ö´ĞĞ HTTP ²Ù×÷µÄ±ãÀû¹¤×÷ÕßÏß³ÌÀà
+ * Purpose:   ä¸€ä¸ªåœ¨çº¿ç¨‹ä¸­å¼‚æ­¥æ‰§è¡Œ HTTP æ“ä½œçš„ä¾¿åˆ©å·¥ä½œè€…çº¿ç¨‹ç±»
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-21
  **************************************************************/
@@ -9,26 +9,26 @@
 
 class VdkHTTP;
 
-/// Ò»¸öÔÚÏß³ÌÖĞÒì²½Ö´ĞĞ HTTP ²Ù×÷µÄ±ãÀû¹¤×÷ÕßÏß³ÌÀà
+/// ä¸€ä¸ªåœ¨çº¿ç¨‹ä¸­å¼‚æ­¥æ‰§è¡Œ HTTP æ“ä½œçš„ä¾¿åˆ©å·¥ä½œè€…çº¿ç¨‹ç±»
 class VdkHttpThread : public wxThread
 {
 public:
 
-	/// Ò»¸öÒì²½ HTTP ÈÎÎñ
+	/// ä¸€ä¸ªå¼‚æ­¥ HTTP ä»»åŠ¡
 	class Task
 	{
 	public:
 
-		/// ¹¹Ôìº¯Êı
+		/// æ„é€ å‡½æ•°
 		Task(const wxString& url, int id, wxEvtHandler* sinker);
 
-		/// »ñÈ¡¹ØÁªµÄ URL
+		/// è·å–å…³è”çš„ URL
 		wxString GetURL() const { return m_url; }
 
-		/// »ñÈ¡Í¨ÖªÊÂ¼ş±êÊ¶ ID
+		/// è·å–é€šçŸ¥äº‹ä»¶æ ‡è¯† ID
 		int GetEventId() const { return m_id; }
 
-		/// »ñÈ¡¹ØÁªµÄÊÂ¼ş¼àÌıÕß
+		/// è·å–å…³è”çš„äº‹ä»¶ç›‘å¬è€…
 		wxEvtHandler* GetEventSinker() const { return m_sinker; }
 
 	private:
@@ -38,21 +38,21 @@ public:
 		wxEvtHandler* m_sinker;
 	};
 
-	/// Òì²½ÏÂÔØÈÎÎñÍê³ÉÍ¨ÖªÊÂ¼ş
+	/// å¼‚æ­¥ä¸‹è½½ä»»åŠ¡å®Œæˆé€šçŸ¥äº‹ä»¶
 	class FinishEvent : public wxCommandEvent
 	{
 	public:
 
-		/// ¹¹Ôìº¯Êı
+		/// æ„é€ å‡½æ•°
 		FinishEvent(int id, const wxString& result);
 
-		/// wxWidgets RTTI ±ØĞë
+		/// wxWidgets RTTI å¿…é¡»
 		virtual wxEvent* Clone() const { return new FinishEvent( *this ); }
 
-		/// »ñÈ¡ HTTP ½á¹û×Ö·û´®
+		/// è·å– HTTP ç»“æœå­—ç¬¦ä¸²
 		wxString GetResult() const { return m_result; }
 
-		/// ÉèÖÃ(ĞŞ¸ÄºóµÄ) HTTP ½á¹û×Ö·û´®
+		/// è®¾ç½®(ä¿®æ”¹åçš„) HTTP ç»“æœå­—ç¬¦ä¸²
 		void SetResult(wxString result) { m_result = result; }
 
 	private:
@@ -60,50 +60,50 @@ public:
 		wxString m_result;
 	};
 
-	/// ¹¹Ôìº¯Êı
+	/// æ„é€ å‡½æ•°
 	/// 
-	/// Òª¿ªÊ¼¼àÌıÈÎÎñ£¬ÈÔĞèµ÷ÓÃ wxThread::Run() ¡£
-	/// @a httpConn Ö¸Õë»á±»½Ó¹Ü
+	/// è¦å¼€å§‹ç›‘å¬ä»»åŠ¡ï¼Œä»éœ€è°ƒç”¨ wxThread::Run() ã€‚
+	/// @a httpConn æŒ‡é’ˆä¼šè¢«æ¥ç®¡
 	VdkHttpThread(VdkHTTP* httpConn);
 
-	/// Îö¹¹º¯Êı
+	/// ææ„å‡½æ•°
 	~VdkHttpThread();
 
-	/// Ìí¼ÓÒ»¸öÈÎÎñµ½¶ÓÁĞÖĞ
-	/// @a task Ö¸Õë»á±»½Ó¹Ü
+	/// æ·»åŠ ä¸€ä¸ªä»»åŠ¡åˆ°é˜Ÿåˆ—ä¸­
+	/// @a task æŒ‡é’ˆä¼šè¢«æ¥ç®¡
 	void AddTask(Task* task);
 
-	/// ÔÊĞíÍâ²¿µÈ´ıÏß³Ì°²È«ÍË³ö£¬±ÜÃâÈÎºÎÄÚ´æĞ¹Â¶
+	/// å…è®¸å¤–éƒ¨ç­‰å¾…çº¿ç¨‹å®‰å…¨é€€å‡ºï¼Œé¿å…ä»»ä½•å†…å­˜æ³„éœ²
 	///
-	/// µ÷ÓÃÕß±ØĞë±£Ö¤@a waiter ÔÚÏß³ÌµÄÕû¸öÉúÃüÖÜÆÚÖĞ¶¼ÓĞĞ§¡£
+	/// è°ƒç”¨è€…å¿…é¡»ä¿è¯@a waiter åœ¨çº¿ç¨‹çš„æ•´ä¸ªç”Ÿå‘½å‘¨æœŸä¸­éƒ½æœ‰æ•ˆã€‚
 	void SetDestoryWaiter(wxSemaphore& waiter);
 
-	/// Í£Ö¹¹¤×÷£¬ÍË³öÏß³Ì
+	/// åœæ­¢å·¥ä½œï¼Œé€€å‡ºçº¿ç¨‹
 	void StopAndExit();
 	
 private:
 
 	virtual ExitCode Entry();
 
-	// Çå³ıËùÓĞÈÎÎñ
+	// æ¸…é™¤æ‰€æœ‰ä»»åŠ¡
 	//
-	// @attention º¯ÊıÄÚ²¿²»×÷ÈÎºÎÍ¬²½¿ØÖÆ¡£
+	// @attention å‡½æ•°å†…éƒ¨ä¸ä½œä»»ä½•åŒæ­¥æ§åˆ¶ã€‚
 	void ClearTasks();
 
-	/// »½ĞÑ½ø³Ì
+	/// å”¤é†’è¿›ç¨‹
 	void WakeUp();
 
 private:
 
 	bool m_stop;
-	wxSemaphore* m_destoryWaiter; // ´ÓÍâ²¿µÈ´ı VdkHttpThread Ë³ÀûÖÕ½á
+	wxSemaphore* m_destoryWaiter; // ä»å¤–éƒ¨ç­‰å¾… VdkHttpThread é¡ºåˆ©ç»ˆç»“
 	
 	//------------------------------------------------
 
 	VdkHTTP* m_httpConn;
 
 	wxMutex m_taskListMutex;
-	// µÈ´ıÉú²úÕß½«ÈÎÎñ·Åµ½ÈÎÎñÁĞ±íÖĞ
+	// ç­‰å¾…ç”Ÿäº§è€…å°†ä»»åŠ¡æ”¾åˆ°ä»»åŠ¡åˆ—è¡¨ä¸­
 	wxSemaphore m_listNotEmpty;
 	
 	typedef wxVector< Task* > TaskVec;

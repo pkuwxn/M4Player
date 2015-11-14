@@ -1,12 +1,12 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkControl.h"
 
-/*!\brief Ò»¸ö¸¨ÖúÀà£¬¿ÉÒÔ¼ò»¯±êÌâÀ¸Ïà¹Ø¿Ø¼þµÄ¶¨Òå¡¢´´½¨¹¤×÷
+/*!\brief ä¸€ä¸ªè¾…åŠ©ç±»ï¼Œå¯ä»¥ç®€åŒ–æ ‡é¢˜æ ç›¸å…³æŽ§ä»¶çš„å®šä¹‰ã€åˆ›å»ºå·¥ä½œ
  * 
- * ÒòÎªÏàµ±¶àµÄ VdkWindow ¶¼ÐèÒªÒ»¸ö±êÌâÀ¸£¬¶øÒ»¸ö±êÌâÀ¸Í¨³£ÓÉÒ»¸öÍ¼±ê¡¢\n
- * Ò»¸ö±êÌâÎÄ±¾£¨ VdkLabel £©£¬¼¸¸ö´°¿Ú¿ØÖÆ°´Å¥£¨×îÐ¡»¯¡¢×î´ó»¯¡¢¹Ø±Õ£¬µÈµÈ£©¡£\n
- * ±¾ÀàÊÇ¾ÍÊÇ»ùÓÚÕâÑùµÄ¿¼ÂÇ¶ø´´Éè¡£\n
- * Àý×Ó
+ * å› ä¸ºç›¸å½“å¤šçš„ VdkWindow éƒ½éœ€è¦ä¸€ä¸ªæ ‡é¢˜æ ï¼Œè€Œä¸€ä¸ªæ ‡é¢˜æ é€šå¸¸ç”±ä¸€ä¸ªå›¾æ ‡ã€\n
+ * ä¸€ä¸ªæ ‡é¢˜æ–‡æœ¬ï¼ˆ VdkLabel ï¼‰ï¼Œå‡ ä¸ªçª—å£æŽ§åˆ¶æŒ‰é’®ï¼ˆæœ€å°åŒ–ã€æœ€å¤§åŒ–ã€å…³é—­ï¼Œç­‰ç­‰ï¼‰ã€‚\n
+ * æœ¬ç±»æ˜¯å°±æ˜¯åŸºäºŽè¿™æ ·çš„è€ƒè™‘è€Œåˆ›è®¾ã€‚\n
+ * ä¾‹å­
  \code
     <object class="VdkCaptionBar" name="captionbar">
         <padding-right>5</padding-right>
@@ -21,32 +21,32 @@
         </object>
     </object>
  \endcode
- * ×¢ÒâÆäÖÐ¶¨ÒåµÄ¿Ø¼þ²»ÊÇ VdkCaptionBar µÄ×Ó¿Ø¼þ£¬°üÀ¨ÍêÕû¶¨ÒåµÄ VdkLabel ¡£\n
- * ËùÓÐµÄÕâÐ©¶¨Òå¶¼¿ÉÒÔÈÎÒâÔöÉ¾¡£\n
- * ºÜÃ÷ÏÔ£¬±¾ÀàÖ»ÄÜÓÃÓÚ XRC »·¾³ÏÂ¡£
+ * æ³¨æ„å…¶ä¸­å®šä¹‰çš„æŽ§ä»¶ä¸æ˜¯ VdkCaptionBar çš„å­æŽ§ä»¶ï¼ŒåŒ…æ‹¬å®Œæ•´å®šä¹‰çš„ VdkLabel ã€‚\n
+ * æ‰€æœ‰çš„è¿™äº›å®šä¹‰éƒ½å¯ä»¥ä»»æ„å¢žåˆ ã€‚\n
+ * å¾ˆæ˜Žæ˜¾ï¼Œæœ¬ç±»åªèƒ½ç”¨äºŽ XRC çŽ¯å¢ƒä¸‹ã€‚
 **/
 class VdkCaptionBar : public VdkControl
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êý
+	/// \brief é»˜è®¤æž„é€ å‡½æ•°
 	VdkCaptionBar() {}
 	
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief ¹Ø±Õ´°¿Ú
+	/// \brief å…³é—­çª—å£
 	static void ClosePanel(VdkVObjEvent&);
 
-	/// \brief ×îÐ¡»¯´°¿Ú
+	/// \brief æœ€å°åŒ–çª—å£
 	static void MaximizePanel(VdkVObjEvent&);
 
-	/// \brief ×îÐ¡»¯´°¿Ú
+	/// \brief æœ€å°åŒ–çª—å£
 	static void IconizePanel(VdkVObjEvent&);
 
 private:
 
-	/// \brief ´¦ÀíÊó±êÊÂ¼þ
+	/// \brief å¤„ç†é¼ æ ‡äº‹ä»¶
 	virtual void DoHandleMouseEvent(VdkMouseEvent& e);
 
 	DECLARE_DYNAMIC_VOBJECT

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "VdkFileSelector.h"
 #include "VdkButton.h"
 #include "VdkEdit.h"
@@ -15,7 +15,7 @@ IMPLEMENT_DYNAMIC_VOBJECT( VdkFileSelector );
 //////////////////////////////////////////////////////////////////////////
 
 VdkFileSelector::VdkFileSelector()
-	: m_edit( NULL ), m_type( ST_DIR ), m_alertMsg( L"ÇëÑ¡ÔñÂ·¾¶:" )
+	: m_edit( NULL ), m_type( ST_DIR ), m_alertMsg( L"è¯·é€‰æ‹©è·¯å¾„:" )
 {
 
 }
@@ -33,10 +33,10 @@ void VdkFileSelector::Create(wxXmlNode* node)
 	}
 	else
 	{
-		// Ô­ÒòÊÇ±ØĞëÓĞÒ»¸öÃ÷È·¶¨ÒåµÄ VdkButton ±³¾°Í¼Ïñ
+		// åŸå› æ˜¯å¿…é¡»æœ‰ä¸€ä¸ªæ˜ç¡®å®šä¹‰çš„ VdkButton èƒŒæ™¯å›¾åƒ
 		wxASSERT_MSG( false, 
-			wxString::Format( L"VdkFileSelector Ó¦¸ÃÓĞÒ»¸öÅÅÔÚµÚÒ»Î»µÄ"
-							  L" VdkButton ÀàĞÍµÄ×Ó¿Ø¼ş¡£(%s)", 
+			wxString::Format( L"VdkFileSelector åº”è¯¥æœ‰ä¸€ä¸ªæ’åœ¨ç¬¬ä¸€ä½çš„"
+							  L" VdkButton ç±»å‹çš„å­æ§ä»¶ã€‚(%s)", 
 							  GetXrcName( node ).t_str() )
 			);
 	}
@@ -73,7 +73,7 @@ void VdkFileSelector::Create(VdkWindow* window, const wxString& name, const wxRe
 	wxRect rcEdit( m_Rect );
 	rcEdit.x = rcEdit.y = 0;
 	rcEdit.width -= btnw;
-	rcEdit.width -= 5; // 5 Îª¼ä¸ô
+	rcEdit.width -= 5; // 5 ä¸ºé—´éš”
 
 	long s = GetStyle() | VCS_BORDER_SIMPLE;
 	s &= ~VCS_HANDLER;

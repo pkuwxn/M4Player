@@ -1,4 +1,4 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      wxUtil.cpp
  * Purpose:   Code for some useful functions
  * Author:    Ning (vanxining@139.com)
@@ -80,7 +80,7 @@ void MoveImeWindow(wxWindow* win, int x, int y)
 		compinfo.ptCurrentPos.x = x;
 		compinfo.ptCurrentPos.y = y;
 
-		// ÎÒÒ²²»ÖªµÀÎªÊ²Ã´Òª¶à¼Ó 90£¬·´ÕıÊäÈë·¨×´Ì¬Ìõ¾ÍÊÇ»áÏòÆ«Î÷±±¸÷ 90px
+		// æˆ‘ä¹Ÿä¸çŸ¥é“ä¸ºä»€ä¹ˆè¦å¤šåŠ  90ï¼Œåæ­£è¾“å…¥æ³•çŠ¶æ€æ¡å°±æ˜¯ä¼šå‘åè¥¿åŒ—å„ 90px
 		compinfo.ptCurrentPos.x += 90;
 		compinfo.ptCurrentPos.y += 90;
 
@@ -213,7 +213,7 @@ void DrawHotKeyCaption(const wxString& strText, wxDC& dc, int x, int y)
 {
 	wxString caption( strText );
 
-	// ²»ÒªÔÙ»­ÏÂ»®ÏßÁË£¬¿çÆ½Ì¨Ö§³Ö²»ºÃ£¬Windows 7 Ò²²»»­ÁË
+	// ä¸è¦å†ç”»ä¸‹åˆ’çº¿äº†ï¼Œè·¨å¹³å°æ”¯æŒä¸å¥½ï¼ŒWindows 7 ä¹Ÿä¸ç”»äº†
 	int nPos = caption.Find( L'&', true ); // fromEnd = true
 	if( nPos != wxString::npos )
 	{
@@ -422,7 +422,7 @@ wxFont wxEasyCreatFont(const wxString& strFaceName, int nPointSize, bool bBold)
 int wxGetFontHeight(const wxFont& font, wxWindow* win)
 {
 	int h;
-	wxString s( L"ÍõĞ¡ÄşABCbg-123" );
+	wxString s( L"ç‹å°å®ABCbg-123" );
 	if( win )
 	{
 		win->GetTextExtent( s, NULL, &h, NULL, NULL, &font );
@@ -489,7 +489,7 @@ int CompareUnicodeStrings(const wxString& s1, const wxString& s2)
 	wxCharBuffer ps1( conv.cWX2MB( s1 ) );
 	wxCharBuffer ps2( conv.cWX2MB( s2 ) );
 
-	// TODO: ·µ»ØÊ²Ã´Öµ²ÅÊÇÕıÈ·µÄ£¿
+	// TODO: è¿”å›ä»€ä¹ˆå€¼æ‰æ˜¯æ­£ç¡®çš„ï¼Ÿ
 	if( !ps1 )
 		return -1;
 	else if( !ps2 )
@@ -562,13 +562,13 @@ wxString GetISODateTime(const wxDateTime& dt)
 
 void DrawRectangle(wxDC& dc, const wxRect& rc)
 {
-	// ×ó¡ı
+	// å·¦â†“
 	dc.DrawLine( rc.x, rc.y, rc.x, rc.GetBottom() );
-	// ÉÏ¡ú
+	// ä¸Šâ†’
 	dc.DrawLine( rc.x, rc.y, rc.GetRight(), rc.y );
-	// ÓÒ¡ı
+	// å³â†“
 	dc.DrawLine( rc.GetRight(), rc.y, rc.GetRight(), rc.GetBottom() );
-	// ÏÂ¡ú
+	// ä¸‹â†’
 	dc.DrawLine( rc.x, rc.GetBottom(), rc.x + rc.width, rc.GetBottom() );
 }
 
@@ -579,7 +579,7 @@ void InitRand(int seed)
 
 int Rand(int max)
 {
-	// ³õÊ¼»¯Ëæ»úÊı²úÉúÆ÷
+	// åˆå§‹åŒ–éšæœºæ•°äº§ç”Ÿå™¨
 	static bool init = false;
 	if( !init )
 	{
@@ -708,12 +708,12 @@ void GradientTextMethod::Draw(wxDC& dc,
 							  wxDirection direction,
 							  const ArrayOfGtmTextLines& lines)
 {
-	wxBitmap maskBitmap(rc.width, rc.height); // ±£´æ¿Ù³öÀ´µÄ½¥±äÉ«ÎÄ±¾
+	wxBitmap maskBitmap(rc.width, rc.height); // ä¿å­˜æŠ å‡ºæ¥çš„æ¸å˜è‰²æ–‡æœ¬
 
-	// »æÖÆ½¥±äÉ«±³¾°
+	// ç»˜åˆ¶æ¸å˜è‰²èƒŒæ™¯
 	dc.GradientFillLinear(rc, TextColor, BgBrush.GetColour(), direction);
 
-	// »æÖÆ°×É«µÄÎÄ×Ö£¨ÎÒÃÇµÄÄ¿±êÊÇ½«ÎÄ×Ö¿Ù³öÀ´£©
+	// ç»˜åˆ¶ç™½è‰²çš„æ–‡å­—ï¼ˆæˆ‘ä»¬çš„ç›®æ ‡æ˜¯å°†æ–‡å­—æŠ å‡ºæ¥ï¼‰
 	wxMemoryDC maskDC(maskBitmap);
 	maskDC.SetFont(font);
 
@@ -721,16 +721,16 @@ void GradientTextMethod::Draw(wxDC& dc,
 	maskDC.SetTextForeground(*wxWHITE);
 	DrawText(maskDC, rowHeight, 0, lines);
 
-	// AND ºó£¬ÎÄ×ÖÓĞÁË½¥±äÉ«µÄÎÆÀí£¬´ËÊ± dc ³ıÁË½¥±äÉ«ÎÄ×ÖÍâ£¬±³¾°ÊÇºÚµÄ
+	// AND åï¼Œæ–‡å­—æœ‰äº†æ¸å˜è‰²çš„çº¹ç†ï¼Œæ­¤æ—¶ dc é™¤äº†æ¸å˜è‰²æ–‡å­—å¤–ï¼ŒèƒŒæ™¯æ˜¯é»‘çš„
 	dc.Blit(rc.x, rc.y, rc.width, rc.height, &maskDC, 0, 0, wxAND);
 
-	// ×¢ÒâÖ»ÓĞÎÄ±¾Ê±ÊÇ½¥±äÉ«µÄ£¬ÎÄ±¾µÄ±³¾°»¹ÊÇ´¿É«µÄ
+	// æ³¨æ„åªæœ‰æ–‡æœ¬æ—¶æ˜¯æ¸å˜è‰²çš„ï¼Œæ–‡æœ¬çš„èƒŒæ™¯è¿˜æ˜¯çº¯è‰²çš„
 	maskDC.SetBackground(BgBrush);
 	maskDC.SetTextForeground(*wxBLACK);
 	DrawText(maskDC, rowHeight, 0, lines);
 
-	// Ö´ĞĞ OR ²Ù×÷£¬²¹È«³ıÎÄ×ÖÍâµÄ±³¾°É«
-	// maskDC ÎÄ×Ö²¿·ÖÊÇºÚÉ«µÄ£¬OR ²Ù×÷±£Ö¤²»»á¸²¸ÇµôÒÑÉú³ÉµÄ½¥±äÉ«ÎÄ±¾
+	// æ‰§è¡Œ OR æ“ä½œï¼Œè¡¥å…¨é™¤æ–‡å­—å¤–çš„èƒŒæ™¯è‰²
+	// maskDC æ–‡å­—éƒ¨åˆ†æ˜¯é»‘è‰²çš„ï¼ŒOR æ“ä½œä¿è¯ä¸ä¼šè¦†ç›–æ‰å·²ç”Ÿæˆçš„æ¸å˜è‰²æ–‡æœ¬
 	dc.Blit(rc.x, rc.y, rc.width, rc.height, &maskDC, 0, 0, wxOR);
 }
 
