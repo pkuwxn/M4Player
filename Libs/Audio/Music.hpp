@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////
+ï»¿////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
 // Copyright (C) 2007-2012 Laurent Gomila (laurent.gom@gmail.com)
@@ -267,16 +267,16 @@ public :
     Uint32 getBitRate() const;
 
     ////////////////////////////////////////////////////////////
-    /// \brief »ñÈ¡ËùÓĞ±»Ö§³ÖµÄÎÄ¼şÀàĞÍ
+    /// \brief è·å–æ‰€æœ‰è¢«æ”¯æŒçš„æ–‡ä»¶ç±»å‹
     ///
-    /// \return ÀàËÆÓÚ¡°OGG ÒôÆµÎÄ¼ş(*.ogg)|*.ogg|¡±µÄÎÄ¼şÑÚÂë
+    /// \return ç±»ä¼¼äºâ€œOGG éŸ³é¢‘æ–‡ä»¶(*.ogg)|*.ogg|â€çš„æ–‡ä»¶æ©ç 
     ///
     ////////////////////////////////////////////////////////////
     static std::string getSupportedFileTypes();
 
 private :
 
-    // ¸ù¾İµ±Ç°²¥·Å×´Ì¬µ÷Õû¼ÆÊ±Æ÷µÄ¼ÆÊ±(²¥·ÅÊ±Îªµ±Ç°¼ÆÊ±£¬ÔİÍ£Ê±ÎªÏÂ´ÎÆğÊ¼¼ÆÊ±)
+    // æ ¹æ®å½“å‰æ’­æ”¾çŠ¶æ€è°ƒæ•´è®¡æ—¶å™¨çš„è®¡æ—¶(æ’­æ”¾æ—¶ä¸ºå½“å‰è®¡æ—¶ï¼Œæš‚åœæ—¶ä¸ºä¸‹æ¬¡èµ·å§‹è®¡æ—¶)
     void ajustStopWatch(Time dst);
 
     // Utility class to manipulate threads
@@ -286,56 +286,56 @@ private :
         // Constructor
         Thread(Output *outdev);
 
-        // Á¢¼´ÖĞÖ¹Ïß³Ì
+        // ç«‹å³ä¸­æ­¢çº¿ç¨‹
         void StopAtOnce() {
             m_stopAtOnce = true;
         }
 
-        // »ñÈ¡Êä³öÉè±¸µÄ»¥³âÊ¹ÓÃÈ¨
+        // è·å–è¾“å‡ºè®¾å¤‡çš„äº’æ–¥ä½¿ç”¨æƒ
         void Lock() {
             m_mutex.Lock();
         }
 
-        // ÊÍ·ÅÊä³öÉè±¸µÄ»¥³âÊ¹ÓÃÈ¨
+        // é‡Šæ”¾è¾“å‡ºè®¾å¤‡çš„äº’æ–¥ä½¿ç”¨æƒ
         void Unlock() {
             m_mutex.Unlock();
         }
 
     private :
 
-        // Ïß³ÌÈë¿Úº¯Êı
+        // çº¿ç¨‹å…¥å£å‡½æ•°
         virtual wxThread::ExitCode Entry();
 
     private :
 
-        bool m_stopAtOnce;  ///< Á¢¼´Í£Ö¹
+        bool m_stopAtOnce;  ///< ç«‹å³åœæ­¢
 
         Output *m_outdev;
-        wxMutex m_mutex;    ///< È·±£Êä³öÉè±¸µÄ»¥³âÊ¹ÓÃÈ¨
+        wxMutex m_mutex;    ///< ç¡®ä¿è¾“å‡ºè®¾å¤‡çš„äº’æ–¥ä½¿ç”¨æƒ
     };
 
     void newThread();
     void deleteThread();
 
     ////////////////////////////////////////////////////////////
-    // \brief ¹ÜÀíËùÓĞ¿ÉÄÜµÄ½âÂëÆ÷
+    // \brief ç®¡ç†æ‰€æœ‰å¯èƒ½çš„è§£ç å™¨
     //
     ////////////////////////////////////////////////////////////
     class DecoderMgr : public ServiceMgr<Codec> {
     public:
 
-        // ³¢ÊÔ¸ù¾İÎÄ¼şÃûÌí¼ÓÕıÈ·µÄ½âÂëÆ÷
+        // å°è¯•æ ¹æ®æ–‡ä»¶åæ·»åŠ æ­£ç¡®çš„è§£ç å™¨
         bool tryAddDecoder(const char *fileName);
     };
 
     ////////////////////////////////////////////////////////////
-    // \brief ¹ÜÀíÊ¹ÓÃµÄÊä³öÉè±¸
+    // \brief ç®¡ç†ä½¿ç”¨çš„è¾“å‡ºè®¾å¤‡
     //
     ////////////////////////////////////////////////////////////
     class OutdevMgr : public ServiceMgr<Output> {
     public:
 
-        /// ³õÊ¼»¯Êä³öÉè±¸
+        /// åˆå§‹åŒ–è¾“å‡ºè®¾å¤‡
         bool prepare();
     };
 
@@ -353,7 +353,7 @@ private :
     DecoderMgr          m_decoder;      ///< Sound decoder
     OutdevMgr           m_outdev;       ///< Output device
 
-    StopWatch           m_stopWatch;    ///< ²¥·Å½ø¶È¼ÆÊıÆ÷
+    StopWatch           m_stopWatch;    ///< æ’­æ”¾è¿›åº¦è®¡æ•°å™¨
 };
 
 

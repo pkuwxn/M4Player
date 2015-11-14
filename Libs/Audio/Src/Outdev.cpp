@@ -1,4 +1,4 @@
-//
+﻿//
 // SFML - Simple and Fast Multimedia Library
 // Copyright (C) 2007-2012 Laurent Gomila (laurent.gom@gmail.com)
 //

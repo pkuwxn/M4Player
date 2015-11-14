@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////
+ï»¿////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
 // Copyright (C) 2007-2012 Laurent Gomila (laurent.gom@gmail.com)
@@ -139,11 +139,11 @@ std::string Music::getSupportedFileTypes() {
             string_tolower(ext);
 
             //================================
-            // ¼ì²âÎÄ¼şÀàĞÍÃèÊöÎÄ±¾
+            // æ£€æµ‹æ–‡ä»¶ç±»å‹æè¿°æ–‡æœ¬
 
-            first = last + 1; // Ìø¹ı';'
+            first = last + 1; // è·³è¿‡';'
             if ((first < ab.length()) && (ab[first] == '|')) {
-                first++; // Ìø¹ı'|'
+                first++; // è·³è¿‡'|'
                 last = ab.find(";", first);
                 if (last == std::string::npos) {
                     break;
@@ -162,7 +162,7 @@ std::string Music::getSupportedFileTypes() {
     }
 
     //================================
-    // ºÏ³ÉÑÚÂë×Ö·û´®
+    // åˆæˆæ©ç å­—ç¬¦ä¸²
 
     std::string ret("|"), maskAll("All supported types|");
     std::map<std::string, std::string>::iterator iter( types.begin() );
@@ -260,7 +260,7 @@ bool Music::play() {
         }
     }
 
-    // Éù¿¨¿ÉÄÜ±»ÆäËü³ÌĞò¶ÀÕ¼£¬Ã¿´Î²¥·ÅÊ±¶¼ÖØÊÔ»ñÈ¡Ê¹ÓÃÈ¨
+    // å£°å¡å¯èƒ½è¢«å…¶å®ƒç¨‹åºç‹¬å ï¼Œæ¯æ¬¡æ’­æ”¾æ—¶éƒ½é‡è¯•è·å–ä½¿ç”¨æƒ
     if (!m_outdev->isOk()) {
         if (!m_outdev->open(0)) {
             return false;
@@ -283,10 +283,10 @@ bool Music::play() {
         // Move to current position
         m_decoder->seek(seconds(0));
 
-        // ¿ªÊ¼¼ÆÊ±
+        // å¼€å§‹è®¡æ—¶
         m_stopWatch.Start(0L);
 
-        // ÏÈ¿ªÊ¼²¥·Å
+        // å…ˆå¼€å§‹æ’­æ”¾
         if (!m_outdev->play(m_decoder.get())) {
             return false;
         }
@@ -325,7 +325,7 @@ void Music::stop() {
 
     m_stopWatch.Stop();
 
-    // ÏÈÉ¾³ıÏß³Ì£¬ÔÙ¶ÔÊä³öÉè±¸Ö´ĞĞ¡°Í£Ö¹¡±ÃüÁî
+    // å…ˆåˆ é™¤çº¿ç¨‹ï¼Œå†å¯¹è¾“å‡ºè®¾å¤‡æ‰§è¡Œâ€œåœæ­¢â€å‘½ä»¤
     if (m_thread) {
         deleteThread();
     }
@@ -374,7 +374,7 @@ bool Music::setPlayingOffset(Time timeOffset) {
         return false;
     }
 
-    // ÏÈÆô¶¯¼ÆÊ±Æ÷
+    // å…ˆå¯åŠ¨è®¡æ—¶å™¨
     Time curr = milliseconds(m_stopWatch.Time());
     ajustStopWatch(timeOffset);
 
@@ -383,7 +383,7 @@ bool Music::setPlayingOffset(Time timeOffset) {
     }
 
     m_outdev->preSetPlayingOffset(timeOffset);
-    // TODO: Ê§°ÜÊ±ÊÇ·ñĞèÒªÖØĞÂ»Øµ½Ô­À´µÄÎ»ÖÃ£¿
+    // TODO: å¤±è´¥æ—¶æ˜¯å¦éœ€è¦é‡æ–°å›åˆ°åŸæ¥çš„ä½ç½®ï¼Ÿ
     bool ok = m_decoder->seek(timeOffset);
     m_outdev->setPlayingOffset(timeOffset);
 
@@ -391,7 +391,7 @@ bool Music::setPlayingOffset(Time timeOffset) {
         m_thread->Unlock();
     }
 
-    // Ñ°µÀÊ§°Ü£¬»Ö¸´¼ÆÊ±Æ÷
+    // å¯»é“å¤±è´¥ï¼Œæ¢å¤è®¡æ—¶å™¨
     if (!ok) {
         ajustStopWatch(curr);
     }
@@ -475,11 +475,11 @@ Music::Thread::Thread(Output *outdev) :
 ////////////////////////////////////////////////////////////
 wxThread::ExitCode Music::Thread::Entry() {
     enum {
-        TIMESLICE_TO_CHECK_EXIT = 10, // ¼ì²âÍË³ö
-        TIMESLICE_TO_STREAM = 1000 / (BufferCount - 1), // Ìî³äÁ÷
+        TIMESLICE_TO_CHECK_EXIT = 10, // æ£€æµ‹é€€å‡º
+        TIMESLICE_TO_STREAM = 1000 / (BufferCount - 1), // å¡«å……æµ
     };
 
-    // Ã¿ 500ms Ö´ĞĞÊµ¼Ê¼ì²â¹¤×÷Ò»´Î
+    // æ¯ 500ms æ‰§è¡Œå®é™…æ£€æµ‹å·¥ä½œä¸€æ¬¡
     Uint32 timer = TIMESLICE_TO_CHECK_EXIT;
 
     while (!m_stopAtOnce) {

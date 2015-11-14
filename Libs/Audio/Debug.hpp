@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #if defined(_DEBUG) && defined(_MSC_VER)
 

@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////
+ï»¿////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
 // Copyright (C) 2007-2012 Laurent Gomila (laurent.gom@gmail.com)
@@ -32,7 +32,7 @@
 
 namespace sf {
 ////////////////////////////////////////////////////////////
-// ¼ÆÊ±Æ÷
+// è®¡æ—¶å™¨
 //
 ////////////////////////////////////////////////////////////
 class StopWatch {
@@ -46,10 +46,10 @@ public :
     /// Start the stop watch at the moment @a t0
     void Start(Uint32 t0);
 
-    /// ÉèÖÃÆğÊ¼Ê±¿Ì¼ÆÊı£¬µ«²»Æô¶¯¼ÆÊ±Æ÷
+    /// è®¾ç½®èµ·å§‹æ—¶åˆ»è®¡æ•°ï¼Œä½†ä¸å¯åŠ¨è®¡æ—¶å™¨
     ///
-    /// ´ËÊ±¼ÆÊ±Æ÷´ËÊ±×´Ì¬Îª¡°ÔİÍ£¡±£¬ºóĞøÆô¶¯¼ÆÊ±Æ÷ĞèÒªµ÷ÓÃ
-    /// @link Resume() @endlink¡£
+    /// æ­¤æ—¶è®¡æ—¶å™¨æ­¤æ—¶çŠ¶æ€ä¸ºâ€œæš‚åœâ€ï¼Œåç»­å¯åŠ¨è®¡æ—¶å™¨éœ€è¦è°ƒç”¨
+    /// @link Resume() @endlinkã€‚
     /// @example
     /// StopWatch sw;
     /// // Do something...
@@ -58,7 +58,7 @@ public :
     /// sw.Resume();
     void Reset(Uint32 t0);
 
-    /// ÖĞÖ¹¼ÆÊ±
+    /// ä¸­æ­¢è®¡æ—¶
     void Stop();
 
     /// Pause the stop watch
@@ -67,7 +67,7 @@ public :
     /// Resume it
     void Resume();
 
-    /// ÊÇ·ñÕıÔÚ¼ÆÊ±£¨Ã»ÓĞ±»ÔİÍ££©
+    /// æ˜¯å¦æ­£åœ¨è®¡æ—¶ï¼ˆæ²¡æœ‰è¢«æš‚åœï¼‰
     bool IsRunning() const {
         return !m_paused;
     }
@@ -87,7 +87,7 @@ private :
 
     Uint32      m_elapsed;
     Int64       m_sliceStart;
-    bool        m_paused;       ///< ÊÇ·ñÒÑ±»ÔİÍ£
+    bool        m_paused;       ///< æ˜¯å¦å·²è¢«æš‚åœ
 };
 
 
