@@ -41,7 +41,6 @@ workspace "M4Player"
     project "VdkControls"
         language "C++"
         targetdir "bin/%{cfg.buildcfg}"
-        platforms { "Windows", "Linux" }
 
         local home = ROOT .. "/Libs/VdkControls"
 
@@ -66,7 +65,6 @@ workspace "M4Player"
         kind "StaticLib"
         language "C++"
         targetdir "bin/%{cfg.buildcfg}"
-        platforms { "Windows", "Linux" }
 
         local home = ROOT .. "/Libs/MyTagLib"
 
@@ -91,7 +89,6 @@ workspace "M4Player"
     project "Audio"
         language "C++"
         targetdir "bin/%{cfg.buildcfg}"
-        platforms { "Windows", "Linux" }
 
         local home = ROOT .. "/Libs/Audio"
 
@@ -118,7 +115,6 @@ workspace "M4Player"
         kind "WindowedApp"
         language "C++"
         targetdir "bin/%{cfg.buildcfg}"
-        platforms { "Windows", "Linux" }
 
         local home = ROOT .. "/M4Player"
 
