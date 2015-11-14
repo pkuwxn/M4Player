@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OSD.cpp
- * Purpose:   ×ÀÃæ¸è´ÊÆ½Ì¨Ïà¹Ø²¿·ÖµÄ´úÂë
+ * Purpose:   æ¡Œé¢æ­Œè¯å¹³å°ç›¸å…³éƒ¨åˆ†çš„ä»£ç 
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-06-06
  **************************************************************/
@@ -41,7 +41,7 @@ bool OOPDesktopLyric::UpdateAtOnce()
 								GetInteractiveOutput() );
 
 	//========================================
-	// Ìí¼ÓÎÄ±¾
+	// æ·»åŠ æ–‡æœ¬
 	
 	cairo_t* cr = (cairo_t *) gc->GetNativeContext();
 
@@ -100,7 +100,7 @@ wxGraphicsPath OOPDesktopLyric::InitLineTextPath(wxGraphicsContext* gc)
 {
 	wxASSERT( gc );
 
-	// ÎÄ±¾ÂÖÀª
+	// æ–‡æœ¬è½®å»“
 	wxGraphicsPen pen = gc->CreatePen( wxPen( wxColour(0,0,0,255), 3 ) );
 
 	const wxString textToDraw( IsCurrLineValid() ? 
@@ -108,7 +108,7 @@ wxGraphicsPath OOPDesktopLyric::InitLineTextPath(wxGraphicsContext* gc)
 								GetInteractiveOutput() );
 
 	//========================================
-	// Ìí¼ÓÎÄ±¾
+	// æ·»åŠ æ–‡æœ¬
 	
 	cairo_t* cr = (cairo_t *) gc->GetNativeContext();
 
@@ -143,7 +143,7 @@ wxGraphicsPath OOPDesktopLyric::InitLineTextPath(wxGraphicsContext* gc)
 	//path.UnGetNativePath( cr );
 
 	//========================================
-	// Ìí¼Óµ½Â·¾¶ÖĞ
+	// æ·»åŠ åˆ°è·¯å¾„ä¸­
 
     wxGraphicsPath path = gc->CreatePath();
 	gc->SetPen( pen );
@@ -160,7 +160,7 @@ bool OOPDesktopLyric::Present(wxDC& drawings)
 
 void OOPDesktopLyric::OnLeftDown(wxMouseEvent&)
 {
-	// ÒÆ¶¯´°¿Ú
+	// ç§»åŠ¨çª—å£
 
 }
 

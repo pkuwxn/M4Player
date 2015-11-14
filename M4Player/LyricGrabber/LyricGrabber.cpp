@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      LyricGrabber.cpp
- * Purpose:   ¸è´ÊÏÂÔØÆ÷
+ * Purpose:   æ­Œè¯ä¸‹è½½å™¨
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-25
  **************************************************************/
@@ -29,7 +29,7 @@ namespace LyricGrabber
 	Task::Task(wxEvtHandler* sinker)
 		: m_hostId( wxNOT_FOUND ), m_host( NULL ), 
 		  m_sessionType( ST_RETURN_LIST ), m_length( 0 ),
-		  m_idListLoaded( VdkGetUniqueId( 10 ) ), // ¶à¶àÒæÉÆ
+		  m_idListLoaded( VdkGetUniqueId( 10 ) ), // å¤šå¤šç›Šå–„
 		  m_idLyricLoaded( m_idListLoaded + 5 ),
 		  m_sinker( sinker )
 	{
@@ -102,7 +102,7 @@ namespace LyricGrabber
 		wxString list( finishEvt.GetResult() );
 		if( list.Trim( true ).Trim( false ).empty() )
 		{
-			wxLogDebug( L"[%s:%d]ÏÂÔØµÄÄÚÈİ²»ÍêÕû(³¤¶È:%d)", __FILE__, __LINE__, 
+			wxLogDebug( L"[%s:%d]ä¸‹è½½çš„å†…å®¹ä¸å®Œæ•´(é•¿åº¦:%d)", __FILE__, __LINE__, 
 						list.length() );
 		}
 		else
@@ -126,7 +126,7 @@ namespace LyricGrabber
 			}
 			else
 			{
-				// ·¢ËÍ¸è´ÊÏÂÔØÊ§°ÜµÄÏûÏ¢
+				// å‘é€æ­Œè¯ä¸‹è½½å¤±è´¥çš„æ¶ˆæ¯
 				int id = GetLyricLoadedEvtId();
 				VdkHttpThread::FinishEvent e( id, wxEmptyString );
 				e.SetEventType( OOP_EVT_LYRIC_LOADED );
@@ -169,7 +169,7 @@ namespace LyricGrabber
 		}
 		else
 		{
-			// Çå¿Õ²»ÕıÈ·µÄÏÂÔØ½á¹û
+			// æ¸…ç©ºä¸æ­£ç¡®çš„ä¸‹è½½ç»“æœ
 			finishEvt.SetResult( wxEmptyString );
 		}
 

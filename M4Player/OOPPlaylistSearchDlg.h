@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPPlaylistSearchDlg.cpp
- * Purpose:   ¡°¿ìËÙ¶¨Î»ÎÄ¼ş¡±¶Ô»°¿ò
+ * Purpose:   â€œå¿«é€Ÿå®šä½æ–‡ä»¶â€å¯¹è¯æ¡†
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-11
  **************************************************************/
@@ -9,38 +9,38 @@
 
 class VdkEdit;
 
-/// ½ø¶ÈÏÔÊ¾¶Ô»°¿ò
+/// è¿›åº¦æ˜¾ç¤ºå¯¹è¯æ¡†
 class OOPPlaylistSearchDlg : public VdkDialog
 {
 public:
 
-	/// ¹¹Ôìº¯Êı
+	/// æ„é€ å‡½æ•°
 	OOPPlaylistSearchDlg(VdkWindow* parent);
 
-	/// Îö¹¹º¯Êı
+	/// ææ„å‡½æ•°
 	~OOPPlaylistSearchDlg();
 
-	/// »ñÈ¡ÓÃ»§ÊäÈëµÄ²éÕÒ¹Ø¼ü×Ö
+	/// è·å–ç”¨æˆ·è¾“å…¥çš„æŸ¥æ‰¾å…³é”®å­—
 	wxString GetKeyword() const;
 
 private:
 
-	// Ô­Éú¹Ø±ÕÊÂ¼ş´¦ÀíÆ÷
+	// åŸç”Ÿå…³é—­äº‹ä»¶å¤„ç†å™¨
 	void OnClose(wxCloseEvent&);
 
-	// Òş²Ø¶Ô»°¿ò×ÔÉí£¬²¢¼¤»î¸¸´°¿Ú
+	// éšè—å¯¹è¯æ¡†è‡ªèº«ï¼Œå¹¶æ¿€æ´»çˆ¶çª—å£
 	void HideAndFocusParent();
 
-	// Ô­ÉúÏÔÊ¾ÊÂ¼ş´¦ÀíÆ÷
+	// åŸç”Ÿæ˜¾ç¤ºäº‹ä»¶å¤„ç†å™¨
 	void OnShow(wxShowEvent&);
 
-	// ÓÃ»§µã»÷ÁË¡°ËÑË÷°´Å¥¡±
+	// ç”¨æˆ·ç‚¹å‡»äº†â€œæœç´¢æŒ‰é’®â€
 	void OnSearchButton(VdkVObjEvent&);
 
-	// ÏìÓ¦ VdkControl °´¼üÊÂ¼ş
+	// å“åº” VdkControl æŒ‰é”®äº‹ä»¶
 	virtual bool DoHandleKeyEvent(wxKeyEvent& e);
 
-	// »ñÈ¡ÓÃ»§ÊäÈë£¬·¢ËÍËÑË÷ÊÂ¼ş
+	// è·å–ç”¨æˆ·è¾“å…¥ï¼Œå‘é€æœç´¢äº‹ä»¶
 	void PostSearchEvent();
 
 private:

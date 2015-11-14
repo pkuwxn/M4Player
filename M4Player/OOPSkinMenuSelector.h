@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPSkinMenuSelector.h
- * Purpose:   ¿á¹·2011 ·ç¸ñµÄÆ¤·ôÑ¡ÔñÆ÷
+ * Purpose:   é…·ç‹—2011 é£æ ¼çš„çš®è‚¤é€‰æ‹©å™¨
  * Author:    Ning (vanxining@139.com)
  * Created:   2011-02-18
  * Copyright: Ning
@@ -8,20 +8,20 @@
 #pragma once
 #include "VdkScrolledPanel.h"
 
-/// \brief ¿á¹·2011 ·ç¸ñµÄÆ¤·ôÑ¡ÔñÆ÷
+/// \brief é…·ç‹—2011 é£æ ¼çš„çš®è‚¤é€‰æ‹©å™¨
 class OOPSkinMenuSelector : public VdkScrolledPanel
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	OOPSkinMenuSelector();
 
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	~OOPSkinMenuSelector();
 
 private:
 
-	// ´´½¨×Ô¼ºµÄ¹ö¶¯Ìõ
+	// åˆ›å»ºè‡ªå·±çš„æ»šåŠ¨æ¡
 	virtual VdkScrollBar* ScrollBarExists();
 
 	//////////////////////////////////////////////////////////////////////////
@@ -32,20 +32,20 @@ private:
 #include "OOPSkin.h"
 typedef OOPSkin::SkinInfo OOPSkinInfo;
 
-/// \brief Æ¤·ôËõÂÔÍ¼
+/// \brief çš®è‚¤ç¼©ç•¥å›¾
 class SkinAvatar : public VdkControl
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	SkinAvatar();
 
-	/// \brief ¹¹½¨¿Ø¼ş
+	/// \brief æ„å»ºæ§ä»¶
 	void Create(VdkWindow* win,
 				const wxRect& rc,
 				const OOPSkinInfo& info);
 
-	/// \brief Æ¤·ôĞÅÏ¢
+	/// \brief çš®è‚¤ä¿¡æ¯
 	void GetSkinInfo()
 	{
 
@@ -53,27 +53,27 @@ public:
 
 private:
 
-	// »æÖÆ¿Ø¼ş
+	// ç»˜åˆ¶æ§ä»¶
 	virtual void DoDraw(wxDC& dc);
 
-	// ´¦ÀíÊó±êÊÂ¼ş
+	// å¤„ç†é¼ æ ‡äº‹ä»¶
 	virtual void DoHandleMouseEvent(VdkMouseEvent& e);
 
-	// ÑÓ³ÙÔØÈëÆ¤·ôËõÂÔÍ¼(µÚÒ»´ÎÏÔÊ¾ºó)
+	// å»¶è¿Ÿè½½å…¥çš®è‚¤ç¼©ç•¥å›¾(ç¬¬ä¸€æ¬¡æ˜¾ç¤ºå)
 	void OnLoadAvatar(wxCommandEvent& e);
 
 	//////////////////////////////////////////////////////////////////////////
 
 	const OOPSkinInfo* m_skinInfo;
-	VdkMouseEventType m_state; // ¿Ø¼şµ±Ç°Ëù´¦µÄ×´Ì¬£ºÕı³£/¸ßÁÁ
+	VdkMouseEventType m_state; // æ§ä»¶å½“å‰æ‰€å¤„çš„çŠ¶æ€ï¼šæ­£å¸¸/é«˜äº®
 
-	const static int ms_tnwidth = 80; // ËõÂÔÍ¼¿í¶È
-	const static int ms_tnheight = 80; // ËõÂÔÍ¼¸ß¶È
+	const static int ms_tnwidth = 80; // ç¼©ç•¥å›¾å®½åº¦
+	const static int ms_tnheight = 80; // ç¼©ç•¥å›¾é«˜åº¦
 
-	const static int ms_yPadding = 2; // ËõÂÔÍ¼¶¥²¿¾à×÷ÓÃÓòµÄ¾àÀë
-	int m_xText; // ÎÄ±¾µÄ X ×ø±ê
-	wxString m_labelOverflow; // ½Ø¶ÏÁËµÄÎÄ±¾
+	const static int ms_yPadding = 2; // ç¼©ç•¥å›¾é¡¶éƒ¨è·ä½œç”¨åŸŸçš„è·ç¦»
+	int m_xText; // æ–‡æœ¬çš„ X åæ ‡
+	wxString m_labelOverflow; // æˆªæ–­äº†çš„æ–‡æœ¬
 
-	wxPen m_borderNomal; // Õı³£×´Ì¬ÏÂµÄ±ß¿ò
-	wxBrush m_hilight; // ¸ßÁÁ×´Ì¬ÏÂµÄ±³¾°
+	wxPen m_borderNomal; // æ­£å¸¸çŠ¶æ€ä¸‹çš„è¾¹æ¡†
+	wxBrush m_hilight; // é«˜äº®çŠ¶æ€ä¸‹çš„èƒŒæ™¯
 };

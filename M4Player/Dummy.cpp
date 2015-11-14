@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 
 #define USE_LABEL
 #define USE_CAPTIONBAR

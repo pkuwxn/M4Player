@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPSong.cpp
- * Purpose:   ¸èÇú¶ÔÏó¶¨Òå
+ * Purpose:   æ­Œæ›²å¯¹è±¡å®šä¹‰
  * Author:    Ning (vanxining@139.com)
  * Created:   2011-02-19
  * Copyright: Ning
@@ -37,12 +37,12 @@ OOPListEntry::OOPListEntry(const wxString& p)
 
 //////////////////////////////////////////////////////////////////////////
 
-// Ò»Ð©¿ÉÄÜÔÚÏÂÒ»°æ±¾¾Í¸Ä±äµÄÄÚ²¿ÊµÏÖÐÅÏ¢
+// ä¸€äº›å¯èƒ½åœ¨ä¸‹ä¸€ç‰ˆæœ¬å°±æ”¹å˜çš„å†…éƒ¨å®žçŽ°ä¿¡æ¯
 struct OOPSong::Impl
 {
 public:
 
-	// ¹¹Ôìº¯Êý
+	// æž„é€ å‡½æ•°
 	Impl();
 };
 
@@ -102,7 +102,7 @@ wxString GetTagHandler(size_t index)
 
 void OOPSong::ParseTag(bool forceReparse)
 {
-	// ÒÑÈ»¶ÁÈ¡²¢±£´æ
+	// å·²ç„¶è¯»å–å¹¶ä¿å­˜
 	if( IsParsed() && !forceReparse )
 		return;
 
@@ -128,14 +128,14 @@ void OOPSong::ParseTag(bool forceReparse)
 	}
 
 	//=====================================================
-	// ²»ÐèÒª¼ì²â IsTaggingSupported()
+	// ä¸éœ€è¦æ£€æµ‹ IsTaggingSupported()
 
 	OOPTagBatch& bat = SingleTagBatch::Instance();
 	if( !bat.IsOk() )
 	{
 		OOPCharsetConv::CreateInstance();
 			
-		// ÓÅÏÈ¶ÁÈ¡ÎÒÃÇ×Ô¼ºÐ´ÈëµÄ
+		// ä¼˜å…ˆè¯»å–æˆ‘ä»¬è‡ªå·±å†™å…¥çš„
 		bat.AddHandler( OOPTagBatch::TH_APEv2, OOPTagBatch::OM_READ_WRITE );
 		bat.AddHandler( OOPTagBatch::TH_ID3v2, OOPTagBatch::OM_READ );
 		bat.AddHandler( OOPTagBatch::TH_ID3v1, OOPTagBatch::OM_READ_WRITE );
@@ -156,7 +156,7 @@ void OOPSong::ParseTag(bool forceReparse)
 		m_trackNo = bat.GetTrackNumber();
 	}
 
-	// ²»ÔÙÐèÒªËüÁË£¬¹Ø±ÕÎÄ¼þ
+	// ä¸å†éœ€è¦å®ƒäº†ï¼Œå…³é—­æ–‡ä»¶
 	bat.CloseFile();
 
 	m_parsed = true;
@@ -164,21 +164,21 @@ void OOPSong::ParseTag(bool forceReparse)
 
 bool OOPSong::Save()
 {
-	// TODO: ÕâÊÇÒ»¸ö·Ç³£×¾ÁÓµÄÉè¼Æ£¬Ó¦¸ÃÃ¿Ò»ÖÖÎÄ¼þÀàÐÍÓµÓÐÒ»¸öÅúÁ¿¶ÁÐ´Õ»
+	// TODO: è¿™æ˜¯ä¸€ä¸ªéžå¸¸æ‹™åŠ£çš„è®¾è®¡ï¼Œåº”è¯¥æ¯ä¸€ç§æ–‡ä»¶ç±»åž‹æ‹¥æœ‰ä¸€ä¸ªæ‰¹é‡è¯»å†™æ ˆ
 
-	// ¼ÙÈç²»±»Ö§³Ö£¬ÄÇÃ´µ±×÷±£´æ³É¹¦À´¿´´ý£¬±ÜÃâ DelayModStack µÄ·´¸´³¢ÊÔ
+	// å‡å¦‚ä¸è¢«æ”¯æŒï¼Œé‚£ä¹ˆå½“ä½œä¿å­˜æˆåŠŸæ¥çœ‹å¾…ï¼Œé¿å… DelayModStack çš„åå¤å°è¯•
 	if( !IsTaggingSupported() )
 		return true;
 
 	wxASSERT( !m_listEntry->path().empty() );
 
-	// ¼ÙÈçÎÄ¼þ¶¼²»´æÔÚÁË£¬ÄÇÃ´ºóÐø³¢ÊÔÔÙÎÞÒâÒå£¬µ±×÷Ð´Èë³É¹¦
+	// å‡å¦‚æ–‡ä»¶éƒ½ä¸å­˜åœ¨äº†ï¼Œé‚£ä¹ˆåŽç»­å°è¯•å†æ— æ„ä¹‰ï¼Œå½“ä½œå†™å…¥æˆåŠŸ
 	if( !wxFileExists( m_listEntry->path() ) )
 		return true;
 
 	OOPTagBatch& bat = SingleTagBatch::Instance();
 	if( bat.GetWriterCount() == 0 )
-		return true; // ²»ÒªÔÙ´Î³¢ÊÔ£¬µ±×÷Ð´Èë³É¹¦
+		return true; // ä¸è¦å†æ¬¡å°è¯•ï¼Œå½“ä½œå†™å…¥æˆåŠŸ
 
 	//---------------------------------------------
 
@@ -196,7 +196,7 @@ bool OOPSong::Save()
 	{
 		MyTagLib::Tag* writer = *iter;
 
-		// TODO: ¼ÙÈçÇ°Ãæ¶ÁÁËÍ¬Ò»¸öÎÄ¼þ£¬ÄÇÃ´Ó¦¸Ã²»ÓÃÖØ¶Á
+		// TODO: å‡å¦‚å‰é¢è¯»äº†åŒä¸€ä¸ªæ–‡ä»¶ï¼Œé‚£ä¹ˆåº”è¯¥ä¸ç”¨é‡è¯»
 		bool toModify = writer->load( strm );
 		if( !toModify )
 		{
@@ -225,7 +225,7 @@ bool OOPSong::Save()
 		}
 	}
 
-	// ËùÓÐ±êÇ©¶¼³É¹¦Ð´Èë²ÅËãÌá½»³É¹¦
+	// æ‰€æœ‰æ ‡ç­¾éƒ½æˆåŠŸå†™å…¥æ‰ç®—æäº¤æˆåŠŸ
 	return rw.commit( strm );
 }
 
@@ -235,11 +235,11 @@ wxString OOPSong::BuildTitle(const wxString& format) const
 	title.MakeUpper();
 
 	bool atLeastOne = false;
-	atLeastOne |= ParseFormat( title, L"%A", m_artist, L"(Î´ÖªÒÕÊõ¼Ò)" );
-	atLeastOne |= ParseFormat( title, L"%T", m_title, L"(Î´Öª±êÌâ)" );
+	atLeastOne |= ParseFormat( title, L"%A", m_artist, L"(æœªçŸ¥è‰ºæœ¯å®¶)" );
+	atLeastOne |= ParseFormat( title, L"%T", m_title, L"(æœªçŸ¥æ ‡é¢˜)" );
 
 	wxString fn( fileName() );
-	if( !atLeastOne ) // ·Ç³£ÌØÊâµÄÇé¿ö£¬¼ÙÈçÒÕÊõ¼ÒºÍ±êÌâ¾ùÎª¿Õ£¬ÓÃÎÄ¼þÃû´úÌæ
+	if( !atLeastOne ) // éžå¸¸ç‰¹æ®Šçš„æƒ…å†µï¼Œå‡å¦‚è‰ºæœ¯å®¶å’Œæ ‡é¢˜å‡ä¸ºç©ºï¼Œç”¨æ–‡ä»¶åä»£æ›¿
 	{
 		title = fn;
 	}
@@ -249,7 +249,7 @@ wxString OOPSong::BuildTitle(const wxString& format) const
 	}
 
 	atLeastOne |= ParseFormat( title, L"%I", wxString::Format( L"%d", m_trackNo ),
-							   L"(Î´ÖªÒô¹ìºÅ)" );
+							   L"(æœªçŸ¥éŸ³è½¨å·)" );
 
 	return !atLeastOne ? fn : title;
 }
@@ -352,7 +352,7 @@ bool OOPSong::isVBR() const
 	//if( !m_impl )
 	//	return false;
 
-	// TODO: ÓÐÒ»¸ö±í¸ñµÄ£¬ÔÝÊ±²»¹ÜËü
+	// TODO: æœ‰ä¸€ä¸ªè¡¨æ ¼çš„ï¼Œæš‚æ—¶ä¸ç®¡å®ƒ
 	return false;
 }
 
@@ -366,7 +366,7 @@ wxString OOPSong::lrcPath() const
 	{
 		wxFileName fn( path() );
 		
-		// ±ê×¼¸è´Ê´æ´¢Ä¿Â¼ºÍÓë¸èÇúÏàÍ¬µÄÄ¿Â¼
+		// æ ‡å‡†æ­Œè¯å­˜å‚¨ç›®å½•å’Œä¸Žæ­Œæ›²ç›¸åŒçš„ç›®å½•
 		wxString dirs[] = {
 			GetStdLyricDir(), 
 			fn.GetPath() + wxFileName::GetPathSeparator()
@@ -374,11 +374,11 @@ wxString OOPSong::lrcPath() const
 
 		size_t numDirs = sizeof( dirs ) / sizeof( dirs[0] );
 
-		// ¿ÉÄÜµÄÎÄ¼þÃû
+		// å¯èƒ½çš„æ–‡ä»¶å
 		const static size_t numNames = 2;
 		wxString names[numNames] = { fn.GetName() };
 
-		// ¸ù¾Ý±êÇ©ÐÅÏ¢¶ÔÎÄ¼þÃû½øÐÐ±ØÒªµÄ²Â²â
+		// æ ¹æ®æ ‡ç­¾ä¿¡æ¯å¯¹æ–‡ä»¶åè¿›è¡Œå¿…è¦çš„çŒœæµ‹
 		wxString strArtist, strTitle;
 		TryGetArtistAndTitle( strArtist, strTitle );
 
@@ -403,8 +403,8 @@ wxString OOPSong::lrcPath() const
 			}
 		}
 
-		// Éè¶¨Ò»¸öÄ¬ÈÏµÄ¸è´ÊÎÄ¼þÂ·¾¶ÊÇ±ØÒªµÄ£¬·ñÔò¹ØÁªÍâ²¿¸è´ÊÎÄ¼þÊ±
-		// ²»ÖªµÀÒª¸´ÖÆµ½ÄÄÀïÈ¥
+		// è®¾å®šä¸€ä¸ªé»˜è®¤çš„æ­Œè¯æ–‡ä»¶è·¯å¾„æ˜¯å¿…è¦çš„ï¼Œå¦åˆ™å…³è”å¤–éƒ¨æ­Œè¯æ–‡ä»¶æ—¶
+		// ä¸çŸ¥é“è¦å¤åˆ¶åˆ°å“ªé‡ŒåŽ»
 		m_lrcPath = dirs[0] + names[0] + L".lrc";
 	}
 
@@ -418,9 +418,9 @@ bool OOPSong::IsTaggingSupported() const
 {
 	//wxASSERT( m_impl );
 
-	//// TODO: µ±Ç°Ö»Ö§³Ö MP3 ¸ñÊ½µÄ±êÇ©¶ÁÐ´
+	//// TODO: å½“å‰åªæ”¯æŒ MP3 æ ¼å¼çš„æ ‡ç­¾è¯»å†™
 	//return m_impl->audioType == MusicManager::AT_MPEG;
 
-	// TODO: µ±Ç°Ö»Ö§³Ö MP3 ¸ñÊ½µÄ±êÇ©¶ÁÐ´
+	// TODO: å½“å‰åªæ”¯æŒ MP3 æ ¼å¼çš„æ ‡ç­¾è¯»å†™
 	return wxFileName( m_listEntry->path() ).GetExt().CmpNoCase( L"mp3" ) == 0;
 }

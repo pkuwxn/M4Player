@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPIcon.cpp
- * Purpose:   OOPlayer µÄÍ¼±ê
+ * Purpose:   OOPlayer çš„å›¾æ ‡
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2010-12-27
  * Copyright: (C) 2010 Wang Xiaoning
@@ -48,7 +48,7 @@ void OOPIcon::Create(wxXmlNode* node)
 
 void OOPIcon::SetFrame(wxTopLevelWindow* frame)
 {
-    // »¹ÊÇ²»ÒªÉèÖÃÔÊĞí¸Ä±äÖ÷´°¿ÚµÄÍ¼±ê°É£¬ÕâĞ©Í¼±ê´ó²¿·Ö·Ö±æÂÊ¶¼ºÜĞ¡(16*16)
+    // è¿˜æ˜¯ä¸è¦è®¾ç½®å…è®¸æ”¹å˜ä¸»çª—å£çš„å›¾æ ‡å§ï¼Œè¿™äº›å›¾æ ‡å¤§éƒ¨åˆ†åˆ†è¾¨ç‡éƒ½å¾ˆå°(16*16)
 	if( m_icons.IsOk() )
 	{
 		//frame->SetIcons( m_icons );
@@ -66,8 +66,8 @@ void OOPIcon::SetFrame(wxTopLevelWindow* frame)
 
 void OOPIcon::DoDraw(wxDC& dc)
 {
-	// TODO: ÓĞĞ©Æ¤·ô»á½«Í¼±êµÄÏÔÊ¾Î»ÖÃÒÆ³ö´°¿Ú¿ÉÊÓÇøÓò£¬µ«²»ÖªµÀÎªÊ²Ã´
-	// ÈÔÈ»»á»­µ½ÆÁÄ»ÉÏ
+	// TODO: æœ‰äº›çš®è‚¤ä¼šå°†å›¾æ ‡çš„æ˜¾ç¤ºä½ç½®ç§»å‡ºçª—å£å¯è§†åŒºåŸŸï¼Œä½†ä¸çŸ¥é“ä¸ºä»€ä¹ˆ
+	// ä»ç„¶ä¼šç”»åˆ°å±å¹•ä¸Š
 	if( !m_Window->Rect00().Contains( m_Rect ) )
 		return;
 

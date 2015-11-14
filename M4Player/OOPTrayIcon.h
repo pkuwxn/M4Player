@@ -1,24 +1,24 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPTrayIcon.cpp
- * Purpose:   OOPlayer µÄÍĞÅÌÍ¼±ê
+ * Purpose:   OOPlayer çš„æ‰˜ç›˜å›¾æ ‡
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-16
  **************************************************************/
 #pragma once
 #include <wx/taskbar.h>
 
-/// OOPlayer µÄÍĞÅÌÍ¼±ê
+/// OOPlayer çš„æ‰˜ç›˜å›¾æ ‡
 class OOPTrayIcon : public wxTaskBarIcon
 {
 public:
 
 private:
     
-    // ´´½¨²Ëµ¥
+    // åˆ›å»ºèœå•
     virtual wxMenu* CreatePopupMenu();
-    // ÏìÓ¦²Ëµ¥ÊÂ¼ş
+    // å“åº”èœå•äº‹ä»¶
     void OnMenu(wxCommandEvent& e);
-    // ÏìÓ¦ÔÚÍĞÅÌÍ¼±êÉÏ°´ÏÂÊó±êÓÒ¼üÊÂ¼ş
+    // å“åº”åœ¨æ‰˜ç›˜å›¾æ ‡ä¸ŠæŒ‰ä¸‹é¼ æ ‡å³é”®äº‹ä»¶
 	void OnRightDown(wxTaskBarIconEvent&);
     
 private:

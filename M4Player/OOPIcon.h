@@ -1,21 +1,21 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkStaticImage.h"
 
 class VdkWindow;
-/// \brief ¸ºÔğ OOPlayer µÄÍ¼±êÉú³É¡¢Òì³£¹ÜÀíµÈµÈ
+/// \brief è´Ÿè´£ OOPlayer çš„å›¾æ ‡ç”Ÿæˆã€å¼‚å¸¸ç®¡ç†ç­‰ç­‰
 class OOPIcon : public VdkStaticImage
 {
 public:
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief ÉèÖÃÊ¹ÓÃµÄÍ¼±ê
+	/// \brief è®¾ç½®ä½¿ç”¨çš„å›¾æ ‡
 	void SetFrame(wxTopLevelWindow* frame);
 
 private:
 
-	// »æÖÆ¿Ø¼ş
+	// ç»˜åˆ¶æ§ä»¶
 	virtual void DoDraw(wxDC& dc);
 
 private:

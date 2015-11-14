@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OSD.cpp
- * Purpose:   ×ÀÃæ¸è´ÊÆ½Ì¨Ïà¹Ø²¿·ÖµÄ´úÂë
+ * Purpose:   æ¡Œé¢æ­Œè¯å¹³å°ç›¸å…³éƒ¨åˆ†çš„ä»£ç 
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-06-06
  **************************************************************/
@@ -74,7 +74,7 @@ bool OOPDesktopLyric::UpdateAtOnce()
 
 	if( IsCurrLineValid() )
 	{
-		// ÒÑ²¥·ÅµÄ²¿·Ö
+		// å·²æ’­æ”¾çš„éƒ¨åˆ†
 		wxGraphicsBrush playedBrush = 
 			gc->CreateLinearGradientBrush( 0, (HEIGHT - m_style.pxFontSize) / 2, 
 										   0, (HEIGHT + m_style.pxFontSize) / 2,
@@ -107,7 +107,7 @@ wxGraphicsPath OOPDesktopLyric::InitLineTextPath(wxGraphicsContext* gc)
 {
 	wxASSERT( gc );
 
-	// ÎÄ±¾ÂÖÀª
+	// æ–‡æœ¬è½®å»“
 	wxGraphicsPen pen = gc->CreatePen( wxPen( wxColour(0,0,0,255), 3 ) );
 
 	const wxString textToDraw( IsCurrLineValid() ? 
@@ -117,7 +117,7 @@ wxGraphicsPath OOPDesktopLyric::InitLineTextPath(wxGraphicsContext* gc)
 	wxGraphicsPath path = gc->CreatePath();
 
 	//========================================
-	// Ìí¼ÓÎÄ±¾
+	// æ·»åŠ æ–‡æœ¬
 
 	FontFamily fontFamily( m_style.fontFace );
 	StringFormat stringFormat;
@@ -148,7 +148,7 @@ wxGraphicsPath OOPDesktopLyric::InitLineTextPath(wxGraphicsContext* gc)
 	path.UnGetNativePath( nativePath );
 
 	//========================================
-	// Ìí¼Óµ½Â·¾¶ÖĞ
+	// æ·»åŠ åˆ°è·¯å¾„ä¸­
 
 	gc->SetPen( pen );
 	gc->StrokePath( path );
@@ -189,7 +189,7 @@ bool OOPDesktopLyric::Present(wxDC& drawings)
 
 void OOPDesktopLyric::OnLeftDown(wxMouseEvent&)
 {
-	// ÒÆ¶¯´°¿Ú
+	// ç§»åŠ¨çª—å£
 	::SendMessage( m_hWnd, WM_SYSCOMMAND, SC_MOVE | HTCAPTION, 0 );
 }
 

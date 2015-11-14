@@ -1,20 +1,20 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkControl.h"
 #include <wx/vector.h>
 
 //////////////////////////////////////////////////////////////////////////
-/// \brief ¹ö¶¯ÎÄ±¾ÏÔÊ¾
+/// \brief æ»šåŠ¨æ–‡æœ¬æ˜¾ç¤º
 class OOPLabel : public VdkControl, public wxTimer
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	OOPLabel();
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
-	/// \brief Êµ¼Ê¹¹½¨º¯Êı
+	/// \brief å®é™…æ„å»ºå‡½æ•°
 	void Create( VdkWindow* Window, 
 				 const wxString& strName, 
 				 const wxRect& Rect, 
@@ -23,37 +23,37 @@ public:
 				 const wxColour& bgColor,
 				 const align_type& align );
 
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	~OOPLabel();
 
-	/// \brief ÉèÖÃÎÄ±¾Ïî
+	/// \brief è®¾ç½®æ–‡æœ¬é¡¹
 	void SetItems(const wxArrayString& items, wxDC* pDC);
 
-	/// \brief ÊÇ·ñ¹ö¶¯ÎÄ±¾¿Ø¼şÓĞĞ§
+	/// \brief æ˜¯å¦æ»šåŠ¨æ–‡æœ¬æ§ä»¶æœ‰æ•ˆ
 	bool IsOk() const { return !m_items.empty(); }
 
-	/// \brief ¿ªÊ¼¹ö¶¯
+	/// \brief å¼€å§‹æ»šåŠ¨
 	void StartRolling();
 
-	/// \brief Í£Ö¹¹ö¶¯£¬ÖØÖÃ¿Ø¼ş×´Ì¬£¬É¾³ıÒ»ÇĞĞÅÏ¢
+	/// \brief åœæ­¢æ»šåŠ¨ï¼Œé‡ç½®æ§ä»¶çŠ¶æ€ï¼Œåˆ é™¤ä¸€åˆ‡ä¿¡æ¯
 	void StopRolling(wxDC* pDC);
 
 private:
 
-	// ³õÊ¼»¯¿Ø¼ş
+	// åˆå§‹åŒ–æ§ä»¶
 	void Init();
 
-	// »æÖÆ¿Ø¼ş
+	// ç»˜åˆ¶æ§ä»¶
 	virtual void DoDraw(wxDC& dc);
 
-	// »æÖÆ±êÌâ
+	// ç»˜åˆ¶æ ‡é¢˜
 	void DrawLabel( const wxString& str, 
 					int x, 
 					int y, 
 				    const wxString& str2 = wxEmptyString, 
 				    int y2 = 0 );
 
-	// ¼Ì³Ğ×Ô wxTimer
+	// ç»§æ‰¿è‡ª wxTimer
 	virtual void Notify();
 
 	//////////////////////////////////////////////////////////////////////////
@@ -65,29 +65,29 @@ private:
 		TNT_WAIT_FOR_SWITCHING
 	};
 	
-	wxColour					m_TextColor;		// ÎÄ±¾ÑÕÉ«
-	wxColour					m_BkGndColor;		// ÎÄ±¾ÑÕÉ«
-	wxString					m_staticCaption;	// Í£Ö¹¹ö¶¯Ê±ÏÔÊ¾µÄÎÄ±¾
+	wxColour					m_TextColor;		// æ–‡æœ¬é¢œè‰²
+	wxColour					m_BkGndColor;		// æ–‡æœ¬é¢œè‰²
+	wxString					m_staticCaption;	// åœæ­¢æ»šåŠ¨æ—¶æ˜¾ç¤ºçš„æ–‡æœ¬
 
-	int							m_nOnShowId;		// ÕıÔÚÏÔÊ¾µÄÏîÄ¿ ID
-	TimerNotityType				m_nNotityType;		// Timer Í¨ÖªµÄÀàĞÍ
+	int							m_nOnShowId;		// æ­£åœ¨æ˜¾ç¤ºçš„é¡¹ç›® ID
+	TimerNotityType				m_nNotityType;		// Timer é€šçŸ¥çš„ç±»å‹
 
-	int							m_nTextInternal;	// ÎÄ±¾Àë OOPLabel ¶¥²¿µÄ¾àÀë£¨Ê¹Ö®¾ÓÖĞ£©
-	int							m_nRollingCount;	// µ±Ç°ÎÄ±¾ÏòÉÏ»òÕßÏòÓÒ¹ö¶¯µÄ´ÎÊı
-	wxDirection					m_Direction;		// µ±Ç°¹ö¶¯µÄ·½Ïò
-	wxStopWatch					m_StopWatch;		// ÇĞ»»ÉÏÏÂ¾äµÄÊ±ÖÓ
+	int							m_nTextInternal;	// æ–‡æœ¬ç¦» OOPLabel é¡¶éƒ¨çš„è·ç¦»ï¼ˆä½¿ä¹‹å±…ä¸­ï¼‰
+	int							m_nRollingCount;	// å½“å‰æ–‡æœ¬å‘ä¸Šæˆ–è€…å‘å³æ»šåŠ¨çš„æ¬¡æ•°
+	wxDirection					m_Direction;		// å½“å‰æ»šåŠ¨çš„æ–¹å‘
+	wxStopWatch					m_StopWatch;		// åˆ‡æ¢ä¸Šä¸‹å¥çš„æ—¶é’Ÿ
 
 	//////////////////////////////////////////////////////////////////////////
 
 	struct ItemNode {
 
-		int nTextWidth;			// ÎÄ±¾µÄ³¤¶È
-		int nDelta;				// ÎÄ±¾³¤¶ÈºÍÏÔÊ¾ÇøÓò³¤¶ÈÏà²îµÄ´óĞ¡
-		wxString strItem;		// ÒªÏÔÊ¾µÄÎÄ±¾
+		int nTextWidth;			// æ–‡æœ¬çš„é•¿åº¦
+		int nDelta;				// æ–‡æœ¬é•¿åº¦å’Œæ˜¾ç¤ºåŒºåŸŸé•¿åº¦ç›¸å·®çš„å¤§å°
+		wxString strItem;		// è¦æ˜¾ç¤ºçš„æ–‡æœ¬
 	};
 
 	typedef wxVector< ItemNode > ArrayOfItemNodes;
-	ArrayOfItemNodes			m_items;			// ¹ö¶¯ÏÔÊ¾µÄÎÄ±¾Êı×é
+	ArrayOfItemNodes			m_items;			// æ»šåŠ¨æ˜¾ç¤ºçš„æ–‡æœ¬æ•°ç»„
 
 	DECLARE_DYNAMIC_VOBJECT
 };

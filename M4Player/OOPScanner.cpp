@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "OOPScanner.h"
 
 #include "OOPProgressDlg.h"
@@ -26,24 +26,24 @@ OOPScanner::OOPScanner(wxWindow* dlgParent, wxArrayString* songList)
 	wxASSERT( m_songList );
 	
 	enum {
-		// ĞèÒªÊ¹ÓÃÏß³ÌÌá¸ßÓÃ»§ÌåÑéµÄ¸èÇúÊıÄ¿ÏÂÏŞ
+		// éœ€è¦ä½¿ç”¨çº¿ç¨‹æé«˜ç”¨æˆ·ä½“éªŒçš„æ­Œæ›²æ•°ç›®ä¸‹é™
 		MIN_SIZE_TO_START_THREAD = 20,
 	};
 
-	// ±ØĞëÈ·±£×Ö·û¼¯×ª»»Æ÷ÓĞĞ§
+	// å¿…é¡»ç¡®ä¿å­—ç¬¦é›†è½¬æ¢å™¨æœ‰æ•ˆ
 	OOPCharsetConv::CreateInstance();
 
 	//============================================
 
 	if( songList->size() > MIN_SIZE_TO_START_THREAD )
 	{
-		m_dlg = new OOPProgressDlg( m_dlgParent, L"ÕıÔÚµ¼Èë...", wxEmptyString );
+		m_dlg = new OOPProgressDlg( m_dlgParent, L"æ­£åœ¨å¯¼å…¥...", wxEmptyString );
 
 		Create();
 		Run();
 
-		// ±ØĞë×îºó±»µ÷ÓÃ
-		if( IsRunning() ) // ±ÜÃâÏß³ÌÌ«¿ìÖÕ½á£¬´ËÊ±¶Ô»°¿ò»¹Ã»ÏÔÊ¾
+		// å¿…é¡»æœ€åè¢«è°ƒç”¨
+		if( IsRunning() ) // é¿å…çº¿ç¨‹å¤ªå¿«ç»ˆç»“ï¼Œæ­¤æ—¶å¯¹è¯æ¡†è¿˜æ²¡æ˜¾ç¤º
 		{
 			m_dlg->Bind( wxEVT_VOBJ, &OOPScanner::OnUpdateUI, 
 						 this, m_idUpdateUi );
@@ -73,7 +73,7 @@ void OOPScanner::OnUpdateUI(VdkVObjEvent& e)
 {
 	wxASSERT( m_dlg );
 
-	// µ¥»÷ÁË¡°È¡Ïû¡±
+	// å•å‡»äº†â€œå–æ¶ˆâ€
 	if( !m_dlg->Update( e.GetInt(), e.GetString() ) )
 	{
 		Wait();
@@ -97,7 +97,7 @@ wxThread::ExitCode OOPScanner::Entry()
 		if( m_dlg && m_dlg->IsCanceled() )
 			break;
 
-		// ²»ÒªÌí¼ÓÎÄ¼ş´óĞ¡Îª 0 µÄÎÄ¼ş
+		// ä¸è¦æ·»åŠ æ–‡ä»¶å¤§å°ä¸º 0 çš„æ–‡ä»¶
 		if( wxFileName::GetSize( *i ) == 0 )
 			continue;
 
@@ -121,11 +121,11 @@ wxThread::ExitCode OOPScanner::Entry()
 		}
 	}
 
-	// ËùÓĞÎÄ¼şµÄ´óĞ¡¶¼Îª 0
+	// æ‰€æœ‰æ–‡ä»¶çš„å¤§å°éƒ½ä¸º 0
 	if( m_songs->empty() )
 	{
 		updateEvent.SetInt( m_dlg->GetMaximum() );
-		updateEvent.SetString( L"É¨Ãè½áÊø£¬ËùÓĞÎÄ¼şµÄ´óĞ¡¶¼ÎªÁã¡£" );
+		updateEvent.SetString( L"æ‰«æç»“æŸï¼Œæ‰€æœ‰æ–‡ä»¶çš„å¤§å°éƒ½ä¸ºé›¶ã€‚" );
 
 		wxPostEvent( m_dlg, updateEvent );
 	}

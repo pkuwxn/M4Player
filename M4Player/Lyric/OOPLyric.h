@@ -1,6 +1,6 @@
-/***************************************************************
+﻿/***************************************************************
  * Name:      OOPLyric.h
- * Purpose:   �����ڸ���㴰�ڵ���Ƕ�����ʾ�ؼ�
+ * Purpose:   集成在歌词秀窗口的内嵌歌词显示控件
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2010
  **************************************************************/
@@ -12,18 +12,18 @@
 class OOPStopWatch;
 class VdkWindow;
 
-/// \brief �����ʵ��
+/// \brief 歌词秀实现
 class OOPLyric : public VdkListCtrl, public ILyric
 {
 public:
 
-	/// \brief ���캯��
+	/// \brief 构造函数
 	OOPLyric();
 
-	/// \brief ��������
+	/// \brief 析构函数
 	~OOPLyric();
 
-	/// \brief ���º�������ʵ�� ILyric �ӿ�
+	/// \brief 以下函数用以实现 ILyric 接口
 	virtual bool IsOk() const;
 	virtual void AttachParser(const OOPLyricParser& parser);
 	virtual void Start();
@@ -34,89 +34,89 @@ public:
 
 private:
 
-	// ��ʼ��
+	// 初始化
 	void Init();
 
-	// XRC ��̬����
+	// XRC 动态创建
 	virtual void OnXrcCreate(wxXmlNode* node);
 
-	// ��һЩ����Ĺ�������
-	// @param colorArray ���ƿؼ�ʱ����Ԫ�ص���ɫ�����У�
-	//    [0]: �����ı���ɫ
-	//    [1]: ����ʱ���ı���ɫ
-	//    [2]: ������ɫ
+	// 做一些额外的构建工作
+	// @param colorArray 绘制控件时各种元素的颜色，其中：
+	//    [0]: 正常文本颜色
+	//    [1]: 高亮时的文本颜色
+	//    [2]: 背景颜色
 	void Create(const wxArrayString& colorArray);
 
 private:
 
-	// ����ͣ�лָ�
-	// @return �Ƿ�ɹ��ָ���ʵ���ʾ��
-	// @attention ��ʻ�û��ʼ��ʾ�������ʧ�ܵ������
+	// 从暂停中恢复
+	// @return 是否成功恢复歌词的显示。
+	// @attention 歌词还没开始显示即会出现失败的情况。
 	bool Resume();
 
-	// ���ݶ�ʱ��������ǰ����
+	// 根据定时器修正当前进度
 	void UpdateProgress(wxDC* pDC);
 
-	// ��ֹ��ʾ��ǰ�У�ֱ����ʾ��һ��
+	// 中止显示当前行，直接显示下一行
 	//
-	// ���ڷ�ֹ��ǰ������ʱ�䳬�� LRC ָ����ʱ�䡣
+	// 用于防止当前行所用时间超出 LRC 指定的时间。
 	void NextLine(wxDC* pDC, bool bPaused = false);
 
-	// ת�����
+	// 转到最后
 	void MoveToEnd(wxDC* pDC);
 
-	// Ϊʹ��ǰ����ʾ�ڿؼ��м䣬����ڸ��ǰ�������˿���
+	// 为使当前行显示在控件中间，因此在歌词前后添加了空行
 	// 
-	// �������������⻭���Ĵ�С
+	// 函数会重设虚拟画布的大小
 	void InsertBlankLines();
 
-	// ���������к��������⻭���ĸ߶�
+	// 计算插入空行后最终虚拟画布的高度
 	void UpdateVirtualHeight();
 
-	// ���� m_nCurrIndex �����������ڵ���ʼ����λ��
-	// ���Զ�����ʱ���ƶ���ָ���ٷֱ���Ҫʵ�ʸ��Ĺ������ڵ�
-	// �������ԡ�
-	// ��֮��һ��ԭ���µ�һ�п�ʼʱ�����ϸ��ֻ��ʾ��һ���С�
+	// 根据 m_nCurrIndex 修正滚动窗口的起始绘制位置
+	// 如自动滚动时、移动至指定百分比需要实际更改滚动窗口的
+	// 物理属性。
+	// 总之有一个原则：新的一行开始时必须严格地只显示这一新行。
 	void CorrectViewStart(wxDC* pDC);
 
-	// ˢ�µ�ǰ��ʵ�״̬
+	// 刷新当前歌词的状态
 	// 
-	// ����¹������ڵ�������ʼ���꣬������\a bPaused ��ֵ�Ƿ�
-	// ���µ�λ�ü�����ʾ��ʡ�
+	// 如更新滚动窗口的物理起始坐标，并根据\a bPaused 的值是否
+	// 从新的位置继续显示歌词。
 	void RefreshLyric(wxDC* pDC, bool bPaused);
 
-	// ��ȡ��ǰ����еĽ���(�ٷֱȣ���Χ[0, 1])
+	// 获取当前歌词行的进度(百分比，范围[0, 1])
 	double GetLineProgress() const;
 
 private:
 
 	virtual void DoSetInteractiveOutput(wxDC* pDC);
 
-	// ��յ�ǰ��ʾ�ĸ��
+	// 清空当前显示的歌词
 	virtual void DoClear(wxDC* pDC);
 
-	// ��������¼�
+	// 处理鼠标事件
 	virtual void OnMouseEvent(VdkMouseEvent& e);
 
-	// ���������¼�
+	// 处理键盘事件
 	virtual void OnKeyEvent(VdkKeyEvent& vke);
 
-	// ���ƶ����͵ײ�����ɫ�ı�
+	// 绘制顶部和底部渐变色文本
 	virtual void OnDraw(wxDC& dc);
 
-	// ���ա�����֪ͨ��Ϣ
+	// 接收、处理通知信息
 	virtual void OnNotify(const VdkNotify& notice);
 
-	// �ڴ˻���ÿһ����Ԫ��
+	// 在此绘制每一个单元格
 	virtual VdkCusdrawReturnFlag DoDrawCellText(const VdkLcCell* cell, 
 												int col_index, int index, 
 												wxDC& dc, 
 												VdkLcHilightState state);
 
-	// ���ڲ��ɼ�ʱֹͣ�����ʾ
+	// 窗口不可见时停止歌词显示
 	void OnParentShow(wxShowEvent& e);
 
-	// wxTimer �ص�
+	// wxTimer 回调
 	void OnTimerNotify(wxTimerEvent&);
 
 private:
@@ -131,14 +131,14 @@ private:
 	wxColour m_HilightColor;
 	wxColour m_BgColor;
 
-	LineIter m_currLine; // ��ǰ����
+	LineIter m_currLine; // 当前高亮
 
-	int m_blankLinesTop; // �б���ͷ��ǰ�ӽ�ȥ�Ŀ�����
+	int m_blankLinesTop; // 列表开头当前加进去的空行数
 	int m_blankLinesBottom;
 
-	// �������ʱ���ָ����ʶ����ľ��루״̬����
+	// 拉动歌词时鼠标指针距歌词顶部的距离（状态量）
 	int m_draggDistance;
-	LineIter m_draggHit; // �������ʱ���ָ�����еĸ����
+	LineIter m_draggHit; // 拉动歌词时鼠标指针命中的歌词行
 
 	DECLARE_DYNAMIC_VOBJECT
 };

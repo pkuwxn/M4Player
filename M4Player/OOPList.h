@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkListCtrl.h"
 
 class wxInputStream;
@@ -7,124 +7,124 @@ class OOPSong;
 class OOPListEntry;
 class OOPSongPtr;
 
-/// \brief OOPlayer ×¨ÓÃÁĞ±í¿Ø¼ş
+/// \brief OOPlayer ä¸“ç”¨åˆ—è¡¨æ§ä»¶
 class OOPList : public VdkListCtrl
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	OOPList();
 
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	~OOPList();
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ÏòÁĞ±íÖĞÌí¼ÓÒ»Ê×¸èÇú
-	/// \param numRows µ±Ç°ÁĞ±íÖĞµÄÏîÄ¿Êı£¬º¯Êıµ÷ÓÃ³É¹¦ºóÏîÄ¿ÊıÓ¦¸ÃÔö¼Ó 1 ¡£
-	///				   Ö÷ÒªÊÇÏ£Íû²»ÓÃÃ¿´Î¼ÆËãÁĞ±íÏîÄ¿Êı(Ò»°ãÊ±¼ä¸´ÔÓ¶ÈÎªO(n))¡£
+	/// \brief å‘åˆ—è¡¨ä¸­æ·»åŠ ä¸€é¦–æ­Œæ›²
+	/// \param numRows å½“å‰åˆ—è¡¨ä¸­çš„é¡¹ç›®æ•°ï¼Œå‡½æ•°è°ƒç”¨æˆåŠŸåé¡¹ç›®æ•°åº”è¯¥å¢åŠ  1 ã€‚
+	///				   ä¸»è¦æ˜¯å¸Œæœ›ä¸ç”¨æ¯æ¬¡è®¡ç®—åˆ—è¡¨é¡¹ç›®æ•°(ä¸€èˆ¬æ—¶é—´å¤æ‚åº¦ä¸ºO(n))ã€‚
 	void AddToList(OOPSong& song, size_t numRows);
 
-	/// \brief ¸ù¾İµ±Ç°ÌõÄ¿Êıµ÷ÕûĞòºÅÁĞµÄ¿í¶È
+	/// \brief æ ¹æ®å½“å‰æ¡ç›®æ•°è°ƒæ•´åºå·åˆ—çš„å®½åº¦
 	void UpdateSnColumnWidth(int numRowsOld, int numRowsCurr = wxNOT_FOUND);
 
-	/// \brief »ñÈ¡µÚ@a index Ïî¸½¼ÓµÄ OOPSong Àà¶ÔÏó
+	/// \brief è·å–ç¬¬@a index é¡¹é™„åŠ çš„ OOPSong ç±»å¯¹è±¡
 	OOPSongPtr GetSongPtr(int index);
 
-	/// \brief »ñÈ¡µÚµü´úÆ÷@a i ËùÖ¸ÏòµÄÏî¸½¼ÓµÄ OOPSong Àà¶ÔÏó
+	/// \brief è·å–ç¬¬è¿­ä»£å™¨@a i æ‰€æŒ‡å‘çš„é¡¹é™„åŠ çš„ OOPSong ç±»å¯¹è±¡
 	OOPSongPtr GetSongPtr(const LcCellIter& i);
 
-	/// \brief »ñÈ¡µÚµü´úÆ÷@a i ËùÖ¸ÏòµÄÏî¸½¼ÓµÄ OOPListEntry Àà¶ÔÏó
+	/// \brief è·å–ç¬¬è¿­ä»£å™¨@a i æ‰€æŒ‡å‘çš„é¡¹é™„åŠ çš„ OOPListEntry ç±»å¯¹è±¡
 	OOPListEntry* GetListEntry(const LcCellIter& i);
 
-	/// \brief É¾³ıµÚ \a index Ïî
+	/// \brief åˆ é™¤ç¬¬ \a index é¡¹
 	///
-	/// ²»¸üĞÂ GUI ¡£
+	/// ä¸æ›´æ–° GUI ã€‚
 	void RemoveSong(int index);
 
-	/// \brief É¾³ıµÚ \a index Ïî
+	/// \brief åˆ é™¤ç¬¬ \a index é¡¹
 	///
-	/// ²»¸üĞÂ GUI ¡£
+	/// ä¸æ›´æ–° GUI ã€‚
 	void RemoveSong(const LcCellIter& i);
 
-	/// \brief ÒÆ³ıËùÓĞµ¥Ôª¸ñÖĞ¸½×ÅµÄÓÃ»§×Ô¶¨ÒåĞÅÏ¢( OOPSong Àà¶ÔÏó)
+	/// \brief ç§»é™¤æ‰€æœ‰å•å…ƒæ ¼ä¸­é™„ç€çš„ç”¨æˆ·è‡ªå®šä¹‰ä¿¡æ¯( OOPSong ç±»å¯¹è±¡)
 	void RemoveAllSongPtrs();
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ÒÔ¶ş½øÖÆ·½Ê½±£´æ²¥·ÅÁĞ±í
+	/// \brief ä»¥äºŒè¿›åˆ¶æ–¹å¼ä¿å­˜æ’­æ”¾åˆ—è¡¨
 	void Serialize(wxInputStream& fin);
 
-	/// \brief ÒÔ¶ş½øÖÆ·½Ê½±£´æ²¥·ÅÁĞ±í
+	/// \brief ä»¥äºŒè¿›åˆ¶æ–¹å¼ä¿å­˜æ’­æ”¾åˆ—è¡¨
 	void Serialize(wxOutputStream& fout);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ¸ù¾İÖÆ¶¨µÄÃüÁîÑ¡ÔñÒ»ÖÖÅÅĞò·½·¨À´ÅÅĞò²¥·ÅÁĞ±í
+	/// \brief æ ¹æ®åˆ¶å®šçš„å‘½ä»¤é€‰æ‹©ä¸€ç§æ’åºæ–¹æ³•æ¥æ’åºæ’­æ”¾åˆ—è¡¨
 	void SortList(VdkCtrlId cmd);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief µ±Ç°ÊÇ·ñ´æÔÚÒÑ±»Ëø¶¨µÄÏî
+	/// \brief å½“å‰æ˜¯å¦å­˜åœ¨å·²è¢«é”å®šçš„é¡¹
 	bool HasLocked() { return m_locked != end(); }
 
-	/// \brief »ñÈ¡ÕıÔÚ²¥·ÅµÄ¸èÇúµÄ ID
-	/// \note ÕâÀï²»ÄÜ¼Ó const
+	/// \brief è·å–æ­£åœ¨æ’­æ”¾çš„æ­Œæ›²çš„ ID
+	/// \note è¿™é‡Œä¸èƒ½åŠ  const
 	int GetLockedIndex();
 
-	/// \brief »ñÈ¡ÕıÔÚ²¥·ÅµÄ¸èÇú
+	/// \brief è·å–æ­£åœ¨æ’­æ”¾çš„æ­Œæ›²
 	LcCellIter GetLocked() { return m_locked; }
 
-	/// \brief »ñÈ¡ÕıÔÚ²¥·ÅµÄ¸èÇúµÄ¹ØÁª¶ÔÏó
-	/// \note ÕâÀï²»ÄÜ¼Ó const
+	/// \brief è·å–æ­£åœ¨æ’­æ”¾çš„æ­Œæ›²çš„å…³è”å¯¹è±¡
+	/// \note è¿™é‡Œä¸èƒ½åŠ  const
 	OOPSongPtr GetLockedSong();
 
-	/// \brief ÉèÖÃÕıÔÚ²¥·ÅµÄ¸èÇú
-	/// \param index ÔÊĞí´ËÖµÎŞĞ§
+	/// \brief è®¾ç½®æ­£åœ¨æ’­æ”¾çš„æ­Œæ›²
+	/// \param index å…è®¸æ­¤å€¼æ— æ•ˆ
 	void SetLocked(int index, wxDC* pDC);
 
-	/// \brief ÉèÖÃÕıÔÚ²¥·ÅµÄ¸èÇú
-	/// \param locked ÔÊĞí´ËÖµÎŞĞ§
+	/// \brief è®¾ç½®æ­£åœ¨æ’­æ”¾çš„æ­Œæ›²
+	/// \param locked å…è®¸æ­¤å€¼æ— æ•ˆ
 	void SetLocked(const LcCellIter& locked, wxDC* pDC);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ²¥·ÅÁĞ±íµÄµÚÒ»Ê×¸èÇú
-	/// \note ÕâÀï²»ÄÜ¼ÓconstĞŞÊÎ·û
+	/// \brief æ’­æ”¾åˆ—è¡¨çš„ç¬¬ä¸€é¦–æ­Œæ›²
+	/// \note è¿™é‡Œä¸èƒ½åŠ constä¿®é¥°ç¬¦
 	LcCellIter begin();
 
-	/// \brief ²¥·ÅÁĞ±íµÄ×îºóÒ»Ê×¸èÇú
-	/// \note ÕâÀï²»ÄÜ¼ÓconstĞŞÊÎ·û
+	/// \brief æ’­æ”¾åˆ—è¡¨çš„æœ€åä¸€é¦–æ­Œæ›²
+	/// \note è¿™é‡Œä¸èƒ½åŠ constä¿®é¥°ç¬¦
 	LcCellIter end();
 
 protected:
 
-	/// \brief ½ÓÊÕ¡¢´¦ÀíÍ¨ÖªĞÅÏ¢
+	/// \brief æ¥æ”¶ã€å¤„ç†é€šçŸ¥ä¿¡æ¯
 	virtual void OnNotify(const VdkNotify& notice);
 
 private:
 
-	// ÒÆ³ıµ¥Ôª¸ñÖĞ¸½×ÅµÄÓÃ»§×Ô¶¨ÒåĞÅÏ¢( OOPSong Àà¶ÔÏó)
+	// ç§»é™¤å•å…ƒæ ¼ä¸­é™„ç€çš„ç”¨æˆ·è‡ªå®šä¹‰ä¿¡æ¯( OOPSong ç±»å¯¹è±¡)
 	void RemoveSongPointer(const LcCellIter& i);
 
-	// ÒÆ³ıµ¥Ôª¸ñÖĞ¸½×ÅµÄÓÃ»§×Ô¶¨ÒåĞÅÏ¢( OOPSong Àà¶ÔÏó)
+	// ç§»é™¤å•å…ƒæ ¼ä¸­é™„ç€çš„ç”¨æˆ·è‡ªå®šä¹‰ä¿¡æ¯( OOPSong ç±»å¯¹è±¡)
 	void RemoveSongPointer(int i);
 
 private:
 
-	// ´¦ÀíÊó±êÊÂ¼ş
+	// å¤„ç†é¼ æ ‡äº‹ä»¶
 	virtual void OnMouseEvent(VdkMouseEvent& e);
 
-	// ÏìÓ¦¼üÅÌÊÂ¼ş
+	// å“åº”é”®ç›˜äº‹ä»¶
 	virtual void OnKeyEvent(VdkKeyEvent& e);
 
-	// XRC ¶¯Ì¬´´½¨
+	// XRC åŠ¨æ€åˆ›å»º
 	virtual void OnXrcCreate(wxXmlNode* node);
 
-	// ´´½¨½¥±äÉ«Ñ¡ÔñÌõ
+	// åˆ›å»ºæ¸å˜è‰²é€‰æ‹©æ¡
 	void CreateGradientBrush();
 
-	// »æÖÆµ¥Ôª¸ñÎÄ±¾
+	// ç»˜åˆ¶å•å…ƒæ ¼æ–‡æœ¬
 	virtual VdkCusdrawReturnFlag
 		DoDrawCellText(const VdkLcCell* cell,
 					   int col_index,
@@ -132,43 +132,43 @@ private:
 					   wxDC& dc,
 					   VdkLcHilightState state );
 
-	// ²Á³ı£¨»æÖÆ£©ĞĞ±³¾°
+	// æ“¦é™¤ï¼ˆç»˜åˆ¶ï¼‰è¡ŒèƒŒæ™¯
 	virtual VdkCusdrawReturnFlag DoEraseRow
 		(const LcCellIter& it, int index, wxDC& dc);
 
-	// ÏìÓ¦Çå¿Õµ±Ç°ËùÓĞÏîÊÂ¼ş
+	// å“åº”æ¸…ç©ºå½“å‰æ‰€æœ‰é¡¹äº‹ä»¶
 	virtual void DoClear(wxDC* pDC = NULL);
 
 private:
 
-	// @brief ÏòÁĞ±íÖĞÌí¼ÓÒ»Ê×¸èÇú
-	// @param title ¿ÉÒÔÖ¸¶¨Ò»¸öÌØ¶¨µÄÁĞ±íÏî±êÌâ
-	// @param numRows µ±Ç°ÁĞ±íÖĞµÄÏîÄ¿Êı£¬º¯Êıµ÷ÓÃ³É¹¦ºóÏîÄ¿ÊıÓ¦¸ÃÔö¼Ó 1 ¡£
-	//				  Ö÷ÒªÊÇÏ£Íû²»ÓÃÃ¿´Î¼ÆËãÁĞ±íÏîÄ¿Êı(Ò»°ãÊ±¼ä¸´ÔÓ¶ÈÎª
-	//				  O(n) )¡£
+	// @brief å‘åˆ—è¡¨ä¸­æ·»åŠ ä¸€é¦–æ­Œæ›²
+	// @param title å¯ä»¥æŒ‡å®šä¸€ä¸ªç‰¹å®šçš„åˆ—è¡¨é¡¹æ ‡é¢˜
+	// @param numRows å½“å‰åˆ—è¡¨ä¸­çš„é¡¹ç›®æ•°ï¼Œå‡½æ•°è°ƒç”¨æˆåŠŸåé¡¹ç›®æ•°åº”è¯¥å¢åŠ  1 ã€‚
+	//				  ä¸»è¦æ˜¯å¸Œæœ›ä¸ç”¨æ¯æ¬¡è®¡ç®—åˆ—è¡¨é¡¹ç›®æ•°(ä¸€èˆ¬æ—¶é—´å¤æ‚åº¦ä¸º
+	//				  O(n) )ã€‚
 	void AddToList(OOPListEntry& entry, const wxString& title, size_t numRows);
 
-	// »ñÈ¡Ñ¡ÔñÏîµÄ±ß¿òºÍÎÄ±¾ÑÕÉ«
+	// è·å–é€‰æ‹©é¡¹çš„è¾¹æ¡†å’Œæ–‡æœ¬é¢œè‰²
 	wxColour GetSelectedColour() const;
 
-	// ¸üĞÂµÚ @a row ĞĞµÄÊ±¼äÏÔÊ¾
+	// æ›´æ–°ç¬¬ @a row è¡Œçš„æ—¶é—´æ˜¾ç¤º
 	void UpdateTime(int row, unsigned int len);
 
-	// ¸üĞÂÖ¸¶¨µ¥Ôª¸ñµÄÊ±¼äÏÔÊ¾
+	// æ›´æ–°æŒ‡å®šå•å…ƒæ ¼çš„æ—¶é—´æ˜¾ç¤º
 	void UpdateTime(VdkLcCell* cell, unsigned int len);
 
-	// ¸üĞÂÄ³Ğ©µÄÏÔÊ¾£¬ÕâĞ©ĞĞ¿ÉÄÜ¾ùÎª¿Õ£¨-1£©
+	// æ›´æ–°æŸäº›çš„æ˜¾ç¤ºï¼Œè¿™äº›è¡Œå¯èƒ½å‡ä¸ºç©ºï¼ˆ-1ï¼‰
 	void RedrawRows(const wxArrayInt& rows, wxDC& dc);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	wxColour m_textColor; // ÎÄ±¾ÑÕÉ«
-	wxColour m_snColor; // ĞòºÅµÄÎÄ±¾ÑÕÉ«
-	wxColour m_timeColor; // Ê±¼äÏÔÊ¾µÄÎÄ±¾ÑÕÉ«
-	wxColour m_lockedColor; // ¡°ÕıÔÚ²¥·Å¡±ÌõÄ¿µÄËø¶¨ÑÕÉ«
-	wxColour m_selectedColor; // ½¥±äÉ«Ìõ(µ¥»÷Ñ¡ÖĞÒ»¸öÇúÄ¿ºóµÄ¼ÓÁÁ)
+	wxColour m_textColor; // æ–‡æœ¬é¢œè‰²
+	wxColour m_snColor; // åºå·çš„æ–‡æœ¬é¢œè‰²
+	wxColour m_timeColor; // æ—¶é—´æ˜¾ç¤ºçš„æ–‡æœ¬é¢œè‰²
+	wxColour m_lockedColor; // â€œæ­£åœ¨æ’­æ”¾â€æ¡ç›®çš„é”å®šé¢œè‰²
+	wxColour m_selectedColor; // æ¸å˜è‰²æ¡(å•å‡»é€‰ä¸­ä¸€ä¸ªæ›²ç›®åçš„åŠ äº®)
 
-	LcCellIter m_locked; // Çø·Ö¡°ÕıÔÚ²¥·Å¡±µÄÇúÄ¿
+	LcCellIter m_locked; // åŒºåˆ†â€œæ­£åœ¨æ’­æ”¾â€çš„æ›²ç›®
 
 	DECLARE_CLONEABLE_VOBJECT( OOPList )
 };

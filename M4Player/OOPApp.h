@@ -1,4 +1,4 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPApp.h
  * Purpose:   Defines Application Class
  * Author:    Ning (vanxining@139.com)
@@ -55,34 +55,34 @@ class wxTaskBarIconEvent;
 
 //////////////////////////////////////////////////////////////////////////
 
-/*! ¶îÍâµÄÏûÏ¢ ID (±ÜÃâÖØÃû) */
+/*! é¢å¤–çš„æ¶ˆæ¯ ID (é¿å…é‡å) */
 enum OOPWindowExtraMessageID {
 
-	/// \brief ÖØÉè´°¿ÚÆ¤·ô
+	/// \brief é‡è®¾çª—å£çš®è‚¤
 	OOPEMC_RESET_WINDOW			= VEMC_USER + 0,
 };
 
-/*! ³ÌĞòÖĞÓÃµ½µÄËùÓĞÃæ°åµÄÎ¨Ò»±êÊ¶Ã¶¾ÙÖµ */
+/*! ç¨‹åºä¸­ç”¨åˆ°çš„æ‰€æœ‰é¢æ¿çš„å”¯ä¸€æ ‡è¯†æšä¸¾å€¼ */
 enum OOPPanel {
-	PANEL_MAIN, /*! Ö÷Ãæ°å */
-	PANEL_PLAYLIST, /*! ²¥·ÅÁĞ±í´°¿Ú */
-	PANEL_LYRIC, /*! ¸è´ÊĞã´°¿Ú */
-	PANEL_EQ, /*! ¾ùºâÆ÷´°¿Ú */
+	PANEL_MAIN, /*! ä¸»é¢æ¿ */
+	PANEL_PLAYLIST, /*! æ’­æ”¾åˆ—è¡¨çª—å£ */
+	PANEL_LYRIC, /*! æ­Œè¯ç§€çª—å£ */
+	PANEL_EQ, /*! å‡è¡¡å™¨çª—å£ */
 
-	NUM_PANELS, /*! Ãæ°å×ÜÊı */
+	NUM_PANELS, /*! é¢æ¿æ€»æ•° */
 };
 
 //////////////////////////////////////////////////////////////////////////
 
-/// \brief ±£´æËùÓĞĞèÒªÓÃµ½µÄÖ¸Õë
+/// \brief ä¿å­˜æ‰€æœ‰éœ€è¦ç”¨åˆ°çš„æŒ‡é’ˆ
 class OOPPtrs
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	OOPPtrs() { Clear(); }
 
-	/// \brief ³õÊ¼»¯ËùÓĞÖ¸Õë
+	/// \brief åˆå§‹åŒ–æ‰€æœ‰æŒ‡é’ˆ
 	void Clear() { memset( this, 0, sizeof( OOPPtrs ) ); }
 
 protected:
@@ -119,222 +119,222 @@ protected:
 	VdkMenu* m_LyricMenu;
 };
 
-/// \brief Ó¦ÓÃ³ÌĞòÀà£¬Í¬Ê±Ò²ÊÇÕû¸ö³ÌĞòµÄ¿ØÖÆÖĞĞÄ
+/// \brief åº”ç”¨ç¨‹åºç±»ï¼ŒåŒæ—¶ä¹Ÿæ˜¯æ•´ä¸ªç¨‹åºçš„æ§åˆ¶ä¸­å¿ƒ
 class OOPlayerApp : public wxApp, public OOPPtrs
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	OOPlayerApp();
 
-	/// \brief ÇĞ»»²¥·ÅÆ÷ÖÁ¿É²¥·Å¸èÇúµÄ×´Ì¬
+	/// \brief åˆ‡æ¢æ’­æ”¾å™¨è‡³å¯æ’­æ”¾æ­Œæ›²çš„çŠ¶æ€
 	void EnablePlayer();
 
-	/// \brief ´ÓÍ·²¥·ÅÒ»Ê×¸èÇú
+	/// \brief ä»å¤´æ’­æ”¾ä¸€é¦–æ­Œæ›²
 	void BeginSong(LcCellIter songIter, wxDC* pDC, wxDC* playListDC);
 
-	/// \brief ´ÓÍ·²¥·ÅÒ»Ê×¸èÇú
+	/// \brief ä»å¤´æ’­æ”¾ä¸€é¦–æ­Œæ›²
 	void BeginSong(int index, wxDC* pDC, wxDC* playListDC);
 
-	/// \brief ÉèÖÃ¾²Òô/²»¾²Òô
+	/// \brief è®¾ç½®é™éŸ³/ä¸é™éŸ³
 	void ToggleMute(bool mute, wxDC* pDC);
 
 	//////////////////////////////////////////////////////////////////////////
-	// »ñÈ¡²¥·ÅÆ÷µ±Ç°×´Ì¬
+	// è·å–æ’­æ”¾å™¨å½“å‰çŠ¶æ€
 
-	/// \brief »ñÈ¡±¾Ê×¸èµÄ½ø¶È
+	/// \brief è·å–æœ¬é¦–æ­Œçš„è¿›åº¦
 	double GetProgress() const;
 
-	/// \brief ÊÇ·ñÕıÔÚ²¥·Å
+	/// \brief æ˜¯å¦æ­£åœ¨æ’­æ”¾
 	bool IsPlaying() const;
 
-	/// \brief ÊÇ·ñÒÑÈ»ÔİÍ£
+	/// \brief æ˜¯å¦å·²ç„¶æš‚åœ
 	bool IsPaused() const;
 
-	/// \brief ÊÇ·ñÒÑÈ»Í£Ö¹²¥·Å
+	/// \brief æ˜¯å¦å·²ç„¶åœæ­¢æ’­æ”¾
 	bool IsStopped() const;
 
-	/// \brief ÊÇ·ñ¾²Òô
+	/// \brief æ˜¯å¦é™éŸ³
 	bool IsMute() const;
 
-	/// \brief ²¥·ÅÆ÷ÊÇ·ñ´¦ÓÚ¿É²¥·ÅµÄ×´Ì¬
+	/// \brief æ’­æ”¾å™¨æ˜¯å¦å¤„äºå¯æ’­æ”¾çš„çŠ¶æ€
 	bool IsPlayable() const;
 
-	/// \brief »ñÈ¡ÕıÔÚ²¥·ÅµÄ¸èÇúµÄ³¤¶È[Á¿¸Ù:ms(ºÁÃë)]
+	/// \brief è·å–æ­£åœ¨æ’­æ”¾çš„æ­Œæ›²çš„é•¿åº¦[é‡çº²:ms(æ¯«ç§’)]
 	unsigned int GetCurrSongLength() const;
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ÉèÖÃÖ÷´°¿Ú
+	/// \brief è®¾ç½®ä¸»çª—å£
 	///
-	/// Ö÷´°¿Ú¹¹ÔìÍê±ÏºóÓ¦µ÷ÓÃ±¾º¯Êı
+	/// ä¸»çª—å£æ„é€ å®Œæ¯•ååº”è°ƒç”¨æœ¬å‡½æ•°
 	void SetMainPanel(MainPanel* panel, wxDC* pDC);
 
-	/// \brief Éú³ÉÖ÷´°¿ÚµÄ¿Ø¼ş ID
+	/// \brief ç”Ÿæˆä¸»çª—å£çš„æ§ä»¶ ID
 	void GenerateMainPanelCtrlIds(MapOfCtrlIdInfo& ids);
 
-	/// \brief Ö»ÓĞÔÚÖ÷´°¿ÚÏÔÊ¾ºó²ÅÏÔÊ¾ÆäËü×Ó´°¿Ú
+	/// \brief åªæœ‰åœ¨ä¸»çª—å£æ˜¾ç¤ºåæ‰æ˜¾ç¤ºå…¶å®ƒå­çª—å£
 	void OnMainPanelFirstShown(VdkWindowFirstShownEvent&);
 
-	/// \brief ¹ö¶¯ÏÔÊ¾µ±Ç°²¥·Å¸èÇúĞÅÏ¢
+	/// \brief æ»šåŠ¨æ˜¾ç¤ºå½“å‰æ’­æ”¾æ­Œæ›²ä¿¡æ¯
 	void RollLabel(wxDC* pDC, bool startAtOnce);
 
-	/// \brief ÏÔÊ¾²¥·ÅÁĞ±í´°¿Ú
+	/// \brief æ˜¾ç¤ºæ’­æ”¾åˆ—è¡¨çª—å£
 	void ShowPlayListPanel(VdkVObjEvent&);
 
-	/// \brief ¹Ø±Õ/Òş²Ø²¥·ÅÁĞ±í´°¿Ú
+	/// \brief å…³é—­/éšè—æ’­æ”¾åˆ—è¡¨çª—å£
 	void DismissPlayListPanel();
 
-	/// \brief ÔÚ²¥·ÅÁĞ±í´°¿ÚµÄ°´¼üÊÂ¼ş
-	/// \return ÊÇ·ñÖÕÖ¹ºóĞøÊÂ¼ş´¦Àí
+	/// \brief åœ¨æ’­æ”¾åˆ—è¡¨çª—å£çš„æŒ‰é”®äº‹ä»¶
+	/// \return æ˜¯å¦ç»ˆæ­¢åç»­äº‹ä»¶å¤„ç†
 	bool OnPlayListKeys(wxKeyEvent& e);
 
-	/// \brief ÏÔÊ¾¸è´ÊĞã´°¿Ú
+	/// \brief æ˜¾ç¤ºæ­Œè¯ç§€çª—å£
 	void ShowLyricPanel(VdkVObjEvent&);
 
-	/// \brief ¹Ø±Õ/Òş²Ø¸è´Ê´°¿Ú
+	/// \brief å…³é—­/éšè—æ­Œè¯çª—å£
 	void DismissLyricPanel();
 
-	/// \brief ³õÊ¼»¯¸è´ÊĞã
+	/// \brief åˆå§‹åŒ–æ­Œè¯ç§€
 	void InitLyric();
 
-	/// \brief ÏÔÊ¾¾ùºâÆ÷´°¿Ú
+	/// \brief æ˜¾ç¤ºå‡è¡¡å™¨çª—å£
 	void ShowEqPanel(VdkVObjEvent&);
 
-	/// \brief ¹Ø±Õ/Òş²Ø¾ùºâÆ÷´°¿Ú
+	/// \brief å…³é—­/éšè—å‡è¡¡å™¨çª—å£
 	void DismissEqPanel();
 	
-	/// \brief ÓÃ»§Òş²ØÁËÖÆ¶¨Ãæ°å£¬¸üĞÂ¸÷ÖÖ×´Ì¬
+	/// \brief ç”¨æˆ·éšè—äº†åˆ¶å®šé¢æ¿ï¼Œæ›´æ–°å„ç§çŠ¶æ€
 	void HidePanel(OOPWindow* win);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief »ñÈ¡Æ¤·ôÁĞ±í¹ÜÀíÆ÷
+	/// \brief è·å–çš®è‚¤åˆ—è¡¨ç®¡ç†å™¨
 	OOPSkin& GetSkinList() { return m_skinList; }
 
-	/// \brief ¶¯Ì¬»»·ô
+	/// \brief åŠ¨æ€æ¢è‚¤
 	void SelectSkin(OOPSkin::SkinInfo* info) {
 		SelectSkin( *info );
 	}
 
-	/// \brief ¶¯Ì¬»»·ô
-	/// \param strSkinFolder ÒªÇĞ»»µ½µÄÆ¤·ôµÄ¸ùÄ¿Â¼
+	/// \brief åŠ¨æ€æ¢è‚¤
+	/// \param strSkinFolder è¦åˆ‡æ¢åˆ°çš„çš®è‚¤çš„æ ¹ç›®å½•
 	void SelectSkin(OOPSkin::SkinInfo& info);
 
-	/// \brief ÏìÓ¦»»·ôÊÂ¼ş
+	/// \brief å“åº”æ¢è‚¤äº‹ä»¶
 	void OnSelectSkin(VdkVObjEvent&);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief »ñÈ¡Ãæ°å¹ÜÀíÆ÷
+	/// \brief è·å–é¢æ¿ç®¡ç†å™¨
 	StickyWindows& GetWindowManager() { return m_windowManager; }
 
-	/// \brief ½«Ãæ°åÍĞ¸¶¸ø StickyWindows ¹ÜÀí
+	/// \brief å°†é¢æ¿æ‰˜ä»˜ç»™ StickyWindows ç®¡ç†
 	void AddToWindowManager(VdkWindow* win) {
 		m_windowManager.AddWindow( win );
 	}
 
-	/// \brief ½«Ãæ°åÍĞ¸¶¸ø StickyWindows ¹ÜÀí
+	/// \brief å°†é¢æ¿æ‰˜ä»˜ç»™ StickyWindows ç®¡ç†
 	void RemoveFromWindowManager(VdkWindow* win) {
 		m_windowManager.RemoveWindow( win );
 	}
 
-	/// \brief \a win ÊÇ·ñÒÑÈ»Õ³¸½µ½Ö÷´°¿Ú
+	/// \brief \a win æ˜¯å¦å·²ç„¶ç²˜é™„åˆ°ä¸»çª—å£
 	bool IsStickyToMain(VdkWindow* win) {
 		return m_windowManager.IsStickyToMain( win );
 	}
 
-	/// \brief ¸ù¾İÒÑ±£´æµÄÆ¤·ôÏà¹ØÅäÖÃÎÄ¼şµ÷Õû×ÓÃæ°åµÄ×÷ÓÃÓò
+	/// \brief æ ¹æ®å·²ä¿å­˜çš„çš®è‚¤ç›¸å…³é…ç½®æ–‡ä»¶è°ƒæ•´å­é¢æ¿çš„ä½œç”¨åŸŸ
 	///
-	/// ·µ»ØÖµ¿ÉÄÜÎª¿Õ£¬ÕâÊ±ºòÒ»°ãÊÇµÚÒ»´ÎÓ¦ÓÃÕâ¸öÆ¤·ô¡£
+	/// è¿”å›å€¼å¯èƒ½ä¸ºç©ºï¼Œè¿™æ—¶å€™ä¸€èˆ¬æ˜¯ç¬¬ä¸€æ¬¡åº”ç”¨è¿™ä¸ªçš®è‚¤ã€‚
 	OOPStickyWindowState* GetPanelStickyState(const wxString& uuid);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief Éú³É²¥·Å´°¿ÚÖ÷²Ëµ¥
+	/// \brief ç”Ÿæˆæ’­æ”¾çª—å£ä¸»èœå•
 	void GenerateMainMenu();
 
-	/// \brief Ìî³ä²¥·ÅÁĞ±í´°¿ÚµÄ²¥·Åµü´úÄ£Ê½ÇĞ»»²Ëµ¥
-	/// \param ownedByPLP ÊÇ·ñÎª²¥·ÅÁĞ±í´°¿ÚËùÓµÓĞ
+	/// \brief å¡«å……æ’­æ”¾åˆ—è¡¨çª—å£çš„æ’­æ”¾è¿­ä»£æ¨¡å¼åˆ‡æ¢èœå•
+	/// \param ownedByPLP æ˜¯å¦ä¸ºæ’­æ”¾åˆ—è¡¨çª—å£æ‰€æ‹¥æœ‰
 	void FillPlayModesMenu(VdkMenu* menu, bool ownedByPLP = false);
 
-	/// \brief Ìî³ä²¥·ÅÁĞ±í
+	/// \brief å¡«å……æ’­æ”¾åˆ—è¡¨
 	void GeneratePlayList(OOPList* playList);
 
-	/// \brief Éú³É¸è´Ê´°¿Ú²Ëµ¥
+	/// \brief ç”Ÿæˆæ­Œè¯çª—å£èœå•
 	void GenerateLyricMenu();
 
-	/// \brief »ñÈ¡²¥·ÅÁĞ±íÏîÄ¿µÄ±êÌâ¸ñÊ½
+	/// \brief è·å–æ’­æ”¾åˆ—è¡¨é¡¹ç›®çš„æ ‡é¢˜æ ¼å¼
 	wxString GetPlayListTitleFormat() const;
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief µÃµ½ËùÓĞÖ§³ÖµÄÎÄ¼şÀàĞÍ
+	/// \brief å¾—åˆ°æ‰€æœ‰æ”¯æŒçš„æ–‡ä»¶ç±»å‹
 	///
-	/// ¿ÉÓÃÓÚ¡°´ò¿ª¡±¶Ô»°¿ò½øĞĞ´ò¿ªÎÄ¼ş¡£
+	/// å¯ç”¨äºâ€œæ‰“å¼€â€å¯¹è¯æ¡†è¿›è¡Œæ‰“å¼€æ–‡ä»¶ã€‚
 	static wxString GetSupportedFileTypes();
 
-	/// \brief ²âÊÔÎÄ¼şÃûÊÇ·ñ·ûºÏ²¥·ÅÆ÷Ö§³ÖµÄÎÄ¼şÀàĞÍ
+	/// \brief æµ‹è¯•æ–‡ä»¶åæ˜¯å¦ç¬¦åˆæ’­æ”¾å™¨æ”¯æŒçš„æ–‡ä»¶ç±»å‹
 	static bool TestFileType(const wxString& strFileExtName);
 
 private:
 
-	// ÁÙÊ±²âÊÔÓÃ
+	// ä¸´æ—¶æµ‹è¯•ç”¨
 	void CreateDesktopLyric();
 
-    // ³õÊ¼»¯Ó¦ÓÃ³ÌĞò
+    // åˆå§‹åŒ–åº”ç”¨ç¨‹åº
     virtual bool OnInit();
 
-	// Îö¹¹ÒÑ·ÖÅäµÄ¶ÔÏó
+	// ææ„å·²åˆ†é…çš„å¯¹è±¡
 	virtual int OnExit();
 
-	// ³õÊ¼»¯ÅäÖÃÎÄ¼ş
+	// åˆå§‹åŒ–é…ç½®æ–‡ä»¶
 	bool InitConf();
 
-	// ±£´æÓ¦ÓÃ³ÌĞòÏà¹ØÅäÖÃĞÅÏ¢
+	// ä¿å­˜åº”ç”¨ç¨‹åºç›¸å…³é…ç½®ä¿¡æ¯
 	void SaveConf();
 
-	// µ¥¶À±£´æµ±Ç°ËùÓĞÃæ°å´°¿ÚµÄ¿É¼ûĞÔ(·ÀÖ¹ÍË³ö³ÌĞòÊ±¼ÙËÀ)
+	// å•ç‹¬ä¿å­˜å½“å‰æ‰€æœ‰é¢æ¿çª—å£çš„å¯è§æ€§(é˜²æ­¢é€€å‡ºç¨‹åºæ—¶å‡æ­»)
 	void SavePanelVisibilities();
 
-	// ¸üĞÂËùÓĞÅäÖÃĞÅÏ¢µ½ÅäÖÃĞÅÏ¢Àà(µ«²»±£´æ)
+	// æ›´æ–°æ‰€æœ‰é…ç½®ä¿¡æ¯åˆ°é…ç½®ä¿¡æ¯ç±»(ä½†ä¸ä¿å­˜)
 	void UpdateConf();
 
-	// ±£´æ²¥·ÅÁĞ±í
+	// ä¿å­˜æ’­æ”¾åˆ—è¡¨
 	void SavePlayList(const wxString& path);
-	// ÔØÈë²¥·ÅÁĞ±í
+	// è½½å…¥æ’­æ”¾åˆ—è¡¨
 	void LoadPlayList(const wxString& path);
 
-	// ±£´æµ±Ç°Ñ¡ÔñµÄÆ¤·ô
+	// ä¿å­˜å½“å‰é€‰æ‹©çš„çš®è‚¤
 	void SaveCurrentSkin(OOPSkin::SkinInfo& info);
 
-	// »ñÈ¡Ó¦ÓÃ³ÌĞòÅäÖÃÎÄ¼şµÄÂ·¾¶
+	// è·å–åº”ç”¨ç¨‹åºé…ç½®æ–‡ä»¶çš„è·¯å¾„
 	wxString GetAppConfFilePath() const;
 
-	// »ñÈ¡Ä¬ÈÏ²¥·ÅÁĞ±íµÄÎÄ¼şÂ·¾¶
+	// è·å–é»˜è®¤æ’­æ”¾åˆ—è¡¨çš„æ–‡ä»¶è·¯å¾„
 	wxString GetPlayListPath() const;
 
-	// ´´½¨ËùÓĞ×Ó´°¿ÚºóÒ»´ÎĞÔÈ«²¿ÏÔÊ¾³öÀ´
+	// åˆ›å»ºæ‰€æœ‰å­çª—å£åä¸€æ¬¡æ€§å…¨éƒ¨æ˜¾ç¤ºå‡ºæ¥
 	void ShowAllPanelsOnReady();
 
 	//////////////////////////////////////////////////////////////////////////
 
-	// ²¥·ÅÖ¸¶¨Â·¾¶µÄ¸èÇú
-	// @return ÊÇ·ñ³É¹¦¿ªÊ¼²¥·Å£¬ÒòÎªÎÄ¼ş¿ÉÄÜÊÇÒ»¸ö¡°¼Ù¡±µÄ¸èÇúÎÄ¼ş
+	// æ’­æ”¾æŒ‡å®šè·¯å¾„çš„æ­Œæ›²
+	// @return æ˜¯å¦æˆåŠŸå¼€å§‹æ’­æ”¾ï¼Œå› ä¸ºæ–‡ä»¶å¯èƒ½æ˜¯ä¸€ä¸ªâ€œå‡â€çš„æ­Œæ›²æ–‡ä»¶
 	bool DoPlay();
-	void DoPause(); // ÔİÍ£
-	void DoStop(); // Í£Ö¹²¥·Å
-	void DoMute(bool mute); // ¾²Òô
+	void DoPause(); // æš‚åœ
+	void DoStop(); // åœæ­¢æ’­æ”¾
+	void DoMute(bool mute); // é™éŸ³
 
 	//////////////////////////////////////////////////////////////////////////
 
-	// ¾ö¶¨¡°²¥·Å¡±¡¢¡°ÔİÍ£¡±Á½°´Å¥µÄÊµÏÖÓë·ñ
-	// @param hilight ÊÇ·ñ¸ßÁÁÒªÏÔÊ¾µÄ°´Å¥
+	// å†³å®šâ€œæ’­æ”¾â€ã€â€œæš‚åœâ€ä¸¤æŒ‰é’®çš„å®ç°ä¸å¦
+	// @param hilight æ˜¯å¦é«˜äº®è¦æ˜¾ç¤ºçš„æŒ‰é’®
 	void ShowHidePlayPause(wxDC* pDC);
 
-	// ÉèÖÃ×´Ì¬ÎÄ±¾ÌõµÄÎÄ±¾
+	// è®¾ç½®çŠ¶æ€æ–‡æœ¬æ¡çš„æ–‡æœ¬
 	//
-	// ÍÏ¶¯ÒôÁ¿¹ö¶¯ÌõÊ±±ØĞë³ÖĞø¸Ä±äÆäÖµ£¬µ«²»ÄÜ´óÁ¿Ê¹ÓÃ VdkLabelGhost¡£
+	// æ‹–åŠ¨éŸ³é‡æ»šåŠ¨æ¡æ—¶å¿…é¡»æŒç»­æ”¹å˜å…¶å€¼ï¼Œä½†ä¸èƒ½å¤§é‡ä½¿ç”¨ VdkLabelGhostã€‚
 	void SetStatusLabel(wxString text = wxEmptyString, wxDC* pDC = NULL);
 
 	//////////////////////////////////////////////////////////////////////////
@@ -342,215 +342,215 @@ private:
 	void Quit(VdkVObjEvent&);
 	void Minimize(VdkVObjEvent&);
 
-	// ÇĞ»»ËùÓĞÏÔÊ¾ÔÚÆÁÄ»ÉÏµÄ´°¿ÚµÄÏÔÊ¾Óë·ñ
+	// åˆ‡æ¢æ‰€æœ‰æ˜¾ç¤ºåœ¨å±å¹•ä¸Šçš„çª—å£çš„æ˜¾ç¤ºä¸å¦
 	bool ToggleAllOnScreenWindow();
 
 	void Pause(VdkVObjEvent&);
 	void Play(VdkVObjEvent&);
 
 	void Stop(VdkVObjEvent&);
-	void OnMenuPlayCtrl(VdkVObjEvent&); // ²Ëµ¥¿ØÖÆ²¥·Å¡¢ÔİÍ£¡¢Í£Ö¹
+	void OnMenuPlayCtrl(VdkVObjEvent&); // èœå•æ§åˆ¶æ’­æ”¾ã€æš‚åœã€åœæ­¢
 
-	void OnProgress(VdkVObjEvent&); // ÍÏ¶¯Ö÷½ø¶ÈÌõ
-	void StepProgress(VdkVObjEvent&); // OOPLed »Øµ÷
-	void RollTaskbarTitle(); // ÔÚÈÎÎñÀ¸¹ö¶¯¸èÇú±êÌâ
+	void OnProgress(VdkVObjEvent&); // æ‹–åŠ¨ä¸»è¿›åº¦æ¡
+	void StepProgress(VdkVObjEvent&); // OOPLed å›è°ƒ
+	void RollTaskbarTitle(); // åœ¨ä»»åŠ¡æ æ»šåŠ¨æ­Œæ›²æ ‡é¢˜
 
 	//////////////////////////////////////////////////////////////////////////
-	// ÍĞÅÌÍ¼±ê
+	// æ‰˜ç›˜å›¾æ ‡
 
-	// ²»ÖªµÀÎªÊ²Ã´ÔÚ MSW ÏÂÃæ¼ÙÈç¼ÓÁË´´½¨ÍĞÅÌÍ¼±êµÄ´úÂë£¬´°¿ÚÏÔÊ¾»á±äµÃºÜÂı
-	// ËùÒÔ×¼±¸ÔÚ´°¿Ú¿ÕÏĞÊ±¼äÀïÃæ´´½¨
+	// ä¸çŸ¥é“ä¸ºä»€ä¹ˆåœ¨ MSW ä¸‹é¢å‡å¦‚åŠ äº†åˆ›å»ºæ‰˜ç›˜å›¾æ ‡çš„ä»£ç ï¼Œçª—å£æ˜¾ç¤ºä¼šå˜å¾—å¾ˆæ…¢
+	// æ‰€ä»¥å‡†å¤‡åœ¨çª—å£ç©ºé—²æ—¶é—´é‡Œé¢åˆ›å»º
 	void OnIdleCreateTrayIcon(wxIdleEvent&);
 
-    // ´´½¨ÍĞÅÌÍ¼±ê
+    // åˆ›å»ºæ‰˜ç›˜å›¾æ ‡
     void CreateTrayIcon();
 
-	void UpdateTrayIcon(); // ÉèÖÃÍĞÅÌÍ¼±êµÄÌáÊ¾ÎÄ±¾
-	// ÍĞÅÌÍ¼±êÊÂ¼ş
+	void UpdateTrayIcon(); // è®¾ç½®æ‰˜ç›˜å›¾æ ‡çš„æç¤ºæ–‡æœ¬
+	// æ‰˜ç›˜å›¾æ ‡äº‹ä»¶
 	void OnTrayIconLeftClick(wxTaskBarIconEvent&);
 	void OnTrayIconRightDown(wxTaskBarIconEvent&);
 
-	// °´ÕÕµ±Ç°ÅäÖÃ¸üĞÂÍĞÅÌÍ¼±ê²Ëµ¥µÄ×´Ì¬(Ñ¡ÖĞ¡¢ÎÄ±¾µÈµÈ)
+	// æŒ‰ç…§å½“å‰é…ç½®æ›´æ–°æ‰˜ç›˜å›¾æ ‡èœå•çš„çŠ¶æ€(é€‰ä¸­ã€æ–‡æœ¬ç­‰ç­‰)
 	void OnUpdateTrayMenuUI(wxUpdateUIEvent& e);
 
 	//////////////////////////////////////////////////////////////////////////
 
-	void OnLyricDragg(VdkVObjEvent&); // ÍÏ¶¯¸è´Ê
+	void OnLyricDragg(VdkVObjEvent&); // æ‹–åŠ¨æ­Œè¯
 
-	// ÉèÖÃµ±Ç°²¥·Å½ø¶È
+	// è®¾ç½®å½“å‰æ’­æ”¾è¿›åº¦
 	bool SetPlayingOffset(sf::Time offset);
 
-	// ¸üĞÂÕıÔÚ²¥·ÅµÄ¸èÇúµÄ OOPSong ¶ÔÏó
+	// æ›´æ–°æ­£åœ¨æ’­æ”¾çš„æ­Œæ›²çš„ OOPSong å¯¹è±¡
 	//
-	// Èô¸èÇú±êÇ©ĞÅÏ¢ÉĞÎ´¶ÁÈë£¬Ôò»á½«Æä¶ÁÈë¡£
+	// è‹¥æ­Œæ›²æ ‡ç­¾ä¿¡æ¯å°šæœªè¯»å…¥ï¼Œåˆ™ä¼šå°†å…¶è¯»å…¥ã€‚
 	void UpdateCurrSong();
 
-	// ´¦Àí²¥·ÅÁĞ±íÉ¾³ıÏîÄ¿ÃüÁî
+	// å¤„ç†æ’­æ”¾åˆ—è¡¨åˆ é™¤é¡¹ç›®å‘½ä»¤
 	void HandleDelete(VdkVObjEvent&);
 
-	// ÊÇ·ñÎïÀíÉ¾³ıÎÄ¼ş
+	// æ˜¯å¦ç‰©ç†åˆ é™¤æ–‡ä»¶
 	enum DelAction {
 		DA_DEL_FROM_LIST_ONLY,
 		DA_DEL_PHYSICALLY,
 	};
 
-	// ´¦Àí²¥·ÅÁĞ±íÉ¾³ıÏîÄ¿ÃüÁî
-	// Ìí¼ÓÒ»¸ö×Óº¯Êı·ÀÖ¹³öÏÖ¶Ô²¥·ÅÁĞ±í´°¿Ú·ÖÅäÁ½¸ö VdkDC µÄÇé¿ö
+	// å¤„ç†æ’­æ”¾åˆ—è¡¨åˆ é™¤é¡¹ç›®å‘½ä»¤
+	// æ·»åŠ ä¸€ä¸ªå­å‡½æ•°é˜²æ­¢å‡ºç°å¯¹æ’­æ”¾åˆ—è¡¨çª—å£åˆ†é…ä¸¤ä¸ª VdkDC çš„æƒ…å†µ
 	void DoHandleDelete(DelAction da, wxDC& dc, wxDC& playListDC);
 
-	// ÏìÓ¦²¥·ÅÁĞ±í´°¿Ú¿ì½İ²Ëµ¥µÄ¡°²¥·Å¡±Ïî
+	// å“åº”æ’­æ”¾åˆ—è¡¨çª—å£å¿«æ·èœå•çš„â€œæ’­æ”¾â€é¡¹
 	void OnPlaySel(VdkVObjEvent& e);
 
-	// ÏìÓ¦¡°É¾³ıËùÓĞÎÄ¼ş¡±²Ëµ¥Ïî
+	// å“åº”â€œåˆ é™¤æ‰€æœ‰æ–‡ä»¶â€èœå•é¡¹
 	void OnDelAll(VdkVObjEvent& e);
 
-	// É¾³ıÖØ¸´µÄ²¥·ÅÁĞ±íÏîÄ¿
+	// åˆ é™¤é‡å¤çš„æ’­æ”¾åˆ—è¡¨é¡¹ç›®
 	void RemoveDuplicatedItems(VdkVObjEvent&);
-	// É¾³ı´íÎóµÄ²¥·ÅÁĞ±íÏîÄ¿(ÅĞ¶Ï±ê×¼£º¸èÇú³¤¶ÈÎª0)
+	// åˆ é™¤é”™è¯¯çš„æ’­æ”¾åˆ—è¡¨é¡¹ç›®(åˆ¤æ–­æ ‡å‡†ï¼šæ­Œæ›²é•¿åº¦ä¸º0)
 	void RemoveWrongItems(VdkVObjEvent&);
 
-	// É¾³ıÁĞ±íÖĞËùÓĞ¸èÇú
+	// åˆ é™¤åˆ—è¡¨ä¸­æ‰€æœ‰æ­Œæ›²
 	void DeleteAllSongs(wxDC* pDC, wxDC* playListDC);
 
-	// ÊÇ·ñÇå¿Õµ±Ç°¸è´ÊµÄÏÔÊ¾
+	// æ˜¯å¦æ¸…ç©ºå½“å‰æ­Œè¯çš„æ˜¾ç¤º
 	enum ClearLyricOpt {
-		CL_CLEAR, // Çå¿Õ
-		CL_LEAVE, // ±£Áô
+		CL_CLEAR, // æ¸…ç©º
+		CL_LEAVE, // ä¿ç•™
 	};
 
-	// Í£Ö¹²¥·Å
-	// @param clearLyric ÊÇ·ñÇå¿Õµ±Ç°¸è´ÊµÄÏÔÊ¾
+	// åœæ­¢æ’­æ”¾
+	// @param clearLyric æ˜¯å¦æ¸…ç©ºå½“å‰æ­Œè¯çš„æ˜¾ç¤º
 	void DoStop(wxDC* pDC, wxDC* playListDC, ClearLyricOpt clearLyric);
 
-	// ÇĞ»»²¥·ÅÆ÷ÖÁ²»¿É²¥·Å¸èÇúµÄ×´Ì¬
+	// åˆ‡æ¢æ’­æ”¾å™¨è‡³ä¸å¯æ’­æ”¾æ­Œæ›²çš„çŠ¶æ€
 	//
-	// Èô²¥·ÅÁĞ±íÖĞÃ»ÓĞ¸èÇú£¬Ôò²»ÄÜ²¥·Å¡£
+	// è‹¥æ’­æ”¾åˆ—è¡¨ä¸­æ²¡æœ‰æ­Œæ›²ï¼Œåˆ™ä¸èƒ½æ’­æ”¾ã€‚
 	void StopPlayer(wxDC* pDC);
 
-	void DeleteSel(VdkVObjEvent&); // É¾³ıÑ¡¶¨ÏîÄ¿
-	// ´¦Àí²¥·ÅÁĞ±íµÄÑ¡ÔñÊÂ¼ş
+	void DeleteSel(VdkVObjEvent&); // åˆ é™¤é€‰å®šé¡¹ç›®
+	// å¤„ç†æ’­æ”¾åˆ—è¡¨çš„é€‰æ‹©äº‹ä»¶
 	void SelectAllNoneReverse(VdkVObjEvent&);
 
-	// Òì²½´¦ÀíÀ´×Ô²¥·ÅÒıÇæµÄ¸èÇú²¥·ÅÒÑË³ÀûÍê½áµÄÍ¨ÖªÊÂ¼ş
+	// å¼‚æ­¥å¤„ç†æ¥è‡ªæ’­æ”¾å¼•æ“çš„æ­Œæ›²æ’­æ”¾å·²é¡ºåˆ©å®Œç»“çš„é€šçŸ¥äº‹ä»¶
 	void OnSongFinished(wxCommandEvent&);
 
-	void OnVolume(VdkVObjEvent&); // ÒôÁ¿¹ö¶¯Ìõ
-	void DoSetVolume(); // ½«ÒôÁ¿¿ØÖÆÊµ¼ÊÓ¦ÓÃµ½²¥·ÅÒıÇæÖĞ
+	void OnVolume(VdkVObjEvent&); // éŸ³é‡æ»šåŠ¨æ¡
+	void DoSetVolume(); // å°†éŸ³é‡æ§åˆ¶å®é™…åº”ç”¨åˆ°æ’­æ”¾å¼•æ“ä¸­
 
-	void OnMute(VdkVObjEvent&); // ÔÚÖ÷´°¿ÚÉÏµ¥»÷¡°¾²Òô¡±°´Å¥
-	void OnMenuVolumeCtrl(VdkVObjEvent&); // ²Ëµ¥¿ØÖÆÒôÁ¿
+	void OnMute(VdkVObjEvent&); // åœ¨ä¸»çª—å£ä¸Šå•å‡»â€œé™éŸ³â€æŒ‰é’®
+	void OnMenuVolumeCtrl(VdkVObjEvent&); // èœå•æ§åˆ¶éŸ³é‡
 
-	// ²Ëµ¥¿ØÖÆ²¥·ÅÉÏÒ»Ê×¡¢ÏÂÒ»Ê×
+	// èœå•æ§åˆ¶æ’­æ”¾ä¸Šä¸€é¦–ã€ä¸‹ä¸€é¦–
 	void OnMenuPrevNext(VdkVObjEvent&);
-	void OnPrevNext(VdkVObjEvent&); // ÉÏÒ»Ê×¡¢ÏÂÒ»Ê×
+	void OnPrevNext(VdkVObjEvent&); // ä¸Šä¸€é¦–ã€ä¸‹ä¸€é¦–
 
 	enum PrevNextAction {
 		PNA_PREV,
 		PNA_NEXT,
 	};
 
-	// Í³Ò»´¦ÀíÇĞ»»ÉÏÒ»Ê×¡¢ÏÂÒ»Ê×ĞĞÎª
+	// ç»Ÿä¸€å¤„ç†åˆ‡æ¢ä¸Šä¸€é¦–ã€ä¸‹ä¸€é¦–è¡Œä¸º
 	void HandlePrevNext(PrevNextAction pna, wxDC* pDC, wxDC* playListDC);
 
-	void OnPlayListDClick(VdkVObjEvent&); // Ë«»÷ÁĞ±íÏîÄ¿
-	void OnPlayModes(VdkVObjEvent&); // ÇĞ»»²¥·ÅÁĞ±íµü´ú·½Ê½
+	void OnPlayListDClick(VdkVObjEvent&); // åŒå‡»åˆ—è¡¨é¡¹ç›®
+	void OnPlayModes(VdkVObjEvent&); // åˆ‡æ¢æ’­æ”¾åˆ—è¡¨è¿­ä»£æ–¹å¼
 	void SwitchPlayMode(OOPlayerPlayMode mode);
 
-	// Ñ¯ÎÊÓÃ»§²¢±£´æ²¥·ÅÁĞ±í
+	// è¯¢é—®ç”¨æˆ·å¹¶ä¿å­˜æ’­æ”¾åˆ—è¡¨
 	void SaveListByUser(VdkVObjEvent&);
-	// Ñ¯ÎÊÓÃ»§²¢´ò¿ªÒ»¸öĞÂµÄ²¥·ÅÁĞ±í
+	// è¯¢é—®ç”¨æˆ·å¹¶æ‰“å¼€ä¸€ä¸ªæ–°çš„æ’­æ”¾åˆ—è¡¨
 	void OpenListByUser(VdkVObjEvent&);
-	// Ñ¯ÎÊÓÃ»§Òª²Ù×÷µÄ²¥·ÅÁĞ±íÂ·¾¶(ĞÂ½¨/´ò¿ª)
-	// ·µ»ØÓÃ»§Ö¸¶¨µÄÂ·¾¶
+	// è¯¢é—®ç”¨æˆ·è¦æ“ä½œçš„æ’­æ”¾åˆ—è¡¨è·¯å¾„(æ–°å»º/æ‰“å¼€)
+	// è¿”å›ç”¨æˆ·æŒ‡å®šçš„è·¯å¾„
 	wxString AskPathToList(const wxString& alert, long dlgStyle);
-	// ²ÎÊı path ÊÇ·ñÓëµ±Ç°µÄÄ¬ÈÏ²¥·ÅÁĞ±íÎÄ¼şµÄÂ·¾¶ÏàÍ¬
+	// å‚æ•° path æ˜¯å¦ä¸å½“å‰çš„é»˜è®¤æ’­æ”¾åˆ—è¡¨æ–‡ä»¶çš„è·¯å¾„ç›¸åŒ
 	bool IsPlayListPathOk(const wxString& path);
 
-	// Ìí¼ÓÒ»¸öĞÂµÄ²¥·ÅÁĞ±í
+	// æ·»åŠ ä¸€ä¸ªæ–°çš„æ’­æ”¾åˆ—è¡¨
 	void AddPlayList(VdkVObjEvent&);
-	// ÅÅĞò²¥·ÅÁĞ±í
+	// æ’åºæ’­æ”¾åˆ—è¡¨
 	void SortPlayList(VdkVObjEvent&);
-	// ¸ù¾İÓÃ»§ÓÃ»§ÊäÈë²éÕÒ²¥·ÅÁĞ±í
+	// æ ¹æ®ç”¨æˆ·ç”¨æˆ·è¾“å…¥æŸ¥æ‰¾æ’­æ”¾åˆ—è¡¨
 	void OnSearchPlaylist(VdkVObjEvent&);
-	//  ¸èÇú±êÇ©ĞÅÏ¢ÒÑ¸üĞÂ
+	//  æ­Œæ›²æ ‡ç­¾ä¿¡æ¯å·²æ›´æ–°
 	void OnSongInfoUpdated(wxCommandEvent& e);
-	// ´ò¿ªÎÄ¼şÂ·¾¶
+	// æ‰“å¼€æ–‡ä»¶è·¯å¾„
 	void OnLocateFile(VdkVObjEvent&);
 
-	// Ìí¼ÓÎÄ¼şµÄ²Ëµ¥»Øµ÷º¯Êı
-	// ¼ÙÈç½«»Øµ÷º¯Êı·Åµ½´°¿ÚÀàÖĞ»áµ¼ÖÂ this Ö¸Õë²»ÕıÈ·
+	// æ·»åŠ æ–‡ä»¶çš„èœå•å›è°ƒå‡½æ•°
+	// å‡å¦‚å°†å›è°ƒå‡½æ•°æ”¾åˆ°çª—å£ç±»ä¸­ä¼šå¯¼è‡´ this æŒ‡é’ˆä¸æ­£ç¡®
 	void OnAddFileFolders(VdkVObjEvent&);
 
 	//////////////////////////////////////////////////////////////////////////
-	// ¸è´Ê
+	// æ­Œè¯
 
-	// ¿ªÊ¼ĞÂµÄ¸è´ÊÏÂÔØ»á»°
+	// å¼€å§‹æ–°çš„æ­Œè¯ä¸‹è½½ä¼šè¯
 	void NewLyricDownloadSession();
 
-	// ÎªÕıÔÚ²¥·ÅµÄ¸èÇú¼ÓÔØ¸è´Ê
+	// ä¸ºæ­£åœ¨æ’­æ”¾çš„æ­Œæ›²åŠ è½½æ­Œè¯
 	//
-	// ¼´Ê¹¸Ã¸èÇúÒÑ¾­¼ÓÔØÁË¸è´Ê£¬±¾º¯ÊıÈÔÈ»»áÖØĞÂ¼ÓÔØ¡£
-	// @attention ²»ÒªÖ±½Óµ÷ÓÃÕâ¸öº¯Êı£¬¶øÓ¦¸Ãµ÷ÓÃ
-	// \link UpdateLyricState \endlink ¡£
+	// å³ä½¿è¯¥æ­Œæ›²å·²ç»åŠ è½½äº†æ­Œè¯ï¼Œæœ¬å‡½æ•°ä»ç„¶ä¼šé‡æ–°åŠ è½½ã€‚
+	// @attention ä¸è¦ç›´æ¥è°ƒç”¨è¿™ä¸ªå‡½æ•°ï¼Œè€Œåº”è¯¥è°ƒç”¨
+	// \link UpdateLyricState \endlink ã€‚
 	bool LoadCurrSongLyric();
 
-	// ¸ù¾İ²¥·ÅÆ÷µ±Ç°×´Ì¬Îª¸è´ÊĞã¿Ø¼şÖ¸¶¨ÕıÈ·µÄ¶¯×÷(ÔİÍ£¡¢¹ö¶¯µÈµÈ)
+	// æ ¹æ®æ’­æ”¾å™¨å½“å‰çŠ¶æ€ä¸ºæ­Œè¯ç§€æ§ä»¶æŒ‡å®šæ­£ç¡®çš„åŠ¨ä½œ(æš‚åœã€æ»šåŠ¨ç­‰ç­‰)
 	void UpdateLyricState();
 
-	// Çå¿Õ¸è´Ê£¬²¢ÏÔÊ¾Ô¤¶¨Òå½»»¥ĞÔÊä³öÎÄ±¾
+	// æ¸…ç©ºæ­Œè¯ï¼Œå¹¶æ˜¾ç¤ºé¢„å®šä¹‰äº¤äº’æ€§è¾“å‡ºæ–‡æœ¬
 	void ClearLyric();
 
-	// ÔÚÏßËÑË÷¸è´Ê
+	// åœ¨çº¿æœç´¢æ­Œè¯
 	void OnSearchLyric(VdkVObjEvent&);
-	// ÓÃ»§Ñ¡ÔñÁËÒ»¸öËÑË÷µÃÀ´µÄ¸è´Ê
+	// ç”¨æˆ·é€‰æ‹©äº†ä¸€ä¸ªæœç´¢å¾—æ¥çš„æ­Œè¯
 	void OnLyricLoaded(wxCommandEvent& e);
 
-	/// ¸´ÖÆ¸è´Êµ½¼ôÌù°å
+	/// å¤åˆ¶æ­Œè¯åˆ°å‰ªè´´æ¿
 	void OnCopyLyric(VdkVObjEvent&);
 
-	/// ¹ØÁª¸è´Ê
+	/// å…³è”æ­Œè¯
 	void OnAssociateLyric(VdkVObjEvent&);
 
-	/// ÖØĞÂ¼ÓÔØ¸è´Ê
+	/// é‡æ–°åŠ è½½æ­Œè¯
 	void OnReloadLyric(VdkVObjEvent&);
 
-	/// ³·Ïú¸è´Ê
+	/// æ’¤é”€æ­Œè¯
 	void OnRemoveLyric(VdkVObjEvent&);
 
 	//////////////////////////////////////////////////////////////////////////
-	// ´¦ÀíÓ¦ÓÃ³ÌĞòµ±Ç°×´Ì¬
+	// å¤„ç†åº”ç”¨ç¨‹åºå½“å‰çŠ¶æ€
 
-	// ÔöÉèÒ»¸ö×´Ì¬±êÖ¾Î»
+	// å¢è®¾ä¸€ä¸ªçŠ¶æ€æ ‡å¿—ä½
 	void SetAddinState(int state) { m_state |= state; }
 
-	// ÒÆ³ıÒÑÉè¶¨µÄÖ¸¶¨×´Ì¬±êÖ¾Î»
+	// ç§»é™¤å·²è®¾å®šçš„æŒ‡å®šçŠ¶æ€æ ‡å¿—ä½
 	void RemoveState(int state) { m_state &= ~state; }
 
-	// È¡·´Ö¸¶¨×´Ì¬±êÖ¾Î»
+	// å–åæŒ‡å®šçŠ¶æ€æ ‡å¿—ä½
 	void ReverseState(int state) { m_state ^= state; }
 
-	// ²âÊÔÖ¸¶¨×´Ì¬±êÖ¾Î»
+	// æµ‹è¯•æŒ‡å®šçŠ¶æ€æ ‡å¿—ä½
 	bool TestState(int state) const { return (m_state & state) != 0; }
 
 	//////////////////////////////////////////////////////////////////////////
-	// ÔÓÏî
+	// æ‚é¡¹
 
-	// ´ò¿ªÍøÕ¾Á´½Ó
+	// æ‰“å¼€ç½‘ç«™é“¾æ¥
 	void OnWebsiteLinks(VdkVObjEvent&);
 
-	// ´ò¿ª¡°¹ØÓÚ¡±¶Ô»°¿ò
+	// æ‰“å¼€â€œå…³äºâ€å¯¹è¯æ¡†
 	void OnAbout(VdkVObjEvent&);
 
-	// ´ò¿ª¡°ÎÒÒª·´À¡¡±¶Ô»°¿ò
+	// æ‰“å¼€â€œæˆ‘è¦åé¦ˆâ€å¯¹è¯æ¡†
 	void OnFeedback(VdkVObjEvent&);
 
 private:
 
 	wxSingleInstanceChecker* m_checker;
 
-	OOPConf* m_conf; // Ó¦ÓÃ³ÌĞòÅäÖÃ
+	OOPConf* m_conf; // åº”ç”¨ç¨‹åºé…ç½®
 
-	long m_state; // µ±Ç°Ó¦ÓÃ³ÌĞò×´Ì¬
+	long m_state; // å½“å‰åº”ç”¨ç¨‹åºçŠ¶æ€
 
 	sf::Music m_music;
 	MusicEndingDetector m_endingDetector;
@@ -561,7 +561,7 @@ private:
 	OOPDesktopLyric* m_desktopLyric;
 	OOPLyricMgr m_lyric;
 
-	// ´°¿ÚºÍ²Ëµ¥µÄ¾ä±úÔÚÕû¸öÓ¦ÓÃ³ÌĞòÉúÃüÖÜÆÚÄÚÊÇ²»±äµÄ
+	// çª—å£å’Œèœå•çš„å¥æŸ„åœ¨æ•´ä¸ªåº”ç”¨ç¨‹åºç”Ÿå‘½å‘¨æœŸå†…æ˜¯ä¸å˜çš„
 	MainPanel* m_mainPanel;
 	PlayListPanel* m_playListPanel;
 	LyricPanel* m_lyricPanel;
@@ -574,21 +574,21 @@ private:
 	VdkMenuItem* m_muteItem;
 	VdkMenuItem* m_prevItem;
 	VdkMenuItem* m_nextItem;
-	VdkMenu* m_playModes1; // ²¥·ÅÄ£Ê½²Ëµ¥
-	VdkMenu* m_playModes2; // ²¥·ÅÄ£Ê½²Ëµ¥(²¥·ÅÁĞ±í´°¿Ú)
+	VdkMenu* m_playModes1; // æ’­æ”¾æ¨¡å¼èœå•
+	VdkMenu* m_playModes2; // æ’­æ”¾æ¨¡å¼èœå•(æ’­æ”¾åˆ—è¡¨çª—å£)
 
-	// µ±Ç°²¥·ÅÁĞ±íµÄµü´ú·½Ê½
+	// å½“å‰æ’­æ”¾åˆ—è¡¨çš„è¿­ä»£æ–¹å¼
 	OOPlayerPlayMode m_playMode;
 
 	//////////////////////////////////////////////////////////////////////////
 
-	// ¹ÜÀí OOPlayer µÄÆ¤·ôÁĞ±í
+	// ç®¡ç† OOPlayer çš„çš®è‚¤åˆ—è¡¨
 	OOPSkin m_skinList;
 
-	// WinAMP ĞÎÊ½µÄÕ³¸½´°¿Ú
+	// WinAMP å½¢å¼çš„ç²˜é™„çª—å£
 	StickyWindows m_windowManager;
 
-	// ÍĞÅÌÍ¼±ê
+	// æ‰˜ç›˜å›¾æ ‡
 	OOPTrayIcon* m_trayIcon;
 
 	DECLARE_EVENT_TABLE()

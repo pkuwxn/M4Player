@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPMenus.cpp
- * Purpose:   ·ÅÖÃÓë²Ëµ¥ÓĞ¹ØµÄ´úÂë
+ * Purpose:   æ”¾ç½®ä¸èœå•æœ‰å…³çš„ä»£ç 
  * Author:    Ning (vanxining@139.com)
  * Created:   2010
  * Copyright: Wang Xiao Ning
@@ -60,20 +60,20 @@ void OOPlayerApp::GenerateMainMenu()
 	//===============================================
 
 	menu->AppendItem( NewMenuItem()->id( OMM_PLAYER_OPTIONS ).
-					  caption( L"Ñ¡Ïî" ).
+					  caption( L"é€‰é¡¹" ).
 					  bmpArrayID( VdkBitmapArrayId( m_mainMenuBitmaps, 
 													MMBID_OPTIONS, 0 ) ) );
 
 	VdkMenu* menuLinks = m_mainPanel->CreateMenu( menu );
 
 		menuLinks->AppendItem( NewMenuItem()->id( CID_ABOUT ).
-							   caption( L"¹ØÓÚ" ) );
+							   caption( L"å…³äº" ) );
 		menuLinks->AppendItem( NewMenuItem()->id( OMM_LINKS_WEBSITE ).
-							   caption( L"ÍøÕ¾" ) );
+							   caption( L"ç½‘ç«™" ) );
 		menuLinks->AppendItem( NewMenuItem()->id( OMM_LINKS_FORUM ).
-							   caption( L"ÂÛÌ³" ) );
+							   caption( L"è®ºå›" ) );
 
-	menu->AppendItem( NewMenuItem()->caption( L"Ïà¹ØÁ´½Ó" ).
+	menu->AppendItem( NewMenuItem()->caption( L"ç›¸å…³é“¾æ¥" ).
 					  subMenu( menuLinks ).
 					  bmpArrayID( VdkBitmapArrayId( m_mainMenuBitmaps, 
 													MMBID_LINKS, 0 ) ) );
@@ -86,23 +86,23 @@ void OOPlayerApp::GenerateMainMenu()
 
 		m_playPauseItem = NewMenuItem();
 		menuPlayControl->AppendItem( m_playPauseItem->id( OOM_PLAY_PAUSE ).
-									 caption( L"ÔİÍ£" ) );
+									 caption( L"æš‚åœ" ) );
 
 		m_stopItem = NewMenuItem();
 		menuPlayControl->AppendItem( m_stopItem->id( OOM_STOP ).
-									 caption( L"Í£Ö¹" ) );
+									 caption( L"åœæ­¢" ) );
 
 		menuPlayControl->AppendSeperator();
 
 		m_prevItem = NewMenuItem();
 		menuPlayControl->AppendItem( m_prevItem->id( OOM_PREV ).
-									 caption( L"ÉÏÒ»Ê×" ) );
+									 caption( L"ä¸Šä¸€é¦–" ) );
 
 		m_nextItem = NewMenuItem();
 		menuPlayControl->AppendItem( m_nextItem->id( OOM_NEXT ).
-									 caption( L"ÏÂÒ»Ê×" ) );
+									 caption( L"ä¸‹ä¸€é¦–" ) );
 
-	menu->AppendItem( NewMenuItem()->caption( L"²¥·Å¿ØÖÆ" ).
+	menu->AppendItem( NewMenuItem()->caption( L"æ’­æ”¾æ§åˆ¶" ).
 					  subMenu( menuPlayControl ) );
 
 	//===============================================
@@ -110,55 +110,55 @@ void OOPlayerApp::GenerateMainMenu()
 	VdkMenu* menuVolumeCtrl = m_mainPanel->CreateMenu( menu );
 
 		menuVolumeCtrl->AppendItem( NewMenuItem()->id( OOM_VOLUME_UP ).
-									caption( L"Ôö´ó" ) );
+									caption( L"å¢å¤§" ) );
 
 		menuVolumeCtrl->AppendItem( NewMenuItem()->id( OOM_VOLUME_DOWN ).
-									caption( L"¼õĞ¡" ) );
+									caption( L"å‡å°" ) );
 
 		menuVolumeCtrl->AppendSeperator();
 
 		m_muteItem = NewMenuItem();
 		menuVolumeCtrl->AppendItem( m_muteItem->id( OOM_MUTE ).
-									caption( L"¾²Òô" ) );
+									caption( L"é™éŸ³" ) );
 
-	menu->AppendItem( NewMenuItem()->caption( L"ÒôÁ¿¿ØÖÆ" ).
+	menu->AppendItem( NewMenuItem()->caption( L"éŸ³é‡æ§åˆ¶" ).
 					  subMenu( menuVolumeCtrl ) );
 
 	//===============================================
 
 	m_playModes1 = m_mainPanel->CreateMenu( menu );
 	FillPlayModesMenu( m_playModes1 );
-	menu->AppendItem( NewMenuItem()->caption( L"²¥·ÅÄ£Ê½" ).
+	menu->AppendItem( NewMenuItem()->caption( L"æ’­æ”¾æ¨¡å¼" ).
 					  subMenu( m_playModes1 ) );
 	menu->AppendSeperator();
 
-	// Æ¤·ô
+	// çš®è‚¤
 	VdkMenu* menuSkin = m_mainPanel->CreateMenu( menu );
 	menuSkin->SetAddinStyle( VMS_NO_EXTRA_SPACE );
 	menuSkin->RemoveStyle( VMS_BITMAP );
 	menuSkin->AttachCtrl( new OOPSkinSelector );
 
-	menu->AppendItem( NewMenuItem()->caption( L"Æ¤·ô" ).
+	menu->AppendItem( NewMenuItem()->caption( L"çš®è‚¤" ).
 					  subMenu( menuSkin ) );
 
-	// Í¸Ã÷¶È
+	// é€æ˜åº¦
 	VdkMenu* menuTransparent = m_mainPanel->CreateMenu( menu );
 	menuTransparent->AttachCtrl( new OnMenuSlider( m_mainPanel ) );
 
-	menu->AppendItem( NewMenuItem()->caption( L"´°¿ÚÍ¸Ã÷" ).
+	menu->AppendItem( NewMenuItem()->caption( L"çª—å£é€æ˜" ).
 					  subMenu( menuTransparent ) );
 	menu->AppendSeperator();
 
 	//===============================================
 
 #if 0
-	menu->AppendItem( NewMenuItem()->id( CID_FEEDBACK ).caption( L"ÎÒÒª·´À¡" ) );
+	menu->AppendItem( NewMenuItem()->id( CID_FEEDBACK ).caption( L"æˆ‘è¦åé¦ˆ" ) );
 	menu->AppendSeperator();
 #endif
 
-	menu->AppendItem( NewMenuItem()->id( CID_MINIMIZE ).caption( L"×îĞ¡»¯" ) );
+	menu->AppendItem( NewMenuItem()->id( CID_MINIMIZE ).caption( L"æœ€å°åŒ–" ) );
 	menu->AppendItem( NewMenuItem()->id( CID_EXIT ).
-					  caption( L"ÍË³ö" ).
+					  caption( L"é€€å‡º" ).
 					  bmpArrayID( VdkBitmapArrayId( m_mainMenuBitmaps, 
 					  MMBID_EXIT, 0 ) )
 	);
@@ -173,11 +173,11 @@ void OOPlayerApp::FillPlayModesMenu(VdkMenu* menu, bool ownedByPLP)
 
 	const wchar_t* captions[] = {
 
-		L"µ¥Çú²¥·Å",
-		L"µ¥ÇúÑ­»·",
-		L"Ë³Ğò²¥·Å",
-		L"Ñ­»·²¥·Å",
-		L"Ëæ»ú²¥·Å",
+		L"å•æ›²æ’­æ”¾",
+		L"å•æ›²å¾ªç¯",
+		L"é¡ºåºæ’­æ”¾",
+		L"å¾ªç¯æ’­æ”¾",
+		L"éšæœºæ’­æ”¾",
 	};
 
 	VdkMenuItem* item;
@@ -238,48 +238,48 @@ void PlayListPanel::GenerateMenu()
 
 	menu->AppendItem( NewMenuItem()->
 					  id( OPLM_PLAY_SELECTED ).
-					  caption( L"²¥·Å" ).
+					  caption( L"æ’­æ”¾" ).
 					  bmpArrayID( VdkBitmapArrayId( m_playListMenuBitmaps, 
 													PLMBID_PLAY, 0 ) ) );
 
 	menu->AppendSeperator();
 	menu->AppendItem( NewMenuItem()->
 					  id( OPLM_FILE_PROPERTIES ).
-					  caption( L"ÎÄ¼şÊôĞÔ" ).
+					  caption( L"æ–‡ä»¶å±æ€§" ).
 					  bmpArrayID( VdkBitmapArrayId( m_playListMenuBitmaps, 
 												    PLMBID_FILE_INFO, 0 ) ) );
 
 	menu->AppendSeperator();
 	menu->AppendItem( NewMenuItem()->
 					  id( OPLM_DELETE ).
-					  caption( L"É¾³ı" ).
+					  caption( L"åˆ é™¤" ).
 					  bmpArrayID( VdkBitmapArrayId( m_playListMenuBitmaps, 
 					  PLMBID_DELETE, 0 ) ) );
 
 	menu->AppendItem( NewMenuItem()->id( OPLM_DELETE_FILE ).
-					  caption( L"ÎïÀíÉ¾³ı" ) );
+					  caption( L"ç‰©ç†åˆ é™¤" ) );
 
 	VdkMenu* renameFiles = CreateMenu(menu);
 
 		renameFiles->AppendItem( NewMenuItem()->id( OPLM_RENAME_SONGNAME_ONLY ).
-								 caption( L"¸èÇúÃû.À©Õ¹Ãû" ) );
+								 caption( L"æ­Œæ›²å.æ‰©å±•å" ) );
 		renameFiles->AppendItem( NewMenuItem()->id( OPLM_RENAME_SINGER_FIRST ).
-								 caption( L"¸èÊÖ - ¸èÇúÃû.À©Õ¹Ãû" ) );
+								 caption( L"æ­Œæ‰‹ - æ­Œæ›²å.æ‰©å±•å" ) );
 		renameFiles->AppendItem( NewMenuItem()->id( OPLM_RENAME_SONGNAME_FIRST ).
-								 caption( L"¸èÇúÃû - ¸èÊÖ.À©Õ¹Ãû" ) );
+								 caption( L"æ­Œæ›²å - æ­Œæ‰‹.æ‰©å±•å" ) );
 
 	menu->AppendItem( NewMenuItem()->id( OPLM_FILE_PROPERTIES ).
-								 caption( L"ÖØÃüÃûÎÄ¼ş" ).
+								 caption( L"é‡å‘½åæ–‡ä»¶" ).
 								 subMenu( renameFiles ) );
 
 	menu->AppendItem( NewMenuItem()->id( OPLM_LOCATE_FILE ).
-					  caption( L"ä¯ÀÀÎÄ¼ş" ).
+					  caption( L"æµè§ˆæ–‡ä»¶" ).
 					  bmpArrayID( VdkBitmapArrayId( m_playListMenuBitmaps, 
 					  PLMBID_LOCATE_FILE, 0 ) ) );
 
 	menu->AppendSeperator();
 	menu->AppendItem( NewMenuItem()->id( OPLM_PLAYLIST_OPTIONS ).
-					  caption( L"Ñ¡Ïî" ).
+					  caption( L"é€‰é¡¹" ).
 					  bmpArrayID( VdkBitmapArrayId( m_playListMenuBitmaps, 
 					  PLMBID_OPTIONS, 0 ) ) );
 
@@ -293,50 +293,50 @@ void PlayListPanel::GenerateMenu()
 	{
 		MenuGenerator gen( wxID_ANY );
 
-		gen.itemMap[OTBM_ADD_FILE] = L"ÎÄ¼ş(&F)";
-		gen.itemMap[OTBM_ADD_FOLDER_RECURSIVE] = L"ÎÄ¼ş¼Ğ(°üÀ¨×ÓÄ¿Â¼)(&R)";
-		gen.itemMap[OTBM_ADD_FOLDER] = L"ÎÄ¼ş¼Ğ(&O)";
+		gen.itemMap[OTBM_ADD_FILE] = L"æ–‡ä»¶(&F)";
+		gen.itemMap[OTBM_ADD_FOLDER_RECURSIVE] = L"æ–‡ä»¶å¤¹(åŒ…æ‹¬å­ç›®å½•)(&R)";
+		gen.itemMap[OTBM_ADD_FOLDER] = L"æ–‡ä»¶å¤¹(&O)";
 
 		toolbar->Append( wxEmptyString, ::GenerateMenu( this, gen ) );
 		gen.Clear();
 
-		gen.itemMap[OPLM_DELETE] = L"Ñ¡ÖĞµÄÎÄ¼ş(&S)";
-		gen.itemMap[OTBM_DELETE_DUPLICATED] = L"ÖØ¸´µÄÎÄ¼ş(&D)";
-		gen.itemMap[OTBM_DELETE_WRONG_FILE] = L"´íÎóµÄÎÄ¼ş(&E)";
+		gen.itemMap[OPLM_DELETE] = L"é€‰ä¸­çš„æ–‡ä»¶(&S)";
+		gen.itemMap[OTBM_DELETE_DUPLICATED] = L"é‡å¤çš„æ–‡ä»¶(&D)";
+		gen.itemMap[OTBM_DELETE_WRONG_FILE] = L"é”™è¯¯çš„æ–‡ä»¶(&E)";
 		gen.itemMap[OTBM_DELETE_SEP_1] = L"<SEP>";
-		gen.itemMap[OTBM_DELETE_ALL] = L"È«²¿É¾³ı(&A)";
+		gen.itemMap[OTBM_DELETE_ALL] = L"å…¨éƒ¨åˆ é™¤(&A)";
 		gen.itemMap[OTBM_DELETE_SEP_2] = L"<SEP>";
-		gen.itemMap[OTBM_DELETE_FILE] = L"ÎïÀíÉ¾³ı(&P)";
+		gen.itemMap[OTBM_DELETE_FILE] = L"ç‰©ç†åˆ é™¤(&P)";
 
 		toolbar->Append( wxEmptyString, ::GenerateMenu( this, gen ) );
 		gen.Clear();
 
-		gen.itemMap[OTBM_LIST_OPEN] = L"´ò¿ªÁĞ±í(&O)";
-		gen.itemMap[OTBM_LIST_SAVE] = L"±£´æÁĞ±í(&S)";
-		gen.itemMap[OTBM_LIST_NEW] = L"ĞÂ½¨ÁĞ±í(&N)";
+		gen.itemMap[OTBM_LIST_OPEN] = L"æ‰“å¼€åˆ—è¡¨(&O)";
+		gen.itemMap[OTBM_LIST_SAVE] = L"ä¿å­˜åˆ—è¡¨(&S)";
+		gen.itemMap[OTBM_LIST_NEW] = L"æ–°å»ºåˆ—è¡¨(&N)";
 
 		toolbar->Append( wxEmptyString, ::GenerateMenu( this, gen ) );
 		gen.Clear();
 
-		gen.itemMap[OTBM_SORT_BY_TITLE] = L"°´ÏÔÊ¾±êÌâ(&T)";
-		gen.itemMap[OTBM_SORT_BY_PATH] = L"°´Â·¾¶Ãû(&P)";
-		gen.itemMap[OTBM_SORT_BY_ALBUM] = L"°´×¨¼­Ãû(&A)";
-		gen.itemMap[OTBM_SORT_BY_LENGTH] = L"°´¸èÇú³¤¶È(&L)";
-		gen.itemMap[OTBM_SORT_BY_PLAY_COUNT] = L"°´²¥·Å´ÎÊı(&C)";
-		gen.itemMap[OTBM_SORT_BY_ADD_TIME] = L"°´¼ÓÈëÁĞ±íÊ±¼ä(&F)";
+		gen.itemMap[OTBM_SORT_BY_TITLE] = L"æŒ‰æ˜¾ç¤ºæ ‡é¢˜(&T)";
+		gen.itemMap[OTBM_SORT_BY_PATH] = L"æŒ‰è·¯å¾„å(&P)";
+		gen.itemMap[OTBM_SORT_BY_ALBUM] = L"æŒ‰ä¸“è¾‘å(&A)";
+		gen.itemMap[OTBM_SORT_BY_LENGTH] = L"æŒ‰æ­Œæ›²é•¿åº¦(&L)";
+		gen.itemMap[OTBM_SORT_BY_PLAY_COUNT] = L"æŒ‰æ’­æ”¾æ¬¡æ•°(&C)";
+		gen.itemMap[OTBM_SORT_BY_ADD_TIME] = L"æŒ‰åŠ å…¥åˆ—è¡¨æ—¶é—´(&F)";
 
 		toolbar->Append( wxEmptyString, ::GenerateMenu( this, gen ) );
 		gen.Clear();
 
-		gen.itemMap[OTBM_LOCATE_SHOW_DIALOG] = L"¿ìËÙ¶¨Î»(&S)";
-		gen.itemMap[OTBM_LOCATE_FIND_NEXT] = L"²éÕÒÏÂÒ»¸ö(&N)";
+		gen.itemMap[OTBM_LOCATE_SHOW_DIALOG] = L"å¿«é€Ÿå®šä½(&S)";
+		gen.itemMap[OTBM_LOCATE_FIND_NEXT] = L"æŸ¥æ‰¾ä¸‹ä¸€ä¸ª(&N)";
 
 		toolbar->Append( wxEmptyString, ::GenerateMenu( this, gen ) );
 		gen.Clear();
 
-		gen.itemMap[OTBM_SELECT_ALL] = L"È«²¿Ñ¡ÖĞ(&A)";
-		gen.itemMap[OTBM_SELECT_NONE] = L"È«²¿²»Ñ¡(&U)";
-		gen.itemMap[OTBM_SELECT_REVERSE] = L"·´ÏòÑ¡Ôñ(&I)";
+		gen.itemMap[OTBM_SELECT_ALL] = L"å…¨éƒ¨é€‰ä¸­(&A)";
+		gen.itemMap[OTBM_SELECT_NONE] = L"å…¨éƒ¨ä¸é€‰(&U)";
+		gen.itemMap[OTBM_SELECT_REVERSE] = L"åå‘é€‰æ‹©(&I)";
 
 		toolbar->Append( wxEmptyString, ::GenerateMenu( this, gen ) );
 		gen.Clear();
@@ -376,33 +376,33 @@ void LyricPanel::GenerateMenu()
 	//===============================================
 
 	menu->AppendItem( NewMenuItem()->id( OLRCM_SEARCH ).
-					  caption( L"ÔÚÏßËÑË÷(&D)..." ).
+					  caption( L"åœ¨çº¿æœç´¢(&D)..." ).
 					  bmpArrayID( VdkBitmapArrayId( m_menuBitmaps, 
 													LMBID_SEARCH_LRC, 0 ) ) );
 
 	menu->AppendItem( NewMenuItem()->id( OLRCM_ASSOCIATE_LOCAL_FILE ).
-					  caption( L"¹ØÁª¸è´Ê(&L)..." ).
+					  caption( L"å…³è”æ­Œè¯(&L)..." ).
 					  bmpArrayID( VdkBitmapArrayId( m_menuBitmaps, 
 													LMBID_ASSOCIATE_LRC, 0 ) ) );
 
 	menu->AppendSeperator();
 
 	menu->AppendItem( NewMenuItem()->id( OLRCM_COPY_LRC ).
-					  caption( L"¸´ÖÆ¸è´Ê(&C)" ).
+					  caption( L"å¤åˆ¶æ­Œè¯(&C)" ).
 					  bmpArrayID( VdkBitmapArrayId( m_menuBitmaps, 
 													LMBID_COPY_LRC, 0 ) ) );
 	menu->AppendItem( NewMenuItem()->id( OLRCM_REMOVE_LRC ).
-					  caption( L"³·Ïú¸è´Ê(&U)" ).
+					  caption( L"æ’¤é”€æ­Œè¯(&U)" ).
 					  bmpArrayID( VdkBitmapArrayId( m_menuBitmaps, 
 													LMBID_REMOVE_LRC, 0 ) ) );
 	menu->AppendItem( NewMenuItem()->id( OLRCM_RELOAD_LRC ).
-					  caption( L"ÖØĞÂÔØÈë(&R)" ).
+					  caption( L"é‡æ–°è½½å…¥(&R)" ).
 					  bmpArrayID( VdkBitmapArrayId( m_menuBitmaps, 
 													LMBID_RELOAD_LRC, 0 ) ) );
 
 	menu->AppendSeperator();
 	menu->AppendItem( NewMenuItem()->id( OLRCM_LRC_OPTIONS ).
-					  caption( L"Ñ¡Ïî(&P)" ).
+					  caption( L"é€‰é¡¹(&P)" ).
 					  bmpArrayID( VdkBitmapArrayId( m_menuBitmaps, 
 													LMBID_OPTIONS, 0 ) ) );
 

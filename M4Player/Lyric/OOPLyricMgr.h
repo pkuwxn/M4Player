@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPLyricMgr.h
- * Purpose:   ¸è´ÊÏÔÊ¾¿Ø¼ş¹ÜÀíÆ÷
+ * Purpose:   æ­Œè¯æ˜¾ç¤ºæ§ä»¶ç®¡ç†å™¨
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-06-05
  **************************************************************/
@@ -11,33 +11,33 @@ class ILyric;
 class OOPStopWatch;
 class OOPLyricParser;
 
-/// ¸è´ÊÏÔÊ¾¿Ø¼ş¹ÜÀíÆ÷
+/// æ­Œè¯æ˜¾ç¤ºæ§ä»¶ç®¡ç†å™¨
 class OOPLyricMgr
 {
 public:
 
-	/// ¹¹Ôìº¯Êı
+	/// æ„é€ å‡½æ•°
 	OOPLyricMgr();
 
-	/// Îö¹¹º¯Êı
+	/// ææ„å‡½æ•°
 	~OOPLyricMgr();
 
-	/// Ìí¼ÓÒ»¸öĞÂµÄ¿Ø¼ş
+	/// æ·»åŠ ä¸€ä¸ªæ–°çš„æ§ä»¶
 	void Attach(ILyric* lyric);
 
-	/// É¾È¥Ò»¸öÔ­ÓĞ¿Ø¼ş
+	/// åˆ å»ä¸€ä¸ªåŸæœ‰æ§ä»¶
 	void Dettach(ILyric* lyric);
 
-	/// ÖØÔØ²¼¶ûÀàĞÍ×ª»»²Ù×÷·û
+	/// é‡è½½å¸ƒå°”ç±»å‹è½¬æ¢æ“ä½œç¬¦
 	operator bool() const;
 
-	/// ÖØÔØÖ¸Õë²Ù×÷·û
+	/// é‡è½½æŒ‡é’ˆæ“ä½œç¬¦
 	OOPLyricMgr* operator->() { return this; }
 	const OOPLyricMgr* operator->() const { return this; }
 
 public:
 
-	/// ÒÔÏÂº¯ÊıÓë ILyric µÄ½Ó¿ÚÏàÍ¬
+	/// ä»¥ä¸‹å‡½æ•°ä¸ ILyric çš„æ¥å£ç›¸åŒ
 
 	bool IsOk() const;
 	void SetStopWatch(OOPStopWatch& sw);
@@ -55,6 +55,6 @@ public:
 private:
 
 	typedef wxVector< ILyric* > LyricVec;
-	// µ±Ç°ÕıÔÚ»î¶¯µÄ¸è´ÊĞã¿Ø¼ş
+	// å½“å‰æ­£åœ¨æ´»åŠ¨çš„æ­Œè¯ç§€æ§ä»¶
 	LyricVec m_lyrics;
 };

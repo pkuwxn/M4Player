@@ -1,6 +1,6 @@
-/***************************************************************
+﻿/***************************************************************
  * Name:      OOPFilePropDlg.cpp
- * Purpose:   ���ļ����ԡ��Ի���
+ * Purpose:   “文件属性”对话框
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2011-8-17
  **************************************************************/
@@ -29,25 +29,25 @@ class OOPFilePropDlg::PropDlgImpl
 {
 public:
 
-	// ���캯��
+	// 构造函数
 	PropDlgImpl();
 
-	// �󶨿ؼ� ID
+	// 绑定控件 ID
 	void BindCtrlIds(MapOfCtrlIdInfo& ids);
 
-	// XRC �ļ��Ѿ��ɹ����룬���пؼ��Ѿ���
+	// XRC 文件已经成功载入，所有控件已就绪
 	void OnXrcLoaded();
 
-	// ���Ի���ؼ�
+	// 填充对话框控件
 	void UpdateDialog(OOPSongPtr song);
 
-	// ���ݶԻ���ؼ����û�������������Ϣ
+	// 根据对话框控件的用户输入填充歌曲信息
 	void UpdateSongObj();
 
-	// �����ı��浽��Ƶ�ļ�
+	// 将更改保存到音频文件
 	bool SaveToFile();
 
-	// ���͸�����Ϣ�Ѹ��µ���Ϣ�¼�
+	// 发送歌曲信息已更新的消息事件
 	void SendInfoUpdatedEvent(wxEvtHandler* dst);
 
 private:
@@ -56,7 +56,7 @@ private:
 
 		ID_GUESS_TAGS = 9789,
 
-		ID_SC_N_TC, // �򷱻�ת
+		ID_SC_N_TC, // 简繁互转
 		ID_CHARSET_CONV,
 		ID_TO_CPAPITAL,
 		ID_DELETE_ALL,
@@ -92,21 +92,21 @@ private:
 	VdkEdit* m_artist;
 	VdkEdit* m_album;
 	VdkEdit* m_trackNo;
-	VdkEdit* m_genre; // ����
+	VdkEdit* m_genre; // 流派
 	VdkEdit* m_year;
 	VdkEdit* m_comment;
 
-	VdkEdit* m_codec; // ����
-	VdkEdit* m_stereo; // ������
-	VdkEdit* m_sampleRate; // ����Ƶ��
-	VdkEdit* m_bits; // ����
-	VdkEdit* m_bitRate; // ����
-	VdkEdit* m_channels; // ����
-	VdkEdit* m_length; // ����
-	VdkEdit* m_gain; // ����
+	VdkEdit* m_codec; // 编码
+	VdkEdit* m_stereo; // 立体声
+	VdkEdit* m_sampleRate; // 采样频率
+	VdkEdit* m_bits; // 比特
+	VdkEdit* m_bitRate; // 码率
+	VdkEdit* m_channels; // 升到
+	VdkEdit* m_length; // 长度
+	VdkEdit* m_gain; // 增益
 
-	VdkButton* m_saveToFile; // �����浽�ļ�����ť
-	VdkLabel* m_tip; // ��ʾ����������硰��֧�ֵ��ļ����͡�
+	VdkButton* m_saveToFile; // “保存到文件”按钮
+	VdkLabel* m_tip; // 显示操作结果，如“不支持的文件类型”
 };
 
 OOPFilePropDlg::PropDlgImpl::PropDlgImpl()
@@ -138,8 +138,8 @@ void OOPFilePropDlg::PropDlgImpl::BindCtrlIds(MapOfCtrlIdInfo& ids)
 
 void OOPFilePropDlg::PropDlgImpl::OnXrcLoaded()
 {
-	// TODO: �������Ǻ�׾�ӵ����
-	// ����ϣ�����ɱ༭���ı��򱳾���ɫ��Ҫ��ɱ༭�����κα仯
+	// TODO: 这个真的是很拙劣的设计
+	// 我们希望不可编辑的文本框背景颜色不要与可编辑的有任何变化
 	VdkEditStaticStyle* sstyle = m_filePath->GetStaticStyle();
 	sstyle->uneditableBgBrush( *wxWHITE_BRUSH );
 }
@@ -198,14 +198,14 @@ void OOPFilePropDlg::PropDlgImpl::UpdateDialog(OOPSongPtr song)
 	{
 		bool supported = m_song->IsTaggingSupported();
 		m_saveToFile->Enable( supported, NULL );
-		m_tip->SetCaption( !supported ? L"�ļ���Ч��������ļ��ı�ǩд�벻��֧��" : 
+		m_tip->SetCaption( !supported ? L"文件无效或此类型文件的标签写入不被支持" : 
 										wxEmptyString, 
 							NULL );
 	}
 	else
 	{
 		m_saveToFile->Enable( false, NULL );
-		m_tip->SetCaption( L"�ļ�������", NULL );
+		m_tip->SetCaption( L"文件不存在", NULL );
 	}
 }
 
@@ -235,7 +235,7 @@ bool OOPFilePropDlg::PropDlgImpl::SaveToFile()
 	{
 		wxLogDebug( L"Error saving tags for `%s`.", m_song->path() );
 
-		// ���ӵ��ӳ��޸�ջ
+		// 添加到延迟修改栈
 		SingleDelayModStack::Instance().Add( m_song );
 	}
 
@@ -253,7 +253,7 @@ void OOPFilePropDlg::PropDlgImpl::SendInfoUpdatedEvent(wxEvtHandler* dst)
 //////////////////////////////////////////////////////////////////////////
 
 OOPFilePropDlg::OOPFilePropDlg(wxWindow* parent)
-	: VdkDialog( parent, L"�ļ�����", wxSTAY_ON_TOP, 
+	: VdkDialog( parent, L"文件属性", wxSTAY_ON_TOP, 
 				 VWS_DRAGGABLE | VWS_BASE_PANEL | VWS_DISMISS_BY_ESC ),
 	  m_impl( new PropDlgImpl )
 {
@@ -289,7 +289,7 @@ void OOPFilePropDlg::Popup(OOPSongPtr song)
 {
 	m_impl->UpdateDialog( song );
 	
-	// ���Ի����ƶ��������ڵ����ģ����ุ���ڶ��� 100px
+	// 将对话框移动到父窗口的中心，并距父窗口顶部 100px
 	wxWindow* parent = GetParent();
 	wxCoord parentX, parentY, parentWidth, myWidth;
 	parent->GetPosition( &parentX, &parentY );
@@ -329,6 +329,6 @@ void OOPFilePropDlg::HideAndFocusParent()
 	Hide();
 	GetParent()->SetFocus();
 
-	// ʼ�շ��͸�����Ϣ�����¼�(����ɨ��õ��ı�ǩ��Ϣ�����ǲ���ȷ��)
+	// 始终发送歌曲信息更新事件(快速扫描得到的标签信息可能是不精确的)
 	SendInfoUpdatedEvent();
 }

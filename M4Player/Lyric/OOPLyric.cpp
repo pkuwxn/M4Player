@@ -1,6 +1,6 @@
-/***************************************************************
+﻿/***************************************************************
  * Name:      OOPLyric.h
- * Purpose:   �����ڸ���㴰�ڵ���Ƕ�����ʾ�ؼ�
+ * Purpose:   集成在歌词秀窗口的内嵌歌词显示控件
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2010
  **************************************************************/
@@ -22,25 +22,25 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-// OOPLyric ������ʱ״̬���Լ�
+// OOPLyric 的运行时状态属性集
 enum OOPLyricState {
 
-	// �Ƿ��Ѿ���ʼ
+	// 是否已经开始
 	OLST_STARTED					=	1 << ( VLCST_USER + 0 ),
-	// �Ƿ��Ѿ�ֹͣ
+	// 是否已经停止
 	OLST_STOPPED					=	1 << ( VLCST_USER + 1 ),
-	// �Ƿ��Ѿ���ͣ
+	// 是否已经暂停
 	OLST_PAUSED						=	1 << ( VLCST_USER + 2 ),
-	// �Ƿ��Ѿ���ʼ�϶����
+	// 是否已经开始拖动歌词
 	OLST_DRAGGING_STARTED			=	1 << ( VLCST_USER + 3 ),
-	// �Ƿ������϶����
+	// 是否正在拖动歌词
 	OLST_DRAGGING					=	1 << ( VLCST_USER + 4 ),
-	// �϶����ǰ����Ƿ���������
+	// 拖动歌词前歌词是否正在运行
 	OLST_RUNNING_BEFORE_DRAGGING	=	1 << ( VLCST_USER + 5 ),
 };
 
 enum {
-	/*! ʹ�ý���ɫ��ԭ��һ���ʳ�����ʱ��
+	/*! 使用渐变色还原上一句歌词持续的时间
 	 */
 	ALPHA_SHOW_LAST_LINE_MS = 1000,
 };
@@ -54,7 +54,7 @@ OOPLyric::OOPLyric()
 	  m_timerId( wxIdManager::ReserveId( 1 ) ), 
 	  m_timer( wxTheApp, m_timerId )
 {
-	// ֱ�Ӱ󶨱������ݼ�
+	// 直接绑定本地数据集
 	Attach( &m_dataSet );
 }
 
@@ -70,8 +70,8 @@ void OOPLyric::Init()
 	m_draggHit = m_parser->end();
 
 	//---------------------------------------------------------
-	// �������λ״̬
-	// TODO: д������������
+	// 清空所有位状态
+	// TODO: 写法是这样的吗？
 
 	unsigned bitfieldsClean = unsigned(~0);
 	bitfieldsClean >>= sizeof( bitfieldsClean ) * 8 - VLCST_USER;
@@ -81,7 +81,7 @@ void OOPLyric::Init()
 
 void OOPLyric::OnXrcCreate(wxXmlNode* node)
 {
-	// ���� VdkControl �ĺ���
+	// 这是 VdkControl 的函数
 	VdkControl::DoXrcCreate( node );
 
 	XmlInsertChild( node, L"header", L"0" );
@@ -100,10 +100,10 @@ void OOPLyric::Create(const wxArrayString& colorArray)
 	m_strName.assign( L"OOPLyric" );
 	m_align = ALIGN_SYNC_X_Y;
 
-	SetRowHeight( 15 ); // �и�
-	SetLinesUpDown( 0 ); // ����ʧȥ������
-	SetScrollRate( 1, 1 ); // ÿ�и� 1px
-	SetShownItemsAddIn( 1 ); // ÿ������ʾ1��
+	SetRowHeight( 15 ); // 行高
+	SetLinesUpDown( 0 ); // 滚轮失去了作用
+	SetScrollRate( 1, 1 ); // 每行高 1px
+	SetShownItemsAddIn( 1 ); // 每屏多显示1行
 	CalcShownItems();
 
 	SetAddinStyle( VSWS_NO_SCROLLBAR | VLCS_NO_SELECT );
@@ -140,14 +140,14 @@ OOPLyric::~OOPLyric()
 void OOPLyric::DoClear(wxDC*)
 {
 	if( m_timer.IsRunning() )
-		Stop( NULL ); // VdkListCtrl::Clear() ��ֱ���ػ������ؼ�
+		Stop( NULL ); // VdkListCtrl::Clear() 会直接重画整个控件
 }
 
 bool OOPLyric::IsOk() const
 {
 	bool isParserOk = m_parser && m_parser->IsOk();
 
-	// �����ṩ����ͬ�����ⲿ��ʱ��
+	// 必须提供用以同步的外部计时器
 	return m_stopWatch && isParserOk && !VdkListCtrl::IsEmpty();
 }
 
@@ -155,11 +155,11 @@ void OOPLyric::Start()
 {
 	if( !IsOk() )
 	{
-		wxLogError( L"��ʿؼ���δ��ȷ��ʼ����" );
+		wxLogError( L"歌词控件尚未正确初始化。" );
 		return;
 	}
 
-	// �������ν��뱾����
+	// 不能两次进入本函数
 	if( TestState( OLST_STARTED ) )
 	{
 		if( m_stopWatch->IsRunning() )
@@ -180,17 +180,17 @@ void OOPLyric::Start()
 
 void OOPLyric::AttachParser(const OOPLyricParser& parser)
 {
-	// ��������б����е�����
+	// 首先清空列表框中的内容
 	Clear( NULL );
 
 	m_parser = &parser;
 
-	// �������ʼ����ȷ�е����
-	// ��Ҫ�������õ��� m_parser�����뱣֤����Ч��
+	// 在这里初始化的确有点奇怪
+	// 主要是我们用到了 m_parser，必须保证其有效性
 	Init();
 
 	//======================================================
-	// ���� VdkListCtrl �ĸ���
+	// 生成 VdkListCtrl 的各行
 
 	LineIter i( m_parser->begin() ), e( m_parser->end() );
 	for( int curr = 0; i != e; ++i, ++curr )
@@ -228,10 +228,10 @@ void OOPLyric::Pause()
 
 bool OOPLyric::Resume()
 {
-	// ������ֹͣ״̬�µ��ñ�����
+	// 不能在停止状态下调用本函数
 	wxASSERT( !TestState( OLST_STOPPED ) );
 
-	// �����Ƚ��� StartLyric()
+	// 必须先进入 StartLyric()
 	if( !TestState( OLST_STARTED ) || m_timer.IsRunning() )
 		return false;
 
@@ -270,11 +270,11 @@ void OOPLyric::GoTo(double percentage, wxDC* pDC, bool bPaused)
 
 void OOPLyric::MoveToEnd(wxDC* pDC)
 {
-	// ֹͣ���
+	// 停止歌词
 	m_timer.Stop();
 	SetAddinState( OLST_STOPPED );
 
-	// ��׼��λ��������λ��
+	// 精准定位在最后可能位置
 	int maxY;
 	GetMaxViewStartCoord( NULL, &maxY );
 	SetViewStart( 0, maxY, pDC );
@@ -286,7 +286,7 @@ void OOPLyric::NextLine(wxDC* pDC, bool bPaused)
 
 #ifdef __WXDEBUG__
 	{
-		// �������ⲿ��֤����Խ��
+		// 必须由外部保证不会越界
 		LineIter next( m_currLine );
 		++next;
 		wxASSERT( next != m_parser->end() );
@@ -364,10 +364,10 @@ void OOPLyric::OnTimerNotify(wxTimerEvent&)
 
 void OOPLyric::OnDraw(wxDC& dc)
 {
-	// ��ʹû�и��ҲҪ��ձ���
+	// 即使没有歌词也要清空背景
     VdkListCtrl::OnDraw( dc );
 
-	// ��û�и��ʱ����ʾ�������ı�
+	// 当没有歌词时，显示交互性文本
 	if( !IsOk() )
 	{
 		wxString interactiveOutput( GetInteractiveOutput() );
@@ -396,16 +396,16 @@ VdkCusdrawReturnFlag OOPLyric::DoDrawCellText(const VdkLcCell* cell,
 {
 	wxASSERT( m_parser );
 
-	// ע�⣺index �ǲ��������Ŀ��е�
+	// 注意：index 是不计算加入的空行的
 	int index = (int) (cell->GetClientData()) - 1;
-	if( index == -1 ) // ��ʱ ClientData == NULL�����������ӵĿ���
+	if( index == -1 ) // 此时 ClientData == NULL，是我们添加的空行
 		return VCCDRF_DODEFAULT;
 
 	dc.SetTextForeground( m_TextColor );
 
-	// ��ͣʱ������ǰ�У��龰�����û������϶���ʡ�
-	// ��������ͣ��Ȼ���϶������ϣ���ʱ�����������Կ���OK
-	// ��ʽ������ʾʱ����ô���ᱣ�ְ������״̬������ȫ������
+	// 暂停时高亮当前行，情景见于用户正在拖动歌词。
+	// 另外先暂停，然后拖动歌词完毕，此时假如歌词秀是以卡拉OK
+	// 方式进行显示时，那么不会保持半高亮的状态，而是全高亮。
 	if( TestState( OLST_PAUSED ) )
 	{
 		int yStart;
@@ -415,7 +415,7 @@ VdkCusdrawReturnFlag OOPLyric::DoDrawCellText(const VdkLcCell* cell,
 		int dragRegion = yStart + rowHeight * m_blankLinesTop;
 		int index2 = index + m_blankLinesTop;
 
-		// ����϶����ʱ�м��������һ��
+		// 检测拖动歌词时中间线下面的一行
 		if( rowHeight * index2 <= dragRegion &&
 			rowHeight * (index2 + 1) > dragRegion )
 		{
@@ -428,13 +428,13 @@ VdkCusdrawReturnFlag OOPLyric::DoDrawCellText(const VdkLcCell* cell,
 	}
 
 	LineInfo* currLine = *m_currLine;
-	// TODO: �Ƿ����Ż���
+	// TODO: 是否考虑优化？
 	size_t currLineIndex = m_parser->IndexOf( m_currLine );
 	int lineHasGone = m_stopWatch->Time() - currLine->GetStartTime();
 
 	if( (index == currLineIndex - 1) && !cell->GetLabel().empty() )
 	{
-		// ʹ�ý���ɫ��ԭ��һ����
+		// 使用渐变色还原上一句歌词
 		if( lineHasGone < ALPHA_SHOW_LAST_LINE_MS )
 		{
 			unsigned char r, g, b;
@@ -448,21 +448,21 @@ VdkCusdrawReturnFlag OOPLyric::DoDrawCellText(const VdkLcCell* cell,
 			dc.SetTextForeground( wxColour( r, g, b ) );
 		}
 	}
-	else if( index == currLineIndex ) // ������ǰ�ı���
+	else if( index == currLineIndex ) // 高亮当前文本行
 	{
-		// ��������һ�ֺܺ������������һ�������˾ͻᵼ������ (*) ����ʽ
-		// �ĳ���Ϊ 0
+		// 尽管这是一种很罕见的情况，但一旦出现了就会导致下面 (*) 表达式
+		// 的除数为 0
 		if( currLine->GetMilSeconds() == 0 )
 			return VCCDRF_DODEFAULT;
 
 		if( !cell->IsEmpty() )
 		{
-			/* �����ѵ��
-			1. SetClippingRegiion �е���ЧӦ�������ִ���µ�
-			   SetClippingRegiion ǰ����������ԭ���� ClippingRegiion ��
-			2. ���ڱ���ʽ�������븡�������ã�ע���м���������
-			   ��ǿ��ת���� int Ȼ��μ���һ�������㣬�����Ƕ�
-			   ���ս������ת����ʹ֮��Ϊһ����������
+			/* 经验教训：
+			1. SetClippingRegiion 有叠加效应，因此在执行新的
+			   SetClippingRegiion 前别忘了销毁原来的 ClippingRegiion 。
+			2. 关于表达式中整数与浮点数混用：注意中间运算结果会
+			   被强制转换成 int 然后参加下一步的运算，并不是对
+			   最终结果进行转换，使之成为一个浮点数。
 			*/
 
 			const int rowHeight = GetRowHeight();
@@ -472,7 +472,7 @@ VdkCusdrawReturnFlag OOPLyric::DoDrawCellText(const VdkLcCell* cell,
 			// (*)
 			double lineProgress = double( lineHasGone ) / currLine->GetMilSeconds();
 
-			// Ҫʵ�� KALA-OK Ч�����ı�����
+			// 要实现 KALA-OK 效果的文本宽度
 			int w = (m_Rect.width - cell->GetX_Padding() * 2) * lineProgress;
 
 			wxRect rc( GetAbsoluteRect() );
@@ -484,7 +484,7 @@ VdkCusdrawReturnFlag OOPLyric::DoDrawCellText(const VdkLcCell* cell,
 
 			rc.width = cell->GetX_Padding() + w;
 			rc.height = rowHeight;
-			// ����ʹ KALA-OK Ч���� ClippingRegion �����б�����
+			// 不能使 KALA-OK 效果的 ClippingRegion 超出列表窗口
 			if( (rc.y + rc.height) > bottom )
 				rc.height = bottom - rc.y;
 
@@ -558,7 +558,7 @@ void OOPLyric::UpdateVirtualHeight()
 
 	int ySize = topBlankLinesHeight + actualHeight + bottomBlankLinesHeight;
 
-	// -1 ��Ϊ�˵õ�һ�����ǲ�������Ч������Ĵ�С
+	// -1 是为了得到一个总是不超出有效作用域的大小
 	SetVirtualSize( 0, ySize - 1 );
 }
 
@@ -569,7 +569,7 @@ double OOPLyric::GetLineProgress() const
 	if( lineHasGone >= currLine->GetMilSeconds() )
 		return 1;
 
-	// �������Ϊ 0��������������
+	// 假如除数为 0，不会来到这里
 	return double( lineHasGone ) / currLine->GetMilSeconds();
 }
 
@@ -577,7 +577,7 @@ void OOPLyric::CorrectViewStart(wxDC* pDC)
 {
 	wxASSERT( m_parser );
 
-	// TODO: ���� m_currIndex ��
+	// TODO: 添加 m_currIndex 吧
 	int rowHeight = GetRowHeight();
 	int yStart = rowHeight * double
 		( m_parser->IndexOf( m_currLine ) + GetLineProgress() );
@@ -591,7 +591,7 @@ void OOPLyric::OnMouseEvent(VdkMouseEvent& e)
 	{
 	case RIGHT_UP:
 		{
-			// �϶����ʱ��Ҫ��Ӧ�Ҽ��¼�
+			// 拖动歌词时不要响应右键事件
 			if( TestState( OLST_DRAGGING ) )
 				return;
 
@@ -614,8 +614,8 @@ void OOPLyric::OnMouseEvent(VdkMouseEvent& e)
 
 	case DRAGGING:
 		{
-			// ����������һ�׸�ĻỰ���϶���ʣ�Ȼ����δ�ͷ����������
-			// ��һ�׸迪ʼ���ţ�����ǰ����϶��¼�
+			// 不接受先在一首歌的会话中拖动歌词，然后在未释放鼠标的情况下
+			// 另一首歌开始播放，继续前面的拖动事件
 			if( !TestState( OLST_DRAGGING_STARTED ) )
 			{
 				break;
@@ -640,49 +640,49 @@ void OOPLyric::OnMouseEvent(VdkMouseEvent& e)
 			int dY = e.mousePos.y - m_draggDistance;
 			m_draggDistance = e.mousePos.y;
 
-			// ����һ�������ֹ�����ȥ�Ŀ���
+			// 这是一行我们手工加上去的空行
 			int rowHeight = GetRowHeight();
 			int upperBound = 
 				(*(m_parser->begin()))->GetLyric().empty() ? rowHeight : 0;
 
-			// �޷��������������Ͼ�(������ȥ�͵���һ����)
-			// ���ǽ��ϵ���ͷ���¼���Ϊ��Ч
+			// 无法继续将帘布向上卷(再拖下去就到下一首了)
+			// 我们将拖到尽头的事件视为无效
 			bool lastLine = false;
 
-			// �龰�������⻭������һ��������
-			// �϶���ͷ�ˣ������ٰѴ�����������һ��
+			// 情景：将虚拟画布像窗帘一样向下拖
+			// 拖动尽头了，不能再把窗帘哪怕拖下一寸
 			if( ystart - dY < upperBound )
 			{
-				dY = ystart - upperBound; // �ӼӼ�����ԭ�����(*)
+				dY = ystart - upperBound; // 加加减减的原因参照(*)
 			}
 			else
 			{
 				int maxy;
 				GetMaxViewStartCoord( NULL, &maxy );
 
-				// ���������Ͼ���������ͷ�ˣ��پ���ȥ�ͻᵼ��
-				// �޷�������ס����
+				// 将帘布向上卷，卷到尽头了，再卷下去就会导致
+				// 无法完整遮住窗口
 				if( ystart - dY > maxy )
 				{
-					dY = ystart - maxy; // �ӼӼ�����ԭ�����(*)
-					// ��Ч�϶��¼�
+					dY = ystart - maxy; // 加加减减的原因参照(*)
+					// 无效拖动事件
 					lastLine = true;
 				}
 			}
 
 			if( dY )
 			{
-				SetViewStart( 0, ystart - dY, &e.dc ); //������������(*)
+				SetViewStart( 0, ystart - dY, &e.dc ); //………………(*)
 			}
 
-			// ��Ч�϶��¼�
+			// 无效拖动事件
 			if( lastLine )
 			{
 				m_draggHit = m_parser->end();
 			}
 
 			//===================================================
-			// �����м��߶�
+			// 绘制中间线段
 
 			wxRect rc( GetAbsoluteRect() );
 			int y = rc.y + m_blankLinesTop * GetRowHeight();
@@ -709,14 +709,14 @@ void OOPLyric::OnMouseEvent(VdkMouseEvent& e)
 
 			RemoveState( OLST_DRAGGING | OLST_DRAGGING_STARTED );
 
-			// �ϵ��������ˣ���ͷ
+			// 拖到最下面了，尽头
 			if( m_draggHit == m_parser->end() )
 			{
 				RefreshState( &e.dc );
 			}
 			else
 			{
-				int ystart; // ��ʼ��ͼ����
+				int ystart; // 起始绘图坐标
 				GetViewStartCoord( NULL, &ystart );
 
 				LineInfo* lineDraggHit = *m_draggHit;
@@ -726,7 +726,7 @@ void OOPLyric::OnMouseEvent(VdkMouseEvent& e)
 				double linePercentage = double(ystart % rowHeight) / rowHeight ;
 				timeToGo += lineDraggHit->GetMilSeconds() * linePercentage;
 
-				// ��ʿ��ܲ���ƥ�����ڲ��ŵĸ���
+				// 歌词可能并不匹配正在播放的歌曲
 				if( timeToGo < m_parser->GetTimeSum() )
 				{
 					m_currLine = m_draggHit;
@@ -756,7 +756,7 @@ void OOPLyric::OnMouseEvent(VdkMouseEvent& e)
 
 void OOPLyric::OnKeyEvent(VdkKeyEvent& vke)
 {
-	// ȫ������
+	// 全部跳过
 	vke.Skip( true );
 }
 

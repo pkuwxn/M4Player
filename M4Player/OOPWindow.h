@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPWindow.h
- * Purpose:   ÉùÃ÷ OOPWindow
+ * Purpose:   å£°æ˜ OOPWindow
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-2-27
  **************************************************************/
@@ -9,7 +9,7 @@
 
 class OOPStickyWindowState;
 
-/// \brief OOPlayer ×¨ÓÃµÄ¿É»»·ô´°¿Ú
+/// \brief OOPlayer ä¸“ç”¨çš„å¯æ¢è‚¤çª—å£
 class OOPWindow : public VdkDialog
 {
 public:
@@ -17,88 +17,88 @@ public:
     typedef VdkDialog Super;
 
 	enum {
-		/*! Ä¬ÈÏ VdkWindow ·ç¸ñ */
+		/*! é»˜è®¤ VdkWindow é£æ ¼ */
 		DEFAULT_VSTYLE = VWS_DRAGGABLE | VWIS_DRAG_BY_SPACE,
 	};
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	OOPWindow(wxWindow* parent, const wxString& uuid, const wxString& title, 
 			  long style = 0, long vstyle = DEFAULT_VSTYLE);
 
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	~OOPWindow();
 
-	/// \brief »ñÈ¡´°¿ÚµÄ UUID
+	/// \brief è·å–çª—å£çš„ UUID
 	wxString GetUUID() const { return m_uuid; }
 
-	/// \brief ÖØÖÃÆ¤·ô
+	/// \brief é‡ç½®çš®è‚¤
 	void ResetSkin();
 
-	/// \brief ´¦ÀíÓëÖ÷´°¿ÚµÄÕ³¸½
+	/// \brief å¤„ç†ä¸ä¸»çª—å£çš„ç²˜é™„
 	void NotifyShowHideAndStick(bool show);
 
-	/// \brief »ñÈ¡µ±Ç°Õ³¸½×´Ì¬ĞÅÏ¢¶ÔÏóÓÃÓÚ³Ö¾Ã»¯
+	/// \brief è·å–å½“å‰ç²˜é™„çŠ¶æ€ä¿¡æ¯å¯¹è±¡ç”¨äºæŒä¹…åŒ–
 	void UpdateStickyState(OOPStickyWindowState& sstate) const;
 
 protected:
 	
-	/// \brief ÉèÖÃ´°¿ÚËùÓÃµÄÆ¤·ô
+	/// \brief è®¾ç½®çª—å£æ‰€ç”¨çš„çš®è‚¤
 	void SetSkin();
 
-	/// \brief °ó¶¨¡°¹Ø±Õ¡±°´Å¥µÄÊÂ¼ş´¦ÀíÆ÷
+	/// \brief ç»‘å®šâ€œå…³é—­â€æŒ‰é’®çš„äº‹ä»¶å¤„ç†å™¨
 	void BindCloseBtnEvent(const wxString& objName = L"close");
 
 private:
 
-	// ¸Ä¶¯ XRC ¶¨Òå£¬Ê¹µÃ´°¿Ú´´½¨Ê±´óĞ¡¼´ÎªÉÏ´Î¹Ø±ÕÊ±µÄ´óĞ¡
+	// æ”¹åŠ¨ XRC å®šä¹‰ï¼Œä½¿å¾—çª—å£åˆ›å»ºæ—¶å¤§å°å³ä¸ºä¸Šæ¬¡å…³é—­æ—¶çš„å¤§å°
 	virtual void HackXrc(wxXmlNode* winRoot);
 
-	// ÖØÉèÆ¤·ôÇ°µÄ×¼±¸¹¤×÷
+	// é‡è®¾çš®è‚¤å‰çš„å‡†å¤‡å·¥ä½œ
 	virtual void PreResetSkin() {}
 
-	// ÉèÖÃ´°¿ÚËùÓÃµÄÆ¤·ô
-	// ÅÉÉúÀà±ØĞëÊµÏÖ¡£
+	// è®¾ç½®çª—å£æ‰€ç”¨çš„çš®è‚¤
+	// æ´¾ç”Ÿç±»å¿…é¡»å®ç°ã€‚
 	virtual void DoSetSkin() = 0;
 
-	// ÖØÖÃÆ¤·ôÊÂ¼şÏìÓ¦º¯Êı
+	// é‡ç½®çš®è‚¤äº‹ä»¶å“åº”å‡½æ•°
 	void OnResetSkin(VdkVObjEvent&);
 
 	//-----------------------------------------
 
-	// Éè¶¨ÊÇ·ñÕ³¸½µ½Ö÷´°¿Ú
+	// è®¾å®šæ˜¯å¦ç²˜é™„åˆ°ä¸»çª—å£
 	void SetStickyToMainState(bool sticky);
 
-	// »ñÈ¡(Ïà¶ÔÓÚÖ÷´°¿ÚµÄ)´°¿Ú×÷ÓÃÓòÓÃÓÚ³Ö¾Ã»¯
+	// è·å–(ç›¸å¯¹äºä¸»çª—å£çš„)çª—å£ä½œç”¨åŸŸç”¨äºæŒä¹…åŒ–
 	wxRect GetRectToSerialize() const;
 
-	// Õ³¸½µ½Ö÷´°¿Ú
+	// ç²˜é™„åˆ°ä¸»çª—å£
 	void OnAttachToMain(wxCommandEvent&);
-	// ´ÓÖ÷´°¿ÚÍÑÀë
+	// ä»ä¸»çª—å£è„±ç¦»
 	void OnDetachFromMain(wxCommandEvent&);
 
 	//-----------------------------------------
 
-	// ÏìÓ¦Ô­Éú´°¿Ú¹Ø±ÕÊÂ¼ş(Alt + F4¼¤·¢)
+	// å“åº”åŸç”Ÿçª—å£å…³é—­äº‹ä»¶(Alt + F4æ¿€å‘)
 	void OnCloseNative(wxCloseEvent&);
 
-	// ÏìÓ¦¹Ø±Õ°´Å¥¼¤·¢µÄ´°¿Ú¹Ø±ÕÊÂ¼ş
+	// å“åº”å…³é—­æŒ‰é’®æ¿€å‘çš„çª—å£å…³é—­äº‹ä»¶
 	void OnClose(VdkVObjEvent& e);
 
-	// ¹Ø±Õ´°¿Ú£¬¸üĞÂ×´Ì¬
+	// å…³é—­çª—å£ï¼Œæ›´æ–°çŠ¶æ€
 	void DoCloseWindow();
 
 private:
 
-	// ×îĞ¡»¯(Òş²Øµ½ÍĞÅÌ)
+	// æœ€å°åŒ–(éšè—åˆ°æ‰˜ç›˜)
 	virtual void DoMinimize();
 
 private:
 
-	// ±êÊ¶´°¿ÚµÄ UUID
+	// æ ‡è¯†çª—å£çš„ UUID
 	wxString m_uuid;
 
-	// Òş²ØÇ°ÊÇ·ñÒÑÈ»Õ³¸½µ½Ö÷´°¿Ú
+	// éšè—å‰æ˜¯å¦å·²ç„¶ç²˜é™„åˆ°ä¸»çª—å£
 	bool m_stickyToMain;
-	// Òş²ØÇ°ÒÑÈ»Õ³¸½µ½Ö÷´°¿ÚÊ±Ïà¶ÔÖ÷´°¿ÚµÄÎ»ÖÃ
+	// éšè—å‰å·²ç„¶ç²˜é™„åˆ°ä¸»çª—å£æ—¶ç›¸å¯¹ä¸»çª—å£çš„ä½ç½®
 	wxPoint m_relativePos;
 };

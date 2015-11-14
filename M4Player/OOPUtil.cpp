@@ -1,4 +1,4 @@
-/***************************************************************
+﻿/***************************************************************
  * Name:      OOPUtil.cpp
  * Purpose:   Code for some useful functions
  * Author:    Ning (vanxining@139.com)

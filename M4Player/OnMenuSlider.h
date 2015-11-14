@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OnMenuSlider.h
- * Purpose:   Ê¹ÓÃ VdkSlider À´ÉèÖÃ´°¿ÚÍ¸Ã÷¶È
+ * Purpose:   ä½¿ç”¨ VdkSlider æ¥è®¾ç½®çª—å£é€æ˜åº¦
  * Author:    Ning (vanxining@139.com)
  * Created:   2011.04.02
  * Copyright: Wang Xiao Ning
@@ -9,29 +9,29 @@
 #include "VdkMenu.h"
 #include "VdkSlider.h"
 
-/// \brief Ê¹ÓÃ VdkSlider À´ÉèÖÃ´°¿ÚÍ¸Ã÷¶È
+/// \brief ä½¿ç”¨ VdkSlider æ¥è®¾ç½®çª—å£é€æ˜åº¦
 class OnMenuSlider : public VdkMenuXrcCtrlWrapper
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	OnMenuSlider(wxTopLevelWindow* window);
 
 private:
 
-	/// \brief ÊµÀı»¯Òª¸½¼Óµ½ VdkMenu ÉÏµÄ¿Ø¼ş
+	/// \brief å®ä¾‹åŒ–è¦é™„åŠ åˆ° VdkMenu ä¸Šçš„æ§ä»¶
 	virtual VdkControl* Implement(VdkWindow* menuWin, const wxPoint& pos);
 
 	void OnSlider(VdkVObjEvent& e);
 
-	// ±£´æ¿Ø¼ş×´Ì¬
+	// ä¿å­˜æ§ä»¶çŠ¶æ€
 	virtual void SaveState();
 
-	// »¹Ô­¿Ø¼ş×´Ì¬
+	// è¿˜åŸæ§ä»¶çŠ¶æ€
 	virtual void RestoreState();
 
 	//////////////////////////////////////////////////////////////////////////
 	
-	double m_percentage; // ×´Ì¬±£³Ö
+	double m_percentage; // çŠ¶æ€ä¿æŒ
 	wxTopLevelWindow* m_window;
 };

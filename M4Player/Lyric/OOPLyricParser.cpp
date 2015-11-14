@@ -1,13 +1,13 @@
-/***************************************************************
+Ôªø/***************************************************************
  * Name:      OOPLyricParser.cpp
- * Purpose:   Ω‚Œˆ LRC/QRC/... ∏Ë¥ Œƒº˛
+ * Purpose:   Ëß£Êûê LRC/QRC/... Ê≠åËØçÊñá‰ª∂
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-06-05
  **************************************************************/
 #include "StdAfx.h"
 #include "OOPLyricParser.h"
 
-#include "wxUtil.h" // for IsEncodedInUtf8()°¢ReadAll()
+#include "wxUtil.h" // for IsEncodedInUtf8()„ÄÅReadAll()
 
 #include <wx/wfstream.h> // for wxFFile
 #include <wx/txtstrm.h> // for wxTextInputStream
@@ -86,10 +86,10 @@ wxString OOPLyricParser::LoadFile(const wxString& strLrcFile)
 		{
 			wxString lyric;
 
-			// ºÏ≤‚ «∑Ò“‘ UTF-8 ∏Ò Ω±‡¬Î
+			// Ê£ÄÊµãÊòØÂê¶‰ª• UTF-8 Ê†ºÂºèÁºñÁ†Å
 			char buf[3];
 			input.Read( buf, sizeof buf );
-			// ÷ÿ÷√Œƒº˛÷∏’Î
+			// ÈáçÁΩÆÊñá‰ª∂ÊåáÈíà
 			input.Seek( 0 );
 
 			if( IsEncodedInUtf8( buf ) )
@@ -129,7 +129,7 @@ bool OOPLyricParser::Load(const wxString& lyric, int nTimeSum)
 	}
 	else
 	{
-		wxLogError( L"∏Ë¥ ◊÷∑˚¥ÆŒ™ø’" );
+		wxLogError( L"Ê≠åËØçÂ≠óÁ¨¶‰∏≤‰∏∫Á©∫" );
 	}
 
 	return IsOk();
@@ -164,7 +164,7 @@ bool OOPLyricParser::BuilidLines(int nTimeSum)
 
 	if( !IsOk() )
 	{
-		wxLogDebug( L"Œ¥ ∂±µƒ∏Ë¥ ◊÷∑˚¥Æ" );
+		wxLogDebug( L"Êú™ËØÜÂà´ÁöÑÊ≠åËØçÂ≠óÁ¨¶‰∏≤" );
 		return false;
 	}
 
@@ -172,7 +172,7 @@ bool OOPLyricParser::BuilidLines(int nTimeSum)
 
 	m_lines.Sort( LineInfo::IsBefore );
 
-	// µ⁄“ª––ø™ º«∞µƒÕ£∂Ÿº‰∏Ù£¨ ÷∂Ø‘ˆº”“ª∏ˆø’––
+	// Á¨¨‰∏ÄË°åÂºÄÂßãÂâçÁöÑÂÅúÈ°øÈó¥ÈöîÔºåÊâãÂä®Â¢ûÂä†‰∏Ä‰∏™Á©∫Ë°å
 	if( m_lines[0]->m_nStartTime > 0 )
 	{
 		LineInfo* beforeFirstLine = new LineInfo( wxEmptyString, 0 );
@@ -180,7 +180,7 @@ bool OOPLyricParser::BuilidLines(int nTimeSum)
 	}
 
 	//-----------------------------------------------------
-	// Ã·»°∏˜æ‰œ‘ æµƒ µº  ±º‰
+	// ÊèêÂèñÂêÑÂè•ÊòæÁ§∫ÁöÑÂÆûÈôÖÊó∂Èó¥
 
 	LineInfo* pInfo;
 	int numLines = m_lines.size(), curr = 0;
@@ -194,15 +194,15 @@ bool OOPLyricParser::BuilidLines(int nTimeSum)
 
 	m_nTimeSum = nTimeSum;
 
-	// ∂‘◊Ó∫Û“ª––Ω¯––Ãÿ ‚¥¶¿Ì
+	// ÂØπÊúÄÂêé‰∏ÄË°åËøõË°åÁâπÊÆäÂ§ÑÁêÜ
 	pInfo = *i;
 	pInfo->m_nMilSeconds = m_nTimeSum - pInfo->m_nStartTime;
 	if( pInfo->m_nMilSeconds < 0 )
 	{
-		// TODO: ª·≤ªª·◊ﬂµΩ’‚¿Ô£ø
+		// TODO: ‰ºö‰∏ç‰ºöËµ∞Âà∞ËøôÈáåÔºü
 		enum {
-			// ºŸ»Á∏Ë¥ ≥§∂»±»∏Ë«˙≥§∂»“™≥§£¨ƒ«√¥◊Ó∫Û“ªæ‰∏Ë¥ ≥÷–¯µƒ ±º‰
-			// ƒ¨»œŒ™“ª–°∂Œ ±º‰
+			// ÂÅáÂ¶ÇÊ≠åËØçÈïøÂ∫¶ÊØîÊ≠åÊõ≤ÈïøÂ∫¶Ë¶ÅÈïøÔºåÈÇ£‰πàÊúÄÂêé‰∏ÄÂè•Ê≠åËØçÊåÅÁª≠ÁöÑÊó∂Èó¥
+			// ÈªòËÆ§‰∏∫‰∏ÄÂ∞èÊÆµÊó∂Èó¥
 			DEFAULT_LAST_LINE_LAST = 1000,
 		};
 
@@ -217,7 +217,7 @@ void OOPLyricParser::ParseLine(const wxString& line)
 	wxString strLine( line );
 	if( !strLine.Trim( true ).Trim( false ).empty() )
 	{
-		strLine.Replace( L"£∫", L":" );
+		strLine.Replace( L"Ôºö", L":" );
 	}
 	else
 	{
@@ -228,12 +228,12 @@ void OOPLyricParser::ParseLine(const wxString& line)
 	wxString::size_type startPos = 0, endPos = -1;
 
 	endPos = strLine.Find( L']', true );
-	// º¥ π∏Ë¥ ƒ⁄»›Œ™ø’“≤ºÃ–¯£¨“ÚŒ™ø…ƒ‹ΩˆΩˆÃÌº”“ª∏ˆø’––”√“‘∑÷∏Ù
+	// Âç≥‰ΩøÊ≠åËØçÂÜÖÂÆπ‰∏∫Á©∫‰πüÁªßÁª≠ÔºåÂõ†‰∏∫ÂèØËÉΩ‰ªÖ‰ªÖÊ∑ªÂä†‰∏Ä‰∏™Á©∫Ë°åÁî®‰ª•ÂàÜÈöî
 	if( endPos != wxString::npos )
 	{
 		strLyric = strLine.Mid( endPos + 1 );
 	}
-	else // Œﬁ–ß––(√ª”– ±º‰±Í«©ªÚ∆‰À¸”√°∞[°±°∞]°±¿®∆¿¥µƒ––)
+	else // Êó†ÊïàË°å(Ê≤°ÊúâÊó∂Èó¥Ê†áÁ≠æÊàñÂÖ∂ÂÆÉÁî®‚Äú[‚Äù‚Äú]‚ÄùÊã¨Ëµ∑Êù•ÁöÑË°å)
 	{
 		return;
 	}
@@ -243,7 +243,7 @@ void OOPLyricParser::ParseLine(const wxString& line)
 	{
 		startPos = strLine.find( L'[', startPos );
 
-		//  ±º‰±Í«©ø…ƒ‹ «¡¨–¯µƒ
+		// Êó∂Èó¥Ê†áÁ≠æÂèØËÉΩÊòØËøûÁª≠ÁöÑ
 		if( (startPos == wxString::npos) || (startPos != endPos + 1) )
 		{
 			break;
@@ -255,16 +255,16 @@ void OOPLyricParser::ParseLine(const wxString& line)
 			startPos++;
 			strTime = strLine.Mid( startPos, endPos - startPos );
 		}
-		else // TODO: ∏Ò Ω¥ÌŒÛ
+		else // TODO: Ê†ºÂºèÈîôËØØ
 		{
 			break;
 		}
 
-		// ∏Ò Ω¥ÌŒÛ
+		// Ê†ºÂºèÈîôËØØ
 		if( (strTime.length() != 8) && (strTime.length() != 5) )
 			break;
 
-		// ºÏ≤‚ ±º‰±Í«©µƒ∫œ∑®–‘
+		// Ê£ÄÊµãÊó∂Èó¥Ê†áÁ≠æÁöÑÂêàÊ≥ïÊÄß
 		const static wchar_t* sLegalChars = L"0123456789:.";
 
 		bool ok = true;
@@ -316,7 +316,7 @@ wxString OOPLyricParser::GetLyric() const
 
 	LineIter it( begin() ), e( end() );
 	for( ; it != e; ++it )
-		lyricAll += (*it)->m_strLyric + L"\r\n"; // TODO:  π”√œµÕ≥‘≠…˙ªª––∑˚
+		lyricAll += (*it)->m_strLyric + L"\r\n"; // TODO: ‰ΩøÁî®Á≥ªÁªüÂéüÁîüÊç¢Ë°åÁ¨¶
 
 	return lyricAll;
 }
@@ -371,7 +371,7 @@ LineIter OOPLyricParser::WhichLine(size_t timeOffset) const
 			}
 		}
 
-		// ∂‘◊Ó∫Û“ª––◊˜Ãÿ ‚¥¶¿Ì
+		// ÂØπÊúÄÂêé‰∏ÄË°å‰ΩúÁâπÊÆäÂ§ÑÁêÜ
 		if( (*i)->GetStartTime() <= timeOffset ) 
 			return i;
 	}

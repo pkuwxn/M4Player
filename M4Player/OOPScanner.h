@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <wx/vector.h>
 
 class OOPSongPtr;
@@ -7,24 +7,24 @@ class VdkVObjEvent;
 
 wxDECLARE_EVENT( OOP_EVT_SCAN_DONE, wxCommandEvent );
 
-/// \brief ËÑË÷Ö¸¶¨Ä¿Â¼£¬²éÕÒ¸èÇú
+/// \brief æœç´¢æŒ‡å®šç›®å½•ï¼ŒæŸ¥æ‰¾æ­Œæ›²
 class OOPScanner : public wxThread
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
-	/// \param songList Ó¦¸ÃÔÚ¶ÑÉÏ·ÖÅä£¬»á±»½Ó¹Ü
+	/// \brief æ„é€ å‡½æ•°
+	/// \param songList åº”è¯¥åœ¨å †ä¸Šåˆ†é…ï¼Œä¼šè¢«æ¥ç®¡
 	OOPScanner(wxWindow* dlgParent, wxArrayString* songList);
 
-	/// \brief  Îö¹¹º¯Êı
+	/// \brief  ææ„å‡½æ•°
 	~OOPScanner();
 
 private:
 
-	// ¸ù¾İ¹¤×÷ÕßÏß³Ì·´À¡µÄĞÅÏ¢¸üĞÂ¶Ô»°¿ò
+	// æ ¹æ®å·¥ä½œè€…çº¿ç¨‹åé¦ˆçš„ä¿¡æ¯æ›´æ–°å¯¹è¯æ¡†
 	void OnUpdateUI(VdkVObjEvent& e);
 
-	// Ïß³ÌÈë¿Úº¯Êı
+	// çº¿ç¨‹å…¥å£å‡½æ•°
 	virtual ExitCode Entry();
 
 	//--------------------------

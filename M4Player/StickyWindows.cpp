@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      StickyWindows.cpp
- * Purpose:   WinAMP ·ç¸ñÕ³¸½´°¿ÚÊµÏÖ
+ * Purpose:   WinAMP é£æ ¼ç²˜é™„çª—å£å®ç°
  * Author:    Ning (vanxining@139.com)
  * Created:   2011-03-07
  * Copyright: Ning
@@ -11,7 +11,7 @@
 #include "VdkWindow.h"
 #include "VdkDefs.h" // for vdkSOUTH, vdkALIGN_TOP, etc.
 
-#include "wxUtil.h" // for RightOf()¡¢BottomOf()
+#include "wxUtil.h" // for RightOf()ã€BottomOf()
 
 #ifdef __WXMSW__
 #   include <wx/msw/msvcrt.h>
@@ -56,9 +56,9 @@ void StickyWindows::SetMainWindow(VdkWindow* win)
 	{
 		if( *m_main == win )
 		{
-			// À¹½Ø×ó¼ü°´ÏÂÊÂ¼ş»¹ÊÇ²»ÄÜÉÙ£¬·ñÔòÎŞ·¨ÔÚ×î¿ªÊ¼ÒÆ¶¯Ö÷´°¿ÚÖ®Ç°¾Í
-			// µÃÖªÓĞÄÄĞ©×Ó´°¿ÚÕ³¸½µ½Ëü£¬ÒòÎª VDK Ìá¹©µÄÄ£ÄâÒÆ¶¯×´Ì¬ÔÚ¿ªÊ¼
-			// µÚÒ»´ÎÒÆ¶¯Ö®ºó²Å»áÓĞĞ§
+			// æ‹¦æˆªå·¦é”®æŒ‰ä¸‹äº‹ä»¶è¿˜æ˜¯ä¸èƒ½å°‘ï¼Œå¦åˆ™æ— æ³•åœ¨æœ€å¼€å§‹ç§»åŠ¨ä¸»çª—å£ä¹‹å‰å°±
+			// å¾—çŸ¥æœ‰å“ªäº›å­çª—å£ç²˜é™„åˆ°å®ƒï¼Œå› ä¸º VDK æä¾›çš„æ¨¡æ‹Ÿç§»åŠ¨çŠ¶æ€åœ¨å¼€å§‹
+			// ç¬¬ä¸€æ¬¡ç§»åŠ¨ä¹‹åæ‰ä¼šæœ‰æ•ˆ
 			win->GetWindowHandle()->Bind( wxEVT_LEFT_DOWN,
 										  &StickyWindows::OnMainLeftDown,
 										  this );
@@ -102,7 +102,7 @@ bool StickyWindows::FilterEvent(const EventForFiltering& e)
 			VdkWindow* win = e.window();
 			wxPoint mousePos( e.mouseEvent().GetPosition() );
 
-			// Ö÷´°¿ÚÒÆ¶¯ÊÂ¼şµÄÀ¹½ØÓÉ wxWidgets Ô­Éú»úÖÆÌá¹©
+			// ä¸»çª—å£ç§»åŠ¨äº‹ä»¶çš„æ‹¦æˆªç”± wxWidgets åŸç”Ÿæœºåˆ¶æä¾›
 			if( win != *m_main )
 			{
 				if( win->TestState( VWST_DRAG_AND_MOVING ) )
@@ -137,50 +137,50 @@ bool StickyWindows::FilterEvent(const EventForFiltering& e)
 	return false;
 }
 
-// rc1 ºÍ rc2 ÊÇ·ñÏàµÈ»òÕßÒ»·½°üº¬×ÅÁíÒ»·½
+// rc1 å’Œ rc2 æ˜¯å¦ç›¸ç­‰æˆ–è€…ä¸€æ–¹åŒ…å«ç€å¦ä¸€æ–¹
 bool IsContains(const wxRect& rc1, const wxRect& rc2)
 {
 	return (rc1 == rc2) || rc1.Contains( rc2 ) || rc2.Contains( rc1 );
 }
 
-// ¼ì²â@a moving ÊÇ·ñ¿ÉÒÔÕ³¸½µ½@a still µÄÄ³¸ö·½ÏòÉÏ
-// @param alignment Èô²»Îª¿Õ£¬¿ÉÒÔ»ñÈ¡Á½Õß±ß½ç¶ÔÆëĞÅÏ¢
+// æ£€æµ‹@a moving æ˜¯å¦å¯ä»¥ç²˜é™„åˆ°@a still çš„æŸä¸ªæ–¹å‘ä¸Š
+// @param alignment è‹¥ä¸ä¸ºç©ºï¼Œå¯ä»¥è·å–ä¸¤è€…è¾¹ç•Œå¯¹é½ä¿¡æ¯
 unsigned FindDirection(const wxRect& moving, const wxRect& still,
 					   unsigned* alignment,
 					   int criticalDistance)
 {
 	wxASSERT( criticalDistance >= 0 );
 
-	// Íò·Ö×¢Òâ£º²»ÄÜ¶Ô¸ºÊı½øĞĞ |=
+	// ä¸‡åˆ†æ³¨æ„ï¼šä¸èƒ½å¯¹è´Ÿæ•°è¿›è¡Œ |=
 	unsigned direction = vdkDIRECTION_INVALID;
 
-	// ²éÕÒ×ó²à
+	// æŸ¥æ‰¾å·¦ä¾§
 	if( abs( RightOf( moving ) - still.x ) < criticalDistance )
 	{
 		direction |= vdkWEST;
 	}
 
-	// ²éÕÒÓÒ²à
+	// æŸ¥æ‰¾å³ä¾§
 	if( abs( moving.x - RightOf( still ) ) < criticalDistance )
 	{
 		direction |= vdkEAST;
 	}
 
-	// ²éÕÒÉÏ²à
+	// æŸ¥æ‰¾ä¸Šä¾§
 	if( abs( BottomOf( moving ) - still.y ) < criticalDistance )
 	{
 		direction |= vdkNORTH;
 	}
 
-	// ²éÕÒÏÂ²à
+	// æŸ¥æ‰¾ä¸‹ä¾§
 	if( abs( moving.y - BottomOf( still ) ) < criticalDistance )
 	{
 		direction |= vdkSOUTH;
 	}
 
-	if( alignment ) // ±ß½ç¶ÔÆë
+	if( alignment ) // è¾¹ç•Œå¯¹é½
 	{
-		// ³õÊ¼»¯
+		// åˆå§‹åŒ–
 		*alignment = vdkALIGN_INVALID;
 
 		if( abs( moving.x - still.x ) < criticalDistance )
@@ -216,10 +216,10 @@ bool StickyWindows::HandleResize(VdkWindow* win, const wxPoint& mousePosClient)
 	wxWindow* winMoving = win->GetWindowHandle();
 	wxPoint mousePosScreen( winMoving->ClientToScreen( mousePosClient ) );
 	wxRect rcMovingUnamended( winMoving->GetScreenRect() );
-	// ÒÑ¸ù¾İÊó±êÖ¸Õë½øĞĞĞŞÕıµÄ´°¿Ú×÷ÓÃÓò
+	// å·²æ ¹æ®é¼ æ ‡æŒ‡é’ˆè¿›è¡Œä¿®æ­£çš„çª—å£ä½œç”¨åŸŸ
 	wxRect rcMoving( rcMovingUnamended );
 
-	// ¸ù¾İÊó±êÖ¸ÕëÔÚ VdkWindow ±ßÔµµÄÎ»ÖÃĞŞÕı rcMoving µÄÖµ£¬Ê¹Ö®ÓëÖ¸ÕëÍ¬²½
+	// æ ¹æ®é¼ æ ‡æŒ‡é’ˆåœ¨ VdkWindow è¾¹ç¼˜çš„ä½ç½®ä¿®æ­£ rcMoving çš„å€¼ï¼Œä½¿ä¹‹ä¸æŒ‡é’ˆåŒæ­¥
 	if( mousePtrPosOnEdge & vdkWEST )
 	{
 		rcMoving.x = mousePosScreen.x;
@@ -250,7 +250,7 @@ bool StickyWindows::HandleResize(VdkWindow* win, const wxPoint& mousePosClient)
 
 	//-------------------------------------------------
 
-	// ´°ÌåĞÂµÄ´óĞ¡
+	// çª—ä½“æ–°çš„å¤§å°
 	wxRect rcNew( rcMoving );
 
 	VdkWindowIter i( m_windows.begin() );
@@ -264,7 +264,7 @@ bool StickyWindows::HandleResize(VdkWindow* win, const wxPoint& mousePosClient)
 
 		wxRect rcStill( winStill->GetScreenRect() );
 
-		// Á½ÕßÊÇ°üº¬¹ØÏµ£¬ÍË³öµ±´ÎÑ­»·£¬±ÜÃâÆÆ»µ×´Ì¬
+		// ä¸¤è€…æ˜¯åŒ…å«å…³ç³»ï¼Œé€€å‡ºå½“æ¬¡å¾ªç¯ï¼Œé¿å…ç ´åçŠ¶æ€
 		if( IsContains( rcMoving, rcStill ) )
 			continue;
 
@@ -287,7 +287,7 @@ bool StickyWindows::HandleResize(VdkWindow* win, const wxPoint& mousePosClient)
 					rcNew.x = rcStill.x;
 				}
 
-				// ±ØĞë±£³Ö´°¿ÚÓÒ±ßÔµ²»±ä
+				// å¿…é¡»ä¿æŒçª—å£å³è¾¹ç¼˜ä¸å˜
 				if( x != rcNew.x )
 				{
 					rcNew.width = RightOf( rcMoving ) - rcNew.x;
@@ -305,7 +305,7 @@ bool StickyWindows::HandleResize(VdkWindow* win, const wxPoint& mousePosClient)
 					rcNew.width = RightOf( rcStill ) - rcMoving.x;
 				}
 
-				// ÕâÀïÃ»ÓĞ¸ß¶È/¿í¶È¸Ä±äÁ¿ÅĞ¶ÏÁË£¬ÒòÎªÎÒÃÇ¾ÍÊÇÒª¸Ä±äËüÃÇ
+				// è¿™é‡Œæ²¡æœ‰é«˜åº¦/å®½åº¦æ”¹å˜é‡åˆ¤æ–­äº†ï¼Œå› ä¸ºæˆ‘ä»¬å°±æ˜¯è¦æ”¹å˜å®ƒä»¬
 			}
 
 			if( mousePtrPosOnEdge & vdkNORTH )
@@ -321,7 +321,7 @@ bool StickyWindows::HandleResize(VdkWindow* win, const wxPoint& mousePosClient)
 					rcNew.y = rcStill.y;
 				}
 
-				// ±ØĞë±£³Ö´°¿ÚÏÂ±ßÔµ²»±ä
+				// å¿…é¡»ä¿æŒçª—å£ä¸‹è¾¹ç¼˜ä¸å˜
 				if( y != rcNew.y )
 				{
 					rcNew.height = BottomOf( rcMoving ) - rcNew.y;
@@ -347,8 +347,8 @@ bool StickyWindows::HandleResize(VdkWindow* win, const wxPoint& mousePosClient)
 	if( rcNew != rcMoving )
 	{
 		win->Resize( rcNew );
-		// ÕâÀïÃ»±ØÒªµ÷ÓÃ UpdateStickyChildren() ¸üĞÂÕ³¸½×Ó´°¿Ú£¬
-		// ÒòÎªÃ¿´ÎÔÚÊó±ê×ó¼ü°´ÏÂÊ±¶¼»á½øĞĞ¸üĞÂ
+		// è¿™é‡Œæ²¡å¿…è¦è°ƒç”¨ UpdateStickyChildren() æ›´æ–°ç²˜é™„å­çª—å£ï¼Œ
+		// å› ä¸ºæ¯æ¬¡åœ¨é¼ æ ‡å·¦é”®æŒ‰ä¸‹æ—¶éƒ½ä¼šè¿›è¡Œæ›´æ–°
 
 		return true;
 	}
@@ -356,26 +356,26 @@ bool StickyWindows::HandleResize(VdkWindow* win, const wxPoint& mousePosClient)
 	return false;
 }
 
-// ¿´¿´ÊÇ·ñ¿ÉÒÔÕ³¸½µ½ÆäËü´°¿Ú
+// çœ‹çœ‹æ˜¯å¦å¯ä»¥ç²˜é™„åˆ°å…¶å®ƒçª—å£
 bool StickyWindows::HandleChildMove(VdkWindow* win, const wxPoint& mousePosClient)
 {
 	wxWindow* winMoving = win->GetWindowHandle();
 
 	wxPoint mousePosScreen( winMoving->ClientToScreen( mousePosClient ) );
-	// ÍÏ¶¯´°¿ÚÊ±£¬Èô´°¿Ú¸ú×ÅÖ¸ÕëÒ»ÆğÒÆ¶¯£¬ÄÇÃ´Ö¸ÕëÓ¦¸Ã¿´ÆğÀ´»áÊÇ
-	// Ò»Ö±ÔÚ´°ÌåÉÏµÄÍ¬Ò»Î»ÖÃ
+	// æ‹–åŠ¨çª—å£æ—¶ï¼Œè‹¥çª—å£è·Ÿç€æŒ‡é’ˆä¸€èµ·ç§»åŠ¨ï¼Œé‚£ä¹ˆæŒ‡é’ˆåº”è¯¥çœ‹èµ·æ¥ä¼šæ˜¯
+	// ä¸€ç›´åœ¨çª—ä½“ä¸Šçš„åŒä¸€ä½ç½®
 	wxPoint mousePosClientFixed( win->GetMouseOnForm() );
 
-	// ÍÏ¶¯ºóĞÂµÄÎ»ÖÃ£¬¿ÉÄÜ»áÕ³¸½µ½ĞÂµÄ´°¿Ú¶ø³öÏÖĞŞÕı
+	// æ‹–åŠ¨åæ–°çš„ä½ç½®ï¼Œå¯èƒ½ä¼šç²˜é™„åˆ°æ–°çš„çª—å£è€Œå‡ºç°ä¿®æ­£
 	wxRect rcNew;
 	winMoving->GetSize( &rcNew.width, &rcNew.height );
 	rcNew.x = mousePosScreen.x - mousePosClientFixed.x;
 	rcNew.y = mousePosScreen.y - mousePosClientFixed.y;
 
 	//=======================================================
-	// ÒÆ¶¯×Ó´°¿Ú
+	// ç§»åŠ¨å­çª—å£
 
-	// ´°ÌåÕ³¸½ºóĞÂµÄÎ»ÖÃ
+	// çª—ä½“ç²˜é™„åæ–°çš„ä½ç½®
 	wxRect rcSticked( rcNew );
 
 	VdkWindowIter i( m_windows.begin() );
@@ -388,7 +388,7 @@ bool StickyWindows::HandleChildMove(VdkWindow* win, const wxPoint& mousePosClien
 		}
 
 		wxRect rcStill( winStill->GetScreenRect() );
-		// ¿ÉÄÜÕ³¸½µ½²»Ö¹Ò»¸ö´°¿Ú
+		// å¯èƒ½ç²˜é™„åˆ°ä¸æ­¢ä¸€ä¸ªçª—å£
 		TryStickToAgent( rcSticked, rcStill );
 
 	} // ends fori
@@ -429,11 +429,11 @@ void PostDetachEvent(wxWindow* win)
 
 void StickyWindows::UpdateStickyChildren(const wxRect& rcMain)
 {
-	// ±ØĞëÊ×ÏÈÇå¿Õµ±Ç°ËùÓĞÕ³¸½×Ó´°¿Ú£¬·ñÔòÒÆ¶¯Ò»¸ö×Ó´°¿Ú£¬Ê¹Ö®´ÓÖ÷´°¿Ú
-	// ÍÑÀëºó£¬ÈÎºÎÍ¨¹ıËü¼ä½ÓÕ³¸½µ½Ö÷´°¿ÚµÄ×Ó´°¿ÚÈÔÈ»»á±£ÁôÓëÖ÷´°¿ÚµÄÕ³¸½
-	// ×´Ì¬£¬ÕâÊÇ²»ÕıÈ·µÄ¡£ÄÇÃ´´ËºóÒÆ¶¯Ö÷´°¿Ú£¬Ê¹µÃ¸Õ¸Õ´ÓÖ÷´°¿ÚÍÑÀëµÄ×Ó
-	// ´°¿ÚÔÙ´ÎÕ³¸½£¬ÄÇÃ´Ëü»áÊ×ÏÈÕ³¸½µ½Ö÷´°¿Ú£¬Õâ²»¼Ù£¬µ«ËüÔÚ½ÓÏÂÀ´µÄµü´ú
-	// ²éÕÒ¹ı³Ì»á²»ÕıÈ·µØÕ³¸½µ½Õ³¸½×´Ì¬ÒÑÊ§Ğ§µÄÄÇĞ©×Ó´°¿ÚÉÏÃæÈ¥£¡
+	// å¿…é¡»é¦–å…ˆæ¸…ç©ºå½“å‰æ‰€æœ‰ç²˜é™„å­çª—å£ï¼Œå¦åˆ™ç§»åŠ¨ä¸€ä¸ªå­çª—å£ï¼Œä½¿ä¹‹ä»ä¸»çª—å£
+	// è„±ç¦»åï¼Œä»»ä½•é€šè¿‡å®ƒé—´æ¥ç²˜é™„åˆ°ä¸»çª—å£çš„å­çª—å£ä»ç„¶ä¼šä¿ç•™ä¸ä¸»çª—å£çš„ç²˜é™„
+	// çŠ¶æ€ï¼Œè¿™æ˜¯ä¸æ­£ç¡®çš„ã€‚é‚£ä¹ˆæ­¤åç§»åŠ¨ä¸»çª—å£ï¼Œä½¿å¾—åˆšåˆšä»ä¸»çª—å£è„±ç¦»çš„å­
+	// çª—å£å†æ¬¡ç²˜é™„ï¼Œé‚£ä¹ˆå®ƒä¼šé¦–å…ˆç²˜é™„åˆ°ä¸»çª—å£ï¼Œè¿™ä¸å‡ï¼Œä½†å®ƒåœ¨æ¥ä¸‹æ¥çš„è¿­ä»£
+	// æŸ¥æ‰¾è¿‡ç¨‹ä¼šä¸æ­£ç¡®åœ°ç²˜é™„åˆ°ç²˜é™„çŠ¶æ€å·²å¤±æ•ˆçš„é‚£äº›å­çª—å£ä¸Šé¢å»ï¼
 
 	InfoIter_Const it( m_stickyToMain.begin() );
 	for( ; it != m_stickyToMain.end(); ++it )
@@ -451,8 +451,8 @@ void StickyWindows::UpdateStickyChildren(const wxRect& rcMain)
 	{
 		numStickyWindows = m_stickyToMain.size();
 
-		// Ö»¼ÆËãÉĞÎ´Õ³¸½µÄ×Ó´°¿Ú£¬ÒòÎªµü´ú¿ªÊ¼Ê±ËùÓĞ×Ó´°¿Ú¶¼´¦ÓÚÎ´Õ³¸½
-		// µÄ×´Ì¬£¬²»»á³öÏÖÕ³¸½Ê§Ğ§ĞèÒª¸üĞÂ(Ê¹Ö®ÍÑÀë)µÄÇé¿ö
+		// åªè®¡ç®—å°šæœªç²˜é™„çš„å­çª—å£ï¼Œå› ä¸ºè¿­ä»£å¼€å§‹æ—¶æ‰€æœ‰å­çª—å£éƒ½å¤„äºæœªç²˜é™„
+		// çš„çŠ¶æ€ï¼Œä¸ä¼šå‡ºç°ç²˜é™„å¤±æ•ˆéœ€è¦æ›´æ–°(ä½¿ä¹‹è„±ç¦»)çš„æƒ…å†µ
 		VdkWindowIter i( m_windows.begin() );
 		for( ; i != m_windows.end(); ++i )
 		{
@@ -475,7 +475,7 @@ void StickyWindows::UpdateStickyToMainState(const wxRect& rcMain, VdkWindow* win
 	wxWindow* winNative = win->GetWindowHandle();
 	InfoIter This( FindStickyChild( win ) );
 
-	// ¼ÆËãÓëÖ÷´°¿ÚµÄÕ³¸½ÊôĞÔ
+	// è®¡ç®—ä¸ä¸»çª—å£çš„ç²˜é™„å±æ€§
 	if( RecalcLinkageToMain( rcMain, win ) )
 	{
 		wxCoord x, y, offsetX, offsetY;
@@ -540,7 +540,7 @@ bool StickyWindows::TryStickToAgent(wxRect& rcThis, const wxRect& rcAgent)
 	}
 
 	//---------------------------------------------
-	// ±ß½ç¶ÔÆë
+	// è¾¹ç•Œå¯¹é½
 
 	if( align & vdkALIGN_TOP )
 	{
@@ -575,7 +575,7 @@ bool StickyWindows::RecalcLinkageToMain(const wxRect& rcMain, VdkWindow* chd)
 
 	if( !sticky )
 	{
-		// ²éÕÒÆäËüÒÑ¾­Õ³¸½µ½Ö÷´°¿ÚµÄ×Ó´°¿Ú
+		// æŸ¥æ‰¾å…¶å®ƒå·²ç»ç²˜é™„åˆ°ä¸»çª—å£çš„å­çª—å£
 		VdkWindowIter i( m_windows.begin() );
 		for( ; i != m_windows.end(); ++i )
 		{
@@ -586,7 +586,7 @@ bool StickyWindows::RecalcLinkageToMain(const wxRect& rcMain, VdkWindow* chd)
 			}
 
 			wxRect rcAgent( (*i)->GetWindowHandle()->GetScreenRect() );
-			// ÕÒÒ»¸öÒÑ¾­Õ³¸½µ½Ö÷´°¿ÚµÄ´°¿ÚÀ´¼ä½ÓÕ³¸½µ½Ö÷´°¿Ú
+			// æ‰¾ä¸€ä¸ªå·²ç»ç²˜é™„åˆ°ä¸»çª—å£çš„çª—å£æ¥é—´æ¥ç²˜é™„åˆ°ä¸»çª—å£
 			if( IsStickyToMain( *i ) || ReallySticky( rcAgent, rcMain ) )
 			{
 				sticky = ReallySticky( rcNew, rcAgent ) &&
@@ -615,14 +615,14 @@ void StickyWindows::RemoveChild(VdkWindow* chd)
 
 bool StickyWindows::ReallySticky(const wxRect& rc1, const wxRect& rc2)
 {
-	// Á½Õß±ØĞëÓĞËù½Ó´¥
+	// ä¸¤è€…å¿…é¡»æœ‰æ‰€æ¥è§¦
 	wxRect rcInflated( rc1 );
 	return rcInflated.Inflate( m_criticalDistance ).Intersects( rc2 );
 }
 
 void StickyWindows::OnMainLeftDown(wxMouseEvent& e)
 {
-	// ¸üĞÂÕ³¸½×Ó´°¿Ú
+	// æ›´æ–°ç²˜é™„å­çª—å£
 	UpdateStickyChildren( (*m_main)->GetWindowHandle()->GetScreenRect() );
 
 	e.Skip( true );
@@ -655,8 +655,8 @@ void StickyWindows::LinklyMove(wxMoveEvent& e)
 		}
 	}
 
-	// ÒÆ¶¯Ö÷´°¿ÚÊ±£¬¿ÉÄÜ»áÓĞÎ´ğ¤¸½ÖÁÖ÷´°¿ÚµÄ×Ó´°¿Ú½Ó½üÖ÷´°¿Ú£¬
-	// Òò´ËÔÚÕâÀïĞèÒª¼´Ê±¸üĞÂÕ³¸½ÁĞ±í
+	// ç§»åŠ¨ä¸»çª—å£æ—¶ï¼Œå¯èƒ½ä¼šæœ‰æœªé»é™„è‡³ä¸»çª—å£çš„å­çª—å£æ¥è¿‘ä¸»çª—å£ï¼Œ
+	// å› æ­¤åœ¨è¿™é‡Œéœ€è¦å³æ—¶æ›´æ–°ç²˜é™„åˆ—è¡¨
 	UpdateStickyChildren( rcMain );
 
 	e.Skip( true );

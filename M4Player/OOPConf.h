@@ -1,75 +1,75 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPConf.h
- * Purpose:   OOPlayer µÄËùÓĞÅäÖÃĞÅÏ¢
+ * Purpose:   OOPlayer çš„æ‰€æœ‰é…ç½®ä¿¡æ¯
  * Author:    Wang Xiao Ning (vanxining@139.com)
  * Created:   2011-05-07
  **************************************************************/
 #pragma once
 
- /// \brief Õ³¸½´°¿Ú×´Ì¬³Ö¾Ã»¯
+ /// \brief ç²˜é™„çª—å£çŠ¶æ€æŒä¹…åŒ–
 class OOPStickyWindowState
 {
 public:
 
-    /// \brief ¹¹Ôìº¯Êı
+    /// \brief æ„é€ å‡½æ•°
     OOPStickyWindowState();
 
-    /// \brief ÊÇ·ñÒÑÕ³¸½µ½Ö÷´°¿Ú
+    /// \brief æ˜¯å¦å·²ç²˜é™„åˆ°ä¸»çª—å£
     bool IsStickyToMain() const { return m_stickyToMain; }
 
-    /// \brief »ñÈ¡±£´æµÄ´°¿Ú×÷ÓÃÓò
+    /// \brief è·å–ä¿å­˜çš„çª—å£ä½œç”¨åŸŸ
     wxRect GetRect() const { return m_rect; }
 
-    /// \brief Çå¿Õµ±Ç°Öµ£¬ÓÃÓÚ»»·ôÊ±µÄ×´Ì¬ÖÃÎªÄ¬ÈÏÖµ
+    /// \brief æ¸…ç©ºå½“å‰å€¼ï¼Œç”¨äºæ¢è‚¤æ—¶çš„çŠ¶æ€ç½®ä¸ºé»˜è®¤å€¼
     void Reset();
 
 private:
 
-    // ÊÇ·ñÒÑ¾­Õ³¸½µ½Ö÷´°¿Ú
+    // æ˜¯å¦å·²ç»ç²˜é™„åˆ°ä¸»çª—å£
     bool m_stickyToMain;
 
-    // ´°¿Ú×÷ÓÃÓò£¬¿ÉÄÜÊÇÏà¶ÔÓÚÖ÷´°¿Ú×óÉÏ½Ç¶øÑÔ£¬Ò²ÓĞ¿ÉÄÜÊÇÆÁÄ»×ø±ê
+    // çª—å£ä½œç”¨åŸŸï¼Œå¯èƒ½æ˜¯ç›¸å¯¹äºä¸»çª—å£å·¦ä¸Šè§’è€Œè¨€ï¼Œä¹Ÿæœ‰å¯èƒ½æ˜¯å±å¹•åæ ‡
     wxRect m_rect;
 
     friend class OOPWindow;
     friend bool FromString(const wxString &raw, OOPStickyWindowState &out);
 };
 
-/// \brief OOPlayer µÄÓ¦ÓÃ³ÌĞòÏà¹ØÅäÖÃĞÅÏ¢
+/// \brief OOPlayer çš„åº”ç”¨ç¨‹åºç›¸å…³é…ç½®ä¿¡æ¯
 class OOPConf
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	OOPConf();
 
-    /// \brief ÔØÈëÅäÖÃ
+    /// \brief è½½å…¥é…ç½®
     bool Load(const wxString& path);
 
-    /// \brief ±£´æÅäÖÃ
+    /// \brief ä¿å­˜é…ç½®
     bool Save(const wxString& path);
 
-    /// \brief Çå¿ÕËùÓĞÕ³¸½´°¿Ú×´Ì¬
+    /// \brief æ¸…ç©ºæ‰€æœ‰ç²˜é™„çª—å£çŠ¶æ€
     void ClearStickyWindowStates();
 
 public:
 
-	int m_currSong; /*! µ±Ç°ÕıÔÚ²¥·ÅµÄ¸èÇú */
-	int m_playMode; /*! µ±Ç°²¥·ÅÁĞ±íµü´úÄ£Ê½ */
-	wxString m_skinFolderName; /*! µ±Ç°Æ¤·ôÄ¿Â¼Ãû */
-	bool m_playing; /*! ¹Ø±ÕÊ±ÊÇ·ñÕıÔÚ²¥·Å */
-	int m_currPos; /*! µ±Ç°²¥·Å½ø¶È */
+	int m_currSong; /*! å½“å‰æ­£åœ¨æ’­æ”¾çš„æ­Œæ›² */
+	int m_playMode; /*! å½“å‰æ’­æ”¾åˆ—è¡¨è¿­ä»£æ¨¡å¼ */
+	wxString m_skinFolderName; /*! å½“å‰çš®è‚¤ç›®å½•å */
+	bool m_playing; /*! å…³é—­æ—¶æ˜¯å¦æ­£åœ¨æ’­æ”¾ */
+	int m_currPos; /*! å½“å‰æ’­æ”¾è¿›åº¦ */
 
-	/*! ¼´Ê¹ÔÚ Ubuntu Unity shell ÏÂÃæÒ²ÏÔÊ¾ÍĞÅÌÍ¼±ê */
+	/*! å³ä½¿åœ¨ Ubuntu Unity shell ä¸‹é¢ä¹Ÿæ˜¾ç¤ºæ‰˜ç›˜å›¾æ ‡ */
 	bool m_showTaskBarIconUnderUnity;
-	bool m_playListShown; /*! ²¥·ÅÁĞ±í´°¿ÚÊÇ·ñ¿É¼û */
-	bool m_lyricShown; /*! ¸è´ÊĞã´°¿ÚÊÇ·ñ¿É¼û */
-	bool m_eqShown; /*! EQ ´°¿ÚÊÇ·ñ¿É¼û */
+	bool m_playListShown; /*! æ’­æ”¾åˆ—è¡¨çª—å£æ˜¯å¦å¯è§ */
+	bool m_lyricShown; /*! æ­Œè¯ç§€çª—å£æ˜¯å¦å¯è§ */
+	bool m_eqShown; /*! EQ çª—å£æ˜¯å¦å¯è§ */
 
-	double m_volume; /*! µ±Ç°ÒôÁ¿ */
-	bool m_mute; /*! ÊÇ·ñ¾²Òô */
+	double m_volume; /*! å½“å‰éŸ³é‡ */
+	bool m_mute; /*! æ˜¯å¦é™éŸ³ */
 
-    /*! ¸÷´°¿ÚµÄÎ»ÖÃ¼°Õ³¸½×´Ì¬ */
+    /*! å„çª—å£çš„ä½ç½®åŠç²˜é™„çŠ¶æ€ */
     OOPStickyWindowState mainPanelWndState;
     OOPStickyWindowState playlistPanelWndState;
     OOPStickyWindowState lyricPanelWndState;

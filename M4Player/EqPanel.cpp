@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      EqPanel.cpp
- * Purpose:   ¾ùºâÆ÷´°¿Ú
+ * Purpose:   å‡è¡¡å™¨çª—å£
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-24
  **************************************************************/
@@ -41,10 +41,10 @@ void EqPanel::DoSetSkin()
 	m_profile = (VdkButton *) FindCtrl( L"profile" );
 	m_reset = (VdkButton *) FindCtrl( L"reset" );
 
-	AssignToolTip( FindCtrl( L"close" ), L"¹Ø±Õ" );
-	AssignToolTip( m_enableAll, L"¾ùºâ¿ª¹Ø" );
-	AssignToolTip( m_profile, L"ÅäÖÃÎÄ¼ş" );
-	AssignToolTip( m_reset, L"ÖØÉè¾ùºâÆ÷" );
+	AssignToolTip( FindCtrl( L"close" ), L"å…³é—­" );
+	AssignToolTip( m_enableAll, L"å‡è¡¡å¼€å…³" );
+	AssignToolTip( m_profile, L"é…ç½®æ–‡ä»¶" );
+	AssignToolTip( m_reset, L"é‡è®¾å‡è¡¡å™¨" );
 
 	m_balance = (VdkSlider *) FindCtrl( L"balance" );
 	m_surround = (VdkSlider *) FindCtrl( L"surround" );
@@ -55,12 +55,12 @@ void EqPanel::DoSetSkin()
 	m_preamp->GoTo( 0.5, NULL, false );
 	m_preamp->SetAddinStyle( VSS_VERTICAL_BOTTOM_UP );
 
-	AssignToolTip( m_balance, L"Æ½ºâ" );
-	AssignToolTip( m_surround, L"»·ÈÆ" );
+	AssignToolTip( m_balance, L"å¹³è¡¡" );
+	AssignToolTip( m_surround, L"ç¯ç»•" );
 	AssignToolTip( m_preamp, wxEmptyString );
 
 	//=========================================================
-	// ´´½¨ÆäËüÍÏ¶¯Ìõ
+	// åˆ›å»ºå…¶å®ƒæ‹–åŠ¨æ¡
 
 	wxXmlDocument docSkin( VdkControl::GetFilePath( xrcFileName ) );
 	wxXmlNode* nodeWindowRoot = docSkin.GetRoot()->GetChildren();

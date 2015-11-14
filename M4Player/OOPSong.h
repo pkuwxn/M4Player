@@ -1,213 +1,213 @@
-#pragma once
+ï»¿#pragma once
 
-/// \brief OOPList ÖĞµÄÒ»ÏîËù±ØĞèµÄ×îĞ¡ĞÅÏ¢
+/// \brief OOPList ä¸­çš„ä¸€é¡¹æ‰€å¿…éœ€çš„æœ€å°ä¿¡æ¯
 class OOPListEntry
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	OOPListEntry(const wxString& p);
 	
-	/// \brief ÉèÖÃ¸èÇúµÄ²¥·Å´ÎÊı
+	/// \brief è®¾ç½®æ­Œæ›²çš„æ’­æ”¾æ¬¡æ•°
 	OOPListEntry& playCount(int c) { m_playCount = c; return *this; }
 
-	/// \brief ½«¸èÇúµÄ²¥·Å´ÎÊıµİÔö1
+	/// \brief å°†æ­Œæ›²çš„æ’­æ”¾æ¬¡æ•°é€’å¢1
 	OOPListEntry& playCountPlus() { m_playCount++; return *this; }
 
-	/// \brief »ñÈ¡¸èÇúµÄ²¥·Å´ÎÊı
+	/// \brief è·å–æ­Œæ›²çš„æ’­æ”¾æ¬¡æ•°
 	int playCount() const { return m_playCount; }
 
-	/// \brief ÉèÖÃ¸èÇú¼ÓÈëÁĞ±íµÄÊ±¼ä
+	/// \brief è®¾ç½®æ­Œæ›²åŠ å…¥åˆ—è¡¨çš„æ—¶é—´
 	OOPListEntry& addTime(long t) { m_addTime = t; return *this; }
 
-	/// \brief »ñÈ¡¸èÇú¼ÓÈëÁĞ±íµÄÊ±¼ä
+	/// \brief è·å–æ­Œæ›²åŠ å…¥åˆ—è¡¨çš„æ—¶é—´
 	long addTime() const { return m_addTime; }
 
-	/// \brief »ñÈ¡¸èÇúÂ·¾¶
+	/// \brief è·å–æ­Œæ›²è·¯å¾„
 	wxString path() const { return m_path; }
 
-	/// \brief ÉèÖÃ¸èÇúÂ·¾¶Ãû
+	/// \brief è®¾ç½®æ­Œæ›²è·¯å¾„å
 	OOPListEntry& path(const wxString& s) { m_path = s; return *this; }
 
-	/// \brief »ñÈ¡¸èÇú³¤¶È£¨Á¿¸Ù£ºs[Ãë]£©
+	/// \brief è·å–æ­Œæ›²é•¿åº¦ï¼ˆé‡çº²ï¼šs[ç§’]ï¼‰
 	int length() const { return m_length; }
 
-	/// \brief ÉèÖÃ¸èÇú³¤¶È£¨Á¿¸Ù£ºs[Ãë]£©
+	/// \brief è®¾ç½®æ­Œæ›²é•¿åº¦ï¼ˆé‡çº²ï¼šs[ç§’]ï¼‰
 	OOPListEntry& length(int l) { m_length = l; return *this; }
 
 private:
 
-	int m_playCount; // ²¥·Å´ÎÊı
-	long m_addTime; // ¼ÓÈëÊ±¼ä
+	int m_playCount; // æ’­æ”¾æ¬¡æ•°
+	long m_addTime; // åŠ å…¥æ—¶é—´
 
 	wxString m_path;
 	int m_length;
 };
 
-/// \brief ¸èÇú¶ÔÏó¶¨Òå
+/// \brief æ­Œæ›²å¯¹è±¡å®šä¹‰
 class OOPSong
 {
 public:
 	
-	/// \brief ¹¹Ôìº¯Êı
-	/// \param p ¸èÇúÂ·¾¶
+	/// \brief æ„é€ å‡½æ•°
+	/// \param p æ­Œæ›²è·¯å¾„
 	explicit OOPSong(const wxString& p);
 
-	/// \brief ¹¹Ôìº¯Êı
-	/// \param listEntry ¸ù¾İÒ»¸ö²¥·ÅÁĞ±íÏî´´½¨ÏàÓ¦µÄ OOPSong ¶ÔÏó
+	/// \brief æ„é€ å‡½æ•°
+	/// \param listEntry æ ¹æ®ä¸€ä¸ªæ’­æ”¾åˆ—è¡¨é¡¹åˆ›å»ºç›¸åº”çš„ OOPSong å¯¹è±¡
 	explicit OOPSong(OOPListEntry* listEntry);
 
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	~OOPSong();
 
-	/// \brief »ñÈ¡¶ÔÓ¦µÄ²¥·ÅÁĞ±íÏî
+	/// \brief è·å–å¯¹åº”çš„æ’­æ”¾åˆ—è¡¨é¡¹
 	///
-	/// Õâ¸öº¯Êı²»»áÊÇ const µÄ¡£
+	/// è¿™ä¸ªå‡½æ•°ä¸ä¼šæ˜¯ const çš„ã€‚
 	OOPListEntry* GetListEntry() { return m_listEntry; }
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ÉèÖÃ¸èÇúµÄ²¥·Å´ÎÊı
+	/// \brief è®¾ç½®æ­Œæ›²çš„æ’­æ”¾æ¬¡æ•°
 	OOPSong& playCount(int c) { m_listEntry->playCount( c ); return *this; }
 
-	/// \brief ½«¸èÇúµÄ²¥·Å´ÎÊıµİÔö1
+	/// \brief å°†æ­Œæ›²çš„æ’­æ”¾æ¬¡æ•°é€’å¢1
 	OOPSong& playCountPlus() { m_listEntry->playCountPlus(); return *this; }
 
-	/// \brief »ñÈ¡¸èÇúµÄ²¥·Å´ÎÊı
+	/// \brief è·å–æ­Œæ›²çš„æ’­æ”¾æ¬¡æ•°
 	int playCount() const { return m_listEntry->playCount(); }
 
-	/// \brief ÉèÖÃ¸èÇú¼ÓÈëÁĞ±íµÄÊ±¼ä
+	/// \brief è®¾ç½®æ­Œæ›²åŠ å…¥åˆ—è¡¨çš„æ—¶é—´
 	OOPSong& addTime(long t) { m_listEntry->addTime( t ); return *this; }
 
-	/// \brief »ñÈ¡¸èÇú¼ÓÈëÁĞ±íµÄÊ±¼ä
+	/// \brief è·å–æ­Œæ›²åŠ å…¥åˆ—è¡¨çš„æ—¶é—´
 	long addTime() const { return m_listEntry->addTime(); }
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief »ñÈ¡¸èÇúÃû
+	/// \brief è·å–æ­Œæ›²å
 	wxString title() const { return m_title; }
 
-	/// \brief ÉèÖÃ¸èÇúÃû
+	/// \brief è®¾ç½®æ­Œæ›²å
 	OOPSong& title(const wxString& s) { m_title = s; return *this; }
 
-	/// \brief »ñÈ¡¸èÊÖÃû
+	/// \brief è·å–æ­Œæ‰‹å
 	wxString artist() const { return m_artist; }
 
-	/// \brief ÉèÖÃ¸èÊÖÃû
+	/// \brief è®¾ç½®æ­Œæ‰‹å
 	OOPSong& artist(const wxString& s) { m_artist = s; return *this; }
 
-	/// \brief »ñÈ¡¸èÇúÎÄ¼şÃû
+	/// \brief è·å–æ­Œæ›²æ–‡ä»¶å
 	wxString fileName() const;
 
-	/// \brief »ñÈ¡¸èÇúÂ·¾¶
+	/// \brief è·å–æ­Œæ›²è·¯å¾„
 	wxString path() const { return m_listEntry->path(); }
 
-	/// \brief ÉèÖÃ¸èÇúÂ·¾¶Ãû
+	/// \brief è®¾ç½®æ­Œæ›²è·¯å¾„å
 	OOPSong& path(const wxString& s) { m_listEntry->path( s ); return *this; }
 
-	/// \brief »ñÈ¡Óë¸èÇúÏà¹ØÁªµÄ¸è´ÊÎÄ¼şÂ·¾¶
+	/// \brief è·å–ä¸æ­Œæ›²ç›¸å…³è”çš„æ­Œè¯æ–‡ä»¶è·¯å¾„
 	wxString lrcPath() const;
 
-	/// \brief ÉèÖÃÓë¸èÇúÏà¹ØÁªµÄ¸è´ÊÎÄ¼şÂ·¾¶
+	/// \brief è®¾ç½®ä¸æ­Œæ›²ç›¸å…³è”çš„æ­Œè¯æ–‡ä»¶è·¯å¾„
 	OOPSong& lrcPath(const wxString& s) { m_lrcPath = s; return *this; }
 
-	/// \brief »ñÈ¡¸èÇúËùÊô×¨¼­
+	/// \brief è·å–æ­Œæ›²æ‰€å±ä¸“è¾‘
 	wxString album() const { return m_album; }
 
-	/// \brief ÉèÖÃ¸èÇúËùÊô×¨¼­
+	/// \brief è®¾ç½®æ­Œæ›²æ‰€å±ä¸“è¾‘
 	OOPSong& album(const wxString& s) { m_album = s; return *this; }
 
-	/// \brief »ñÈ¡¸èÇúËùÊôÁ÷ÅÉ
+	/// \brief è·å–æ­Œæ›²æ‰€å±æµæ´¾
 	wxString genre() const { return m_genre; }
 
-	/// \brief ÉèÖÃ¸èÇúËùÊôÁ÷ÅÉ
+	/// \brief è®¾ç½®æ­Œæ›²æ‰€å±æµæ´¾
 	OOPSong& genre(const wxString& s) { m_genre = s; return *this; }
 
-	/// \brief »ñÈ¡¸èÇúµÄÄê´ú
+	/// \brief è·å–æ­Œæ›²çš„å¹´ä»£
 	wxString year() const { return m_year; }
 
-	/// \brief ÉèÖÃ¸èÇúµÄÄê´ú
+	/// \brief è®¾ç½®æ­Œæ›²çš„å¹´ä»£
 	OOPSong& year(wxString y) { m_year = y; return *this; }
 
-	/// \brief »ñÈ¡¸èÇúµÄÒô¹ìºÅ
+	/// \brief è·å–æ­Œæ›²çš„éŸ³è½¨å·
 	int trackNo() const { return m_trackNo; }
 
-	/// \brief ÉèÖÃ¸èÇúµÄÒô¹ìºÅ
+	/// \brief è®¾ç½®æ­Œæ›²çš„éŸ³è½¨å·
 	OOPSong& trackNo(int i) { m_trackNo = i; return *this; }
 
-	/// \brief »ñÈ¡¸èÇúµÄ±¸×¢ĞÅÏ¢
+	/// \brief è·å–æ­Œæ›²çš„å¤‡æ³¨ä¿¡æ¯
 	wxString comment() const { return m_comment; }
 
-	/// \brief ÉèÖÃ¸èÇúµÄ±¸×¢ĞÅÏ¢
+	/// \brief è®¾ç½®æ­Œæ›²çš„å¤‡æ³¨ä¿¡æ¯
 	OOPSong& comment(const wxString& s) { m_comment = s; return *this; }
 
-	/// \brief »ñÈ¡¸èÇú³¤¶È£¨Á¿¸Ù£ºs[Ãë]£©
+	/// \brief è·å–æ­Œæ›²é•¿åº¦ï¼ˆé‡çº²ï¼šs[ç§’]ï¼‰
 	int length() const { return m_listEntry->length(); }
 
-	/// \brief ÉèÖÃ¸èÇú³¤¶È£¨Á¿¸Ù£ºs[Ãë]£©
+	/// \brief è®¾ç½®æ­Œæ›²é•¿åº¦ï¼ˆé‡çº²ï¼šs[ç§’]ï¼‰
 	OOPSong& length(int l) { m_listEntry->length( l ); return *this; }
 
-	/// \brief »ñÈ¡¸èÇú±àÂëĞÅÏ¢
+	/// \brief è·å–æ­Œæ›²ç¼–ç ä¿¡æ¯
 	wxString codec() const;
 
-	/// \brief »ñÈ¡¸èÇú±ÈÌØÂÊ£¨Á¿¸Ù£ºkb/s£©
+	/// \brief è·å–æ­Œæ›²æ¯”ç‰¹ç‡ï¼ˆé‡çº²ï¼škb/sï¼‰
 	int bitRate() const { return m_bitRate; }
 
-	/// \brief »ñÈ¡¸èÇú²ÉÑùÆµÂÊ£¨Á¿¸Ù£ºHz£©
+	/// \brief è·å–æ­Œæ›²é‡‡æ ·é¢‘ç‡ï¼ˆé‡çº²ï¼šHzï¼‰
 	int sampleRate() const { return m_sampleRate; }
 
-	/// \brief »ñÈ¡¸èÇú±ÈÌØ
+	/// \brief è·å–æ­Œæ›²æ¯”ç‰¹
 	int bits() const { return m_bits; }
 
-	/// \brief »ñÈ¡¸èÇúÉùµÀÊı
+	/// \brief è·å–æ­Œæ›²å£°é“æ•°
 	int channels() const { return m_channels; }
 
-	/// \brief »ñÈ¡Ç¶ÈëµÄ¸è´Ê
+	/// \brief è·å–åµŒå…¥çš„æ­Œè¯
 	wxString embeddedLyric() const { return m_lyric; }
 
-	/// \brief »ñÈ¡Ç¶ÈëµÄ¸è´Ê
+	/// \brief è·å–åµŒå…¥çš„æ­Œè¯
 	OOPSong& embeddedLyric(const wxString& lyric) {
 		m_lyric = lyric; return *this;
 	}
 
-	/// \brief ÊÇ·ñÎª¶¯Ì¬ÂëÂÊ
+	/// \brief æ˜¯å¦ä¸ºåŠ¨æ€ç ç‡
 	bool isVBR() const;
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ¸èÇúÎÄ¼şÀàĞÍµÄ±êÇ©¶ÁĞ´ÊÇ·ñ±»Ö§³Ö
+	/// \brief æ­Œæ›²æ–‡ä»¶ç±»å‹çš„æ ‡ç­¾è¯»å†™æ˜¯å¦è¢«æ”¯æŒ
 	bool IsTaggingSupported() const;
 
-	/// \brief ±£´æÒÑ¸ü¸ÄµÄ±êÇ©
+	/// \brief ä¿å­˜å·²æ›´æ”¹çš„æ ‡ç­¾
 	bool Save();
 
-	/// \brief ´Ó±êÇ©ÖĞ¶ÁÈ¡¸èÇúĞÅÏ¢
-	/// \param forceReparse Ç¿ÖÆÖØĞÂ¶ÁÈ¡¸èÇúĞÅÏ¢
+	/// \brief ä»æ ‡ç­¾ä¸­è¯»å–æ­Œæ›²ä¿¡æ¯
+	/// \param forceReparse å¼ºåˆ¶é‡æ–°è¯»å–æ­Œæ›²ä¿¡æ¯
 	void ParseTag(bool forceReparse = false);
 
-	/// \brief ¸èÇúĞÅÏ¢ÊÇ·ñ³É¹¦±»¶ÁÈ¡²¢±£´æ
+	/// \brief æ­Œæ›²ä¿¡æ¯æ˜¯å¦æˆåŠŸè¢«è¯»å–å¹¶ä¿å­˜
 	bool IsParsed() const { return m_parsed; }
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief ¸ù¾İÖ¸¶¨µÄ¸ñÊ½\a format Éú³É¸èÇú±êÊ¶·û
+	/// \brief æ ¹æ®æŒ‡å®šçš„æ ¼å¼\a format ç”Ÿæˆæ­Œæ›²æ ‡è¯†ç¬¦
 	wxString BuildTitle(const wxString& format) const;
 
-	/// \brief Éú³É±ê×¼¸èÇúÊ±³¤×Ö·û´®±í´ïÊ½
+	/// \brief ç”Ÿæˆæ ‡å‡†æ­Œæ›²æ—¶é•¿å­—ç¬¦ä¸²è¡¨è¾¾å¼
 	static wxString GetStdTimeStr(unsigned int len);
 
-	/// ³¢ÊÔ»ñÈ¡ÕıÈ·µÄÒÕÊõ¼ÒºÍ±êÌâ
+	/// å°è¯•è·å–æ­£ç¡®çš„è‰ºæœ¯å®¶å’Œæ ‡é¢˜
 	///
-	/// ÓĞĞ©¸èÇúÎÄ¼şÃ»ÓĞÕıÈ·µÄÒÕÊõ¼ÒºÍ±êÌâĞÅÏ¢£¬ÕâÊ±ºò¿ÉÒÔ³¢ÊÔ´ÓÎÄ¼şÃûÉÏÃæ»ñÈ¡¡£
-	/// Ä¬ÈÏÊ¹ÓÃ¡°%A-%T¡±µÄ¸ñÊ½¡£
-	/// @return ÊÇ·ñ³É¹¦Ìî³äÁË@a strArtist ÒÔ¼°@a strTitle »òÆäÖĞÖ®Ò»¡£
-	/// @attention µ÷ÓÃ±¾º¯Êı»áÇå¿Õ@a strArtist ÒÔ¼°@a strTitle Ô­ÓĞµÄÄÚÈİ¡£
+	/// æœ‰äº›æ­Œæ›²æ–‡ä»¶æ²¡æœ‰æ­£ç¡®çš„è‰ºæœ¯å®¶å’Œæ ‡é¢˜ä¿¡æ¯ï¼Œè¿™æ—¶å€™å¯ä»¥å°è¯•ä»æ–‡ä»¶åä¸Šé¢è·å–ã€‚
+	/// é»˜è®¤ä½¿ç”¨â€œ%A-%Tâ€çš„æ ¼å¼ã€‚
+	/// @return æ˜¯å¦æˆåŠŸå¡«å……äº†@a strArtist ä»¥åŠ@a strTitle æˆ–å…¶ä¸­ä¹‹ä¸€ã€‚
+	/// @attention è°ƒç”¨æœ¬å‡½æ•°ä¼šæ¸…ç©º@a strArtist ä»¥åŠ@a strTitle åŸæœ‰çš„å†…å®¹ã€‚
 	bool TryGetArtistAndTitle(wxString& strArtist, wxString& strTitle) const;
 
 private:
 
-	// ½«\a ret ÖĞº¬ÓĞ\a format µÄ×Ö´®Ìæ»»³É\a data
-	// \return ÊÇ·ñ³É¹¦Ìæ»»
+	// å°†\a ret ä¸­å«æœ‰\a format çš„å­—ä¸²æ›¿æ¢æˆ\a data
+	// \return æ˜¯å¦æˆåŠŸæ›¿æ¢
 	static bool ParseFormat(wxString& ret,
 							const wxString& format,
 							const wxString& data,
@@ -216,7 +216,7 @@ private:
 private:
 
 	OOPListEntry* m_listEntry;
-	bool m_ownListEntry; // m_listEntry Ö¸ÕëÊÇ·ñÒÑ±»½Ó¹Ü
+	bool m_ownListEntry; // m_listEntry æŒ‡é’ˆæ˜¯å¦å·²è¢«æ¥ç®¡
 
 	wxString m_title;
 	wxString m_artist;
@@ -233,7 +233,7 @@ private:
 	int m_bits;
 	int m_channels;
 
-	bool m_parsed; // ÊÇ·ñÒÑÈ»½âÎö Tags
+	bool m_parsed; // æ˜¯å¦å·²ç„¶è§£æ Tags
 
 	struct Impl;
 	Impl* m_impl;

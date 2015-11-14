@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPLyricSchDlg.cpp
- * Purpose:   ¸è´ÊËÑË÷¶Ô»°¿ò
+ * Purpose:   æ­Œè¯æœç´¢å¯¹è¯æ¡†
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2011-08-20
  **************************************************************/
@@ -46,8 +46,8 @@ public:
 		: m_list( NULL )
 	{
 		static ColumnStyle cs[NUM_COLUMNS] =
-		{ { L"ÒÕÊõ¼Ò", static_cast<int>(width * 0.4), 0, TEXT_ALIGN_LEFT },
-		  { L"±êÌâ",   static_cast<int>(width * 0.6), 1, TEXT_ALIGN_LEFT } };
+		{ { L"è‰ºæœ¯å®¶", static_cast<int>(width * 0.4), 0, TEXT_ALIGN_LEFT },
+		  { L"æ ‡é¢˜",   static_cast<int>(width * 0.6), 1, TEXT_ALIGN_LEFT } };
 
 		m_columns = cs;
 	}
@@ -102,7 +102,7 @@ void LyricListAdapter::Clear()
 //////////////////////////////////////////////////////////////////////////
 
 OOPLyricSchDlg::OOPLyricSchDlg(wxWindow* parent)
-	: VdkDialog( parent, L"ËÑË÷¸è´Ê", 0, 
+	: VdkDialog( parent, L"æœç´¢æ­Œè¯", 0, 
 				 VWS_DRAGGABLE |VWS_BASE_PANEL | VWS_DISMISS_BY_ESC ),
 	  m_listAdapter( NULL ), m_clickPlugin( NULL )
 {
@@ -148,7 +148,7 @@ OOPLyricSchDlg::~OOPLyricSchDlg()
 
 void OOPLyricSchDlg::Popup(OOPSongPtr song)
 {
-	// ²»ÒªÖØ¸´ÏÔÊ¾
+	// ä¸è¦é‡å¤æ˜¾ç¤º
 	if( IsShown() )
 	{
 		return;
@@ -219,7 +219,7 @@ void OOPLyricSchDlg::Fill(OOPSongPtr song)
 	wxString strArtist, strTitle;
 	if( !song->TryGetArtistAndTitle( strArtist, strTitle ) )
 	{
-		// ×îÖÕ»¹ÊÇ¿Õ°×£¬ÓÃÎÄ¼şÃûÀ´Ìî³ä
+		// æœ€ç»ˆè¿˜æ˜¯ç©ºç™½ï¼Œç”¨æ–‡ä»¶åæ¥å¡«å……
 		strTitle = song->fileName();
 	}
 
@@ -265,7 +265,7 @@ void OOPLyricSchDlg::OnListLoaded(wxCommandEvent&)
 	{
 		m_listAdapter->SetList( lst );
 
-		// TODO: ÆäÊµ²¢²»ĞèÒª
+		// TODO: å…¶å®å¹¶ä¸éœ€è¦
 		size_t numLyrics = lst.size();
 		for( size_t i = 0; i < numLyrics; i++ )
 		{
@@ -277,11 +277,11 @@ void OOPLyricSchDlg::OnListLoaded(wxCommandEvent&)
 	}
 	else
 	{
-		m_resultLabel->SetCaption( L"Ã»ÓĞÕÒµ½Æ¥ÅäµÄ¸è´Ê", &dc );
+		m_resultLabel->SetCaption( L"æ²¡æœ‰æ‰¾åˆ°åŒ¹é…çš„æ­Œè¯", &dc );
 	}
 
 	m_search->Enable( true, &dc );
-    // Ë¢ĞÂµ±Ç°×´Ì¬
+    // åˆ·æ–°å½“å‰çŠ¶æ€
     m_lyricList->RefreshState( &dc );
 }
 
@@ -303,10 +303,10 @@ void OOPLyricSchDlg::OnDownload(VdkVObjEvent& e)
 
 void OOPLyricSchDlg::Download(int index, wxDC* pDC)
 {
-	// Çå¿Õ¿ÉÄÜµÄ´íÎóĞÅÏ¢
+	// æ¸…ç©ºå¯èƒ½çš„é”™è¯¯ä¿¡æ¯
 	m_resultLabel->SetCaption( wxEmptyString, pDC );
 
-	// ½ûÓÃÏÂÔØ°´Å¥
+	// ç¦ç”¨ä¸‹è½½æŒ‰é’®
 	m_download->Enable( false, pDC );
 
 	OOPSingleLyricTask::Instance().GrabbLyric( index );
@@ -323,17 +323,17 @@ void OOPLyricSchDlg::OnLyricLoaded(wxCommandEvent& e)
 		VdkHttpThread::FinishEvent& finishEvt = 
 			(VdkHttpThread::FinishEvent &) e;
 
-		// ÏÂÔØÊ§°Ü
+		// ä¸‹è½½å¤±è´¥
 		if( finishEvt.GetResult().empty() )
 		{
-			m_resultLabel->SetCaption( L"ÍøÂç´íÎó: ¸è´ÊÏÂÔØÊ§°Ü", &dc );
+			m_resultLabel->SetCaption( L"ç½‘ç»œé”™è¯¯: æ­Œè¯ä¸‹è½½å¤±è´¥", &dc );
 			return;
 		}
 
 		m_resultLabel->SetCaption( wxEmptyString, &dc );
 	}
 
-	// ÓÉ wxApp ´¦Àí
+	// ç”± wxApp å¤„ç†
 	e.SetId( wxID_ANY );
 	wxTheApp->ProcessEventLocally( e );
 }

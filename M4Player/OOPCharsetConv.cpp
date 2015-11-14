@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPCharsetConv.cpp
- * Purpose:   Ê¹ÓÃ wxCSConv ÊµÏÖ MyTagLib::Charset ½Ó¿Ú
+ * Purpose:   ä½¿ç”¨ wxCSConv å®ç° MyTagLib::Charset æ¥å£
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-30
  **************************************************************/

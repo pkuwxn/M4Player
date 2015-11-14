@@ -1,24 +1,24 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPSkin.h
- * Purpose:   ¹ÜÀí OOPlayer µÄÆ¤·ô¶ÁÈ¡¡¢ÇĞ»»µÈÄÚÈİ
+ * Purpose:   ç®¡ç† OOPlayer çš„çš®è‚¤è¯»å–ã€åˆ‡æ¢ç­‰å†…å®¹
  * Author:    Ning (vanxining@139.com)
  * Created:   2011-02-18
  * Copyright: Ning
  **************************************************************/
 #pragma once
 
-/// \brief ¹ÜÀí OOPlayer µÄÆ¤·ô¶ÁÈ¡¡¢ÇĞ»»µÈÄÚÈİ
+/// \brief ç®¡ç† OOPlayer çš„çš®è‚¤è¯»å–ã€åˆ‡æ¢ç­‰å†…å®¹
 class OOPSkin
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	OOPSkin() : m_selected( NULL ) {}
 
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	~OOPSkin();
 
-	/// \brief »ñÈ¡ËùÓĞÆ¤·ô
+	/// \brief è·å–æ‰€æœ‰çš®è‚¤
 	void GetAllSkins();
 
 public:
@@ -27,16 +27,16 @@ public:
 	WX_DECLARE_LIST( SkinInfo, ListOfSkinInfo );
 	typedef OOPSkin::ListOfSkinInfo::const_iterator SkinIter;
 
-	/// \brief »ñÈ¡Æ¤·ôÁĞ±íµü´úÆ÷µÄÆğÊ¼µã
+	/// \brief è·å–çš®è‚¤åˆ—è¡¨è¿­ä»£å™¨çš„èµ·å§‹ç‚¹
 	SkinIter begin() const { return m_skins.begin(); }
 
-	/// \brief »ñÈ¡Æ¤·ôÁĞ±íµü´úÆ÷µÄÖÕÖ¹µã
+	/// \brief è·å–çš®è‚¤åˆ—è¡¨è¿­ä»£å™¨çš„ç»ˆæ­¢ç‚¹
 	SkinIter end() const { return m_skins.end(); }
 
-	/// \brief »ñÈ¡ÒÑ±»Ñ¡ÓÃµÄÆ¤·ô
+	/// \brief è·å–å·²è¢«é€‰ç”¨çš„çš®è‚¤
 	SkinInfo* GetSelectedSkin() const { return m_selected; }
 
-	/// \brief ÉèÖÃÒÑ±»Ñ¡ÓÃµÄÆ¤·ô
+	/// \brief è®¾ç½®å·²è¢«é€‰ç”¨çš„çš®è‚¤
 	void SetSelectedSkin(SkinInfo* skin) { m_selected = skin; }
 
 private:
@@ -46,59 +46,59 @@ private:
 
 public:
 
-	/// \brief Æ¤·ôĞÅÏ¢½á¹¹
+	/// \brief çš®è‚¤ä¿¡æ¯ç»“æ„
 	class SkinInfo {
 	public:
 
-		/// \brief ¹¹Ôìº¯Êı
+		/// \brief æ„é€ å‡½æ•°
 		SkinInfo(const wxString& strName, const wxString& strRootPath);
 
-		/// \brief »ñÈ¡Æ¤·ôÃû×Ö
+		/// \brief è·å–çš®è‚¤åå­—
 		wxString name() const { return m_strName; }
 
-		/// \brief »ñÈ¡Æ¤·ôÃû×Ö¸ùÄ¿Â¼Ãû
+		/// \brief è·å–çš®è‚¤åå­—æ ¹ç›®å½•å
 		wxString folderName() const;
 
-		/// \brief »ñÈ¡Æ¤·ô¸ùÄ¿Â¼µÄÂ·¾¶
+		/// \brief è·å–çš®è‚¤æ ¹ç›®å½•çš„è·¯å¾„
 		///
-		/// Â·¾¶Ä©Î²ÒÑ¼ÓÉÏ¡°/¡±¡£
+		/// è·¯å¾„æœ«å°¾å·²åŠ ä¸Šâ€œ/â€ã€‚
 		wxString rootPath() const { return m_strRootPath; }
 
-		/// \brief »ñÈ¡Æ¤·ô×÷Õß
+		/// \brief è·å–çš®è‚¤ä½œè€…
 		wxString author() const { return m_author; }
 
-		/// \brief »ñÈ¡Æ¤·ô×÷Õß¸öÈËÖ÷Ò³
+		/// \brief è·å–çš®è‚¤ä½œè€…ä¸ªäººä¸»é¡µ
 		wxString url() const { return m_url; }
 
-		/// \brief »ñÈ¡Æ¤·ô×÷ÕßÓÊÏä
+		/// \brief è·å–çš®è‚¤ä½œè€…é‚®ç®±
 		wxString email() const { return m_email; }
 
-		/// \brief »ñÈ¡Æ¤·ôÑÚÂëÉ«
+		/// \brief è·å–çš®è‚¤æ©ç è‰²
 		wxColour maskColor() const { return m_maskColor; }
 
-		/// \brief µ±Ç°Æ¤·ôËõÂÔÍ¼ÊÇ·ñÒÑÈ»±»¶ÁÈë
+		/// \brief å½“å‰çš®è‚¤ç¼©ç•¥å›¾æ˜¯å¦å·²ç„¶è¢«è¯»å…¥
 		bool isThumbNailOk() const { return m_bmpThumbnail.IsOk(); }
 
-		/// \brief »ñÈ¡Æ¤·ôËõÂÔÍ¼
+		/// \brief è·å–çš®è‚¤ç¼©ç•¥å›¾
 		wxBitmap thumbNail(const wxSize& sz) const;
 
 	private:
 
-		// µÃµ½Ä³¸ö½ÚµãµÄÄÚÈİ
+		// å¾—åˆ°æŸä¸ªèŠ‚ç‚¹çš„å†…å®¹
 		wxString GetNode(const wxString& xmlData, const wxString& nodeName);
 
 		//////////////////////////////////////////////////////////////////////////
 
-		wxString m_strName; // Æ¤·ôÃû×Ö
-		wxString m_strRootPath; // Æ¤·ô¸ùÄ¿Â¼µÄÂ·¾¶
-		wxString m_author; // Æ¤·ô×÷Õß
-		wxString m_url; // Æ¤·ô¹Ù·½ÍøÕ¾
-		wxString m_email; // Æ¤·ô×÷ÕßE-Mail
-		wxColour m_maskColor; // Æ¤·ôÑÚÂëÉ«
+		wxString m_strName; // çš®è‚¤åå­—
+		wxString m_strRootPath; // çš®è‚¤æ ¹ç›®å½•çš„è·¯å¾„
+		wxString m_author; // çš®è‚¤ä½œè€…
+		wxString m_url; // çš®è‚¤å®˜æ–¹ç½‘ç«™
+		wxString m_email; // çš®è‚¤ä½œè€…E-Mail
+		wxColour m_maskColor; // çš®è‚¤æ©ç è‰²
 
-		mutable wxBitmap m_bmpThumbnail; // Æ¤·ôËõÂÔÍ¼
+		mutable wxBitmap m_bmpThumbnail; // çš®è‚¤ç¼©ç•¥å›¾
 	};
 
-	/// \brief »ñÈ¡Ö¸¶¨ĞòºÅµÄÆ¤·ô
+	/// \brief è·å–æŒ‡å®šåºå·çš„çš®è‚¤
 	OOPSkin::SkinInfo* GetSkin(int index);
 };

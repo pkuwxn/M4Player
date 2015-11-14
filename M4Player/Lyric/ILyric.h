@@ -1,6 +1,6 @@
-/***************************************************************
+﻿/***************************************************************
  * Name:      ILyric.h
- * Purpose:   �����ĳ���ӿ�
+ * Purpose:   歌词秀的抽象接口
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-06-05
  **************************************************************/
@@ -9,83 +9,83 @@
 class OOPStopWatch;
 class OOPLyricParser;
 
-/// �����ʵ��
+/// 歌词秀实现
 /// 
-/// û��������������������ͨ�� ILyric ָ����ɾ������
+/// 没有虚拟析构函数！不会通过 ILyric 指针来删除对象。
 class ILyric
 {
 public:
 
-	/// Ĭ�Ϲ��캯��
+	/// 默认构造函数
 	ILyric();
 
-	/// �Ƿ���Խ�����ʾ
+	/// 是否可以进行显示
 	virtual bool IsOk() const = 0;
 
-	/// �趨��ǰ�����ļ�ʱ��
+	/// 设定当前歌曲的计时器
 	virtual void SetStopWatch(OOPStopWatch& sw) { m_stopWatch = &sw; }
 
-	/// �󶨸���ļ�����������ʼ���б��ؼ�
+	/// 绑定歌词文件解析器，初始化列表控件
 	virtual void AttachParser(const OOPLyricParser& parser) = 0;
 
-	/// ��ʼ�����ʾ
+	/// 开始歌词显示
 	///
 	/// @see SetStopWatch, AttachParser
 	virtual void Start() = 0;
 
-	/// ��ͣ�����ʾ
+	/// 暂停歌词显示
 	virtual void Pause() = 0;
 
-	/// ֹͣ�����ʾ
+	/// 停止歌词显示
 	virtual void Stop(wxDC* pDC) = 0;
 
-	/// �����ǰ���
+	/// 清除当前歌词
 	virtual void ClearLyric(wxDC* pDC) = 0;
 
-	/// ǰ��ĳ����(0 <= \a percentage <= 1)
+	/// 前往某进度(0 <= \a percentage <= 1)
 	///
-	/// ���������������Ϊ wxTimer::Notify() �в�����ֳ���һ�еĿ�Խ��
-	/// ������ƶ�ʱ���ܻ���ֲ��Ϲ�������������Ҳ�����ȷ������ǰ��Ծ
-	/// ʱ�������
+	/// 保留这个函数是因为 wxTimer::Notify() 中不会出现超过一行的跨越，
+	/// 大幅度移动时可能会出现不断滚动的情况，而且不会正确处理向前跳跃
+	/// 时的情况。
 	virtual void GoTo(double percentage, wxDC* pDC, bool bPaused) = 0;
 
-	/// \brief ����Ĭ�ϵĵĽ����Ը�ʾ�ı�
+	/// \brief 设置默认的的交互性告示文本
 	void SetDefualtInteractiveOutput(const wxString& msg);
 
-	/// \brief ���õ����Ϊ��ʱ����ʾ��һС�ν����Ը�ʾ�ı�
+	/// \brief 设置当歌词为空时，显示的一小段交互性告示文本
 	void SetInteractiveOutput(const wxString& msg, wxDC* pDC);
 
-	/// \brief ����ΪĬ�ϵĽ����Ը�ʾ�ı�
+	/// \brief 重置为默认的交互性告示文本
 	void ResetInteractiveOutput(wxDC* pDC);
 
 protected:
 
-	/// \brief ��ȡ��ǰ��Ч�Ľ����Ը�ʾ�ı�
+	/// \brief 获取当前有效的交互性告示文本
 	wxString GetInteractiveOutput() const;
 
 	enum {
-		/*! ���ˢ��Ƶ��(��λ��ms)������ʹ�ÿ��� OK ��ʽ��ʾ�ĸ�ʣ��Լ�ʹ�ý���ɫ
-		 *  ��ԭ��һ����
+		/*! 歌词刷新频率(单位：ms)，用来使用卡拉 OK 方式显示的歌词，以及使用渐变色
+		 *  还原上一句歌词
 		 */
 		REFRESH_INTERVAL_MS = 40,
 	};
 
 private:
 
-	/// \brief ֪Ϥ�����Ը�ʾ�ı��ѱ��ı�
+	/// \brief 知悉交互性告示文本已被改变
 	virtual void DoSetInteractiveOutput(wxDC* pDC) = 0;
 
-	/// \brief ֪Ϥ�ⲿ���ż�ʱ���ѱ��趨
+	/// \brief 知悉外部播放计时器已被设定
 	virtual void DoSetStopWatch(OOPStopWatch& sw) {}
 
 protected:
 
-	// �ⲿ���ż�ʱ������ȷͬ�������ʾ
+	// 外部播放计时器，精确同步歌词显示
 	OOPStopWatch* m_stopWatch;
 
 private:
 
-	// �����Ϊ��ʱ����ʾһС�ν����Ը�ʾ�ı�
+	// 当歌词为空时，显示一小段交互性告示文本
 	wxString m_defaultInteractiveOutput;
 	wxString m_interactiveOutput;
 };

@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPToolBar.cpp
- * Purpose:   OOPToolBar ÊµÏÖÎÄ¼ş
+ * Purpose:   OOPToolBar å®ç°æ–‡ä»¶
  * Author:    Ning (vanxining@139.com)
  * Created:   2010
  * Copyright: Wang Xiao Ning
@@ -52,7 +52,7 @@ void OOPToolBar::UpdateEntry(wxDC& dc, unsigned eid, int state)
 	wxRect rc( m_firstChild->GetRect() );
 	VdkBitmapArray* ba = &m_normal;
 
-	// Èç¹ûÃ»ÓĞ¹¤¾ßÌõ¸ßÁÁ×´Ì¬Î»Í¼£¬½«°´Å¥ÍùÉÏÒÆ1Ò»¸öÏñËØ
+	// å¦‚æœæ²¡æœ‰å·¥å…·æ¡é«˜äº®çŠ¶æ€ä½å›¾ï¼Œå°†æŒ‰é’®å¾€ä¸Šç§»1ä¸€ä¸ªåƒç´ 
 	int yAaddIn = 0;
 
 	switch( state )
@@ -83,7 +83,7 @@ void OOPToolBar::UpdateEntry(wxDC& dc, unsigned eid, int state)
 
 OOPToolBarEntry::OOPToolBarEntry()
 {
-	// ±ãÓÚÁéÃôµØ´¦Àí¸Ä±ä´°¿Ú´óĞ¡µÄÊó±êÖ¸Õë»Ö¸´
+	// ä¾¿äºçµæ•åœ°å¤„ç†æ”¹å˜çª—å£å¤§å°çš„é¼ æ ‡æŒ‡é’ˆæ¢å¤
 	RemoveStyle( VCS_ONESHOT_HOVERING );
 }
 

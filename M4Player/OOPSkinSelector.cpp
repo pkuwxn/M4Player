@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPSkinSelector.cpp
- * Purpose:   Ê¹ÓÃ VdkListCtrl À´ÏÔÊ¾´óÅúÁ¿µÄÆ¤·ô
+ * Purpose:   ä½¿ç”¨ VdkListCtrl æ¥æ˜¾ç¤ºå¤§æ‰¹é‡çš„çš®è‚¤
  * Author:    Ning (vanxining@139.com)
  * Created:   2011.04.02
  * Copyright: Wang Xiao Ning
@@ -31,7 +31,7 @@ OOPSkinSelector::OOPSkinSelector()
 				L"<rect>1,1,236,274</rect>"
 
 				L"<object class=\"VdkToggleButton\" name=\"home\">"
-				    L"Æ¤·ô"
+				    L"çš®è‚¤"
 				    L"<rect>4,0,80,24</rect>"
 				    L"<expl>3</expl>"
 				    L"<image>../../App/tabs.bmp</image>"
@@ -99,7 +99,7 @@ VdkControl* OOPSkinSelector::Implement(VdkWindow* menuWin, const wxPoint& pos)
 	}
 
 	//----------------------------------------
-	// °ó¶¨ÊÂ¼ş´¦Àíº¯Êı
+	// ç»‘å®šäº‹ä»¶å¤„ç†å‡½æ•°
 
 	VdkWindow::CtrlIter ci;
 	for( ci = m_selector->VdkWindow::begin();

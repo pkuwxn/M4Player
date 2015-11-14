@@ -1,18 +1,18 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      Playlist.h
- * Purpose:   ²¥·ÅÁĞ±íÊµÌåÀà
+ * Purpose:   æ’­æ”¾åˆ—è¡¨å®ä½“ç±»
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-04-19
  **************************************************************/
 #pragma once
 #include "VdkListCtrl.h" // for LcDataSet
 
-/// ²¥·ÅÁĞ±íÊµÌåÀà
+/// æ’­æ”¾åˆ—è¡¨å®ä½“ç±»
 class Playlist : public LcDataSet
 {
 public:
 
-	/// »ñÈ¡µ¥Ìå¶ÔÏó
+	/// è·å–å•ä½“å¯¹è±¡
 	static Playlist& GetInstance();
 
 private:

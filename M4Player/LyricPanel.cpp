@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      LyricPanel.cpp
- * Purpose:   ¶¨Òå LyricPanel
+ * Purpose:   å®šä¹‰ LyricPanel
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-2-27
  **************************************************************/
@@ -28,7 +28,7 @@ LyricPanel::LyricPanel(wxWindow* parent)
 {
 	SetSkin();
 
-	// °ó¶¨²Ëµ¥Ô¤ÏÔÊ¾ÊÂ¼þ
+	// ç»‘å®šèœå•é¢„æ˜¾ç¤ºäº‹ä»¶
 	Bind( wxEVT_VOBJ, &LyricPanel::OnPreShowMenu, this, m_menuId );
 }
 
@@ -37,9 +37,9 @@ void LyricPanel::DoSetSkin()
 	FromXrc( L"lyric_window.xml" );
 	BindCloseBtnEvent();
 
-	AssignToolTip( FindCtrl( L"desklrc" ), L"×ÀÃæ¸è´Ê" );
-	AssignToolTip( FindCtrl( L"close" ), L"¹Ø±Õ" );
-	AssignToolTip( FindCtrl( L"ontop" ), L"×ÜÔÚ×îÇ°" );
+	AssignToolTip( FindCtrl( L"desklrc" ), L"æ¡Œé¢æ­Œè¯" );
+	AssignToolTip( FindCtrl( L"close" ), L"å…³é—­" );
+	AssignToolTip( FindCtrl( L"ontop" ), L"æ€»åœ¨æœ€å‰" );
 
 	m_lyric = (OOPLyric *) FindCtrl( L"OOPLyric" );
 	if( m_lyric )
@@ -73,7 +73,7 @@ void LyricPanel::OnPreShowMenu(VdkVObjEvent& e)
 	}
 
 	//=================================================
-	// ¸ù¾Ýµ±Ç°²¥·Å×´Ì¬¿ØÖÆ²Ëµ¥ÏîµÄÏÔÊ¾
+	// æ ¹æ®å½“å‰æ’­æ”¾çŠ¶æ€æŽ§åˆ¶èœå•é¡¹çš„æ˜¾ç¤º
 
 	bool stopped = g_app->IsStopped();
 

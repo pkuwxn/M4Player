@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPStopWatch.h
- * Purpose:   ²¥·ÅÒıÇæ¼ÆÊ±Æ÷
+ * Purpose:   æ’­æ”¾å¼•æ“è®¡æ—¶å™¨
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-09
  **************************************************************/
@@ -12,18 +12,18 @@ namespace sf {
 
 class MusicEndingDetector;
 
-/// ²¥·ÅÒıÇæ¼ÆÊ±Æ÷
+/// æ’­æ”¾å¼•æ“è®¡æ—¶å™¨
 class OOPStopWatch
 {
 public:
 
-	/// ¹¹Ôìº¯Êı
+	/// æ„é€ å‡½æ•°
 	OOPStopWatch(const sf::Music& music, MusicEndingDetector& endingDetector);
 
 	/// Get elapsed time since the last Start() in milliseconds
 	size_t Time();
 
-	/// ÊÇ·ñÕıÔÚ¼ÆÊ±£¨Ã»ÓĞ±»ÔİÍ££©
+	/// æ˜¯å¦æ­£åœ¨è®¡æ—¶ï¼ˆæ²¡æœ‰è¢«æš‚åœï¼‰
 	bool IsRunning() const;
 
 private:
@@ -32,30 +32,30 @@ private:
 	MusicEndingDetector& m_endingDectector;
 };
 
-/*! ¸èÇú²¥·ÅÒÑË³ÀûÍê½áµÄÍ¨ÖªÊÂ¼ş */
+/*! æ­Œæ›²æ’­æ”¾å·²é¡ºåˆ©å®Œç»“çš„é€šçŸ¥äº‹ä»¶ */
 wxDECLARE_EVENT( MM_EVT_SONG_FINISHED, wxCommandEvent );
 
-/// ¸èÇú²¥·ÅÍê±ÏÊÂ¼şÌ½²âÆ÷
+/// æ­Œæ›²æ’­æ”¾å®Œæ¯•äº‹ä»¶æ¢æµ‹å™¨
 class MusicEndingDetector
 {
 public:
 
-	/// ¹¹Ôìº¯Êı
+	/// æ„é€ å‡½æ•°
 	MusicEndingDetector(const sf::Music& music);
 
-	/// ¿ªÊ¼²¥·Å
+	/// å¼€å§‹æ’­æ”¾
 	void Play();
 
-	/// ¸üĞÂÄÚ²¿×´Ì¬£¬Ê¹Ö®ÄÜÕıÈ·¼¤·¢»Øµ÷º¯Êı
+	/// æ›´æ–°å†…éƒ¨çŠ¶æ€ï¼Œä½¿ä¹‹èƒ½æ­£ç¡®æ¿€å‘å›è°ƒå‡½æ•°
 	void Update();
 
-	/// ÖØÖÃÌ½²âÆ÷(ÊÖ¶¯Í£Ö¹²¥·Å)
+	/// é‡ç½®æ¢æµ‹å™¨(æ‰‹åŠ¨åœæ­¢æ’­æ”¾)
 	void Stop();
 
 private:
 
 	const sf::Music& m_music;
 
-	// ÊÇ·ñÒÑ·¢ËÍ¡°¸èÇúË³Àû²¥·ÅÍê±Ï¡±Í¨ÖªÊÂ¼ş
+	// æ˜¯å¦å·²å‘é€â€œæ­Œæ›²é¡ºåˆ©æ’­æ”¾å®Œæ¯•â€é€šçŸ¥äº‹ä»¶
 	bool m_finishEventSent;
 };

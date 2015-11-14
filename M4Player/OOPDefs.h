@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 enum MainPanelCtrlIds
 {
@@ -35,7 +35,7 @@ enum MainPanelCtrlIds
 	CID_STEREO,
 	CID_STATUS,
 
-	CID_SERACH_EDIT, // ²¥·ÅÁĞ±í´°¿ÚËÑË÷ÁĞ±íËÑË÷¿Ø¼şÎÄ±¾¿ò
+	CID_SERACH_EDIT, // æ’­æ”¾åˆ—è¡¨çª—å£æœç´¢åˆ—è¡¨æœç´¢æ§ä»¶æ–‡æœ¬æ¡†
 };
 
 enum OOPMainMenuId

@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPApp.cpp
- * Purpose:   OOPlayer µÄ¿ØÖÆÖĞĞÄ
+ * Purpose:   OOPlayer çš„æ§åˆ¶ä¸­å¿ƒ
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2009-12-19
  **************************************************************/
@@ -20,9 +20,9 @@
 #include "OOPLabel.h"
 #include "OOPList.h"
 #include "OOPSong.h"
-#include "OOPTrayIcon.h" // ÍĞÅÌÍ¼±ê
+#include "OOPTrayIcon.h" // æ‰˜ç›˜å›¾æ ‡
 #include "OOPSingleLyricTask.h"
-#include "OOPSingleHttpThread.h" // ºÍÆ½ÖÕÖ¹Ïß³Ì
+#include "OOPSingleHttpThread.h" // å’Œå¹³ç»ˆæ­¢çº¿ç¨‹
 
 #include "Lyric/OOPLyric.h"
 #include "Lyric/OOPDesktopLyric.h"
@@ -54,17 +54,17 @@ OOPlayerApp* g_app = NULL;
 const static wchar_t* gs_appVersion = L"1.0 Beta 2(20120531)";
 const static wchar_t* gs_DefaultInteractiveOutput = L"OOPlayer for Linux";
 
-// ¸èÇú±êÇ©ĞÅÏ¢¸üĞÂÊ±¸üĞÂ OOPLabel µÄÏÔÊ¾
+// æ­Œæ›²æ ‡ç­¾ä¿¡æ¯æ›´æ–°æ—¶æ›´æ–° OOPLabel çš„æ˜¾ç¤º
 wxDECLARE_EVENT( OOP_EVT_SONG_INFO_UPDATED, wxCommandEvent );
 
-// Ó¦ÓÃ³ÌĞò×´Ì¬×´Ì¬Î»ĞÅÏ¢
+// åº”ç”¨ç¨‹åºçŠ¶æ€çŠ¶æ€ä½ä¿¡æ¯
 enum OOPState
 {
-    OOPST_MUTE					= 1 << 0, // ¾²Òô
-    // ÊÇ·ñ´¦ÓÚ¿É²¥·ÅµÄ×´Ì¬£¬Èç²¥·ÅÁĞ±í²»Îª¿Õ
+    OOPST_MUTE					= 1 << 0, // é™éŸ³
+    // æ˜¯å¦å¤„äºå¯æ’­æ”¾çš„çŠ¶æ€ï¼Œå¦‚æ’­æ”¾åˆ—è¡¨ä¸ä¸ºç©º
     OOPST_PLAYABLE				= 1 << 1,
-    // ¼ÙÈçÒÑ¾­¶Ôµ±Ç°¸èÇúµÄ¸è´Ê½øĞĞ¹ıÒ»´Î×Ô¶¯ËÑË÷£¬ÄÇÃ´ºóĞø¾Í²»ÒªÔÙµ½
-    // ÍøÂçÉÏÕÒÁË£¬Ö÷ÒªÊÇ±ÜÃâÕÒ²»µ½Æ¥Åä¸è´ÊÊ±»»·ôºóÓÖÖØĞÂÕÒÒ»´Î¡£
+    // å‡å¦‚å·²ç»å¯¹å½“å‰æ­Œæ›²çš„æ­Œè¯è¿›è¡Œè¿‡ä¸€æ¬¡è‡ªåŠ¨æœç´¢ï¼Œé‚£ä¹ˆåç»­å°±ä¸è¦å†åˆ°
+    // ç½‘ç»œä¸Šæ‰¾äº†ï¼Œä¸»è¦æ˜¯é¿å…æ‰¾ä¸åˆ°åŒ¹é…æ­Œè¯æ—¶æ¢è‚¤ååˆé‡æ–°æ‰¾ä¸€æ¬¡ã€‚
     OOPST_LYRIC_SEARCHED		= 1 << 2,
 };
 
@@ -208,7 +208,7 @@ bool OOPlayerApp::OnInit()
 
     //-------------------------------------------
 
-    // ³õÊ¼»¯ËùÓĞ²å¼ş
+    // åˆå§‹åŒ–æ‰€æœ‰æ’ä»¶
     InitPlugins();
 
     wxString confPath( GetAppConfFilePath() );
@@ -227,7 +227,7 @@ bool OOPlayerApp::OnInit()
 
     new MainPanel();
 
-    // ÊÇ·ñ³É¹¦´´½¨
+    // æ˜¯å¦æˆåŠŸåˆ›å»º
     return m_mainPanel != NULL;
 }
 
@@ -236,7 +236,7 @@ int OOPlayerApp::OnExit()
     wxDELETE( m_checker );
 
     //===============================================
-    // É¾³ı HTTP ¹¤×÷ÕßÏß³Ì
+    // åˆ é™¤ HTTP å·¥ä½œè€…çº¿ç¨‹
 
     VdkHttpThread& singHttpThread = OOPSingleHttpThread::Instance();
 
@@ -280,7 +280,7 @@ void OOPlayerApp::UpdateConf()
         m_conf->m_currSong = m_playList->IndexOf( *locked );
 
     m_conf->m_playMode = m_playMode;
-    // ÔİÍ£Ò²×÷ÕıÔÚ²¥·ÅÀ´¿¼ÂÇ
+    // æš‚åœä¹Ÿä½œæ­£åœ¨æ’­æ”¾æ¥è€ƒè™‘
     m_conf->m_playing = IsPlaying() || IsPaused();
     m_conf->m_currPos = m_music.getPlayingOffset().asMilliseconds();
 
@@ -336,9 +336,9 @@ void OOPlayerApp::OnSelectSkin(VdkVObjEvent& e)
 {
     m_mainPanel->HideMenu();
 
-    // ±£´æ¶ÔÅäÖÃĞÅÏ¢¿ÉÄÜµÄĞŞ¸Ä
+    // ä¿å­˜å¯¹é…ç½®ä¿¡æ¯å¯èƒ½çš„ä¿®æ”¹
     SavePanelVisibilities();
-    UpdateConf(); // ¸üĞÂµ«²»±£´æ
+    UpdateConf(); // æ›´æ–°ä½†ä¸ä¿å­˜
 
     int index = (int) e.GetClientData();
     SelectSkin( m_skinList.GetSkin( index ) );
@@ -353,17 +353,17 @@ void OOPlayerApp::SelectSkin(OOPSkin::SkinInfo& info)
         return;
     }
 
-    // ³ÌĞò¸Õ¸ÕÆô¶¯£¬Ê×´ÎÉèÖÃÆ¤·ô
+    // ç¨‹åºåˆšåˆšå¯åŠ¨ï¼Œé¦–æ¬¡è®¾ç½®çš®è‚¤
     bool isFirstRun = !m_mainPanel;
 
     //-------------------------------------------------------
-    // Æ¤·ôÏà¹ØµÄÅäÖÃ
+    // çš®è‚¤ç›¸å…³çš„é…ç½®
     
-    // Çå¿Õ²»Æ¥ÅäµÄÆ¤·ôÏà¹Ø´°¿ÚÎ»ÖÃĞÅÏ¢
+    // æ¸…ç©ºä¸åŒ¹é…çš„çš®è‚¤ç›¸å…³çª—å£ä½ç½®ä¿¡æ¯
     if( !isFirstRun )
         m_conf->ClearStickyWindowStates();
 
-    // ÉèÖÃ½ø³Ì¿Õ¼äÄÚ VdkControl µÄÆ¤·ôĞÅÏ¢
+    // è®¾ç½®è¿›ç¨‹ç©ºé—´å†… VdkControl çš„çš®è‚¤ä¿¡æ¯
     VdkControl::Initialize( info.maskColor(), info.rootPath() );
 
     if( isFirstRun )
@@ -375,7 +375,7 @@ void OOPlayerApp::SelectSkin(OOPSkin::SkinInfo& info)
 	OOPLyric* embeddedLyric = m_embeddedLyric;
     OOPPtrs::Clear();
 
-    bool showStates[3]; // Èı¸ö×Ó´°¿ÚµÄ¿ÉÊÓ×´Ì¬
+    bool showStates[3]; // ä¸‰ä¸ªå­çª—å£çš„å¯è§†çŠ¶æ€
     memset( showStates, 0, sizeof( showStates ) );
 
     showStates[0] = m_playListPanel->IsShown();
@@ -402,9 +402,9 @@ void OOPlayerApp::SelectSkin(OOPSkin::SkinInfo& info)
 
     //------------------------------------------------------
 
-    // »»·ôÇ°ºó×¢Òâ±£´æºÃ m_currSong
+    // æ¢è‚¤å‰åæ³¨æ„ä¿å­˜å¥½ m_currSong
     int index = playList->GetLockedIndex();
-    // Çå³ıËø¶¨±êÖ¾
+    // æ¸…é™¤é”å®šæ ‡å¿—
     playList->SetLocked( playList->end(), NULL );
     playList = NULL;
 
@@ -413,15 +413,15 @@ void OOPlayerApp::SelectSkin(OOPSkin::SkinInfo& info)
     if( index != wxNOT_FOUND )
     {
         m_playList->SetLocked( index, NULL );
-        // ¿ªÊ¼¹ö¶¯¸èÇúĞÅÏ¢
+        // å¼€å§‹æ»šåŠ¨æ­Œæ›²ä¿¡æ¯
         RollLabel( NULL, true );
     }
-    else if( IsPlayable() ) // ¸üĞÂ¸÷¿Ø¼şµÄ¿ÉÄÜ¡°½ûÓÃ¡±×´Ì¬
+    else if( IsPlayable() ) // æ›´æ–°å„æ§ä»¶çš„å¯èƒ½â€œç¦ç”¨â€çŠ¶æ€
     {
         DoStop( NULL, NULL, CL_LEAVE );
     }
 
-    // ÍĞÅÌÍ¼±ê
+    // æ‰˜ç›˜å›¾æ ‡
     if( m_trayIcon )
     {
         UpdateTrayIcon();
@@ -454,7 +454,7 @@ void OOPlayerApp::SaveCurrentSkin(OOPSkin::SkinInfo& info)
 OOPStickyWindowState* OOPlayerApp::GetPanelStickyState(const wxString& uuid)
 {
 	const static wchar_t* sUUIDs[] = {
-		L"16D3DE86-170A-48EE-B9DE-509186AAC389", // Ö÷´°¿Ú
+		L"16D3DE86-170A-48EE-B9DE-509186AAC389", // ä¸»çª—å£
 		L"C5BC105E-ED0F-4578-9215-FA1EE71FC5A9",
 		L"20772658-9A2B-4AE1-BDEC-5BE1823A223E",
 		L"0F146699-FA80-4120-85CD-057E09FED8C8"
@@ -501,7 +501,7 @@ void OOPlayerApp::Quit(VdkVObjEvent&)
 {
     SavePanelVisibilities();
 
-    // ½«´°¿ÚÈ«²¿Òş²Ø£¬±ÜÃâ³öÏÖ¡°¼ÙËÀ¡±
+    // å°†çª—å£å…¨éƒ¨éšè—ï¼Œé¿å…å‡ºç°â€œå‡æ­»â€
     if( m_playListPanel ) m_playListPanel->Hide();
     if( m_lyricPanel ) m_lyricPanel->Hide();
     if( m_eqPanel ) m_eqPanel->Hide();
@@ -509,20 +509,20 @@ void OOPlayerApp::Quit(VdkVObjEvent&)
 
     SaveConf();
 
-    // Í£Ö¹²¥·Å
+    // åœæ­¢æ’­æ”¾
     if( IsPlayable() && !IsStopped() )
     {
         DoStop( NULL, NULL, CL_LEAVE );
     }
 
-	// ±£´æµ±Ç°²¥·ÅÁĞ±í
+	// ä¿å­˜å½“å‰æ’­æ”¾åˆ—è¡¨
 	SavePlayList( GetPlayListPath() );
 
-	// É¾³ıËùÓĞ OOPSong Àà¶ÔÏó
+	// åˆ é™¤æ‰€æœ‰ OOPSong ç±»å¯¹è±¡
 	m_playList->RemoveAllSongPtrs();
 
 	//-------------------------------------------------
-	// Ïú»ÙËùÓĞ´°¿Ú
+	// é”€æ¯æ‰€æœ‰çª—å£
 
     if( m_trayIcon )
     {
@@ -537,7 +537,7 @@ void OOPlayerApp::Minimize(VdkVObjEvent& e)
 {
     if( ToggleAllOnScreenWindow() )
     {
-        // ¼ÙÈç¡°Òş²Øµ½ÍĞÅÌ¡±²Ù×÷³É¹¦£¬¸üĞÂ×îĞ¡»¯°´Å¥µÄÕı³£×´Ì¬
+        // å‡å¦‚â€œéšè—åˆ°æ‰˜ç›˜â€æ“ä½œæˆåŠŸï¼Œæ›´æ–°æœ€å°åŒ–æŒ‰é’®çš„æ­£å¸¸çŠ¶æ€
         m_minimize->Update( VdkButton::NORMAL, e.GetVObjDC() );
     }
 }
@@ -549,13 +549,13 @@ bool OOPlayerApp::DoPlay()
         bool ok = m_music.openFromFile( m_currSong->path() );
         if( !ok )
         {
-            // ²¥·ÅÊ§°Ü
+            // æ’­æ”¾å¤±è´¥
             return false;
         }
 
 		if( m_music.play() )
 		{
-			// Æô¶¯¸èÇú²¥·ÅÍê½á¼ì²âÆ÷
+			// å¯åŠ¨æ­Œæ›²æ’­æ”¾å®Œç»“æ£€æµ‹å™¨
 			m_endingDetector.Play();
 		}
     }
@@ -574,8 +574,8 @@ void OOPlayerApp::DoPause()
 
 void OOPlayerApp::DoStop()
 {
-	// ÖØÖÃ¸èÇú²¥·ÅÍê½á¼ì²âÆ÷£¬±ØĞëÊ¹Ö®ÏÈÓÚ Music::stop() ±»µ÷ÓÃ£¬·ñÔò¼ì²âÆ÷
-	// »á²»ÕıÈ·µØÈÏÎªÕâÊÇÒ»´Î¸èÇúÕı³£Íê½áÊÂ¼ş
+	// é‡ç½®æ­Œæ›²æ’­æ”¾å®Œç»“æ£€æµ‹å™¨ï¼Œå¿…é¡»ä½¿ä¹‹å…ˆäº Music::stop() è¢«è°ƒç”¨ï¼Œå¦åˆ™æ£€æµ‹å™¨
+	// ä¼šä¸æ­£ç¡®åœ°è®¤ä¸ºè¿™æ˜¯ä¸€æ¬¡æ­Œæ›²æ­£å¸¸å®Œç»“äº‹ä»¶
 	m_endingDetector.Stop();
 
     m_music.stop();
@@ -613,28 +613,28 @@ void OOPlayerApp::SwitchPlayMode(OOPlayerPlayMode mode)
 
 void OOPlayerApp::Play(VdkVObjEvent& e)
 {
-    wxASSERT( e.GetMenu() == NULL ); // ²»ÄÜÊÇÒ»¸ö²Ëµ¥ÊÂ¼ş
+    wxASSERT( e.GetMenu() == NULL ); // ä¸èƒ½æ˜¯ä¸€ä¸ªèœå•äº‹ä»¶
     wxASSERT( !m_playList->IsEmpty() );
 
     wxDC* pDC = e.GetVObjDC();
     if( !m_playList->HasLocked() )
     {
-        // Ö±½Ó²¥·Å²¥·ÅÁĞ±íÖĞµÄµÚÒ»¸ö
+        // ç›´æ¥æ’­æ”¾æ’­æ”¾åˆ—è¡¨ä¸­çš„ç¬¬ä¸€ä¸ª
         VdkDC vdc( m_playListPanel );
         m_playList->SetLocked( m_playList->begin(), &vdc );
     }
 
-	// ÏÈ¸üĞÂµ±Ç°ÏîµÄ OOPSong ¶ÔÏó£¨DoPlay() ÓÃµ½£©
+	// å…ˆæ›´æ–°å½“å‰é¡¹çš„ OOPSong å¯¹è±¡ï¼ˆDoPlay() ç”¨åˆ°ï¼‰
 	UpdateCurrSong();
 
     if( !DoPlay() )
     {
-        // ²¥·ÅÊ§°Ü£¬²»ÓÃ³·Ïúµ±Ç°¸èÇú£¿
+        // æ’­æ”¾å¤±è´¥ï¼Œä¸ç”¨æ’¤é”€å½“å‰æ­Œæ›²ï¼Ÿ
         return;
     }
 
     //-------------------------------------------
-	// ¸üĞÂ GUI
+	// æ›´æ–° GUI
 
     ShowHidePlayPause( pDC );
 
@@ -649,14 +649,14 @@ void OOPlayerApp::Play(VdkVObjEvent& e)
             RollLabel( pDC, true );
     }
 
-    m_playPauseItem->caption( L"ÔİÍ£" );
+    m_playPauseItem->caption( L"æš‚åœ" );
     m_stopItem->disabled( false );
 
     SetStatusLabel( wxEmptyString, pDC );
 
     //-------------------------------------------
 
-    // ¿ªÊ¼²¥·Å¸è´Ê
+    // å¼€å§‹æ’­æ”¾æ­Œè¯
     UpdateLyricState();
 }
 
@@ -678,7 +678,7 @@ void OOPlayerApp::StopPlayer(wxDC* pDC)
 
     SetStatusLabel( wxEmptyString, pDC );
 
-    // ½ûÓÃ¡°²¥·Å¿ØÖÆ¡±²Ëµ¥Ïî
+    // ç¦ç”¨â€œæ’­æ”¾æ§åˆ¶â€èœå•é¡¹
     m_playPauseItem->disabled( true );
     m_stopItem->disabled( true );
     m_prevItem->disabled( true );
@@ -725,7 +725,7 @@ void OOPlayerApp::Pause(VdkVObjEvent& e)
     if( m_led )
         m_led->PauseLed();
 
-    m_playPauseItem->caption( L"²¥·Å" );
+    m_playPauseItem->caption( L"æ’­æ”¾" );
     wxASSERT( !m_stopItem->disabled() );
 
     SetStatusLabel( wxEmptyString, pDC );
@@ -749,10 +749,10 @@ void OOPlayerApp::DoStop(wxDC* pDC, wxDC* playListDC, ClearLyricOpt clearLyric)
 
     //----------------------------------------------
 
-    // Çå¿Õ²¥·ÅÁĞ±íËø¶¨Ïî
+    // æ¸…ç©ºæ’­æ”¾åˆ—è¡¨é”å®šé¡¹
     m_playList->SetLocked( m_playList->end(), playListDC );
 
-	// ²¥·ÅÍ£Ö¹£¬¸üĞÂµ±Ç°ÏîµÄ OOPSong ¶ÔÏó
+	// æ’­æ”¾åœæ­¢ï¼Œæ›´æ–°å½“å‰é¡¹çš„ OOPSong å¯¹è±¡
 	UpdateCurrSong();
 
     if( clearLyric == CL_CLEAR )
@@ -786,10 +786,10 @@ void OOPlayerApp::DoStop(wxDC* pDC, wxDC* playListDC, ClearLyricOpt clearLyric)
     SetStatusLabel( wxEmptyString, pDC );
     UpdateTrayIcon();
 
-    m_playPauseItem->caption( L"²¥·Å" );
+    m_playPauseItem->caption( L"æ’­æ”¾" );
     m_stopItem->disabled( true );
 
-	// Ìá½»ËùÓĞ¿ÉÄÜµÄ±»ÑÓ»ºµÄ¶ÀÕ¼ĞÔÎÄ¼ş²Ù×÷
+	// æäº¤æ‰€æœ‰å¯èƒ½çš„è¢«å»¶ç¼“çš„ç‹¬å æ€§æ–‡ä»¶æ“ä½œ
 	SingleDelayModStack::Instance().CommitAll();
 }
 
@@ -840,8 +840,8 @@ void OOPlayerApp::OnMainPanelFirstShown(VdkWindowFirstShownEvent&)
     wxASSERT( m_mainPanel );
 
 #ifdef __WXMSW__
-    // ²»ÖªµÀÎªÊ²Ã´£¬ÔÚ wxMSW ÏÂÃæºóµ÷ÓÃ Show µÄ´°¿ÚµÄµÚÒ»´Î
-    // ÖØ»­ÊÂ¼ş»áÔÚÏÈµ÷ÓÃµÄ´°¿ÚµÄÇ°ÃæÊ×ÏÈµÃµ½
+    // ä¸çŸ¥é“ä¸ºä»€ä¹ˆï¼Œåœ¨ wxMSW ä¸‹é¢åè°ƒç”¨ Show çš„çª—å£çš„ç¬¬ä¸€æ¬¡
+    // é‡ç”»äº‹ä»¶ä¼šåœ¨å…ˆè°ƒç”¨çš„çª—å£çš„å‰é¢é¦–å…ˆå¾—åˆ°
     ShowAllPanelsOnReady();
 #endif
 }
@@ -869,7 +869,7 @@ void OOPlayerApp::SetMainPanel(MainPanel* panel, wxDC* pDC)
 {
     if( !m_togglePlayList || !m_toggleLyric )
     {
-        Alert( L"ÇĞ»»¸÷¸ö×Ó´°¿ÚÊÇ·ñÏÔÊ¾µÄ°´Å¥±ØĞëÔÚ XML ÎÄ¼şÖĞ¶¨Òå¡£" );
+        Alert( L"åˆ‡æ¢å„ä¸ªå­çª—å£æ˜¯å¦æ˜¾ç¤ºçš„æŒ‰é’®å¿…é¡»åœ¨ XML æ–‡ä»¶ä¸­å®šä¹‰ã€‚" );
         return;
     }
 
@@ -879,10 +879,10 @@ void OOPlayerApp::SetMainPanel(MainPanel* panel, wxDC* pDC)
         m_windowManager.SetMainWindow( panel );
         m_mainPanel = panel;
 
-        // ´´½¨²Ëµ¥
+        // åˆ›å»ºèœå•
         GenerateMainMenu();
 
-        // ´´½¨ÍĞÅÌÍ¼±ê
+        // åˆ›å»ºæ‰˜ç›˜å›¾æ ‡
         if( OOPTrayIcon::IsAvailable() )
         {
 #ifdef __WXGTK__
@@ -899,7 +899,7 @@ void OOPlayerApp::SetMainPanel(MainPanel* panel, wxDC* pDC)
         }
     }
 
-    // ÖØ¶¨Î»Ö÷´°¿Ú£¬ÒòÎªÖ÷´°¿ÚÒ»°ãÃ»ÓĞÖ¸¶¨¡°rect¡±½Úµã£¬OOPWindow ÎŞ·¨´¦Àí
+    // é‡å®šä½ä¸»çª—å£ï¼Œå› ä¸ºä¸»çª—å£ä¸€èˆ¬æ²¡æœ‰æŒ‡å®šâ€œrectâ€èŠ‚ç‚¹ï¼ŒOOPWindow æ— æ³•å¤„ç†
     OOPStickyWindowState* sstate = GetPanelStickyState( m_mainPanel->GetUUID() );
     if( sstate )
     {
@@ -921,21 +921,21 @@ void OOPlayerApp::SetMainPanel(MainPanel* panel, wxDC* pDC)
         m_progress->SetAddinStyle( VSS_CLICK_TO_GO );
         m_progress->GoTo( GetProgress(), pDC );
 
-        AssignToolTip( m_progress, L"²¥·Å½ø¶È" );
+        AssignToolTip( m_progress, L"æ’­æ”¾è¿›åº¦" );
     }
 
     if( m_volume )
     {
         m_volume->SetAddinStyle( VSS_CLICK_TO_GO );
-        AssignToolTip( m_volume, L"ÒôÁ¿" );
+        AssignToolTip( m_volume, L"éŸ³é‡" );
     }
 
     if( m_pause && m_play )
     {
         m_play->Show( false, pDC );
 
-        AssignToolTip( m_play, L"²¥·Å" );
-        AssignToolTip( m_pause, L"ÔİÍ£" );
+        AssignToolTip( m_play, L"æ’­æ”¾" );
+        AssignToolTip( m_pause, L"æš‚åœ" );
     }
 
     if( m_led )
@@ -946,37 +946,37 @@ void OOPlayerApp::SetMainPanel(MainPanel* panel, wxDC* pDC)
     if( m_openFile )
     {
         m_openFile->SetAddinStyle( VCS_DELAY_EVENT );
-        AssignToolTip( m_openFile, L"´ò¿ªÎÄ¼ş" );
+        AssignToolTip( m_openFile, L"æ‰“å¼€æ–‡ä»¶" );
     }
 
 	if( m_exit )
 	{
-		// ĞèÒªµÈ´ı²¥·ÅÏß³ÌÖÕ½á£¬ÔÚ´ËÆÚ¼ä¿ÉÄÜ»áÓĞÆäËüÊÂ¼ş±»·ÖÅÉ´¦Àí
+		// éœ€è¦ç­‰å¾…æ’­æ”¾çº¿ç¨‹ç»ˆç»“ï¼Œåœ¨æ­¤æœŸé—´å¯èƒ½ä¼šæœ‰å…¶å®ƒäº‹ä»¶è¢«åˆ†æ´¾å¤„ç†
 		m_exit->SetAddinStyle( VCS_DELAY_EVENT );
 	}
 
     //-------------------------------------------
-    // ÆäËû°´Å¥µÄ ToolTip
+    // å…¶ä»–æŒ‰é’®çš„ ToolTip
 
-    AssignToolTip( m_minimize, L"×îĞ¡»¯" );
-    AssignToolTip( m_minimode, L"ÃÔÄãÄ£Ê½" );
-    AssignToolTip( m_exit, L"ÍË³ö" );
-    AssignToolTip( m_stop, L"Í£Ö¹" );
-    AssignToolTip( m_mute, L"¾²Òô" );
-    AssignToolTip( m_prev, L"Ç°Ò»Ê×" );
-    AssignToolTip( m_btnNext, L"ºóÒ»Ê×" );
-    AssignToolTip( m_toggleLyric, L"¸è´ÊĞã" );
-    AssignToolTip( m_togglePlayList, L"²¥·ÅÁĞ±í" );
-    AssignToolTip( m_toggleEq, L"¾ùºâÆ÷" );
+    AssignToolTip( m_minimize, L"æœ€å°åŒ–" );
+    AssignToolTip( m_minimode, L"è¿·ä½ æ¨¡å¼" );
+    AssignToolTip( m_exit, L"é€€å‡º" );
+    AssignToolTip( m_stop, L"åœæ­¢" );
+    AssignToolTip( m_mute, L"é™éŸ³" );
+    AssignToolTip( m_prev, L"å‰ä¸€é¦–" );
+    AssignToolTip( m_btnNext, L"åä¸€é¦–" );
+    AssignToolTip( m_toggleLyric, L"æ­Œè¯ç§€" );
+    AssignToolTip( m_togglePlayList, L"æ’­æ”¾åˆ—è¡¨" );
+    AssignToolTip( m_toggleEq, L"å‡è¡¡å™¨" );
 
     if( m_toggleBrowser )
     {
-        AssignToolTip( m_toggleBrowser, L"ä¯ÀÀÆ÷" );
+        AssignToolTip( m_toggleBrowser, L"æµè§ˆå™¨" );
     }
 
     //-------------------------------------------
 
-    // »Ö¸´ÒôÁ¿
+    // æ¢å¤éŸ³é‡
     DoMute( m_conf->m_mute );
     ToggleMute( m_conf->m_mute, pDC );
 
@@ -988,7 +988,7 @@ void OOPlayerApp::SetMainPanel(MainPanel* panel, wxDC* pDC)
     {
         wxASSERT( !m_playListPanel );
 
-        // ´´½¨×Ó´°¿ÚÇ°Ö÷´°¿Ú±ØĞëÎª¿ÉÊÓ×´Ì¬£¬·ñÔò×Ó´°¿Ú»áÔÚÈÎÎñÀ¸ÉÏÏÔÊ¾
+        // åˆ›å»ºå­çª—å£å‰ä¸»çª—å£å¿…é¡»ä¸ºå¯è§†çŠ¶æ€ï¼Œå¦åˆ™å­çª—å£ä¼šåœ¨ä»»åŠ¡æ ä¸Šæ˜¾ç¤º
         m_mainPanel->Show( true );
         m_playListPanel = new PlayListPanel( m_mainPanel, false );
 
@@ -997,14 +997,14 @@ void OOPlayerApp::SetMainPanel(MainPanel* panel, wxDC* pDC)
             m_togglePlayList->Toggle( true );
         }
 
-        // ÔØÈëµÄ²¥·ÅÁĞ±í¿ÉÄÜÊÇ¿ÕµÄ£¬½ûÓÃ²¥·ÅÆ÷
+        // è½½å…¥çš„æ’­æ”¾åˆ—è¡¨å¯èƒ½æ˜¯ç©ºçš„ï¼Œç¦ç”¨æ’­æ”¾å™¨
         if( m_playList->IsEmpty() )
         {
             StopPlayer( NULL );
         }
         else
         {
-            // ÉèÖÃÎªÉÏ´ÎÕıÔÚ²¥·ÅµÄ¸èÇú
+            // è®¾ç½®ä¸ºä¸Šæ¬¡æ­£åœ¨æ’­æ”¾çš„æ­Œæ›²
             if( m_conf->m_playing )
             {
                 if( m_conf->m_currSong >= 0 &&
@@ -1018,7 +1018,7 @@ void OOPlayerApp::SetMainPanel(MainPanel* panel, wxDC* pDC)
 						SetPlayingOffset( sf::milliseconds( m_conf->m_currPos ) );
 					}
 
-					// TODO: ½«ÕâÒ»¾ä·ÖÀë³öÀ´
+					// TODO: å°†è¿™ä¸€å¥åˆ†ç¦»å‡ºæ¥
 					if( !IsStopped() )
 					{
 						m_music.setVolume( IsMute() ? 0 : m_volume->GetProgress() );
@@ -1031,7 +1031,7 @@ void OOPlayerApp::SetMainPanel(MainPanel* panel, wxDC* pDC)
                     m_conf->m_currPos = 0;
                 }
             }
-            else // ¸üĞÂ¸÷¿Ø¼şµÄ¿ÉÄÜ¡°½ûÓÃ¡±×´Ì¬
+            else // æ›´æ–°å„æ§ä»¶çš„å¯èƒ½â€œç¦ç”¨â€çŠ¶æ€
             {
                 DoStop( pDC, NULL, CL_LEAVE );
             }
@@ -1054,7 +1054,7 @@ void OOPlayerApp::SetMainPanel(MainPanel* panel, wxDC* pDC)
     // !firstRun
     else if( !IsStopped() )
     {
-        // ÔÚ²¥·Å¹ı³ÌÖĞÇĞ»»Æ¤·ô£¬²»ÒªÖØÖÃµ±Ç°ÕıÔÚ²¥·ÅµÄ¸èÇú
+        // åœ¨æ’­æ”¾è¿‡ç¨‹ä¸­åˆ‡æ¢çš®è‚¤ï¼Œä¸è¦é‡ç½®å½“å‰æ­£åœ¨æ’­æ”¾çš„æ­Œæ›²
         if( m_led )
             m_led->StartLed();
 
@@ -1062,7 +1062,7 @@ void OOPlayerApp::SetMainPanel(MainPanel* panel, wxDC* pDC)
             m_progress->GoTo( GetProgress(), pDC, false );
     }
 
-    // »Ö¸´²¥·ÅÄ£Ê½
+    // æ¢å¤æ’­æ”¾æ¨¡å¼
     if( m_conf->m_playMode > PLAY_MODE_LOWER_BOUND &&
         m_conf->m_playMode < PLAY_MODE_UPPER_BOUND )
     {
@@ -1070,7 +1070,7 @@ void OOPlayerApp::SetMainPanel(MainPanel* panel, wxDC* pDC)
     }
 
 #ifndef __WXMSW__
-    // Ã²ËÆÔÚ GTK+ ÏÂÃæµÚÒ»´ÎÏÔÊ¾Ö÷´°¿ÚºóÔÙÏÔÊ¾×Ó´°¿ÚÓĞµãÍíÁË
+    // è²Œä¼¼åœ¨ GTK+ ä¸‹é¢ç¬¬ä¸€æ¬¡æ˜¾ç¤ºä¸»çª—å£åå†æ˜¾ç¤ºå­çª—å£æœ‰ç‚¹æ™šäº†
     if( firstRun )
     {
         ShowAllPanelsOnReady();
@@ -1080,19 +1080,19 @@ void OOPlayerApp::SetMainPanel(MainPanel* panel, wxDC* pDC)
 
 void OOPlayerApp::BeginSong(LcCellIter songIter, wxDC* pDC, wxDC* playListDC)
 {
-    // ÎŞ·¨´Ó index ÓÅÑÅµØµÃµ½ LcCellIter
+    // æ— æ³•ä» index ä¼˜é›…åœ°å¾—åˆ° LcCellIter
     BeginSong( m_playList->IndexOf( *songIter ), pDC, playListDC );
 }
 
 void OOPlayerApp::BeginSong(int index, wxDC* pDC, wxDC* playListDC)
 {
-    // ÕâÀïµÄ playListDC ²»Ó¦ÉèÎª NULL ,
-    // ·ñÔòÔ­À´ÎŞĞ§µÄÄÇ¸öËø¶¨Ïî²»»áµÃµ½¸üĞÂ
+    // è¿™é‡Œçš„ playListDC ä¸åº”è®¾ä¸º NULL ,
+    // å¦åˆ™åŸæ¥æ— æ•ˆçš„é‚£ä¸ªé”å®šé¡¹ä¸ä¼šå¾—åˆ°æ›´æ–°
     DoStop( pDC, playListDC, CL_LEAVE );
 
     int indexAtFirst = index;
     int numSongs = m_playList->GetItemCount();
-	// ×î¶à³¢ÊÔ 20 ´Î
+	// æœ€å¤šå°è¯• 20 æ¬¡
 	const static int maxTries = 20;
 	int tries = 0;
 
@@ -1102,7 +1102,7 @@ void OOPlayerApp::BeginSong(int index, wxDC* pDC, wxDC* playListDC)
 
         if( m_lyric )
         {
-            // ÖØÖÃ¸è´ÊËÑË÷×´Ì¬
+            // é‡ç½®æ­Œè¯æœç´¢çŠ¶æ€
             RemoveState( OOPST_LYRIC_SEARCHED );
 
             m_lyric->ClearLyric( NULL );
@@ -1112,30 +1112,30 @@ void OOPlayerApp::BeginSong(int index, wxDC* pDC, wxDC* playListDC)
         fakeEvent.SetVObjDC( pDC );
         Play( fakeEvent );
 
-        // ´æÔÚ²¥·ÅÊ§°ÜµÄ¿ÉÄÜ
+        // å­˜åœ¨æ’­æ”¾å¤±è´¥çš„å¯èƒ½
         if( m_music.getStatus() == sf::Music::Playing )
         {
-            // ²»Ó¦¸ÃÔÚ Play() ÖĞÔö¼Ó²¥·Å´ÎÊı( Play() ¿ÉÄÜÊÇ»Ö¸´²¥·Å)
+            // ä¸åº”è¯¥åœ¨ Play() ä¸­å¢åŠ æ’­æ”¾æ¬¡æ•°( Play() å¯èƒ½æ˜¯æ¢å¤æ’­æ”¾)
             m_currSong->playCountPlus();
             UpdateTrayIcon();
 
-            // ²¥·Å³É¹¦£¬ÍË³öÑ­»·
+            // æ’­æ”¾æˆåŠŸï¼Œé€€å‡ºå¾ªç¯
             return;
         }
-        else // ²¥·ÅÊ§°Ü
+        else // æ’­æ”¾å¤±è´¥
         {
-            wxLogDebug( L"¸èÇú`%s`²¥·ÅÊ§°Ü¡£", m_currSong->path() );
+            wxLogDebug( L"æ­Œæ›²`%s`æ’­æ”¾å¤±è´¥ã€‚", m_currSong->path() );
 
             //--------------------------------------------
 
-            // Ìøµ½ÏÂÒ»Ê×
+            // è·³åˆ°ä¸‹ä¸€é¦–
             index++;
 
-            // »ØÍ·
+            // å›å¤´
             if( index == numSongs )
             {
-                // ÆäËüµü´úÄ£Ê½¶¼²»ÊÊÒË´ÓÍ·¿ªÊ¼ÕÒ
-                // ÕâĞ©µü´úÄ£Ê½·Ö±ğÎªµ¥Çú²¥·Å¡¢µ¥ÇúÑ­»·¡¢ÁĞ±íË³Ğò
+                // å…¶å®ƒè¿­ä»£æ¨¡å¼éƒ½ä¸é€‚å®œä»å¤´å¼€å§‹æ‰¾
+                // è¿™äº›è¿­ä»£æ¨¡å¼åˆ†åˆ«ä¸ºå•æ›²æ’­æ”¾ã€å•æ›²å¾ªç¯ã€åˆ—è¡¨é¡ºåº
                 if( (m_playMode == PLAY_MODE_LIST_RECYCLE) ||
                     (m_playMode == PLAY_MODE_LIST_RANDOM) )
                 {
@@ -1150,11 +1150,11 @@ void OOPlayerApp::BeginSong(int index, wxDC* pDC, wxDC* playListDC)
 			 (index < numSongs) &&
 			 (index != indexAtFirst) );
 
-    // Õû¸ö²¥·ÅÁĞ±í¶¼²»¿É²¥·Å
+    // æ•´ä¸ªæ’­æ”¾åˆ—è¡¨éƒ½ä¸å¯æ’­æ”¾
     DoStop( pDC, playListDC, CL_CLEAR );
 }
 
-// »ñÈ¡±ê×¼ LRC ±£´æÄ¿Â¼
+// è·å–æ ‡å‡† LRC ä¿å­˜ç›®å½•
 wxString GetStdLyricDir()
 {
     wxString lrcDir( OOPFileSystem::GetRootPath() );
@@ -1201,7 +1201,7 @@ bool OOPlayerApp::LoadCurrSongLyric()
 
         int nTimeSum = m_currSong->length() * 1000;
 
-        // ÓÅÏÈÊ¹ÓÃÄÚÇ¶¸è´Ê
+        // ä¼˜å…ˆä½¿ç”¨å†…åµŒæ­Œè¯
         wxString embedded( m_currSong->embeddedLyric() );
         if( !embedded.empty() )
         {
@@ -1221,21 +1221,21 @@ bool OOPlayerApp::LoadCurrSongLyric()
 				return true;
 			}
 
-            // ¼ÌĞøÊ¹ÓÃÆäËüÍ¾¾¶½øĞĞËÑË÷
+            // ç»§ç»­ä½¿ç”¨å…¶å®ƒé€”å¾„è¿›è¡Œæœç´¢
         }
 
-        // ¼ÙÈçÒÑ¾­½øĞĞ¹ıÒ»´Î×Ô¶¯ËÑË÷£¬ÄÇÃ´ ClientData Ó¦¸ÃÉèÎª²»Îª¿Õ¡£
-        // Ö÷ÒªÊÇ±ÜÃâÕÒ²»µ½Æ¥Åä¸è´ÊÊ±»»·ôºóÓÖÖØĞÂÕÒÒ»´Î¡£
+        // å‡å¦‚å·²ç»è¿›è¡Œè¿‡ä¸€æ¬¡è‡ªåŠ¨æœç´¢ï¼Œé‚£ä¹ˆ ClientData åº”è¯¥è®¾ä¸ºä¸ä¸ºç©ºã€‚
+        // ä¸»è¦æ˜¯é¿å…æ‰¾ä¸åˆ°åŒ¹é…æ­Œè¯æ—¶æ¢è‚¤ååˆé‡æ–°æ‰¾ä¸€æ¬¡ã€‚
         if( !TestState( OOPST_LYRIC_SEARCHED ) )
         {
-            // µ½·şÎñÆ÷ÉÏÃæËÑË÷
+            // åˆ°æœåŠ¡å™¨ä¸Šé¢æœç´¢
             NewLyricDownloadSession();
 
             //------------------------------------------------------
 
-            m_lyric->ClearLyric( NULL ); // Çå³ı±³¾°
+            m_lyric->ClearLyric( NULL ); // æ¸…é™¤èƒŒæ™¯
 
-            wxString interactiveOutput( L"ÕıÔÚ·şÎñÆ÷ÉÏËÑË÷¸è´Ê..." );
+            wxString interactiveOutput( L"æ­£åœ¨æœåŠ¡å™¨ä¸Šæœç´¢æ­Œè¯..." );
             {
                 VdkDC dc( m_lyricPanel );
                 m_lyric->SetInteractiveOutput( interactiveOutput, &dc );
@@ -1253,12 +1253,12 @@ void OOPlayerApp::NewLyricDownloadSession()
     wxString strArtist;
     wxString strTitle;
 
-    // ¼ÙÈçÎŞ·¨ÌáÈ¡ÕıÈ·µÄÒÕÊõ¼ÒºÍ±êÌâ£¬Ö±½ÓÊ¹ÓÃÎÄ¼şÃû½øĞĞËÑË÷
+    // å‡å¦‚æ— æ³•æå–æ­£ç¡®çš„è‰ºæœ¯å®¶å’Œæ ‡é¢˜ï¼Œç›´æ¥ä½¿ç”¨æ–‡ä»¶åè¿›è¡Œæœç´¢
     if( !m_currSong->TryGetArtistAndTitle( strArtist, strTitle ) )
         strTitle = m_currSong->fileName();
 
     LyricGrabber::Task& singleTask = OOPSingleLyricTask::Instance();
-    singleTask.SetHost( 0 ); // Ä¬ÈÏÑ¡µÚÒ»¸ö¸è´Ê·şÎñÆ÷
+    singleTask.SetHost( 0 ); // é»˜è®¤é€‰ç¬¬ä¸€ä¸ªæ­Œè¯æœåŠ¡å™¨
 
     singleTask.SetArtist( strArtist );
     singleTask.SetTitle( strTitle );
@@ -1279,17 +1279,17 @@ void OOPlayerApp::RollLabel(wxDC* pDC, bool startAtOnce)
 		wxString strArtist( m_currSong->artist() );
 		if( !strArtist.empty() )
 		{
-			info.Add( L"ÒÕÊõ¼Ò: " + strArtist );
+			info.Add( L"è‰ºæœ¯å®¶: " + strArtist );
 		}
 
 		wxString strAlbum( m_currSong->album() );
         if( !strAlbum.empty() )
         {
-            info.Add( L"×¨¼­: " + strAlbum );
+            info.Add( L"ä¸“è¾‘: " + strAlbum );
         }
 
 		wxString strLength( OOPSong::GetStdTimeStr( m_currSong->length() ) );
-        info.Add( wxString::Format( L"³¤¶È: %s", strLength ) );
+        info.Add( wxString::Format( L"é•¿åº¦: %s", strLength ) );
 
         //-------------------------------------------------------
 
@@ -1307,7 +1307,7 @@ void OOPlayerApp::GeneratePlayList(OOPList* playList)
     m_playList = playList;
     m_playList->SetID( CID_PLAY_LIST );
 
-	// »»·ôºó²»ĞèÒªÖØĞÂ¶ÁÈë²¥·ÅÁĞ±í
+	// æ¢è‚¤åä¸éœ€è¦é‡æ–°è¯»å…¥æ’­æ”¾åˆ—è¡¨
 	if( !m_playList->GetVdkWindow()->IsReseting() )
 		LoadPlayList( GetPlayListPath() );
 }
@@ -1320,7 +1320,7 @@ wxString OOPlayerApp::GetPlayListTitleFormat() const
 void OOPlayerApp::ShowPlayListPanel(VdkVObjEvent& e)
 {
     bool show = m_togglePlayList->IsToggled();
-    // ±ØĞëÔÚ¸Ä±ä´°¿ÚÎ»ÖÃÖ®Ç°µ÷ÓÃ
+    // å¿…é¡»åœ¨æ”¹å˜çª—å£ä½ç½®ä¹‹å‰è°ƒç”¨
     m_playListPanel->NotifyShowHideAndStick( show );
     m_playListPanel->Show( show );
 
@@ -1372,7 +1372,7 @@ void OOPlayerApp::InitLyric()
 	//CreateDesktopLyric();
 
 	//====================================================
-	// ÄÚÇ¶¸è´Ê
+	// å†…åµŒæ­Œè¯
 
 	m_embeddedLyric = m_lyricPanel->m_lyric;
     m_lyric.Attach( m_embeddedLyric );
@@ -1394,13 +1394,13 @@ void OOPlayerApp::InitLyric()
 				}
 				else
 				{
-					// Start() »áÉèÖÃÕıÈ·µÄ½ø¶È£¬Òò´Ë½öĞèÔÚÔİÍ£Ê±
-					// µ÷ÓÃ±¾º¯Êı
+					// Start() ä¼šè®¾ç½®æ­£ç¡®çš„è¿›åº¦ï¼Œå› æ­¤ä»…éœ€åœ¨æš‚åœæ—¶
+					// è°ƒç”¨æœ¬å‡½æ•°
 					m_lyric->GoTo( GetProgress(), NULL, true );
 				}
 			}
 		}
-		else // »æÖÆ½»»¥ĞÔÎÄ±¾
+		else // ç»˜åˆ¶äº¤äº’æ€§æ–‡æœ¬
 		{
 			VdkDC lyricDC( m_lyricPanel );
 			m_embeddedLyric->Draw( lyricDC );
@@ -1461,7 +1461,7 @@ void OOPlayerApp::ShowHidePlayPause(wxDC* pDC)
 
         show->Show( true, NULL );
 
-        // ÖØÉè°´Å¥×´Ì¬£¬±ÜÃâ×´Ì¬²ĞÁô
+        // é‡è®¾æŒ‰é’®çŠ¶æ€ï¼Œé¿å…çŠ¶æ€æ®‹ç•™
         if( show->ContainsPointerGlobally() )
             show->Update( VdkButton::HOVERING, pDC );
         else
@@ -1473,7 +1473,7 @@ void OOPlayerApp::ShowHidePlayPause(wxDC* pDC)
 
 void OOPlayerApp::OnProgress(VdkVObjEvent& e)
 {
-	// ³ÙÀ´µÄÊÂ¼ş£¿
+	// è¿Ÿæ¥çš„äº‹ä»¶ï¼Ÿ
 	if( IsStopped() )
 		return;
 
@@ -1484,7 +1484,7 @@ void OOPlayerApp::OnProgress(VdkVObjEvent& e)
     if( eventId == NORMAL )
     {
         double newProgress = m_progress->GetProgress();
-        // ÍÏµ½×îºóµ±×÷ÎŞĞ§
+        // æ‹–åˆ°æœ€åå½“ä½œæ— æ•ˆ
         if( newProgress == 1 )
         {
             m_progress->GoTo( GetProgress(), pDC );
@@ -1492,9 +1492,9 @@ void OOPlayerApp::OnProgress(VdkVObjEvent& e)
         }
         else
         {
-            // ±ØĞëÏÈ¸Ä±äµ±Ç°²¥·Å½ø¶È£¬¸è´ÊĞãÒÀÀµÓÚµ±Ç°Öµ
+            // å¿…é¡»å…ˆæ”¹å˜å½“å‰æ’­æ”¾è¿›åº¦ï¼Œæ­Œè¯ç§€ä¾èµ–äºå½“å‰å€¼
             if( !SetPlayingOffset( sf::milliseconds( nTimeSum * newProgress ) ) )
-                return; // ½ø¶ÈÌõ»á×Ô¶¯»Ö¸´µ½ÊÊµ±µÄÎ»ÖÃ
+                return; // è¿›åº¦æ¡ä¼šè‡ªåŠ¨æ¢å¤åˆ°é€‚å½“çš„ä½ç½®
 
             if( m_lyric && m_lyric->IsOk() )
             {
@@ -1505,7 +1505,7 @@ void OOPlayerApp::OnProgress(VdkVObjEvent& e)
 
 		if( m_led )
 		{
-			// ResumeLed() ²»»áÁ¢¿ÌÖØ»­¿Ø¼ş
+			// ResumeLed() ä¸ä¼šç«‹åˆ»é‡ç”»æ§ä»¶
 			if( pDC )
 			{
 				m_led->Draw( *pDC );
@@ -1538,12 +1538,12 @@ void OOPlayerApp::OnLyricDragg(VdkVObjEvent& e)
     
     if( !SetPlayingOffset( sf::milliseconds( timeToGo ) ) )
     {
-        // Ñ°µÀÊ§°Ü
+        // å¯»é“å¤±è´¥
         m_lyric->GoTo( GetProgress(), e.GetVObjDC(), IsPaused() );
         return;
     }
 	
-	// ×ÀÃæ¸è´ÊÎŞ·¨ÖªÏ¤ÄÚÇ¶¸è´ÊµÄÍÏ¶¯ÊÂ¼ş
+	// æ¡Œé¢æ­Œè¯æ— æ³•çŸ¥æ‚‰å†…åµŒæ­Œè¯çš„æ‹–åŠ¨äº‹ä»¶
 	if( m_desktopLyric )
 	{
 		m_desktopLyric->GoTo( GetProgress(), NULL, IsPaused() );
@@ -1564,7 +1564,7 @@ bool OOPlayerApp::SetPlayingOffset(sf::Time offset)
 {
 	m_endingDetector.Stop();
 	bool ok = m_music.setPlayingOffset( offset );
-	// ÖØÆôÌ½²âÆ÷
+	// é‡å¯æ¢æµ‹å™¨
 	m_endingDetector.Play();
 	
 	return ok;
@@ -1586,7 +1586,7 @@ void OOPlayerApp::OnPlaySel(VdkVObjEvent& e)
 
 void OOPlayerApp::HandleDelete(VdkVObjEvent& e)
 {
-    // ÎïÀíÉ¾³ı¸èÇúÎÄ¼ş
+    // ç‰©ç†åˆ é™¤æ­Œæ›²æ–‡ä»¶
     bool delPhysically =
         (e.GetId() == OPLM_DELETE_FILE) ||
         (e.GetId() == OTBM_DELETE_FILE);
@@ -1594,9 +1594,9 @@ void OOPlayerApp::HandleDelete(VdkVObjEvent& e)
     // TODO:
     if( delPhysically )
     {
-        if( wxMessageBox( L"ÊÇ·ñÈ·ÈÏ´Ó´ÅÅÌÉÏÉ¾³ıÕâĞ©¸èÇúÎÄ¼ş£¿\n"
-                            L"×¢Òâ£ºÒ»µ©É¾³ı¾Í²»¿É»Ö¸´£¡",
-                            L"ÎïÀíÉ¾³ı¸èÇúÎÄ¼ş",
+        if( wxMessageBox( L"æ˜¯å¦ç¡®è®¤ä»ç£ç›˜ä¸Šåˆ é™¤è¿™äº›æ­Œæ›²æ–‡ä»¶ï¼Ÿ\n"
+                            L"æ³¨æ„ï¼šä¸€æ—¦åˆ é™¤å°±ä¸å¯æ¢å¤ï¼",
+                            L"ç‰©ç†åˆ é™¤æ­Œæ›²æ–‡ä»¶",
                             wxYES_NO | wxICON_ASTERISK,
                             m_playListPanel )
             == wxNO )
@@ -1606,8 +1606,8 @@ void OOPlayerApp::HandleDelete(VdkVObjEvent& e)
     }
 
     VdkDC dc( m_mainPanel );
-    // ÕâÀï²»ÄÜ½«¸üĞÂÇøÓòÖ»ÉèÎª²¥·ÅÁĞ±í¿Ø¼şµÄ×÷ÓÃÓò£¬ÒòÎª
-    // Õâ¸ö×÷ÓÃÓòÃ»ÓĞ½«¹ö¶¯Ìõ°üº¬½øÀ´
+    // è¿™é‡Œä¸èƒ½å°†æ›´æ–°åŒºåŸŸåªè®¾ä¸ºæ’­æ”¾åˆ—è¡¨æ§ä»¶çš„ä½œç”¨åŸŸï¼Œå› ä¸º
+    // è¿™ä¸ªä½œç”¨åŸŸæ²¡æœ‰å°†æ»šåŠ¨æ¡åŒ…å«è¿›æ¥
     VdkDC playListDC( m_playListPanel );
 
     DelAction da = delPhysically ? DA_DEL_PHYSICALLY : DA_DEL_FROM_LIST_ONLY;
@@ -1654,27 +1654,27 @@ void OOPlayerApp::DoHandleDelete(DelAction da, wxDC& dc, wxDC& playListDC)
 
     //-------------------------------------------
 
-    // ±£´æµÚÒ»¸ö±»Ñ¡ÖĞµÄ ID
+    // ä¿å­˜ç¬¬ä¸€ä¸ªè¢«é€‰ä¸­çš„ ID
     size_t firstSel = selItems[0];
 
     for( int i = numSel - 1; i >= 0 ; i-- )
     {
-        // ÓÃ»§ÏëÉ¾³ıÕıÔÚ²¥·ÅµÄ¸èÇú£¬Îª¼ò»¯Ä£ĞÍ£¬Ö±½ÓÍ£Ö¹²¥·Å
+        // ç”¨æˆ·æƒ³åˆ é™¤æ­£åœ¨æ’­æ”¾çš„æ­Œæ›²ï¼Œä¸ºç®€åŒ–æ¨¡å‹ï¼Œç›´æ¥åœæ­¢æ’­æ”¾
         if( currIndex == selItems[i] )
         {
             DoStop( &dc, &playListDC, CL_CLEAR );
 
-            // ¸üĞÂ¹ö¶¯ÎÄ±¾
+            // æ›´æ–°æ»šåŠ¨æ–‡æœ¬
             if( m_rollingLabel )
             {
                 m_rollingLabel->StopRolling( &dc );
             }
 
-            // Çå³ı¸è´ÊÏÔÊ¾
+            // æ¸…é™¤æ­Œè¯æ˜¾ç¤º
             ClearLyric();
         }
 
-        // ÎïÀíÉ¾³ı¸èÇúÎÄ¼ş
+        // ç‰©ç†åˆ é™¤æ­Œæ›²æ–‡ä»¶
         if( da == DA_DEL_PHYSICALLY )
         {
             OOPSongPtr song = m_playList->GetSongPtr( selItems[i] );
@@ -1688,7 +1688,7 @@ void OOPlayerApp::DoHandleDelete(DelAction da, wxDC& dc, wxDC& playListDC)
 
     numRows -= numSel;
 
-    // ÖØĞÂÑ¡ÖĞÏÂÒ»¸ö
+    // é‡æ–°é€‰ä¸­ä¸‹ä¸€ä¸ª
     if( firstSel < numRows )
     {
         m_playList->Select( firstSel, NULL );
@@ -1731,26 +1731,26 @@ void OOPlayerApp::RemoveDuplicatedItems(VdkVObjEvent&)
             if( currSong->path() == followingSong->path() )
             {
                 LcCellIter songToRemove( following );
-                // É¾³ı²»ÔÚ²¥·ÅµÄÄÇÒ»Ê×£¬¼´»ù×¼Ïî
+                // åˆ é™¤ä¸åœ¨æ’­æ”¾çš„é‚£ä¸€é¦–ï¼Œå³åŸºå‡†é¡¹
                 if( songToRemove == m_playList->GetLocked() )
                 {
                     songToRemove = iter;
 
-                    // ¸üĞÂµ±Ç°¸èÇúµÄÖ¸Õë
+                    // æ›´æ–°å½“å‰æ­Œæ›²çš„æŒ‡é’ˆ
                     currSong = followingSong;
                 }
 
-                // ÒªÉ¾³ıµÄ¸èÇú¸ÕºÃ½ô¸ú×ÅÓÃÀ´±È½ÏµÄ»ù×¼Ïî£¬¼´»ù×¼ÏîÏÂÃæ¾ÍÊÇ
-                // ÓëËü×Ô¼ºÍ¬ÊôÓÚÒ»Ê×¸èµÄÒ»¸öÖØ¸´Ïî
+                // è¦åˆ é™¤çš„æ­Œæ›²åˆšå¥½ç´§è·Ÿç€ç”¨æ¥æ¯”è¾ƒçš„åŸºå‡†é¡¹ï¼Œå³åŸºå‡†é¡¹ä¸‹é¢å°±æ˜¯
+                // ä¸å®ƒè‡ªå·±åŒå±äºä¸€é¦–æ­Œçš„ä¸€ä¸ªé‡å¤é¡¹
                 if( iterNext == songToRemove )
                 {
                     iterNext = songToRemove;
                     ++iterNext;
                 }
 
-                // ²»»á³öÏÖ followingNext == songToRemove µÄÇé¿ö£¬ÒòÎª
-                // followingNext ³öÏÖµÄÎ»ÖÃ¿Ï¶¨±È»ù×¼Ïî iter ºÍ following
-                // Òªºó¡£
+                // ä¸ä¼šå‡ºç° followingNext == songToRemove çš„æƒ…å†µï¼Œå› ä¸º
+                // followingNext å‡ºç°çš„ä½ç½®è‚¯å®šæ¯”åŸºå‡†é¡¹ iter å’Œ following
+                // è¦åã€‚
 
                 m_playList->RemoveSong( songToRemove );
                 changed = true;
@@ -1833,8 +1833,8 @@ void OOPlayerApp::SelectAllNoneReverse(VdkVObjEvent& e)
         break;
     }
 
-    // ÓÃ»§¿ÉÄÜ¶ÔÓÉ±à³ÌÊµÏÖµÄÑ¡ÖĞµÄÁĞ±íÏî×öÄ³Ğ©²Ù×÷£¬¼¤»î²¥·ÅÁĞ±í¡£
-    // Í¬Ê±£¬±ØĞë¿¼ÂÇµ½ËÑË÷½á¹ûÁĞ±í¿òÊÇ·ñÕıÔÚÏÔÊ¾
+    // ç”¨æˆ·å¯èƒ½å¯¹ç”±ç¼–ç¨‹å®ç°çš„é€‰ä¸­çš„åˆ—è¡¨é¡¹åšæŸäº›æ“ä½œï¼Œæ¿€æ´»æ’­æ”¾åˆ—è¡¨ã€‚
+    // åŒæ—¶ï¼Œå¿…é¡»è€ƒè™‘åˆ°æœç´¢ç»“æœåˆ—è¡¨æ¡†æ˜¯å¦æ­£åœ¨æ˜¾ç¤º
     if( m_playList->IsShown() )
         m_playListPanel->FocusCtrl( m_playList, pDC );
 }
@@ -1847,7 +1847,7 @@ void OOPlayerApp::AddPlayList(VdkVObjEvent& e)
 
 void OOPlayerApp::SaveListByUser(VdkVObjEvent&)
 {
-    wxString path( AskPathToList( L"±£´æ²¥·ÅÁĞ±í", wxFD_SAVE ) );
+    wxString path( AskPathToList( L"ä¿å­˜æ’­æ”¾åˆ—è¡¨", wxFD_SAVE ) );
     if( !IsPlayListPathOk( path ) )
         return;
 
@@ -1856,7 +1856,7 @@ void OOPlayerApp::SaveListByUser(VdkVObjEvent&)
 
 void OOPlayerApp::OpenListByUser(VdkVObjEvent&)
 {
-    wxString path( AskPathToList( L"´ò¿ª²¥·ÅÁĞ±í", wxFD_OPEN ) );
+    wxString path( AskPathToList( L"æ‰“å¼€æ’­æ”¾åˆ—è¡¨", wxFD_OPEN ) );
     if( !IsPlayListPathOk( path ) )
         return;
 
@@ -1874,8 +1874,8 @@ wxString OOPlayerApp::AskPathToList(const wxString& alert, long dlgStyle)
                        alert,
                        wxEmptyString,
                        "Default",
-                       L"OOPlayer ²¥·ÅÁĞ±í(*.Playlist)|*.Playlist|"
-                       L"ËùÓĞÎÄ¼ş(*.*)|*.*",
+                       L"OOPlayer æ’­æ”¾åˆ—è¡¨(*.Playlist)|*.Playlist|"
+                       L"æ‰€æœ‰æ–‡ä»¶(*.*)|*.*",
                        dlgStyle );
 
     if( fdlg.ShowModal() == wxID_CANCEL )
@@ -1950,7 +1950,7 @@ void OOPlayerApp::UpdateCurrSong()
 
 unsigned int OOPlayerApp::GetCurrSongLength() const
 {
-    if( IsStopped() ) // ¼ÙÈçÒÑ¾­Í£Ö¹²¥·Å£¬Ê¹ÓÃ»º´æÖµ
+    if( IsStopped() ) // å‡å¦‚å·²ç»åœæ­¢æ’­æ”¾ï¼Œä½¿ç”¨ç¼“å­˜å€¼
     {
         return m_currSong ? (m_currSong->length() * 1000) : 0;
     }
@@ -1977,7 +1977,7 @@ void OOPlayerApp::OnVolume(VdkVObjEvent& e)
             m_music.setVolume( volume );
 
         int volumeInt = static_cast<int>( volume * 100 );
-        SetStatusLabel( wxString::Format( L"ÒôÁ¿: %d%%", volumeInt ), pDC );
+        SetStatusLabel( wxString::Format( L"éŸ³é‡: %d%%", volumeInt ), pDC );
     }
 
     if( IsMute() )
@@ -2036,7 +2036,7 @@ void OOPlayerApp::OnMenuVolumeCtrl(VdkVObjEvent& e)
 
     new VdkLabelGhost( m_status, m_status->GetCaption(), 1500 );
     int volumeInt = static_cast<int>( newVolume * 100 );
-    SetStatusLabel( wxString::Format( L"ÒôÁ¿: %d%%", volumeInt ), &dc );
+    SetStatusLabel( wxString::Format( L"éŸ³é‡: %d%%", volumeInt ), &dc );
 
     if( newVolume > 0 )
     {
@@ -2062,7 +2062,7 @@ void OOPlayerApp::ToggleMute(bool mute, wxDC* pDC)
 
     if( m_stereo )
     {
-        m_stereo->SetCaption( mute ? L"¾²Òô" : L"Á¢ÌåÉù", pDC );
+        m_stereo->SetCaption( mute ? L"é™éŸ³" : L"ç«‹ä½“å£°", pDC );
     }
 }
 
@@ -2164,12 +2164,12 @@ void OOPlayerApp::OnUpdateTrayMenuUI(wxUpdateUIEvent& e)
     {
     case CID_MINIMIZE:
 
-        e.SetText( m_mainPanel->IsShown() ? L"×îĞ¡»¯(&M)" : L"»¹Ô­(&R)" );
+        e.SetText( m_mainPanel->IsShown() ? L"æœ€å°åŒ–(&M)" : L"è¿˜åŸ(&R)" );
         break;
 
     case OOM_PLAY_PAUSE:
 
-        e.SetText( IsPlaying() ? L"ÔİÍ£(&P)" : L"²¥·Å(&P)" );
+        e.SetText( IsPlaying() ? L"æš‚åœ(&P)" : L"æ’­æ”¾(&P)" );
         goto MAINMENU_PLAY_CONTROL;
 
     case OOM_STOP:
@@ -2216,9 +2216,9 @@ void OOPlayerApp::OnTrayIconRightDown(wxTaskBarIconEvent&)
 
 void OOPlayerApp::OnTrayIconLeftClick(wxTaskBarIconEvent&)
 {
-    // ÔÚ MSW ÏÂÃæ£¬Ê¹ÓÃÈÎÎñÀ¸×´Ì¬ÌõÇĞ»»´°¿ÚÏÔÊ¾×´Ì¬Ê±£¬Òş²Ø²Ù×÷ÊÇÍ¨¹ı½«
-    // ´°¿ÚÒÆ¶¯µ½Ä³Ò»¸ö²»¿É¼ûµÄÎ»ÖÃÀ´ÊµÏÖµÄ£¬µ«´ËÊ±´°¿ÚÈÔÈ»ÊÇ¿É¼ûµÄ
-    // (IsShown() == true)£¬ËùÒÔÕâÀïÒª·Ö¿ªÅĞ¶Ï
+    // åœ¨ MSW ä¸‹é¢ï¼Œä½¿ç”¨ä»»åŠ¡æ çŠ¶æ€æ¡åˆ‡æ¢çª—å£æ˜¾ç¤ºçŠ¶æ€æ—¶ï¼Œéšè—æ“ä½œæ˜¯é€šè¿‡å°†
+    // çª—å£ç§»åŠ¨åˆ°æŸä¸€ä¸ªä¸å¯è§çš„ä½ç½®æ¥å®ç°çš„ï¼Œä½†æ­¤æ—¶çª—å£ä»ç„¶æ˜¯å¯è§çš„
+    // (IsShown() == true)ï¼Œæ‰€ä»¥è¿™é‡Œè¦åˆ†å¼€åˆ¤æ–­
     if( m_mainPanel->IsIconized() )
     {
         m_mainPanel->Restore();
@@ -2234,7 +2234,7 @@ bool OOPlayerApp::ToggleAllOnScreenWindow()
 {
     if( !m_trayIcon )
     {
-        wxLogDebug( L"ÎŞ·¨×îĞ¡»¯µ½ÍĞÅÌ: µ±Ç°´°¿Ú¹ÜÀíÆ÷²»Ö§³Ö±ê×¼ÍĞÅÌÍ¼±êĞ­Òé¡£" );
+        wxLogDebug( L"æ— æ³•æœ€å°åŒ–åˆ°æ‰˜ç›˜: å½“å‰çª—å£ç®¡ç†å™¨ä¸æ”¯æŒæ ‡å‡†æ‰˜ç›˜å›¾æ ‡åè®®ã€‚" );
         return false;
     }
 
@@ -2287,7 +2287,7 @@ bool OOPlayerApp::OnPlayListKeys(wxKeyEvent& e)
     int k = e.GetKeyCode();
     if( (focus == m_playList) && (k == WXK_DELETE) )
     {
-        // HandleSel »á×Ô¼ºÉêÇë DC£¬¹Ê±ØĞëĞ¡ĞÄ´¦Àí
+        // HandleSel ä¼šè‡ªå·±ç”³è¯· DCï¼Œæ•…å¿…é¡»å°å¿ƒå¤„ç†
         VdkVObjEvent fakeEvent;
         fakeEvent.SetId( OPLM_DELETE );
         HandleDelete( fakeEvent );
@@ -2307,7 +2307,7 @@ bool OOPlayerApp::OnPlayListKeys(wxKeyEvent& e)
             if( !selItems.empty() )
             {
                 VdkDC dc( m_playListPanel );
-                // Ä¬ÈÏ²¥·ÅµÚÒ»Ê×
+                // é»˜è®¤æ’­æ”¾ç¬¬ä¸€é¦–
                 int sel = selItems[0];
                 m_playList->SetLocked( sel, &dc );
 
@@ -2345,7 +2345,7 @@ void OOPlayerApp::OnPrevNext(VdkVObjEvent& e)
     wxDC* mainPanelDC = e.GetVObjDC();
     VdkDC playListDC( m_playListPanel );
 
-    // Ô­±¾ÁĞ±íÎª¿Õ£¬ÓÃ»§µÚÒ»´Îµã»÷¡°ÉÏÒ»Ê×¡¢ÏÂÒ»Ê×¡±¶ø²»ÊÇ¡°²¥·Å¡±
+    // åŸæœ¬åˆ—è¡¨ä¸ºç©ºï¼Œç”¨æˆ·ç¬¬ä¸€æ¬¡ç‚¹å‡»â€œä¸Šä¸€é¦–ã€ä¸‹ä¸€é¦–â€è€Œä¸æ˜¯â€œæ’­æ”¾â€
     if( !m_playList->HasLocked() )
     {
         LcCellIter songToPlay( m_playList->begin() );
@@ -2383,15 +2383,15 @@ void OOPlayerApp::HandlePrevNext
 
             if( pna == PNA_PREV )
             {
-                // µ½Í·ÁË
+                // åˆ°å¤´äº†
                 if( songToPlay == m_playList->begin() )
                 {
                     if( m_playMode == PLAY_MODE_LIST_RECYCLE )
                     {
-                        // Ìøµ½×îºóÒ»Ê×
+                        // è·³åˆ°æœ€åä¸€é¦–
                         songToPlay =lastSong;
                     }
-                    else // ÆäËüµü´úÄ£Ê½Ö±½ÓºöÂÔ´ËÊÂ¼ş
+                    else // å…¶å®ƒè¿­ä»£æ¨¡å¼ç›´æ¥å¿½ç•¥æ­¤äº‹ä»¶
                     {
                         break;
                     }
@@ -2402,16 +2402,16 @@ void OOPlayerApp::HandlePrevNext
             } // END if( e.GetId() == CID_PREV )
             else
             {
-                // µ½Í·ÁË
+                // åˆ°å¤´äº†
                 if( songToPlay == lastSong )
                 {
                     if( m_playMode == PLAY_MODE_LIST_RECYCLE )
                     {
                         songToPlay = m_playList->begin();
                     }
-                    else // ÆäËüµü´úÄ£Ê½Ö±½ÓºöÂÔ´ËÊÂ¼ş
+                    else // å…¶å®ƒè¿­ä»£æ¨¡å¼ç›´æ¥å¿½ç•¥æ­¤äº‹ä»¶
                     {
-                        // ±ØĞëÏÔÊ½µØÍ£Ö¹²¥·Å
+                        // å¿…é¡»æ˜¾å¼åœ°åœæ­¢æ’­æ”¾
                         DoStop( mainPanelDC, playListDC, CL_CLEAR );
 
                         break;
@@ -2437,7 +2437,7 @@ void OOPlayerApp::HandlePrevNext
 
     default:
 
-        Alert( L"Î´Öª²¥·ÅÁĞ±íµü´ú·½Ê½¡£" );
+        Alert( L"æœªçŸ¥æ’­æ”¾åˆ—è¡¨è¿­ä»£æ–¹å¼ã€‚" );
         break;
     }
 }
@@ -2476,7 +2476,7 @@ void OOPlayerApp::OnSongFinished(wxCommandEvent&)
 
     default:
 
-        wxLogError( L"Î´Öª²¥·ÅÁĞ±íµü´ú·½Ê½¡£" );
+        wxLogError( L"æœªçŸ¥æ’­æ”¾åˆ—è¡¨è¿­ä»£æ–¹å¼ã€‚" );
         break;
     }
 }
@@ -2507,7 +2507,7 @@ void OOPlayerApp::OnSongInfoUpdated(wxCommandEvent& e)
 	{
 		if( e.GetString() == m_currSong->path() )
 		{
-			// ÖØ¶ÁÔªĞÅÏ¢
+			// é‡è¯»å…ƒä¿¡æ¯
 			m_currSong->ParseTag( true );
 
 			VdkDC dc( m_mainPanel );
@@ -2533,9 +2533,9 @@ void OOPlayerApp::OnLocateFile(VdkVObjEvent&)
 
 	::ShellExecute( 0, L"open", L"explorer.exe", param, NULL, SW_SHOWNORMAL );
 #elif defined( __WXGTK__ )
-    // TODO:¡°´ò¿ªÎÄ¼şÂ·¾¶¡±¹¦ÄÜ»áµ¼ÖÂºÜÆæ¹ÖµÄĞĞÎª£ºNautilus ´°¿Ú±»´ò¿ªºó£¬²¥·Å
-    // ÁĞ±í´°¿ÚµÄ Z Öá×ø±ê²»»á±»½µµÍ£¬¶ø³ÌĞòµÄÆäËû´°¿Ú¶¼±»½µµÍÁË£¬¾ÍÊ£Ëü¹ÂÁãÁãµÄ
-    // ÔÚÆÁÄ»ÉÏÏÔÊ¾×Å
+    // TODO:â€œæ‰“å¼€æ–‡ä»¶è·¯å¾„â€åŠŸèƒ½ä¼šå¯¼è‡´å¾ˆå¥‡æ€ªçš„è¡Œä¸ºï¼šNautilus çª—å£è¢«æ‰“å¼€åï¼Œæ’­æ”¾
+    // åˆ—è¡¨çª—å£çš„ Z è½´åæ ‡ä¸ä¼šè¢«é™ä½ï¼Œè€Œç¨‹åºçš„å…¶ä»–çª—å£éƒ½è¢«é™ä½äº†ï¼Œå°±å‰©å®ƒå­¤é›¶é›¶çš„
+    // åœ¨å±å¹•ä¸Šæ˜¾ç¤ºç€
 	wxExecute( wxString::Format( L"nautilus \"%s\"", song->path() ) );
 #endif
 }
@@ -2552,11 +2552,11 @@ void OOPlayerApp::OnLyricLoaded(wxCommandEvent& e)
 
     if( !m_currSong || (m_currSong->path() != e.GetString()) )
     {
-        // µ±Ç°ÕıÔÚ²¥·ÅµÄ¸èÇú²»ÊÇ¸è´Ê¸Õ±»ÏÂÔØ³É¹¦µÄÄÇÒ»Ê×
+        // å½“å‰æ­£åœ¨æ’­æ”¾çš„æ­Œæ›²ä¸æ˜¯æ­Œè¯åˆšè¢«ä¸‹è½½æˆåŠŸçš„é‚£ä¸€é¦–
         return;
     }
 
-    // ±íÃ÷ÕâÊ×¸èµÄ¸è´ÊÒÑ¾­ÔÚÍøÂçÉÏ²éÕÒ¹ıÁË
+    // è¡¨æ˜è¿™é¦–æ­Œçš„æ­Œè¯å·²ç»åœ¨ç½‘ç»œä¸ŠæŸ¥æ‰¾è¿‡äº†
     SetAddinState( OOPST_LYRIC_SEARCHED );
 
     VdkHttpThread::FinishEvent& finishEvt = (VdkHttpThread::FinishEvent &) e;
@@ -2565,7 +2565,7 @@ void OOPlayerApp::OnLyricLoaded(wxCommandEvent& e)
     if( lyric.empty() )
     {
         VdkDC dc( m_lyricPanel );
-        m_lyric->SetInteractiveOutput( L"Î´ÄÜÔÚ·şÎñÆ÷ÉÏÕÒµ½¸è´Ê", &dc );
+        m_lyric->SetInteractiveOutput( L"æœªèƒ½åœ¨æœåŠ¡å™¨ä¸Šæ‰¾åˆ°æ­Œè¯", &dc );
 
         return;
     }
@@ -2577,12 +2577,12 @@ void OOPlayerApp::OnLyricLoaded(wxCommandEvent& e)
 	}
 
     //--------------------------------------
-    // ±£´æµ½´ÅÅÌÎÄ¼şÖĞ
+    // ä¿å­˜åˆ°ç£ç›˜æ–‡ä»¶ä¸­
 
     LyricGrabber::SaveLrcFile( lyric, m_currSong->lrcPath() );
 
     //--------------------------------------
-    // Ç¶Èëµ½¸èÇúÎÄ¼şÖĞ
+    // åµŒå…¥åˆ°æ­Œæ›²æ–‡ä»¶ä¸­
 
     if( m_currSong->IsTaggingSupported() )
     {
@@ -2590,7 +2590,7 @@ void OOPlayerApp::OnLyricLoaded(wxCommandEvent& e)
 
 		if( !m_currSong->Save() )
 		{
-			// Ìí¼Óµ½ÑÓ³ÙĞŞ¸ÄÕ»
+			// æ·»åŠ åˆ°å»¶è¿Ÿä¿®æ”¹æ ˆ
 			SingleDelayModStack::Instance().Add( m_currSong );
 		}
     }
@@ -2620,10 +2620,10 @@ void OOPlayerApp::OnAssociateLyric(VdkVObjEvent& e)
     wxASSERT( m_currSong );
 
     wxFileDialog fdlg( m_lyricPanel,
-                       L"Ö¸¶¨¸è´ÊÎÄ¼ş",
+                       L"æŒ‡å®šæ­Œè¯æ–‡ä»¶",
                        wxEmptyString,
                        wxEmptyString,
-                       L"¸è´ÊÎÄ¼ş(*.lrc)|*.lrc",
+                       L"æ­Œè¯æ–‡ä»¶(*.lrc)|*.lrc",
                        wxFD_OPEN |
                        wxFD_FILE_MUST_EXIST );
 
@@ -2633,13 +2633,13 @@ void OOPlayerApp::OnAssociateLyric(VdkVObjEvent& e)
     wxString src( fdlg.GetPath() );
     wxString dst( m_currSong->lrcPath() );
 
-    // ÓÅÏÈÏÔÊ¾ÄÚÇ¶¸è´ÊÊ±£¬ÓÃ»§ÓÖ´Ó¸è´Ê´æ´¢ÎÄ¼ş¼ĞÑ¡ÖĞÄ¬ÈÏ¹ØÁªµÄ LRC ÎÄ¼ş
+    // ä¼˜å…ˆæ˜¾ç¤ºå†…åµŒæ­Œè¯æ—¶ï¼Œç”¨æˆ·åˆä»æ­Œè¯å­˜å‚¨æ–‡ä»¶å¤¹é€‰ä¸­é»˜è®¤å…³è”çš„ LRC æ–‡ä»¶
     if( src != dst )
     {
         wxCopyFile( src, dst, true );
     }
 
-    // ²»Òªµ÷ÓÃ LoadCurrSongLyric() £¬ÒòÎª¸Ãº¯ÊıÓÅÏÈ¶ÁÈ¡ÄÚÇ¶¸è´Ê
+    // ä¸è¦è°ƒç”¨ LoadCurrSongLyric() ï¼Œå› ä¸ºè¯¥å‡½æ•°ä¼˜å…ˆè¯»å–å†…åµŒæ­Œè¯
     if( m_lyricParser.LoadFile( dst, m_currSong->length() * 1000 ) )
 	{
 		m_lyric->AttachParser( m_lyricParser );
@@ -2649,10 +2649,10 @@ void OOPlayerApp::OnAssociateLyric(VdkVObjEvent& e)
 
 void OOPlayerApp::OnReloadLyric(VdkVObjEvent&)
 {
-    // Ç¿ÖÆÖØ¶Á¸è´ÊÎÄ¼ş
+    // å¼ºåˆ¶é‡è¯»æ­Œè¯æ–‡ä»¶
     LoadCurrSongLyric();
 
-    // ¸üĞÂ¸è´ÊĞã×´Ì¬
+    // æ›´æ–°æ­Œè¯ç§€çŠ¶æ€
     UpdateLyricState();
 }
 
@@ -2661,7 +2661,7 @@ void OOPlayerApp::OnRemoveLyric(VdkVObjEvent&)
     wxASSERT( m_lyric );
     wxASSERT( m_currSong );
 
-    // Çå¿Õ¼´Îª³·Ïú¹ØÁª
+    // æ¸…ç©ºå³ä¸ºæ’¤é”€å…³è”
     m_currSong->lrcPath( wxEmptyString );
 
     ClearLyric();
@@ -2675,11 +2675,11 @@ void OOPlayerApp::SetStatusLabel(wxString text, wxDC* pDC)
     if( text.IsEmpty() )
     {
         if( IsStopped() )
-            text = L"×´Ì¬: Í£Ö¹";
+            text = L"çŠ¶æ€: åœæ­¢";
         else if( IsPaused() )
-            text = L"×´Ì¬: ÔİÍ£";
+            text = L"çŠ¶æ€: æš‚åœ";
         else
-            text = L"×´Ì¬: ²¥·Å";
+            text = L"çŠ¶æ€: æ’­æ”¾";
     }
 
     m_status->SetCaption( text, pDC );
@@ -2714,18 +2714,18 @@ void OOPlayerApp::OnAbout(VdkVObjEvent&)
     wxAboutDialogInfo aboutInfo;
     aboutInfo.SetName( gs_DefaultInteractiveOutput );
     aboutInfo.SetVersion( gs_appVersion );
-    aboutInfo.SetDescription( L"ºÃÓÃµÄ¿çÆ½Ì¨ÒôÀÖ²¥·ÅÆ÷" );
+    aboutInfo.SetDescription( L"å¥½ç”¨çš„è·¨å¹³å°éŸ³ä¹æ’­æ”¾å™¨" );
     aboutInfo.SetCopyright( L"(C) 2009-2012 wxn");
     aboutInfo.SetWebSite( "http://www.OOPlayer.org/" );
     aboutInfo.AddDeveloper( "wxn (wxn@ooplayer.org)" );
 
-    aboutInfo.SetLicense( L"¸ĞĞ»ÒÔÏÂ¸÷³ÌĞòÊµÌåµÄÅ¬Á¦£º\n"
+    aboutInfo.SetLicense( L"æ„Ÿè°¢ä»¥ä¸‹å„ç¨‹åºå®ä½“çš„åŠªåŠ›ï¼š\n"
                           L"wxWidgets\n"
                           L"wxXmlSerializer\n"
                           L"FMOD Ex\n"
                           L"Loki\n"
                           L"libcurl && c-ares\n"
-                          L"Ç§Ç§¾²Ìı(TTPlayer)\n"
+                          L"åƒåƒé™å¬(TTPlayer)\n"
                           L"MyTagLib\n" );
 	
 #ifdef __WXGTK__

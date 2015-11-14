@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      LyricPanel.h
- * Purpose:   ÉùÃ÷ LyricPanel
+ * Purpose:   å£°æ˜ LyricPanel
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-2-27
  **************************************************************/
@@ -12,33 +12,33 @@ class OOPSongPtr;
 class OOPLyricSchDlg;
 class OOPLyric;
 
-/// \brief ¸è´Ê´°¿Ú
+/// \brief æ­Œè¯çª—å£
 class LyricPanel : public OOPWindow
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	LyricPanel(wxWindow* parent);
 
-	/// \brief µ¯³ö¸è´ÊËÑË÷¶Ô»°¿ò
+	/// \brief å¼¹å‡ºæ­Œè¯æœç´¢å¯¹è¯æ¡†
 	void PopupSchDlg(OOPSongPtr song);
 
 private:
 
-	// ÉèÖÃ´°¿ÚËùÓÃµÄÆ¤·ô
+	// è®¾ç½®çª—å£æ‰€ç”¨çš„çš®è‚¤
 	virtual void DoSetSkin();
 
-	// Éú³É²Ëµ¥
+	// ç”Ÿæˆèœå•
 	void GenerateMenu();
 
-	// ²Ëµ¥ÏîµÄ°´ĞèÏÔÊ¾
+	// èœå•é¡¹çš„æŒ‰éœ€æ˜¾ç¤º
 	void OnPreShowMenu(VdkVObjEvent&);
 
 public:
 
 	OOPLyricSchDlg* m_schDlg;
 	OOPLyric* m_lyric;
-	int m_menuId; // ¸è´ÊĞã¿Ø¼ş²Ëµ¥ ID
+	int m_menuId; // æ­Œè¯ç§€æ§ä»¶èœå• ID
 
 	VdkBitmapArray m_menuBitmaps;
 };

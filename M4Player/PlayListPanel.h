@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      PlayListPanel.h
- * Purpose:   ÉùÃ÷ PlayListPanel
+ * Purpose:   å£°æ˜ PlayListPanel
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-2-27
  **************************************************************/
@@ -14,89 +14,89 @@ class OOPFilePropDlg;
 class OOPPlaylistSearchDlg;
 class VdkLcCell;
 
-/// \brief ²¥·ÅÁĞ±í´°¿Ú
+/// \brief æ’­æ”¾åˆ—è¡¨çª—å£
 class PlayListPanel : public OOPWindow
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	PlayListPanel(wxWindow* parent, bool showAtOnce);
 
-	/// \brief ÏòÓÃ»§Ñ¯ÎÊ²¢Ìí¼ÓµÃµ½µÄ£¨¶à¸ö£©ÎÄ¼ş
-	/// \param parent ¡°´ò¿ªÎÄ¼ş¡±Ä£Ì¬¶Ô»°¿òµÄ¸¸´°¿Ú
+	/// \brief å‘ç”¨æˆ·è¯¢é—®å¹¶æ·»åŠ å¾—åˆ°çš„ï¼ˆå¤šä¸ªï¼‰æ–‡ä»¶
+	/// \param parent â€œæ‰“å¼€æ–‡ä»¶â€æ¨¡æ€å¯¹è¯æ¡†çš„çˆ¶çª—å£
 	void AddFiles(wxWindow* parent);
 
-	/// \brief Ö´ĞĞÊµ¼ÊÌí¼ÓÎÄ¼şµÄ²Ù×÷
+	/// \brief æ‰§è¡Œå®é™…æ·»åŠ æ–‡ä»¶çš„æ“ä½œ
 	void AddFiles(wxArrayString* files);
 
-	//! Ìí¼ÓÄ¿Â¼ÎÄ¼şµÄÄ£Ê½
+	//! æ·»åŠ ç›®å½•æ–‡ä»¶çš„æ¨¡å¼
 	enum RecursiveMode {
-		RM_RECURSIVE, ///< °üÀ¨×ÓÎÄ¼ş¼Ğ
-		RM_ONLY_TOP_LEVEL_FILES, ///< Ö»°üº¬¶¥²ãÎÄ¼ş
+		RM_RECURSIVE, ///< åŒ…æ‹¬å­æ–‡ä»¶å¤¹
+		RM_ONLY_TOP_LEVEL_FILES, ///< åªåŒ…å«é¡¶å±‚æ–‡ä»¶
 	};
 
-	/// \brief ÏòÓÃ»§Ñ¯ÎÊ²¢Ìí¼ÓµÃµ½µÄÒ»¸öÎÄ¼ş¼Ğ
+	/// \brief å‘ç”¨æˆ·è¯¢é—®å¹¶æ·»åŠ å¾—åˆ°çš„ä¸€ä¸ªæ–‡ä»¶å¤¹
 	void AddFolder(RecursiveMode rm);
 
-	/// \brief ÏòÓÃ»§Ñ¯ÎÊ²¢Ìí¼ÓµÃµ½µÄÒ»¸öÎÄ¼ş¼Ğ
+	/// \brief å‘ç”¨æˆ·è¯¢é—®å¹¶æ·»åŠ å¾—åˆ°çš„ä¸€ä¸ªæ–‡ä»¶å¤¹
 	void AddFolder(const wxString& dirPath, RecursiveMode rm, wxArrayString* files);
 
 private:
 
-	// ÉèÖÃ´°¿ÚËùÓÃµÄÆ¤·ô
+	// è®¾ç½®çª—å£æ‰€ç”¨çš„çš®è‚¤
 	virtual void DoSetSkin();
 
-	// ÏìÓ¦°´¼üÊÂ¼ş
+	// å“åº”æŒ‰é”®äº‹ä»¶
 	virtual bool DoHandleKeyEvent(wxKeyEvent& e);
 
-	// ½Ø»ñÊó±êÊÂ¼ş(ÊµÏÖ¡°Î±Ä£Ì¬¶Ô»°¿ò¡±)
+	// æˆªè·é¼ æ ‡äº‹ä»¶(å®ç°â€œä¼ªæ¨¡æ€å¯¹è¯æ¡†â€)
 	virtual bool FilterEventBefore(wxMouseEvent&, int);
 
-	// ¼ì²âµ±Ç°×´Ì¬£¬ÊÇ·ñĞèÒªÊµÏÖ¡°Î±Ä£Ì¬¶Ô»°¿ò¡±
+	// æ£€æµ‹å½“å‰çŠ¶æ€ï¼Œæ˜¯å¦éœ€è¦å®ç°â€œä¼ªæ¨¡æ€å¯¹è¯æ¡†â€
 	bool TestPsuedoModal();
 
-	// ½Ø»ñ´°¿Ú¹Ø±ÕÊÂ¼ş
+	// æˆªè·çª—å£å…³é—­äº‹ä»¶
 	void OnClose(wxCloseEvent&);
 
-	// ÎÄ¼şÉ¨ÃèÍê³É
+	// æ–‡ä»¶æ‰«æå®Œæˆ
 	void OnScanDone(wxCommandEvent& e);
 
-	// ´ò¿ª¡°ÎÄ¼şÊôĞÔ¡±¶Ô»°¿ò
+	// æ‰“å¼€â€œæ–‡ä»¶å±æ€§â€å¯¹è¯æ¡†
 	void OnFileProperties(VdkVObjEvent&);
 
-	// ÓÃ»§¸ü¸ÄÁË¸èÇúµÄ TAG
+	// ç”¨æˆ·æ›´æ”¹äº†æ­Œæ›²çš„ TAG
 	void OnSongInfoUpdated(wxCommandEvent& e);
 
-    // ÖØÃüÃû¸èÇúÎÄ¼ş
+    // é‡å‘½åæ­Œæ›²æ–‡ä»¶
 	void OnRename(VdkVObjEvent& e);
 
-	// ÓÃ»§Ìá½»ÁËÒ»´ÎËÑË÷
+	// ç”¨æˆ·æäº¤äº†ä¸€æ¬¡æœç´¢
 	void OnSearch(wxCommandEvent& e);
 
-	// Ö´ĞĞ¾ßÌåËÑË÷¹¤×÷
+	// æ‰§è¡Œå…·ä½“æœç´¢å·¥ä½œ
 	void Search();
 
-	// Éú³É²Ëµ¥
+	// ç”Ÿæˆèœå•
 	void GenerateMenu();
 
-	// ²Ëµ¥ÏîµÄ°´ĞèÏÔÊ¾
+	// èœå•é¡¹çš„æŒ‰éœ€æ˜¾ç¤º
 	void OnPreShowMenu(VdkVObjEvent&);
 
-	// »ñÈ¡ÁĞ±íÖĞµ±Ç°±»Ñ¡ÖĞµÄµÚÒ»¸öÌõÄ¿
+	// è·å–åˆ—è¡¨ä¸­å½“å‰è¢«é€‰ä¸­çš„ç¬¬ä¸€ä¸ªæ¡ç›®
 	OOPSongPtr GetCurrSel(VdkLcCell** pCurr, int* pIndex) const;
 
 private:
 
 	OOPList* m_playList;
-	OOPFilePropDlg* m_filePropDlg; // ¡°ÎÄ¼şÊôĞÔ¡±¶Ô»°¿ò
-	// ÒÑ´¦Àí¡°ÎÄ¼şÊôĞÔ¡±¶Ô»°¿ò¹Ø±Õºó·¢¹ıÀ´µÄ¸èÇúÔªĞÅÏ¢ÒÑ¸üĞÂÊÂ¼ş
+	OOPFilePropDlg* m_filePropDlg; // â€œæ–‡ä»¶å±æ€§â€å¯¹è¯æ¡†
+	// å·²å¤„ç†â€œæ–‡ä»¶å±æ€§â€å¯¹è¯æ¡†å…³é—­åå‘è¿‡æ¥çš„æ­Œæ›²å…ƒä¿¡æ¯å·²æ›´æ–°äº‹ä»¶
 	bool m_songInfoUpdated;
 
-	OOPPlaylistSearchDlg* m_searchDlg; // ¡°¿ìËÙ¶¨Î»ÎÄ¼ş¡±¶Ô»°¿ò
-	wxString m_lastKeyword; // ÉÏ´ÎÖ´ĞĞ²éÕÒµÄ¹Ø¼ü×Ö
-	int m_lastFound; // ÉÏ´ÎÕÒµ½µÄÏîÄ¿µÄĞĞºÅ
+	OOPPlaylistSearchDlg* m_searchDlg; // â€œå¿«é€Ÿå®šä½æ–‡ä»¶â€å¯¹è¯æ¡†
+	wxString m_lastKeyword; // ä¸Šæ¬¡æ‰§è¡ŒæŸ¥æ‰¾çš„å…³é”®å­—
+	int m_lastFound; // ä¸Šæ¬¡æ‰¾åˆ°çš„é¡¹ç›®çš„è¡Œå·
 
-	int m_menuId; // ²Ëµ¥ ID
+	int m_menuId; // èœå• ID
 
 	VdkBitmapArray m_playListMenuBitmaps;
 };

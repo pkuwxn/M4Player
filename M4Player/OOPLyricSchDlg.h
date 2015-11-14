@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPLyricSchDlg.h
- * Purpose:   ¡°ËÑË÷¸è´Ê¡±¶Ô»°¿ò
+ * Purpose:   â€œæœç´¢æ­Œè¯â€å¯¹è¯æ¡†
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2011-08-20
  **************************************************************/
@@ -22,66 +22,66 @@ namespace LyricGrabber {
 
 class LyricListAdapter;
 
-/// \brief ¡°ËÑË÷¸è´Ê¡±¶Ô»°¿ò
+/// \brief â€œæœç´¢æ­Œè¯â€å¯¹è¯æ¡†
 class OOPLyricSchDlg : public VdkDialog, public LvpClick::OnItemClickListener
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	OOPLyricSchDlg(wxWindow* parent);
 
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	~OOPLyricSchDlg();
 
-	/// \brief µ¯³öÄ£Ê½¶Ô»°¿ò
+	/// \brief å¼¹å‡ºæ¨¡å¼å¯¹è¯æ¡†
 	void Popup(OOPSongPtr song);
 
 private:
 
-	// ²éÕÒËùÓĞĞèÒª¹ÜÀíµÄ¿Ø¼ş
+	// æŸ¥æ‰¾æ‰€æœ‰éœ€è¦ç®¡ç†çš„æ§ä»¶
 	void InitCtrls();
 
-	// Ê¹ÓÃµ±Ç°¸èÇúĞÅÏ¢Ìî³ä½çÃæÉÏµÄ¿Ø¼ş
+	// ä½¿ç”¨å½“å‰æ­Œæ›²ä¿¡æ¯å¡«å……ç•Œé¢ä¸Šçš„æ§ä»¶
 	void Fill(OOPSongPtr song);
 
-	// Çå¿Õµ±Ç°×´Ì¬£¬Ö÷ÒªÊÇ¸è´ÊÁĞ±í¿òºÍ´íÎóÌáÊ¾ VdkLabel
+	// æ¸…ç©ºå½“å‰çŠ¶æ€ï¼Œä¸»è¦æ˜¯æ­Œè¯åˆ—è¡¨æ¡†å’Œé”™è¯¯æç¤º VdkLabel
 	void ClearState(wxDC* pDC);
 
-	// ÓÃ»§Ìá½»ÁËËÑË÷ÇëÇó
+	// ç”¨æˆ·æäº¤äº†æœç´¢è¯·æ±‚
 	void OnSearch(VdkVObjEvent& e);
 
-	// ÓÃ»§Ìá½»ÁËÏÂÔØÖ¸¶¨¸è´ÊµÄÇëÇó
+	// ç”¨æˆ·æäº¤äº†ä¸‹è½½æŒ‡å®šæ­Œè¯çš„è¯·æ±‚
 	void OnDownload(VdkVObjEvent& e);
 
-	// ÓÃ»§µã»÷ÁËÄ³Ïî£¬ÒªÇóÏÂÔØ
+	// ç”¨æˆ·ç‚¹å‡»äº†æŸé¡¹ï¼Œè¦æ±‚ä¸‹è½½
 	virtual void OnItemClick(LvpClick* parent, int index, wxDC& dc);
 
 private:
 
-	// ¸è´Ê¿ÉÑ¡ÁĞ±íÏÂÔØÍê±Ï
+	// æ­Œè¯å¯é€‰åˆ—è¡¨ä¸‹è½½å®Œæ¯•
 	void OnListLoaded(wxCommandEvent&);
 
-	// ÏÂÔØ¸è´Ê
+	// ä¸‹è½½æ­Œè¯
 	void Download(int index, wxDC* pDC);
 
-	// Ö¸¶¨¸è´ÊÏÂÔØÍê±Ï
+	// æŒ‡å®šæ­Œè¯ä¸‹è½½å®Œæ¯•
 	void OnLyricLoaded(wxCommandEvent& e);
 
 private:
 
-	// ÏìÓ¦ VdkControl °´¼üÊÂ¼ş
+	// å“åº” VdkControl æŒ‰é”®äº‹ä»¶
 	virtual bool DoHandleKeyEvent(wxKeyEvent& e);
 
-	// Ô­Éú¹Ø±ÕÊÂ¼ş
+	// åŸç”Ÿå…³é—­äº‹ä»¶
 	void OnClose(wxCloseEvent&);
 
-	// °´ÏÂÁË½çÃæÉÏµÄ VdkButton
+	// æŒ‰ä¸‹äº†ç•Œé¢ä¸Šçš„ VdkButton
 	void CloseDlg(VdkVObjEvent&);
 
-	// °´ÏÂÁË½çÃæÉÏµÄ¡°È¡Ïû¡±°´Å¥
+	// æŒ‰ä¸‹äº†ç•Œé¢ä¸Šçš„â€œå–æ¶ˆâ€æŒ‰é’®
 	void OnCancel(VdkVObjEvent&);
 
-	// ¹Ø±Õ²¢ÉèÖÃ¸¸´°¿Ú½¹µã
+	// å…³é—­å¹¶è®¾ç½®çˆ¶çª—å£ç„¦ç‚¹
 	void HideAndFocusParent();
 
 private:
@@ -89,7 +89,7 @@ private:
 	LyricListAdapter* m_listAdapter;
 	LvpClick* m_clickPlugin;
 
-	// ²»ÄÜ¶Ô OOPSongPtr µÄÓĞĞ§ĞÔ×öÈÎºÎ¼ÙÉè£¬Ö»ÄÜ»º´æËü¶ÔÓ¦µÄÎÄ¼şÂ·¾¶
+	// ä¸èƒ½å¯¹ OOPSongPtr çš„æœ‰æ•ˆæ€§åšä»»ä½•å‡è®¾ï¼Œåªèƒ½ç¼“å­˜å®ƒå¯¹åº”çš„æ–‡ä»¶è·¯å¾„
 	wxString m_songPath;
 
 	VdkChoiceCtrl* m_lyricServer;

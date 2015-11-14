@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      DelayModStack.cpp
- * Purpose:   ÑÓ³ÙĞŞ¸ÄÕ»
+ * Purpose:   å»¶è¿Ÿä¿®æ”¹æ ˆ
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-10
  **************************************************************/
@@ -88,7 +88,7 @@ bool DelayModStack::Commit(OOPSongPtr song)
 	}
 
 	//-----------------------------------------------
-	// ÖØÃüÃûĞŞ¸ÄÕ»
+	// é‡å‘½åä¿®æ”¹æ ˆ
 
 	RenameStack::iterator rnIt =
 		std::find_if( m_renameStack.begin(), m_renameStack.end(), 

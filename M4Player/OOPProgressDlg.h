@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPProgressDlg.cpp
- * Purpose:   ½ø¶ÈÏÔÊ¾¶Ô»°¿ò
+ * Purpose:   è¿›åº¦æ˜¾ç¤ºå¯¹è¯æ¡†
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2011-8-19
  **************************************************************/
@@ -9,48 +9,48 @@
 
 class VdkLabel;
 
-/// \brief ½ø¶ÈÏÔÊ¾¶Ô»°¿ò
+/// \brief è¿›åº¦æ˜¾ç¤ºå¯¹è¯æ¡†
 class OOPProgressDlg : public VdkDialog
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	OOPProgressDlg(wxWindow* parent, 
 				   const wxString& title, 
 				   const wxString& msg,
 				   int maximum = 100);
 
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	~OOPProgressDlg();
 
-	/// \brief ¸üĞÂµ±Ç°½ø¶ÈÖµ
-	/// \param value µ±Ç°½ø¶ÈÖµ
-	/// \param newmsg ĞÂµÄÌáÊ¾×Ö·û´®£¬¼ÙÈçÎª¿Õ£¬±£³ÖÔ­À´µÄ²»±ä
-	/// \param skip ¼ÙÈçÓÃ»§µ¥»÷ÁË¡°Ìø¹ı¡±°´Å¥£¬ÄÇÃ´±¾º¯Êı×îºóÒ»´ÎµÄµ÷ÓÃ´ËÖµ
-	/// »áÉèÎªÕæ
-	/// \return ¸üĞÂ²Ù×÷ÊÇ·ñ³É¹¦£¬ÈôÓÃ»§µ¥»÷ÁË¡°È¡Ïû¡±°´Å¥£¬Ôò²Ù×÷»áÊ§°Ü
+	/// \brief æ›´æ–°å½“å‰è¿›åº¦å€¼
+	/// \param value å½“å‰è¿›åº¦å€¼
+	/// \param newmsg æ–°çš„æç¤ºå­—ç¬¦ä¸²ï¼Œå‡å¦‚ä¸ºç©ºï¼Œä¿æŒåŸæ¥çš„ä¸å˜
+	/// \param skip å‡å¦‚ç”¨æˆ·å•å‡»äº†â€œè·³è¿‡â€æŒ‰é’®ï¼Œé‚£ä¹ˆæœ¬å‡½æ•°æœ€åä¸€æ¬¡çš„è°ƒç”¨æ­¤å€¼
+	/// ä¼šè®¾ä¸ºçœŸ
+	/// \return æ›´æ–°æ“ä½œæ˜¯å¦æˆåŠŸï¼Œè‹¥ç”¨æˆ·å•å‡»äº†â€œå–æ¶ˆâ€æŒ‰é’®ï¼Œåˆ™æ“ä½œä¼šå¤±è´¥
 	virtual bool Update(int value, 
 						const wxString& newmsg = wxEmptyString, 
 						bool* skip = NULL);
 
-	/// \brief ²Ù×÷ÊÇ·ñÒÑ±»ÓÃ»§È¡Ïû
+	/// \brief æ“ä½œæ˜¯å¦å·²è¢«ç”¨æˆ·å–æ¶ˆ
 	bool IsCanceled() const { return m_canceled; }
 
-	/// \brief Çå³ı¶Ô»°¿ò×´Ì¬
+	/// \brief æ¸…é™¤å¯¹è¯æ¡†çŠ¶æ€
 	void ClearState();
 
-	/// \brief »ñÈ¡×î´óÖµ
+	/// \brief è·å–æœ€å¤§å€¼
 	int GetMaximum() const;
 
-	/// \brief »ñÈ¡µ±Ç°½ø¶ÈÖµ
+	/// \brief è·å–å½“å‰è¿›åº¦å€¼
 	int GetValue() const;
 
 private:
 
-	// Ô­Éú¹Ø±ÕÊÂ¼ş
+	// åŸç”Ÿå…³é—­äº‹ä»¶
 	void OnClose(wxCloseEvent&);
 
-	// °´ÏÂÁË½çÃæÉÏµÄ¡°È¡Ïû¡±°´Å¥
+	// æŒ‰ä¸‹äº†ç•Œé¢ä¸Šçš„â€œå–æ¶ˆâ€æŒ‰é’®
 	void OnCancel(VdkVObjEvent&);
 
 private:

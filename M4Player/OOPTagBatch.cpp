@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPTagBatch.cpp
- * Purpose:   ÅúÁ¿¶ÁĞ´¸èÇú±êÇ©
+ * Purpose:   æ‰¹é‡è¯»å†™æ­Œæ›²æ ‡ç­¾
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-27
  **************************************************************/
@@ -46,7 +46,7 @@ void OOPTagBatch::AddHandler(MyTagLib::Tag* hdler, OpMode om)
 {
 	m_readers.push_back( HandlerPtr( hdler ) );
 
-	// ÕâÊÇÒ»¸ö¶ÁĞ´´¦ÀíÆ÷
+	// è¿™æ˜¯ä¸€ä¸ªè¯»å†™å¤„ç†å™¨
 	if( om == OM_READ_WRITE )
 		m_writers.push_back( hdler );
 }

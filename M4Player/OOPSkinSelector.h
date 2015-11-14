@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPSkinSelector.h
- * Purpose:   Ê¹ÓÃ VdkListCtrl À´ÏÔÊ¾´óÅúÁ¿µÄÆ¤·ô
+ * Purpose:   ä½¿ç”¨ VdkListCtrl æ¥æ˜¾ç¤ºå¤§æ‰¹é‡çš„çš®è‚¤
  * Author:    Ning (vanxining@139.com)
  * Created:   2011.04.02
  * Copyright: Wang Xiao Ning
@@ -11,35 +11,35 @@
 
 class OOPSkinMenuSelector;
 
-/// \brief Ê¹ÓÃ¹ö¶¯Ãæ°å£«ËõÂÔÍ¼À´ÏÔÊ¾´óÅúÁ¿µÄÆ¤·ô
+/// \brief ä½¿ç”¨æ»šåŠ¨é¢æ¿ï¼‹ç¼©ç•¥å›¾æ¥æ˜¾ç¤ºå¤§æ‰¹é‡çš„çš®è‚¤
 class OOPSkinSelector : public VdkMenuXrcCtrlWrapper
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	OOPSkinSelector();
 
-	/// \brief Îö¹¹º¯Êı
+	/// \brief ææ„å‡½æ•°
 	~OOPSkinSelector();
 
-	/// \brief ÊµÀı»¯Òª¸½¼Óµ½ VdkMenu ÉÏµÄ¿Ø¼ş
+	/// \brief å®ä¾‹åŒ–è¦é™„åŠ åˆ° VdkMenu ä¸Šçš„æ§ä»¶
 	virtual VdkControl* Implement(VdkWindow* menuWin, const wxPoint& pos);
 
 private:
 
-	// ±£´æ¿Ø¼ş×´Ì¬
+	// ä¿å­˜æ§ä»¶çŠ¶æ€
 	virtual void SaveState();
 
-	// Ìí¼ÓÒ»ÏîËõÂÔÍ¼
+	// æ·»åŠ ä¸€é¡¹ç¼©ç•¥å›¾
 	void AddAvatar(const OOPSkin::SkinInfo& info);
 
-	// Ë«»÷ËùÂÔÍ¼£¬¸ü»»Æ¤·ô
+	// åŒå‡»æ‰€ç•¥å›¾ï¼Œæ›´æ¢çš®è‚¤
 	void OnAvatar(VdkVObjEvent& e);
 
 private:
 
 	OOPSkinMenuSelector* m_selector;
-	int m_avatarCount; // ÏÔÊ¾µÄÆ¤·ôÊı
+	int m_avatarCount; // æ˜¾ç¤ºçš„çš®è‚¤æ•°
 
-	double m_progress; // µ±Ç°²é¿´µÄ½ø¶È
+	double m_progress; // å½“å‰æŸ¥çœ‹çš„è¿›åº¦
 };

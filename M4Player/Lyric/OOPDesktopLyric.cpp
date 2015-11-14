@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPDesktopLyric.cpp
- * Purpose:   ×ÀÃæ¸è´Ê(On Screen Display Lyric)
+ * Purpose:   æ¡Œé¢æ­Œè¯(On Screen Display Lyric)
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-06-02
  **************************************************************/
@@ -38,7 +38,7 @@ OOPDesktopLyric::OOPDesktopLyric(wxWindow* parent)
 	  m_timerId( wxIdManager::ReserveId( 1 ) ), 
 	  m_timer( wxTheApp, m_timerId )
 {
-	// TODO: ÕâÑù×öÃ²ËÆ²»¹»ÓÅÑÅ
+	// TODO: è¿™æ ·åšè²Œä¼¼ä¸å¤Ÿä¼˜é›…
 	SetSize( WIDTH, HEIGHT );
 
 	Initialize();
@@ -87,7 +87,7 @@ double OOPDesktopLyric::GetLineProgress() const
 	if( lineHasGone >= currLine->GetMilSeconds() )
 		return 1;
 
-	// ¼ÙÈç³ýÊýÎª 0£¬²»»áÀ´µ½ÕâÀï
+	// å‡å¦‚é™¤æ•°ä¸º 0ï¼Œä¸ä¼šæ¥åˆ°è¿™é‡Œ
 	return double( lineHasGone ) / currLine->GetMilSeconds();
 }
 
@@ -106,7 +106,7 @@ void OOPDesktopLyric::Stop(wxDC* pDC)
 	m_timer.Stop();
 	m_currLine = m_parser->end();
 
-	// ÏÔÊ¾½»»¥ÐÔÎÄ±¾Êä³ö
+	// æ˜¾ç¤ºäº¤äº’æ€§æ–‡æœ¬è¾“å‡º
 	if( pDC )
 		UpdateAtOnce();
 }
@@ -127,7 +127,7 @@ void OOPDesktopLyric::GoTo(double percentage, wxDC*, bool bPaused)
 		return;
 	}
 
-	// ¿ªÊ¼¡°äÖÈ¾Ñ­»·¡±
+	// å¼€å§‹â€œæ¸²æŸ“å¾ªçŽ¯â€
 	if( !bPaused && !m_timer.IsRunning() )
 		m_timer.Start( REFRESH_INTERVAL_MS );
 
@@ -136,7 +136,7 @@ void OOPDesktopLyric::GoTo(double percentage, wxDC*, bool bPaused)
 
 void OOPDesktopLyric::DoSetInteractiveOutput(wxDC* pDC)
 {
-	// Á¢¼´¸üÐÂÏÔÊ¾½»»¥ÐÔÎÄ±¾Êä³ö
+	// ç«‹å³æ›´æ–°æ˜¾ç¤ºäº¤äº’æ€§æ–‡æœ¬è¾“å‡º
 	if( pDC )
 		UpdateAtOnce();
 }
@@ -188,7 +188,7 @@ void OOPDesktopLyric::OnTimerNotify(wxTimerEvent&)
 	{
 		if( (*next)->GetStartTime() <= m_stopWatch->Time() )
 		{
-			// ´ýÉÏÒ»¾äÏÔÊ¾ÍêÕûÔÙÌøµ½ÏÂÒ»¾ä
+			// å¾…ä¸Šä¸€å¥æ˜¾ç¤ºå®Œæ•´å†è·³åˆ°ä¸‹ä¸€å¥
 			UpdateAtOnce();
 			NextLine();
 
@@ -205,7 +205,7 @@ inline void OOPDesktopLyric::NextLine()
 
 #ifdef __WXDEBUG__
 	{
-		// ±ØÐëÓÉÍâ²¿±£Ö¤²»»áÔ½½ç
+		// å¿…é¡»ç”±å¤–éƒ¨ä¿è¯ä¸ä¼šè¶Šç•Œ
 		LineIter next( m_currLine );
 		++next;
 		wxASSERT( next != m_parser->end() );
@@ -218,7 +218,7 @@ inline void OOPDesktopLyric::NextLine()
 //////////////////////////////////////////////////////////////////////////
 
 OOPDesktopLyric::Style::Style()
-	: fontFace( L"ºÚÌå" ), pxFontSize( 40 ), bold( true ), 
+	: fontFace( L"é»‘ä½“" ), pxFontSize( 40 ), bold( true ), 
 	  borderSize( 1 ), alpha( 196 )
 {
 

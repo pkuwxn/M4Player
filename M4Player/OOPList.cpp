@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPList.cpp
- * Purpose:   OOPList ÊµÏÖÎÄ¼ş
+ * Purpose:   OOPList å®ç°æ–‡ä»¶
  * Author:    Ning (vanxining@139.com)
  * Created:   2010
  * Copyright: Wang Xiao Ning
@@ -28,17 +28,17 @@ IMPLEMENT_CLONEABLE_VOBJECT( OOPList, VdkListCtrl );
 extern OOPlayerApp* g_app;
 
 enum {
-	CNST_FILE_VERSION = 6, // µ±Ç°ÒÑ±£´æ²¥·ÅÁĞ±íÎÄ¼ş¸ñÊ½µÄ°æ±¾ºÅ
-	// ²¥·ÅÁĞ±íÎÄ¼ş±£´æ×Ö·û´®Ê¹ÓÃµÄµ¥¸ö×Ö·û´óĞ¡
-	// ËùÎ½¡°µ¥¸ö×Ö·û¡±²»Ò»¶¨Ö¸µ¥¸ö Unicode ×Ö·û£¬Ò²ÓĞ¿ÉÄÜÊÇ¶à¸ö char ×éºÏ³É
-	// Ò»¸öÓĞÒâÒåµÄ Unicode ×Ö·û
+	CNST_FILE_VERSION = 6, // å½“å‰å·²ä¿å­˜æ’­æ”¾åˆ—è¡¨æ–‡ä»¶æ ¼å¼çš„ç‰ˆæœ¬å·
+	// æ’­æ”¾åˆ—è¡¨æ–‡ä»¶ä¿å­˜å­—ç¬¦ä¸²ä½¿ç”¨çš„å•ä¸ªå­—ç¬¦å¤§å°
+	// æ‰€è°“â€œå•ä¸ªå­—ç¬¦â€ä¸ä¸€å®šæŒ‡å•ä¸ª Unicode å­—ç¬¦ï¼Œä¹Ÿæœ‰å¯èƒ½æ˜¯å¤šä¸ª char ç»„åˆæˆ
+	// ä¸€ä¸ªæœ‰æ„ä¹‰çš„ Unicode å­—ç¬¦
 #if wxUSE_UNICODE_WCHAR
 	CNST_SIZE_OF_CHAR_T = sizeof( wchar_t ),
 #elif wxUSE_UNICODE_UTF8
 	CNST_SIZE_OF_CHAR_T = sizeof( char ),
 #endif
 
-	// ²¥·ÅÁĞ±íÊ±¼äÁĞµÄÓÒ²àÄÚ±ß¾à
+	// æ’­æ”¾åˆ—è¡¨æ—¶é—´åˆ—çš„å³ä¾§å†…è¾¹è·
 	CNST_TIME_COLUMN_RIGHT_PADDINGS = 2,
 };
 
@@ -70,19 +70,19 @@ void OOPList::OnXrcCreate(wxXmlNode* node)
 	wxString strColor;
 	wxColour color;
 
-	// ĞòÁĞºÅ
+	// åºåˆ—å·
 	strColor = XmlGetChildContent( node, L"Color_Number" );
 	m_snColor.Set( strColor );
 
-	// ÇúÄ¿ÃûµÄÎÄ±¾ÑÕÉ«
+	// æ›²ç›®åçš„æ–‡æœ¬é¢œè‰²
 	strColor = XmlGetChildContent( node, L"Color_Text" );
 	m_textColor.Set( strColor );
 
-	// Ê±¼ä
+	// æ—¶é—´
 	strColor = XmlGetChildContent( node, L"Color_Duration" );
 	m_timeColor.Set( strColor );
 
-	// ½»´íÑÕÉ«
+	// äº¤é”™é¢œè‰²
 	strColor = XmlGetChildContent( node, L"Color_Bkgnd" );
 	color.Set( strColor );
 	m_crossBrush1.SetColour( color );
@@ -91,15 +91,15 @@ void OOPList::OnXrcCreate(wxXmlNode* node)
 	color.Set( strColor );
 	m_crossBrush2.SetColour( color );
 
-	// ÕıÔÚ²¥·ÅµÄÇúÄ¿ÓëÆäËûÏîÄ¿µÄÇø·Ö
+	// æ­£åœ¨æ’­æ”¾çš„æ›²ç›®ä¸å…¶ä»–é¡¹ç›®çš„åŒºåˆ†
 	strColor = XmlGetChildContent( node, L"Color_Hilight" );
 	m_lockedColor.Set( strColor );
 
-	// ½¥±äÉ«Ìõ(µ¥»÷Ñ¡ÖĞÒ»¸öÇúÄ¿ºóµÄ¼ÓÁÁ)
+	// æ¸å˜è‰²æ¡(å•å‡»é€‰ä¸­ä¸€ä¸ªæ›²ç›®åçš„åŠ äº®)
 	strColor = XmlGetChildContent( node, L"Color_Select" );
 	m_selectedColor.Set( strColor );
 
-	// ±íÊ¾ÍÏ¶¯ÏîÄ¿Ä¿±êÎ»ÖÃµÄÏß
+	// è¡¨ç¤ºæ‹–åŠ¨é¡¹ç›®ç›®æ ‡ä½ç½®çš„çº¿
 	unsigned char r = color.Red(),
 				  g = color.Green(),
 				  b = color.Blue();
@@ -113,7 +113,7 @@ void OOPList::OnXrcCreate(wxXmlNode* node)
 		( GetFilePath( XmlGetChildContent( node, L"selected_image" ) ) );
 	if( wxFileExists( strSelectedImage ) )
 	{
-		// ²»ÒªÎª stippleBitmap ´´½¨ÑÚÂëÎ»Í¼
+		// ä¸è¦ä¸º stippleBitmap åˆ›å»ºæ©ç ä½å›¾
 		wxBitmap stippleBitmap( strSelectedImage, wxBITMAP_TYPE_BMP );
 		if( stippleBitmap.IsOk() )
 		{
@@ -158,23 +158,23 @@ void OOPList::OnNotify(const VdkNotify& notice)
 
 		//-----------------------------------------------
 
-		// »»·ôºóÒÔ¼°¿ËÂ¡µÃµ½µÄÁĞ±í²»ÒªÖØ¸´²åÈëÁĞ
+		// æ¢è‚¤åä»¥åŠå…‹éš†å¾—åˆ°çš„åˆ—è¡¨ä¸è¦é‡å¤æ’å…¥åˆ—
 		if( GetColumnCount() == 0 )
 		{
-			// ²åÈëĞòºÅÁĞ
+			// æ’å…¥åºå·åˆ—
 			InsertColumn( VdkLcColumnInitializer( this ).
 						  width( width0 ).
 						  textAlign( TEXT_ALIGN_RIGHT ).
 						  textColor( m_snColor ) );
 
-			// ²åÈë±êÌâÁĞ
+			// æ’å…¥æ ‡é¢˜åˆ—
 			InsertColumn( VdkLcColumnInitializer( this ).
 						  index( 1 ).
 						  percentage( 100 ).
 						  width( width1 ).
 						  textColor( m_textColor ) );
 
-			// ²åÈë¸èÇúÊ±¼äÁĞ
+			// æ’å…¥æ­Œæ›²æ—¶é—´åˆ—
 			InsertColumn( VdkLcColumnInitializer( this ).
 						  width( width2 ).
 						  textColor( m_timeColor ) );
@@ -186,7 +186,7 @@ void OOPList::OnNotify(const VdkNotify& notice)
 			VdkLcColumn* colTitle = *(++it);
 			VdkLcColumn* colDuration = *(++it);
 
-			// ĞòºÅÁĞ
+			// åºå·åˆ—
 			colSN->x = 0;
 			colTitle->x = width0;
 			colDuration->x = width0 + width1;
@@ -240,7 +240,7 @@ void OOPList::AddToList(OOPListEntry& entry, const wxString& title, size_t numRo
 
 	midCell->SetLabel( title );
 	UpdateTime( (VdkLcCell *) midCell->GetClientData(), entry.length() );
-	// ×¢ÒâÉÏÃæÓÃµ½ÁË midCell µÄ ClientData
+	// æ³¨æ„ä¸Šé¢ç”¨åˆ°äº† midCell çš„ ClientData
 	midCell->SetClientData( &entry );
 
 	entry.addTime( wxGetLocalTime() );
@@ -301,7 +301,7 @@ VdkCusdrawReturnFlag OOPList::DoDrawCellText(const VdkLcCell* cell,
 		break;
 	}
 
-	// ¶¯Ì¬»æÖÆĞòºÅÁĞ
+	// åŠ¨æ€ç»˜åˆ¶åºå·åˆ—
 	VdkLcColumn* col = cell->GetColumn();
 	int y = index * GetRowHeight();
 	y += (col->height - dc.GetCharHeight()) / 2;
@@ -383,13 +383,13 @@ void OOPList::OnMouseEvent(VdkMouseEvent& e)
 	if( IsEmpty() )
 		return;
 
-	// ³·ÏúËù»­´ú±í×îºóÑ¡ÖĞµÄ°×¿ò
+	// æ’¤é”€æ‰€ç”»ä»£è¡¨æœ€åé€‰ä¸­çš„ç™½æ¡†
 	LcCellIter lastSelOld = GetLastSel();
 
 	VdkListCtrl::OnMouseEvent( e );
 
-	// ÖØĞÂÉèÖÃµ±Ç° DC »æÍ¼×´Ì¬(Éè±¸×ø±êºÍ²Ã¼ôÇøÓò)£¬ºóÃæ½ô¸úµÄÁ½´Î UpdateRow()
-	// µ÷ÓÃÒªÇó DC ÊÇÒÑ¾­°´ÕÕ¹ö¶¯´°¿ÚµÄµ±Ç°¿ÉÊÓÇøÓòÊÊÅä¹ıÁËµÄ¡£
+	// é‡æ–°è®¾ç½®å½“å‰ DC ç»˜å›¾çŠ¶æ€(è®¾å¤‡åæ ‡å’Œè£å‰ªåŒºåŸŸ)ï¼Œåé¢ç´§è·Ÿçš„ä¸¤æ¬¡ UpdateRow()
+	// è°ƒç”¨è¦æ±‚ DC æ˜¯å·²ç»æŒ‰ç…§æ»šåŠ¨çª—å£çš„å½“å‰å¯è§†åŒºåŸŸé€‚é…è¿‡äº†çš„ã€‚
 	PrepareDC( e.dc );
 
 	UpdateRow( GetLastSel(), e.dc );
@@ -433,11 +433,11 @@ void OOPList::SetLocked(const LcCellIter& locked, wxDC* pDC)
 		GetViewStart( NULL, &ystart );
 		int lastVisuable = ystart + GetShownItems() - 1;
 
-		if( index == lastVisuable ) // µ±Ç°ÆÁµÄ×îºóÒ»¸ö£¬ÏÂ»¬Ò»ĞĞ
+		if( index == lastVisuable ) // å½“å‰å±çš„æœ€åä¸€ä¸ªï¼Œä¸‹æ»‘ä¸€è¡Œ
 			SetViewStart( 0, ++ystart, pDC );
-		else if( index == ystart - 1 ) // µ±Ç°ÆÁµÄµÚÒ»¸ö£¬ÉÏ»¬Ò»ĞĞ
+		else if( index == ystart - 1 ) // å½“å‰å±çš„ç¬¬ä¸€ä¸ªï¼Œä¸Šæ»‘ä¸€è¡Œ
 			SetViewStart( 0, --ystart, pDC );
-		else if( (index < ystart) || (index > lastVisuable) ) // ²»ÔÚ¿ÉÊÓ·¶Î§ÄÚ
+		else if( (index < ystart) || (index > lastVisuable) ) // ä¸åœ¨å¯è§†èŒƒå›´å†…
 			SetViewStart( 0, index, pDC );
 	}
 
@@ -500,7 +500,7 @@ void OOPList::RemoveSongPointer(int i)
 
 void OOPList::RemoveAllSongPtrs()
 {
-	// ±ØĞë±£Ö¤ĞòºÅ²»ÄÜÊ¹±»Ëø×¡µÄĞĞ
+	// å¿…é¡»ä¿è¯åºå·ä¸èƒ½ä½¿è¢«é”ä½çš„è¡Œ
 	wxASSERT( !HasLocked() );
 
 	LcCellIter i( begin() ), e( end() );
@@ -510,7 +510,7 @@ void OOPList::RemoveAllSongPtrs()
 
 void OOPList::RemoveSong(int index)
 {
-	// ±ØĞë±£Ö¤ĞòºÅ²»ÄÜÊ¹±»Ëø×¡µÄĞĞ
+	// å¿…é¡»ä¿è¯åºå·ä¸èƒ½ä½¿è¢«é”ä½çš„è¡Œ
 	wxASSERT( index != GetLockedIndex() );
 
 	int count0 = GetRowCount(), count;
@@ -522,7 +522,7 @@ void OOPList::RemoveSong(int index)
 	count0 = GetNumBitCount( count0 ) + 1;
 	count = GetNumBitCount( count ) + 1;
 
-	// ËõĞ¡ĞòºÅÁĞ
+	// ç¼©å°åºå·åˆ—
 	if( count < count0 )
 		AjustCollumn( m_WindowImpl->GetCharWidth() * count, 0, 1 );
 }
@@ -548,29 +548,29 @@ void OOPList::Serialize(wxInputStream& fin)
 
 	wxMemoryInputStream meminp( fin );
 
-	// ¶ÁÈë°æ±¾ºÅ
+	// è¯»å…¥ç‰ˆæœ¬å·
 	int version = ReadVar< int >( meminp );
 	if( version != CNST_FILE_VERSION )
 	{
-		wxLogDebug( L"ÁĞ±íÎÄ¼şµÄ°æ±¾²»·û¡£\nÎÄ¼ş°æ±¾: %d£¬"
-					L"³ÌĞòÖ§³ÖµÄ°æ±¾: %d",
+		wxLogDebug( L"åˆ—è¡¨æ–‡ä»¶çš„ç‰ˆæœ¬ä¸ç¬¦ã€‚\næ–‡ä»¶ç‰ˆæœ¬: %dï¼Œ"
+					L"ç¨‹åºæ”¯æŒçš„ç‰ˆæœ¬: %d",
 					version, (int) CNST_FILE_VERSION );
 
 		return;
 	}
 
-	// ¶ÁÈëÕâ¸öÁĞ±íÊ¹ÓÃµÄ¿í×Ö·ûµÄ´óĞ¡
+	// è¯»å…¥è¿™ä¸ªåˆ—è¡¨ä½¿ç”¨çš„å®½å­—ç¬¦çš„å¤§å°
 	int szOfWch = ReadVar< int >( meminp );
 	if( szOfWch != CNST_SIZE_OF_CHAR_T )
 	{
-		wxLogDebug( L"ÁĞ±íÎÄ¼şµÄ²»Ö§³Ö¿çÆ½Ì¨Ê¹ÓÃ¡£\n"
-					L"´´½¨ÎÄ¼şµÄÊ±Ê¹ÓÃµÄ¿í×Ö·û´óĞ¡Îª %d ×Ö½Ú£¬"
-					L"µ±Ç°³ÌĞòÖ§³ÖµÄ¿í×Ö·û´óĞ¡Îª %d ×Ö½Ú¡£",
+		wxLogDebug( L"åˆ—è¡¨æ–‡ä»¶çš„ä¸æ”¯æŒè·¨å¹³å°ä½¿ç”¨ã€‚\n"
+					L"åˆ›å»ºæ–‡ä»¶çš„æ—¶ä½¿ç”¨çš„å®½å­—ç¬¦å¤§å°ä¸º %d å­—èŠ‚ï¼Œ"
+					L"å½“å‰ç¨‹åºæ”¯æŒçš„å®½å­—ç¬¦å¤§å°ä¸º %d å­—èŠ‚ã€‚",
 					szOfWch, (int) CNST_SIZE_OF_CHAR_T );
 		return;
 	}
 
-	// ¶ÁÈë¸èÇú×ÜÊı
+	// è¯»å…¥æ­Œæ›²æ€»æ•°
 	int count = ReadVar< int >( meminp );
 
 	//----------------------------------------------------------
@@ -579,21 +579,21 @@ void OOPList::Serialize(wxInputStream& fin)
 	wxString title, songPath;
 	OOPListEntry* entry;
 
-	// Ñ­»·¶ÁÈë¸èÇúÁĞ±í
+	// å¾ªç¯è¯»å…¥æ­Œæ›²åˆ—è¡¨
 	for( int i = 0; i < count; i++ )
 	{
 		try
 		{
-			// ¶ÁÈëÁĞ±í±êÌâ
+			// è¯»å…¥åˆ—è¡¨æ ‡é¢˜
 			title = ReadString( meminp );
-			// ¶ÁÈë¸èÇú³¤¶È
+			// è¯»å…¥æ­Œæ›²é•¿åº¦
 			len = ReadVar< int >( meminp );
-			// ¶ÁÈë¸èÇúÂ·¾¶
+			// è¯»å…¥æ­Œæ›²è·¯å¾„
 			songPath = ReadString( meminp );
 		}
 		catch( serialize_bad_format )
 		{
-			wxLogDebug( L"²¥·ÅÁĞ±í¸ñÊ½²»ÕıÈ·¡£" );
+			wxLogDebug( L"æ’­æ”¾åˆ—è¡¨æ ¼å¼ä¸æ­£ç¡®ã€‚" );
 			break;
 		}
 
@@ -602,9 +602,9 @@ void OOPList::Serialize(wxInputStream& fin)
 		//======================================================
 
 		entry->length( len );
-		// ¶ÁÈë¸èÇú²¥·Å´ÎÊı
+		// è¯»å…¥æ­Œæ›²æ’­æ”¾æ¬¡æ•°
 		entry->playCount( ReadVar< int >( meminp ) );
-		// ¶ÁÈë¸èÇú¼ÓÈë²¥·ÅÁĞ±íµÄÊ±¼ä
+		// è¯»å…¥æ­Œæ›²åŠ å…¥æ’­æ”¾åˆ—è¡¨çš„æ—¶é—´
 		entry->addTime( ReadVar< long >( meminp ) );
 
 		AddToList( *entry, title, i );
@@ -618,11 +618,11 @@ void OOPList::Serialize(wxOutputStream& fout)
 {
 	wxASSERT( fout.IsOk() );
 
-	// Ğ´Èë°æ±¾ºÅ
+	// å†™å…¥ç‰ˆæœ¬å·
 	WriteVar( fout, (int) CNST_FILE_VERSION );
-	// Ğ´Èë´´½¨Õâ¸öÁĞ±íµÄ²Ù×÷ÏµÍ³
+	// å†™å…¥åˆ›å»ºè¿™ä¸ªåˆ—è¡¨çš„æ“ä½œç³»ç»Ÿ
 	WriteVar( fout, (int) CNST_SIZE_OF_CHAR_T );
-	// Ğ´Èë¸èÇú×ÜÊı
+	// å†™å…¥æ­Œæ›²æ€»æ•°
 	WriteVar( fout, GetRowCount() );
 
 	//----------------------------------------------------------
@@ -636,16 +636,16 @@ void OOPList::Serialize(wxOutputStream& fout)
 		OOPListEntry* entry = (OOPListEntry *) cell->GetClientData();
 		title = cell->GetLabel();
 
-		// Ğ´ÈëÁĞ±íÏî±êÌâ
+		// å†™å…¥åˆ—è¡¨é¡¹æ ‡é¢˜
 		WriteString( fout, title );
-		// Ğ´Èë¸èÇú³¤¶È
+		// å†™å…¥æ­Œæ›²é•¿åº¦
 		WriteVar( fout, entry->length() );
-		// Ğ´Èë¸èÇúÂ·¾¶
+		// å†™å…¥æ­Œæ›²è·¯å¾„
 		WriteString( fout, entry->path() );
 
-		// Ğ´Èë¸èÇú²¥·Å´ÎÊı
+		// å†™å…¥æ­Œæ›²æ’­æ”¾æ¬¡æ•°
 		WriteVar( fout, entry->playCount() );
-		// Ğ´Èë¸èÇú¼ÓÈë²¥·ÅÁĞ±íµÄÊ±¼ä
+		// å†™å…¥æ­Œæ›²åŠ å…¥æ’­æ”¾åˆ—è¡¨çš„æ—¶é—´
 		WriteVar( fout, entry->addTime() );
 	}
 }
@@ -705,9 +705,9 @@ bool ComparePlayCount(const VdkLcCell* c1, const VdkLcCell* c2)
 
 void OOPList::SortList(VdkCtrlId cmd)
 {
-	// wxList ºÍ std::list ÖÁÉÙÓĞÁ½µã²»Í¬£º
-	// ¢Ù Ç°Õß²»Ö§³Ö splice()
-	// ¢Ú Ç°Õßµ÷ÓÃ sort() ºóµü´úÆ÷È«²¿Ö¸Ïò²»Í¬µÄÖµ(ÁíÒ»ÖÖÒâÒåÉÏµÄÊ§Ğ§)
+	// wxList å’Œ std::list è‡³å°‘æœ‰ä¸¤ç‚¹ä¸åŒï¼š
+	// â‘  å‰è€…ä¸æ”¯æŒ splice()
+	// â‘¡ å‰è€…è°ƒç”¨ sort() åè¿­ä»£å™¨å…¨éƒ¨æŒ‡å‘ä¸åŒçš„å€¼(å¦ä¸€ç§æ„ä¹‰ä¸Šçš„å¤±æ•ˆ)
 
 	switch( cmd )
 	{
@@ -748,7 +748,7 @@ void OOPList::SortList(VdkCtrlId cmd)
 
 	//------------------------------------------------------------
 
-	// ¸üĞÂÊ±¼äÁĞµÄÏÔÊ¾¡¢Ëø¶¨Ïî
+	// æ›´æ–°æ—¶é—´åˆ—çš„æ˜¾ç¤ºã€é”å®šé¡¹
 	int row = 0;
 	LcCellIter i1( begin() );
 	LcCellIter i2( GetCellIterator( 2, 0 ) );

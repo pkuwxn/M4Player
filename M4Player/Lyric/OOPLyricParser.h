@@ -1,44 +1,44 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPLyricParser.h
- * Purpose:   ½âÎö LRC/QRC/... ¸è´ÊÎÄ¼ş
+ * Purpose:   è§£æ LRC/QRC/... æ­Œè¯æ–‡ä»¶
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-06-05
  **************************************************************/
 #pragma once
 
-/// ¸è´ÊµÄÒ»ĞĞ
+/// æ­Œè¯çš„ä¸€è¡Œ
 class LineInfo
 {
 public:
 
-	/// ¹¹Ôìº¯Êı
+	/// æ„é€ å‡½æ•°
 	LineInfo(const wxString& strLyric, int nStartTime);
 
-	/// »ñÈ¡¸è´ÊÎÄ±¾
+	/// è·å–æ­Œè¯æ–‡æœ¬
 	wxString GetLyric() const { return m_strLyric; }
 
-	/// »ñÈ¡ÆğÊ¼ÏÔÊ¾Ê±¼ä
+	/// è·å–èµ·å§‹æ˜¾ç¤ºæ—¶é—´
 	size_t GetStartTime() const {
 		return m_nStartTime;
 	}
 
-	/// »ñÈ¡±¾¾ä¸è´Ê³ÖĞøÊ±¼ä
+	/// è·å–æœ¬å¥æ­Œè¯æŒç»­æ—¶é—´
 	size_t GetMilSeconds() const {
 		return m_nMilSeconds;
 	}
 
-	/// ¼ÆËã±¾¾ä¸è´Ê³ÖĞøµÄÊ±¼ä
+	/// è®¡ç®—æœ¬å¥æ­Œè¯æŒç»­çš„æ—¶é—´
 	void CalcYourTime(const LineInfo* next);
 
-	/// ÅÅĞò¾²Ì¬º¯Êı
+	/// æ’åºé™æ€å‡½æ•°
 	static int IsBefore(const LineInfo** p1, const LineInfo** p2);
 
 private:
 
-	wxString m_strLyric; // ÁÙÊ±ÓÃÒÔ±£´æ±¾¾ä¸è´Ê
+	wxString m_strLyric; // ä¸´æ—¶ç”¨ä»¥ä¿å­˜æœ¬å¥æ­Œè¯
 
 	size_t m_nStartTime;
-	size_t m_nMilSeconds;	// ±¾¾ä×Ü¹²³ÖĞøµÄÊ±¼ä
+	size_t m_nMilSeconds;	// æœ¬å¥æ€»å…±æŒç»­çš„æ—¶é—´
 
 	friend class OOPLyricParser;
 };
@@ -49,80 +49,80 @@ typedef ListOfLineInfo::const_iterator LineIter;
 
 //////////////////////////////////////////////////////////////////////////
 
-/// ½âÎö LRC/QRC/... ¸è´ÊÎÄ¼ş
+/// è§£æ LRC/QRC/... æ­Œè¯æ–‡ä»¶
 class OOPLyricParser
 {
 public:
 
-	/// ¹¹Ôìº¯Êı
+	/// æ„é€ å‡½æ•°
 	OOPLyricParser();
 
-	/// Îö¹¹º¯Êı
+	/// ææ„å‡½æ•°
 	~OOPLyricParser();
 
-	/// Çå³ıÒÑ½âÎöµÄÄÚÈİ
+	/// æ¸…é™¤å·²è§£æçš„å†…å®¹
 	void Clear();
 
-	/// ÊÇ·ñ¿ÉÒÔ½øĞĞÏÔÊ¾
+	/// æ˜¯å¦å¯ä»¥è¿›è¡Œæ˜¾ç¤º
 	bool IsOk() const;
 
-	/// ´Ó´ÅÅÌÉÏ¶ÁÈ¡Ò»¸ö LRC ÎÄ¼ş
-	/// @param strLrcFile LRC ÎÄ¼şµÄÂ·¾¶
-	/// @param nTimeSum ¸èÇú³ÖĞøµÄÊ±¼ä[Á¿¸Ù£ºms(ºÁÃë)]
+	/// ä»ç£ç›˜ä¸Šè¯»å–ä¸€ä¸ª LRC æ–‡ä»¶
+	/// @param strLrcFile LRC æ–‡ä»¶çš„è·¯å¾„
+	/// @param nTimeSum æ­Œæ›²æŒç»­çš„æ—¶é—´[é‡çº²ï¼šms(æ¯«ç§’)]
 	bool LoadFile(const wxString& strLrcFile, int nTimeSum);
 
-	/// ´Ó´ÅÅÌÉÏ¶ÁÈ¡Ò»¸ö LRC ÎÄ¼ş£¬·µ»ØÆäÄÚÈİ
-	/// @param strLrcFile LRC ÎÄ¼şµÄÂ·¾¶
+	/// ä»ç£ç›˜ä¸Šè¯»å–ä¸€ä¸ª LRC æ–‡ä»¶ï¼Œè¿”å›å…¶å†…å®¹
+	/// @param strLrcFile LRC æ–‡ä»¶çš„è·¯å¾„
 	static wxString LoadFile(const wxString& strLrcFile);
 
-	/// Ö±½Ó½âÎö¸ø¶¨µÄ LRC ÎÄ±¾
-	/// @param nTimeSum ¸èÇú³ÖĞøµÄÊ±¼ä[Á¿¸Ù£ºms(ºÁÃë)]
+	/// ç›´æ¥è§£æç»™å®šçš„ LRC æ–‡æœ¬
+	/// @param nTimeSum æ­Œæ›²æŒç»­çš„æ—¶é—´[é‡çº²ï¼šms(æ¯«ç§’)]
 	bool Load(const wxString& lyric, int nTimeSum);
 
-	/// »ñÈ¡½âÎöºÃµÄ LRC ÎÄ±¾
+	/// è·å–è§£æå¥½çš„ LRC æ–‡æœ¬
 	wxString GetLyric() const;
 
-	/// ¶ÁÈ¡ LRC µÄÃ¿Ò»ĞĞºó£¬¶ÔÕâĞ©ĞĞ×öÒ»Ğ©¼¯³ÉµÄ¹¤×÷
-	/// @param nTimeSum ¸èÇú³ÖĞøµÄÊ±¼ä[Á¿¸Ù£ºms(ºÁÃë)]
+	/// è¯»å– LRC çš„æ¯ä¸€è¡Œåï¼Œå¯¹è¿™äº›è¡Œåšä¸€äº›é›†æˆçš„å·¥ä½œ
+	/// @param nTimeSum æ­Œæ›²æŒç»­çš„æ—¶é—´[é‡çº²ï¼šms(æ¯«ç§’)]
 	bool BuilidLines(int nTimeSum);
 
 public:
 
-	/// »ñÈ¡ @a timeOffset ¶ÔÓ¦µÄĞĞ
-	/// @param timeOffset Á¿¸Ù:ºÁÃë[ms]
+	/// è·å– @a timeOffset å¯¹åº”çš„è¡Œ
+	/// @param timeOffset é‡çº²:æ¯«ç§’[ms]
 	LineIter WhichLine(size_t timeOffset) const;
 
-	/// »ñÈ¡µÚÒ»¸ö¸è´ÊĞĞµÄµü´úÆ÷
+	/// è·å–ç¬¬ä¸€ä¸ªæ­Œè¯è¡Œçš„è¿­ä»£å™¨
 	LineIter begin() const { return m_lines.begin(); }
 
-	/// »ñÈ¡³¬Ô½×îºóÒ»¸ö¸è´ÊĞĞµÄµü´úÆ÷
+	/// è·å–è¶…è¶Šæœ€åä¸€ä¸ªæ­Œè¯è¡Œçš„è¿­ä»£å™¨
 	LineIter end() const { return m_lines.end(); }
 
-	/// »ñÈ¡Ö¸¶¨µü´úÆ÷ÔÚÈİÆ÷ÖĞµÄĞòºÅ
+	/// è·å–æŒ‡å®šè¿­ä»£å™¨åœ¨å®¹å™¨ä¸­çš„åºå·
 	ListOfLineInfo::size_type IndexOf(LineIter it) const;
 
-	/// »ñÈ¡Ö¸¶¨ĞĞµÄµü´úÆ÷
+	/// è·å–æŒ‡å®šè¡Œçš„è¿­ä»£å™¨
 	LineIter GetLine(ListOfLineInfo::size_type index) const;
 
-	/// »ñÈ¡ÎÄ±¾ĞĞ×ÜÊı
+	/// è·å–æ–‡æœ¬è¡Œæ€»æ•°
 	size_t GetLinesCount() const { return m_lines.size(); }
 
-	/// »ñÈ¡×î´óĞĞ¿í¶È
+	/// è·å–æœ€å¤§è¡Œå®½åº¦
 	size_t GetMaxTextWidth(const wxFont& font) const;
 
-	/// »ñÈ¡¸è´ÊÏÔÊ¾³ÖĞøµÄÊ±¼ä
+	/// è·å–æ­Œè¯æ˜¾ç¤ºæŒç»­çš„æ—¶é—´
 	size_t GetTimeSum() const { return m_nTimeSum; }
 
 private:
 
-	// ÔØÈë¸è´ÊÄÚÈİ²¢½âÎö
+	// è½½å…¥æ­Œè¯å†…å®¹å¹¶è§£æ
 	void Load(wxInputStream& stream, int nTimeSum);
 
-	// ½âÊÍ¸è´ÊÎÄ¼ş£¨.LRC£©µÄÄ³Ò»ĞĞ
+	// è§£é‡Šæ­Œè¯æ–‡ä»¶ï¼ˆ.LRCï¼‰çš„æŸä¸€è¡Œ
 	void ParseLine(const wxString& strLine);
 
 private:
 
-	size_t			m_nTimeSum; // ¸è´ÊÏÔÊ¾³ÖĞøµÄÊ±¼ä
+	size_t			m_nTimeSum; // æ­Œè¯æ˜¾ç¤ºæŒç»­çš„æ—¶é—´
 	ListOfLineInfo	m_lines;
 };

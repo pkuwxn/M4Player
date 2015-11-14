@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPSkinMenuSelector.cpp
- * Purpose:   ¿á¹·2011 ·ç¸ñµÄÆ¤·ôÑ¡ÔñÆ÷
+ * Purpose:   é…·ç‹—2011 é£æ ¼çš„çš®è‚¤é€‰æ‹©å™¨
  * Author:    Ning (vanxining@139.com)
  * Created:   2011-05-03
  * Copyright: Wang Xiaoning
@@ -23,7 +23,7 @@ IMPLEMENT_DYNAMIC_VOBJECT( OOPSkinMenuSelector )
 
 OOPSkinMenuSelector::OOPSkinMenuSelector()
 {
-	// ÒòÎª¿Ø¼şÎ»ÓÚ²Ëµ¥ÉÏ£¬ËùÒÔĞèÒªÒıÈëÒ»¸ö HACK
+	// å› ä¸ºæ§ä»¶ä½äºèœå•ä¸Šï¼Œæ‰€ä»¥éœ€è¦å¼•å…¥ä¸€ä¸ª HACK
 	VdkWindow::SetAddinStyle( VWS_MENU_IMPL );
 }
 
@@ -89,19 +89,19 @@ void SkinAvatar::Create(VdkWindow* win, const wxRect& rc,
 
 	// ToolTip
 	wxString tooltip;
-	tooltip.Printf( L"%s\n×÷Õß: %s", m_skinInfo->name(), m_skinInfo->author() );
+	tooltip.Printf( L"%s\nä½œè€…: %s", m_skinInfo->name(), m_skinInfo->author() );
 
 	wxString email( m_skinInfo->email() );
 	if( !email.IsEmpty() )
-		tooltip += L"\nÓÊÏä: " + email;
+		tooltip += L"\né‚®ç®±: " + email;
 
 	wxString url( m_skinInfo->url() );
 	if( !url.IsEmpty() )
-		tooltip += L"\nÍøÕ¾: " + url;
+		tooltip += L"\nç½‘ç«™: " + url;
 
 	SetToolTip( tooltip );
 
-	// ËµÃ÷ÎÄ±¾
+	// è¯´æ˜æ–‡æœ¬
 
 	wxMemoryDC mdc;
 	mdc.SetFont( m_Font );
@@ -169,7 +169,7 @@ void SkinAvatar::DoDraw(wxDC& dc)
 	}
 
 	//====================================================
-	// »­ËõÂÔÍ¼
+	// ç”»ç¼©ç•¥å›¾
 
 	if( m_skinInfo->isThumbNailOk() )
 	{
@@ -219,9 +219,9 @@ void SkinAvatar::DoHandleMouseEvent(VdkMouseEvent& e)
 
 		if( IsReadyForEvent() )
 		{
-            // ÔÚ GTK ÏÂÃæ²»ÄÜÊ×ÏÈÈ¡Ïû²Ëµ¥µÄÏÔÊ¾£¬¼´µ÷ÓÃ VdkWindow::HideMenu()
+            // åœ¨ GTK ä¸‹é¢ä¸èƒ½é¦–å…ˆå–æ¶ˆèœå•çš„æ˜¾ç¤ºï¼Œå³è°ƒç”¨ VdkWindow::HideMenu()
 
-			// ²»ÒªÌá¹©»æÍ¼ÉÏÏÂÎÄ£¬Òì²½·¢ËÍÍ¨ÖªÊÂ¼ş
+			// ä¸è¦æä¾›ç»˜å›¾ä¸Šä¸‹æ–‡ï¼Œå¼‚æ­¥å‘é€é€šçŸ¥äº‹ä»¶
 			FireEvent( NULL, NULL );
 		}
 

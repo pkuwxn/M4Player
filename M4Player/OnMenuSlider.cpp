@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OnMenuSlider.cpp
- * Purpose:   Ê¹ÓÃ VdkSlider À´ÉèÖÃ´°¿ÚÍ¸Ã÷¶È
+ * Purpose:   ä½¿ç”¨ VdkSlider æ¥è®¾ç½®çª—å£é€æ˜åº¦
  * Author:    Ning (vanxining@139.com)
  * Created:   2011.04.02
  * Copyright: Wang Xiao Ning
@@ -24,7 +24,7 @@ OnMenuSlider::OnMenuSlider(wxTopLevelWindow* window)
 					L"<fill_image>../../App/progress_fill_menu.bmp</fill_image>"
 				L"</object>"
 				L"<object name=\"desc\" class=\"VdkLabel\">"
-					L"ÉèÖÃ´°¿ÚÍ¸Ã÷¶È:"
+					L"è®¾ç½®çª—å£é€æ˜åº¦:"
 					L"<rect>38,4,193,%d</rect>"
 					L"<text-align>center_y</text-align>"
 				L"</object>"

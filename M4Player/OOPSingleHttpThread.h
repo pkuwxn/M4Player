@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPSingleHttpThread.h
- * Purpose:   ¶ÀÁ¢ HTTP ¹¤×÷ÕßÏß³Ìµ¥Ìå¶¨Òå
+ * Purpose:   ç‹¬ç«‹ HTTP å·¥ä½œè€…çº¿ç¨‹å•ä½“å®šä¹‰
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-25
  **************************************************************/
@@ -20,7 +20,7 @@ template<> struct OOPHttpThreadCreator< VdkHttpThread >
 		return new VdkHttpThread( http );
 	}
 
-    // ²»Òª×öÈÎºÎÊÂÇé£¬ÔÚ atexit() ½×¶ÎÉ¾³ıÏß³ÌÊµÔÚÌ«ÍíÁË
+    // ä¸è¦åšä»»ä½•äº‹æƒ…ï¼Œåœ¨ atexit() é˜¶æ®µåˆ é™¤çº¿ç¨‹å®åœ¨å¤ªæ™šäº†
 	static void Destroy(VdkHttpThread* p) {}
 };
 

@@ -1,6 +1,6 @@
-/***************************************************************
+Ôªø/***************************************************************
  * Name:      OOPDesktopLyric.cpp
- * Purpose:   ◊¿√Ê∏Ë¥ (On Screen Display Lyric)
+ * Purpose:   Ê°åÈù¢Ê≠åËØç(On Screen Display Lyric)
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-06-02
  **************************************************************/
@@ -15,37 +15,37 @@ typedef wxPopupWindow DeskLrcSuperClass;
 class wxGraphicsContext;
 class wxGraphicsPath;
 
-/// ◊¿√Ê∏Ë¥ (On Screen Display Lyric)
+/// Ê°åÈù¢Ê≠åËØç(On Screen Display Lyric)
 class OOPDesktopLyric : public DeskLrcSuperClass, public ILyric
 {
 public:
 
-	/// ∑Á∏Ò∂®“Â
+	/// È£éÊ†ºÂÆö‰πâ
 	struct Style
 	{
-		wxString fontFace; ///<  π”√µƒ◊÷ÃÂ
-		size_t pxFontSize; ///< ◊÷ÃÂ¥Û–°(¡ø∏Ÿ:œÒÀÿpx)
-		bool bold; ///< ◊÷ÃÂ «∑Ò–Ë“™º”¥÷œ‘ æ
+		wxString fontFace; ///< ‰ΩøÁî®ÁöÑÂ≠ó‰Ωì
+		size_t pxFontSize; ///< Â≠ó‰ΩìÂ§ßÂ∞è(ÈáèÁ∫≤:ÂÉèÁ¥†px)
+		bool bold; ///< Â≠ó‰ΩìÊòØÂê¶ÈúÄË¶ÅÂä†Á≤óÊòæÁ§∫
 
-		size_t borderSize; ///< ±≥æ∞æÿ–ŒøÚµƒ±ﬂøÚ¥Û–°
-		unsigned char alpha; ///< ’˚ÃÂÕ∏√˜∂»
+		size_t borderSize; ///< ËÉåÊôØÁü©ÂΩ¢Ê°ÜÁöÑËæπÊ°ÜÂ§ßÂ∞è
+		unsigned char alpha; ///< Êï¥‰ΩìÈÄèÊòéÂ∫¶
 
-		/// ƒ¨»œππ‘Ï∫Ø ˝
+		/// ÈªòËÆ§ÊûÑÈÄ†ÂáΩÊï∞
 		Style();
 	};
 
-	/// ππ‘Ï∫Ø ˝
+	/// ÊûÑÈÄ†ÂáΩÊï∞
 	OOPDesktopLyric(wxWindow* parent);
 
-	/// Œˆππ∫Ø ˝
+	/// ÊûêÊûÑÂáΩÊï∞
 	~OOPDesktopLyric();
 
-	/// ¡¢º¥∏¸–¬œ‘ æ
+	/// Á´ãÂç≥Êõ¥Êñ∞ÊòæÁ§∫
 	bool UpdateAtOnce();
 
 public:
 
-	/// “‘œ¬∫Ø ˝”√“‘ µœ÷ ILyric Ω”ø⁄
+	/// ‰ª•‰∏ãÂáΩÊï∞Áî®‰ª•ÂÆûÁé∞ ILyric Êé•Âè£
 	virtual bool IsOk() const;
 	virtual void AttachParser(const OOPLyricParser& parser);
 	virtual void Start();
@@ -56,42 +56,42 @@ public:
 
 private:
 
-	// ◊ˆ“ª–©ø™ º«∞µƒ≥ı ºªØπ§◊˜
+	// ÂÅö‰∏Ä‰∫õÂºÄÂßãÂâçÁöÑÂàùÂßãÂåñÂ∑•‰Ωú
 	void Initialize();
 
-	// ◊ˆ“ª–©ÕÀ≥ˆ ±µƒ«Â¿Ìπ§◊˜
+	// ÂÅö‰∏Ä‰∫õÈÄÄÂá∫Êó∂ÁöÑÊ∏ÖÁêÜÂ∑•‰Ωú
 	void Finalize();
 
-	// ≥ı ºªØµ±«∞∏Ë«˙Œƒ±æ––µƒ GDI ¬∑æ∂
+	// ÂàùÂßãÂåñÂΩìÂâçÊ≠åÊõ≤ÊñáÊú¨Ë°åÁöÑ GDI Ë∑ØÂæÑ
 	//
-	// π§◊˜÷˜“™ «Ω´Œƒ±æ¬÷¿™º”µΩ∆‰÷–°£
+	// Â∑•‰Ωú‰∏ªË¶ÅÊòØÂ∞ÜÊñáÊú¨ËΩÆÂªìÂä†Âà∞ÂÖ∂‰∏≠„ÄÇ
 	wxGraphicsPath InitLineTextPath(wxGraphicsContext* gc);
 
-	// œ‘ æ±≥æ∞æÿ–ŒøÚ
+	// ÊòæÁ§∫ËÉåÊôØÁü©ÂΩ¢Ê°Ü
 	void ShowBackgound(wxGraphicsContext* gc);
 
-	// Ω´Œ“√«À˘ª≠µƒœ‘ æ≥ˆ¿¥
+	// Â∞ÜÊàë‰ª¨ÊâÄÁîªÁöÑÊòæÁ§∫Âá∫Êù•
 	bool Present(wxDC& drawings);
 
 private:
 
-	// œ‘ æΩªª•–‘Œƒ±æ ‰≥ˆ
+	// ÊòæÁ§∫‰∫§‰∫íÊÄßÊñáÊú¨ËæìÂá∫
 	virtual void DoSetInteractiveOutput(wxDC* pDC);
 
-	// ÷–÷πœ‘ æµ±«∞––£¨÷±Ω”œ‘ æœ¬“ª––
+	// ‰∏≠Ê≠¢ÊòæÁ§∫ÂΩìÂâçË°åÔºåÁõ¥Êé•ÊòæÁ§∫‰∏ã‰∏ÄË°å
 	//
-	// ”√”⁄∑¿÷πµ±«∞––À˘”√ ±º‰≥¨≥ˆ LRC ÷∏∂®µƒ ±º‰°£
+	// Áî®‰∫éÈò≤Ê≠¢ÂΩìÂâçË°åÊâÄÁî®Êó∂Èó¥Ë∂ÖÂá∫ LRC ÊåáÂÆöÁöÑÊó∂Èó¥„ÄÇ
 	void NextLine();
 
-	// ∏˘æ›∂® ±∆˜–ﬁ’˝µ±«∞Ω¯∂»
+	// Ê†πÊçÆÂÆöÊó∂Âô®‰øÆÊ≠£ÂΩìÂâçËøõÂ∫¶
 	void UpdateProgress();
 
-	// ªÒ»°µ±«∞∏Ë¥ ––µƒΩ¯∂»(∞Ÿ∑÷±»£¨∑∂Œß[0, 1])
+	// Ëé∑ÂèñÂΩìÂâçÊ≠åËØçË°åÁöÑËøõÂ∫¶(ÁôæÂàÜÊØîÔºåËåÉÂõ¥[0, 1])
 	double GetLineProgress() const;
 
-	// µ±«∞∏Ë¥ Œƒ±æ–– «∑Ò”––ß£ø
+	// ÂΩìÂâçÊ≠åËØçÊñáÊú¨Ë°åÊòØÂê¶ÊúâÊïàÔºü
 	// 
-	// »ÙŒﬁ–ß‘Ú”¶∏√œ‘ æµ±«∞Ωªª•–‘Œƒ±æ°£
+	// Ëã•Êó†ÊïàÂàôÂ∫îËØ•ÊòæÁ§∫ÂΩìÂâç‰∫§‰∫íÊÄßÊñáÊú¨„ÄÇ
 	bool IsCurrLineValid() const;
 
 private:
@@ -101,18 +101,18 @@ private:
 
 	void OnLeftDown(wxMouseEvent&);
 
-	// wxTimer ªÿµ˜
+	// wxTimer ÂõûË∞É
 	void OnTimerNotify(wxTimerEvent&);
 
 private:
 
-	Style m_style; // µ±«∞’˝ π”√µƒ∑Á∏Ò
+	Style m_style; // ÂΩìÂâçÊ≠£‰ΩøÁî®ÁöÑÈ£éÊ†º
 	const OOPLyricParser* m_parser;
 
-	LineIter m_currLine; // µ±«∞∏ﬂ¡¡––
-	bool m_showBackgound; // µ±«∞ «∑Ò–Ë“™œ‘ æ±≥æ∞æÿ–ŒøÚ
+	LineIter m_currLine; // ÂΩìÂâçÈ´ò‰∫ÆË°å
+	bool m_showBackgound; // ÂΩìÂâçÊòØÂê¶ÈúÄË¶ÅÊòæÁ§∫ËÉåÊôØÁü©ÂΩ¢Ê°Ü
 
-	wxRect2DDouble m_textPathBounds; // Œƒ±æ¬∑æ∂µƒ∞¸Œß∫–
+	wxRect2DDouble m_textPathBounds; // ÊñáÊú¨Ë∑ØÂæÑÁöÑÂåÖÂõ¥Áõí
 
 	const wxWindowID m_timerId;
 	wxTimer m_timer;

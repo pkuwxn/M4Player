@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      LyricHost.cpp
- * Purpose:   ¸è´Ê·şÎñÆ÷
+ * Purpose:   æ­Œè¯æœåŠ¡å™¨
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-25
  **************************************************************/
@@ -64,36 +64,36 @@ namespace LyricGrabber
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/*! ¿ÉÑ¡µÄ¸è´ÊÏÂÔØ·şÎñÆ÷ */
+	/*! å¯é€‰çš„æ­Œè¯ä¸‹è½½æœåŠ¡å™¨ */
 	enum HostId {
-		LH_QQ_MUSIC, /*! QQ ÒôÀÖ */
-		LH_BAIDU_ZHANGMEN, /*! °Ù¶ÈÒôÀÖËÑË÷ */
-		LH_TTPLAYER, /*! Ç§Ç§¾²Ìı */
+		LH_QQ_MUSIC, /*! QQ éŸ³ä¹ */
+		LH_BAIDU_ZHANGMEN, /*! ç™¾åº¦éŸ³ä¹æœç´¢ */
+		LH_TTPLAYER, /*! åƒåƒé™å¬ */
 	};
 
 	wxString Gb2312XmlHack(const wxString& xml)
 	{
 		wxString ret( xml );
-		ret.Replace( L"gb2312", L"utf-8" ); // wxXml Ö»Ö§³Ö UTF-8 ±àÂë
+		ret.Replace( L"gb2312", L"utf-8" ); // wxXml åªæ”¯æŒ UTF-8 ç¼–ç 
 		return ret;
 	}
 
 	//////////////////////////////////////////////////////////////////////////
-	// QQ ÒôÀÖ
+	// QQ éŸ³ä¹
 
 	class QQMusic : public LyricHost
 	{
 	public:
 
-		// ¹¹Ôìº¯Êı
+		// æ„é€ å‡½æ•°
 		QQMusic();
 
 	private:
 
-		// ½âÎöÏÂÔØµ½µÄ¸è´ÊÁĞ±í
+		// è§£æä¸‹è½½åˆ°çš„æ­Œè¯åˆ—è¡¨
 		virtual bool ParseList(const wxString& list, ResultSet&) const;
 
-		// ½âÎöÏÂÔØµ½µÄ¸è´Ê
+		// è§£æä¸‹è½½åˆ°çš„æ­Œè¯
 		virtual bool ParseLyric(wxString& lyric) const;
 	};
 
@@ -163,7 +163,7 @@ namespace LyricGrabber
 		if( lyric.Trim( true ).Trim( false ).empty() || 
 			!lyric.EndsWith( L"</lyric>" ) )
 		{
-			wxLogDebug( L"[%s:%d]ÏÂÔØµÄÄÚÈİ²»ÍêÕû(³¤¶È:%d)", __FILE__, __LINE__, 
+			wxLogDebug( L"[%s:%d]ä¸‹è½½çš„å†…å®¹ä¸å®Œæ•´(é•¿åº¦:%d)", __FILE__, __LINE__, 
 						lyric.length() );
 
 			lyric.clear();
@@ -186,13 +186,13 @@ namespace LyricGrabber
 	}
 
 	//////////////////////////////////////////////////////////////////////////
-	// °Ù¶ÈÒôÀÖºĞ
+	// ç™¾åº¦éŸ³ä¹ç›’
 
 	class BaiduZhangmen : public LyricHost
 	{
 	public:
 
-		/// ¹¹Ôìº¯Êı
+		/// æ„é€ å‡½æ•°
 		BaiduZhangmen();
 
 	private:

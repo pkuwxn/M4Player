@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPWindow.cpp
- * Purpose:   ¶¨Òå OOPWindow
+ * Purpose:   å®šä¹‰ OOPWindow
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-2-27
  **************************************************************/
@@ -88,10 +88,10 @@ void OOPWindow::HackXrc(wxXmlNode* winRoot)
 				wxString strRect( rectNode->GetNodeContent() );
 				rcScreen = VdkUtil::ParseRect( strRect, PRT_RECTANGLE );
 
-				// Æ¤·ôÖÐµÄÃæ°åÎ»ÖÃ¶¨ÒåÓ¦¸Ã¶¼ÊÇ°´ÕÕÒÑÕ³¸½µ½Ö÷´°¿ÚÀ´¼ÆËãµÄ
-				// ¼ÙÈç´°¿ÚÒ»¿ªÊ¼ÊÇÏÔÊ¾µÄ£¬µ«ÊÇºóÀ´±»Òþ²ØÁË£¬ÔÙ¾ÍÊÇÒ»¸ö
-				// »»·ô²Ù×÷£¬µ±Õâ¸ö´°¿Ú±»ÔÙ´ÎÏÔÊ¾Ê±£¬Ëü±¾¸ÃÓëÖ÷´°¿ÚÕ³¸½µÄ£¬
-				// µ«ÈôÕâÀï²»ÉèÖÃÔò²»»áÊÇÕ³¸½×´Ì¬£¬Ôì³ÉÏÔÊ¾´íÎ»¡£
+				// çš®è‚¤ä¸­çš„é¢æ¿ä½ç½®å®šä¹‰åº”è¯¥éƒ½æ˜¯æŒ‰ç…§å·²ç²˜é™„åˆ°ä¸»çª—å£æ¥è®¡ç®—çš„
+				// å‡å¦‚çª—å£ä¸€å¼€å§‹æ˜¯æ˜¾ç¤ºçš„ï¼Œä½†æ˜¯åŽæ¥è¢«éšè—äº†ï¼Œå†å°±æ˜¯ä¸€ä¸ª
+				// æ¢è‚¤æ“ä½œï¼Œå½“è¿™ä¸ªçª—å£è¢«å†æ¬¡æ˜¾ç¤ºæ—¶ï¼Œå®ƒæœ¬è¯¥ä¸Žä¸»çª—å£ç²˜é™„çš„ï¼Œ
+				// ä½†è‹¥è¿™é‡Œä¸è®¾ç½®åˆ™ä¸ä¼šæ˜¯ç²˜é™„çŠ¶æ€ï¼Œé€ æˆæ˜¾ç¤ºé”™ä½ã€‚
 				m_stickyToMain = true;
 				m_relativePos = rcScreen.GetPosition();
 

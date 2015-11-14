@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPTrayIcon.cpp
- * Purpose:   OOPlayer µÄÍÐÅÌÍ¼±ê
+ * Purpose:   OOPlayer çš„æ‰˜ç›˜å›¾æ ‡
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-16
  **************************************************************/
@@ -33,35 +33,35 @@ wxMenu* OOPTrayIcon::CreatePopupMenu()
 {
 #ifdef USE_NATIVE_TRAY_MENU
     wxMenu* menu = new wxMenu;
-    menu->Append( OMM_PLAYER_OPTIONS, L"Ñ¡Ïî(&O)" );
+    menu->Append( OMM_PLAYER_OPTIONS, L"é€‰é¡¹(&O)" );
     menu->AppendSeparator();
 
     wxMenu* playCtrl = new wxMenu;
-    playCtrl->Append( OOM_PLAY_PAUSE, L"ÔÝÍ£(&P)" );
-    playCtrl->Append( OOM_STOP, L"Í£Ö¹(&S)" );
+    playCtrl->Append( OOM_PLAY_PAUSE, L"æš‚åœ(&P)" );
+    playCtrl->Append( OOM_STOP, L"åœæ­¢(&S)" );
     playCtrl->AppendSeparator();
-    playCtrl->Append( OOM_PREV, L"ÉÏÒ»Ê×(&R)" );
-    playCtrl->Append( OOM_NEXT, L"ÏÂÒ»Ê×(&N)" );
-    menu->Append( wxID_ANY, L"²¥·Å¿ØÖÆ(&P)", playCtrl );
+    playCtrl->Append( OOM_PREV, L"ä¸Šä¸€é¦–(&R)" );
+    playCtrl->Append( OOM_NEXT, L"ä¸‹ä¸€é¦–(&N)" );
+    menu->Append( wxID_ANY, L"æ’­æ”¾æŽ§åˆ¶(&P)", playCtrl );
     
     wxMenu* volumeCtrl = new wxMenu;
-    volumeCtrl->Append( OOM_VOLUME_UP, L"Ôö´ó(&I)" );
-    volumeCtrl->Append( OOM_VOLUME_DOWN, L"¼õÐ¡(&D)" );
+    volumeCtrl->Append( OOM_VOLUME_UP, L"å¢žå¤§(&I)" );
+    volumeCtrl->Append( OOM_VOLUME_DOWN, L"å‡å°(&D)" );
     volumeCtrl->AppendSeparator();
-    volumeCtrl->AppendCheckItem( OOM_MUTE, L"¾²Òô(&M)" );
-    menu->Append( wxID_ANY, L"ÒôÁ¿¿ØÖÆ(&V)", volumeCtrl );
+    volumeCtrl->AppendCheckItem( OOM_MUTE, L"é™éŸ³(&M)" );
+    menu->Append( wxID_ANY, L"éŸ³é‡æŽ§åˆ¶(&V)", volumeCtrl );
     
     wxMenu* playMode = new wxMenu;
-    playMode->AppendCheckItem( PLAY_MODE_SINGLE, L"µ¥Çú²¥·Å(&S)" );
-    playMode->AppendCheckItem( PLAY_MODE_SINGLE_RECYCLE, L"µ¥ÇúÑ­»·(&C)" );
-    playMode->AppendCheckItem( PLAY_MODE_BY_LIST, L"Ë³Ðò²¥·Å(&O)" );
-    playMode->AppendCheckItem( PLAY_MODE_LIST_RECYCLE, L"ÁÐ±íÑ­»·(&L)" );
-    playMode->AppendCheckItem( PLAY_MODE_LIST_RANDOM, L"Ëæ»ú²¥·Å(&R)" );
-    menu->Append( wxID_ANY, L"²¥·ÅÄ£Ê½(&M)", playMode );
+    playMode->AppendCheckItem( PLAY_MODE_SINGLE, L"å•æ›²æ’­æ”¾(&S)" );
+    playMode->AppendCheckItem( PLAY_MODE_SINGLE_RECYCLE, L"å•æ›²å¾ªçŽ¯(&C)" );
+    playMode->AppendCheckItem( PLAY_MODE_BY_LIST, L"é¡ºåºæ’­æ”¾(&O)" );
+    playMode->AppendCheckItem( PLAY_MODE_LIST_RECYCLE, L"åˆ—è¡¨å¾ªçŽ¯(&L)" );
+    playMode->AppendCheckItem( PLAY_MODE_LIST_RANDOM, L"éšæœºæ’­æ”¾(&R)" );
+    menu->Append( wxID_ANY, L"æ’­æ”¾æ¨¡å¼(&M)", playMode );
     
     menu->AppendSeparator();
-	menu->Append( CID_MINIMIZE, L"×îÐ¡»¯(&M)" );
-    menu->Append( CID_EXIT, L"ÍË³ö(&E)" );
+	menu->Append( CID_MINIMIZE, L"æœ€å°åŒ–(&M)" );
+    menu->Append( CID_EXIT, L"é€€å‡º(&E)" );
     
     return menu;
 #else

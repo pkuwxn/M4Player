@@ -1,6 +1,6 @@
-/***************************************************************
+﻿/***************************************************************
  * Name:      OOPFilePropDlg.cpp
- * Purpose:   ���ļ����ԡ��Ի���
+ * Purpose:   “文件属性”对话框
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2011-8-17
  **************************************************************/
@@ -9,36 +9,36 @@
 
 class OOPSongPtr;
 
-/// \brief ���ļ����ԡ��Ի���
+/// \brief “文件属性”对话框
 class OOPFilePropDlg : public VdkDialog
 {
 public:
 
-	/// \brief ���캯��
+	/// \brief 构造函数
 	OOPFilePropDlg(wxWindow* parent);
 
-	/// \brief ��������
+	/// \brief 析构函数
 	~OOPFilePropDlg();
 
-	/// \brief ��ʾģʽ�Ի���
+	/// \brief 显示模式对话框
 	void Popup(OOPSongPtr song);
 
 private:
 
-	// ���͸�����Ϣ�Ѹ��µ���Ϣ�����»ᷢ�����û��������޸ģ����ӳ��޸Ĳ��ɹ���
-	// ������Ϣ��Ȼ��ԭ����
+	// 发送歌曲信息已更新的消息，更新会发生在用户进行了修改，或延迟修改不成功，
+	// 歌曲信息仍然是原样。
 	void SendInfoUpdatedEvent();
 
-	// �رղ����ø����ڽ���
+	// 关闭并设置父窗口焦点
 	void HideAndFocusParent();
 
-	// ������ĵ�����
+	// 保存更改到磁盘
 	void SaveToFile(VdkVObjEvent&);
 
-	// ԭ���ر��¼�
+	// 原生关闭事件
 	void OnClose(wxCloseEvent&);
 
-	// �����˽����ϵ� VdkButton
+	// 按下了界面上的 VdkButton
 	void CloseDlg(VdkVObjEvent&);
 
 	//-----------------------------------------------

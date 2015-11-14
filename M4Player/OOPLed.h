@@ -1,17 +1,17 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkControl.h"
 
 class OOPStopWatch;
 
-/// \brief ÏÔÊ¾ÒÑ²¥·ÅÊ±¼äµÄÄ£Äâ LED ½ø¶È±í
+/// \brief æ˜¾ç¤ºå·²æ’­æ”¾æ—¶é—´çš„æ¨¡æ‹Ÿ LED è¿›åº¦è¡¨
 class OOPLed : public VdkControl, public wxTimer
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	OOPLed();
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
 	/// \brief 
@@ -23,55 +23,55 @@ public:
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/// \brief µ±Ç°¸èÇúµÄ¼ÆÊ±Æ÷
+	/// \brief å½“å‰æ­Œæ›²çš„è®¡æ—¶å™¨
 	void SetStopWatch(OOPStopWatch* sw) { m_stopWatch = sw; }
 
-	/// \brief ¿ªÊ¼ÏÔÊ¾
+	/// \brief å¼€å§‹æ˜¾ç¤º
 	void StartLed();
 
-	/// \brief ÔİÍ£ÏÔÊ¾
+	/// \brief æš‚åœæ˜¾ç¤º
 	void PauseLed();
 
-	/// \brief ¼ÌĞøÏÔÊ¾
+	/// \brief ç»§ç»­æ˜¾ç¤º
 	void ResumeLed();
 
-	/// \brief Í£Ö¹ÏÔÊ¾
+	/// \brief åœæ­¢æ˜¾ç¤º
 	void StopLed(wxDC* pDC);
 
-	/// \brief ÏÔÊ¾Ä³¸öÈ·¶¨µÄÊ±¼ä
-	/// \param nTimeInMS ÒªÏÔÊ¾µÄÊ±¼ä£¬ÒÔºÁÃë(MS)¼ÆËã
+	/// \brief æ˜¾ç¤ºæŸä¸ªç¡®å®šçš„æ—¶é—´
+	/// \param nTimeInMS è¦æ˜¾ç¤ºçš„æ—¶é—´ï¼Œä»¥æ¯«ç§’(MS)è®¡ç®—
 	void Combine(long nTimeInMS, wxDC& pDC);
 
 private:
 
-	// ³õÊ¼»¯¿Ø¼ş
+	// åˆå§‹åŒ–æ§ä»¶
 	void Init();
 
-	// ¿ªÊ¼ÏÔÊ¾
+	// å¼€å§‹æ˜¾ç¤º
 	void DoStart();
 
-	// »æÖÆ¿Ø¼ş
+	// ç»˜åˆ¶æ§ä»¶
 	virtual void DoDraw(wxDC& dc);
 
-	// ¼Ì³Ğ×Ô wxTimer
+	// ç»§æ‰¿è‡ª wxTimer
 	virtual void Notify();
 
-	// »ñÈ¡µ±Ç°Ê±¼ä³ıÒÔ gs_Internal µÄÓàÊı
+	// è·å–å½“å‰æ—¶é—´é™¤ä»¥ gs_Internal çš„ä½™æ•°
 	//
-	// ÒòÎª OOPLed ÊÇÒÔ 1s Îª²½½ø½øĞĞÏÔÊ¾£¬¹Êµ±ÔÚ 1s ÖĞ¼ä½øĞĞÔİÍ£
-	// ÔÙÖ±½Ó»Ö¸´£¨ºöÂÔ < 1s ²¿·Ö£©¾Í»áÔì³É½Ï´óÎó²î¡£
+	// å› ä¸º OOPLed æ˜¯ä»¥ 1s ä¸ºæ­¥è¿›è¿›è¡Œæ˜¾ç¤ºï¼Œæ•…å½“åœ¨ 1s ä¸­é—´è¿›è¡Œæš‚åœ
+	// å†ç›´æ¥æ¢å¤ï¼ˆå¿½ç•¥ < 1s éƒ¨åˆ†ï¼‰å°±ä¼šé€ æˆè¾ƒå¤§è¯¯å·®ã€‚
 	int GetRestTimeForThisSecond();
 
 private:
 
 	wxBitmap			m_bmAll;
 	
-	int					m_nElWidth;		// ÔªËØ¿í¶È
-	int					m_nElHeight;	// ÔªËØ¸ß¶È
+	int					m_nElWidth;		// å…ƒç´ å®½åº¦
+	int					m_nElHeight;	// å…ƒç´ é«˜åº¦
 
-	int					m_nPos[4];		// ËÄ¸öÔªËØÏà¶ÔÓÚ m_Rect.x µÄÆ«ÒÆ
+	int					m_nPos[4];		// å››ä¸ªå…ƒç´ ç›¸å¯¹äº m_Rect.x çš„åç§»
 
-	OOPStopWatch*		m_stopWatch;	// ¼û OOPLyric::m_stopWatch
+	OOPStopWatch*		m_stopWatch;	// è§ OOPLyric::m_stopWatch
 
 	DECLARE_DYNAMIC_VOBJECT
 };

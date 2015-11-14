@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      Playlist.h
- * Purpose:   Ö¸Ïò OOPSong µÄÖÇÄÜÖ¸Õë
+ * Purpose:   æŒ‡å‘ OOPSong çš„æ™ºèƒ½æŒ‡é’ˆ
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-05-29
  **************************************************************/
@@ -8,42 +8,42 @@
 #include <wx/sharedptr.h> // for wxSharedPtr
 #include "OOPSong.h" // OOPSong dtor
 
-/// Ö¸Ïò OOPSong µÄÖÇÄÜÖ¸Õë
+/// æŒ‡å‘ OOPSong çš„æ™ºèƒ½æŒ‡é’ˆ
 ///
-/// ·¢¾õÉ¨ÃèÌí¼Ó 1500+ ¸öÎÄ¼şÊ±ÄÚ´æÕ¼ÓÃ»ØÈ¥µ½ 100M+£¬ÊÇ²»ÊÇ OOPSong ¶ÔÏóÈÇµÄ»öÄØ£¿
-/// ÏÂÃæÊÔÊÔ¡£
+/// å‘è§‰æ‰«ææ·»åŠ  1500+ ä¸ªæ–‡ä»¶æ—¶å†…å­˜å ç”¨å›å»åˆ° 100M+ï¼Œæ˜¯ä¸æ˜¯ OOPSong å¯¹è±¡æƒ¹çš„ç¥¸å‘¢ï¼Ÿ
+/// ä¸‹é¢è¯•è¯•ã€‚
 class OOPSongPtr
 {
 public:
 
-	/// (Ä¬ÈÏ)¹¹Ôìº¯Êı
+	/// (é»˜è®¤)æ„é€ å‡½æ•°
 	explicit OOPSongPtr(OOPSong* song = NULL);
 
-	/// ¸´ÖÆ¹¹Ôìº¯Êı
+	/// å¤åˆ¶æ„é€ å‡½æ•°
 	OOPSongPtr(const OOPSongPtr& other);
 
-	/// Îö¹¹º¯Êı
+	/// ææ„å‡½æ•°
 	~OOPSongPtr();
 
-	/// ÖØÔØ¸³Öµ²Ù×÷·û
+	/// é‡è½½èµ‹å€¼æ“ä½œç¬¦
 	OOPSongPtr& operator=(const OOPSongPtr& other);
 
-	/// ÖØÔØÖ¸Õë²Ù×÷·û
+	/// é‡è½½æŒ‡é’ˆæ“ä½œç¬¦
 	OOPSong* operator->() const;
 
-	/// ÖØÔØÈ¡Öµ²Ù×÷·û
+	/// é‡è½½å–å€¼æ“ä½œç¬¦
 	OOPSong& operator*();
 
-	/// ÖØÔØÈ¡Öµ²Ù×÷·û
+	/// é‡è½½å–å€¼æ“ä½œç¬¦
 	const OOPSong& operator*() const;
 
-	/// ÓĞĞ§ĞÔ²âÊÔ
+	/// æœ‰æ•ˆæ€§æµ‹è¯•
 	operator bool() const { return (m_song.get() != NULL); }
 
-	/// »ñÈ¡ÄÚ²¿Ö¸Õë
+	/// è·å–å†…éƒ¨æŒ‡é’ˆ
 	OOPSong* get() const { return m_song.get(); }
 
-	/// ½«Ö¸ÕëÖØÖÃÎª@a ptr 
+	/// å°†æŒ‡é’ˆé‡ç½®ä¸º@a ptr 
 	void reset(OOPSong* ptr = NULL) { m_song.reset( ptr ); }
 
 private:
@@ -51,6 +51,6 @@ private:
 	wxSharedPtr<OOPSong> m_song;
 };
 
-/// ÌØ»¯ wxSharedPtr<OOPSong> ÏàµÈĞÔ²âÊÔ
+/// ç‰¹åŒ– wxSharedPtr<OOPSong> ç›¸ç­‰æ€§æµ‹è¯•
 template <>
 bool operator == (wxSharedPtr<OOPSong> const &a, wxSharedPtr<OOPSong> const &b);

@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPPlaylistSearchDlg.cpp
- * Purpose:   ¡°¿ìËÙ¶¨Î»ÎÄ¼ş¡±¶Ô»°¿ò
+ * Purpose:   â€œå¿«é€Ÿå®šä½æ–‡ä»¶â€å¯¹è¯æ¡†
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-11
  **************************************************************/
@@ -19,7 +19,7 @@
 wxDEFINE_EVENT( OOP_EVT_PLAYLIST_SEARCH, wxCommandEvent );
 
 OOPPlaylistSearchDlg::OOPPlaylistSearchDlg(VdkWindow* parent)
-	: VdkDialog( parent->GetHandle(), L"¿ìËÙ¶¨Î»ÎÄ¼ş", 0, 
+	: VdkDialog( parent->GetHandle(), L"å¿«é€Ÿå®šä½æ–‡ä»¶", 0, 
 				 VWS_DRAGGABLE | VWS_BASE_PANEL | VWS_DISMISS_BY_ESC ),
 	  m_keyword( NULL )
 {
@@ -32,7 +32,7 @@ OOPPlaylistSearchDlg::OOPPlaylistSearchDlg(VdkWindow* parent)
 
 	Bind( wxEVT_VOBJ, &OOPPlaylistSearchDlg::OnSearchButton, this, id );
 	
-	// ¸²Ğ´Ä¬ÈÏ¹Ø±ÕÊÂ¼ş´¦ÀíÆ÷
+	// è¦†å†™é»˜è®¤å…³é—­äº‹ä»¶å¤„ç†å™¨
 	Bind( wxEVT_CLOSE_WINDOW, &OOPPlaylistSearchDlg::OnClose, this );
 	Bind( wxEVT_SHOW, &OOPPlaylistSearchDlg::OnShow, this );
 }

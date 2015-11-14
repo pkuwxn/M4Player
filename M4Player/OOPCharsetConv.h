@@ -1,18 +1,18 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPCharsetConv.h
- * Purpose:   Ê¹ÓÃ wxCSConv ÊµÏÖ MyTagLib::Charset ½Ó¿Ú
+ * Purpose:   ä½¿ç”¨ wxCSConv å®ç° MyTagLib::Charset æ¥å£
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-30
  **************************************************************/
 #pragma once
 #include "Charset.h"
 
-/// Ê¹ÓÃ wxCSConv ÊµÏÖ MyTagLib::Charset ½Ó¿Ú
+/// ä½¿ç”¨ wxCSConv å®ç° MyTagLib::Charset æ¥å£
 class OOPCharsetConv : public MyTagLib::Charset
 {
 public:
 
-	/// ÔÚ¾²Ì¬Õ»¿Õ¼äÉÏ´´½¨µ¥Ìå¶ÔÏó
+	/// åœ¨é™æ€æ ˆç©ºé—´ä¸Šåˆ›å»ºå•ä½“å¯¹è±¡
 	static OOPCharsetConv& CreateInstance();
 
 private:

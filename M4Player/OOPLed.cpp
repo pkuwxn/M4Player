@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      OOPLed.cpp
- * Purpose:   OOPLed ÊµÏÖÎÄ¼ş
+ * Purpose:   OOPLed å®ç°æ–‡ä»¶
  * Author:    Ning (vanxining@139.com)
  * Created:   2010
  * Copyright: Wang Xiao Ning
@@ -63,14 +63,14 @@ void OOPLed::Create(VdkWindow* Window,
 	int nWidth = m_nElWidth * 6,
 		nHeight = m_bmAll.GetHeight();
 
-	// ¼ÙÈç m_Rext.width Ğ¡ÓÚÊµ¼ÊĞèÒªµÄ¿í¶È£¬ÒÔÓÒÏÂ½Ç×ø±êÎª×¼
+	// å‡å¦‚ m_Rext.width å°äºå®é™…éœ€è¦çš„å®½åº¦ï¼Œä»¥å³ä¸‹è§’åæ ‡ä¸ºå‡†
 	if( m_Rect.width < nWidth || (m_align & ALIGN_RIGHT) )
 	{
 		m_Rect.x = m_Rect.x + m_Rect.width - nWidth;
 		m_Rect.width = nWidth;
 	}
 
-	// ¼ÙÈç m_Rext.height Ğ¡ÓÚÊµ¼ÊĞèÒªµÄ¿í¶È£¬ÒÔÓÒÏÂ½Ç×ø±êÎª×¼
+	// å‡å¦‚ m_Rext.height å°äºå®é™…éœ€è¦çš„å®½åº¦ï¼Œä»¥å³ä¸‹è§’åæ ‡ä¸ºå‡†
 	if( m_Rect.height < nHeight )
 	{
 		m_Rect.y -= nHeight - m_Rect.height;
@@ -83,10 +83,10 @@ void OOPLed::Create(VdkWindow* Window,
 
 	int xStart = m_Rect.x + m_nElWidth;
 
-	// ²»´Ó 0 ¿ªÊ¼ÊÇÒòÎªÇ°Ãæ¿ÉÄÜÓĞ¸ö¡°-¡±
+	// ä¸ä» 0 å¼€å§‹æ˜¯å› ä¸ºå‰é¢å¯èƒ½æœ‰ä¸ªâ€œ-â€
 	m_nPos[0] = xStart;
 	m_nPos[1] = xStart + m_nElWidth;
-	// ²» * 2 ÊÇÒòÎªÖĞ¼äÓĞ¸ö¡°:¡±
+	// ä¸ * 2 æ˜¯å› ä¸ºä¸­é—´æœ‰ä¸ªâ€œ:â€
 	m_nPos[2] = xStart + m_nElWidth * 3;
 	m_nPos[3] = xStart + m_nElWidth * 4;
 }
@@ -111,7 +111,7 @@ void OOPLed::Notify()
 
 void OOPLed::Combine(long nTimeInMS, wxDC& dc)
 {
-	// Ê±¼äµÄÊı×Ö
+	// æ—¶é—´çš„æ•°å­—
 	unsigned char d[4] = { 0 };
 
 	long curr = nTimeInMS / 1000;
@@ -147,7 +147,7 @@ void OOPLed::Combine(long nTimeInMS, wxDC& dc)
 				 true );
 	}
 
-	// ÖĞ¼äµÄ¡°:¡±
+	// ä¸­é—´çš„â€œ:â€
 	dc.Blit( m_nPos[1] + m_nElWidth,
 		     rc.y,
 			 m_nElWidth,

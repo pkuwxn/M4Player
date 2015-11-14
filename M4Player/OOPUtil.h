@@ -1,7 +1,7 @@
-#pragma once
+ï»¿#pragma once
 
 class VdkControl;
 class wxXmlNode;
 
-/// ¼ì²éXML¸ù½ÚµãµÄÃû×ÖÊÇ·ñ·ûºÏËùÒªÇóµÄ£¬Èô²»·ûºÏÊä³ö@a errNo
+/// æ£€æŸ¥XMLæ ¹èŠ‚ç‚¹çš„åå­—æ˜¯å¦ç¬¦åˆæ‰€è¦æ±‚çš„ï¼Œè‹¥ä¸ç¬¦åˆè¾“å‡º@a errNo
 void CheckXmlConf(wxXmlNode* xmlNode, const wxChar* szNode, int errNo);

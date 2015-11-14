@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      MainPanel.cpp
- * Purpose:   ¶¨Òå MainPanel
+ * Purpose:   å®šä¹‰ MainPanel
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-2-27
  **************************************************************/
@@ -50,7 +50,7 @@ void MainPanel::DoSetSkin()
 	label = (VdkLabel *) FindCtrl( L"stereo" );
 	if( label )
 	{
-		label->SetCaption( L"Á¢ÌåÉù", NULL );
+		label->SetCaption( L"ç«‹ä½“å£°", NULL );
 	}
 
 	OOPIcon* icon = FindCtrl< OOPIcon >( L"icon" );

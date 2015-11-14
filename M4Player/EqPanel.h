@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      EqPanel.h
- * Purpose:   ¾ùºâÆ÷´°¿Ú
+ * Purpose:   å‡è¡¡å™¨çª—å£
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-24
  **************************************************************/
@@ -11,23 +11,23 @@ class VdkSlider;
 class VdkToggleButton;
 class VdkButton;
 
-/// \brief ¾ùºâÆ÷´°¿Ú
+/// \brief å‡è¡¡å™¨çª—å£
 class EqPanel : public OOPWindow
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	EqPanel(wxWindow* parent);
 
 private:
 
-	// ÉèÖÃ´°¿ÚËùÓÃµÄÆ¤·ô
+	// è®¾ç½®çª—å£æ‰€ç”¨çš„çš®è‚¤
 	virtual void DoSetSkin();
 
-	// ²éÕÒ¾ùºâÆ÷ÅúÁ¿¹ö¶¯Ìõ»ù×¼ÊÖ±úµÄ XRC ¶¨Òå
+	// æŸ¥æ‰¾å‡è¡¡å™¨æ‰¹é‡æ»šåŠ¨æ¡åŸºå‡†æ‰‹æŸ„çš„ XRC å®šä¹‰
 	wxXmlNode* FindEqfactor(wxXmlNode* windowRoot) const;
 
-	// ÆôÓÃ/½ûÓÃËùÓĞ¿Ø¼ş
+	// å¯ç”¨/ç¦ç”¨æ‰€æœ‰æ§ä»¶
 	void EnableAll(bool enable, wxDC* pDC);
 
 private:

@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      PlayListPanel.cpp
- * Purpose:   ¶¨Òå PlayListPanel
+ * Purpose:   å®šä¹‰ PlayListPanel
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-2-27
  **************************************************************/
@@ -59,7 +59,7 @@ PlayListPanel::PlayListPanel(wxWindow* parent, bool showAtOnce)
 		  OPLM_RENAME_LOWER_BOUND,
 		  OPLM_RENAME_UPPER_BOUND );
 
-	// ²Ëµ¥Ô¤ÏÔÊ¾ÊÂ¼ş
+	// èœå•é¢„æ˜¾ç¤ºäº‹ä»¶
 	Bind( wxEVT_VOBJ, &PlayListPanel::OnPreShowMenu, this, m_menuId );
 }
 
@@ -68,7 +68,7 @@ void PlayListPanel::DoSetSkin()
 	FromXrc( L"playlist_window.xml" );
 
 	BindCloseBtnEvent();
-	AssignToolTip( FindCtrl( L"close" ), L"¹Ø±Õ" );
+	AssignToolTip( FindCtrl( L"close" ), L"å…³é—­" );
 
 	//-----------------------------------------------------
 
@@ -82,7 +82,7 @@ void PlayListPanel::DoSetSkin()
 
 void PlayListPanel::OnClose(wxCloseEvent& e)
 {
-	// Ìá½»ËùÓĞÎ´³É¹¦µÄ¸èÇú±êÇ©ĞŞ¸Ä
+	// æäº¤æ‰€æœ‰æœªæˆåŠŸçš„æ­Œæ›²æ ‡ç­¾ä¿®æ”¹
 	if( m_filePropDlg )
 	{
 		SingleDelayModStack::Instance().CommitAll();
@@ -91,13 +91,13 @@ void PlayListPanel::OnClose(wxCloseEvent& e)
 	e.Skip( true );
 }
 
-// TODO: ½«Æä×÷ÎªÒ»¸ö³ÉÔ±±äÁ¿£¿
+// TODO: å°†å…¶ä½œä¸ºä¸€ä¸ªæˆå‘˜å˜é‡ï¼Ÿ
 static wxString gsLastDir;
 
 void PlayListPanel::AddFiles(wxWindow* parent)
 {
 	wxFileDialog fdlg( parent,
-					   L"Ìí¼ÓÒôÀÖÎÄ¼ş",
+					   L"æ·»åŠ éŸ³ä¹æ–‡ä»¶",
 #ifdef __WXDEBUG__
 #   ifdef __WXMSW__
 					   L"D:\\Music",
@@ -126,7 +126,7 @@ void PlayListPanel::AddFiles(wxArrayString* paths)
 {
 	wxASSERT( paths && !paths->IsEmpty() );
 
-	// ¡°µ¼Èë¸èÇú¡±¶Ô»°¿ò
+	// â€œå¯¼å…¥æ­Œæ›²â€å¯¹è¯æ¡†
 	OOPScanner scanner( this, paths );
 }
 
@@ -135,11 +135,11 @@ void PlayListPanel::OnScanDone(wxCommandEvent& evt)
 	typedef wxVector< OOPSongPtr > SongVec;
 	wxSharedPtr< SongVec > songs( (SongVec*) evt.GetClientData() );
 
-	// ¸üĞÂÉÏ´ÎÑ¡ÔñµÄÄ¿Â¼
+	// æ›´æ–°ä¸Šæ¬¡é€‰æ‹©çš„ç›®å½•
 	wxFileName fn( (*(songs->begin()))->path() );
 	gsLastDir = fn.GetPath();
 
-	// ¿ÉÄÜÓÃ»§Ñ¡ÔñµÄ¶¼ÊÇÒ»Ğ©²»ÕıÈ·µÄÎÄ¼ş(Èç´óĞ¡Îª 0 µÈÇé¿ö)
+	// å¯èƒ½ç”¨æˆ·é€‰æ‹©çš„éƒ½æ˜¯ä¸€äº›ä¸æ­£ç¡®çš„æ–‡ä»¶(å¦‚å¤§å°ä¸º 0 ç­‰æƒ…å†µ)
 	if( songs->empty() )
         return;
 
@@ -156,7 +156,7 @@ void PlayListPanel::OnScanDone(wxCommandEvent& evt)
 	m_playList->UpdateSnColumnWidth( first, index );
 	m_playList->UpdateSize( NULL );
 
-	// Ñ¡ÖĞĞÂÔö¼ÓµÄ¸èÇú
+	// é€‰ä¸­æ–°å¢åŠ çš„æ­Œæ›²
 	m_playList->Select( first, index, NULL );
 
 	{
@@ -171,7 +171,7 @@ void PlayListPanel::OnScanDone(wxCommandEvent& evt)
 void PlayListPanel::AddFolder(RecursiveMode rm)
 {
 	wxDirDialog fdlg( this,
-					  L"ÇëÑ¡ÔñÒ»¸öÎÄ¼ş¼Ğ:",
+					  L"è¯·é€‰æ‹©ä¸€ä¸ªæ–‡ä»¶å¤¹:",
 #ifdef __WXDEBUG__
 #   ifdef __WXMSW__
 					  L"D:\\Music",
@@ -182,7 +182,7 @@ void PlayListPanel::AddFolder(RecursiveMode rm)
                       gsLastDir,
 #endif // __WXDEBUG__
 					  wxDD_DEFAULT_STYLE |
-					  // Ã»ÓĞ¡°ĞÂ½¨ÎÄ¼ş¼Ğ¡±°´Å¥
+					  // æ²¡æœ‰â€œæ–°å»ºæ–‡ä»¶å¤¹â€æŒ‰é’®
 					  wxDD_DIR_MUST_EXIST );
 
 	if( fdlg.ShowModal() == wxID_CANCEL )
@@ -221,7 +221,7 @@ void PlayListPanel::AddFolder
 	bool cont = false;
 
 	//--------------------------------------
-	// ±éÀúÄ¿Â¼
+	// éå†ç›®å½•
 
 	if( rm == RM_RECURSIVE )
 	{
@@ -237,7 +237,7 @@ void PlayListPanel::AddFolder
 	}
 
 	//--------------------------------------
-	// ±éÀúÎÄ¼ş
+	// éå†æ–‡ä»¶
 
 	wxFileName fileName;
 
@@ -259,7 +259,7 @@ bool PlayListPanel::TestPsuedoModal()
 		wxASSERT( m_filePropDlg );
 #endif
 
-	// ÊµÏÖ¡°Î±Ä£Ì¬¶Ô»°¿ò¡±(GTK+ ÏÂ×Ô»æ²Ëµ¥ÎŞ·¨ÔÚÄ£Ì¬¶Ô»°¿òÖĞÊµÏÖ)
+	// å®ç°â€œä¼ªæ¨¡æ€å¯¹è¯æ¡†â€(GTK+ ä¸‹è‡ªç»˜èœå•æ— æ³•åœ¨æ¨¡æ€å¯¹è¯æ¡†ä¸­å®ç°)
 	return !m_songInfoUpdated;
 }
 
@@ -270,11 +270,11 @@ bool PlayListPanel::FilterEventBefore(wxMouseEvent&, int)
 
 bool PlayListPanel::DoHandleKeyEvent(wxKeyEvent& e)
 {
-	// ÊµÏÖ¡°Î±Ä£Ì¬¶Ô»°¿ò¡±(GTK+ ÏÂ×Ô»æ²Ëµ¥ÎŞ·¨ÔÚÄ£Ì¬¶Ô»°¿òÖĞÊµÏÖ)
+	// å®ç°â€œä¼ªæ¨¡æ€å¯¹è¯æ¡†â€(GTK+ ä¸‹è‡ªç»˜èœå•æ— æ³•åœ¨æ¨¡æ€å¯¹è¯æ¡†ä¸­å®ç°)
 	if( TestPsuedoModal() )
 		return true;
 
-	// Ö»ĞèÒª wxEVT_KEY_DOWN
+	// åªéœ€è¦ wxEVT_KEY_DOWN
 	if( e.GetEventType() != wxEVT_KEY_DOWN )
 		return false;
 
@@ -291,7 +291,7 @@ bool PlayListPanel::DoHandleKeyEvent(wxKeyEvent& e)
 				return true;
 			}
 
-			// ÏÔÊ¾ËÑË÷¶Ô»°¿ò
+			// æ˜¾ç¤ºæœç´¢å¯¹è¯æ¡†
 
 		case 'F':
 
@@ -337,7 +337,7 @@ void PlayListPanel::OnFileProperties(VdkVObjEvent&)
 void PlayListPanel::OnSongInfoUpdated(wxCommandEvent& e)
 {
 	const ArrayOfSortedInts& selItems = m_playList->GetSelectedItems();
-	// TODO: ÏÖÔÚ¶¼ÊÇÖ»ÊÇ´¦Àí¶àÑ¡ÏîÖĞµÄµÚÒ»Ïî
+	// TODO: ç°åœ¨éƒ½æ˜¯åªæ˜¯å¤„ç†å¤šé€‰é¡¹ä¸­çš„ç¬¬ä¸€é¡¹
 	wxASSERT( selItems.size() == 1 );
 
 	VdkLcCell* cell = m_playList->GetCell( selItems[0], 1 );
@@ -348,17 +348,17 @@ void PlayListPanel::OnSongInfoUpdated(wxCommandEvent& e)
 	song.ParseTag();
 	cell->SetLabel( song.BuildTitle( g_app->GetPlayListTitleFormat() ) );
 
-	// ¸èÇúÔªĞÅÏ¢ÒÑ¸üĞÂÊÂ¼şÒÑ´¦Àí
+	// æ­Œæ›²å…ƒä¿¡æ¯å·²æ›´æ–°äº‹ä»¶å·²å¤„ç†
 	m_songInfoUpdated = true;
 
 	VdkDC dc( this );
 	m_playList->Draw( dc );
 
-	// ½«Æä¼ÌĞøµ¼ÏòÓ¦ÓÃ³ÌĞòÀà
+	// å°†å…¶ç»§ç»­å¯¼å‘åº”ç”¨ç¨‹åºç±»
 	wxPostEvent( wxTheApp, e );
 }
 
-// ½«Â·¾¶ÖĞ½ûÖ¹°üº¬µÄ×Ö·ûÌæ»»³É@a dst
+// å°†è·¯å¾„ä¸­ç¦æ­¢åŒ…å«çš„å­—ç¬¦æ›¿æ¢æˆ@a dst
 wxString ReplaceForbiddenChars(const wxString& path, wchar_t dst)
 {
 	wxString ret( path );
@@ -408,7 +408,7 @@ void PlayListPanel::OnRename(VdkVObjEvent& e)
 		wxFileName fn( song->path() );
 		wxString oldName( fn.GetName() );
 		wxString newName( song->BuildTitle( nameFormat ) );
-		// È¥³ı·Ç·¨×Ö·û
+		// å»é™¤éæ³•å­—ç¬¦
 		newName = ReplaceForbiddenChars( newName, L'_' );
 
 		if( oldName != newName )
@@ -468,7 +468,7 @@ void PlayListPanel::Search()
 		}
 		else
 		{
-			// ´ÓÍ·ÕÒÆğ
+			// ä»å¤´æ‰¾èµ·
 			if( m_lastFound >= m_playList->GetRowCount() )
 				m_lastFound = wxNOT_FOUND;
 		}
@@ -477,7 +477,7 @@ void PlayListPanel::Search()
 		LcCellIter iter( m_playList->begin() ), end( m_playList->end() );
 		for( ; iter != end; ++iter, ++index )
 		{
-			// ´ÓÉÏ´ÎµÄËÑÆğ
+			// ä»ä¸Šæ¬¡çš„æœèµ·
 			if( index <= m_lastFound )
 				continue;
 
@@ -488,7 +488,7 @@ void PlayListPanel::Search()
 			{
 				m_playList->Select( index, NULL );
 
-				// ½«¿ÉÊÓÇøÓòÆğÊ¼µãÒÆÖÁËÑË÷½á¹û
+				// å°†å¯è§†åŒºåŸŸèµ·å§‹ç‚¹ç§»è‡³æœç´¢ç»“æœ
 				int ystart;
 				m_playList->GetViewStart( NULL, &ystart );
 				int shownItems = m_playList->GetRect().GetHeight() /

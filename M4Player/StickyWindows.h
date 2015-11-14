@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      StickyWindows.h
- * Purpose:   WinAMP ·ç¸ñÕ³¸½´°¿ÚÊµÏÖ
+ * Purpose:   WinAMP é£æ ¼ç²˜é™„çª—å£å®ç°
  * Author:    Ning (vanxining@139.com)
  * Created:   2011-03-07
  * Copyright: Ning
@@ -9,93 +9,93 @@
 #include "VdkEvent.h"
 #include <wx/vector.h>
 
-/*! ×Ó´°¿ÚÕ³¸½µ½Ö÷´°¿Ú */
+/*! å­çª—å£ç²˜é™„åˆ°ä¸»çª—å£ */
 wxDECLARE_EVENT( wxEVT_STICKY_WINDOW_ATTACHED, wxCommandEvent );
-/*! ×Ó´°¿Ú´ÓÖ÷´°¿ÚÍÑÀë */
+/*! å­çª—å£ä»ä¸»çª—å£è„±ç¦» */
 wxDECLARE_EVENT( wxEVT_STICKY_WINDOW_DETACHED, wxCommandEvent );
 
-/// \brief WinAMP ·ç¸ñÕ³¸½´°¿ÚÊµÏÖ
+/// \brief WinAMP é£æ ¼ç²˜é™„çª—å£å®ç°
 class StickyWindows : public VdkEventFilter
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	StickyWindows(int criticalDistance = 10);
 
-	/// \brief Ìí¼ÓÒ»¸öÊÜ¹ÜÀíµÄ´°¿Ú
+	/// \brief æ·»åŠ ä¸€ä¸ªå—ç®¡ç†çš„çª—å£
 	void AddWindow(VdkWindow* win);
 
-	/// \brief ÉèÖÃÖ÷´°¿Ú
+	/// \brief è®¾ç½®ä¸»çª—å£
 	///
-	/// ÊÇ·ñÖ÷´°¿Ú£¬¼ÙÈçÊÇÍÏ¶¯Ö÷´°¿ÚÊ±ÓëÖ®Õ³¸½µÄ×Ó´°¿Ú»áÒ»ÆğÁª¶¯¡£
+	/// æ˜¯å¦ä¸»çª—å£ï¼Œå‡å¦‚æ˜¯æ‹–åŠ¨ä¸»çª—å£æ—¶ä¸ä¹‹ç²˜é™„çš„å­çª—å£ä¼šä¸€èµ·è”åŠ¨ã€‚
 	void SetMainWindow(VdkWindow* win);
 
-	/// \brief ²éÕÒ×Ó´°¿ÚÊÇ·ñÒÑÈ»ğ¤¸½µ½Ö÷´°¿Ú
+	/// \brief æŸ¥æ‰¾å­çª—å£æ˜¯å¦å·²ç„¶é»é™„åˆ°ä¸»çª—å£
 	bool IsStickyToMain(VdkWindow* chd);
 
-	/// \brief ¸üĞÂµ±Ç°ÓëÖ÷´°¿ÚÏàÕ³¸½µÄ×Ó´°¿Ú
-	/// \param rcMain Ö÷´°¿ÚµÄÆÁÄ»×÷ÓÃÓò
+	/// \brief æ›´æ–°å½“å‰ä¸ä¸»çª—å£ç›¸ç²˜é™„çš„å­çª—å£
+	/// \param rcMain ä¸»çª—å£çš„å±å¹•ä½œç”¨åŸŸ
 	void UpdateStickyChildren(const wxRect& rcMain);
 
-	/// \brief ÒÆ³ıÒ»¸öÊÜ¹ÜÀíµÄ´°¿Ú
+	/// \brief ç§»é™¤ä¸€ä¸ªå—ç®¡ç†çš„çª—å£
 	void RemoveWindow(VdkWindow* win);
 
 private:
 
-	// À¹½Ø·¢ËÍ¸ø VdkWindow µÄÊÂ¼ş
+	// æ‹¦æˆªå‘é€ç»™ VdkWindow çš„äº‹ä»¶
 	virtual bool FilterEvent(const EventForFiltering& e);
 
-	// ´¦ÀíÒÆ¶¯×Ó´°¿ÚÊÂ¼ş£¨Ö÷´°¿ÚÒÆ¶¯ÊÂ¼ş´¦ÀíÆ÷Îª LinklyMove() £©
+	// å¤„ç†ç§»åŠ¨å­çª—å£äº‹ä»¶ï¼ˆä¸»çª—å£ç§»åŠ¨äº‹ä»¶å¤„ç†å™¨ä¸º LinklyMove() ï¼‰
 	bool HandleChildMove(VdkWindow* win, const wxPoint& mousePosClient);
 
-	// ´¦Àí¸Ä±ä´°¿Ú´óĞ¡
+	// å¤„ç†æ”¹å˜çª—å£å¤§å°
 	bool HandleResize(VdkWindow* win, const wxPoint& mousePosClient);
 
-	// ÔÚÕæÕıÒÆ¶¯Ö®Ç°¸üĞÂÕ³¸½×Ó´°¿Ú
+	// åœ¨çœŸæ­£ç§»åŠ¨ä¹‹å‰æ›´æ–°ç²˜é™„å­çª—å£
 	void OnMainLeftDown(wxMouseEvent&);
 
-	// ´¦Àí¸¸×Ó´°¿ÚÁª¶¯
+	// å¤„ç†çˆ¶å­çª—å£è”åŠ¨
 	void LinklyMove(wxMoveEvent& e);
 
 private:
 
-	// ¼ÆËã×Ó´°¿ÚÊÇ·ñÖ±½Ó»òÕß¼ä½ÓµØğ¤¸½µ½Ö÷´°¿Ú
+	// è®¡ç®—å­çª—å£æ˜¯å¦ç›´æ¥æˆ–è€…é—´æ¥åœ°é»é™„åˆ°ä¸»çª—å£
 	//
-	// ËùÎ½¼ä½Ó£¬¼´Í¨¹ıÒ»¸öÒÑÕ³¸½µ½Ö÷´°¿ÚµÄ´úÀí×Ó´°¿Ú£¨ĞÖµÜ×Ó´°¿Ú£©\n
-	// ÓëÖ÷´°¿ÚÕ³¸½¡£
-	// @param rcMain Ö÷´°¿ÚÔÚÆÁÄ»ÉÏµÄ×÷ÓÃÓò¡£
+	// æ‰€è°“é—´æ¥ï¼Œå³é€šè¿‡ä¸€ä¸ªå·²ç²˜é™„åˆ°ä¸»çª—å£çš„ä»£ç†å­çª—å£ï¼ˆå…„å¼Ÿå­çª—å£ï¼‰\n
+	// ä¸ä¸»çª—å£ç²˜é™„ã€‚
+	// @param rcMain ä¸»çª—å£åœ¨å±å¹•ä¸Šçš„ä½œç”¨åŸŸã€‚
 	bool RecalcLinkageToMain(const wxRect& rcMain, VdkWindow* chd);
 
-	// ¼ì²â\a moving ÊÇ·ñÈ·ÊµÕ³¸½µ½\a still µÄÄ³¸ö·½ÏòÉÏ
+	// æ£€æµ‹\a moving æ˜¯å¦ç¡®å®ç²˜é™„åˆ°\a still çš„æŸä¸ªæ–¹å‘ä¸Š
 	bool ReallySticky(const wxRect& moving, const wxRect& still);
 
-	// ÖØĞÂ¼ÆËãÓëÖ÷´°¿ÚµÄÕ³¸½ÊôĞÔ
+	// é‡æ–°è®¡ç®—ä¸ä¸»çª—å£çš„ç²˜é™„å±æ€§
 	// 
-	// Í¬Ê±¸üĞÂÄÚ²¿×´Ì¬ĞÅÏ¢¡£
+	// åŒæ—¶æ›´æ–°å†…éƒ¨çŠ¶æ€ä¿¡æ¯ã€‚
 	void UpdateStickyToMainState(const wxRect& rcMain, VdkWindow* win);
 
-	// ¸ù¾İ\a rcThis ºÍ\a rcAgence µÄ¿ÉÕ³¸½×´Ì¬¸üĞÂ\a rcThis
+	// æ ¹æ®\a rcThis å’Œ\a rcAgence çš„å¯ç²˜é™„çŠ¶æ€æ›´æ–°\a rcThis
 	bool TryStickToAgent(wxRect& rcThis, const wxRect& rcAgent);
 
 private:
 
-	// ´°¿ÚÕ³¸½µÄÁÙ½çÖµ
-	// ÕâÀï²»ÄÜÓÃ unsigned ÀàĞÍ£¬ÒòÎª std::abs() ·µ»Ø int £¬ÓÃÁË
-	// »áµ¼ÖÂ´óÁ¿¾¯¸æ
+	// çª—å£ç²˜é™„çš„ä¸´ç•Œå€¼
+	// è¿™é‡Œä¸èƒ½ç”¨ unsigned ç±»å‹ï¼Œå› ä¸º std::abs() è¿”å› int ï¼Œç”¨äº†
+	// ä¼šå¯¼è‡´å¤§é‡è­¦å‘Š
 	int m_criticalDistance;
 
 	VdkWindowList m_windows;
-	// Ö÷´°¿Úµü´úÆ÷
+	// ä¸»çª—å£è¿­ä»£å™¨
 	VdkWindowIter m_main;
 
-	// Õ³¸½µÄ×Ó´°¿ÚµÄÏà¹ØĞÅÏ¢
+	// ç²˜é™„çš„å­çª—å£çš„ç›¸å…³ä¿¡æ¯
 	class StickyInfo {
 	public:
 
 		VdkWindow* win;
 
-		wxCoord offsetX; // ÓëÖ÷´°¿ÚÔÚ X ÖáÉÏµÄ¾àÀë
-		wxCoord offsetY; // ÓëÖ÷´°¿ÚÔÚ Y ÖáÉÏµÄ¾àÀë
+		wxCoord offsetX; // ä¸ä¸»çª—å£åœ¨ X è½´ä¸Šçš„è·ç¦»
+		wxCoord offsetY; // ä¸ä¸»çª—å£åœ¨ Y è½´ä¸Šçš„è·ç¦»
 
 		bool operator == (const StickyInfo& rhs) {
 			return win == rhs.win;
@@ -104,11 +104,11 @@ private:
 
 	typedef wxVector< StickyInfo >::iterator InfoIter;
 	typedef wxVector< StickyInfo >::const_iterator InfoIter_Const;
-	wxVector< StickyInfo > m_stickyToMain; // ËÄ¸ö·½ÏòÉÏÕ³¸½µ½Ö÷´°¿ÚµÄ×Ó´°¿Ú
+	wxVector< StickyInfo > m_stickyToMain; // å››ä¸ªæ–¹å‘ä¸Šç²˜é™„åˆ°ä¸»çª—å£çš„å­çª—å£
 
-	// ²éÕÒ×Ó´°¿ÚÊÇ·ñÒÑÈ»ğ¤¸½
+	// æŸ¥æ‰¾å­çª—å£æ˜¯å¦å·²ç„¶é»é™„
 	InfoIter FindStickyChild(VdkWindow* chd);
 
-	// ÒÆ³ığ¤¸½µÄ×Ó´°¿Ú
+	// ç§»é™¤é»é™„çš„å­çª—å£
 	void RemoveChild(VdkWindow* chd);
 };

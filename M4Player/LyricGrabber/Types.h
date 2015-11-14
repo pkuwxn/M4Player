@@ -1,6 +1,6 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      LyricHost.cpp
- * Purpose:   ¸è´Ê·şÎñÆ÷
+ * Purpose:   æ­Œè¯æœåŠ¡å™¨
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-03-25
  **************************************************************/
@@ -12,12 +12,12 @@
 
 namespace LyricGrabber
 {
-	/*! ÔÚÍøÂçÉÏ²éÕÒ¸è´ÊÊ±µÄÆ¥Åä½á¹û */
+	/*! åœ¨ç½‘ç»œä¸ŠæŸ¥æ‰¾æ­Œè¯æ—¶çš„åŒ¹é…ç»“æœ */
 	struct SearchResult
 	{
-		wxString artist; /*! Æ¥ÅäµÄÒÕÊõ¼Ò */
-		wxString title; /*! Æ¥ÅäµÄ±êÌâ */
-		wxString url; /*! ¸è´ÊÎÄ¼ş URL */
+		wxString artist; /*! åŒ¹é…çš„è‰ºæœ¯å®¶ */
+		wxString title; /*! åŒ¹é…çš„æ ‡é¢˜ */
+		wxString url; /*! æ­Œè¯æ–‡ä»¶ URL */
 	};
 
 	typedef wxVector< SearchResult > ResultSet;

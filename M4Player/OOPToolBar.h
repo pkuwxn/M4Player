@@ -1,20 +1,20 @@
-#pragma once
+ï»¿#pragma once
 #include "VdkMenuBar.h"
 
-/// \brief OOPlayer ²¥·ÅÁĞ±íµÄÏÂÀ­²Ëµ¥¹¤¾ßÀ¸
+/// \brief OOPlayer æ’­æ”¾åˆ—è¡¨çš„ä¸‹æ‹‰èœå•å·¥å…·æ 
 class OOPToolBar : public VdkMenuBar
 {
 public:
 
-	/// \brief XRC ¶¯Ì¬´´½¨
+	/// \brief XRC åŠ¨æ€åˆ›å»º
 	virtual void Create(wxXmlNode* node);
 
 private:
 
-	/// \brief Ìí¼ÓÒ»Ïî
+	/// \brief æ·»åŠ ä¸€é¡¹
 	virtual VdkMenuBarEntry* CreateNewEntry(int& w, int& h);
 
-	/// \brief »æÖÆ²Ëµ¥Ïîµ±Ç°×´Ì¬
+	/// \brief ç»˜åˆ¶èœå•é¡¹å½“å‰çŠ¶æ€
 	void UpdateEntry(wxDC& dc, unsigned eid, int state);
 
 private:
@@ -27,19 +27,19 @@ private:
 	DECLARE_DYNAMIC_VOBJECT
 };
 
-/// \brief OOPlayer ²¥·ÅÁĞ±íµÄÏÂÀ­²Ëµ¥¹¤¾ßÀ¸µÄÒ»Ïî
+/// \brief OOPlayer æ’­æ”¾åˆ—è¡¨çš„ä¸‹æ‹‰èœå•å·¥å…·æ çš„ä¸€é¡¹
 class OOPToolBarEntry : public VdkMenuBarEntry
 {
 public:
 
-	/// \brief Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// \brief é»˜è®¤æ„é€ å‡½æ•°
 	OOPToolBarEntry();
 
 private:
 
-	/// \brief ²Á³ı£¨»æÖÆ£©±³¾°
+	/// \brief æ“¦é™¤ï¼ˆç»˜åˆ¶ï¼‰èƒŒæ™¯
 	virtual void DoEraseBackground(wxDC& dc, const wxRect& rc);
 
-	/// \brief ´¦ÀíÊó±êÊÂ¼ş
+	/// \brief å¤„ç†é¼ æ ‡äº‹ä»¶
 	virtual void DoHandleMouseEvent(VdkMouseEvent& e);
 };

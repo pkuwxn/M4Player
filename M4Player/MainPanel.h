@@ -1,22 +1,22 @@
-/***************************************************************
+ï»¿/***************************************************************
  * Name:      MainPanel.h
- * Purpose:   ÉùÃ÷ MainPanel
+ * Purpose:   å£°æ˜ MainPanel
  * Author:    Wang Xiaoning (vanxining@139.com)
  * Created:   2012-2-27
  **************************************************************/
 #pragma once
 #include "OOPWindow.h"
 
-/// \brief Ö÷´°¿Ú£¨²¥·ÅÆ÷£©
+/// \brief ä¸»çª—å£ï¼ˆæ’­æ”¾å™¨ï¼‰
 class MainPanel : public OOPWindow
 {
 public:
 
-	/// \brief ¹¹Ôìº¯Êı
+	/// \brief æ„é€ å‡½æ•°
 	MainPanel();
 
 private:
 
-	// ÉèÖÃ´°¿ÚËùÓÃµÄÆ¤·ô
+	// è®¾ç½®çª—å£æ‰€ç”¨çš„çš®è‚¤
 	virtual void DoSetSkin();
 };
