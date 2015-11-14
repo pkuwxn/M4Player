@@ -46,7 +46,7 @@ workspace "M4Player"
 
         includedirs { home .. "/Inc" }
         files { home .. "/Inc/**.h", home .. "/Inc/**.inl", 
-                home .. "/Src/***.cpp" }
+                home .. "/Src/**.cpp" }
 
         includedirs { home .. "/Src" }
         pchheader ( "StdAfx.h" )
@@ -60,6 +60,8 @@ workspace "M4Player"
         filter "system:Linux"
             kind "StaticLib"
             targetname "vdk"
+
+            removefiles { home .. "/Src/MSW/*"  }
 
     project "MyTagLib"
         kind "StaticLib"

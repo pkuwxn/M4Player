@@ -87,7 +87,7 @@ void MoveImeWindow(wxWindow* win, int x, int y)
 		ImmSetCompositionWindow( imm, &compinfo );
 		ImmReleaseContext( hwnd, imm );
 	}
-#elif defined( __WXGTK__ )
+#elif defined( __WXGTK__ ) && defined( TODO )
     GtkIMContext* imCtx = *((GtkIMContext **) win->m_imData);
     GdkRectangle rc = { x, y, 1, 1 };
     gtk_im_context_set_cursor_location( imCtx, &rc );
