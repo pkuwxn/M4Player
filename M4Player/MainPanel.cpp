@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////
 
 #ifdef __WXGTK__
-#   include "DefaultIcon.xpm"
+#   include "Resources/DefaultIcon.xpm"
 #endif
 
 extern OOPlayerApp* g_app;
