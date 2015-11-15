@@ -52,7 +52,7 @@ IMPLEMENT_APP( OOPlayerApp );
 OOPlayerApp* g_app = NULL;
 
 const static wchar_t* gs_appVersion = L"1.0 Beta 2(20120531)";
-const static wchar_t* gs_DefaultInteractiveOutput = L"OOPlayer for Linux";
+const static wchar_t* gs_DefaultInteractiveOutput = L"M4Player for Linux";
 
 // 歌曲标签信息更新时更新 OOPLabel 的显示
 wxDECLARE_EVENT( OOP_EVT_SONG_INFO_UPDATED, wxCommandEvent );
@@ -83,7 +83,7 @@ void Alert(const wxString& errMsg)
         ALERT_STYLE = wxOK | wxCENTER | wxICON_ERROR,
     };
 
-    wxMessageBox( errMsg, L"OOPlayer Fatal Error", ALERT_STYLE );
+    wxMessageBox( errMsg, L"M4Player Fatal Error", ALERT_STYLE );
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -1595,8 +1595,8 @@ void OOPlayerApp::HandleDelete(VdkVObjEvent& e)
     if( delPhysically )
     {
         if( wxMessageBox( L"是否确认从磁盘上删除这些歌曲文件？\n"
-                            L"注意：一旦删除就不可恢复！",
-                            L"物理删除歌曲文件",
+                          L"注意：一旦删除就不可恢复！",
+                          L"物理删除歌曲文件",
                             wxYES_NO | wxICON_ASTERISK,
                             m_playListPanel )
             == wxNO )
@@ -2114,6 +2114,25 @@ void OOPlayerApp::RollTaskbarTitle()
     }
 }
 
+wxIcon OOPlayerApp::LoadPngIcon()
+{
+    wxIcon icon;
+
+    if( !wxImage::FindHandler( wxBITMAP_TYPE_PNG ) )
+        wxImage::AddHandler( new wxPNGHandler );
+
+    wxString path( OOPFileSystem::GetAppResDir() + L"OOPlayer.png" );
+    wxImage imgIcon( path, wxBITMAP_TYPE_PNG );
+
+    if( imgIcon.IsOk() )
+    {
+        imgIcon.Rescale( 64, 64, wxIMAGE_QUALITY_HIGH );
+        icon.CopyFromBitmap( wxBitmap( imgIcon ) );
+    }
+
+    return icon;
+}
+
 void OOPlayerApp::OnIdleCreateTrayIcon(wxIdleEvent&)
 {
     wxASSERT( !m_trayIcon );
@@ -2155,7 +2174,14 @@ void OOPlayerApp::UpdateTrayIcon()
         tooltip += L" - OOPlayer";
     }
 
-    m_trayIcon->SetIcon( m_mainPanel->GetIcon(), tooltip );
+    wxIcon icon
+#ifdef __WXMSW__
+        ( m_mainPanel->GetIcon() );
+#else
+        ( LoadPngIcon() );
+#endif
+
+    m_trayIcon->SetIcon( icon, tooltip );
 }
 
 void OOPlayerApp::OnUpdateTrayMenuUI(wxUpdateUIEvent& e)
@@ -2729,20 +2755,9 @@ void OOPlayerApp::OnAbout(VdkVObjEvent&)
                           L"MyTagLib\n" );
 	
 #ifdef __WXGTK__
-    if( !wxImage::FindHandler( wxBITMAP_TYPE_PNG ) )
-        wxImage::AddHandler( new wxPNGHandler );
-
-    wxImage imgIcon( OOPFileSystem::GetAppResDir() + L"OOPlayer.png",
-                     wxBITMAP_TYPE_PNG );
-                     
-    if( imgIcon.IsOk() )
-    {
-        imgIcon.Rescale( 64, 64, wxIMAGE_QUALITY_HIGH );
-    
-        wxIcon icon;
-        icon.CopyFromBitmap( wxBitmap( imgIcon ) );
+    wxIcon icon( LoadPngIcon() );
+    if( icon.IsOk() )
         aboutInfo.SetIcon( icon );
-    }
 #endif
 
     wxAboutBox( aboutInfo );

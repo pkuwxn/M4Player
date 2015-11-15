@@ -28,7 +28,7 @@ enum {
 };
 
 OOPLabel::OOPLabel()
-	: m_staticCaption( L"OOPlayer for Linux" ),
+	: m_staticCaption( L"M4Player for Linux" ),
 	  m_nTextInternal( 0 ),
 	  m_Direction( wxEAST )
 {
