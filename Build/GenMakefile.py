@@ -4,11 +4,18 @@ import os
 
 os.system("premake5 gmake")
 
-content = open("VdkControls.make").read()
-pos = content.index("wxUtil.cpp")
-pos = content.index("-o", pos)
+files = (
+    ("VdkControls.make", "wxUtil.cpp"),
+    ("M4Player.make", "OSD.cpp"),
+)
 
-content = content[:pos] + "`pkg-config --cflags gtk+-2.0` " + content[pos:]
+for f in files:
+    content = open(f[0]).read()
+    pos = content.index(f[1])
+    pos = content.index("-o", pos)
 
-with open("VdkControls.make", "w") as outf:
-    outf.write(content)
+    content = content[:pos] + "`pkg-config --cflags gtk+-2.0` " + content[pos:]
+
+    with open(f[0], "w") as outf:
+        outf.write(content)
+

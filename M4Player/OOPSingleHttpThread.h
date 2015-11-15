@@ -5,9 +5,16 @@
  * Created:   2012-03-25
  **************************************************************/
 #pragma once
-#include "VdkHttpBuiltInImpl.h"
 #include "VdkHttpThread.h"
 #include <loki/Singleton.h>
+
+#if 1
+#   include "VdkHttpBuiltInImpl.h"
+    typedef VdkHttpBuiltInImpl http_impl;
+#else
+#   include "VdkHttpWgetImpl.h"
+    typedef VdkHttpWgetImpl http_impl;
+#endif
 
 template< class T > struct OOPHttpThreadCreator;
 template<> struct OOPHttpThreadCreator< VdkHttpThread >
@@ -15,7 +22,7 @@ template<> struct OOPHttpThreadCreator< VdkHttpThread >
 	static VdkHttpThread* Create()
 	{
 		wxCSConv gb2312( wxFONTENCODING_CP936 );
-        VdkHttpBuiltInImpl* http = new VdkHttpBuiltInImpl( gb2312 );
+        http_impl* http = new http_impl( gb2312 );
 
 		return new VdkHttpThread( http );
 	}

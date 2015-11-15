@@ -14,6 +14,8 @@ function wx_config()
                 "wxbase30ud_net", "wxbase30ud_xml", "wxmsw30ud_richtext",
                 "wxpngd", "wxjpegd", }
     else
+        links { "wx_baseu_net-3.0" }
+
         configuration { "Debug" }
             buildoptions { "`wx-config --debug=yes --cflags`" }
             linkoptions { "`wx-config --debug=yes --libs std`" }
