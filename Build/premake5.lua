@@ -144,7 +144,6 @@ workspace "M4Player"
         defines { "__AUDIO_HOST__" }
 
         wx_config()
-        links { "wx_baseu_net-3.0" }
 
         filter "system:Windows"
             files { home .. "/Lyric/MSW/*.cpp" }
@@ -154,5 +153,6 @@ workspace "M4Player"
 
         filter "system:Linux"
             targetname "m4"
-            
+
             files { home .. "/Lyric/GTK/*.cpp" }
+            links { "wx_baseu_net-3.0" }
