@@ -2114,7 +2114,7 @@ void OOPlayerApp::RollTaskbarTitle()
     }
 }
 
-wxIcon OOPlayerApp::LoadPngIcon()
+wxIcon OOPLoadPngIcon(int size)
 {
     wxIcon icon;
 
@@ -2126,7 +2126,7 @@ wxIcon OOPlayerApp::LoadPngIcon()
 
     if( imgIcon.IsOk() )
     {
-        imgIcon.Rescale( 64, 64, wxIMAGE_QUALITY_HIGH );
+        imgIcon.Rescale( size, size, wxIMAGE_QUALITY_HIGH );
         icon.CopyFromBitmap( wxBitmap( imgIcon ) );
     }
 
@@ -2178,7 +2178,7 @@ void OOPlayerApp::UpdateTrayIcon()
 #ifdef __WXMSW__
         ( m_mainPanel->GetIcon() );
 #else
-        ( LoadPngIcon() );
+        ( OOPLoadPngIcon( 16 ) );
 #endif
 
     m_trayIcon->SetIcon( icon, tooltip );
@@ -2755,7 +2755,7 @@ void OOPlayerApp::OnAbout(VdkVObjEvent&)
                           L"MyTagLib\n" );
 	
 #ifdef __WXGTK__
-    wxIcon icon( LoadPngIcon() );
+    wxIcon icon( OOPLoadPngIcon( 64 ) );
     if( icon.IsOk() )
         aboutInfo.SetIcon( icon );
 #endif

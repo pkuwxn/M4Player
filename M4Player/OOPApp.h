@@ -373,9 +373,6 @@ private:
 	// 按照当前配置更新托盘图标菜单的状态(选中、文本等等)
 	void OnUpdateTrayMenuUI(wxUpdateUIEvent& e);
 
-    // 载入 PNG 图标
-    wxIcon LoadPngIcon();
-
 	//////////////////////////////////////////////////////////////////////////
 
 	void OnLyricDragg(VdkVObjEvent&); // 拖动歌词

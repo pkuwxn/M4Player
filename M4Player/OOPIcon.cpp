@@ -10,7 +10,6 @@
 #include "wxUtil.h"
 
 #include <wx/mstream.h>
-//#include "Icon_bin.h"
 
 #ifdef __WXMSW__
 #    include <wx/msw/msvcrt.h>
@@ -22,84 +21,100 @@ IMPLEMENT_DYNAMIC_VOBJECT( OOPIcon );
 
 void OOPIcon::Create(wxXmlNode* node)
 {
-	VdkStaticImage::Create( node );
+    VdkStaticImage::Create( node );
 
-	if( !GetImage().IsOk() )
-	{
+    if( !GetImage().IsOk() )
+    {
 #if wxUSE_ICO_CUR
-		wxString strIconFile = GetFilePath( XmlGetChildContent( node, L"icon" ) );
-		if( !strIconFile.IsEmpty() && wxFileExists( strIconFile ) )
-		{
-			if( !wxImage::FindHandler( wxBITMAP_TYPE_ICO ) )
-				wxImage::AddHandler( new wxICOHandler );
+        // TODO:
+        wxString strIconFile( GetFilePath( XmlGetChildContent( node, L"icon" ) ) );
+        if( !strIconFile.IsEmpty() && wxFileExists( strIconFile ) )
+        {
+            if( !wxImage::FindHandler( wxBITMAP_TYPE_ICO ) )
+                wxImage::AddHandler( new wxICOHandler );
 
-			m_icons = wxIconBundle( strIconFile, wxBITMAP_TYPE_ICO );
-			if( m_icons.IsOk() )
-			{
-				wxIcon icon( m_icons.GetIcon( 16 ) );
-				if( icon.IsOk() )
-					SetImage( wxBitmap( icon ) );
-			}
-
-		}
+            m_icons = wxIconBundle( strIconFile, wxBITMAP_TYPE_ICO );
+            if( m_icons.IsOk() )
+            {
+                wxIcon icon( m_icons.GetIcon( 16 ) );
+                if( icon.IsOk() )
+                    SetImage( wxBitmap( icon ) );
+            }
+        }
 #endif
-	}
+
+        
+    }
 }
 
 void OOPIcon::SetFrame(wxTopLevelWindow* frame)
 {
     // 还是不要设置允许改变主窗口的图标吧，这些图标大部分分辨率都很小(16*16)
-	if( m_icons.IsOk() )
-	{
-		//frame->SetIcons( m_icons );
-	}
-	else if( m_icon.IsOk() )
-	{
-		//frame->SetIcon( m_icon );
-	}
-	else
-	{
-		m_icons = frame->GetIcons();
-		m_icon = frame->GetIcon();
-	}
+#if 0
+    if( m_icons.IsOk() )
+    {
+        frame->SetIcons( m_icons );
+    }
+    else if( m_icon.IsOk() )
+    {
+        frame->SetIcon( m_icon );
+    }
+    else
+#endif
+    {
+        m_icons = frame->GetIcons();
+        m_icon = frame->GetIcon();
+    }
 }
 
 void OOPIcon::DoDraw(wxDC& dc)
 {
-	// TODO: 有些皮肤会将图标的显示位置移出窗口可视区域，但不知道为什么
-	// 仍然会画到屏幕上
-	if( !m_Window->Rect00().Contains( m_Rect ) )
-		return;
+    // TODO: 有些皮肤会将图标的显示位置移出窗口可视区域，但不知道为什么
+    // 仍然会画到屏幕上
+    if( !m_Window->Rect00().Contains( m_Rect ) )
+        return;
 
-	if( !GetImage().IsOk() )
-	{
-		if( m_icons.IsOk() )
-		{
-			wxIcon icon( m_icons.GetIconOfExactSize( 16 ) );
-			if( icon.IsOk() )
-			{
-				dc.DrawIcon( icon, m_Rect.x, m_Rect.y );
-				return;
-			}
-		}
+    if( !GetImage().IsOk() )
+    {
+        wxIcon icon;
 
-		if( m_icon.IsOk() )
-		{
-			if( m_icon.GetWidth() == 16 )
-			{
-				dc.DrawIcon( m_icon, m_Rect.x, m_Rect.y );
-			}
-			else
-			{
-				wxBitmap bmp( m_icon );
-				bmp = wxBitmap( bmp.ConvertToImage().Rescale( 16, 16  ) );
+        if( m_icons.IsOk() )
+        {
+            icon = m_icons.GetIconOfExactSize( 16 );
+            if( !icon.IsOk() )
+            {
+                icon = m_icons.GetIcon();
+            }
+        }
 
-				dc.DrawBitmap( bmp, m_Rect.x, m_Rect.y );
-			}
-		}
-	}
-	else
-	{
-		VdkStaticImage::DoDraw( dc );
-	}
+        if( !icon.IsOk() && m_icon.IsOk() )
+        {
+            icon = m_icon;
+        }
+
+        if( !icon.IsOk() )
+        {
+            extern wxIcon OOPLoadPngIcon(int size);
+            icon = OOPLoadPngIcon( m_Rect.width );
+        }
+
+        if( icon.IsOk() )
+        {
+            if( icon.GetWidth() == 16 )
+            {
+                dc.DrawIcon( icon, m_Rect.x, m_Rect.y );
+            }
+            else
+            {
+                wxBitmap bmp( icon );
+                bmp = wxBitmap( bmp.ConvertToImage().Rescale( 16, 16  ) );
+
+                dc.DrawBitmap( bmp, m_Rect.x, m_Rect.y );
+            }
+        }
+    }
+    else
+    {
+        VdkStaticImage::DoDraw( dc );
+    }
 }
