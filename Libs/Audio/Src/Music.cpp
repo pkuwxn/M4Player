@@ -117,8 +117,14 @@ bool Music::OutdevMgr::prepare() {
 
 
 ////////////////////////////////////////////////////////////
+const static char *gs_AllFileTypes = "All files (*.*)|*.*";
+
 /*static*/
 std::string Music::getSupportedFileTypes() {
+    if (!FactoryBase::__internal__list) {
+        return gs_AllFileTypes;
+    }
+
     std::string ab, ext, desc;
     std::map<std::string, std::string> types;
 
@@ -164,8 +170,10 @@ std::string Music::getSupportedFileTypes() {
     //================================
     // 合成掩码字符串
 
-    std::string ret("|"), maskAll("All supported types|");
-    std::map<std::string, std::string>::iterator iter( types.begin() );
+    std::string ret("|");
+    std::string maskAll("All supported types|");
+
+    std::map<std::string, std::string>::iterator iter(types.begin());
     for (; iter != types.end(); ++iter) {
         maskAll += "*." + iter->first + ';';
 
@@ -176,7 +184,7 @@ std::string Music::getSupportedFileTypes() {
 
     maskAll.erase(maskAll.begin() + maskAll.length() - 1);
     maskAll += ret;
-    maskAll += "All files (*.*)|*.*";
+    maskAll += gs_AllFileTypes;
 
     return maskAll;
 }
