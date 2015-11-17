@@ -184,8 +184,9 @@ void OOPFilePropDlg::PropDlgImpl::UpdateDialog(OOPSongPtr song)
 	m_sampleRate->SetValue( strSampleRate );
 
 	//------------------------------------------------
-
-	//m_bits->SetValue( wxString::Format( L"%u Bits", m_song->bits() ) );
+#if 0
+	m_bits->SetValue( wxString::Format( L"%u Bits", m_song->bits() ) );
+#endif
 	m_channels->SetValue( wxString::Format( L"%u", m_song->channels() ) );
 	m_length->SetValue( OOPSong::GetStdTimeStr( m_song->length() ) );
 

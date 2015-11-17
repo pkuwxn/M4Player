@@ -122,9 +122,9 @@ OOPlayerApp::OOPlayerApp()
 #   include <string>
 
 #   ifdef __WXMSW__
-#       define CFG_PLUGINS "E:/Desktop/Audio.Plugins"
+#       define CFG_PLUGINS "E:/Desktop/OOPlayer/Audio.Plugins"
 #   else
-#       define CFG_PLUGINS "/media/E/Desktop/Audio.Plugins.Linux"
+#       define CFG_PLUGINS "/media/E/Desktop/OOPlayer/Audio.Plugins.Linux"
 #   endif
 #endif
 
@@ -2422,9 +2422,10 @@ void OOPlayerApp::HandlePrevNext
                         break;
                     }
                 }
-
-                --songToPlay;
-
+                else
+                {
+                    --songToPlay;
+                }
             } // END if( e.GetId() == CID_PREV )
             else
             {
@@ -2443,8 +2444,10 @@ void OOPlayerApp::HandlePrevNext
                         break;
                     }
                 }
-
-                ++songToPlay;
+                else
+                {
+                    ++songToPlay;
+                }
             }
 
             m_playList->SetLocked( songToPlay, playListDC );
