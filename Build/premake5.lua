@@ -100,9 +100,9 @@ workspace "M4Player"
         includedirs { home .. "/Src" }
         pchheader ( "StdAfx.h" )
         pchsource ( home .. "/Src/StdAfx.cpp" )
-        
+
         defines { "__AUDIO_HOST__" }
-        
+
         wx_config()
 
         filter "system:Windows"
@@ -112,6 +112,83 @@ workspace "M4Player"
         filter "system:Linux"
             kind "StaticLib"
             targetname "audio"
+
+    project "AudioSDK"
+        language "C++"
+        targetdir "bin/%{cfg.buildcfg}"
+
+        local home = ROOT .. "/Libs/Audio"
+
+        includedirs { home }
+
+        files { home .. "/Config.hpp" }
+        files { home .. "/Export.hpp" }
+        files { home .. "/Service.hpp" }
+        files { home .. "/Client.hpp" }
+        files { home .. "/Codec.hpp" }
+        files { home .. "/Outdev.hpp" }
+        files { home .. "/Time.hpp" }
+        files { home .. "/Debug.hpp" }
+
+        files { home .. "/Src/Time.cpp" }
+        files { home .. "/Src/Service.cpp" }
+        files { home .. "/Src/Outdev.cpp" }
+
+        filter "system:Windows"
+            kind "StaticLib"
+            defines { "WIN32_LEAN_AND_MEAN" }
+
+        filter "system:Linux"
+            kind "StaticLib"
+            targetname "audiosdk"
+
+    project "OpenAL"
+        kind "SharedLib"
+        language "C++"
+        targetdir "bin/%{cfg.buildcfg}"
+
+        local home = ROOT .. "/Libs/Audio/Plugins/Outdev/OpenAL"
+        includedirs { home }
+        includedirs { ROOT .. "/Libs/Audio" }
+        links { "AudioSDK" }
+
+        files { home .. "/*.hpp" }
+        files { home .. "/*.cpp" }
+
+        vpaths { ["Headers/*"] = home .. "/*.hpp" }
+        vpaths { ["Sources/*"] = home .. "/*.cpp" }
+
+        filter "system:Windows"
+            defines { "WIN32_LEAN_AND_MEAN" }
+
+            includedirs { home .. "/Vendor" }
+            libdirs { home .. "/Vendor" }
+            links { "OpenAL32" }
+
+        filter "system:Linux"
+            targetname "openal"
+
+    project "Mpg123"
+        kind "SharedLib"
+        language "C++"
+        targetdir "bin/%{cfg.buildcfg}"
+
+        local home = ROOT .. "/Libs/Audio/Plugins/Codec/mpg123"
+        includedirs { home }
+        includedirs { ROOT .. "/Libs/Audio" }
+        links { "AudioSDK" }
+
+        files { home .. "/mpg123.*" }
+
+        filter "system:Windows"
+            defines { "WIN32_LEAN_AND_MEAN" }
+
+            includedirs { home .. "/Vendor" }
+            libdirs { home .. "/Vendor" }
+            links { "libmpg123-0" }
+
+        filter "system:Linux"
+            targetname "mpg123"
 
     project "M4Player"
         kind "WindowedApp"
