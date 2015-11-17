@@ -142,53 +142,72 @@ workspace "M4Player"
             kind "StaticLib"
             targetname "audiosdk"
 
-    project "OpenAL"
-        kind "SharedLib"
-        language "C++"
-        targetdir "bin/%{cfg.buildcfg}"
+    if os.get() == "windows" then
+        project "OpenAL"
+            kind "SharedLib"
+            language "C++"
+            targetdir "bin/%{cfg.buildcfg}"
 
-        local home = ROOT .. "/Libs/Audio/Plugins/Outdev/OpenAL"
-        includedirs { home }
-        includedirs { ROOT .. "/Libs/Audio" }
-        links { "AudioSDK" }
+            local home = ROOT .. "/Libs/Audio/Plugins/Outdev/OpenAL"
+            includedirs { home }
+            includedirs { ROOT .. "/Libs/Audio" }
+            links { "AudioSDK" }
 
-        files { home .. "/*.hpp" }
-        files { home .. "/*.cpp" }
+            files { home .. "/*.hpp" }
+            files { home .. "/*.cpp" }
 
-        vpaths { ["Headers/*"] = home .. "/*.hpp" }
-        vpaths { ["Sources/*"] = home .. "/*.cpp" }
+            vpaths { ["Headers/*"] = home .. "/*.hpp" }
+            vpaths { ["Sources/*"] = home .. "/*.cpp" }
 
-        filter "system:Windows"
-            defines { "WIN32_LEAN_AND_MEAN" }
+            filter "system:Windows"
+                defines { "WIN32_LEAN_AND_MEAN" }
 
-            includedirs { home .. "/Vendor" }
-            libdirs { home .. "/Vendor" }
-            links { "OpenAL32" }
+                includedirs { home .. "/Vendor" }
+                libdirs { home .. "/Vendor" }
+                links { "OpenAL32" }
 
-        filter "system:Linux"
-            targetname "openal"
+            filter "system:Linux"
+                targetname "openal"
 
-    project "Mpg123"
-        kind "SharedLib"
-        language "C++"
-        targetdir "bin/%{cfg.buildcfg}"
+        project "Mpg123"
+            kind "SharedLib"
+            language "C++"
+            targetdir "bin/%{cfg.buildcfg}"
 
-        local home = ROOT .. "/Libs/Audio/Plugins/Codec/mpg123"
-        includedirs { home }
-        includedirs { ROOT .. "/Libs/Audio" }
-        links { "AudioSDK" }
+            local home = ROOT .. "/Libs/Audio/Plugins/Codec/mpg123"
+            includedirs { home }
+            includedirs { ROOT .. "/Libs/Audio" }
+            links { "AudioSDK" }
 
-        files { home .. "/mpg123.*" }
+            files { home .. "/mpg123.*" }
 
-        filter "system:Windows"
-            defines { "WIN32_LEAN_AND_MEAN" }
+            filter "system:Windows"
+                defines { "WIN32_LEAN_AND_MEAN" }
 
-            includedirs { home .. "/Vendor" }
-            libdirs { home .. "/Vendor" }
-            links { "libmpg123-0" }
+                includedirs { home .. "/Vendor" }
+                libdirs { home .. "/Vendor" }
+                links { "libmpg123-0" }
 
-        filter "system:Linux"
-            targetname "mpg123"
+            filter "system:Linux"
+                targetname "mpg123"
+
+    else
+        project "PulseAudio"
+            kind "SharedLib"
+            language "C++"
+            targetdir "bin/%{cfg.buildcfg}"
+            targetname "pulseaudio"
+
+            local home = ROOT .. "/Libs/Audio/Plugins/Outdev/PulseAudio"
+            includedirs { home }
+            includedirs { ROOT .. "/Libs/Audio" }
+            links { "AudioSDK" }
+
+            files { home .. "/PulseAudio.*" }
+
+            buildoptions { "`pkg-config libpulse-simple --cflags`" }
+            linkoptions { "`pkg-config libpulse-simple --libs`" }
+    end
 
     project "M4Player"
         kind "WindowedApp"
