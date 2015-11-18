@@ -196,7 +196,7 @@ workspace "M4Player"
             kind "SharedLib"
             language "C++"
             targetdir "bin/%{cfg.buildcfg}"
-            targetname "pulseaudio"
+            targetname "m4pulseaudio"
 
             local home = ROOT .. "/Libs/Audio/Plugins/Outdev/PulseAudio"
             includedirs { home }
@@ -207,6 +207,22 @@ workspace "M4Player"
 
             buildoptions { "`pkg-config libpulse-simple --cflags`" }
             linkoptions { "`pkg-config libpulse-simple --libs`" }
+
+        project "FFmpeg"
+            kind "SharedLib"
+            language "C++"
+            targetdir "bin/%{cfg.buildcfg}"
+            targetname "m4ffmpeg"
+
+            local home = ROOT .. "/Libs/Audio/Plugins/Codec/FFmpeg"
+            includedirs { home }
+            includedirs { ROOT .. "/Libs/Audio" }
+            links { "AudioSDK" }
+
+            files { home .. "/FFmpeg.*" }
+
+            buildoptions { "`pkg-config libavutil libavformat libavcodec --cflags`" }
+            linkoptions { "`pkg-config libavutil libavformat libavcodec --libs`" }
     end
 
     project "M4Player"
