@@ -23,6 +23,7 @@
 #include "OOPTrayIcon.h" // 托盘图标
 #include "OOPSingleLyricTask.h"
 #include "OOPSingleHttpThread.h" // 和平终止线程
+#include "OOPUtil.h"
 
 #include "Lyric/OOPLyric.h"
 #include "Lyric/OOPDesktopLyric.h"
@@ -546,8 +547,8 @@ bool OOPlayerApp::DoPlay()
 {
     if( IsStopped() )
     {
-        bool ok = m_music.openFromFile( m_currSong->path() );
-        if( !ok )
+        wxScopedCharBuffer path( NarrowedPath( m_currSong->path() ) );
+        if( !m_music.openFromFile( path ) )
         {
             // 播放失败
             return false;

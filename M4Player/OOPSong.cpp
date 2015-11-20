@@ -10,6 +10,7 @@
 
 #include "OOPTagBatch.h"
 #include "OOPCharsetConv.h"
+#include "OOPUtil.h"
 #include "wxUtil.h"
 
 #include "FileRewriter.h" // TODO:
@@ -117,7 +118,9 @@ void OOPSong::ParseTag(bool forceReparse)
 
 	{
 		sf::Music music;
-		if( music.openFromFile( m_listEntry->path() ) )
+        wxScopedCharBuffer path( NarrowedPath( m_listEntry->path() ) );
+
+		if( music.openFromFile( path ) )
 		{
 			m_listEntry->length( music.getDuration().asSeconds() );
 			m_bitRate = music.getBitRate();

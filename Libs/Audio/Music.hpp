@@ -71,6 +71,7 @@ public :
     /// w64, mat4, mat5 pvf, htk, sds, avr, sd2, caf, wve, mpc2k, rf64.
     ///
     /// \param filename Path of the music file to open
+    /// OEM encoded under Windows, and UTF-8 under Linux
     ///
     /// \return True if loading succeeded, false if it failed
     ///
@@ -325,6 +326,9 @@ private :
     public:
 
         // 尝试根据文件名添加正确的解码器
+        // 
+        // \param fileName 对于 Windows，编码是 OEM（GB2312），
+        // 对于 Linux，必须是 UTF-8
         bool tryAddDecoder(const char *fileName);
     };
 

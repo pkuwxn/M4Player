@@ -22,3 +22,12 @@ void CheckXmlConf(wxXmlNode* xmlNode, const wxChar* szNode, int errNo)
 		exit(errNo);
 	}
 }
+
+wxScopedCharBuffer NarrowedPath(const wxString& path)
+{
+#ifdef __WXMSW__
+    return path.mbc_str();
+#else
+    return path.utf8_str();
+#endif
+}

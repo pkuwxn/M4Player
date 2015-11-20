@@ -74,7 +74,7 @@ bool Music::DecoderMgr::tryAddDecoder(const char *fileName) {
     //=============================================
 
     reset();
-    for ( ; m_active != m_candidates.end(); ++m_active ) {
+    for (; m_active != m_candidates.end(); ++m_active) {
         if ((*m_active)->testAbility(require.c_str())) {
             return true;
         }
