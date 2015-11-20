@@ -6,6 +6,7 @@
  **************************************************************/
 #include "StdAfx.h"
 #include "OOPTagBatch.h"
+#include "OOPUtil.h"
 
 #include "ID3v1.h"
 #include "ID3v2.h"
@@ -59,8 +60,8 @@ void OOPTagBatch::RemoveAllHandlers()
 
 bool OOPTagBatch::LoadFile(const wxString& path)
 {
-	m_path = path;
-	std::ifstream musicFile( (const char *) m_path, std::ios::binary );
+	m_path = NarrowedPath( path );
+	std::ifstream musicFile( m_path, std::ios::binary );
 
 	bool ok = false;
 	ReaderVec::const_iterator iter( m_readers.begin() );
@@ -84,10 +85,10 @@ void OOPTagBatch::CloseFile()
 
 bool OOPTagBatch::SaveFile()
 {
-	if( m_path.empty() || m_writers.empty() )
+	if( strlen(m_path) == 0 || m_writers.empty() )
 		return false;
 
-	std::fstream musicFile( (const char *) m_path, 
+	std::fstream musicFile( m_path, 
 	    std::ios::in | std::ios::out | std::ios::binary );
 	if( !musicFile )
 		return false;

@@ -102,7 +102,7 @@ private:
 	ReaderVec m_readers;
 	WriterVec m_writers;
 
-	wxString m_path;
+	wxScopedCharBuffer m_path;
 
 private:
 

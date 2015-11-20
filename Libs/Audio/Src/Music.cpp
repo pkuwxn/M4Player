@@ -261,7 +261,7 @@ bool Music::openFromStream(InputStream &stream) {
 bool Music::play() {
     if (!m_outdev) {
         if (!m_outdev.prepare()) {
-            fprintf(stderr, "[%s:%d]No output device plugin found!\n",
+            fprintf(stderr, "[%s:%d] No output device plugin found!\n",
                     __FILE__, __LINE__);
 
             return false;

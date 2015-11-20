@@ -34,6 +34,7 @@
 #pragma warning( disable: 4244 )
 extern "C"
 {
+#   define __STDC_CONSTANT_MACROS
 #   include <libavformat/avformat.h>
 #   include <libavcodec/avcodec.h>
 

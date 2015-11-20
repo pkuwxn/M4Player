@@ -118,9 +118,7 @@ void OOPSong::ParseTag(bool forceReparse)
 
 	{
 		sf::Music music;
-        wxScopedCharBuffer path( NarrowedPath( m_listEntry->path() ) );
-
-		if( music.openFromFile( path ) )
+		if( music.openFromFile( NarrowedPath( m_listEntry->path() ) ) )
 		{
 			m_listEntry->length( music.getDuration().asSeconds() );
 			m_bitRate = music.getBitRate();
@@ -185,8 +183,8 @@ bool OOPSong::Save()
 
 	//---------------------------------------------
 
-	using namespace std;
-	fstream strm( (const char *) m_listEntry->path(), ios::in | ios::out | ios::binary );
+	std::fstream strm( NarrowedPath( m_listEntry->path() ), 
+		std::ios::in | std::ios::out | std::ios::binary );
 	if( !strm )
 	{
 		return false;

@@ -131,7 +131,7 @@ Codec::SampleFormat FFmpeg::getSampleFormat() const
 	case AV_SAMPLE_FMT_DBL : return SAMPLE_FMT_DBL;
 	default:
 
-		fprintf(stderr, "[%s:%d]Unsupported audio format: %d.\n", __FILE__, __LINE__, 
+		fprintf(stderr, "[%s:%d] Unsupported audio format: %d.\n", __FILE__, __LINE__, 
 				static_cast<int>(m_audioStream->codec->sample_fmt));
 
 		return SAMPLE_FMT_NONE;
@@ -279,7 +279,7 @@ Uint32 FFmpeg::read(Int16* data, Uint32 sampleCount)
 			if (ret < 0) {
 			    // 读到文件末尾不算错误
 			    if (ret != AVERROR_EOF) {
-			        fprintf(stderr, "[%s:%d]av_read_frame() failed：Error %d.\n", 
+			        fprintf(stderr, "[%s:%d] av_read_frame() failed：Error %d.\n", 
 					        __FILE__, __LINE__, ret);
 				}
 
@@ -342,7 +342,7 @@ Uint32 FFmpeg::read(Int16* data, Uint32 sampleCount)
 			// 在 Linux 下面 rawUsed == 0 后再调用 av_read_frame() 不会返回错误，而是不断提示：
 			// Truncating packet of size 1024 to 1
             if (rawUsed < 0) {
-			    fprintf(stderr, "[%s:%d]avcodec_decode_audio4() failed：Error %d.\n", 
+			    fprintf(stderr, "[%s:%d] avcodec_decode_audio4() failed：Error %d.\n", 
 					    __FILE__, __LINE__, rawUsed);
 			}
 
