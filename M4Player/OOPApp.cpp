@@ -2296,6 +2296,11 @@ void OOPlayerApp::OnPlayListDClick(VdkVObjEvent& e)
 {
     int index = (int) e.GetClientData();
 
+    if (index == -1) {
+        e.Skip();
+        return;
+    }
+
     VdkDC vdc( m_mainPanel );
     BeginSong( index, &vdc, e.GetVObjDC() );
 }
