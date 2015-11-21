@@ -207,23 +207,30 @@ workspace "M4Player"
 
             buildoptions { "`pkg-config libpulse-simple --cflags`" }
             linkoptions { "`pkg-config libpulse-simple --libs`" }
+    end
 
-        project "FFmpeg"
-            kind "SharedLib"
-            language "C++"
-            targetdir "bin/%{cfg.buildcfg}"
+    project "FFmpeg"
+        kind "SharedLib"
+        language "C++"
+        targetdir "bin/%{cfg.buildcfg}"
+
+        local home = ROOT .. "/Libs/Audio/Plugins/Codec/FFmpeg"
+        includedirs { home }
+        includedirs { ROOT .. "/Libs/Audio" }
+        links { "AudioSDK" }
+
+        files { home .. "/FFmpeg.*" }
+
+        filter "system:Windows"
+            includedirs { home .. "/Vendor/include" }
+            libdirs { home .. "/Vendor/lib" }
+            links { "avutil", "avformat", "avcodec", "swresample" }
+
+        filter "system:Linux"
             targetname "m4ffmpeg"
 
-            local home = ROOT .. "/Libs/Audio/Plugins/Codec/FFmpeg"
-            includedirs { home }
-            includedirs { ROOT .. "/Libs/Audio" }
-            links { "AudioSDK" }
-
-            files { home .. "/FFmpeg.*" }
-
-            buildoptions { "`pkg-config libavutil libavformat libavcodec --cflags`" }
-            linkoptions { "`pkg-config libavutil libavformat libavcodec --libs`" }
-    end
+            buildoptions { "`pkg-config libavutil libavformat libavcodec libswresample --cflags`" }
+            linkoptions { "`pkg-config libavutil libavformat libavcodec libswresample --libs`" }
 
     project "M4Player"
         kind "WindowedApp"
