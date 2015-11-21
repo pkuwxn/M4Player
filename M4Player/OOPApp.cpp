@@ -83,6 +83,8 @@ void Alert(const wxString &errMsg) {
     wxMessageBox(errMsg, L"M4Player Fatal Error", ALERT_STYLE);
 }
 
+extern wxString TrayMenuCaption(const wchar_t *caption);
+
 //////////////////////////////////////////////////////////////////////////
 
 OOPlayerApp::OOPlayerApp()
@@ -1982,12 +1984,12 @@ void OOPlayerApp::OnUpdateTrayMenuUI(wxUpdateUIEvent &e) {
     switch (e.GetId()) {
     case CID_MINIMIZE:
 
-        e.SetText(m_mainPanel->IsShown() ? L"最小化(&M)" : L"还原(&R)");
+        e.SetText(TrayMenuCaption(m_mainPanel->IsShown() ? L"最小化(&M)" : L"还原(&R)"));
         break;
 
     case OOM_PLAY_PAUSE:
 
-        e.SetText(IsPlaying() ? L"暂停(&P)" : L"播放(&P)");
+        e.SetText(TrayMenuCaption(IsPlaying() ? L"暂停(&P)" : L"播放(&P)"));
         goto MAINMENU_PLAY_CONTROL;
 
     case OOM_STOP:
@@ -2483,13 +2485,13 @@ void OOPlayerApp::OnAbout(VdkVObjEvent &) {
     wxAboutDialogInfo aboutInfo;
     aboutInfo.SetName(gs_DefaultInteractiveOutput);
     aboutInfo.SetVersion(gs_appVersion);
-    aboutInfo.SetDescription(L"好用的跨平台音乐播放器");
+    aboutInfo.SetDescription(L"离线音乐播放器");
     aboutInfo.SetCopyright(L"(C) 2009-2015 wxn");
-    aboutInfo.SetWebSite("http://www.OOPlayer.org/");
-    aboutInfo.AddDeveloper("wxn (wxn@ooplayer.org)");
+    aboutInfo.SetWebSite("https://github.com/vanxining/OOPlayer/");
+    aboutInfo.AddDeveloper("wxn");
 
     aboutInfo.SetLicense(L"Thanks for \n"
-                         L"wxWidgets\n
+                         L"wxWidgets\n"
                          L"Loki C++ Library\n"
                          L"千千静听(TTPlayer)\n"
                          L"MyTagLib\n");
