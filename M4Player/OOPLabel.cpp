@@ -185,7 +185,7 @@ void OOPLabel::Notify() {
 
     // 假如当前行的文本长度比实际可显示区域要小，直接等待切换到下一行的时候到来
     if ((node.nTextWidth <= m_Rect.width) &&
-            (m_nNotityType == TNT_LINE_ROLLING)) {
+        (m_nNotityType == TNT_LINE_ROLLING)) {
         m_nNotityType = TNT_LINE_SWITCH;
         Start(CNST_LINE_SWITCH_TIME_SLICE - m_StopWatch.Time());
 
