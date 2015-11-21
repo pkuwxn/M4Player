@@ -14,8 +14,7 @@
 //////////////////////////////////////////////////////////////////////////
 
 /*static*/
-Playlist& Playlist::GetInstance()
-{
-	static Playlist sPlaylist;
-	return sPlaylist;
+Playlist &Playlist::GetInstance() {
+    static Playlist sPlaylist;
+    return sPlaylist;
 }

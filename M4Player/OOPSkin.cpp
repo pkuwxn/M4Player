@@ -21,133 +21,129 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-void OOPSkin::wxListOfSkinInfoNode::DeleteData()
-{
-	delete (_WX_LIST_ITEM_TYPE_ListOfSkinInfo *) GetData();
+void OOPSkin::wxListOfSkinInfoNode::DeleteData() {
+    delete(_WX_LIST_ITEM_TYPE_ListOfSkinInfo *) GetData();
 }
 
-OOPSkin::~OOPSkin()
-{
-	m_skins.DeleteContents( true );
-	m_skins.Clear();
+OOPSkin::~OOPSkin() {
+    m_skins.DeleteContents(true);
+    m_skins.Clear();
 }
 
-void OOPSkin::GetAllSkins()
-{
-	if( !m_skins.empty() )
-		return;
+void OOPSkin::GetAllSkins() {
+    if (!m_skins.empty()) {
+        return;
+    }
 
-	wxString strSkinRootDir( OOPFileSystem::GetSkinRootDir() );
-	wxDir dir( strSkinRootDir );
+    wxString strSkinRootDir(OOPFileSystem::GetSkinRootDir());
+    wxDir dir(strSkinRootDir);
 
-	if( !dir.IsOpened() )
-		return;
+    if (!dir.IsOpened()) {
+        return;
+    }
 
-	wxString name;
-	bool cont = dir.GetFirst( &name, wxEmptyString, wxDIR_DIRS );
+    wxString name;
+    bool cont = dir.GetFirst(&name, wxEmptyString, wxDIR_DIRS);
 
-	while( cont )
-	{
-		wxString skinRoot( strSkinRootDir + name );
-		skinRoot += wxFileName::GetPathSeparator();
+    while (cont) {
+        wxString skinRoot(strSkinRootDir + name);
+        skinRoot += wxFileName::GetPathSeparator();
 
-		if( wxFileExists( skinRoot + L"Skin_OOP.xml" ) )
-		{
-			SkinInfo* skin = new SkinInfo( name, skinRoot );
-			m_skins.push_back( skin );
-		}
+        if (wxFileExists(skinRoot + L"Skin_OOP.xml")) {
+            SkinInfo *skin = new SkinInfo(name, skinRoot);
+            m_skins.push_back(skin);
+        }
 
-		cont = dir.GetNext( &name );
-	}
+        cont = dir.GetNext(&name);
+    }
 }
 
-OOPSkin::SkinInfo* OOPSkin::GetSkin(int index)
-{
-	return m_skins[index];
+OOPSkin::SkinInfo *OOPSkin::GetSkin(int index) {
+    return m_skins[index];
 }
 
 //////////////////////////////////////////////////////////////////////////
 
-OOPSkin::SkinInfo::SkinInfo(const wxString& strName, const wxString& strRootPath)
-	: m_strRootPath( strRootPath ),
-	  m_maskColor( 255, 0, 255 )
-{
-	wxXmlDocument doc( m_strRootPath + L"Skin_OOP.xml" );
-	wxXmlNode* root = doc.GetRoot();
-	wxASSERT( root );
+OOPSkin::SkinInfo::SkinInfo(const wxString &strName, const wxString &strRootPath)
+    : m_strRootPath(strRootPath),
+      m_maskColor(255, 0, 255) {
+    wxXmlDocument doc(m_strRootPath + L"Skin_OOP.xml");
+    wxXmlNode *root = doc.GetRoot();
+    wxASSERT(root);
 
-	m_strName = XmlGetChildContent( root, L"name", strName );
-	m_author = XmlGetChildContent( root, L"author" );
-	m_url = XmlGetChildContent( root, L"url" );
-	m_email = XmlGetChildContent( root, L"email" );
+    m_strName = XmlGetChildContent(root, L"name", strName);
+    m_author = XmlGetChildContent(root, L"author");
+    m_url = XmlGetChildContent(root, L"url");
+    m_email = XmlGetChildContent(root, L"email");
 
-	wxString maskColor( XmlGetChildContent( root, L"transparent_color" ) );
-	if( !maskColor.IsEmpty() )
-		m_maskColor.Set( maskColor );
+    wxString maskColor(XmlGetChildContent(root, L"transparent_color"));
+    if (!maskColor.IsEmpty()) {
+        m_maskColor.Set(maskColor);
+    }
 }
 
-wxString OOPSkin::SkinInfo::folderName() const
-{
-	wxUniChar pathSeperator( wxFileName::GetPathSeparator() );
+wxString OOPSkin::SkinInfo::folderName() const {
+    wxUniChar pathSeperator(wxFileName::GetPathSeparator());
 
-	wxString::const_iterator i( m_strRootPath.end() - 2 );
-	while( *i != pathSeperator )
-		--i;
+    wxString::const_iterator i(m_strRootPath.end() - 2);
+    while (*i != pathSeperator) {
+        --i;
+    }
 
-	wxString::size_type first( i - m_strRootPath.begin() + 1 );
-	return m_strRootPath.substr( first, m_strRootPath.length() - 1 - first );
+    wxString::size_type first(i - m_strRootPath.begin() + 1);
+    return m_strRootPath.substr(first, m_strRootPath.length() - 1 - first);
 }
 
-wxBitmap OOPSkin::SkinInfo::thumbNail(const wxSize& sz) const
-{
-	int w, h;
-	if( m_bmpThumbnail.IsOk() )
-    {
+wxBitmap OOPSkin::SkinInfo::thumbNail(const wxSize &sz) const {
+    int w, h;
+    if (m_bmpThumbnail.IsOk()) {
         w = m_bmpThumbnail.GetWidth();
         h = m_bmpThumbnail.GetHeight();
 
-        if( w == sz.x && h == sz.y )
+        if (w == sz.x && h == sz.y) {
             return m_bmpThumbnail;
+        }
     }
 
-	wxString fileName( m_strRootPath );
-	wxString fileData( ReadAll( fileName + L"player_window.xml", RA_ANSI ) );
+    wxString fileName(m_strRootPath);
+    wxString fileData(ReadAll(fileName + L"player_window.xml", RA_ANSI));
 
-	wxString::size_type first = fileData.find( L"<image>" );
-	if( first == wxString::npos )
-		return wxNullBitmap;
+    wxString::size_type first = fileData.find(L"<image>");
+    if (first == wxString::npos) {
+        return wxNullBitmap;
+    }
 
-	first += 7;
-	wxString::size_type last = fileData.find( L"</image>", first );
+    first += 7;
+    wxString::size_type last = fileData.find(L"</image>", first);
 
-	fileName += fileData.substr( first, last - first );
-	VdkUtil::ImRead( m_bmpThumbnail, fileName );
+    fileName += fileData.substr(first, last - first);
+    VdkUtil::ImRead(m_bmpThumbnail, fileName);
 
-	if( !m_bmpThumbnail.IsOk() )
-		return wxNullBitmap;
+    if (!m_bmpThumbnail.IsOk()) {
+        return wxNullBitmap;
+    }
 
-	w = m_bmpThumbnail.GetWidth();
-	h = m_bmpThumbnail.GetHeight();
-	if( w > sz.x || h > sz.y )
-	{
-		wxRect rcsub( 0, 0, (w > sz.x) ? sz.x : w, (h > sz.y) ? sz.y : h );
-		m_bmpThumbnail = m_bmpThumbnail.GetSubBitmap( rcsub );
-		VdkUtil::CreateMask( m_bmpThumbnail );
+    w = m_bmpThumbnail.GetWidth();
+    h = m_bmpThumbnail.GetHeight();
+    if (w > sz.x || h > sz.y) {
+        wxRect rcsub(0, 0, (w > sz.x) ? sz.x : w, (h > sz.y) ? sz.y : h);
+        m_bmpThumbnail = m_bmpThumbnail.GetSubBitmap(rcsub);
+        VdkUtil::CreateMask(m_bmpThumbnail);
 
-		return m_bmpThumbnail;
-	}
+        return m_bmpThumbnail;
+    }
 
-	return m_bmpThumbnail;
+    return m_bmpThumbnail;
 }
 
-wxString OOPSkin::SkinInfo::GetNode(const wxString& xmlData, const wxString& nodeName)
-{
-	wxString::size_type first = xmlData.find( L"<image>" );
-	if( first == wxString::npos )
-		return wxEmptyString;
+wxString OOPSkin::SkinInfo::GetNode(const wxString &xmlData, const wxString &nodeName) {
+    wxString::size_type first = xmlData.find(L"<image>");
+    if (first == wxString::npos) {
+        return wxEmptyString;
+    }
 
-	first += 7;
-	wxString::size_type last = xmlData.find( L"</image>", first );
+    first += 7;
+    wxString::size_type last = xmlData.find(L"</image>", first);
 
-	return xmlData.substr( first, last - first );
+    return xmlData.substr(first, last - first);
 }

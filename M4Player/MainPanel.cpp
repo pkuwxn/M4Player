@@ -23,44 +23,40 @@
 #   include "Resources/DefaultIcon.xpm"
 #endif
 
-extern OOPlayerApp* g_app;
+extern OOPlayerApp *g_app;
 
 MainPanel::MainPanel()
-	: OOPWindow( NULL, L"16D3DE86-170A-48EE-B9DE-509186AAC389", L"OOPlayer" )
-{
-	SetAddinStyle( VWS_FIRST_SHOWN_EVT );
-	SetSkin();
+    : OOPWindow(NULL, L"16D3DE86-170A-48EE-B9DE-509186AAC389", L"OOPlayer") {
+    SetAddinStyle(VWS_FIRST_SHOWN_EVT);
+    SetSkin();
 }
 
-void MainPanel::DoSetSkin()
-{
-	MapOfCtrlIdInfo ids( 25 );
-	g_app->GenerateMainPanelCtrlIds( ids );
-	FromXrc( L"player_window.xml", &ids );
-	ClearPtrMap( ids );
+void MainPanel::DoSetSkin() {
+    MapOfCtrlIdInfo ids(25);
+    g_app->GenerateMainPanelCtrlIds(ids);
+    FromXrc(L"player_window.xml", &ids);
+    ClearPtrMap(ids);
 
-	SetIcon( wxICON( DefaultIcon ) );
-	BindCloseBtnEvent();
+    SetIcon(wxICON(DefaultIcon));
+    BindCloseBtnEvent();
 
-	//-----------------------------------------------------
+    //-----------------------------------------------------
 
-	InitRegionButtons();
-	VdkLabel* label = NULL;
+    InitRegionButtons();
+    VdkLabel *label = NULL;
 
-	label = (VdkLabel *) FindCtrl( L"stereo" );
-	if( label )
-	{
-		label->SetCaption( L"立体声", NULL );
-	}
+    label = (VdkLabel *) FindCtrl(L"stereo");
+    if (label) {
+        label->SetCaption(L"立体声", NULL);
+    }
 
-	OOPIcon* icon = FindCtrl< OOPIcon >( L"icon" );
-	if( icon )
-	{
-		icon->SetFrame( this );
-	}
+    OOPIcon *icon = FindCtrl<OOPIcon>(L"icon");
+    if (icon) {
+        icon->SetFrame(this);
+    }
 
-	//-----------------------------------------------------
+    //-----------------------------------------------------
 
-	g_app->SetTopWindow( this );
-	g_app->SetMainPanel( this, NULL );
+    g_app->SetTopWindow(this);
+    g_app->SetMainPanel(this, NULL);
 }

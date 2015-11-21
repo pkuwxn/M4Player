@@ -8,18 +8,17 @@
 #include "LyricGrabber/LyricGrabber.h"
 #include <loki/Singleton.h>
 
-template< class T > struct OOPLyricTaskCreator;
-template<> struct OOPLyricTaskCreator< LyricGrabber::Task >
-{
-	static LyricGrabber::Task* Create()
-	{
-		return new LyricGrabber::Task( wxTheApp );
-	}
+template<class T> struct OOPLyricTaskCreator;
+template<> struct OOPLyricTaskCreator<LyricGrabber::Task> {
+    static LyricGrabber::Task *Create() {
+        return new LyricGrabber::Task(wxTheApp);
+    }
 
-	static void Destroy(LyricGrabber::Task* p)
-	{ delete p; }
+    static void Destroy(LyricGrabber::Task *p) {
+        delete p;
+    }
 };
 
-typedef Loki::SingletonHolder< LyricGrabber::Task, 
-							   OOPLyricTaskCreator >
-	OOPSingleLyricTask;
+typedef Loki::SingletonHolder<LyricGrabber::Task,
+        OOPLyricTaskCreator>
+        OOPSingleLyricTask;

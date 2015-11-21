@@ -14,17 +14,14 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-void CheckXmlConf(wxXmlNode* xmlNode, const wxChar* szNode, int errNo)
-{
-	if(!xmlNode)
-	{
-		wxLogError(L"Error!The <%s> node doesn't exist.\n", szNode);
-		exit(errNo);
-	}
+void CheckXmlConf(wxXmlNode *xmlNode, const wxChar *szNode, int errNo) {
+    if (!xmlNode) {
+        wxLogError(L"Error!The <%s> node doesn't exist.\n", szNode);
+        exit(errNo);
+    }
 }
 
-wxScopedCharBuffer NarrowedPath(const wxString& path)
-{
+wxScopedCharBuffer NarrowedPath(const wxString &path) {
 #ifdef __WXMSW__
     return path.mb_str();
 #else

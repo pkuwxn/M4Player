@@ -16,86 +16,74 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-wxDEFINE_EVENT( OOP_EVT_PLAYLIST_SEARCH, wxCommandEvent );
+wxDEFINE_EVENT(OOP_EVT_PLAYLIST_SEARCH, wxCommandEvent);
 
-OOPPlaylistSearchDlg::OOPPlaylistSearchDlg(VdkWindow* parent)
-	: VdkDialog( parent->GetHandle(), L"快速定位文件", 0, 
-				 VWS_DRAGGABLE | VWS_BASE_PANEL | VWS_DISMISS_BY_ESC ),
-	  m_keyword( NULL )
-{
-	FromXrc( L"../../App/playlist_search_dlg.xml", NULL );
-	m_keyword = (VdkEdit *) FindCtrl( L"keyword" );
+OOPPlaylistSearchDlg::OOPPlaylistSearchDlg(VdkWindow *parent)
+    : VdkDialog(parent->GetHandle(), L"快速定位文件", 0,
+                VWS_DRAGGABLE | VWS_BASE_PANEL | VWS_DISMISS_BY_ESC),
+      m_keyword(NULL) {
+    FromXrc(L"../../App/playlist_search_dlg.xml", NULL);
+    m_keyword = (VdkEdit *) FindCtrl(L"keyword");
 
-	VdkCtrlId id = VdkGetUniqueId();
-	VdkControl* searchButton = FindCtrl( L"search" );
-	searchButton->SetID( id );
+    VdkCtrlId id = VdkGetUniqueId();
+    VdkControl *searchButton = FindCtrl(L"search");
+    searchButton->SetID(id);
 
-	Bind( wxEVT_VOBJ, &OOPPlaylistSearchDlg::OnSearchButton, this, id );
-	
-	// 覆写默认关闭事件处理器
-	Bind( wxEVT_CLOSE_WINDOW, &OOPPlaylistSearchDlg::OnClose, this );
-	Bind( wxEVT_SHOW, &OOPPlaylistSearchDlg::OnShow, this );
+    Bind(wxEVT_VOBJ, &OOPPlaylistSearchDlg::OnSearchButton, this, id);
+
+    // 覆写默认关闭事件处理器
+    Bind(wxEVT_CLOSE_WINDOW, &OOPPlaylistSearchDlg::OnClose, this);
+    Bind(wxEVT_SHOW, &OOPPlaylistSearchDlg::OnShow, this);
 }
 
-OOPPlaylistSearchDlg::~OOPPlaylistSearchDlg()
-{
+OOPPlaylistSearchDlg::~OOPPlaylistSearchDlg() {
 
 }
 
-bool OOPPlaylistSearchDlg::DoHandleKeyEvent(wxKeyEvent& e)
-{
-	switch( e.GetKeyCode() )
-	{
-	case WXK_RETURN:
-		{
-			PostSearchEvent();
-			return true;
-		}
+bool OOPPlaylistSearchDlg::DoHandleKeyEvent(wxKeyEvent &e) {
+    switch (e.GetKeyCode()) {
+    case WXK_RETURN: {
+        PostSearchEvent();
+        return true;
+    }
 
-	default:
+    default:
 
-		break;
-	}
+        break;
+    }
 
-	return false;
+    return false;
 }
 
-void OOPPlaylistSearchDlg::OnSearchButton(VdkVObjEvent&)
-{
-	PostSearchEvent();
+void OOPPlaylistSearchDlg::OnSearchButton(VdkVObjEvent &) {
+    PostSearchEvent();
 }
 
-wxString OOPPlaylistSearchDlg::GetKeyword() const
-{
-	return m_keyword->GetValue();
+wxString OOPPlaylistSearchDlg::GetKeyword() const {
+    return m_keyword->GetValue();
 }
 
-void OOPPlaylistSearchDlg::OnClose(wxCloseEvent&)
-{
-	HideAndFocusParent();
+void OOPPlaylistSearchDlg::OnClose(wxCloseEvent &) {
+    HideAndFocusParent();
 }
 
-void OOPPlaylistSearchDlg::OnShow(wxShowEvent&)
-{
-	FocusCtrl( m_keyword, NULL );
+void OOPPlaylistSearchDlg::OnShow(wxShowEvent &) {
+    FocusCtrl(m_keyword, NULL);
 
-	VdkDC dc( this );
-	m_keyword->SelectAll( &dc );
+    VdkDC dc(this);
+    m_keyword->SelectAll(&dc);
 }
 
-void OOPPlaylistSearchDlg::HideAndFocusParent()
-{
-	Hide();
-	GetParent()->SetFocus();
+void OOPPlaylistSearchDlg::HideAndFocusParent() {
+    Hide();
+    GetParent()->SetFocus();
 }
 
-void OOPPlaylistSearchDlg::PostSearchEvent()
-{
-	if( !m_keyword->IsEmpty() )
-	{
-		wxCommandEvent evt( OOP_EVT_PLAYLIST_SEARCH );
-		wxPostEvent( GetParent(), evt );
-	}
+void OOPPlaylistSearchDlg::PostSearchEvent() {
+    if (!m_keyword->IsEmpty()) {
+        wxCommandEvent evt(OOP_EVT_PLAYLIST_SEARCH);
+        wxPostEvent(GetParent(), evt);
+    }
 
-	HideAndFocusParent();
+    HideAndFocusParent();
 }

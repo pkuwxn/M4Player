@@ -8,15 +8,14 @@
 #include "OOPWindow.h"
 
 /// \brief 主窗口（播放器）
-class MainPanel : public OOPWindow
-{
+class MainPanel : public OOPWindow {
 public:
 
-	/// \brief 构造函数
-	MainPanel();
+    /// \brief 构造函数
+    MainPanel();
 
 private:
 
-	// 设置窗口所用的皮肤
-	virtual void DoSetSkin();
+    // 设置窗口所用的皮肤
+    virtual void DoSetSkin();
 };

@@ -10,27 +10,25 @@
 
 #if 1
 #   include "VdkHttpBuiltInImpl.h"
-    typedef VdkHttpBuiltInImpl http_impl;
+typedef VdkHttpBuiltInImpl http_impl;
 #else
 #   include "VdkHttpWgetImpl.h"
-    typedef VdkHttpWgetImpl http_impl;
+typedef VdkHttpWgetImpl http_impl;
 #endif
 
-template< class T > struct OOPHttpThreadCreator;
-template<> struct OOPHttpThreadCreator< VdkHttpThread >
-{
-	static VdkHttpThread* Create()
-	{
-		wxCSConv gb2312( wxFONTENCODING_CP936 );
-        http_impl* http = new http_impl( gb2312 );
+template<class T> struct OOPHttpThreadCreator;
+template<> struct OOPHttpThreadCreator<VdkHttpThread> {
+    static VdkHttpThread *Create() {
+        wxCSConv gb2312(wxFONTENCODING_CP936);
+        http_impl *http = new http_impl(gb2312);
 
-		return new VdkHttpThread( http );
-	}
+        return new VdkHttpThread(http);
+    }
 
     // 不要做任何事情，在 atexit() 阶段删除线程实在太晚了
-	static void Destroy(VdkHttpThread* p) {}
+    static void Destroy(VdkHttpThread *p) {}
 };
 
-typedef Loki::SingletonHolder< VdkHttpThread, 
-							   OOPHttpThreadCreator >
-	OOPSingleHttpThread;
+typedef Loki::SingletonHolder<VdkHttpThread,
+        OOPHttpThreadCreator>
+        OOPSingleHttpThread;

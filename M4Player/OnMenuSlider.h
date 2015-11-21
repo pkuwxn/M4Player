@@ -10,28 +10,27 @@
 #include "VdkSlider.h"
 
 /// \brief 使用 VdkSlider 来设置窗口透明度
-class OnMenuSlider : public VdkMenuXrcCtrlWrapper
-{
+class OnMenuSlider : public VdkMenuXrcCtrlWrapper {
 public:
 
-	/// \brief 构造函数
-	OnMenuSlider(wxTopLevelWindow* window);
+    /// \brief 构造函数
+    OnMenuSlider(wxTopLevelWindow *window);
 
 private:
 
-	/// \brief 实例化要附加到 VdkMenu 上的控件
-	virtual VdkControl* Implement(VdkWindow* menuWin, const wxPoint& pos);
+    /// \brief 实例化要附加到 VdkMenu 上的控件
+    virtual VdkControl *Implement(VdkWindow *menuWin, const wxPoint &pos);
 
-	void OnSlider(VdkVObjEvent& e);
+    void OnSlider(VdkVObjEvent &e);
 
-	// 保存控件状态
-	virtual void SaveState();
+    // 保存控件状态
+    virtual void SaveState();
 
-	// 还原控件状态
-	virtual void RestoreState();
+    // 还原控件状态
+    virtual void RestoreState();
 
-	//////////////////////////////////////////////////////////////////////////
-	
-	double m_percentage; // 状态保持
-	wxTopLevelWindow* m_window;
+    //////////////////////////////////////////////////////////////////////////
+
+    double m_percentage; // 状态保持
+    wxTopLevelWindow *m_window;
 };

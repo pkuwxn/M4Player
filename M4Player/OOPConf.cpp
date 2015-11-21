@@ -15,7 +15,7 @@
 #   include <wx/msw/msvcrt.h>
 #endif
 
- //////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
 
 bool FromString(const wxString &raw, wxString &out) {
     out = raw;
@@ -54,8 +54,8 @@ void ToString(bool raw, wxString &out) {
 bool FromString(const wxString &raw, OOPStickyWindowState &out) {
     wxRect &rc = out.m_rect;
 
-    return wxSscanf(raw, L"%d,%d,%d,%d:%d", 
-        &rc.x, &rc.y, &rc.width, &rc.height, &out.m_stickyToMain) == 5;
+    return wxSscanf(raw, L"%d,%d,%d,%d:%d",
+                   &rc.x, &rc.y, &rc.width, &rc.height, &out.m_stickyToMain) == 5;
 }
 
 void ToString(const OOPStickyWindowState &raw, wxString &out) {
@@ -68,36 +68,36 @@ void ToString(const OOPStickyWindowState &raw, wxString &out) {
 //////////////////////////////////////////////////////////////////////////
 
 #define PROPERTIES \
-	SERIALIZE( m_currSong, L"currSong" ); \
-	SERIALIZE( m_playMode, L"playMode" ); \
-	SERIALIZE( m_skinFolderName, L"skin" ); \
-	SERIALIZE( m_playing, L"playing" ); \
-	SERIALIZE( m_currPos, L"currPos" ); \
-	SERIALIZE( m_showTaskBarIconUnderUnity, L"showTaskBarIconUnderUnity" ); \
-	SERIALIZE( m_playListShown, L"playListShown" ); \
-	SERIALIZE( m_lyricShown, L"lyricShown" ); \
-	SERIALIZE( m_eqShown, L"eqShown" ); \
-	SERIALIZE( m_volume, L"volume" ); \
-	SERIALIZE( m_mute, L"mute" ); \
-	SERIALIZE( mainPanelWndState, L"mainPanelWndState" ); \
-	SERIALIZE( playlistPanelWndState, L"playlistPanelWndState" ); \
-	SERIALIZE( lyricPanelWndState, L"lyricPanelWndState" ); \
-	SERIALIZE( eqPanelWndState, L"eqPanelWndState" ); \
+    SERIALIZE( m_currSong, L"currSong" ); \
+    SERIALIZE( m_playMode, L"playMode" ); \
+    SERIALIZE( m_skinFolderName, L"skin" ); \
+    SERIALIZE( m_playing, L"playing" ); \
+    SERIALIZE( m_currPos, L"currPos" ); \
+    SERIALIZE( m_showTaskBarIconUnderUnity, L"showTaskBarIconUnderUnity" ); \
+    SERIALIZE( m_playListShown, L"playListShown" ); \
+    SERIALIZE( m_lyricShown, L"lyricShown" ); \
+    SERIALIZE( m_eqShown, L"eqShown" ); \
+    SERIALIZE( m_volume, L"volume" ); \
+    SERIALIZE( m_mute, L"mute" ); \
+    SERIALIZE( mainPanelWndState, L"mainPanelWndState" ); \
+    SERIALIZE( playlistPanelWndState, L"playlistPanelWndState" ); \
+    SERIALIZE( lyricPanelWndState, L"lyricPanelWndState" ); \
+    SERIALIZE( eqPanelWndState, L"eqPanelWndState" ); \
 
 
 OOPConf::OOPConf()
-	: m_currSong( wxNOT_FOUND ),
-	  m_playMode( PLAY_MODE_BY_LIST ),
-	  m_skinFolderName( L"X10" ),
-	  m_playing( true ),
-	  m_currPos( 0 ),
-	  m_showTaskBarIconUnderUnity( false ),
-	  m_playListShown( false ),
-	  m_lyricShown( false ),
-	  m_eqShown( false ),
-	  m_volume( 1 ),
-	  m_mute( false )
-{}
+    : m_currSong(wxNOT_FOUND),
+      m_playMode(PLAY_MODE_BY_LIST),
+      m_skinFolderName(L"X10"),
+      m_playing(true),
+      m_currPos(0),
+      m_showTaskBarIconUnderUnity(false),
+      m_playListShown(false),
+      m_lyricShown(false),
+      m_eqShown(false),
+      m_volume(1),
+      m_mute(false) {
+}
 
 #define NEXT(xmlNode) xmlNode = xmlNode->GetNext()
 
@@ -175,11 +175,10 @@ void OOPConf::ClearStickyWindowStates() {
 //////////////////////////////////////////////////////////////////////////
 
 OOPStickyWindowState::OOPStickyWindowState()
-	: m_stickyToMain( false )
-{}
+    : m_stickyToMain(false) {
+}
 
-void OOPStickyWindowState::Reset()
-{
-	m_stickyToMain = false;
-	ZeroRect( m_rect );
+void OOPStickyWindowState::Reset() {
+    m_stickyToMain = false;
+    ZeroRect(m_rect);
 }

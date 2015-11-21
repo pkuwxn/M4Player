@@ -13,49 +13,41 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-OOPSongPtr::OOPSongPtr(OOPSong* song)
-	: m_song( song )
-{
+OOPSongPtr::OOPSongPtr(OOPSong *song)
+    : m_song(song) {
 
 }
 
-OOPSongPtr::OOPSongPtr(const OOPSongPtr& other)
-	: m_song( other.m_song )
-{
+OOPSongPtr::OOPSongPtr(const OOPSongPtr &other)
+    : m_song(other.m_song) {
 
 }
 
-OOPSongPtr::~OOPSongPtr()
-{
-	// TODO:
+OOPSongPtr::~OOPSongPtr() {
+    // TODO:
 }
 
-OOPSongPtr& OOPSongPtr::operator=(const OOPSongPtr& other)
-{
-	m_song = other.m_song;
-	return *this;
+OOPSongPtr &OOPSongPtr::operator=(const OOPSongPtr &other) {
+    m_song = other.m_song;
+    return *this;
 }
 
-OOPSong* OOPSongPtr::operator->() const
-{
-	return m_song.get();
+OOPSong *OOPSongPtr::operator->() const {
+    return m_song.get();
 }
 
-OOPSong& OOPSongPtr::operator*()
-{
-	return *m_song;
+OOPSong &OOPSongPtr::operator*() {
+    return *m_song;
 }
 
-const OOPSong& OOPSongPtr::operator*() const
-{
-	return *m_song;
+const OOPSong &OOPSongPtr::operator*() const {
+    return *m_song;
 }
 
 template <>
-bool operator == (wxSharedPtr<OOPSong> const &a, wxSharedPtr<OOPSong> const &b)
-{
-	OOPSong* sa = a.get();
-	OOPSong* sb = b.get();
+bool operator == (wxSharedPtr<OOPSong> const &a, wxSharedPtr<OOPSong> const &b) {
+    OOPSong *sa = a.get();
+    OOPSong *sb = b.get();
 
-	return sa && sb && (sa->path() == sb->path());
+    return sa && sb && (sa->path() == sb->path());
 }

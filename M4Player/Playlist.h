@@ -8,16 +8,15 @@
 #include "VdkListCtrl.h" // for LcDataSet
 
 /// 播放列表实体类
-class Playlist : public LcDataSet
-{
+class Playlist : public LcDataSet {
 public:
 
-	/// 获取单体对象
-	static Playlist& GetInstance();
+    /// 获取单体对象
+    static Playlist &GetInstance();
 
 private:
 
-	Playlist() {}
-	~Playlist() {}
-	Playlist(const Playlist&) {}
+    Playlist() {}
+    ~Playlist() {}
+    Playlist(const Playlist &) {}
 };

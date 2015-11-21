@@ -16,28 +16,25 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-wxString OOPFileSystem::GetRootPath()
-{
+wxString OOPFileSystem::GetRootPath() {
 #ifdef __WXDEBUG__
-#	ifdef __WXMSW__
-		return L"E:\\Desktop\\OOPlayer\\";
-#	else
-		return L"/media/E/Desktop/OOPlayer/";
-#	endif // __WXMSW__
+#   ifdef __WXMSW__
+    return L"E:\\Desktop\\OOPlayer\\";
+#   else
+    return L"/media/E/Desktop/OOPlayer/";
+#   endif // __WXMSW__
 #else
-	wxStandardPaths& stdPaths = wxStandardPaths::Get();
-	wxFileName path( stdPaths.GetExecutablePath() );
+    wxStandardPaths &stdPaths = wxStandardPaths::Get();
+    wxFileName path(stdPaths.GetExecutablePath());
 
-	return path.GetPath( wxPATH_GET_VOLUME | wxPATH_GET_SEPARATOR );
+    return path.GetPath(wxPATH_GET_VOLUME | wxPATH_GET_SEPARATOR);
 #endif // __WXDEBUG__
 }
 
-wxString OOPFileSystem::GetSkinRootDir()
-{
-	return GetRootPath() + L"Skins" + wxFileName::GetPathSeparator();
+wxString OOPFileSystem::GetSkinRootDir() {
+    return GetRootPath() + L"Skins" + wxFileName::GetPathSeparator();
 }
 
-wxString OOPFileSystem::GetAppResDir()
-{
-	return GetRootPath() + L"App" + wxFileName::GetPathSeparator();
+wxString OOPFileSystem::GetAppResDir() {
+    return GetRootPath() + L"App" + wxFileName::GetPathSeparator();
 }

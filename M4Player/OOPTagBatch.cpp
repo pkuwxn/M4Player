@@ -21,133 +21,131 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-OOPTagBatch::~OOPTagBatch()
-{
-	RemoveAllHandlers();
+OOPTagBatch::~OOPTagBatch() {
+    RemoveAllHandlers();
 }
 
-void OOPTagBatch::AddHandler(TagHandler hdler, OpMode om)
-{
-	MyTagLib::Tag* tag = NULL;
-	switch( hdler )
-	{
-	case TH_ID3v1:			tag = new MyTagLib::ID3v1; break;
-	case TH_ID3v2:			tag = new MyTagLib::ID3v2; break;
-	case TH_LYRICS3v2:		tag = new MyTagLib::Lyrics3v2; break;
-	case TH_APEv2:			tag = new MyTagLib::APEv2; break;
+void OOPTagBatch::AddHandler(TagHandler hdler, OpMode om) {
+    MyTagLib::Tag *tag = NULL;
+    switch (hdler) {
+    case TH_ID3v1:
+        tag = new MyTagLib::ID3v1;
+        break;
+    case TH_ID3v2:
+        tag = new MyTagLib::ID3v2;
+        break;
+    case TH_LYRICS3v2:
+        tag = new MyTagLib::Lyrics3v2;
+        break;
+    case TH_APEv2:
+        tag = new MyTagLib::APEv2;
+        break;
 
-	default:
-		return;
-	}
+    default:
+        return;
+    }
 
-	AddHandler( tag, om );
+    AddHandler(tag, om);
 }
 
-void OOPTagBatch::AddHandler(MyTagLib::Tag* hdler, OpMode om)
-{
-	m_readers.push_back( HandlerPtr( hdler ) );
+void OOPTagBatch::AddHandler(MyTagLib::Tag *hdler, OpMode om) {
+    m_readers.push_back(HandlerPtr(hdler));
 
-	// 这是一个读写处理器
-	if( om == OM_READ_WRITE )
-		m_writers.push_back( hdler );
+    // 这是一个读写处理器
+    if (om == OM_READ_WRITE) {
+        m_writers.push_back(hdler);
+    }
 }
 
-void OOPTagBatch::RemoveAllHandlers()
-{
-	m_readers.clear();
-	m_writers.clear();
+void OOPTagBatch::RemoveAllHandlers() {
+    m_readers.clear();
+    m_writers.clear();
 }
 
-bool OOPTagBatch::LoadFile(const wxString& path)
-{
-	m_path = NarrowedPath( path );
-	std::ifstream musicFile( m_path, std::ios::binary );
+bool OOPTagBatch::LoadFile(const wxString &path) {
+    m_path = NarrowedPath(path);
+    std::ifstream musicFile(m_path, std::ios::binary);
 
-	bool ok = false;
-	ReaderVec::const_iterator iter( m_readers.begin() );
-	for( ; iter != m_readers.end(); ++iter )
-	{
-		ok |= (*iter)->load( musicFile );
-	}
+    bool ok = false;
+    ReaderVec::const_iterator iter(m_readers.begin());
+    for (; iter != m_readers.end(); ++iter) {
+        ok |= (*iter)->load(musicFile);
+    }
 
-	musicFile.close();
-	return ok;
+    musicFile.close();
+    return ok;
 }
 
-void OOPTagBatch::CloseFile()
-{
-	ReaderVec::const_iterator iter( m_readers.begin() );
-	for( ; iter != m_readers.end(); ++iter )
-	{
-		(*iter)->clear();
-	}
+void OOPTagBatch::CloseFile() {
+    ReaderVec::const_iterator iter(m_readers.begin());
+    for (; iter != m_readers.end(); ++iter) {
+        (*iter)->clear();
+    }
 }
 
-bool OOPTagBatch::SaveFile()
-{
-	if( strlen(m_path) == 0 || m_writers.empty() )
-		return false;
+bool OOPTagBatch::SaveFile() {
+    if (strlen(m_path) == 0 || m_writers.empty()) {
+        return false;
+    }
 
-	std::fstream musicFile( m_path, 
-	    std::ios::in | std::ios::out | std::ios::binary );
-	if( !musicFile )
-		return false;
+    std::fstream musicFile(m_path,
+                           std::ios::in | std::ios::out | std::ios::binary);
+    if (!musicFile) {
+        return false;
+    }
 
-	//------------------------------------------------------
+    //------------------------------------------------------
 
-	bool ok = true;
+    bool ok = true;
 
-	ReaderVec::const_iterator iter( m_readers.begin() );
-	for( ; iter != m_readers.end(); ++iter )
-	{
-		if( !(*iter)->save( musicFile ) )
-		{
-			ok = false;
-			break;
-		}
-	}
+    ReaderVec::const_iterator iter(m_readers.begin());
+    for (; iter != m_readers.end(); ++iter) {
+        if (!(*iter)->save(musicFile)) {
+            ok = false;
+            break;
+        }
+    }
 
-	musicFile.close();
-	return ok;
+    musicFile.close();
+    return ok;
 }
 
 #define DEFINE_STRING_ACCESSORS( field ) \
-	wxString OOPTagBatch::Get ## field() const \
-	{ \
-		wxString field; \
-		\
-		ReaderVec::const_iterator iter( m_readers.begin() ); \
-		for( ; iter != m_readers.end(); ++iter ) \
-		{ \
-			field.assign( (*iter)->get ## field() ); \
-			\
-			if( !field.empty() ) \
-				return field; \
-		} \
-		\
-		return wxEmptyString; \
-	}
+    wxString OOPTagBatch::Get ## field() const \
+    { \
+        wxString field; \
+        \
+        ReaderVec::const_iterator iter( m_readers.begin() ); \
+        for( ; iter != m_readers.end(); ++iter ) \
+        { \
+            field.assign( (*iter)->get ## field() ); \
+            \
+            if( !field.empty() ) \
+                return field; \
+        } \
+        \
+        return wxEmptyString; \
+    }
 
-DEFINE_STRING_ACCESSORS( Artist )
-DEFINE_STRING_ACCESSORS( Title )
-DEFINE_STRING_ACCESSORS( Album )
-DEFINE_STRING_ACCESSORS( Year )
-DEFINE_STRING_ACCESSORS( Comment )
-DEFINE_STRING_ACCESSORS( Lyric )
-DEFINE_STRING_ACCESSORS( Genre )
+DEFINE_STRING_ACCESSORS(Artist)
+DEFINE_STRING_ACCESSORS(Title)
+DEFINE_STRING_ACCESSORS(Album)
+DEFINE_STRING_ACCESSORS(Year)
+DEFINE_STRING_ACCESSORS(Comment)
+DEFINE_STRING_ACCESSORS(Lyric)
+DEFINE_STRING_ACCESSORS(Genre)
 
-int OOPTagBatch::GetTrackNumber() const
-{
-	int trackNumber;
-	
-	ReaderVec::const_iterator iter( m_readers.begin() );
-	for( ; iter != m_readers.end(); ++iter )
-	{
-		trackNumber = (*iter)->getTrackNumber();
-		
-		if( trackNumber != MyTagLib::TRACK_NUMBER_NOT_SET )
-			return trackNumber;
-	}
-	
-	return 0;
+int OOPTagBatch::GetTrackNumber() const {
+    int trackNumber;
+
+    ReaderVec::const_iterator iter(m_readers.begin());
+    for (; iter != m_readers.end(); ++iter) {
+        trackNumber = (*iter)->getTrackNumber();
+
+        if (trackNumber != MyTagLib::TRACK_NUMBER_NOT_SET) {
+            return trackNumber;
+        }
+    }
+
+    return 0;
 }

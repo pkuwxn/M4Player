@@ -14,33 +14,28 @@
 //////////////////////////////////////////////////////////////////////////
 
 ILyric::ILyric()
-	: m_stopWatch( NULL )
-{
+    : m_stopWatch(NULL) {
 
 }
 
-void ILyric::SetDefualtInteractiveOutput(const wxString& msg)
-{
-	m_defaultInteractiveOutput = msg;
+void ILyric::SetDefualtInteractiveOutput(const wxString &msg) {
+    m_defaultInteractiveOutput = msg;
 }
 
-void ILyric::SetInteractiveOutput(const wxString& msg, wxDC* pDC)
-{
-	m_interactiveOutput = msg;
+void ILyric::SetInteractiveOutput(const wxString &msg, wxDC *pDC) {
+    m_interactiveOutput = msg;
 
-	//------------------------------------------------
+    //------------------------------------------------
 
-	DoSetInteractiveOutput( pDC );
+    DoSetInteractiveOutput(pDC);
 }
 
-void ILyric::ResetInteractiveOutput(wxDC* pDC)
-{
-	SetInteractiveOutput( wxEmptyString, pDC );
+void ILyric::ResetInteractiveOutput(wxDC *pDC) {
+    SetInteractiveOutput(wxEmptyString, pDC);
 }
 
-wxString ILyric::GetInteractiveOutput() const
-{
-	return m_interactiveOutput.empty() ? 
-				m_defaultInteractiveOutput :
-				m_interactiveOutput;
+wxString ILyric::GetInteractiveOutput() const {
+    return m_interactiveOutput.empty() ?
+           m_defaultInteractiveOutput :
+           m_interactiveOutput;
 }

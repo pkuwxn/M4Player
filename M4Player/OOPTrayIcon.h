@@ -8,19 +8,18 @@
 #include <wx/taskbar.h>
 
 /// OOPlayer 的托盘图标
-class OOPTrayIcon : public wxTaskBarIcon
-{
+class OOPTrayIcon : public wxTaskBarIcon {
 public:
 
 private:
-    
+
     // 创建菜单
-    virtual wxMenu* CreatePopupMenu();
+    virtual wxMenu *CreatePopupMenu();
     // 响应菜单事件
-    void OnMenu(wxCommandEvent& e);
+    void OnMenu(wxCommandEvent &e);
     // 响应在托盘图标上按下鼠标右键事件
-	void OnRightDown(wxTaskBarIconEvent&);
-    
+    void OnRightDown(wxTaskBarIconEvent &);
+
 private:
 
     DECLARE_EVENT_TABLE()

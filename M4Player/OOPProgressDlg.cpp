@@ -17,77 +17,68 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-wxDEFINE_EVENT( EVT_UPDATE_TEXT, wxCommandEvent );
+wxDEFINE_EVENT(EVT_UPDATE_TEXT, wxCommandEvent);
 
-OOPProgressDlg::OOPProgressDlg(wxWindow* parent, 
-							   const wxString& title,
-							   const wxString& msg,
-							   int maximum)
-	: VdkDialog( parent, title, 0, VWS_DRAGGABLE ),
-	  m_label( NULL ), m_maximum( maximum ), m_value( 0 ),
-	  m_skipped( false ), m_canceled( false )
-{
-	FromXrc( L"../../App/progress_dlg.xml", NULL );
+OOPProgressDlg::OOPProgressDlg(wxWindow *parent,
+                               const wxString &title,
+                               const wxString &msg,
+                               int maximum)
+    : VdkDialog(parent, title, 0, VWS_DRAGGABLE),
+      m_label(NULL), m_maximum(maximum), m_value(0),
+      m_skipped(false), m_canceled(false) {
+    FromXrc(L"../../App/progress_dlg.xml", NULL);
 
-	m_label = (VdkLabel *) FindCtrl( L"showText" );
-	m_label->SetCaption( msg, NULL );
+    m_label = (VdkLabel *) FindCtrl(L"showText");
+    m_label->SetCaption(msg, NULL);
 
-	VdkCtrlId cancel = VdkGetUniqueId();
-	FindCtrl( L"cancel" )->SetID( cancel );
-	Bind( wxEVT_VOBJ, &OOPProgressDlg::OnCancel, this, cancel );
+    VdkCtrlId cancel = VdkGetUniqueId();
+    FindCtrl(L"cancel")->SetID(cancel);
+    Bind(wxEVT_VOBJ, &OOPProgressDlg::OnCancel, this, cancel);
 
-	Bind( wxEVT_CLOSE_WINDOW, &OOPProgressDlg::OnClose, this );
+    Bind(wxEVT_CLOSE_WINDOW, &OOPProgressDlg::OnClose, this);
 }
 
-OOPProgressDlg::~OOPProgressDlg()
-{
+OOPProgressDlg::~OOPProgressDlg() {
 
 }
 
-bool OOPProgressDlg::Update(int v, const wxString& newmsg, bool* skip)
-{
-	if( m_canceled )
-		return false;
+bool OOPProgressDlg::Update(int v, const wxString &newmsg, bool *skip) {
+    if (m_canceled) {
+        return false;
+    }
 
-	m_value = v;
+    m_value = v;
 
-	if( !newmsg.empty() )
-	{
-		VdkDC dc( this );
-		m_label->SetCaption( newmsg, &dc );
-	}
+    if (!newmsg.empty()) {
+        VdkDC dc(this);
+        m_label->SetCaption(newmsg, &dc);
+    }
 
-	if( skip )
-	{
-		*skip = m_skipped;
-	}
+    if (skip) {
+        *skip = m_skipped;
+    }
 
-	return v < m_maximum;
+    return v < m_maximum;
 }
 
-void OOPProgressDlg::ClearState()
-{
-	m_value = 0;
-	m_skipped = false;
-	m_canceled = false;
+void OOPProgressDlg::ClearState() {
+    m_value = 0;
+    m_skipped = false;
+    m_canceled = false;
 }
 
-void OOPProgressDlg::OnCancel(VdkVObjEvent&)
-{
-	m_canceled = true;
+void OOPProgressDlg::OnCancel(VdkVObjEvent &) {
+    m_canceled = true;
 }
 
-void OOPProgressDlg::OnClose(wxCloseEvent&)
-{
-	m_canceled = true;
+void OOPProgressDlg::OnClose(wxCloseEvent &) {
+    m_canceled = true;
 }
 
-int OOPProgressDlg::GetMaximum() const
-{
-	return m_maximum;
+int OOPProgressDlg::GetMaximum() const {
+    return m_maximum;
 }
 
-int OOPProgressDlg::GetValue() const
-{
-	return m_value;
+int OOPProgressDlg::GetValue() const {
+    return m_value;
 }
