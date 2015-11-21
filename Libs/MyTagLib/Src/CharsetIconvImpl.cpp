@@ -1,4 +1,4 @@
-/***************************************************************
+Ôªø/***************************************************************
  * Name:      CharsetIconvImpl.cpp
  * Purpose:   Text charset converter using libiconv
  * Author:    Wang Xiaoning (vanxining@139.com)
@@ -17,19 +17,19 @@ int code_convert(const char* from_charset,
                  const char* inbuf, char* outbuf)
 {
     iconv_t cd;
-    cd = iconv_open( to_charset, from_charset );
-    if( cd == 0 ) {
+    cd = iconv_open(to_charset, from_charset);
+    if(cd == 0) {
         return -1;
     }
 
-    memset( outbuf, 0, *pOutBytesLeft );
-    char* dummy = const_cast< char* >( inbuf ); // TODO: why not const char** ?
-    if( iconv( cd, &dummy, pInBytesLeft, &outbuf, pOutBytesLeft) 
-        == (size_t) -1 ) {
+    memset(outbuf, 0, *pOutBytesLeft);
+    char* dummy = const_cast< char* >(inbuf); // TODO: why not const char** ?
+    if(iconv(cd, &dummy, pInBytesLeft, &outbuf, pOutBytesLeft) 
+        == (size_t) -1) {
         return -1;
     }
 
-    iconv_close( cd );
+    iconv_close(cd);
     return 0;
 }
 
@@ -40,62 +40,62 @@ const wchar_t* testUtf32BOM(const wchar_t* utf16)
 
 MyTagLib::String CharsetIconvImpl::multibyteToWide(const char* szAnsi, size_t len)
 {
-	assert( szAnsi );
-	assert( len );
+    assert(szAnsi);
+    assert(len);
 
-    size_t nOutBytes = (len + 2) * 4; // TODO£∫’‚¿ÔŒ™ ≤√¥–Ë“™ +2 £ø
+    size_t nOutBytes = (len + 2) * 4; // TODOÔºöËøôÈáå‰∏∫‰ªÄ‰πàÈúÄË¶Å +2 Ôºü
     wchar_t* outbuf = new wchar_t[nOutBytes];
     
-    code_convert( "gb2312", "utf-32", &len, &nOutBytes,
-                  szAnsi, (char *) outbuf );
+    code_convert("gb2312", "utf-32", &len, &nOutBytes,
+                  szAnsi, (char *) outbuf);
 
-	MyTagLib::String ret( outbuf + 1 );
-	delete [] outbuf;
+    MyTagLib::String ret(outbuf + 1);
+    delete [] outbuf;
 
-	return ret;
+    return ret;
 }
 
 MyTagLib::String CharsetIconvImpl::utf16ToWide(const char* utf16, size_t numBytes)
 {
-    size_t nOutBytes = (numBytes + 4) * 2; // TODO£∫’‚¿ÔŒ™ ≤√¥–Ë“™ +4 £ø
+    size_t nOutBytes = (numBytes + 4) * 2; // TODOÔºöËøôÈáå‰∏∫‰ªÄ‰πàÈúÄË¶Å +4 Ôºü
     wchar_t* outbuf = new wchar_t[nOutBytes];
     
-    code_convert( "utf-16", "utf-32", &numBytes, &nOutBytes, 
-                  utf16, (char *) outbuf );
+    code_convert("utf-16", "utf-32", &numBytes, &nOutBytes, 
+                  utf16, (char *) outbuf);
 
     // It's extreamly strange that iconv will add UTF-16 BOM for the output string.
-	MyTagLib::String ret( outbuf + 1 );
-	delete [] outbuf;
+    MyTagLib::String ret(outbuf + 1);
+    delete [] outbuf;
 
-	return ret;
+    return ret;
 }
 
 MyTagLib::String CharsetIconvImpl::utf8ToWide(const char* utf8, size_t numBytes)
 {
-    size_t nOutBytes = (numBytes + 2) * 4; // TODO£∫’‚¿ÔŒ™ ≤√¥–Ë“™ +2 £ø
+    size_t nOutBytes = (numBytes + 2) * 4; // TODOÔºöËøôÈáå‰∏∫‰ªÄ‰πàÈúÄË¶Å +2 Ôºü
     wchar_t* outbuf = new wchar_t[nOutBytes];
     
-    code_convert( "utf-8", "utf-32", &numBytes, &nOutBytes,
-                  utf8, (char *) outbuf );
+    code_convert("utf-8", "utf-32", &numBytes, &nOutBytes,
+                  utf8, (char *) outbuf);
 
-	MyTagLib::String ret( outbuf + 1 );
-	delete [] outbuf;
+    MyTagLib::String ret(outbuf + 1);
+    delete [] outbuf;
 
-	return ret;
+    return ret;
 }
 
 char* CharsetIconvImpl::wideToUtf16(const MyTagLib::String& wide)
 {
     size_t nInBytes = wide.length() * 4;
-    size_t nOutBytes = nInBytes + sizeof( wchar_t );
+    size_t nOutBytes = nInBytes + sizeof(wchar_t);
     char* outbuf = new char[nOutBytes];
 
-    code_convert( "utf-32", "utf-16", &nInBytes, &nOutBytes,
+    code_convert("utf-32", "utf-16", &nInBytes, &nOutBytes,
                   (const char *) wide.c_str(),
-                  outbuf );
+                  outbuf);
 
     char* outbuf2 = new char[nOutBytes - 2];
-    memcpy( outbuf2, outbuf + 2, nOutBytes - 2 );
+    memcpy(outbuf2, outbuf + 2, nOutBytes - 2);
 
     delete [] outbuf;
     return outbuf2;
@@ -104,12 +104,12 @@ char* CharsetIconvImpl::wideToUtf16(const MyTagLib::String& wide)
 char* CharsetIconvImpl::wideToUtf8(const MyTagLib::String& wide)
 {
     size_t nInBytes = wide.length() * 4;
-    size_t nOutBytes = nInBytes + sizeof( wchar_t );
+    size_t nOutBytes = nInBytes + sizeof(wchar_t);
     char* outbuf = new char[nOutBytes];
 
-    code_convert( "utf-32", "utf-8", &nInBytes, &nOutBytes,
+    code_convert("utf-32", "utf-8", &nInBytes, &nOutBytes,
                   (const char *) wide.c_str(),
-                  outbuf );
+                  outbuf);
 
     return outbuf;
 }
@@ -120,9 +120,9 @@ char* CharsetIconvImpl::wideToMultibyte(const MyTagLib::String& wide)
     size_t nOutBytes = nInBytes / 2 + 1;
     char* outbuf = new char[nOutBytes];
 
-    code_convert( "utf-32", "gb2312", &nInBytes, &nOutBytes,
+    code_convert("utf-32", "gb2312", &nInBytes, &nOutBytes,
                   (const char *) wide.c_str(),
-                  outbuf );
+                  outbuf);
 
     return outbuf;
 }
