@@ -173,11 +173,24 @@ bool FFmpeg::openRead(const char *fileName) {
     AVFormatContext *fc = NULL;
     int audioStream = -1; // 必须放在这里，注意下面的 goto OPEN_ERRROR;
 
-    if (avformat_open_input(&fc, fileName, NULL, NULL)) {
+    int ret = 0;
+    char errorBuffer[1024];
+
+    if (ret = avformat_open_input(&fc, fileName, NULL, NULL)) {
+        fprintf(stderr, "avformat_open_input() failed: `%s`\n", fileName);
+        
+        av_strerror(ret, errorBuffer, sizeof(errorBuffer));
+        fprintf(stderr, "%s\n", errorBuffer);
+
         return false;
     }
 
-    if (avformat_find_stream_info(fc, NULL) < 0) {
+    if (ret = avformat_find_stream_info(fc, NULL)) {
+        fprintf(stderr, "avformat_find_stream_info() failed: `%s`\n", fileName);
+
+        av_strerror(ret, errorBuffer, sizeof(errorBuffer));
+        fprintf(stderr, "%s\n", errorBuffer);
+
         goto OPEN_ERRROR;
     }
 
@@ -192,7 +205,13 @@ bool FFmpeg::openRead(const char *fileName) {
         }
     }
 
+    if (audioStream == -1) {
+        fprintf(stderr, "No audio stream found: `%s`\n", fileName);
+        goto OPEN_ERRROR;
+    }
+
     if (!openStream(fc, audioStream)) {
+        fprintf(stderr, "FFmpeg::openStream() failed: `%s`\n", fileName);
         goto OPEN_ERRROR;
     }
 

@@ -281,6 +281,9 @@ bool Music::play() {
     fmt.sampleRate = getSampleRate();
 
     if (!m_outdev->setSampleFormat(fmt)) {
+        fprintf(stderr, "[%s:%d] m_outdev->setSampleFormat() failed.\n", 
+                __FILE__, __LINE__);
+
         return false;
     }
 
@@ -295,6 +298,9 @@ bool Music::play() {
 
         // 先开始播放
         if (!m_outdev->play(m_decoder.get())) {
+            fprintf(stderr, "[%s:%d] m_outdev->play() failed. [BEGIN]\n", 
+                    __FILE__, __LINE__);
+
             return false;
         }
 
@@ -307,6 +313,9 @@ bool Music::play() {
 
         // Resume
         if (!m_outdev->play(m_decoder.get())) {
+            fprintf(stderr, "[%s:%d] m_outdev->play() failed. [RESUME]\n", 
+                    __FILE__, __LINE__);
+
             return false;
         }
     }

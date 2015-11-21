@@ -234,7 +234,7 @@ bool PulseAudio::setSampleFormat(SampleFormat fmt) {
 
     /* Create a new playback stream */
     s = pa::simple_new(NULL,                // Use the default server.
-                      "OOPlayer",           // Our application's name.
+                      "M4Player",           // Our application's name.
                        PA_STREAM_PLAYBACK,
                        NULL,                // Use the default device.
                       "Music",              // Description of our stream.
@@ -259,28 +259,29 @@ bool PulseAudio::setSampleFormat(SampleFormat fmt) {
 ////////////////////////////////////////////////////////////
 pa_sample_format_t PulseAudio::getFormat(SampleFormat fmt) {
     // Find the good format according to the given format
-    if (fmt.infmt == Codec::SAMPLE_FMT_U8) {
+    switch (fmt.inputFormat) {
+    case Codec::SAMPLE_FMT_U8:
         return PA_SAMPLE_U8;
-    }
-    if (fmt.infmt == Codec::SAMPLE_FMT_S16) {
-        return PA_SAMPLE_S16NE;
-    }
-    if (fmt.infmt == Codec::SAMPLE_FMT_S32) {
-        return PA_SAMPLE_S32NE;
-    }
-    if (fmt.infmt == Codec::SAMPLE_FMT_FLT) {
-        return PA_SAMPLE_FLOAT32NE;
-    }
-    // TODO: double
 
-    return PA_SAMPLE_INVALID;
+    case Codec::SAMPLE_FMT_S16:
+        return PA_SAMPLE_S16NE;
+
+    case Codec::SAMPLE_FMT_S32:
+        return PA_SAMPLE_S32NE;
+
+    case Codec::SAMPLE_FMT_FLT:
+        return PA_SAMPLE_FLOAT32NE;
+
+    default:
+        PA_SAMPLE_INVALID;
+    }
 }
 
 
 ////////////////////////////////////////////////////////////
 bool PulseAudio::play(Codec *decoder) {
     switch (m_status) {
-    case Stopped :
+    case Stopped:
 
         assert(!m_decoder);
         m_decoder = decoder;
@@ -299,7 +300,7 @@ bool PulseAudio::play(Codec *decoder) {
 
         break;
 
-    case Paused :
+    case Paused:
 
         assert(m_decoder == decoder);
 
@@ -310,13 +311,13 @@ bool PulseAudio::play(Codec *decoder) {
 
         break;
 
-    case Playing :
+    case Playing:
 
         assert(m_decoder == decoder);
         // ÎÞ²Ù×÷
         break;
 
-    default :
+    default:
 
         fprintf(stderr, __FILE__": play() with a unkown status!");
         return false; // TODO:
