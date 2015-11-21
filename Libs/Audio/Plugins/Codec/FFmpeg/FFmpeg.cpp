@@ -256,10 +256,13 @@ bool FFmpeg::openWrite(const char *filename, Uint32 channelCount, Uint32 sampleR
 
 ////////////////////////////////////////////////////////////
 bool FFmpeg::planarToInterleaved() {
+    AVSampleFormat packedFmt = static_cast<AVSampleFormat>
+        (m_audioStream->codec->sample_fmt - AV_SAMPLE_FMT_NB / 2);
+
     m_swrContext = swr_alloc_set_opts
         (m_swrContext,
          m_audioStream->codec->channel_layout,
-         AV_SAMPLE_FMT_S16,
+         packedFmt,
          m_audioStream->codec->sample_rate,
          m_audioStream->codec->channel_layout,
          m_audioStream->codec->sample_fmt,
@@ -281,7 +284,7 @@ bool FFmpeg::planarToInterleaved() {
 
     uint8_t *swrBuffer = &m_swrBuffer[0];
 
-    // Convert audio data to AV_SAMPLE_FMT_S16
+    // Convert audio data to interleaved format
     ret = swr_convert(m_swrContext,
                      &swrBuffer, 
                       m_decodeBuffer->nb_samples, 
