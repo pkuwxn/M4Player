@@ -256,7 +256,7 @@ bool PulseAudio::setSampleFormat(SampleFormat fmt)
                        &error);             // Error code.
     
     if (!s) {
-        fprintf(stderr, "[%s:%d]pa_simple_new() failed: %s\n", 
+        fprintf(stderr, "[%s:%d] pa_simple_new() failed: %s\n", 
                 __FILE__, __LINE__, pa::strerror(error));
         return false;
     }
@@ -280,7 +280,8 @@ pa_sample_format_t PulseAudio::getFormat(SampleFormat fmt)
 	    return PA_SAMPLE_S32NE;
 	if (fmt.infmt == Codec::SAMPLE_FMT_FLT)
 	    return PA_SAMPLE_FLOAT32NE;
-	    
+	// TODO: double
+
 	return PA_SAMPLE_INVALID;
 }
 

@@ -212,16 +212,16 @@ Music::~Music() {
 
 
 ////////////////////////////////////////////////////////////
-bool Music::openFromFile(const char *filename) {
+bool Music::openFromFile(const char *fileName) {
     // First stop the music if it was already running
     stop();
 
-    if (!m_decoder.tryAddDecoder(filename)) {
+    if (!m_decoder.tryAddDecoder(fileName)) {
         return false;
     }
 
     // Open the underlying sound file
-    if (!m_decoder->openRead(filename)) {
+    if (!m_decoder->openRead(fileName)) {
         return false;
     }
 

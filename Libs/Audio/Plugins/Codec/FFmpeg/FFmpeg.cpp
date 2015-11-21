@@ -122,16 +122,18 @@ Uint32 FFmpeg::getChannelCount() const
 ////////////////////////////////////////////////////////////
 Codec::SampleFormat FFmpeg::getSampleFormat() const
 {
+    // for AV_SAMPLE_FMT_XXP
 	switch (m_audioStream->codec->sample_fmt)
 	{
-	case AV_SAMPLE_FMT_U8 :  return SAMPLE_FMT_U8;
-	case AV_SAMPLE_FMT_S16 : return SAMPLE_FMT_S16;
-	case AV_SAMPLE_FMT_S32 : return SAMPLE_FMT_S32;
-	case AV_SAMPLE_FMT_FLT : return SAMPLE_FMT_FLT;
-	case AV_SAMPLE_FMT_DBL : return SAMPLE_FMT_DBL;
+	case AV_SAMPLE_FMT_U8:  return SAMPLE_FMT_U8;
+	case AV_SAMPLE_FMT_S16: return SAMPLE_FMT_S16;
+	case AV_SAMPLE_FMT_S32: return SAMPLE_FMT_S32;
+	case AV_SAMPLE_FMT_FLT: return SAMPLE_FMT_FLT;
+	case AV_SAMPLE_FMT_DBL: return SAMPLE_FMT_DBL;
 	default:
 
-		fprintf(stderr, "[%s:%d] Unsupported audio format: %d.\n", __FILE__, __LINE__, 
+		fprintf(stderr, "[%s:%d] Unsupported audio sample format: %d\n", 
+		        __FILE__, __LINE__, 
 				static_cast<int>(m_audioStream->codec->sample_fmt));
 
 		return SAMPLE_FMT_NONE;
@@ -175,11 +177,7 @@ bool FFmpeg::openRead(const char* fileName)
 	//=========================================
 
 	for (Uint32 i = 0; i < fc->nb_streams; i++) {
-#if LIBAVCODEC_VERSION_MAJOR < 53
-		if (fc->streams[i]->codec->codec_type == CODEC_TYPE_AUDIO) {
-#else
 		if (fc->streams[i]->codec->codec_type == AVMEDIA_TYPE_AUDIO) {
-#endif
 			if (avcodec_find_decoder(fc->streams[i]->codec->codec_id)) {
 				audioStream = i;
 				break;
@@ -313,15 +311,10 @@ Uint32 FFmpeg::read(Int16* data, Uint32 sampleCount)
 		const int rawUsed = avcodec_decode_audio4
 			(m_audioStream->codec, m_decodeBuffer, &frameDecoded, &tmp);
 
-		//printf("rawUsed: %d\n", rawUsed);
-
 		//===========================================================
 		// Copy out
 
 		if (rawUsed >= 0) {
-
-			//printf("decoded samples: %d\n", m_decodeBuffer->nb_samples);
-
 			// TODO: 字节数的计算
 			m_decoded = getSampleFormat() / 8 * getChannelCount() * m_decodeBuffer->nb_samples;
 			m_decodedOffset = 0;

@@ -38,6 +38,10 @@ extern "C"
 #   include <libavformat/avformat.h>
 #   include <libavcodec/avcodec.h>
 
+#   if LIBAVCODEC_VERSION_MAJOR < 53
+#       error "LIBAVCODEC_VERSION_MAJOR greater than 53 is requried."
+#   endif
+
 // SampleFormat 被 FFmpeg 内部使用了，使用 GCC 会造成冲突
 #   ifdef SampleFormat
 #       undef SampleFormat

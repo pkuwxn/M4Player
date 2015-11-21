@@ -547,8 +547,7 @@ bool OOPlayerApp::DoPlay()
 {
     if( IsStopped() )
     {
-        wxScopedCharBuffer path( NarrowedPath( m_currSong->path() ) );
-        if( !m_music.openFromFile( path ) )
+        if( !m_music.openFromFile( NarrowedPath( m_currSong->path() ) ) )
         {
             // 播放失败
             return false;
