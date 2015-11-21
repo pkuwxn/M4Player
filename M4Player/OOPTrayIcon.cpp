@@ -28,40 +28,50 @@ BEGIN_EVENT_TABLE( OOPTrayIcon, wxTaskBarIcon )
 #endif
 END_EVENT_TABLE()
 
+
+wxString MenuCaption(const wchar_t *caption)
+{
+#ifdef __WXMSW__
+    return caption;
+#else
+    return wxString::Format( L"%s", caption );
+#endif
+}
+
 // Overridables
 wxMenu* OOPTrayIcon::CreatePopupMenu()
 {
 #ifdef USE_NATIVE_TRAY_MENU
     wxMenu* menu = new wxMenu;
-    menu->Append( OMM_PLAYER_OPTIONS, L"选项(&O)" );
+    menu->Append( OMM_PLAYER_OPTIONS, MenuCaption( L"选项(&O)" ) );
     menu->AppendSeparator();
 
     wxMenu* playCtrl = new wxMenu;
-    playCtrl->Append( OOM_PLAY_PAUSE, L"暂停(&P)" );
-    playCtrl->Append( OOM_STOP, L"停止(&S)" );
+    playCtrl->Append( OOM_PLAY_PAUSE, MenuCaption( L"暂停(&P)" ) );
+    playCtrl->Append( OOM_STOP, MenuCaption( L"停止(&S)" ) );
     playCtrl->AppendSeparator();
-    playCtrl->Append( OOM_PREV, L"上一首(&R)" );
-    playCtrl->Append( OOM_NEXT, L"下一首(&N)" );
-    menu->Append( wxID_ANY, L"播放控制(&P)", playCtrl );
+    playCtrl->Append( OOM_PREV, MenuCaption( L"上一首(&R)" ) );
+    playCtrl->Append( OOM_NEXT, MenuCaption( L"下一首(&N)" ) );
+    menu->Append( wxID_ANY, MenuCaption( L"播放控制(&P)" ), playCtrl );
     
     wxMenu* volumeCtrl = new wxMenu;
-    volumeCtrl->Append( OOM_VOLUME_UP, L"增大(&I)" );
-    volumeCtrl->Append( OOM_VOLUME_DOWN, L"减小(&D)" );
+    volumeCtrl->Append( OOM_VOLUME_UP, MenuCaption( L"增大(&I)" ) );
+    volumeCtrl->Append( OOM_VOLUME_DOWN, MenuCaption( L"减小(&D)" ) );
     volumeCtrl->AppendSeparator();
-    volumeCtrl->AppendCheckItem( OOM_MUTE, L"静音(&M)" );
-    menu->Append( wxID_ANY, L"音量控制(&V)", volumeCtrl );
+    volumeCtrl->AppendCheckItem( OOM_MUTE, MenuCaption( L"静音(&M)" ) );
+    menu->Append( wxID_ANY, MenuCaption( L"音量控制(&V)" ), volumeCtrl );
     
     wxMenu* playMode = new wxMenu;
-    playMode->AppendCheckItem( PLAY_MODE_SINGLE, L"单曲播放(&S)" );
-    playMode->AppendCheckItem( PLAY_MODE_SINGLE_RECYCLE, L"单曲循环(&C)" );
-    playMode->AppendCheckItem( PLAY_MODE_BY_LIST, L"顺序播放(&O)" );
-    playMode->AppendCheckItem( PLAY_MODE_LIST_RECYCLE, L"列表循环(&L)" );
-    playMode->AppendCheckItem( PLAY_MODE_LIST_RANDOM, L"随机播放(&R)" );
-    menu->Append( wxID_ANY, L"播放模式(&M)", playMode );
+    playMode->AppendCheckItem( PLAY_MODE_SINGLE, MenuCaption( L"单曲播放(&S)" ) );
+    playMode->AppendCheckItem( PLAY_MODE_SINGLE_RECYCLE, MenuCaption( L"单曲循环(&C)" ) );
+    playMode->AppendCheckItem( PLAY_MODE_BY_LIST, MenuCaption( L"顺序播放(&O)" ) );
+    playMode->AppendCheckItem( PLAY_MODE_LIST_RECYCLE, MenuCaption( L"列表循环(&L)" ) );
+    playMode->AppendCheckItem( PLAY_MODE_LIST_RANDOM, MenuCaption( L"随机播放(&R)" ) );
+    menu->Append( wxID_ANY, MenuCaption( L"播放模式(&M)" ), playMode );
     
     menu->AppendSeparator();
-	menu->Append( CID_MINIMIZE, L"最小化(&M)" );
-    menu->Append( CID_EXIT, L"退出(&E)" );
+	menu->Append( CID_MINIMIZE, MenuCaption( L"最小化(&M)" ) );
+    menu->Append( CID_EXIT, MenuCaption( L"退出(&E)" ) );
     
     return menu;
 #else
