@@ -647,7 +647,7 @@ void OOPLyric::OnMouseEvent(VdkMouseEvent &e) {
     case NORMAL:
     case LEFT_UP: {
         if (!TestState(OLST_DRAGGING) ||
-                !TestState(OLST_DRAGGING_STARTED)) {
+            !TestState(OLST_DRAGGING_STARTED)) {
             break;
         }
 

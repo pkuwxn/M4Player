@@ -137,7 +137,7 @@ void SkinAvatar::OnLoadAvatar(wxCommandEvent &e) {
     }
 
     m_WindowImpl->Unbind(OOP_EVT_LOAD_SKIN_AVATAR,
-                         &SkinAvatar::OnLoadAvatar,
+                        &SkinAvatar::OnLoadAvatar,
                          this, m_id);
 }
 
@@ -173,7 +173,7 @@ void SkinAvatar::DoDraw(wxDC &dc) {
         dc.DrawBitmap(thumbNail, x, m_Rect.y + ms_yPadding, true);
     } else {
         m_WindowImpl->Bind(OOP_EVT_LOAD_SKIN_AVATAR,
-                           &SkinAvatar::OnLoadAvatar,
+                          &SkinAvatar::OnLoadAvatar,
                            this, m_id);
 
         wxCommandEvent e(OOP_EVT_LOAD_SKIN_AVATAR);

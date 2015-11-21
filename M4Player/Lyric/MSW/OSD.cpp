@@ -110,7 +110,7 @@ wxGraphicsPath OOPDesktopLyric::InitLineTextPath(wxGraphicsContext *gc) {
     wxGraphicsPen pen = gc->CreatePen(wxPen(wxColour(0,0,0,255), 3));
 
     const wxString textToDraw(IsCurrLineValid() ?
-                              (*m_currLine)->GetLyric() :
+                            (*m_currLine)->GetLyric() :
                               GetInteractiveOutput());
 
     wxGraphicsPath path = gc->CreatePath();
@@ -174,9 +174,9 @@ bool OOPDesktopLyric::Present(wxDC &drawings) {
 
     BOOL bRet;
     bRet = UpdateLayeredWindow(m_hWnd, hdcScreen,
-                               &ptWinPos, &sizeWindow,
+                              &ptWinPos, &sizeWindow,
                                drawings.GetHDC(),
-                               &ptSrc,
+                              &ptSrc,
                                0, &blendFunc, 2);
 
     ::ReleaseDC(NULL, hdcScreen);

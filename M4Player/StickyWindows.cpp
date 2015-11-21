@@ -49,18 +49,18 @@ void StickyWindows::SetMainWindow(VdkWindow *win) {
     wxASSERT(m_main == m_windows.end());
 
     for (m_main = m_windows.begin();
-            m_main != m_windows.end();
-            ++m_main) {
+         m_main != m_windows.end();
+         ++m_main) {
         if (*m_main == win) {
             // 拦截左键按下事件还是不能少，否则无法在最开始移动主窗口之前就
             // 得知有哪些子窗口粘附到它，因为 VDK 提供的模拟移动状态在开始
             // 第一次移动之后才会有效
             win->GetWindowHandle()->Bind(wxEVT_LEFT_DOWN,
-                                         &StickyWindows::OnMainLeftDown,
+                                        &StickyWindows::OnMainLeftDown,
                                          this);
 
             win->GetWindowHandle()->Bind(wxEVT_MOVE,
-                                         &StickyWindows::LinklyMove,
+                                        &StickyWindows::LinklyMove,
                                          this);
 
             break;
@@ -71,11 +71,11 @@ void StickyWindows::SetMainWindow(VdkWindow *win) {
 void StickyWindows::RemoveWindow(VdkWindow *win) {
     if (m_main != m_windows.end() && *m_main == win) {
         win->GetWindowHandle()->Unbind(wxEVT_LEFT_DOWN,
-                                       &StickyWindows::OnMainLeftDown,
+                                      &StickyWindows::OnMainLeftDown,
                                        this);
 
         win->GetWindowHandle()->Unbind(wxEVT_MOVE,
-                                       &StickyWindows::LinklyMove,
+                                      &StickyWindows::LinklyMove,
                                        this);
 
         m_main = m_windows.end();
@@ -130,7 +130,7 @@ bool IsContains(const wxRect &rc1, const wxRect &rc2) {
     return (rc1 == rc2) || rc1.Contains(rc2) || rc2.Contains(rc1);
 }
 
-// 检测@a moving 是否可以粘附到@a still 的某个方向上
+// 检测@a moving 是否可以粘附到 @a still 的某个方向上
 // @param alignment 若不为空，可以获取两者边界对齐信息
 unsigned FindDirection(const wxRect &moving, const wxRect &still,
                        unsigned *alignment,
@@ -496,7 +496,7 @@ bool StickyWindows::RecalcLinkageToMain(const wxRect &rcMain, VdkWindow *chd) {
         VdkWindowIter i(m_windows.begin());
         for (; i != m_windows.end(); ++i) {
             if (i == m_main || *i == chd ||
-                    !(*i)->GetWindowHandle()->IsShown()) {
+             !(*i)->GetWindowHandle()->IsShown()) {
                 continue;
             }
 

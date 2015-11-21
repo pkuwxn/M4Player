@@ -16,19 +16,19 @@
 
 OnMenuSlider::OnMenuSlider(wxTopLevelWindow *window)
     : VdkMenuXrcCtrlWrapper
-      (wxString::Format
-       (L"<menuCtrl>"
-        L"<object name=\"progress\" class=\"VdkSlider\">"
-        L"<rect>0,25,193,20</rect>"
-        L"<thumb_image>../../App/progress_thumb_menu.bmp</thumb_image>"
-        L"<fill_image>../../App/progress_fill_menu.bmp</fill_image>"
-        L"</object>"
-        L"<object name=\"desc\" class=\"VdkLabel\">"
-        L"设置窗口透明度:"
-        L"<rect>38,4,193,%d</rect>"
-        L"<text-align>center_y</text-align>"
-        L"</object>"
-        L"</menuCtrl>", window->GetCharHeight() + 4)),
+        (wxString::Format
+           (L"<menuCtrl>"
+            L"<object name=\"progress\" class=\"VdkSlider\">"
+            L"<rect>0,25,193,20</rect>"
+            L"<thumb_image>../../App/progress_thumb_menu.bmp</thumb_image>"
+            L"<fill_image>../../App/progress_fill_menu.bmp</fill_image>"
+            L"</object>"
+            L"<object name=\"desc\" class=\"VdkLabel\">"
+            L"设置窗口透明度:"
+            L"<rect>38,4,193,%d</rect>"
+            L"<text-align>center_y</text-align>"
+            L"</object>"
+            L"</menuCtrl>", window->GetCharHeight() + 4)),
       m_percentage(100),
       m_window(window) {
 

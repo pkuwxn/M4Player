@@ -219,7 +219,7 @@ void OOPLyricSchDlg::Fill(OOPSongPtr song) {
     }
 
     if ((strArtist == m_artist->GetValue()) &&
-            (strTitle == m_title->GetValue())) {
+        (strTitle == m_title->GetValue())) {
         return;
     }
 

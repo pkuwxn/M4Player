@@ -82,7 +82,7 @@ OOPToolBarEntry::OOPToolBarEntry() {
 
 void OOPToolBarEntry::DoEraseBackground(wxDC &dc, const wxRect &rc) {
     static_cast<OOPToolBar *>(GetParent())->UpdateEntry
-    (dc, (unsigned) GetClientData(), GetButtonState());
+        (dc, (unsigned) GetClientData(), GetButtonState());
 }
 
 void OOPToolBarEntry::DoHandleMouseEvent(VdkMouseEvent &e) {

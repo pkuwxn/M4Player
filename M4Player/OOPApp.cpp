@@ -2487,11 +2487,12 @@ void OOPlayerApp::OnAbout(VdkVObjEvent &) {
     aboutInfo.SetVersion(gs_appVersion);
     aboutInfo.SetDescription(L"离线音乐播放器");
     aboutInfo.SetCopyright(L"(C) 2009-2015 wxn");
-    aboutInfo.SetWebSite("https://github.com/vanxining/OOPlayer/");
+    aboutInfo.SetWebSite("https://github.com/vanxining/M4Player/");
     aboutInfo.AddDeveloper("wxn");
 
-    aboutInfo.SetLicense(L"Thanks for \n"
+    aboutInfo.SetLicense(L"Thanks for:\n"
                          L"wxWidgets\n"
+                         L"FFmpeg\n"
                          L"Loki C++ Library\n"
                          L"千千静听(TTPlayer)\n"
                          L"MyTagLib\n");

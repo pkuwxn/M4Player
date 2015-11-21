@@ -608,15 +608,15 @@ bool CompareTitle(const VdkLcCell *c1, const VdkLcCell *c2) {
 }
 
 bool ComparePath(const VdkLcCell *c1, const VdkLcCell *c2) {
-    OOPListEntry *e1 = (OOPListEntry *) c1->GetClientData(),
-                  *e2 = (OOPListEntry *) c2->GetClientData();
+    OOPListEntry *e1 = (OOPListEntry *) c1->GetClientData();
+    OOPListEntry *e2 = (OOPListEntry *) c2->GetClientData();
 
     return CompareUnicodeStrings(e1->path(), e2->path()) < 0;
 }
 
 bool CompareAlbum(const VdkLcCell *c1, const VdkLcCell *c2) {
-    OOPListEntry *e1 = (OOPListEntry *) c1->GetClientData(),
-                  *e2 = (OOPListEntry *) c2->GetClientData();
+    OOPListEntry *e1 = (OOPListEntry *)c1->GetClientData();
+    OOPListEntry *e2 = (OOPListEntry *)c2->GetClientData();
 
     OOPSong s1(e1);
     OOPSong s2(e2);
@@ -628,22 +628,22 @@ bool CompareAlbum(const VdkLcCell *c1, const VdkLcCell *c2) {
 }
 
 bool CompareLength(const VdkLcCell *c1, const VdkLcCell *c2) {
-    OOPListEntry *e1 = (OOPListEntry *) c1->GetClientData(),
-                  *e2 = (OOPListEntry *) c2->GetClientData();
+    OOPListEntry *e1 = (OOPListEntry *) c1->GetClientData();
+    OOPListEntry *e2 = (OOPListEntry *) c2->GetClientData();
 
     return e1->length() < e2->length();
 }
 
 bool CompareAddTime(const VdkLcCell *c1, const VdkLcCell *c2) {
-    OOPListEntry *e1 = (OOPListEntry *) c1->GetClientData(),
-                  *e2 = (OOPListEntry *) c2->GetClientData();
+    OOPListEntry *e1 = (OOPListEntry *) c1->GetClientData();
+    OOPListEntry *e2 = (OOPListEntry *) c2->GetClientData();
 
     return e1->addTime() < e2->addTime();
 }
 
 bool ComparePlayCount(const VdkLcCell *c1, const VdkLcCell *c2) {
-    OOPListEntry *e1 = (OOPListEntry *) c1->GetClientData(),
-                  *e2 = (OOPListEntry *) c2->GetClientData();
+    OOPListEntry *e1 = (OOPListEntry *) c1->GetClientData();
+    OOPListEntry *e2 = (OOPListEntry *) c2->GetClientData();
 
     return e1->playCount() < e2->playCount();
 }
@@ -655,37 +655,30 @@ void OOPList::SortList(VdkCtrlId cmd) {
 
     switch (cmd) {
     case OTBM_SORT_BY_TITLE:
-
         Sort(1, CompareTitle);
         break;
 
     case OTBM_SORT_BY_ALBUM:
-
         Sort(1, CompareAlbum);
         break;
 
     case OTBM_SORT_BY_PATH:
-
         Sort(1, ComparePath);
         break;
 
     case OTBM_SORT_BY_LENGTH:
-
         Sort(1, CompareLength);
         break;
 
     case OTBM_SORT_BY_ADD_TIME:
-
         Sort(1, CompareAddTime);
         break;
 
     case OTBM_SORT_BY_PLAY_COUNT:
-
         Sort(1, ComparePlayCount);
         break;
 
     default:
-
         break;
     }
 
@@ -698,7 +691,7 @@ void OOPList::SortList(VdkCtrlId cmd) {
     LcCellIter e(end());
 
     for (; i1 != e; ++i2, ++i1, ++row) {
-        OOPListEntry *entry = (OOPListEntry *)(*i1)->GetClientData();
+        OOPListEntry *entry = (OOPListEntry *) (*i1)->GetClientData();
         UpdateTime(*i2, entry->length());
     }
 
