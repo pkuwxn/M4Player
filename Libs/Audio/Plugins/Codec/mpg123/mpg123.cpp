@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////
+ï»¿////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
 // Copyright (C) 2007-2012 Laurent Gomila (laurent.gom@gmail.com)
@@ -36,7 +36,7 @@
 
 
 ////////////////////////////////////////////////////////////
-/// ³õÊ¼»¯ mpg123 ¶¯Ì¬¿â
+/// åˆå§‹åŒ– mpg123 åŠ¨æ€åº“
 ///
 ////////////////////////////////////////////////////////////
 class mpg123Initializer {
@@ -150,7 +150,7 @@ bool mpg123::openRead(const char *filename) {
     if (mpg123_open(m_handle, filename) != MPG123_OK || 
         mpg123_getformat(m_handle, &m_sampleRate, &m_channelCount, &m_encoding) != MPG123_OK) {
             fprintf(stderr, "Trouble with mpg123: %s\n", mpg123_strerror(m_handle));
-            cleanUp(); // TODO: ÊÇ·ñĞèÒª£¿
+            cleanUp(); // TODO: æ˜¯å¦éœ€è¦ï¼Ÿ
 
             return false;
     }
@@ -210,8 +210,8 @@ void mpg123::write(const Int16 *data, Uint32 sampleCount) {
 bool mpg123::seek(Time timeOffset) {
     assert(m_handle);
 
-    // TODO: ²»ÓÃ¿¼ÂÇË«ÉùµÀÊ±µÄÇé¿ö£¿
-    // ¼ÓÁËÈ·ÊµÊÇ²»ĞĞµÄ
+    // TODO: ä¸ç”¨è€ƒè™‘åŒå£°é“æ—¶çš„æƒ…å†µï¼Ÿ
+    // åŠ äº†ç¡®å®æ˜¯ä¸è¡Œçš„
     off_t sampleOffset = (off_t)(timeOffset.asMilliseconds() * (m_sampleRate / 1000));
     off_t realOffset = mpg123_seek(m_handle, sampleOffset, SEEK_SET);
     if (realOffset < 0) {

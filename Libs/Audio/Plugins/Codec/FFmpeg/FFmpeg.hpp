@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////
+ï»¿////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
 // Copyright (C) 2007-2012 Laurent Gomila (laurent.gom@gmail.com)
@@ -43,7 +43,7 @@ extern "C" {
 #       error "LIBAVCODEC_VERSION_MAJOR greater than 53 is requried."
 #   endif
 
-// SampleFormat ±» FFmpeg ÄÚ²¿Ê¹ÓÃÁË£¬Ê¹ÓÃ GCC »áÔì³É³åÍ»
+// SampleFormat è¢« FFmpeg å†…éƒ¨ä½¿ç”¨äº†ï¼Œä½¿ç”¨ GCC ä¼šé€ æˆå†²çª
 #   ifdef SampleFormat
 #       undef SampleFormat
 #   endif
@@ -78,7 +78,7 @@ class InputStream;
 using namespace sf;
 
 ////////////////////////////////////////////////////////////
-/// Ê¹ÓÃ FFmpeg À´½øĞĞ½âÂë
+/// ä½¿ç”¨ FFmpeg æ¥è¿›è¡Œè§£ç 
 ///
 ////////////////////////////////////////////////////////////
 class FFmpeg : public Codec {
@@ -117,16 +117,16 @@ private :
 
     bool openStream(AVFormatContext *fc, Uint32 streamIndex);
 
-    // ÊÍ·Å m_rawPacket
+    // é‡Šæ”¾ m_rawPacket
     void freeRawPacket();
 
-    // Êı¾İÊÇ·ñÎª Planar ¸ñÊ½
+    // æ•°æ®æ˜¯å¦ä¸º Planar æ ¼å¼
     bool isPlanar() const;
 
     // Planar -> Packed
     bool planarToInterleaved();
 
-    // »ñÈ¡ÒÑ½âÂëµÄÒôÆµÊı¾İ»º³åÇø
+    // è·å–å·²è§£ç çš„éŸ³é¢‘æ•°æ®ç¼“å†²åŒº
     Uint8 *getDecodeBuffer();
 
     ////////////////////////////////////////////////////////////
@@ -137,11 +137,11 @@ private :
     int                 m_audioStreamIndex;
 
     AVFrame            *m_decodeBuffer;
-    Uint32              m_decoded; // ÒÑ½âÂëÊı¾İ°üµÄ´óĞ¡
-    Uint32              m_decodedOffset; // ÒÑ½âÂëÊı¾İ°üÖĞµÄÎ»ÖÃ
+    Uint32              m_decoded; // å·²è§£ç æ•°æ®åŒ…çš„å¤§å°
+    Uint32              m_decodedOffset; // å·²è§£ç æ•°æ®åŒ…ä¸­çš„ä½ç½®
 
     AVPacket            m_rawPacket;
-    int                 m_rawOffset; // Î´½âÂëÊı¾İ°üÖĞµÄÎ»ÖÃ
+    int                 m_rawOffset; // æœªè§£ç æ•°æ®åŒ…ä¸­çš„ä½ç½®
 
     SwrContext         *m_swrContext;
     std::vector<Uint8>  m_swrBuffer;

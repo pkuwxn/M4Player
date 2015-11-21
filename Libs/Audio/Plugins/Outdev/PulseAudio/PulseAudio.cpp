@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////
+ï»¿////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
 // Copyright (C) 2007-2012 Laurent Gomila (laurent.gom@gmail.com)
@@ -37,18 +37,18 @@
 
 
 ////////////////////////////////////////////////////////////
-/// pthread »¥³âÌå×Ô¶¯Ëø
+/// pthread äº’æ–¥ä½“è‡ªåŠ¨é”
 ///
 ////////////////////////////////////////////////////////////
 class MutexLocker {
 public :
 
-    // ¹¹Ôìº¯Êı
+    // æ„é€ å‡½æ•°
     MutexLocker(pthread_mutex_t &mutex) : m_mutex(mutex) {
         pthread_mutex_lock(&m_mutex);
     }
 
-    // Îö¹¹º¯Êı
+    // ææ„å‡½æ•°
     ~MutexLocker() {
         pthread_mutex_unlock(&m_mutex);
     }
@@ -142,7 +142,7 @@ PulseAudio::~PulseAudio() {
 ////////////////////////////////////////////////////////////
 bool PulseAudio::open(Uint32 deviceId) {
     if (m_initialized) {
-        return true; // µ±×÷³õÊ¼»¯³É¹¦
+        return true; // å½“ä½œåˆå§‹åŒ–æˆåŠŸ
     }
 
     //===================================================
@@ -162,7 +162,7 @@ bool PulseAudio::open(Uint32 deviceId) {
         return false;
     }
 
-    // ³õÊ¼»¯¡°ÔİÍ£ºóµÈ´ı»Ö¸´¡±ĞÅºÅÁ¿
+    // åˆå§‹åŒ–â€œæš‚åœåç­‰å¾…æ¢å¤â€ä¿¡å·é‡
     if (sem_init(&m_resumeWaiter, 0, 0) != 0) {
         fprintf(stderr, __FILE__": sem_init() failed: %s\n", strerror(errno));
         return false;
@@ -289,10 +289,10 @@ bool PulseAudio::play(Codec *decoder) {
         // Resize the buffer so that it can contain 0.1 second of audio samples
         m_samples.resize(m_fmt.sampleRate * m_fmt.channels / 10);
 
-        // ÏÈÓÚÏß³Ì¿ªÆôÇ°Éè¶¨×´Ì¬Öµ
+        // å…ˆäºçº¿ç¨‹å¼€å¯å‰è®¾å®šçŠ¶æ€å€¼
         m_status = Playing;
 
-        // Ö±½Ó¿ªÊ¼²¥·Å
+        // ç›´æ¥å¼€å§‹æ’­æ”¾
         if (pthread_create(&m_thread, NULL, pulse_entry, this) != 0) {
             fprintf(stderr, __FILE__": pthread_create() failed!");
             return false; // TODO:
@@ -306,7 +306,7 @@ bool PulseAudio::play(Codec *decoder) {
 
         setStatus(Playing);
 
-        // »½ĞÑ²¥·ÅÏß³Ì
+        // å”¤é†’æ’­æ”¾çº¿ç¨‹
         waitUpPausedThread();
 
         break;
@@ -314,7 +314,7 @@ bool PulseAudio::play(Codec *decoder) {
     case Playing:
 
         assert(m_decoder == decoder);
-        // ÎŞ²Ù×÷
+        // æ— æ“ä½œ
         break;
 
     default:
@@ -341,7 +341,7 @@ void PulseAudio::stop() {
 
         setStatus(Stopped);
 
-        // ¼ÙÈç²¥·ÅÒÑ±»ÔİÍ££¬ÏÈÖØÆôÏß³Ì
+        // å‡å¦‚æ’­æ”¾å·²è¢«æš‚åœï¼Œå…ˆé‡å¯çº¿ç¨‹
         waitUpPausedThread();
 
         if (pthread_join(m_thread, NULL) != 0) {
@@ -362,7 +362,7 @@ void PulseAudio::setStatus(Status status) {
 
 ////////////////////////////////////////////////////////////
 void PulseAudio::waitUpPausedThread() {
-    // ÓÃÓÚ»Ö¸´²¥·Å»òÕßÍ£Ö¹Ê±»½ĞÑÏß³Ì
+    // ç”¨äºæ¢å¤æ’­æ”¾æˆ–è€…åœæ­¢æ—¶å”¤é†’çº¿ç¨‹
     assert(m_status != Paused);
 
     if (sem_post(&m_resumeWaiter) != 0) {
@@ -406,7 +406,7 @@ bool PulseAudio::streamData() {
         }
 
         enum {
-            SMALLER_GRANULARITY = 10, // ½«µ±Ç°»º³åÇøÔÙÏ¸·Ö(ÒÔÆä»ñµÃ¸üÆ½»¬µÄÒôÁ¿¿ØÖÆ)
+            SMALLER_GRANULARITY = 10, // å°†å½“å‰ç¼“å†²åŒºå†ç»†åˆ†(ä»¥å…¶è·å¾—æ›´å¹³æ»‘çš„éŸ³é‡æ§åˆ¶)
         };
 
         Uint32 bytesLeft = samplesRead * sizeof(Buffer::value_type);
@@ -441,8 +441,8 @@ bool PulseAudio::streamData() {
 
 ////////////////////////////////////////////////////////////
 bool PulseAudio::pauseAndResume() {
-    // ÓĞ¿ÉÄÜÖ÷Ïß³ÌÖ»ÊÇÔÚÁ÷Ïß³Ì±» pa_simple_*() ×èÈûÊ±ÔİÍ££¬Í¬Ê±ÓÖ¿ìËÙ»Ö¸´²¥·Å£¬
-    // ´ËÊ±Á÷Ïß³Ì¿ÉÄÜ¸ù±¾¾Í²»ÖªµÀÓĞÔİÍ£Õâ»ØÊÂ£¬ËùÒÔÒªÏû·ÑµôËùÓĞµÄĞÅºÅÁ¿
+    // æœ‰å¯èƒ½ä¸»çº¿ç¨‹åªæ˜¯åœ¨æµçº¿ç¨‹è¢« pa_simple_*() é˜»å¡æ—¶æš‚åœï¼ŒåŒæ—¶åˆå¿«é€Ÿæ¢å¤æ’­æ”¾ï¼Œ
+    // æ­¤æ—¶æµçº¿ç¨‹å¯èƒ½æ ¹æœ¬å°±ä¸çŸ¥é“æœ‰æš‚åœè¿™å›äº‹ï¼Œæ‰€ä»¥è¦æ¶ˆè´¹æ‰æ‰€æœ‰çš„ä¿¡å·é‡
     while (m_status == Paused) {
         sem_wait(&m_resumeWaiter);
 

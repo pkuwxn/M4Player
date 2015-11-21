@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////
+ï»¿////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
 // Copyright (C) 2007-2012 Laurent Gomila (laurent.gom@gmail.com)
@@ -40,7 +40,7 @@
 
 ////////////////////////////////////////////////////////////
 enum {
-    MY_INVALID_SOURCE_ID = ~0, // TODO: ÊÇ·ñ¿ÉÒÔ£¿
+    MY_INVALID_SOURCE_ID = ~0, // TODO: æ˜¯å¦å¯ä»¥ï¼Ÿ
 };
 
 
@@ -145,11 +145,11 @@ bool OpenAL::play(Codec *decoder) {
     // Resize the buffer so that it can contain 1 second of audio samples
     m_samples.resize(m_fmt.sampleRate * m_fmt.channels);
 
-    // Õâ¸ö²Ù×÷Ô­À´ÊÇÔÚ newThread() ÖĞ×öµÄ
+    // è¿™ä¸ªæ“ä½œåŸæ¥æ˜¯åœ¨ newThread() ä¸­åšçš„
     m_isStreaming = true;
 
     //=================================================
-    // ¿ªÊ¼²¥·Å
+    // å¼€å§‹æ’­æ”¾
 
     // Create the buffers
     alCheck(alGenBuffers(BufferCount, m_buffers));
@@ -160,7 +160,7 @@ bool OpenAL::play(Codec *decoder) {
     // Play the sound
     alCheck(alSourcePlay(m_source));
 
-    // ÒªÇóÔÚĞÂµÄÏß³ÌÖĞ¼ÌĞøºóÃæµÄ²¥·Å
+    // è¦æ±‚åœ¨æ–°çš„çº¿ç¨‹ä¸­ç»§ç»­åé¢çš„æ’­æ”¾
     return true;
 }
 
@@ -239,7 +239,7 @@ Output::Status OpenAL::getStatus() const {
 
     // To compensate for the lag between play() and alSourceplay()
     if ((status == Stopped) && m_isStreaming) {
-        // ÔÚ¡°ÔİÍ£¡±Ê±¸Ä±äµ±Ç°²¥·Å½ø¶È
+        // åœ¨â€œæš‚åœâ€æ—¶æ”¹å˜å½“å‰æ’­æ”¾è¿›åº¦
         if (getQueuedCount() == 0) {
             status = Paused;
         } else {
@@ -299,7 +299,7 @@ bool OpenAL::streamData() {
 
     } // END while (rest--)
 
-    // ÒòÎª»º´æÓÃ¾¡¶øÍ£Ö¹²¥·Å
+    // å› ä¸ºç¼“å­˜ç”¨å°½è€Œåœæ­¢æ’­æ”¾
     if ((nbProcessed == 0) || (nbProcessed == BufferCount)) {
         if (doGetStatus() == Stopped) {
             alCheck(alSourcePlay(m_source));
@@ -407,10 +407,10 @@ void OpenAL::flushAndRefill() {
     assert(m_decoder);
     assert(m_isStreaming);
 
-    // ÊÇ·ñÕıÔÚ²¥·Å
+    // æ˜¯å¦æ­£åœ¨æ’­æ”¾
     bool isPlaying = (doGetStatus() == Playing);
 
-    // ±ØĞë×ÜÊÇÍ£Ö¹²¥·Å²ÅÄÜ¸üĞÂ»º³åÇø¶ÓÁĞ
+    // å¿…é¡»æ€»æ˜¯åœæ­¢æ’­æ”¾æ‰èƒ½æ›´æ–°ç¼“å†²åŒºé˜Ÿåˆ—
     alCheck(alSourceStop(m_source));
 
     // Fill the queue
@@ -421,8 +421,8 @@ void OpenAL::flushAndRefill() {
         fillQueue();
         alCheck(alSourcePlay(m_source));
 
-        // ¡°ÔİÍ£¡±Ê±¸Ä±ä½ø¶ÈµÄÇé¿ö²»ÒªÌî³ä»º³åÇø¶ÓÁĞ£¬ÕâÑù¿ÉÒÔ×÷ÎªÒ»ÖÖ±êÊ¶£¬
-        // ÔÚ getStatus() ÖĞÄÜÕıÈ·Ê¶±ğÕâÖÖÇé¿ö
+        // â€œæš‚åœâ€æ—¶æ”¹å˜è¿›åº¦çš„æƒ…å†µä¸è¦å¡«å……ç¼“å†²åŒºé˜Ÿåˆ—ï¼Œè¿™æ ·å¯ä»¥ä½œä¸ºä¸€ç§æ ‡è¯†ï¼Œ
+        // åœ¨ getStatus() ä¸­èƒ½æ­£ç¡®è¯†åˆ«è¿™ç§æƒ…å†µ
     }
 }
 

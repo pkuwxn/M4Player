@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////
+ï»¿////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
 // Copyright (C) 2007-2012 Laurent Gomila (laurent.gom@gmail.com)
@@ -51,15 +51,15 @@ public :
 
     typedef SoftwareVolumePolicy VolumePolicy;
 
-    /// ¹¹Ôìº¯Êı
+    /// æ„é€ å‡½æ•°
     PulseAudio();
 
-    /// Îö¹¹º¯Êı
+    /// ææ„å‡½æ•°
     virtual ~PulseAudio();
 
 public:
 
-    /// ÎÒÃÇ²»ĞèÒª sf::Music Ìá¹©µÄ·ÖÀëÏß³Ì»úÖÆ
+    /// æˆ‘ä»¬ä¸éœ€è¦ sf::Music æä¾›çš„åˆ†ç¦»çº¿ç¨‹æœºåˆ¶
     virtual bool isAsync() const {
         return true;
     }
@@ -91,38 +91,38 @@ private :
     // Request a new chunk of audio samples from the stream source
     Uint32 getData();
 
-    // ÔÚ·ÖÀëÏß³ÌÖĞ¼ì²âµ±Ç°ÊÇ·ñ´¦ÓÚÔİÍ£×´Ì¬
+    // åœ¨åˆ†ç¦»çº¿ç¨‹ä¸­æ£€æµ‹å½“å‰æ˜¯å¦å¤„äºæš‚åœçŠ¶æ€
     //
-    // ÈôÎªÔİÍ£×´Ì¬£¬ÔòµÈ´ı»Ö¸´²¥·ÅµÄĞÅºÅÁ¿²¢·µ»ØÕæ(´ËÊ±Ó¦¸Ã¼ÌĞø²¥·ÅÏÂÈ¥)£»
-    // ÈôÎªÍ£Ö¹×´Ì¬£¬Ö±½Ó·µ»Ø¼Ù£¬Ïß³ÌÓ¦¸ÃÖĞÖ¹¡£
+    // è‹¥ä¸ºæš‚åœçŠ¶æ€ï¼Œåˆ™ç­‰å¾…æ¢å¤æ’­æ”¾çš„ä¿¡å·é‡å¹¶è¿”å›çœŸ(æ­¤æ—¶åº”è¯¥ç»§ç»­æ’­æ”¾ä¸‹å»)ï¼›
+    // è‹¥ä¸ºåœæ­¢çŠ¶æ€ï¼Œç›´æ¥è¿”å›å‡ï¼Œçº¿ç¨‹åº”è¯¥ä¸­æ­¢ã€‚
     bool pauseAndResume();
 
-    // Ïß³ÌÈë¿Úº¯Êı
+    // çº¿ç¨‹å…¥å£å‡½æ•°
     static void *pulse_entry(void *ptr);
 
-    // ÉèÖÃµ±Ç°²¥·Å×´Ì¬
+    // è®¾ç½®å½“å‰æ’­æ”¾çŠ¶æ€
     void setStatus(Status status);
 
-    // »½ĞÑÒÑ±»ÔİÍ£µÄ²¥·ÅÏß³Ì
+    // å”¤é†’å·²è¢«æš‚åœçš„æ’­æ”¾çº¿ç¨‹
     void waitUpPausedThread();
 
-    // ¸ù¾İÊäÈëÒôÆµÊı¾İ»ñÈ¡ PulseAudio ¶ÔÓ¦µÄÊä³ö¸ñÊ½
+    // æ ¹æ®è¾“å…¥éŸ³é¢‘æ•°æ®è·å– PulseAudio å¯¹åº”çš„è¾“å‡ºæ ¼å¼
     pa_sample_format_t getFormat(SampleFormat fmt);
 
     ////////////////////////////////////////////////////////////
     // Member data
     ////////////////////////////////////////////////////////////
     pa_simple *s;
-    pa_sample_spec m_sampleSpec; // PulseAudio µÄÊä³öÑù±¾¸ñÊ½
+    pa_sample_spec m_sampleSpec; // PulseAudio çš„è¾“å‡ºæ ·æœ¬æ ¼å¼
 
-    bool m_initialized; // Éè±¸ÊÇ·ñÒÑÈ»³õÊ¼»¯£¿
+    bool m_initialized; // è®¾å¤‡æ˜¯å¦å·²ç„¶åˆå§‹åŒ–ï¼Ÿ
 
     pthread_t m_thread;
-    pthread_mutex_t m_mtxStatus; // ±£»¤×´Ì¬±äÁ¿(m_status)µÄ»¥³âÁ¿
-    pthread_mutex_t m_mtxData; // ±£»¤¡°»ñÈ¡Êı¾İ¡±Õâ¸öĞĞÎªµÄ»¥³âÁ¿
+    pthread_mutex_t m_mtxStatus; // ä¿æŠ¤çŠ¶æ€å˜é‡(m_status)çš„äº’æ–¥é‡
+    pthread_mutex_t m_mtxData; // ä¿æŠ¤â€œè·å–æ•°æ®â€è¿™ä¸ªè¡Œä¸ºçš„äº’æ–¥é‡
 
-    sem_t m_resumeWaiter; // ÔİÍ£Ê±µÈ´ı»Ö¸´²¥·ÅÃüÁî
-    bool m_stopAtOnce; // Á¢¼´Í£Ö¹²¥·Å
+    sem_t m_resumeWaiter; // æš‚åœæ—¶ç­‰å¾…æ¢å¤æ’­æ”¾å‘½ä»¤
+    bool m_stopAtOnce; // ç«‹å³åœæ­¢æ’­æ”¾
 
     Status m_status;
 };

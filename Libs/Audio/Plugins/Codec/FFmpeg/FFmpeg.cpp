@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////
+ï»¿////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
 // Copyright (C) 2007-2012 Laurent Gomila (laurent.gom@gmail.com)
@@ -41,7 +41,7 @@ T min(T x, T y) {
 ////////////////////////////////////////////////////////////
 static bool gsFFmpegIntialized = false;
 enum {
-    INVALID_AUDIO_STREAM_INDEX = ~0, // TODO: Õâ¸öÖµÓĞÃ»ÓĞ±» FFmpeg Ê¹ÓÃ£¿
+    INVALID_AUDIO_STREAM_INDEX = ~0, // TODO: è¿™ä¸ªå€¼æœ‰æ²¡æœ‰è¢« FFmpeg ä½¿ç”¨ï¼Ÿ
 };
 
 
@@ -159,7 +159,7 @@ Uint32 FFmpeg::getSampleRate() const {
 
 ////////////////////////////////////////////////////////////
 Uint32 FFmpeg::getBitRate() const {
-    // TODO: ÕâÀïËÆºõÊÇÒ»¸öÔ¼Öµ
+    // TODO: è¿™é‡Œä¼¼ä¹æ˜¯ä¸€ä¸ªçº¦å€¼
     return static_cast<Uint32>(m_audioStream->codec->bit_rate / 1000);
 }
 
@@ -171,7 +171,7 @@ bool FFmpeg::openRead(const char *fileName) {
     //=========================================
 
     AVFormatContext *fc = NULL;
-    int audioStream = -1; // ±ØĞë·ÅÔÚÕâÀï£¬×¢ÒâÏÂÃæµÄ goto OPEN_ERRROR;
+    int audioStream = -1; // å¿…é¡»æ”¾åœ¨è¿™é‡Œï¼Œæ³¨æ„ä¸‹é¢çš„ goto OPEN_ERRROR;
 
     int ret = 0;
     char errorBuffer[1024];
@@ -344,7 +344,7 @@ Uint32 FFmpeg::read(Int16 *data, Uint32 sampleCount) {
     const Uint32 bufferSize = sampleCount * sizeof(Uint16);
     Uint32 outBufOffset = 0;
 
-    // ÉÏ´ÎÊ£ÓàµÄÒ»Ğ©ÊÖÎ²
+    // ä¸Šæ¬¡å‰©ä½™çš„ä¸€äº›æ‰‹å°¾
     if (m_decodedOffset < m_decoded) {
         Uint32 bytesToCopy = min(bufferSize, m_decoded - m_decodedOffset);
         memcpy(outBuf, getDecodeBuffer() + m_decodedOffset, bytesToCopy);
@@ -356,12 +356,12 @@ Uint32 FFmpeg::read(Int16 *data, Uint32 sampleCount) {
     while (outBufOffset < bufferSize) {
         /* Read a frame */
         while (!m_rawPacket.data) {
-            // ¶ÁÈ¡Ê§°Ü£¬Ö±½Ó·µ»Ø
+            // è¯»å–å¤±è´¥ï¼Œç›´æ¥è¿”å›
             int ret = av_read_frame(m_formatContext, &m_rawPacket);
             if (ret < 0) {
-                // ¶Áµ½ÎÄ¼şÄ©Î²²»Ëã´íÎó
+                // è¯»åˆ°æ–‡ä»¶æœ«å°¾ä¸ç®—é”™è¯¯
                 if (ret != AVERROR_EOF) {
-                    fprintf(stderr, "[%s:%d] av_read_frame() failed£ºError %d.\n",
+                    fprintf(stderr, "[%s:%d] av_read_frame() failedï¼šError %d.\n",
                             __FILE__, __LINE__, ret);
                 }
 
@@ -372,7 +372,7 @@ Uint32 FFmpeg::read(Int16 *data, Uint32 sampleCount) {
             if (m_rawPacket.stream_index != m_audioStreamIndex) {
                 freeRawPacket();
             } else {
-                // ³É¹¦¶ÁÈ¡Ò»¸öÔ­Ê¼Ö¡£¬×¼±¸½âÑ¹
+                // æˆåŠŸè¯»å–ä¸€ä¸ªåŸå§‹å¸§ï¼Œå‡†å¤‡è§£å‹
                 m_rawOffset = 0;
             }
         }
@@ -380,7 +380,7 @@ Uint32 FFmpeg::read(Int16 *data, Uint32 sampleCount) {
         //===========================================================
         // Decode the frame
 
-        AVPacket tmp; /* ÁÙÊ±ÓÃ */
+        AVPacket tmp; /* ä¸´æ—¶ç”¨ */
         av_init_packet(&tmp);
         tmp.data = m_rawPacket.data + m_rawOffset;
         tmp.size = m_rawPacket.size - m_rawOffset;
@@ -397,7 +397,7 @@ Uint32 FFmpeg::read(Int16 *data, Uint32 sampleCount) {
         // Copy out
 
         if (rawUsed >= 0) {
-            // TODO: ×Ö½ÚÊıµÄ¼ÆËã
+            // TODO: å­—èŠ‚æ•°çš„è®¡ç®—
             m_decoded = getSampleFormat() / 8 * getChannelCount() * m_decodeBuffer->nb_samples;
             m_decodedOffset = 0;
 
@@ -419,12 +419,12 @@ Uint32 FFmpeg::read(Int16 *data, Uint32 sampleCount) {
 
             outBufOffset += bytesToCopy;
             m_decodedOffset += bytesToCopy;
-        } else { // ´íÎó¼ì²â
+        } else { // é”™è¯¯æ£€æµ‹
 
-            // ÔÚ Linux ÏÂÃæ rawUsed == 0 ºóÔÙµ÷ÓÃ av_read_frame() ²»»á·µ»Ø´íÎó£¬¶øÊÇ²»¶ÏÌáÊ¾£º
+            // åœ¨ Linux ä¸‹é¢ rawUsed == 0 åå†è°ƒç”¨ av_read_frame() ä¸ä¼šè¿”å›é”™è¯¯ï¼Œè€Œæ˜¯ä¸æ–­æç¤ºï¼š
             // Truncating packet of size 1024 to 1
             if (rawUsed < 0) {
-                fprintf(stderr, "[%s:%d] avcodec_decode_audio4() failed£ºError %d.\n",
+                fprintf(stderr, "[%s:%d] avcodec_decode_audio4() failedï¼šError %d.\n",
                         __FILE__, __LINE__, rawUsed);
             }
 ERROR:
@@ -461,7 +461,7 @@ bool FFmpeg::seek(Time timeOffset) {
     }
 
     //==================================================
-    // ¸üĞÂ½âÂë×´Ì¬
+    // æ›´æ–°è§£ç çŠ¶æ€
 
     m_decoded = m_decodedOffset = 0;
     if (m_rawPacket.data) {
