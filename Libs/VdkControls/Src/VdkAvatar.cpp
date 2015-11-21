@@ -7,85 +7,77 @@
 #endif
 
 
-IMPLEMENT_DYNAMIC_VOBJECT( VdkAvatar );
+IMPLEMENT_DYNAMIC_VOBJECT(VdkAvatar);
 
 //////////////////////////////////////////////////////////////////////////
 
-VdkAvatar::VdkAvatar() : m_radius( 0 ), m_ptrState( NORMAL )
-{
-	RemoveStyle( VCS_IGNORE_ALL_EVENTS );
+VdkAvatar::VdkAvatar() : m_radius(0), m_ptrState(NORMAL) {
+    RemoveStyle(VCS_IGNORE_ALL_EVENTS);
 }
 
-void VdkAvatar::Create(wxXmlNode* node)
-{
-	VdkStaticImage::Create( node );
-	//------------------------------
+void VdkAvatar::Create(wxXmlNode *node) {
+    VdkStaticImage::Create(node);
+    //------------------------------
 
-	m_radius = XmlGetContentOfNum( FindChildNode( node, L"radius" ) );
+    m_radius = XmlGetContentOfNum(FindChildNode(node, L"radius"));
 
-	wxString v( XmlGetChildContent( node, L"border-color" ) );
-	if( !v.IsEmpty() )
-	{
-		m_borderPen.SetColour( wxColour( v ) );
-	}
+    wxString v(XmlGetChildContent(node, L"border-color"));
+    if (!v.IsEmpty()) {
+        m_borderPen.SetColour(wxColour(v));
+    }
 }
 
-void VdkAvatar::DoDraw(wxDC& dc)
-{
-	const wxBitmap& image = GetImage();
-	if( !image.IsOk() )
-		return;
+void VdkAvatar::DoDraw(wxDC &dc) {
+    const wxBitmap &image = GetImage();
+    if (!image.IsOk()) {
+        return;
+    }
 
-	if( m_radius != 0 )
-	{
-		int w( image.GetWidth() ), h( image.GetHeight() );
+    if (m_radius != 0) {
+        int w(image.GetWidth()), h(image.GetHeight());
 
-		wxBitmap obm( w, h );
-		wxMemoryDC odc( obm );
+        wxBitmap obm(w, h);
+        wxMemoryDC odc(obm);
 
-		odc.SetBackground( *wxBLACK );
-		odc.Clear();
-		odc.SetPen( *wxWHITE_PEN );
-		odc.SetBrush( *wxWHITE_BRUSH );
-		odc.DrawRoundedRectangle( 0, 0, w, h, m_radius );
+        odc.SetBackground(*wxBLACK);
+        odc.Clear();
+        odc.SetPen(*wxWHITE_PEN);
+        odc.SetBrush(*wxWHITE_BRUSH);
+        odc.DrawRoundedRectangle(0, 0, w, h, m_radius);
 
-		wxMemoryDC mdc;
-		mdc.SelectObjectAsSource( image );
-		odc.Blit( 0, 0, w, h, &mdc, 0, 0, wxAND );
+        wxMemoryDC mdc;
+        mdc.SelectObjectAsSource(image);
+        odc.Blit(0, 0, w, h, &mdc, 0, 0, wxAND);
 
-		if( m_borderPen.IsOk() )
-		{
-			odc.SetPen( m_borderPen );
-			odc.SetBrush( *wxTRANSPARENT_BRUSH );
-			odc.DrawRoundedRectangle( 0, 0, w, h, m_radius );
-		}
+        if (m_borderPen.IsOk()) {
+            odc.SetPen(m_borderPen);
+            odc.SetBrush(*wxTRANSPARENT_BRUSH);
+            odc.DrawRoundedRectangle(0, 0, w, h, m_radius);
+        }
 
-		dc.SetPen( *wxBLACK_PEN );
-		dc.SetBrush( *wxBLACK_BRUSH );
-		dc.DrawRoundedRectangle( m_Rect.x, m_Rect.y, w, h, m_radius );
-		dc.Blit( m_Rect.x, m_Rect.y, w, h, &odc, 0, 0, wxOR );
-	}
-	else
-	{
-		VdkStaticImage::Draw( dc );
-	}
+        dc.SetPen(*wxBLACK_PEN);
+        dc.SetBrush(*wxBLACK_BRUSH);
+        dc.DrawRoundedRectangle(m_Rect.x, m_Rect.y, w, h, m_radius);
+        dc.Blit(m_Rect.x, m_Rect.y, w, h, &odc, 0, 0, wxOR);
+    } else {
+        VdkStaticImage::Draw(dc);
+    }
 }
 
-void VdkAvatar::DoHandleMouseEvent(VdkMouseEvent& e)
-{
-	switch( e.evtCode )
-	{
-	case LEFT_UP:
+void VdkAvatar::DoHandleMouseEvent(VdkMouseEvent &e) {
+    switch (e.evtCode) {
+    case LEFT_UP:
 
-		if( m_ptrState == LEFT_DOWN && IsReadyForEvent() )
-			FireEvent( &e.dc, NULL );
+        if (m_ptrState == LEFT_DOWN && IsReadyForEvent()) {
+            FireEvent(&e.dc, NULL);
+        }
 
-		break;
+        break;
 
-	default:
+    default:
 
-		break;	
-	}
+        break;
+    }
 
-	m_ptrState = (VdkMouseEventType) e.evtCode;
+    m_ptrState = (VdkMouseEventType) e.evtCode;
 }

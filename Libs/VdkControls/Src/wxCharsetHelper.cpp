@@ -15,167 +15,153 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-int isurlable(int ch)
-{
-	return ( isalnum( ch ) ||
-			 ch == ':' ||
-			 ch == '/' ||
-			 ch == '.' );
+int isurlable(int ch) {
+    return (isalnum(ch) ||
+            ch == ':' ||
+            ch == '/' ||
+            ch == '.');
 }
 
-wxString DoEscape(const char* p, size_t len)
-{
-    if( !p )
-    {
-        wxLogDebug( L"[%s:%d]DoEscape():Incorrect input: "
-                    L"Null string pointer.",
-                    __FILE__, __LINE__ );
-                    
+wxString DoEscape(const char *p, size_t len) {
+    if (!p) {
+        wxLogDebug(L"[%s:%d]DoEscape():Incorrect input: "
+                   L"Null string pointer.",
+                   __FILE__, __LINE__);
+
         return wxEmptyString;
     }
 
-	if( len == wxNO_LEN )
-	{
-		len = strlen( p );
-	}
+    if (len == wxNO_LEN) {
+        len = strlen(p);
+    }
 
-	//-------------------------------------------------
+    //-------------------------------------------------
 
-	typedef unsigned char byte;
+    typedef unsigned char byte;
 
-	char tempbuff[4];
-	wxString ret;
+    char tempbuff[4];
+    wxString ret;
 
-	for( size_t i = 0; i < len; i++ )
-	{
-		if( isurlable( (byte) p[i] ) )
-		{
-			ret += (wxChar) p[i];
-		}
-		else
-		{
-			sprintf( tempbuff, "%%%X%X", ((byte *) p)[i] >> 4, 
-										 ((byte *) p)[i]  % 16 );
+    for (size_t i = 0; i < len; i++) {
+        if (isurlable((byte) p[i])) {
+            ret += (wxChar) p[i];
+        } else {
+            sprintf(tempbuff, "%%%X%X", ((byte *) p)[i] >> 4,
+                    ((byte *) p)[i]  % 16);
 
-			ret += tempbuff;
-		}
+            ret += tempbuff;
+        }
 
-	}
+    }
 
-	return ret;
+    return ret;
 }
 
 //////////////////////////////////////////////////////////////////////////
 
-wxString wxCharsetHelper::Escape(const wxString& str, const wxMBConv& conv)
-{
-	if( str.empty() )
-		return str;
+wxString wxCharsetHelper::Escape(const wxString &str, const wxMBConv &conv) {
+    if (str.empty()) {
+        return str;
+    }
 
-	return ::DoEscape( conv.cWC2MB( str ), wxNO_LEN );
+    return ::DoEscape(conv.cWC2MB(str), wxNO_LEN);
 }
 
-wxString wxCharsetHelper::UnescapeFromAnsi(const char* str)
-{
-	// TODO:
-	std::string output;
-	char tmp[2];
+wxString wxCharsetHelper::UnescapeFromAnsi(const char *str) {
+    // TODO:
+    std::string output;
+    char tmp[2];
 
-	size_t i = 0;
-	size_t len = strlen( str );
+    size_t i = 0;
+    size_t len = strlen(str);
 
-	while( i < len )
-	{
-		if( str[i] == '%' )
-		{
-			tmp[0] = str[i + 1];
-			tmp[1] = str[i + 2];
-			output += StrToBin( tmp );
-			i = i + 3;
-		}
-		else if( str[i] == '+' )
-		{
-			output += ' ';
-			i++;
-		}
-		else
-		{
-			output += str[i];
-			i++;
-		}
-	}
+    while (i < len) {
+        if (str[i] == '%') {
+            tmp[0] = str[i + 1];
+            tmp[1] = str[i + 2];
+            output += StrToBin(tmp);
+            i = i + 3;
+        } else if (str[i] == '+') {
+            output += ' ';
+            i++;
+        } else {
+            output += str[i];
+            i++;
+        }
+    }
 
-	return output;
+    return output;
 }
 
-char wxCharsetHelper::StrToBin(const char* str)
-{
-	char tempWord[2];
-	char chn;
+char wxCharsetHelper::StrToBin(const char *str) {
+    char tempWord[2];
+    char chn;
 
-	tempWord[0] = CharToInt( str[0 ]);           // make the B to 11 -- 00001011
-	tempWord[1] = CharToInt( str[1] );           // make the 0 to 0  -- 00000000
+    tempWord[0] = CharToInt(str[0 ]);            // make the B to 11 -- 00001011
+    tempWord[1] = CharToInt(str[1]);             // make the 0 to 0  -- 00000000
 
-	chn = (tempWord[0] << 4) | tempWord[1];    // to change the BO to 10110000
+    chn = (tempWord[0] << 4) | tempWord[1];    // to change the BO to 10110000
 
-	return chn;
+    return chn;
 }
 
-char wxCharsetHelper::CharToInt(const char ch)
-{
-	if( ch>='0' && ch<='9' ) return (char)( ch - '0' );
-	if( ch>='a' && ch<='f' ) return (char)( ch - 'a' + 10 );
-	if( ch>='A' && ch<='F' ) return (char)( ch - 'A' + 10 );
+char wxCharsetHelper::CharToInt(const char ch) {
+    if (ch>='0' && ch<='9') {
+        return (char)(ch - '0');
+    }
+    if (ch>='a' && ch<='f') {
+        return (char)(ch - 'a' + 10);
+    }
+    if (ch>='A' && ch<='F') {
+        return (char)(ch - 'A' + 10);
+    }
 
-	// TODO:
-	return -1;
+    // TODO:
+    return -1;
 }
 
-int Hex2Dec(char ch)
-{
-	ch = toupper( ch );
-	if( ch >= L'0' && ch <= L'9' )
-	{
-		return ch - L'0';
-	}
-	else
-	{
-		return ch - L'A' + 10;
-	}
+int Hex2Dec(char ch) {
+    ch = toupper(ch);
+    if (ch >= L'0' && ch <= L'9') {
+        return ch - L'0';
+    } else {
+        return ch - L'A' + 10;
+    }
 }
 
-wxString wxCharsetHelper::UnescapeFromUtf8(const char* src)
-{
-	if( !src || !strchr( src, '%' ) )
-		return src;
+wxString wxCharsetHelper::UnescapeFromUtf8(const char *src) {
+    if (!src || !strchr(src, '%')) {
+        return src;
+    }
 
-    size_t len = strlen( src );
-    char* buf = new char[len + 1];
+    size_t len = strlen(src);
+    char *buf = new char[len + 1];
 
-    const char* psrc = src;
-    const char* plast = src + len;
-    unsigned char* pbuf = (unsigned char*) buf;
+    const char *psrc = src;
+    const char *plast = src + len;
+    unsigned char *pbuf = (unsigned char *) buf;
 
-	int dec;
+    int dec;
 
     //*************************
 
-    while( psrc != plast )
-    {
-        while( psrc != plast && *psrc != '%' )
+    while (psrc != plast) {
+        while (psrc != plast && *psrc != '%') {
             *pbuf++ = *psrc++;
+        }
 
-		if( psrc == plast )
-			break;
+        if (psrc == plast) {
+            break;
+        }
 
-		dec = Hex2Dec( *(psrc + 2) );
-		dec |= Hex2Dec( *(psrc + 1) ) << 4;
+        dec = Hex2Dec(*(psrc + 2));
+        dec |= Hex2Dec(*(psrc + 1)) << 4;
         *pbuf++ = dec;
         psrc += 3;
     }
 
     *pbuf = 0;
-	wxString ret( buf, wxConvUTF8 );
+    wxString ret(buf, wxConvUTF8);
     delete [] buf;
 
     return ret;

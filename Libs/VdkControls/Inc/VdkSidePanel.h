@@ -19,24 +19,23 @@ enum VdkSidePanelState {
 };
 
 /// \brief 类似 Office 2003 的侧边栏
-class VdkSidePanel : public VdkControl
-{
+class VdkSidePanel : public VdkControl {
 public:
 
-	/// \brief 默认构造函数
-	VdkSidePanel();
+    /// \brief 默认构造函数
+    VdkSidePanel();
 
-	/// \brief XRC 动态创建
-	virtual void Create(wxXmlNode* node);
-
-private:
-
-	/// \brief 绘制控件
-	virtual void DoDraw(wxDC& dc);
+    /// \brief XRC 动态创建
+    virtual void Create(wxXmlNode *node);
 
 private:
 
-	wxString m_strCaption;
+    /// \brief 绘制控件
+    virtual void DoDraw(wxDC &dc);
 
-	DECLARE_CLONEABLE_VOBJECT( VdkSidePanel )
+private:
+
+    wxString m_strCaption;
+
+    DECLARE_CLONEABLE_VOBJECT(VdkSidePanel)
 };

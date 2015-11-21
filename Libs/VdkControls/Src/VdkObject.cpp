@@ -7,28 +7,26 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-VdkObject* VdkObject::CreateDynamicVObject(const wxString& strClassName)
-{
-	static OBJECT_MAP& Creators = GetCreators();
-	OBJECT_MAP::iterator omi;
+VdkObject *VdkObject::CreateDynamicVObject(const wxString &strClassName) {
+    static OBJECT_MAP &Creators = GetCreators();
+    OBJECT_MAP::iterator omi;
 
-	omi = Creators.find( strClassName );
+    omi = Creators.find(strClassName);
 
-	if( omi != Creators.end() )
-		return omi->second();
-	else
-		return NULL;
+    if (omi != Creators.end()) {
+        return omi->second();
+    } else {
+        return NULL;
+    }
 }
 
-inline OBJECT_MAP& VdkObject::GetCreators()
-{
-	static OBJECT_MAP Creators;
+inline OBJECT_MAP &VdkObject::GetCreators() {
+    static OBJECT_MAP Creators;
 
-	return Creators;
+    return Creators;
 }
 
-AddToHashMap::AddToHashMap(const wxString& strClassName, 
-						   VdkObjectCreator Creator)
-{
-	VdkObject::GetCreators()[ strClassName ] = Creator;
+AddToHashMap::AddToHashMap(const wxString &strClassName,
+                           VdkObjectCreator Creator) {
+    VdkObject::GetCreators()[ strClassName ] = Creator;
 }

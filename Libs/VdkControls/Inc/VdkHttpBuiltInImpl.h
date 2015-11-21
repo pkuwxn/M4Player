@@ -9,45 +9,44 @@
 #include <wx/protocol/http.h>
 
 /// 使用内建的 wxHttp 来实现 VdkHTTP 的接口
-class VdkHttpBuiltInImpl : public VdkHTTP
-{
+class VdkHttpBuiltInImpl : public VdkHTTP {
 public:
 
-	/// 构造函数
-	VdkHttpBuiltInImpl(const wxCSConv& conv);
+    /// 构造函数
+    VdkHttpBuiltInImpl(const wxCSConv &conv);
 
-	/// 虚析构函数
-	virtual ~VdkHttpBuiltInImpl();
+    /// 虚析构函数
+    virtual ~VdkHttpBuiltInImpl();
 
-	//====================================================
+    //====================================================
 
-	/// 启用/禁用 GZip
-	virtual void EnableGzip(GZipMode gzm);
+    /// 启用/禁用 GZip
+    virtual void EnableGzip(GZipMode gzm);
 
-	/// GZip 是否已然启用
-	virtual bool IsGzipEnabled() const;
+    /// GZip 是否已然启用
+    virtual bool IsGzipEnabled() const;
 
-	/// Set the default http timeout in seconds.
-	virtual void SetTimeout(long seconds);
+    /// Set the default http timeout in seconds.
+    virtual void SetTimeout(long seconds);
 
-	/// Get the default http timeout in seconds.
-	virtual long GetTimeout() const;
+    /// Get the default http timeout in seconds.
+    virtual long GetTimeout() const;
 
-	/// Sets data of a field to be sent during the next request 
-	/// to the HTTP server.
-	virtual void SetHeader(const wxString& header, const wxString& h_data);
+    /// Sets data of a field to be sent during the next request
+    /// to the HTTP server.
+    virtual void SetHeader(const wxString &header, const wxString &h_data);
 
-	/// Returns the data attached with a field whose name is 
-	/// specified by @a header. 
-	virtual wxString GetHeader(const wxString& header) const;
-
-private:
-
-	// HTTP Get
-	virtual bool DoGet(const wxString& url, wxString& result);
+    /// Returns the data attached with a field whose name is
+    /// specified by @a header.
+    virtual wxString GetHeader(const wxString &header) const;
 
 private:
 
-	wxHTTP m_httpConn;
-	GZipMode m_gzm;
+    // HTTP Get
+    virtual bool DoGet(const wxString &url, wxString &result);
+
+private:
+
+    wxHTTP m_httpConn;
+    GZipMode m_gzm;
 };

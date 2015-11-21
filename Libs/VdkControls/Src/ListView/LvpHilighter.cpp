@@ -14,13 +14,11 @@
 //////////////////////////////////////////////////////////////////////////
 
 LvpHilighter::LvpHilighter
-	(ListView* list, const wxBrush& hilighted)
-	: IListViewPlaugin( list ), m_hilighted( hilighted )
-{
+(ListView *list, const wxBrush &hilighted)
+    : IListViewPlaugin(list), m_hilighted(hilighted) {
 
 }
 
-void LvpHilighter::OnEraseRow(int row, wxDC& dc)
-{
+void LvpHilighter::OnEraseRow(int row, wxDC &dc) {
 
 }

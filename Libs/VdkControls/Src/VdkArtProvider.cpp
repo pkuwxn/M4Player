@@ -20,20 +20,18 @@ const static int gs_bitmapsPerOrient = 50;
 
 //////////////////////////////////////////////////////////////////////////
 
-VdkArtProvider::VdkArtProvider()
-{/*
-	wxBitmap Office2003_icons
-		( VdkLoadPngFromRawData( Office2003_icons_png ) );
-	m_ba.Set( Office2003_icons, gs_bitmapsPerOrient, gs_bitmapsPerOrient );*/
+VdkArtProvider::VdkArtProvider() {
+    /*
+    wxBitmap Office2003_icons
+       ( VdkLoadPngFromRawData( Office2003_icons_png ) );
+    m_ba.Set( Office2003_icons, gs_bitmapsPerOrient, gs_bitmapsPerOrient );*/
 }
 
-wxBitmap VdkArtProvider::CreateBitmap(const wxArtID& id,
-	const wxArtClient& client, const wxSize& size)
-{
-	return wxArtProvider::CreateBitmap( id, client, size );
+wxBitmap VdkArtProvider::CreateBitmap(const wxArtID &id,
+                                      const wxArtClient &client, const wxSize &size) {
+    return wxArtProvider::CreateBitmap(id, client, size);
 }
 
-VdkBitmapArrayId VdkArtProvider::GetBitmaplet(int x, int y)
-{
-	return VdkBitmapArrayId( m_ba, x, y );
+VdkBitmapArrayId VdkArtProvider::GetBitmaplet(int x, int y) {
+    return VdkBitmapArrayId(m_ba, x, y);
 }

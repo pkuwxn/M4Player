@@ -13,40 +13,34 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-VdkHttpWgetImpl::VdkHttpWgetImpl(const wxCSConv& conv)
-	: VdkHTTP( conv ), m_gzm( GZM_ENABLED )
-{
+VdkHttpWgetImpl::VdkHttpWgetImpl(const wxCSConv &conv)
+    : VdkHTTP(conv), m_gzm(GZM_ENABLED) {
 
 }
 
-VdkHttpWgetImpl::~VdkHttpWgetImpl()
-{
+VdkHttpWgetImpl::~VdkHttpWgetImpl() {
 
 }
 
-bool VdkHttpWgetImpl::Get(const wxString& url, wxString& result)
-{
-	wxString cmd( L"wget " );
-	cmd += url;
-	cmd += L" -O- -q";
+bool VdkHttpWgetImpl::Get(const wxString &url, wxString &result) {
+    wxString cmd(L"wget ");
+    cmd += url;
+    cmd += L" -O- -q";
 
-	wxArrayString output;
-	wxExecute( cmd, output );
+    wxArrayString output;
+    wxExecute(cmd, output);
 
-	if( !output.empty() )
-	{
-		return true;
-	}
+    if (!output.empty()) {
+        return true;
+    }
 
-	return false;
+    return false;
 }
 
-void VdkHttpWgetImpl::EnableGzip(GZipMode gzm)
-{
-	m_gzm = gzm;
+void VdkHttpWgetImpl::EnableGzip(GZipMode gzm) {
+    m_gzm = gzm;
 }
 
-bool VdkHttpWgetImpl::IsGzipEnabled() const
-{
-	return m_gzm == GZM_ENABLED;
+bool VdkHttpWgetImpl::IsGzipEnabled() const {
+    return m_gzm == GZM_ENABLED;
 }

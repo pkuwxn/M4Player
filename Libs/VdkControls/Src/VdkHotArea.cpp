@@ -9,70 +9,66 @@
 #endif
 
 
-IMPLEMENT_DYNAMIC_VOBJECT( VdkHotArea );
+IMPLEMENT_DYNAMIC_VOBJECT(VdkHotArea);
 
 //////////////////////////////////////////////////////////////////////////
 
-VdkHotArea::VdkHotArea() : m_cursorHand( wxCURSOR_HAND ) {}
+VdkHotArea::VdkHotArea() : m_cursorHand(wxCURSOR_HAND) {}
 
-void VdkHotArea::Create(wxXmlNode* node)
-{
-	wxXmlNode* chd( NULL );
-	chd = FindChildNode( node, L"url" );
-	if( chd )
-		m_strUrl = chd->GetNodeContent();
+void VdkHotArea::Create(wxXmlNode *node) {
+    wxXmlNode *chd(NULL);
+    chd = FindChildNode(node, L"url");
+    if (chd) {
+        m_strUrl = chd->GetNodeContent();
+    }
 
-	Create( m_Window, GetXrcName( node ), GetXrcRect( node ), m_strUrl );
+    Create(m_Window, GetXrcName(node), GetXrcRect(node), m_strUrl);
 }
 
-void VdkHotArea::Create(VdkWindow* Window, 
-						const wxString& strName, 
-						const wxRect& rc, 
-						const wxString& strUrl)
-{
-	m_strName = strName;
-	m_Rect = rc;
-	SetVdkWindow( Window );
+void VdkHotArea::Create(VdkWindow *Window,
+                        const wxString &strName,
+                        const wxRect &rc,
+                        const wxString &strUrl) {
+    m_strName = strName;
+    m_Rect = rc;
+    SetVdkWindow(Window);
 
-	m_strUrl = strUrl;
-	StartSense();
+    m_strUrl = strUrl;
+    StartSense();
 }
 
-void VdkHotArea::StartSense()
-{
-	m_bHand = false;
+void VdkHotArea::StartSense() {
+    m_bHand = false;
 }
 
-void VdkHotArea::DoHandleMouseEvent(VdkMouseEvent& e)
-{
-	switch( e.evtCode )
-	{
-	case HOVERING:
+void VdkHotArea::DoHandleMouseEvent(VdkMouseEvent &e) {
+    switch (e.evtCode) {
+    case HOVERING:
 
-		// TODO:
-		m_bHand = true;
-		m_Window->AssignCursor( m_cursorHand );
+        // TODO:
+        m_bHand = true;
+        m_Window->AssignCursor(m_cursorHand);
 
-		break;
+        break;
 
-	case NORMAL:
+    case NORMAL:
 
-		if( m_bHand )
-		{
-			m_bHand = false;
-			m_Window->ResetCursor();
-		}
-		break;
+        if (m_bHand) {
+            m_bHand = false;
+            m_Window->ResetCursor();
+        }
+        break;
 
-	case LEFT_UP:
+    case LEFT_UP:
 
-		if( !m_strUrl.empty() )
-			wxLaunchDefaultBrowser( m_strUrl );
+        if (!m_strUrl.empty()) {
+            wxLaunchDefaultBrowser(m_strUrl);
+        }
 
-		break;
+        break;
 
-	default:
+    default:
 
-		break;
-	}
+        break;
+    }
 }

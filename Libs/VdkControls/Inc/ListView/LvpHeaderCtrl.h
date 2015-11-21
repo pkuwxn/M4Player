@@ -9,19 +9,20 @@
 #include "VdkControl.h"
 
 /// 实现 VdkListView 鼠标滑过时高亮所在行
-class LvpHeaderCtrl : public VdkControl, public IListViewPlaugin
-{
+class LvpHeaderCtrl : public VdkControl, public IListViewPlaugin {
 public:
 
-	/// 构造函数
-	LvpHeaderCtrl(ListView* listview);
+    /// 构造函数
+    LvpHeaderCtrl(ListView *listview);
 
 private:
 
-	virtual bool CanDestoryByListView() const { return false; }
+    virtual bool CanDestoryByListView() const {
+        return false;
+    }
 
-	// 绘制控件
-	virtual void DoDraw(wxDC& dc);
+    // 绘制控件
+    virtual void DoDraw(wxDC &dc);
 
 private:
 
@@ -30,6 +31,6 @@ private:
 
 private:
 
-	int					m_yFix;
-	wxBitmap			m_bmBkGnd;
+    int                 m_yFix;
+    wxBitmap            m_bmBkGnd;
 };

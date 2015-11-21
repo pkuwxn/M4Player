@@ -9,136 +9,144 @@
 #include "Genre.h"
 #include "Range.h"
 
-namespace MyTagLib
-{
-    /// The base interface of all tagging schemas.
+namespace MyTagLib {
+/// The base interface of all tagging schemas.
+///
+/// A tag should never shrink itself. If you want to delete a field from
+/// the tag, leaving it empty would be enuough.
+class Tag {
+public:
+
+    /// Default constructor
+    Tag();
+
+    /// Virtual destructor
+    virtual ~Tag() {}
+
+    /// Load tags from an input stream.
     ///
-    /// A tag should never shrink itself. If you want to delete a field from
-    /// the tag, leaving it empty would be enuough. 
-    class Tag
-    {
-    public:
+    /// In general, this function will use as much the state information
+    /// held by @a istrm as possible, such as the current file pointer
+    /// position, etc.
+    bool load(std::istream &istrm);
 
-        /// Default constructor
-        Tag();
+    /*! The result code of writing operation. */
+    enum WriteResult {
+        /*! No changes have been made to the tags, and no need
+         *! to write back. */
+        WR_NO_CHANGE,
+        WR_OK, /*! The operation has done and no error accurred. */
+        WR_FAILED, /*! Error encounted. */
+    };
 
-        /// Virtual destructor
-        virtual ~Tag() {}
+    /// Write tags back to an output stream.
+    ///
+    /// @a ostrm The output stream, which should seek to the right position
+    /// before calling this function.
+    WriteResult save(std::ostream &ostrm);
 
-        /// Load tags from an input stream.
-        ///
-        /// In general, this function will use as much the state information 
-        /// held by @a istrm as possible, such as the current file pointer
-        /// position, etc.
-        bool load(std::istream& istrm);
+    /// Initialize the tag as a whole new one
+    ///
+    /// This function does not intent to be called by a initialized
+    /// tag (isOk() returns true).
+    bool init();
 
-        /*! The result code of writing operation. */
-        enum WriteResult {
-            /*! No changes have been made to the tags, and no need 
-             *! to write back. */
-            WR_NO_CHANGE,
-            WR_OK, /*! The operation has done and no error accurred. */
-            WR_FAILED, /*! Error encounted. */
-        };
+    /// Reset the parser, and clear all the resource.
+    void clear();
 
-        /// Write tags back to an output stream.
-        ///
-        /// @a ostrm The output stream, which should seek to the right position 
-        /// before calling this function.
-        WriteResult save(std::ostream& ostrm);
+    /// Test whether this tag is empty or not.
+    virtual bool isEmpty() const {
+        return getArtist().empty() && getTitle().empty();
+    }
 
-        /// Initialize the tag as a whole new one
-        ///
-        /// This function does not intent to be called by a initialized
-        /// tag (isOk() returns true).
-        bool init();
+    /// Get range of the tag in the music file.
+    const Range &getRange() const {
+        return m_range;
+    }
 
-        /// Reset the parser, and clear all the resource.
-        void clear();
+    /// Get range of the tag in the music file.
+    Range &getRange() {
+        return m_range;
+    }
 
-        /// Test whether this tag is empty or not.
-        virtual bool isEmpty() const {
-            return getArtist().empty() && getTitle().empty();
-        }
+    /// Returns true if the tag has been modified (but not commited).
+    bool isModified() const {
+        return m_changed;
+    }
 
-        /// Get range of the tag in the music file.
-        const Range& getRange() const { return m_range; }
+private:
 
-        /// Get range of the tag in the music file.
-        Range& getRange() { return m_range; }
+    virtual bool doLoad(std::istream &istrm) = 0;
+    virtual WriteResult doSave(std::ostream &ostrm) = 0;
+    // The overrider should set the initial size of the tag by
+    // Range::resize(XXX).
+    virtual bool doInit() = 0;
+    virtual void doClear() = 0;
 
-        /// Returns true if the tag has been modified (but not commited).
-        bool isModified() const { return m_changed; }
+    // The data has been changed.
+    void setModified() {
+        m_changed = true;
+    }
 
-    private:
+public:
 
-        virtual bool doLoad(std::istream& istrm) = 0;
-        virtual WriteResult doSave(std::ostream& ostrm) = 0;
-        // The overrider should set the initial size of the tag by
-        // Range::resize(XXX).
-        virtual bool doInit() = 0;
-        virtual void doClear() = 0;
-
-        // The data has been changed.
-        void setModified() { m_changed = true; }
-
-    public:
-
-        /// Returns true if the tag has been read successfully.
-        virtual bool isOk() const = 0;
+    /// Returns true if the tag has been read successfully.
+    virtual bool isOk() const = 0;
 
 #define DECLARE_ACCESSORS(name, varType) \
     varType get ## name() const; \
     bool set ## name(const varType& name);
 
-        DECLARE_ACCESSORS(Artist, String)
-        DECLARE_ACCESSORS(Title, String)
-        DECLARE_ACCESSORS(Album, String)
-        DECLARE_ACCESSORS(Year, String)
-        DECLARE_ACCESSORS(Comment, String)
-        DECLARE_ACCESSORS(Lyric, String)
+    DECLARE_ACCESSORS(Artist, String)
+    DECLARE_ACCESSORS(Title, String)
+    DECLARE_ACCESSORS(Album, String)
+    DECLARE_ACCESSORS(Year, String)
+    DECLARE_ACCESSORS(Comment, String)
+    DECLARE_ACCESSORS(Lyric, String)
 
-        int getTrackNumber() const;
-        /// Set the track number for the song
-        /// @param TrackNumber The valid range is [1, 255].
-        bool setTrackNumber(int TrackNumber);
-        Genre getGenre() const;
-        bool setGenre(const Genre& genre);
+    int getTrackNumber() const;
+    /// Set the track number for the song
+    /// @param TrackNumber The valid range is [1, 255].
+    bool setTrackNumber(int TrackNumber);
+    Genre getGenre() const;
+    bool setGenre(const Genre &genre);
 
 #undef DECLARE_ACCESSORS
 
-    private:
+private:
 
 #define DECLARE_PV_ACCESSORS(name, varType) \
     virtual varType doGet ## name() const = 0; \
     virtual bool doSet ## name(const varType& name) = 0;
 
-        DECLARE_PV_ACCESSORS(Artist, String)
-        DECLARE_PV_ACCESSORS(Title, String)
-        DECLARE_PV_ACCESSORS(Album, String)
-        DECLARE_PV_ACCESSORS(Year, String)
-        DECLARE_PV_ACCESSORS(Comment, String)
-        DECLARE_PV_ACCESSORS(Lyric, String)
+    DECLARE_PV_ACCESSORS(Artist, String)
+    DECLARE_PV_ACCESSORS(Title, String)
+    DECLARE_PV_ACCESSORS(Album, String)
+    DECLARE_PV_ACCESSORS(Year, String)
+    DECLARE_PV_ACCESSORS(Comment, String)
+    DECLARE_PV_ACCESSORS(Lyric, String)
 
-        virtual int doGetTrackNumber() const = 0;
-        virtual bool doSetTrackNumber(int TrackNumber) = 0;
+    virtual int doGetTrackNumber() const = 0;
+    virtual bool doSetTrackNumber(int TrackNumber) = 0;
 
-        virtual Genre doGetGenre() const = 0;
-        virtual bool doSetGenre(const Genre& genre) = 0;
+    virtual Genre doGetGenre() const = 0;
+    virtual bool doSetGenre(const Genre &genre) = 0;
 
 #undef DECLARE_PV_ACCESSORS
 
-    private:
+private:
 
-        // Disable copy
-        Tag(const Tag&) {}
-        Tag& operator = (const Tag&) { return *this; }
+    // Disable copy
+    Tag(const Tag &) {}
+    Tag &operator = (const Tag &) {
+        return *this;
+    }
 
-    private:
+private:
 
-        bool m_changed; // Indicates the modification to any filed
-        Range m_range;
-    };
+    bool m_changed; // Indicates the modification to any filed
+    Range m_range;
+};
 }
 
 //////////////////////////////////////////////////////////////////////////

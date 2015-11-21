@@ -67,8 +67,9 @@ AudioDevice::AudioDevice() {
 ////////////////////////////////////////////////////////////
 AudioDevice::~AudioDevice() {
     /*
-    // see https://gist.github.com/LaurentGomila/SFML/issues/30
-    // Access Violation error int the destructor of sf::AudioDevice//*/
+     * see https://gist.github.com/LaurentGomila/SFML/issues/30
+     * Access Violation error in the destructor of sf::AudioDevice
+     */
 #ifndef _WIN32
     // Destroy the context
     alCheck(alcMakeContextCurrent(NULL));

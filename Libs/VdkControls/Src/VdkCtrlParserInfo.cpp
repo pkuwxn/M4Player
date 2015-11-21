@@ -18,6 +18,6 @@ VdkCtrlParserInfo::VdkCtrlParserInfo() {
     memset(this, 0, sizeof(VdkCtrlParserInfo));
 }
 
-VdkCtrlIdInfo::VdkCtrlIdInfo(VdkCtrlId id, VdkControl** ptr)
-    : Id(id), Ptr(ptr)
-{}
+VdkCtrlIdInfo::VdkCtrlIdInfo(VdkCtrlId id, VdkControl **ptr)
+    : Id(id), Ptr(ptr) {
+}

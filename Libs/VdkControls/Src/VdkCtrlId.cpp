@@ -14,11 +14,10 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-VdkCtrlId VdkGetUniqueId(int advanced)
-{
-	static VdkCtrlId s_idLowest = - ( wxID_HIGHEST * 2 );
-	VdkCtrlId ret = s_idLowest;
-	s_idLowest += advanced;
+VdkCtrlId VdkGetUniqueId(int advanced) {
+    static VdkCtrlId s_idLowest = - (wxID_HIGHEST * 2);
+    VdkCtrlId ret = s_idLowest;
+    s_idLowest += advanced;
 
-	return ret;
+    return ret;
 }

@@ -8,31 +8,30 @@
 #include "VdkEdit.h"
 
 /// 以可视化的方式定义键盘快捷键
-class VdkShortcutCtrl : public VdkEdit
-{
+class VdkShortcutCtrl : public VdkEdit {
 public:
 
-	/// 默认构造函数
-	VdkShortcutCtrl();
+    /// 默认构造函数
+    VdkShortcutCtrl();
 
-	/// XRC 动态创建
-	virtual void Create(wxXmlNode* node);
+    /// XRC 动态创建
+    virtual void Create(wxXmlNode *node);
 
-	/// 设置当前显示的快捷键
-	void SetShortcut(int modifiers, int keycode, wxDC* pDC);
+    /// 设置当前显示的快捷键
+    void SetShortcut(int modifiers, int keycode, wxDC *pDC);
 
-	/// 清空当前快捷键
-	void Clear(wxDC* pDC);
-
-private:
-
-	// 处理键盘按键事件
-	virtual void DoHandleKeyEvent(VdkKeyEvent& e);
+    /// 清空当前快捷键
+    void Clear(wxDC *pDC);
 
 private:
 
-	int m_modifiers;
-	int m_keycode;
+    // 处理键盘按键事件
+    virtual void DoHandleKeyEvent(VdkKeyEvent &e);
 
-	DECLARE_DYNAMIC_VOBJECT
+private:
+
+    int m_modifiers;
+    int m_keycode;
+
+    DECLARE_DYNAMIC_VOBJECT
 };
