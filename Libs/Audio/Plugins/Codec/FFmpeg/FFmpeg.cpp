@@ -278,6 +278,11 @@ bool FFmpeg::planarToInterleaved() {
     AVSampleFormat packedFmt = static_cast<AVSampleFormat>
         (m_audioStream->codec->sample_fmt - AV_SAMPLE_FMT_NB / 2);
 
+    Uint64 channelLayout = m_audioStream->codec->channel_layout;
+    if (channelLayout == 0) {
+        channelLayout = (getChannelCount() > 1) ? AV_CH_LAYOUT_STEREO : AV_CH_LAYOUT_MONO;
+    }
+
     m_swrContext = swr_alloc_set_opts
         (m_swrContext,
          m_audioStream->codec->channel_layout,
@@ -296,8 +301,12 @@ bool FFmpeg::planarToInterleaved() {
 
     int ret = swr_init(m_swrContext);
     if (ret < 0) {
-        fprintf(stderr, "[%s:%d] swr_init() failed£ºError %d.\n",
-                __FILE__, __LINE__, ret);
+        char buf[1024];
+        av_strerror(ret, buf, sizeof(buf));
+
+        fprintf(stderr, "[%s:%d] swr_init() failed.\n%s\n",
+                __FILE__, __LINE__, buf);
+
         return false;
     }
 
