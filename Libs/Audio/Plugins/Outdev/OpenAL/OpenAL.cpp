@@ -40,299 +40,274 @@
 
 ////////////////////////////////////////////////////////////
 enum {
-	MY_INVALID_SOURCE_ID = ~0, // TODO: 是否可以？
+    MY_INVALID_SOURCE_ID = ~0, // TODO: 是否可以？
 };
 
 
 ////////////////////////////////////////////////////////////
 OpenAL::OpenAL() :
-OutputHelper<VolumePolicy>("OpenAL"),
-m_source(MY_INVALID_SOURCE_ID),
-m_alFormat(0),
-m_isStreaming(false),
-m_requestStop(false)
-{
+    OutputHelper<VolumePolicy>("OpenAL"),
+    m_source(MY_INVALID_SOURCE_ID),
+    m_alFormat(0),
+    m_isStreaming(false),
+    m_requestStop(false) {
 
 }
 
 
 ////////////////////////////////////////////////////////////
-OpenAL::~OpenAL()
-{
-	close();
+OpenAL::~OpenAL() {
+    close();
 }
 
 
 ////////////////////////////////////////////////////////////
-bool OpenAL::open(Uint32)
-{
-	alCheck(alGenSources(1, &m_source));
-	alCheck(alSourcei(m_source, AL_BUFFER, 0));
+bool OpenAL::open(Uint32) {
+    alCheck(alGenSources(1, &m_source));
+    alCheck(alSourcei(m_source, AL_BUFFER, 0));
 
-	return isOk();
+    return isOk();
 }
 
 
 ////////////////////////////////////////////////////////////
-void OpenAL::close()
-{
-	if (m_source != MY_INVALID_SOURCE_ID)
-	{
-		// Stop the sound if it was playing
-		stop();
+void OpenAL::close() {
+    if (m_source != MY_INVALID_SOURCE_ID) {
+        // Stop the sound if it was playing
+        stop();
 
-		alCheck(alSourcei(m_source, AL_BUFFER, 0));
-		alCheck(alDeleteSources(1, &m_source));
+        alCheck(alSourcei(m_source, AL_BUFFER, 0));
+        alCheck(alDeleteSources(1, &m_source));
 
-		m_source = MY_INVALID_SOURCE_ID;
-	}
+        m_source = MY_INVALID_SOURCE_ID;
+    }
 }
 
 
 ////////////////////////////////////////////////////////////
-bool OpenAL::isOk() const
-{
-	return (m_source != MY_INVALID_SOURCE_ID);
+bool OpenAL::isOk() const {
+    return (m_source != MY_INVALID_SOURCE_ID);
 }
 
 
 ////////////////////////////////////////////////////////////
-void* OpenAL::getBuffer()
-{
-	return NULL;
+void *OpenAL::getBuffer() {
+    return NULL;
 }
 
 
 ////////////////////////////////////////////////////////////
-bool OpenAL::setSampleFormat(SampleFormat fmt)
-{
-	// Deduce the format from the number of channels
-	m_alFormat = m_device.getFormat(fmt.channels, fmt.getBits());
+bool OpenAL::setSampleFormat(SampleFormat fmt) {
+    // Deduce the format from the number of channels
+    m_alFormat = m_device.getFormat(fmt);
 
-	// Check if the format is valid
-	if (m_alFormat == 0)
-	{
-		fprintf(stderr, "[%s:%d]Unsupported audio format: channels: %d, bps: %d.\n", 
-		        __FILE__, __LINE__, fmt.channels, fmt.getBits());
-		        
-		return false;
-	}
+    // Check if the format is valid
+    if (m_alFormat == 0) {
+        fprintf(stderr, "[%s:%d] Unsupported audio format: channels: %d, bps: %d.\n",
+                __FILE__, __LINE__, fmt.channels, fmt.getBits());
 
-	m_fmt = fmt;
-	return true;
+        return false;
+    }
+
+    m_fmt = fmt;
+    return true;
 }
 
 
 ////////////////////////////////////////////////////////////
-bool OpenAL::play(Codec* decoder)
-{
-	// Check if the sound parameters have been set
-	if (m_alFormat == 0)
-	{
-		fprintf(stderr, "[%s:%d]Failed to play audio stream: sound parameters have not been "
-		        "initialized (call Output::open() first).\n", 
-		        __FILE__, __LINE__);
+bool OpenAL::play(Codec *decoder) {
+    // Check if the sound parameters have been set
+    if (m_alFormat == 0) {
+        fprintf(stderr, "[%s:%d]Failed to play audio stream: sound parameters have not been "
+                "initialized (call Output::open() first).\n",
+                __FILE__, __LINE__);
 
-		return false;
-	}
+        return false;
+    }
 
-	// If the sound is already playing (probably paused), just resume it
-	if (m_isStreaming)
-	{
-		assert(m_decoder == decoder);
-		
-		if (getQueuedCount() == 0)
-			fillQueue();
-		
-		alCheck(alSourcePlay(m_source));
+    // If the sound is already playing (probably paused), just resume it
+    if (m_isStreaming) {
+        assert(m_decoder == decoder);
 
-		return false;
-	}
+        if (getQueuedCount() == 0) {
+            fillQueue();
+        }
 
-	//=================================================
+        alCheck(alSourcePlay(m_source));
 
-	m_decoder = decoder;
+        return false;
+    }
 
-	// Resize the buffer so that it can contain 1 second of audio samples
-	m_samples.resize(m_fmt.sampleRate * m_fmt.channels);
+    //=================================================
 
-	// 这个操作原来是在 newThread() 中做的
-	m_isStreaming = true;
+    m_decoder = decoder;
 
-	//=================================================
-	// 开始播放
+    // Resize the buffer so that it can contain 1 second of audio samples
+    m_samples.resize(m_fmt.sampleRate * m_fmt.channels);
 
-	// Create the buffers
-	alCheck(alGenBuffers(BufferCount, m_buffers));
+    // 这个操作原来是在 newThread() 中做的
+    m_isStreaming = true;
 
-	// Fill the queue
-	fillQueue();
+    //=================================================
+    // 开始播放
 
-	// Play the sound
-	alCheck(alSourcePlay(m_source));
+    // Create the buffers
+    alCheck(alGenBuffers(BufferCount, m_buffers));
 
-	// 要求在新的线程中继续后面的播放
-	return true;
+    // Fill the queue
+    fillQueue();
+
+    // Play the sound
+    alCheck(alSourcePlay(m_source));
+
+    // 要求在新的线程中继续后面的播放
+    return true;
 }
 
 
 ////////////////////////////////////////////////////////////
-bool OpenAL::write(void* buffer, Uint32 bufferSize)
-{
-	return false;
+bool OpenAL::write(void *buffer, Uint32 bufferSize) {
+    return false;
 }
 
 
 ////////////////////////////////////////////////////////////
-void OpenAL::pause()
-{
-	alCheck(alSourcePause(m_source));
+void OpenAL::pause() {
+    alCheck(alSourcePause(m_source));
 }
 
 
 ////////////////////////////////////////////////////////////
-void OpenAL::stop()
-{
-	if (m_decoder)
-	{
-		m_decoder = NULL;
-		m_isStreaming = false;
-		m_requestStop = false;
+void OpenAL::stop() {
+    if (m_decoder) {
+        m_decoder = NULL;
+        m_isStreaming = false;
+        m_requestStop = false;
 
-		// Stop the playback
-		alCheck(alSourceStop(m_source));
+        // Stop the playback
+        alCheck(alSourceStop(m_source));
 
-		// Unqueue any buffer left in the queue
-		clearQueue();
+        // Unqueue any buffer left in the queue
+        clearQueue();
 
-		// Delete the buffers
-		alCheck(alSourcei(m_source, AL_BUFFER, 0));
-		alCheck(alDeleteBuffers(BufferCount, m_buffers));
-	}
+        // Delete the buffers
+        alCheck(alSourcei(m_source, AL_BUFFER, 0));
+        alCheck(alDeleteBuffers(BufferCount, m_buffers));
+    }
 
-	assert(getStatus() == Stopped);
+    assert(getStatus() == Stopped);
 }
 
 
 ////////////////////////////////////////////////////////////
-void OpenAL::preSetPlayingOffset(Time)
-{
+void OpenAL::preSetPlayingOffset(Time) {
 
 }
 
 
 ////////////////////////////////////////////////////////////
-void OpenAL::setPlayingOffset(Time)
-{
-	flushAndRefill();
+void OpenAL::setPlayingOffset(Time) {
+    flushAndRefill();
 }
 
 
 ////////////////////////////////////////////////////////////
-Time OpenAL::getPlayingOffset() const
-{
-	assert(false);
-	return seconds(0);
+Time OpenAL::getPlayingOffset() const {
+    assert(false);
+    return seconds(0);
 }
 
 
 ////////////////////////////////////////////////////////////
-void OpenAL::setVolume(float volume)
-{
+void OpenAL::setVolume(float volume) {
     alCheck(alSourcef(m_source, AL_GAIN, volume));
 }
 
 
 ////////////////////////////////////////////////////////////
-float OpenAL::getVolume() const
-{
-	ALfloat gain;
-	alCheck(alGetSourcef(m_source, AL_GAIN, &gain));
+float OpenAL::getVolume() const {
+    ALfloat gain;
+    alCheck(alGetSourcef(m_source, AL_GAIN, &gain));
 
-	return gain;
+    return gain;
 }
 
 
 ////////////////////////////////////////////////////////////
-Output::Status OpenAL::getStatus() const
-{
-	Status status = doGetStatus();
+Output::Status OpenAL::getStatus() const {
+    Status status = doGetStatus();
 
-	// To compensate for the lag between play() and alSourceplay()
-	if ((status == Stopped) && m_isStreaming)
-	{
-		// 在“暂停”时改变当前播放进度
-		if (getQueuedCount() == 0)
-			status = Paused;
-		else
-			status = Playing;
-	}
+    // To compensate for the lag between play() and alSourceplay()
+    if ((status == Stopped) && m_isStreaming) {
+        // 在“暂停”时改变当前播放进度
+        if (getQueuedCount() == 0) {
+            status = Paused;
+        } else {
+            status = Playing;
+        }
+    }
 
-	return status;
+    return status;
 }
 
 
 ////////////////////////////////////////////////////////////
-Output::Status OpenAL::doGetStatus() const
-{
-	ALint status;
-	alCheck(alGetSourcei(m_source, AL_SOURCE_STATE, &status));
+Output::Status OpenAL::doGetStatus() const {
+    ALint status;
+    alCheck(alGetSourcei(m_source, AL_SOURCE_STATE, &status));
 
-	switch (status)
-	{
-	case AL_INITIAL :
-	case AL_STOPPED : return Stopped;
-	case AL_PAUSED :  return Paused;
-	case AL_PLAYING : return Playing;
-	}
+    switch (status) {
+    case AL_INITIAL :
+    case AL_STOPPED :
+        return Stopped;
+    case AL_PAUSED :
+        return Paused;
+    case AL_PLAYING :
+        return Playing;
+    }
 
-	return Stopped;
+    return Stopped;
 }
 
 
 ////////////////////////////////////////////////////////////
-bool OpenAL::streamData()
-{
-	// Get the number of buffers that have been processed 
-	// (ie. ready for reuse)
-	ALint nbProcessed;
-	alCheck(alGetSourcei(m_source, AL_BUFFERS_PROCESSED, &nbProcessed));
+bool OpenAL::streamData() {
+    // Get the number of buffers that have been processed
+    // (ie. ready for reuse)
+    ALint nbProcessed;
+    alCheck(alGetSourcei(m_source, AL_BUFFERS_PROCESSED, &nbProcessed));
 
-	ALint rest = nbProcessed;
-	while (rest--)
-	{
-		// Pop the first unused buffer from the queue
-		ALuint buffer;
-		alCheck(alSourceUnqueueBuffers(m_source, 1, &buffer));
+    ALint rest = nbProcessed;
+    while (rest--) {
+        // Pop the first unused buffer from the queue
+        ALuint buffer;
+        alCheck(alSourceUnqueueBuffers(m_source, 1, &buffer));
 
-		// Find its index
-		Uint32 bufferIndex = 0;
-		for (int i = 0; i < BufferCount; ++i)
-		{
-			if (m_buffers[i] == buffer)
-			{
-				bufferIndex = i;
-				break;
-			}
-		}
+        // Find its index
+        Uint32 bufferIndex = 0;
+        for (int i = 0; i < BufferCount; ++i) {
+            if (m_buffers[i] == buffer) {
+                bufferIndex = i;
+                break;
+            }
+        }
 
-		// Fill it and push it back into the playing queue
-		if (!m_requestStop)
-		{
-			fillAndPushBuffer(bufferIndex);
-		}
+        // Fill it and push it back into the playing queue
+        if (!m_requestStop) {
+            fillAndPushBuffer(bufferIndex);
+        }
 
-	} // END while (rest--)
+    } // END while (rest--)
 
-	// 因为缓存用尽而停止播放
-	if ((nbProcessed == 0) || (nbProcessed == BufferCount))
-	{
-		if (doGetStatus() == Stopped)
-			alCheck(alSourcePlay(m_source));
-	}
+    // 因为缓存用尽而停止播放
+    if ((nbProcessed == 0) || (nbProcessed == BufferCount)) {
+        if (doGetStatus() == Stopped) {
+            alCheck(alSourcePlay(m_source));
+        }
+    }
 
-	m_isStreaming = !m_requestStop;
-	return m_isStreaming;
+    m_isStreaming = !m_requestStop;
+    return m_isStreaming;
 }
 
 
@@ -340,124 +315,118 @@ bool OpenAL::streamData()
 /// \brief Structure defining a chunk of audio data to stream
 ///
 ////////////////////////////////////////////////////////////
-struct Chunk
-{
-	const Int16*	samples;     ///< Pointer to the audio samples
-	Uint32			sampleCount; ///< Number of samples pointed by Samples
+struct Chunk {
+    const Int16    *samples;     ///< Pointer to the audio samples
+    Uint32          sampleCount; ///< Number of samples pointed by Samples
 };
 
 
 ////////////////////////////////////////////////////////////
-void OpenAL::fillAndPushBuffer(Uint32 bufferIndex)
-{
-	// Acquire audio data
-	Chunk data = { NULL, 0 };
-	m_requestStop = !getData(data);
+void OpenAL::fillAndPushBuffer(Uint32 bufferIndex) {
+    // Acquire audio data
+    Chunk data = { NULL, 0 };
+    m_requestStop = !getData(data);
 
-	// Fill the buffer if some data was returned
-	if (data.samples && data.sampleCount)
-	{
-		Uint32 buffer = m_buffers[bufferIndex];
+    // Fill the buffer if some data was returned
+    if (data.samples && data.sampleCount) {
+        Uint32 buffer = m_buffers[bufferIndex];
 
-		// Fill the buffer
-		ALsizei size = static_cast<ALsizei>(data.sampleCount) * sizeof(Int16);
-		alCheck(alBufferData(buffer, m_alFormat, data.samples, size, m_fmt.sampleRate));
+        // Fill the buffer
+        ALsizei size = static_cast<ALsizei>(data.sampleCount) * sizeof(Int16);
+        alCheck(alBufferData(buffer, m_alFormat, data.samples, size, m_fmt.sampleRate));
 
-		// Push it into the sound queue
-		alCheck(alSourceQueueBuffers(m_source, 1, &buffer));
-	}
+        // Push it into the sound queue
+        alCheck(alSourceQueueBuffers(m_source, 1, &buffer));
+    }
 }
 
 
 ////////////////////////////////////////////////////////////
-void OpenAL::fillQueue()
-{
-	// Fill and enqueue all the available buffers
-	for (int i = 0; (i < BufferCount) && !m_requestStop; ++i)
-	{
-		fillAndPushBuffer(i);
-	}
+void OpenAL::fillQueue() {
+    // Fill and enqueue all the available buffers
+    for (int i = 0; (i < BufferCount) && !m_requestStop; ++i) {
+        fillAndPushBuffer(i);
+    }
 }
 
 
 ////////////////////////////////////////////////////////////
-void OpenAL::clearQueue()
-{
-	// Get the number of buffers still in the queue
-	ALint nbQueued;
-	alCheck(alGetSourcei(m_source, AL_BUFFERS_QUEUED, &nbQueued));
+void OpenAL::clearQueue() {
+    // Get the number of buffers still in the queue
+    ALint nbQueued;
+    alCheck(alGetSourcei(m_source, AL_BUFFERS_QUEUED, &nbQueued));
 
-	// Unqueue them all
-	ALuint buffer;
-	for (ALint i = 0; i < nbQueued; ++i)
-		alCheck(alSourceUnqueueBuffers(m_source, 1, &buffer));
+    // Unqueue them all
+    ALuint buffer;
+    for (ALint i = 0; i < nbQueued; ++i) {
+        alCheck(alSourceUnqueueBuffers(m_source, 1, &buffer));
+    }
 
 #ifdef _DEBUG
-	alCheck(alGetSourcei(m_source, AL_BUFFERS_QUEUED, &nbQueued));
-	assert(nbQueued == 0);
+    alCheck(alGetSourcei(m_source, AL_BUFFERS_QUEUED, &nbQueued));
+    assert(nbQueued == 0);
 #endif
 }
 
-class Tracker
-{
+class Tracker {
 public:
 
-	Tracker() { printf("Enter OpenAL::getData().\n"); }
-	~Tracker() { printf("Exit OpenAL::getData().\n"); }
+    Tracker() {
+        printf("Enter OpenAL::getData().\n");
+    }
+    ~Tracker() {
+        printf("Exit OpenAL::getData().\n");
+    }
 };
 
 ////////////////////////////////////////////////////////////
-bool OpenAL::getData(Chunk& data)
-{
-	//Tracker tracker;
+bool OpenAL::getData(Chunk &data) {
+    //Tracker tracker;
 
-	// Fill the chunk parameters
-	data.samples     = &m_samples[0];
-	data.sampleCount = m_decoder->read(&m_samples[0], m_samples.size());
+    // Fill the chunk parameters
+    data.samples     = &m_samples[0];
+    data.sampleCount = m_decoder->read(&m_samples[0], m_samples.size());
 
-	// Check if we have reached the end of the audio file
-	return data.sampleCount == m_samples.size();
+    // Check if we have reached the end of the audio file
+    return data.sampleCount == m_samples.size();
 }
 
 
 ////////////////////////////////////////////////////////////
-Int32 OpenAL::getQueuedCount() const
-{
-	// Get the number of buffers still in the queue
-	ALint nbQueued;
-	alCheck(alGetSourcei(m_source, AL_BUFFERS_QUEUED, &nbQueued));
+Int32 OpenAL::getQueuedCount() const {
+    // Get the number of buffers still in the queue
+    ALint nbQueued;
+    alCheck(alGetSourcei(m_source, AL_BUFFERS_QUEUED, &nbQueued));
 
-	return nbQueued;
+    return nbQueued;
 }
 
 
 ////////////////////////////////////////////////////////////
-void OpenAL::flushAndRefill()
-{
-	assert(m_decoder);
-	assert(m_isStreaming);
+void OpenAL::flushAndRefill() {
+    assert(m_decoder);
+    assert(m_isStreaming);
 
-	// 是否正在播放
-	bool isPlaying = (doGetStatus() == Playing);
+    // 是否正在播放
+    bool isPlaying = (doGetStatus() == Playing);
 
-	// 必须总是停止播放才能更新缓冲区队列
-	alCheck(alSourceStop(m_source));
+    // 必须总是停止播放才能更新缓冲区队列
+    alCheck(alSourceStop(m_source));
 
-	// Fill the queue
-	clearQueue();
+    // Fill the queue
+    clearQueue();
 
-	// Play the sound
-	if (isPlaying)
-	{
-		fillQueue();
-		alCheck(alSourcePlay(m_source));
+    // Play the sound
+    if (isPlaying) {
+        fillQueue();
+        alCheck(alSourcePlay(m_source));
 
-		// “暂停”时改变进度的情况不要填充缓冲区队列，这样可以作为一种标识，
-		// 在 getStatus() 中能正确识别这种情况
-	}
+        // “暂停”时改变进度的情况不要填充缓冲区队列，这样可以作为一种标识，
+        // 在 getStatus() 中能正确识别这种情况
+    }
 }
 
 
 ////////////////////////////////////////////////////////////
 #include "Client.hpp"
-DEFINE_STD_OOPLUGIN( OpenAL, "Outdev;" )
+DEFINE_STD_OOPLUGIN(OpenAL, "Outdev;")

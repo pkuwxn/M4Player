@@ -29,14 +29,15 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <Codec.hpp>
+#include <vector>
 
-#pragma warning( push )
-#pragma warning( disable: 4244 )
-extern "C"
-{
+#pragma warning(push)
+#pragma warning(disable: 4244)
+extern "C" {
 #   define __STDC_CONSTANT_MACROS
 #   include <libavformat/avformat.h>
 #   include <libavcodec/avcodec.h>
+#   include <libswresample/swresample.h>
 
 #   if LIBAVCODEC_VERSION_MAJOR < 53
 #       error "LIBAVCODEC_VERSION_MAJOR greater than 53 is requried."
@@ -65,14 +66,13 @@ extern "C"
 #       undef SAMPLE_FMT_DBL
 #   endif
 };
-#pragma warning( pop )
+#pragma warning(pop)
 
 
 
 
-namespace sf
-{
-	class InputStream;
+namespace sf {
+class InputStream;
 }
 
 using namespace sf;
@@ -81,59 +81,70 @@ using namespace sf;
 /// 使用 FFmpeg 来进行解码
 ///
 ////////////////////////////////////////////////////////////
-class FFmpeg : public Codec
-{
+class FFmpeg : public Codec {
 public :
 
-	////////////////////////////////////////////////////////////
-	/// \brief Default constructor
-	///
-	////////////////////////////////////////////////////////////
-	FFmpeg();
+    ////////////////////////////////////////////////////////////
+    /// \brief Default constructor
+    ///
+    ////////////////////////////////////////////////////////////
+    FFmpeg();
 
-	////////////////////////////////////////////////////////////
-	/// \brief Destructor
-	///
-	////////////////////////////////////////////////////////////
-	virtual ~FFmpeg();
+    ////////////////////////////////////////////////////////////
+    /// \brief Destructor
+    ///
+    ////////////////////////////////////////////////////////////
+    virtual ~FFmpeg();
 
-	virtual Uint32 getDuration() const;
-	virtual Uint32 getChannelCount() const;
-	virtual SampleFormat getSampleFormat() const;
-	virtual Uint32 getSampleRate() const;
-	virtual Uint32 getBitRate() const;
+    virtual Uint32 getDuration() const;
+    virtual Uint32 getChannelCount() const;
+    virtual SampleFormat getSampleFormat() const;
+    virtual Uint32 getSampleRate() const;
+    virtual Uint32 getBitRate() const;
 
-	virtual bool openRead(const char* filename);
-	virtual bool openRead(const void* data, Uint32 sizeInBytes);
-	virtual bool openRead(InputStream& stream);
-	virtual bool openWrite(const char* filename, Uint32 channelCount, Uint32 sampleRate);
+    virtual bool openRead(const char *filename);
+    virtual bool openRead(const void *data, Uint32 sizeInBytes);
+    virtual bool openRead(InputStream &stream);
+    virtual bool openWrite(const char *filename, Uint32 channelCount, Uint32 sampleRate);
 
-	virtual Uint32 read(Int16* data, Uint32 sampleCount);
-	virtual void write(const Int16* data, Uint32 sampleCount);
-	virtual bool seek(Time timeOffset);
+    virtual Uint32 read(Int16 *data, Uint32 sampleCount);
+    virtual void write(const Int16 *data, Uint32 sampleCount);
+    virtual bool seek(Time timeOffset);
 
 private :
 
-	void close();
+    void close();
 
-	bool openStream(AVFormatContext* fc, Uint32 streamIndex);
+    bool openStream(AVFormatContext *fc, Uint32 streamIndex);
 
-	// 释放 m_rawPacket
-	void freeRawPacket();
+    // 释放 m_rawPacket
+    void freeRawPacket();
 
-	////////////////////////////////////////////////////////////
-	// Member data
-	////////////////////////////////////////////////////////////
-	AVStream*			m_audioStream;
-	AVFormatContext*	m_formatContext;
-	int					m_audioStreamIndex;
-	
-	AVFrame*            m_decodeBuffer;
-	Uint32				m_decoded; // 已解码数据包的大小
-	Uint32				m_decodedOffset; // 已解码数据包中的位置
-	
-	AVPacket			m_rawPacket;
-	int					m_rawOffset; // 未解码数据包中的位置
+    // 数据是否为 Planar 格式
+    bool isPlanar() const;
+
+    // Planar -> Packed
+    bool planarToInterleaved();
+
+    // 获取已解码的音频数据缓冲区
+    Uint8 *getDecodeBuffer();
+
+    ////////////////////////////////////////////////////////////
+    // Member data
+    ////////////////////////////////////////////////////////////
+    AVStream           *m_audioStream;
+    AVFormatContext    *m_formatContext;
+    int                 m_audioStreamIndex;
+
+    AVFrame            *m_decodeBuffer;
+    Uint32              m_decoded; // 已解码数据包的大小
+    Uint32              m_decodedOffset; // 已解码数据包中的位置
+
+    AVPacket            m_rawPacket;
+    int                 m_rawOffset; // 未解码数据包中的位置
+
+    SwrContext         *m_swrContext;
+    std::vector<Uint8>  m_swrBuffer;
 };
 
 #endif // SFML_FFMPEG_HPP

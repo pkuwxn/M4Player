@@ -96,7 +96,7 @@ public :
     ///
     ////////////////////////////////////////////////////////////
     struct SampleFormat {
-        Codec::SampleFormat infmt; /*! Input sample format (Bits per sample) */
+        Codec::SampleFormat inputFormat; /*! Input sample format (Bits per sample) */
         Uint32 sampleRate; /*! Samples per second (in a single channel) */
         Uint32 channels; /*! Number of audio channels */
 
@@ -105,7 +105,7 @@ public :
         ///
         ////////////////////////////////////////////////////////////
         SampleFormat()
-            : infmt(Codec::SAMPLE_FMT_NONE), sampleRate(0), channels(0) {
+            : inputFormat(Codec::SAMPLE_FMT_NONE), sampleRate(0), channels(0) {
 
         }
 
@@ -114,8 +114,8 @@ public :
         ///
         ////////////////////////////////////////////////////////////
         bool isFloat() const {
-            return (infmt == Codec::SAMPLE_FMT_FLT) ||
-                   (infmt == Codec::SAMPLE_FMT_DBL);
+            return (inputFormat == Codec::SAMPLE_FMT_FLT) ||
+                   (inputFormat == Codec::SAMPLE_FMT_DBL);
         }
 
         ////////////////////////////////////////////////////////////
@@ -123,7 +123,8 @@ public :
         ///
         ////////////////////////////////////////////////////////////
         Uint32 getBits() const {
-            return (Uint32) infmt;
+            // A trick!
+            return static_cast<Uint32>(inputFormat / 8) * 8;
         }
     };
 

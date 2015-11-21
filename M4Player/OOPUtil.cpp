@@ -26,7 +26,7 @@ void CheckXmlConf(wxXmlNode* xmlNode, const wxChar* szNode, int errNo)
 wxScopedCharBuffer NarrowedPath(const wxString& path)
 {
 #ifdef __WXMSW__
-    return path.mbc_str();
+    return path.mb_str();
 #else
     return path.utf8_str();
 #endif

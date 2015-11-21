@@ -275,9 +275,8 @@ bool Music::play() {
         }
     }
 
-    Codec::SampleFormat infmt = m_decoder->getSampleFormat();
     Output::SampleFormat fmt;
-    fmt.infmt = infmt;
+    fmt.inputFormat = m_decoder->getSampleFormat();;
     fmt.channels = getChannelCount();
     fmt.sampleRate = getSampleRate();
 

@@ -36,13 +36,13 @@
 ////////////////////////////////////////////////////////////
 #ifdef _DEBUG
 
-    // If in debug mode, perform a test on every call
-    #define alCheck(Func) ((Func), alCheckError(__FILE__, __LINE__))
+// If in debug mode, perform a test on every call
+#define alCheck(Func) ((Func), alCheckError(__FILE__, __LINE__))
 
 #else
 
-    // Else, we don't add any overhead
-    #define alCheck(Func) (Func)
+// Else, we don't add any overhead
+#define alCheck(Func) (Func)
 
 #endif
 
@@ -54,7 +54,7 @@
 /// \param line Line number of the source file where the call is located
 ///
 ////////////////////////////////////////////////////////////
-void alCheckError(const char* szFile, unsigned int line);
+void alCheckError(const char *szFile, unsigned int line);
 
 
 #endif // SFML_ALCHECK_HPP

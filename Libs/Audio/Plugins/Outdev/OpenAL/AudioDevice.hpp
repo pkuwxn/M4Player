@@ -32,7 +32,7 @@
 #include <AL/al.h>
 #include <AL/alc.h>
 
-
+#include <Outdev.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -41,8 +41,7 @@
 ///        context and stores the device capabilities
 ///
 ////////////////////////////////////////////////////////////
-class AudioDevice
-{
+class AudioDevice {
 public :
 
     ////////////////////////////////////////////////////////////
@@ -69,7 +68,7 @@ public :
     /// \return True if the extension is supported, false if not
     ///
     ////////////////////////////////////////////////////////////
-    bool isExtensionSupported(const std::string& extension);
+    bool isExtensionSupported(const std::string &extension);
 
     ////////////////////////////////////////////////////////////
     /// \brief Get the OpenAL format that matches the given number of channels
@@ -81,21 +80,20 @@ public :
     ////////////////////////////////////////////////////////////
     int getFormatFromChannelCount(unsigned int channelCount);
 
-	////////////////////////////////////////////////////////////
-	/// \brief Get the OpenAL format that matches the given attributes
-	///
-    /// \param channelCount Number of channels
-	/// \param bps Bits per sample
-	///
-	/// \return Corresponding format
-	///
-	////////////////////////////////////////////////////////////
-	int getFormat(unsigned int channelCount, unsigned int bps);
+    ////////////////////////////////////////////////////////////
+    /// \brief Get the OpenAL format that matches the given attributes
+    ///
+    /// \param fmt Generic audio sample format
+    ///
+    /// \return Corresponding device format
+    ///
+    ////////////////////////////////////////////////////////////
+    int getFormat(sf::Output::SampleFormat fmt);
 
 private:
 
-	ALCdevice*  m_audioDevice;
-	ALCcontext* m_audioContext;
+    ALCdevice  *m_audioDevice;
+    ALCcontext *m_audioContext;
 };
 
 

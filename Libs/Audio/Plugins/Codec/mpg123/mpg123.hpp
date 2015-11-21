@@ -37,9 +37,8 @@
 
 
 
-namespace sf
-{
-	class InputStream;
+namespace sf {
+class InputStream;
 }
 
 using namespace sf;
@@ -48,51 +47,50 @@ using namespace sf;
 /// 使用 mpg123 来进行解码
 ///
 ////////////////////////////////////////////////////////////
-class mpg123 : public Codec
-{
+class mpg123 : public Codec {
 public :
 
-	////////////////////////////////////////////////////////////
-	/// \brief Default constructor
-	///
-	////////////////////////////////////////////////////////////
-	mpg123();
+    ////////////////////////////////////////////////////////////
+    /// \brief Default constructor
+    ///
+    ////////////////////////////////////////////////////////////
+    mpg123();
 
-	////////////////////////////////////////////////////////////
-	/// \brief Destructor
-	///
-	////////////////////////////////////////////////////////////
-	virtual ~mpg123();
+    ////////////////////////////////////////////////////////////
+    /// \brief Destructor
+    ///
+    ////////////////////////////////////////////////////////////
+    virtual ~mpg123();
 
-	void cleanUp();
+    void cleanUp();
 
-	virtual Uint32 getDuration() const;
-	virtual Uint32 getChannelCount() const;
-	virtual SampleFormat getSampleFormat() const;
-	virtual Uint32 getSampleRate() const;
-	virtual Uint32 getBitRate() const;
+    virtual Uint32 getDuration() const;
+    virtual Uint32 getChannelCount() const;
+    virtual SampleFormat getSampleFormat() const;
+    virtual Uint32 getSampleRate() const;
+    virtual Uint32 getBitRate() const;
 
-	virtual bool openRead(const char* filename);
-	virtual bool openRead(const void* data, Uint32 sizeInBytes);
-	virtual bool openRead(InputStream& stream);
-	virtual bool openWrite(const char* filename, Uint32 channelCount, Uint32 sampleRate);
+    virtual bool openRead(const char *filename);
+    virtual bool openRead(const void *data, Uint32 sizeInBytes);
+    virtual bool openRead(InputStream &stream);
+    virtual bool openWrite(const char *filename, Uint32 channelCount, Uint32 sampleRate);
 
-	virtual Uint32 read(Int16* data, Uint32 sampleCount);
-	virtual void write(const Int16* data, Uint32 sampleCount);
-	virtual bool seek(Time timeOffset);
+    virtual Uint32 read(Int16 *data, Uint32 sampleCount);
+    virtual void write(const Int16 *data, Uint32 sampleCount);
+    virtual bool seek(Time timeOffset);
 
 private :
 
-	// 关闭打开的文件
-	void close();
+    // 关闭打开的文件
+    void close();
 
-	////////////////////////////////////////////////////////////
-	// Member data
-	////////////////////////////////////////////////////////////
-	mpg123_handle*		m_handle;
-	int					m_channelCount;
-	int					m_encoding;
-	long				m_sampleRate;
+    ////////////////////////////////////////////////////////////
+    // Member data
+    ////////////////////////////////////////////////////////////
+    mpg123_handle      *m_handle;
+    int                 m_channelCount;
+    int                 m_encoding;
+    long                m_sampleRate;
 };
 
 #endif // SFML_MPG123_HPP

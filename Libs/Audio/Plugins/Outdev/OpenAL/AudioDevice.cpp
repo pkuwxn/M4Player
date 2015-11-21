@@ -34,100 +34,99 @@
 
 
 ////////////////////////////////////////////////////////////
-AudioDevice::AudioDevice()
-{
+AudioDevice::AudioDevice() {
     // Create the device
 #ifndef _WIN32
     m_audioDevice = alcOpenDevice("PulseAudio Software");
-    if (m_audioDevice)
-    {
+    if (m_audioDevice) {
         printf("[%s:%d] Use PulseAudio.\n", __FILE__, __LINE__);
-    }
-    else
+    } else
 #endif
     {
         m_audioDevice = alcOpenDevice(NULL);
     }
 
-    if (m_audioDevice)
-    {
+    if (m_audioDevice) {
         // Create the context
         m_audioContext = alcCreateContext(m_audioDevice, NULL);
 
-        if (m_audioContext)
-        {
+        if (m_audioContext) {
             // Set the context as the current one (we'll only need one)
             alCheck(alcMakeContextCurrent(m_audioContext));
-        }
-        else
-        {
+        } else {
             fprintf(stderr, "[%s:%d] Failed to create the audio context.\n",
-					__FILE__, __LINE__);
+                    __FILE__, __LINE__);
         }
-    }
-    else
-    {
-        fprintf(stderr, "[%s:%d] Failed to open the audio device.\n", 
+    } else {
+        fprintf(stderr, "[%s:%d] Failed to open the audio device.\n",
                 __FILE__, __LINE__);
     }
 }
 
 
 ////////////////////////////////////////////////////////////
-AudioDevice::~AudioDevice()
-{	/*
-	// see https://gist.github.com/LaurentGomila/SFML/issues/30
-	// Access Violation error int the destructor of sf::AudioDevice//*/
+AudioDevice::~AudioDevice() {
+    /*
+    // see https://gist.github.com/LaurentGomila/SFML/issues/30
+    // Access Violation error int the destructor of sf::AudioDevice//*/
 #ifndef _WIN32
-	// Destroy the context
-	alCheck(alcMakeContextCurrent(NULL));
-	if (m_audioContext)
-		alCheck(alcDestroyContext(m_audioContext));
+    // Destroy the context
+    alCheck(alcMakeContextCurrent(NULL));
+    if (m_audioContext) {
+        alCheck(alcDestroyContext(m_audioContext));
+    }
 
-	// Destroy the device
-	if (m_audioDevice)
-		alCheck(alcCloseDevice(m_audioDevice));
+    // Destroy the device
+    if (m_audioDevice) {
+        alCheck(alcCloseDevice(m_audioDevice));
+    }
 #endif
 }
 
 
 ////////////////////////////////////////////////////////////
-bool AudioDevice::isExtensionSupported(const std::string& extension)
-{
-    if ((extension.length() > 2) && (extension.substr(0, 3) == "ALC"))
+bool AudioDevice::isExtensionSupported(const std::string &extension) {
+    if ((extension.length() > 2) && (extension.substr(0, 3) == "ALC")) {
         return alcIsExtensionPresent(m_audioDevice, extension.c_str()) != AL_FALSE;
-    else
+    } else {
         return alIsExtensionPresent(extension.c_str()) != AL_FALSE;
-}
-
-
-////////////////////////////////////////////////////////////
-int AudioDevice::getFormatFromChannelCount(unsigned int channelCount)
-{
-    // Find the good format according to the number of channels
-    switch (channelCount)
-    {
-        case 1  : return AL_FORMAT_MONO16;
-        case 2  : return AL_FORMAT_STEREO16;
-        case 4  : return alGetEnumValue("AL_FORMAT_QUAD16");
-        case 6  : return alGetEnumValue("AL_FORMAT_51CHN16");
-        case 7  : return alGetEnumValue("AL_FORMAT_61CHN16");
-        case 8  : return alGetEnumValue("AL_FORMAT_71CHN16");
-        default : return 0;
     }
 }
 
 
 ////////////////////////////////////////////////////////////
-int AudioDevice::getFormat(unsigned int channelCount, unsigned int bps)
-{
-	// Find the good format according to the given format
-	switch (bps)
-	{
-	case sf::Codec::SAMPLE_FMT_U8  :
-		return (channelCount == 2) ? AL_FORMAT_STEREO8  : AL_FORMAT_MONO8;
-	case sf::Codec::SAMPLE_FMT_S16 :
-		return (channelCount == 2) ? AL_FORMAT_STEREO16 : AL_FORMAT_MONO16;
-	default : return 0;
-	}
+int AudioDevice::getFormatFromChannelCount(unsigned int channelCount) {
+    // Find the good format according to the number of channels
+    switch (channelCount) {
+    case 1:
+        return AL_FORMAT_MONO16;
+    case 2:
+        return AL_FORMAT_STEREO16;
+    case 4:
+        return alGetEnumValue("AL_FORMAT_QUAD16");
+    case 6:
+        return alGetEnumValue("AL_FORMAT_51CHN16");
+    case 7:
+        return alGetEnumValue("AL_FORMAT_61CHN16");
+    case 8:
+        return alGetEnumValue("AL_FORMAT_71CHN16");
+    default :
+        return 0;
+    }
+}
+
+
+////////////////////////////////////////////////////////////
+int AudioDevice::getFormat(sf::Output::SampleFormat fmt) {
+    // Find the good format according to the given format
+    switch (fmt.inputFormat) {
+    case sf::Codec::SAMPLE_FMT_U8:
+        return (fmt.channels == 2) ? AL_FORMAT_STEREO8: AL_FORMAT_MONO8;
+
+    case sf::Codec::SAMPLE_FMT_S16:
+        return (fmt.channels == 2) ? AL_FORMAT_STEREO16 : AL_FORMAT_MONO16;
+
+    default:
+        return 0;
+    }
 }

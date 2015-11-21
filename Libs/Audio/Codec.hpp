@@ -77,12 +77,12 @@ public :
      * [-1.0, 1.0]. Any values outside this range are beyond full volume level.
      */
     enum SampleFormat {
-        SAMPLE_FMT_NONE = -1,                   ///< not use, only for validation
-        SAMPLE_FMT_U8 = 8,                      ///< unsigned 8 bits
-        SAMPLE_FMT_S16 = 16,                    ///< signed 16 bits
-        SAMPLE_FMT_S32 = 32,                    ///< signed 32 bits
-        SAMPLE_FMT_FLT = sizeof(float ) * 8,    ///< float
-        SAMPLE_FMT_DBL = sizeof(double) * 8,    ///< double
+        SAMPLE_FMT_NONE = -1,                   ///< Not use, only for validation
+        SAMPLE_FMT_U8 = 8,                      ///< Unsigned 8 bits
+        SAMPLE_FMT_S16 = 16,                    ///< Signed 16 bits
+        SAMPLE_FMT_S32 = 32,                    ///< Signed 32 bits
+        SAMPLE_FMT_FLT = sizeof(float) * 8 + 1, ///< Float
+        SAMPLE_FMT_DBL = sizeof(double) * 8,    ///< Double
     };
 
     ////////////////////////////////////////////////////////////
