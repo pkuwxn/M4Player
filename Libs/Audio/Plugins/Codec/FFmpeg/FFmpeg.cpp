@@ -285,10 +285,10 @@ bool FFmpeg::planarToInterleaved() {
 
     m_swrContext = swr_alloc_set_opts
         (m_swrContext,
-         m_audioStream->codec->channel_layout,
+         channelLayout,
          packedFmt,
          m_audioStream->codec->sample_rate,
-         m_audioStream->codec->channel_layout,
+         channelLayout,
          m_audioStream->codec->sample_fmt,
          m_audioStream->codec->sample_rate,
          0,
