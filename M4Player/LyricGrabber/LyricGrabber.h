@@ -141,6 +141,7 @@ private:
     ResultSet m_result;
 };
 
-/// 将歌词内容保存到文件里(使用 UTF-8 编码)
+/// 将歌词内容保存到文件里(使用 UTF-8 BOM 编码)
 void SaveLrcFile(const wxString &lyric, const wxString &fileName);
+
 }

@@ -73,4 +73,5 @@ private:
     wxString m_artist;
     wxString m_title;
 };
+
 }

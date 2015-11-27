@@ -9,6 +9,7 @@
 #include <loki/Singleton.h>
 
 template<class T> struct OOPLyricTaskCreator;
+
 template<> struct OOPLyricTaskCreator<LyricGrabber::Task> {
     static LyricGrabber::Task *Create() {
         return new LyricGrabber::Task(wxTheApp);
@@ -19,6 +20,5 @@ template<> struct OOPLyricTaskCreator<LyricGrabber::Task> {
     }
 };
 
-typedef Loki::SingletonHolder<LyricGrabber::Task,
-        OOPLyricTaskCreator>
-        OOPSingleLyricTask;
+typedef Loki::SingletonHolder
+    <LyricGrabber::Task, OOPLyricTaskCreator> OOPSingleLyricTask;

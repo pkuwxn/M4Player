@@ -39,21 +39,21 @@ void VdkHttpBuiltInImpl::EnableGzip(GZipMode gzm) {
 bool VdkHttpBuiltInImpl::DoGet(const wxString &strUrl, wxString &result) {
     enum {
         SECONDS_TO_SLEEP_BETWEEN_CONN = 1,
-        MAX_RETRIES = 1,
+        MAX_RETRIES = 2,
     };
 
     wxURL url(strUrl);
-    int tries = 0;
+    int retries = 0;
 
     // This will wait until the user connects to the internet.
     // It is important in case of dialup (or ADSL) connections.
-    // only the server, no pages here yet ...
+    // only the server, no pages here yet...
     while (!m_httpConn.Connect(url.GetServer())) {
-        wxLogDebug(L"[%s:%d] wxHttp::Connect[Error:%s]", __FILE__, __LINE__,
+        wxLogDebug(L"[%s:%d] wxHttp::Connect [Error: %s]", __FILE__, __LINE__,
                    FormatProtocolError(m_httpConn.GetError()));
 
-        tries++;
-        if (tries == MAX_RETRIES) {
+        retries++;
+        if (retries == MAX_RETRIES) {
             return false;
         }
 
@@ -64,11 +64,11 @@ bool VdkHttpBuiltInImpl::DoGet(const wxString &strUrl, wxString &result) {
 
     wxApp::IsMainLoopRunning(); // should return true
 
-    // use _T("/") for index.html, index.php, default.asp, etc.
+    // use "/" for index.html, index.php, default.asp, etc.
     wxString fullPath(url.GetPath());
     wxString query(url.GetQuery());
     if (!query.empty()) {
-        fullPath += '?' + query;
+        fullPath += L'?' + query;
     }
 
     //****************************************
@@ -82,7 +82,7 @@ bool VdkHttpBuiltInImpl::DoGet(const wxString &strUrl, wxString &result) {
 
         result = ParseReturnedData(out_stream);
     } else {
-        wxLogDebug(L"[%s:%d] Unable to connect![Error:%s]",
+        wxLogDebug(L"[%s:%d] Unable to connect! [Error: %s]",
                    __FILE__, __LINE__,
                    FormatProtocolError(m_httpConn.GetError()));
 
@@ -113,52 +113,42 @@ wxString VdkHttpBuiltInImpl::GetHeader(const wxString &header) const {
 const wxChar *FormatProtocolError(wxProtocolError err) {
     switch (err) {
     case wxPROTO_NETERR:
-
         return L"A generic network error occurred.";
         break;
 
     case wxPROTO_PROTERR:
-
         return L"Protocol error";
         break;
 
     case wxPROTO_CONNERR:
-
         return L"Connection error";
         break;
 
     case wxPROTO_INVVAL:
-
         return L"Invalid value";
         break;
 
     case wxPROTO_NOHNDLR:
-
         return L"No handler";
         break;
 
     case wxPROTO_NOFILE:
-
         return L"No file";
         break;
 
     case wxPROTO_ABRT:
-
         return L"Last action aborted";
         break;
 
     case wxPROTO_RCNCT:
-
         return L"An error occurred during reconnection";
         break;
 
     case wxPROTO_NOERR:
-
         return L"No error";
         break;
 
     default:
-
         return L"Unknown error";
         break;
     }

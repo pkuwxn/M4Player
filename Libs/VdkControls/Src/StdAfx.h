@@ -10,4 +10,3 @@
 
 // put here all your rarely-changing header files
 #include <wx/xml/xml.h>
-

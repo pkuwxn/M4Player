@@ -10,17 +10,23 @@
 
 #if 1
 #   include "VdkHttpBuiltInImpl.h"
-typedef VdkHttpBuiltInImpl http_impl;
+    typedef VdkHttpBuiltInImpl HttpImpl;
 #else
 #   include "VdkHttpWgetImpl.h"
-typedef VdkHttpWgetImpl http_impl;
+    typedef VdkHttpWgetImpl HttpImpl;
 #endif
 
 template<class T> struct OOPHttpThreadCreator;
+
 template<> struct OOPHttpThreadCreator<VdkHttpThread> {
     static VdkHttpThread *Create() {
+        enum {
+            HTTP_TIMEOUT = 2,
+        };
+
         wxCSConv gb2312(wxFONTENCODING_CP936);
-        http_impl *http = new http_impl(gb2312);
+        HttpImpl *http = new HttpImpl(gb2312);
+        http->SetTimeout(HTTP_TIMEOUT);
 
         return new VdkHttpThread(http);
     }
@@ -29,6 +35,5 @@ template<> struct OOPHttpThreadCreator<VdkHttpThread> {
     static void Destroy(VdkHttpThread *p) {}
 };
 
-typedef Loki::SingletonHolder<VdkHttpThread,
-        OOPHttpThreadCreator>
-        OOPSingleHttpThread;
+typedef Loki::SingletonHolder
+    <VdkHttpThread, OOPHttpThreadCreator> OOPSingleHttpThread;

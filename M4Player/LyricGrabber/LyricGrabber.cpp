@@ -111,11 +111,11 @@ void Task::OnListLoaded(wxCommandEvent &e) {
         } else {
             // 发送歌词下载失败的消息
             int id = GetLyricLoadedEvtId();
-            VdkHttpThread::FinishEvent e(id, wxEmptyString);
-            e.SetEventType(OOP_EVT_LYRIC_LOADED);
-            e.SetString(m_path);
+            VdkHttpThread::FinishEvent fe(id, wxEmptyString);
+            fe.SetEventType(OOP_EVT_LYRIC_LOADED);
+            fe.SetString(m_path);
 
-            wxPostEvent(m_sinker, e);
+            wxPostEvent(m_sinker, fe);
         }
     }
 }

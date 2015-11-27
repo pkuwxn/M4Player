@@ -14,6 +14,8 @@
 
 //////////////////////////////////////////////////////////////////////////
 
+#define SCOPE()
+
 wxDEFINE_EVENT(wxEVT_HTTP_FINISH, VdkHttpThread::FinishEvent);
 
 VdkHttpThread::VdkHttpThread(VdkHTTP *httpConn)
@@ -32,7 +34,7 @@ VdkHttpThread::VdkHttpThread(VdkHTTP *httpConn)
 }
 
 VdkHttpThread::~VdkHttpThread() {
-    {
+    SCOPE() {
         wxMutexLocker lock(m_taskListMutex);
         ClearTasks();
     }
@@ -105,7 +107,7 @@ wxThread::ExitCode VdkHttpThread::Entry() {
 }
 
 void VdkHttpThread::StopAndExit() {
-    {
+    SCOPE() {
         wxMutexLocker lock(m_taskListMutex);
         ClearTasks();
     }

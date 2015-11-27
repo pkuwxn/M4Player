@@ -79,14 +79,17 @@ wxString VdkHTTP::DetectCharset(const char *p) {
 }
 
 bool VdkHTTP::Get(const wxString &url, wxString &result) {
-    SetHeader(L"User-Agent", L"Mozilla/4.0");
+    SetHeader(L"User-Agent", L"Mozilla/5.0 (Windows NT 10.0; WOW64; rv:41.0) Gecko/20100101 Firefox/42.0");
+    SetHeader(L"Accept-Language", L"zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3");
+    SetHeader(L"Cache-Control", L"no-cache");
 
     if (IsGzipEnabled()) {
-        SetHeader(L"Accept-Encoding", L"gzip, deflate");
+        SetHeader(L"Accept-Encoding", L"gzip");
     }
 
     // 先清空，避免残留
     result.clear();
+
     return DoGet(url, result);
 }
 
