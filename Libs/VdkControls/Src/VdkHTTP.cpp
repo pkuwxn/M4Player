@@ -20,17 +20,17 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-VdkHTTP::VdkHTTP(const wxCSConv &conv)
-    : m_ansiLocal(conv) {
+VdkHTTP::VdkHTTP(wxFontEncoding defaultEncoding)
+    : m_defaultConv(defaultEncoding) {
 
 }
 
-void VdkHTTP::SetAnsiLocalConv(const wxCSConv &conv) {
-    m_ansiLocal = conv;
+void VdkHTTP::SetDefaultEncoding(wxFontEncoding defaultEncoding) {
+    m_defaultConv = defaultEncoding;
 }
 
-const wxMBConv &VdkHTTP::GetAnsiLocalConv() const {
-    return m_ansiLocal;
+const wxMBConv &VdkHTTP::GetDefaultCSConv() const {
+    return m_defaultConv;
 }
 
 /*static*/
@@ -108,7 +108,7 @@ bool VdkHTTP::DecompressGZipData
     return false;
 }
 
-wxString VdkHTTP::EncodeResult(const char *p) const {
+wxString VdkHTTP::EncodeResult(const char *p, size_t len) const {
     wxString charset(DetectCharset(GetHeader(L"Content-Type")));
     if (charset.empty()) {
         charset.assign(DetectCharset(p));
@@ -116,16 +116,16 @@ wxString VdkHTTP::EncodeResult(const char *p) const {
 
     if (charset.empty()) {
         wxLogDebug(L"页面没有指定任何字符集，默认使用本地多字节字符集");
-        return wxString(p, GetAnsiLocalConv());
+        return wxString(p, GetDefaultCSConv(), len);
     } else {
-        return wxString(p, wxCSConv(charset));
+        return wxString(p, wxCSConv(charset), len);
     }
 }
 
 wxString VdkHTTP::ParseReturnedData(wxMemoryOutputStream &out_stream) {
     wxFileOffset writeCount = out_stream.TellO();
     if (writeCount == 0) {
-        wxLogDebug(L"[VdkHTTP::ParseReturnedData]No data input.");
+        wxLogDebug(L"[VdkHTTP::ParseReturnedData] No data input.");
         return wxEmptyString;
     }
 
@@ -136,13 +136,10 @@ wxString VdkHTTP::ParseReturnedData(wxMemoryOutputStream &out_stream) {
     // bad trick
     wxMemoryOutputStream decompressed;
     if (DecompressGZipData((void *) p, writeCount, decompressed)) {
-        decompressed.Write(&zero, sizeof(zero));
-
+        writeCount = decompressed.TellO();
         buf = decompressed.GetOutputStreamBuffer();
         p = (const char *) buf->GetBufferStart();
-    } else {
-        out_stream.Write(&zero, sizeof(zero));
     }
 
-    return p ? EncodeResult(p) : wxString();
+    return p ? EncodeResult(p, static_cast<size_t>(writeCount)) : wxString();
 }

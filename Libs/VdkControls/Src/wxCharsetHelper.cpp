@@ -24,7 +24,7 @@ int isurlable(int ch) {
 
 wxString DoEscape(const char *p, size_t len) {
     if (!p) {
-        wxLogDebug(L"[%s:%d]DoEscape():Incorrect input: "
+        wxLogDebug(L"[%s:%d] DoEscape():Incorrect input: "
                    L"Null string pointer.",
                    __FILE__, __LINE__);
 
@@ -39,19 +39,18 @@ wxString DoEscape(const char *p, size_t len) {
 
     typedef unsigned char byte;
 
-    char tempbuff[4];
+    char tmp[4];
     wxString ret;
 
     for (size_t i = 0; i < len; i++) {
         if (isurlable((byte) p[i])) {
             ret += (wxChar) p[i];
         } else {
-            sprintf(tempbuff, "%%%X%X", ((byte *) p)[i] >> 4,
-                    ((byte *) p)[i]  % 16);
+            sprintf(tmp, "%%%X%X", ((byte *) p) [i] >> 4,
+                  ((byte *) p) [i]  % 16);
 
-            ret += tempbuff;
+            ret += tmp;
         }
-
     }
 
     return ret;
@@ -107,13 +106,13 @@ char wxCharsetHelper::StrToBin(const char *str) {
 
 char wxCharsetHelper::CharToInt(const char ch) {
     if (ch>='0' && ch<='9') {
-        return (char)(ch - '0');
+        return (char) (ch - '0');
     }
     if (ch>='a' && ch<='f') {
-        return (char)(ch - 'a' + 10);
+        return (char) (ch - 'a' + 10);
     }
     if (ch>='A' && ch<='F') {
-        return (char)(ch - 'A' + 10);
+        return (char) (ch - 'A' + 10);
     }
 
     // TODO:

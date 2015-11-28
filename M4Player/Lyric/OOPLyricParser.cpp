@@ -104,8 +104,7 @@ bool OOPLyricParser::Load(const wxString &lyric, int nTimeSum) {
     if (!lyric.empty()) {
         wxStringTokenizer tokenizer(lyric, L"\r\n");
         while (tokenizer.HasMoreTokens()) {
-            wxString token = tokenizer.GetNextToken();
-            ParseLine(token);
+            ParseLine(tokenizer.GetNextToken());
         }
 
         BuilidLines(nTimeSum);

@@ -19,8 +19,8 @@
 // 格式化 wxHTTP 错误信息
 static const wxChar *FormatProtocolError(wxProtocolError err);
 
-VdkHttpBuiltInImpl::VdkHttpBuiltInImpl(const wxCSConv &conv)
-    : VdkHTTP(conv), m_gzm(GZM_ENABLED) {
+VdkHttpBuiltInImpl::VdkHttpBuiltInImpl(wxFontEncoding defaultEncoding)
+    : VdkHTTP(defaultEncoding), m_gzm(GZM_ENABLED) {
 
 }
 
@@ -43,12 +43,17 @@ bool VdkHttpBuiltInImpl::DoGet(const wxString &strUrl, wxString &result) {
     };
 
     wxURL url(strUrl);
+    unsigned int port = 80;
+    if (url.HasPort()) {
+        port = wxAtoi(url.GetPort());
+    }
+
     int retries = 0;
 
     // This will wait until the user connects to the internet.
     // It is important in case of dialup (or ADSL) connections.
     // only the server, no pages here yet...
-    while (!m_httpConn.Connect(url.GetServer())) {
+    while (!m_httpConn.Connect(url.GetServer(), port)) {
         wxLogDebug(L"[%s:%d] wxHttp::Connect [Error: %s]", __FILE__, __LINE__,
                    FormatProtocolError(m_httpConn.GetError()));
 

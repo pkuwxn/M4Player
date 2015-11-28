@@ -18,11 +18,17 @@ public:
     public:
 
         /// 构造函数
-        Task(const wxString &url, int id, wxEvtHandler *sinker);
+        Task(const wxString &url, wxFontEncoding encoding, 
+             int id, wxEvtHandler *sinker);
 
         /// 获取关联的 URL
         wxString GetURL() const {
             return m_url;
+        }
+
+        /// 获取目标文件的默认编码
+        wxFontEncoding GetEncoding() const {
+            return m_encoding;
         }
 
         /// 获取通知事件标识 ID
@@ -38,6 +44,8 @@ public:
     private:
 
         wxString m_url;
+        wxFontEncoding m_encoding;
+
         int m_id;
         wxEvtHandler *m_sinker;
     };

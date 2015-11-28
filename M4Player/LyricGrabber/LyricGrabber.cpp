@@ -78,9 +78,9 @@ void Task::GrabbList(SessionType st) {
     //----------------------------------------------
 
     wxString url(m_host->PrepareForTask(*this));
+    VdkHttpThread::Task *httpTask = new VdkHttpThread::Task
+        (url, m_host->GetLyricEncoding(), m_idListLoaded, wxTheApp);
 
-    typedef VdkHttpThread::Task HttpTask;
-    HttpTask *httpTask = new HttpTask(url, m_idListLoaded, wxTheApp);
     OOPSingleHttpThread::Instance().AddTask(httpTask);
 }
 
@@ -122,9 +122,9 @@ void Task::OnListLoaded(wxCommandEvent &e) {
 
 void Task::GrabbLyric(int serialNumber) {
     wxString url(m_result.at(serialNumber).url);
+    VdkHttpThread::Task *httpTask = new VdkHttpThread::Task
+        (url, m_host->GetLyricEncoding(), m_idLyricLoaded, wxTheApp);
 
-    VdkHttpThread::Task *httpTask;
-    httpTask = new VdkHttpThread::Task(url, m_idLyricLoaded, wxTheApp);
     OOPSingleHttpThread::Instance().AddTask(httpTask);
 }
 

@@ -14,6 +14,7 @@
 
 #include <wx/xml/xml.h>
 #include <wx/sstream.h> // for XML parsing
+#include <wx/tokenzr.h>
 
 #ifdef __WXMSW__
 #   include <wx/msw/msvcrt.h>
@@ -23,9 +24,12 @@
 
 namespace LyricGrabber {
 
-LyricHost::LyricHost(const wxString &listUrlTemplate)
+LyricHost::LyricHost(const wxString &listUrlTemplate,
+                     wxFontEncoding urlEncoding,
+                     wxFontEncoding lyricEncoding)
     : m_listUrlTemplate(listUrlTemplate),
-      m_escapeTo(wxFONTENCODING_GB2312) {
+      m_urlConv(urlEncoding),
+      m_lyricEncoding(lyricEncoding) {
 
 }
 
@@ -34,23 +38,20 @@ LyricHost::~LyricHost() {
 }
 
 void LyricHost::SetUrlEscapeDestCharset(const wxCSConv &conv) {
-    m_escapeTo = conv;
+    m_urlConv = conv;
 }
 
 wxString LyricHost::PrepareForTask(const Task &task) {
     wxString url(m_listUrlTemplate);
+    wxString escaped;
 
     m_artist.assign(task.GetArtist());
-    if (!m_artist.empty()) {
-        wxString escaped(wxCharsetHelper::Escape(m_artist, m_escapeTo));
-        url.Replace(L"{artist}", escaped);
-    }
+    escaped.assign(wxCharsetHelper::Escape(m_artist, m_urlConv));
+    url.Replace(L"{artist}", escaped);
 
     m_title.assign(task.GetTitle());
-    if (!m_title.empty()) {
-        wxString escaped(wxCharsetHelper::Escape(m_title, m_escapeTo));
-        url.Replace(L"{title}", escaped);
-    }
+    escaped.assign(wxCharsetHelper::Escape(m_title, m_urlConv));
+    url.Replace(L"{title}", escaped);
 
     return url;
 }
@@ -59,14 +60,16 @@ wxString LyricHost::PrepareForTask(const Task &task) {
 
 /*! 可选的歌词下载服务器 */
 enum HostId {
-    LH_QQ_MUSIC, /*! QQ 音乐 */
+    LH_M4PLAYER, /*! 自建歌词服务器 */
     LH_BAIDU_ZHANGMEN, /*! 百度音乐搜索 */
-    LH_TTPLAYER, /*! 千千静听 */
+    LH_QQ_MUSIC, /*! QQ 音乐 */
+    LH_TTPLAYER, /*! 千千静听 -- 未实现 */
 };
 
 wxString Gb2312XmlHack(const wxString &xml) {
     wxString ret(xml);
     ret.Replace(L"gb2312", L"utf-8");   // wxXml 只支持 UTF-8 编码
+
     return ret;
 }
 
@@ -82,7 +85,7 @@ public:
 private:
 
     // 解析下载到的歌词列表
-    virtual bool ParseList(const wxString &list, ResultSet &) const;
+    virtual bool ParseList(const wxString &list, ResultSet &lyrics) const;
 
     // 解析下载到的歌词
     virtual bool ParseLyric(wxString &lyric) const;
@@ -90,9 +93,10 @@ private:
 
 QQMusic::QQMusic()
     : LyricHost(L"http://qqmusic.qq.com/fcgi-bin/qm_getLyricId.fcg?"
-                L"name={title}&singer={artist}&from=qqplayer") {
-    SetUrlEscapeDestCharset(wxFONTENCODING_GB2312);
-}
+                L"name={title}&singer={artist}&from=qqplayer",
+                wxFONTENCODING_GB2312,
+                wxFONTENCODING_GB2312)
+{}
 
 bool QQMusic::ParseList(const wxString &list, ResultSet &lyrics) const {
     lyrics.clear();
@@ -143,7 +147,6 @@ bool QQMusic::ParseList(const wxString &list, ResultSet &lyrics) const {
     return !lyrics.empty();
 }
 
-
 bool QQMusic::ParseLyric(wxString &lyric) const {
     if (lyric.Trim(true).Trim(false).empty() ||
             !lyric.EndsWith(L"</lyric>")) {
@@ -177,14 +180,15 @@ public:
 
 private:
 
-    virtual bool ParseList(const wxString &list, ResultSet &) const;
+    virtual bool ParseList(const wxString &list, ResultSet &lyrics) const;
 };
 
 BaiduZhangmen::BaiduZhangmen()
     : LyricHost(L"http://box.zhangmen.baidu.com/x?op=12&count=1&"
-                L"title={title}$${artist}$$$$") {
-    SetUrlEscapeDestCharset(wxFONTENCODING_GB2312);
-}
+                L"title={title}$${artist}$$$$",
+                wxFONTENCODING_GB2312,
+                wxFONTENCODING_GB2312)
+{}
 
 bool BaiduZhangmen::ParseList(const wxString &list, ResultSet &lyrics) const {
     lyrics.clear();
@@ -228,6 +232,48 @@ bool BaiduZhangmen::ParseList(const wxString &list, ResultSet &lyrics) const {
 }
 
 //////////////////////////////////////////////////////////////////////////
+// 自建歌词服务器
+
+class MyLyricHost : public LyricHost {
+public:
+
+    /// 构造函数
+    MyLyricHost();
+
+private:
+
+    virtual bool ParseList(const wxString &list, ResultSet &lyrics) const;
+};
+
+MyLyricHost::MyLyricHost()
+    : LyricHost(L"http://127.0.0.1:16723/lyric?"
+                L"title={title}&artist={artist}", // TODO: Load from the confing file
+                wxFONTENCODING_UTF8,
+                wxFONTENCODING_UTF8)
+{}
+
+bool MyLyricHost::ParseList(const wxString &list, ResultSet &lyrics) const {
+    lyrics.clear();
+
+    wxStringTokenizer tokenizer(list, L"\r\n");
+    if (tokenizer.CountTokens() % 3 != 0) {
+        return false;
+    }
+
+    SearchResult res;
+
+    while (tokenizer.HasMoreTokens()) {
+        res.artist = tokenizer.GetNextToken();
+        res.title = tokenizer.GetNextToken();
+        res.url = tokenizer.GetNextToken();
+
+        lyrics.push_back(res);
+    }
+
+    return !lyrics.empty();
+}
+
+//////////////////////////////////////////////////////////////////////////
 
 /*static*/
 LyricHost *LyricHost::Create(int hostId) {
@@ -238,12 +284,14 @@ LyricHost *LyricHost::Create(int hostId) {
     case LH_BAIDU_ZHANGMEN:
         return new BaiduZhangmen;
 
+    case LH_M4PLAYER:
+        return new MyLyricHost;
+
     default:
         return NULL;
     }
 }
 
-void LyricHost::GrabbLyric(const wxString &url) {
+void LyricHost::GrabbLyric(const wxString &url) {}
 
-}
 }

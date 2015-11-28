@@ -13,8 +13,8 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-VdkHttpWgetImpl::VdkHttpWgetImpl(const wxCSConv &conv)
-    : VdkHTTP(conv), m_gzm(GZM_ENABLED) {
+VdkHttpWgetImpl::VdkHttpWgetImpl(wxFontEncoding defaultEncoding)
+    : VdkHTTP(defaultEncoding), m_gzm(GZM_ENABLED) {
 
 }
 

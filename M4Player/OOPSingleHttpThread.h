@@ -24,8 +24,7 @@ template<> struct OOPHttpThreadCreator<VdkHttpThread> {
             HTTP_TIMEOUT = 2,
         };
 
-        wxCSConv gb2312(wxFONTENCODING_CP936);
-        HttpImpl *http = new HttpImpl(gb2312);
+        HttpImpl *http = new HttpImpl(wxFONTENCODING_CP936);
         http->SetTimeout(HTTP_TIMEOUT);
 
         return new VdkHttpThread(http);

@@ -12,7 +12,7 @@ class VdkHttpWgetImpl : public VdkHTTP {
 public:
 
     /// 构造函数
-    VdkHttpWgetImpl(const wxCSConv &conv);
+    VdkHttpWgetImpl(wxFontEncoding defaultEncoding);
 
     /// 虚析构函数
     virtual ~VdkHttpWgetImpl();

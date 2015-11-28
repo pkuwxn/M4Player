@@ -5,12 +5,14 @@
  * Created:   2012-03-25
  **************************************************************/
 #pragma once
+
 #include "wxCharsetHelper.h"
 #include "VdkHttpThread.h"
 
 #include <wx/vector.h>
 
 namespace LyricGrabber {
+
 /*! 在网络上查找歌词时的匹配结果 */
 struct SearchResult {
     wxString artist; /*! 匹配的艺术家 */
@@ -19,4 +21,5 @@ struct SearchResult {
 };
 
 typedef wxVector<SearchResult> ResultSet;
+
 }

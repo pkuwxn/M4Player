@@ -14,7 +14,7 @@ class VdkHTTP {
 public:
 
     /// 默认构造函数
-    VdkHTTP(const wxCSConv &conv);
+    VdkHTTP(wxFontEncoding defaultEncoding);
 
     /// 虚析构函数
     virtual ~VdkHTTP() {}
@@ -25,11 +25,11 @@ public:
     /// HTML 源码中的“meta”标签、XML 代码中的“encoding”属性。
     static wxString DetectCharset(const char *p);
 
-    /// 设置系统本地默认多字节字符集转换器
-    void SetAnsiLocalConv(const wxCSConv &conv);
+    /// 设置文件默认字符集
+    void SetDefaultEncoding(wxFontEncoding defaultEncoding);
 
-    /// 获取对象绑定的系统本地默认多字节字符集转换器
-    const wxMBConv &GetAnsiLocalConv() const;
+    /// 获取文件默认字符集转换对象
+    const wxMBConv &GetDefaultCSConv() const;
 
     //================================================
 
@@ -78,7 +78,7 @@ private:
     (void *p, size_t size, wxMemoryOutputStream &decompressed);
 
     // Convert the returned data to wxString properly.
-    wxString EncodeResult(const char *p) const;
+    wxString EncodeResult(const char *p, size_t len) const;
 
 private:
 
@@ -87,5 +87,5 @@ private:
 
 private:
 
-    wxCSConv m_ansiLocal;
+    wxCSConv m_defaultConv;
 };

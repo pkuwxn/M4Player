@@ -22,8 +22,13 @@ public:
     /// @return 歌词列表 URL
     wxString PrepareForTask(const Task &task);
 
-    /// 以异步的方式下载地址为@url 的歌词
+    /// 以异步的方式下载地址为 @url 的歌词
     void GrabbLyric(const wxString &url);
+
+    /// 获取 LRC 文件的编码
+    wxFontEncoding GetLyricEncoding() const {
+        return m_lyricEncoding;
+    }
 
     /// 获取歌词服务器对象（工厂函数）
     static LyricHost *Create(int hostId);
@@ -43,7 +48,9 @@ public:
 protected:
 
     /// 获取下载歌词列表
-    LyricHost(const wxString &listUrlTemplate);
+    LyricHost(const wxString &listUrlTemplate,
+              wxFontEncoding urlEncoding,
+              wxFontEncoding lyricEncoding);
 
     /// 设置查询 URL 转义的目的编码
     void SetUrlEscapeDestCharset(const wxCSConv &conv);
@@ -65,10 +72,9 @@ protected:
 
 private:
 
-    // 下载歌词列表时的 URL 模板
-    wxString m_listUrlTemplate;
-    // 查询 URL 转义的目的编码
-    wxCSConv m_escapeTo;
+    wxString m_listUrlTemplate; // 下载歌词列表时的 URL 模板
+    wxCSConv m_urlConv; // 查询 URL 转义的目的编码
+    wxFontEncoding m_lyricEncoding; // LRC 文件的编码
 
     wxString m_artist;
     wxString m_title;

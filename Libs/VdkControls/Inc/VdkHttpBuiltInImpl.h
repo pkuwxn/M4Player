@@ -13,7 +13,7 @@ class VdkHttpBuiltInImpl : public VdkHTTP {
 public:
 
     /// 构造函数
-    VdkHttpBuiltInImpl(const wxCSConv &conv);
+    VdkHttpBuiltInImpl(wxFontEncoding defaultEncoding);
 
     /// 虚析构函数
     virtual ~VdkHttpBuiltInImpl();

@@ -93,6 +93,8 @@ wxThread::ExitCode VdkHttpThread::Entry() {
 
         //===================================
 
+        m_httpConn->SetDefaultEncoding(task->GetEncoding());
+
         // TODO: 设置操作成功与否？
         wxString result;
         m_httpConn->Get(task->GetURL(), result);
@@ -118,8 +120,9 @@ void VdkHttpThread::StopAndExit() {
 
 //////////////////////////////////////////////////////////////////////////
 
-VdkHttpThread::Task::Task(const wxString &url, int id, wxEvtHandler *sinker)
-    : m_url(url), m_id(id), m_sinker(sinker) {
+VdkHttpThread::Task::Task(const wxString &url, wxFontEncoding encoding, 
+                          int id, wxEvtHandler *sinker)
+    : m_url(url), m_encoding(encoding), m_id(id), m_sinker(sinker) {
 
 }
 
