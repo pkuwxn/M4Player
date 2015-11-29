@@ -120,9 +120,9 @@ OOPlayerApp::OOPlayerApp()
 #   include <string>
 
 #   ifdef __WXMSW__
-#       define CFG_PLUGINS "E:/Desktop/OOPlayer/Audio.Plugins"
+#       define CFG_PLUGINS OOPFileSystem::GetRootPath() + L"Audio.Plugins"
 #   else
-#       define CFG_PLUGINS "/media/E/Desktop/OOPlayer/Audio.Plugins.Linux"
+#       define CFG_PLUGINS OOPFileSystem::GetRootPath() + L"Audio.Plugins.Linux"
 #   endif
 #endif
 
@@ -151,7 +151,7 @@ void InitPlugins() {
     wxDynamicLibrary dll;
 
 #ifdef __WXDEBUG__
-    std::ifstream f(CFG_PLUGINS);
+    std::ifstream f(NarrowedPath(CFG_PLUGINS));
     std::string pluginPath;
     while (std::getline(f, pluginPath)) {
         while (!pluginPath.empty() && isspace(pluginPath[pluginPath.length() - 1])) {
@@ -256,8 +256,7 @@ bool OOPlayerApp::InitConf() {
 }
 
 inline wxString OOPlayerApp::GetAppConfFilePath() const {
-    wxString confPath(OOPFileSystem::GetRootPath());
-    return confPath += L"OOPConf.xml";
+    return OOPFileSystem::GetRootPath() + L"OOPConf.xml";
 }
 
 void OOPlayerApp::UpdateConf() {

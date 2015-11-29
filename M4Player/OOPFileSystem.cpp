@@ -17,17 +17,14 @@
 //////////////////////////////////////////////////////////////////////////
 
 wxString OOPFileSystem::GetRootPath() {
-#ifdef __WXDEBUG__
-#   ifdef __WXMSW__
-    return L"E:\\Desktop\\OOPlayer\\";
-#   else
-    return L"/media/E/Desktop/OOPlayer/";
-#   endif // __WXMSW__
-#else
     wxStandardPaths &stdPaths = wxStandardPaths::Get();
     wxFileName path(stdPaths.GetExecutablePath());
 
-    return path.GetPath(wxPATH_GET_VOLUME | wxPATH_GET_SEPARATOR);
+    wxString exePath(path.GetPath(wxPATH_GET_VOLUME | wxPATH_GET_SEPARATOR));
+#ifdef __WXDEBUG__
+    return exePath + L"../../../Assets/";
+#else
+    return exePath;
 #endif // __WXDEBUG__
 }
 
