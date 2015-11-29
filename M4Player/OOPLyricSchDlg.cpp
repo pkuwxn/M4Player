@@ -58,6 +58,7 @@ public:
     virtual size_t GetColumnCount() const {
         return NUM_COLUMNS;
     }
+
     virtual bool IsEmpty() const {
         return !m_list || m_list->empty();
     }
@@ -68,6 +69,7 @@ public:
         switch (col) {
         case 0:
             return m_list->at(row).artist;
+
         case 1:
             return m_list->at(row).title;
 
@@ -123,12 +125,12 @@ OOPLyricSchDlg::OOPLyricSchDlg(wxWindow *parent)
 
     singleTask.GetEventSinker()->
     Bind(LyricGrabber::OOP_EVT_LYRIC_LIST_LOADED,
-         &OOPLyricSchDlg::OnListLoaded,
+        &OOPLyricSchDlg::OnListLoaded,
          this, singleTask.GetListLoadedEventId());
 
     singleTask.GetEventSinker()->
     Bind(LyricGrabber::OOP_EVT_LYRIC_LOADED,
-         &OOPLyricSchDlg::OnLyricLoaded, this,
+        &OOPLyricSchDlg::OnLyricLoaded, this,
          singleTask.GetLyricLoadedEvtId());
 }
 
@@ -137,12 +139,12 @@ OOPLyricSchDlg::~OOPLyricSchDlg() {
 
     singleTask.GetEventSinker()->
     Unbind(LyricGrabber::OOP_EVT_LYRIC_LOADED,
-           &OOPLyricSchDlg::OnLyricLoaded, this,
+          &OOPLyricSchDlg::OnLyricLoaded, this,
            singleTask.GetLyricLoadedEvtId());
 
     singleTask.GetEventSinker()->
     Unbind(LyricGrabber::OOP_EVT_LYRIC_LIST_LOADED,
-           &OOPLyricSchDlg::OnListLoaded,
+          &OOPLyricSchDlg::OnListLoaded,
            this, singleTask.GetListLoadedEventId());
 }
 
@@ -366,3 +368,4 @@ void OOPLyricSchDlg::HideAndFocusParent() {
     Hide();
     GetParent()->SetFocus();
 }
+
