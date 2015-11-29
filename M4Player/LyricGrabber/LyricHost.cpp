@@ -246,7 +246,7 @@ private:
 };
 
 MyLyricHost::MyLyricHost()
-    : LyricHost(L"http://127.0.0.1:16723/lyric?"
+    : LyricHost(L"http://119.29.107.246:16723/lyric?"
                 L"title={title}&artist={artist}", // TODO: Load from the confing file
                 wxFONTENCODING_UTF8,
                 wxFONTENCODING_UTF8)
