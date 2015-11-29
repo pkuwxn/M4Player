@@ -225,6 +225,7 @@ bool OOPlayerApp::OnInit() {
 
 int OOPlayerApp::OnExit() {
     wxDELETE(m_checker);
+    wxDELETE(m_conf);
 
     //===============================================
     // 删除 HTTP 工作者线程
