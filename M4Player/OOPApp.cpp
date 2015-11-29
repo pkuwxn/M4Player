@@ -52,8 +52,8 @@
 IMPLEMENT_APP(OOPlayerApp);
 OOPlayerApp *g_app = NULL;
 
-const static wchar_t *gs_appVersion = L"1.0 Beta 3(20151122)";
-const static wchar_t *gs_DefaultInteractiveOutput = L"M4Player for Linux";
+const static wchar_t *gs_appVersion = L""; // L"1.0 Beta 3(20151122)";
+const static wchar_t *gs_DefaultInteractiveOutput = L"M4Player";
 
 // 歌曲标签信息更新时更新 OOPLabel 的显示
 wxDECLARE_EVENT(OOP_EVT_SONG_INFO_UPDATED, wxCommandEvent);
@@ -1058,7 +1058,7 @@ void OOPlayerApp::BeginSong(int index, wxDC *pDC, wxDC *playListDC) {
                 // 其它迭代模式都不适宜从头开始找
                 // 这些迭代模式分别为单曲播放、单曲循环、列表顺序
                 if ((m_playMode == PLAY_MODE_LIST_RECYCLE) ||
-                        (m_playMode == PLAY_MODE_LIST_RANDOM)) {
+                    (m_playMode == PLAY_MODE_LIST_RANDOM)) {
                     index = 0;
                 }
             }
@@ -1456,8 +1456,7 @@ void OOPlayerApp::HandleDelete(VdkVObjEvent &e) {
                          L"注意：一旦删除就不可恢复！",
                          L"物理删除歌曲文件",
                          wxYES_NO | wxICON_ASTERISK,
-                         m_playListPanel)
-                == wxNO) {
+                         m_playListPanel) == wxNO) {
             return;
         }
     }
@@ -2465,12 +2464,12 @@ void OOPlayerApp::OnWebsiteLinks(VdkVObjEvent &e) {
     switch (e.GetId()) {
     case OMM_LINKS_FORUM:
 
-        url.assign("http://www.ooplayer.org/bbs");
+        url.assign(L"https://github.com/vanxining/M4Player/issues");
         break;
 
     case OMM_LINKS_WEBSITE:
 
-        url.assign(L"http://www.ooplayer.org/");
+        url.assign(L"https://github.com/vanxining/M4Player/");
         break;
 
     default:
@@ -2666,3 +2665,4 @@ BEGIN_EVENT_TABLE(OOPlayerApp, wxApp)
     EVT_VOBJ_RANGE(PLAY_MODE_SINGLE, PLAY_MODE_LIST_RANDOM, OOPlayerApp::OnPlayModes)
 
 END_EVENT_TABLE();
+
