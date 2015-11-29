@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      OOPTagBatch.h
  * Purpose:   批量读写歌曲标签
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-03-27
  **************************************************************/
 #pragma once

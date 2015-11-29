@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkPanel.h
  * Purpose:   Code for VListCtrl implementation
- * Author:    Ning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2010-09-11
- * Copyright: Ning
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #pragma once
 #include "VdkControl.h"

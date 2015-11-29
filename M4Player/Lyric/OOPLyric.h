@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      OOPLyric.h
  * Purpose:   集成在歌词秀窗口的内嵌歌词显示控件
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2010
  **************************************************************/
 #pragma once

@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      IListViewPlaugin.h
  * Purpose:   VdkListView 的插件接口声明
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-3-3
  **************************************************************/
 #pragma once

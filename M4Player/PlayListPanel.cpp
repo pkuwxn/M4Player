@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      PlayListPanel.cpp
  * Purpose:   定义 PlayListPanel
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-2-27
  **************************************************************/
 #include "StdAfx.h"

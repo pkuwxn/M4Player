@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkCtrlParserInfo.cpp
  * Purpose:   XRC 解释过程的调用信息
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-02-22
- * Copyright: vanxining
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #include "StdAfx.h"
 #include "VdkCtrlParserInfo.h"

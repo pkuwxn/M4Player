@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      OOPDesktopLyric.cpp
  * Purpose:   桌面歌词(On Screen Display Lyric)
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-06-02
  **************************************************************/
 #include "StdAfx.h"

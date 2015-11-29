@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkMenuBar.h
  * Purpose:   Code for VdkMenuBar declaration
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2010-12-02
- * Copyright: vanxining
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #pragma once
 #include "VdkControl.h"

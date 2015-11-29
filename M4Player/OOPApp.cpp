@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      OOPApp.cpp
  * Purpose:   OOPlayer 的控制中心
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2009-12-19
  **************************************************************/
 #include "StdAfx.h"

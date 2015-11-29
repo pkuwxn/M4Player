@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      OOPProgressDlg.cpp
  * Purpose:   进度显示对话框
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-8-19
  **************************************************************/
 #pragma once

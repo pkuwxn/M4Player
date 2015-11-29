@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      VdkHttpThread.h
  * Purpose:   一个在线程中异步执行 HTTP 操作的便利工作者线程类
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-03-21
  **************************************************************/
 #pragma once

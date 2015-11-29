@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkBitmapArray.h
  * Purpose:   VdkBitmapArray 的头文件
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-01-10
- * Copyright: vanxining
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #pragma once
 #include "VdkDefs.h"

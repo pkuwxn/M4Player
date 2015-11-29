@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkMenu.cpp
  * Purpose:   一个基于 VdkWindow 的富形式自绘菜单
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-02-26
- * Copyright: vanxining
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #include "StdAfx.h"
 #include "VdkMenu.h"

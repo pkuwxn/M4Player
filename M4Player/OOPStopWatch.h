@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      OOPStopWatch.h
  * Purpose:   播放引擎计时器
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-03-09
  **************************************************************/
 #pragma once

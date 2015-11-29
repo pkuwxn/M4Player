@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkSearchCtrl.h
  * Purpose:   Code for VdkSearchCtrl declaration
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-03-13
- * Copyright: vanxining
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #pragma once
 #include "VdkControl.h"

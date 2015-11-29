@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkArtProvider.h
  * Purpose:   Code for VdkArtProvider declaration
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-04-07
- * Copyright: vanxining
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #pragma once
 #include <wx/artprov.h>

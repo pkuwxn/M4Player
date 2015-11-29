@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      Tag.h
  * Purpose:   The base interface of all tagging schemas.
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-3-18
  **************************************************************/
 #pragma once

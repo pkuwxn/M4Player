@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkListCtrl.h
  * Purpose:   Code for VdkListCtrl implementation
- * Author:    Ning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2010-02-01
- * Copyright: Ning
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #pragma once
 #include "VdkScrolledWindow.h"

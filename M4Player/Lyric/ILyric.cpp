@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      ILyric.cpp
  * Purpose:   歌词秀的抽象接口
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-06-05
  **************************************************************/
 #include "StdAfx.h"

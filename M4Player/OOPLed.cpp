@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      OOPLed.cpp
  * Purpose:   OOPLed 实现文件
- * Author:    Ning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2010
- * Copyright: Wang Xiao Ning
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #include "StdAfx.h"
 #include "OOPLed.h"

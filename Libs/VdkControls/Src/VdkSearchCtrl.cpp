@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkSearchCtrl.cpp
  * Purpose:   Code for VdkSearchCtrl implementation
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-03-13
- * Copyright: vanxining
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #include "StdAfx.h"
 #include "VdkSearchCtrl.h"

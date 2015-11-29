@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      OOPLyricSchDlg.cpp
  * Purpose:   歌词搜索对话框
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-08-20
  **************************************************************/
 #include "StdAfx.h"

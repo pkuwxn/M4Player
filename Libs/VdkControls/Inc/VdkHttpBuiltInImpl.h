@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      VdkHttpBuiltInImpl.h
  * Purpose:   使用内建的 wxHttp 来实现 VdkHTTP 的接口
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-03-18
  **************************************************************/
 #pragma once

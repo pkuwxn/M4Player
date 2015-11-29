@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkListCtrl.cpp
  * Purpose:   Code for VdkListCtrl implementation
- * Author:    Ning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2010-02-01
- * Copyright: Ning
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #include "StdAfx.h"
 #include "VdkListCtrl.h"

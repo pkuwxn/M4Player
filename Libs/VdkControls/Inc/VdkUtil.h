@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkUtil.h
  * Purpose:   VdkUtil 的头文件
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-02-15
- * Copyright: vanxining
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #pragma once
 

@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      wxCharsetHelper.h
  * Purpose:   字符集便利函数
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-8-20
  **************************************************************/
 #pragma once

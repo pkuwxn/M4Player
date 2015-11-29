@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      VdkTextValidator.h
  * Purpose:   定义 VdkTextValidator 类
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-7-31
  **************************************************************/
 #pragma once

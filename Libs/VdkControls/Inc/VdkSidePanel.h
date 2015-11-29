@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkSidePanel.h
  * Purpose:   Code for VdkSidePanel declaration
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-04-08
- * Copyright: vanxining
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #pragma once
 #include "VdkControl.h"

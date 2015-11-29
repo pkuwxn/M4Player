@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      OOPLyricMgr.h
  * Purpose:   歌词显示控件管理器
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-06-05
  **************************************************************/
 #pragma once

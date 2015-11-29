@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkUtil.cpp
  * Purpose:   Code for VdkUtil implementation
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-02-15
- * Copyright: vanxining
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #include "StdAfx.h"
 #include "VdkUtil.h"

@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      OOPSkinSelector.h
  * Purpose:   使用 VdkListCtrl 来显示大批量的皮肤
- * Author:    Ning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011.04.02
- * Copyright: Wang Xiao Ning
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #pragma once
 #include "VdkMenu.h"

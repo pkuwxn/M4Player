@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkArtProvider.cpp
  * Purpose:   Code for VdkArtProvider implementation
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-04-07
- * Copyright: vanxining
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #include "StdAfx.h"
 #include "VdkArtProvider.h"

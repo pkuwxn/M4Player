@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      VdkShortcutCtrl.cpp
  * Purpose:   以可视化的方式定义键盘快捷键
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-3-18
  **************************************************************/
 #include "StdAfx.h"

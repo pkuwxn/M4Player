@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      OSD.cpp
  * Purpose:   桌面歌词平台相关部分的代码
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-06-06
  **************************************************************/
 #include "StdAfx.h"

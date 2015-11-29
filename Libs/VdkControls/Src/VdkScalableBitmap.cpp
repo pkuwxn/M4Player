@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkScalableBitmap.cpp
  * Purpose:   Code for VdkScalableBitmap implementation
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-03-11
- * Copyright: vanxining
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #include "StdAfx.h"
 #include "VdkScalableBitmap.h"

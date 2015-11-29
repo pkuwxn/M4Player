@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkMenuPopper.h
  * Purpose:   Code for VdkMenuPopper declaration
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2010-12-03
- * Copyright: vanxining
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #pragma once
 #include "VdkToggleButton.h"

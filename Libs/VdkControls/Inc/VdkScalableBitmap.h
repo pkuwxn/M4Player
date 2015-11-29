@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkScalableBitmap.h
  * Purpose:   VdkScalableBitmap 的类声明
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-03-11
- * Copyright: vanxining
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #pragma once
 #include "VdkDefs.h" // for VdkResizeableBitmapType

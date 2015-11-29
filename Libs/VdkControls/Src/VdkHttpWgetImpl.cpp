@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      VdkHttpWgetImpl.cpp
  * Purpose:   使用 wget 来实现 VdkHTTP 的接口
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-03-17
  **************************************************************/
 #include "StdAfx.h"

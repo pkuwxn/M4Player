@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      OOPSingleHttpThread.h
  * Purpose:   独立 HTTP 工作者线程单体定义
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-03-25
  **************************************************************/
 #pragma once

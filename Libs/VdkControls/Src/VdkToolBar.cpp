@@ -1,10 +1,10 @@
 ﻿/***************************************************************
  * Name:      VdkToolBar.cpp
  * Purpose:   Code for VdkToolBar implementation
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * RCS-ID:    $Id: VdkToolBar.cpp 24 2011-05-03 08:58:46Z Administrator $
  * Created:   2011-04-07
- * Copyright: vanxining
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #include "StdAfx.h"
 #include "VdkToolBar.h"

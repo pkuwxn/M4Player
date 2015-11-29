@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      CharsetMswImpl.cpp
  * Purpose:   Text charset converter using Win32 SDK
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-3-19
  **************************************************************/
 #include "StdAfx.h"

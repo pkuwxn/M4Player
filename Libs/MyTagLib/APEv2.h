@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      APEv2.cpp
  * Purpose:   Implement the APE v2 tagging format
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-3-19
  **************************************************************/
 #pragma once

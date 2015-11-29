@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkEdit.cpp
  * Purpose:   Code for VdkEdit implementation
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-03-14
- * Copyright: vanxining
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #include "StdAfx.h"
 #include "VdkEdit.h"

@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      VdkListView.h
  * Purpose:   类 Android 的列表控件，能动态获取数据
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-03-03
  **************************************************************/
 #pragma once

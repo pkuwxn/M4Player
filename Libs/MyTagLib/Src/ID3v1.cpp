@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      ID3v1.cpp
  * Purpose:   Implement the ID3 v1/v1.1 tagging format
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-3-19
  **************************************************************/
 #include "StdAfx.h"

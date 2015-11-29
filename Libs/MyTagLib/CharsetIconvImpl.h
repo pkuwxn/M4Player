@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      CharsetIconvImpl.cpp
  * Purpose:   Text charset converter using libiconv
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-03-22
  **************************************************************/
 #pragma once

@@ -1,8 +1,8 @@
 ﻿/***************************************************************
  * Name:      VdkDefs.h
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2010-02-01
- * Copyright: vanxining
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #pragma once
 #include "VdkCommon.h"

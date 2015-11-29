@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkMenuImplBase.h
  * Purpose:   一个基于 VdkWindow 的富形式自绘菜单
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-02-26
- * Copyright: vanxining
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #pragma once
 #include "VdkDefs.h"

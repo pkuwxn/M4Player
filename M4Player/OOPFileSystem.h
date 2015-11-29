@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      OOPFileSystem.h
  * Purpose:   管理 OOPlayer 的路径
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-04-19
  **************************************************************/
 #pragma once

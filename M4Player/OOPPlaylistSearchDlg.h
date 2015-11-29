@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      OOPPlaylistSearchDlg.cpp
  * Purpose:   “快速定位文件”对话框
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-03-11
  **************************************************************/
 #pragma once

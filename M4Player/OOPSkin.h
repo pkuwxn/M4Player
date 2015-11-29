@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      OOPSkin.h
  * Purpose:   管理 OOPlayer 的皮肤读取、切换等内容
- * Author:    Ning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-02-18
- * Copyright: Ning
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #pragma once
 

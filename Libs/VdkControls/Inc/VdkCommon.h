@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      VdkCommon.h
  * Purpose:   一些数据结构的定义
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-07-27
  **************************************************************/
 #pragma once

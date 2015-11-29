@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      OOPSkin.cpp
  * Purpose:   OOPSkin 类的实现文件
- * Author:    Ning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-02-18
  **************************************************************/
 #include "StdAfx.h"

@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      Charset.h
  * Purpose:   Text charset converter
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-3-18
  **************************************************************/
 #pragma once

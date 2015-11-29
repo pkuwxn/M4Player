@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      LvpCrossColor.cpp
  * Purpose:   实现 VdkListView 的隔行变色特性
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-3-3
  **************************************************************/
 #include "StdAfx.h"

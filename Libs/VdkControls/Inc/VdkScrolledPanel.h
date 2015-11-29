@@ -1,9 +1,9 @@
 ﻿/***************************************************************
 * Name:      VdkScrolledPanel.h
 * Purpose:   滚动面板（能作为其他控件父控件的滚动窗口派生类）声明
-* Author:    vanxining (vanxining@139.com)
+* Author:    Wang Xiaoning (m4player@foxmail.com)
 * Created:   2011-01-04
-* Copyright: vanxining
+* Copyright: Wang Xiaoning
  **************************************************************/
 #pragma once
 #include "VdkNativeCtrl.h"

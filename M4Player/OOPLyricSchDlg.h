@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      OOPLyricSchDlg.h
  * Purpose:   “搜索歌词”对话框
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-08-20
  **************************************************************/
 #pragma once

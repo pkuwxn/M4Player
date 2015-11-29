@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      Playlist.h
  * Purpose:   指向 OOPSong 的智能指针
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-05-29
  **************************************************************/
 #pragma once

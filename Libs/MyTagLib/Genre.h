@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      Genre.h
  * Purpose:   Format genre information
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-3-20
  **************************************************************/
 #pragma once

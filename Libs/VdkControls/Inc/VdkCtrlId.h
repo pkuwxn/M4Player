@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkCtrlId.h
  * Purpose:   VdkCtrlId 的定义，用于减少依赖、免于重复定义
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2010-12-03
- * Copyright: vanxining
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #pragma once
 

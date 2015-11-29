@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      LvpHilighter.cpp
  * Purpose:   实现 VdkListView 鼠标滑过时高亮所在行
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-3-3
  **************************************************************/
 #include "StdAfx.h"

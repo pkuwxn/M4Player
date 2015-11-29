@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      OOPSong.cpp
  * Purpose:   歌曲对象定义
- * Author:    Ning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-02-19
- * Copyright: Ning
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #include "StdAfx.h"
 #include "OOPSong.h"

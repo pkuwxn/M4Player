@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      OOPApp.h
  * Purpose:   Defines Application Class
- * Author:    Ning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2009-12-19
- * Copyright: Ning
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #pragma once
 

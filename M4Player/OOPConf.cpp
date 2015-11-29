@@ -2,7 +2,7 @@
 
  * Name:      OOPConf.cpp
  * Purpose:   OOPlayer 的所有配置信息
- * Author:    Wang Xiao Ning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-05-07
  **************************************************************/
 #include "StdAfx.h"

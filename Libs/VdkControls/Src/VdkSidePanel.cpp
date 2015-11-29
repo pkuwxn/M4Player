@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkSidePanel.cpp
  * Purpose:   Code for VdkSidePanel implementation
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-04-08
- * Copyright: vanxining
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #include "StdAfx.h"
 #include "VdkSidePanel.h"

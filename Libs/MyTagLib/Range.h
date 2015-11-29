@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      Range.h
  * Purpose:   Represent a continuing part of the music file for rewriting.
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-03-21
  **************************************************************/
 #pragma once

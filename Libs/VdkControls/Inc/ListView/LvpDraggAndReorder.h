@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      LvpDraggAndReorder.h
  * Purpose:   实现 VdkListView 通过拖动改变项目排序
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2012-3-3
  **************************************************************/
 #pragma once

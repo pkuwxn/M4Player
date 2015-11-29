@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      OOPSkinMenuSelector.h
  * Purpose:   酷狗2011 风格的皮肤选择器
- * Author:    Ning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-02-18
- * Copyright: Ning
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #pragma once
 #include "VdkScrolledPanel.h"

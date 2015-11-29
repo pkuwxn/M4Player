@@ -1,9 +1,9 @@
 ﻿/***************************************************************
  * Name:      VdkWindow.cpp
  * Purpose:   VdkWindow 的实现文件
- * Author:    vanxining (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2011-02-13
- * Copyright: vanxining
+ * Copyright: Wang Xiaoning
  **************************************************************/
 #include "StdAfx.h"
 #include "VdkWindow.h"

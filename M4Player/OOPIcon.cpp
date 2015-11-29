@@ -1,7 +1,7 @@
 ﻿/***************************************************************
  * Name:      OOPIcon.cpp
  * Purpose:   OOPlayer 的图标
- * Author:    Wang Xiaoning (vanxining@139.com)
+ * Author:    Wang Xiaoning (m4player@foxmail.com)
  * Created:   2010-12-27
  * Copyright: (C) 2010 Wang Xiaoning
  **************************************************************/
