@@ -2551,7 +2551,7 @@ void OOPlayerApp::GenerateMainPanelCtrlIds(MapOfCtrlIdInfo &ids) {
 
     BindCtrl(L"lyric", CID_TOGGLE_LYRIC, m_toggleLyric);
     BindCtrl(L"playlist", CID_TOGGLE_PLAYLIST, m_togglePlayList);
-    BindCtrl(L"equalizer", CID_TOGGLE_EQ, m_toggleEq);   // TODO: Memory leak?
+    BindCtrl(L"equalizer", CID_TOGGLE_EQ, m_toggleEq);
 
     BindCtrl(L"progress", CID_PROGRESS, m_progress);
     BindCtrl(L"volume", CID_VOLUME, m_volume);
@@ -2567,7 +2567,6 @@ void OOPlayerApp::GenerateMainPanelCtrlIds(MapOfCtrlIdInfo &ids) {
 
     BindCtrlID(L"visual", CID_VISUAL);
     BindCtrlID(L"icon", CID_ICON);
-    BindCtrl(L"equalizer", CID_TOGGLE_EQ, m_toggleEq);
     BindCtrl(L"open", CID_OPEN_FILE, m_openFile);
     BindCtrl(L"browser", CID_TOGGLE_BROWSER, m_toggleBrowser);
 }
