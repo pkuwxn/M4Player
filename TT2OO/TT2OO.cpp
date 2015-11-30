@@ -1,7 +1,14 @@
 ﻿
 #include "TT2OO.h"
 
-#include <io.h>
+// for _access
+#ifdef _WIN32
+#   include <io.h>
+#else
+#   include <unistd.h>
+#   define _access access
+#endif
+
 #include <stdarg.h> // for va_start
 
 #include <iostream>
@@ -551,9 +558,11 @@ char *ReadAll(const char *szFileName) {
 
 //////////////////////////////////////////////////////////////////////////
 
+#ifdef _WIN32
+
 #include <Windows.h>
 
-wchar_t *Ansi2Unicode(const char *szAnsi) {
+wchar_t *_Ansi2Unicode(const char *szAnsi) {
     int nWideLen = MultiByteToWideChar
         (CP_ACP, 0, szAnsi, (DWORD) strlen(szAnsi), 0, 0);
     wchar_t *szWideForm = new wchar_t[nWideLen + 1];
@@ -567,7 +576,7 @@ wchar_t *Ansi2Unicode(const char *szAnsi) {
 
 char *Ansi2Utf8(const char *szAnsi) {
     // trans2wide
-    wchar_t *unicode(Ansi2Unicode(szAnsi));
+    wchar_t *unicode(_Ansi2Unicode(szAnsi));
     int nWideLen = wcslen(unicode);
 
     // wide2utf8
@@ -583,3 +592,41 @@ char *Ansi2Utf8(const char *szAnsi) {
     delete [] unicode;
     return szUtf8;
 }
+
+#else // !_WIN32
+
+#include <iconv.h>
+#include <memory.h>
+
+int code_convert(const char *from_charset,
+                 const char *to_charset,
+                 size_t *pInBytesLeft, size_t *pOutBytesLeft,
+                 const char *inbuf, char *outbuf) {
+    iconv_t cd;
+    cd = iconv_open(to_charset, from_charset);
+    if (cd == 0) {
+        return -1;
+    }
+
+    memset(outbuf, 0, *pOutBytesLeft);
+    char *dummy = const_cast<char *>(inbuf);
+    if (iconv(cd, &dummy, pInBytesLeft, &outbuf, pOutBytesLeft) == (size_t) -1) {
+        return -1;
+    }
+
+    iconv_close(cd);
+    return 0;
+}
+
+char *Ansi2Utf8(const char *szAnsi) {
+    size_t nInBytes = strlen(szAnsi);
+    size_t nOutBytes = nInBytes * 3 + 1;
+    char *outbuf = new char[nOutBytes];
+
+    code_convert("gbk", "utf-8", &nInBytes, &nOutBytes, szAnsi, outbuf);
+
+    return outbuf;
+}
+
+#endif
+
