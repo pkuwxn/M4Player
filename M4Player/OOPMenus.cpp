@@ -147,10 +147,8 @@ void OOPlayerApp::GenerateMainMenu() {
 
     //===============================================
 
-#if 0
     menu->AppendItem(NewMenuItem()->id(CID_FEEDBACK).caption(L"我要反馈"));
     menu->AppendSeperator();
-#endif
 
     menu->AppendItem(NewMenuItem()->id(CID_MINIMIZE).caption(L"最小化"));
     menu->AppendItem(NewMenuItem()->id(CID_EXIT).

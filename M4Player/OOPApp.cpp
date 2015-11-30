@@ -2507,7 +2507,7 @@ void OOPlayerApp::OnAbout(VdkVObjEvent &) {
 }
 
 void OOPlayerApp::OnFeedback(VdkVObjEvent &) {
-
+    wxLaunchDefaultBrowser(L"https://github.com/vanxining/M4Player/issues");
 }
 
 //////////////////////////////////////////////////////////////////////////
