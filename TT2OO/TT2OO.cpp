@@ -547,11 +547,11 @@ char *ReadAll(const char *szFileName) {
 
     fseek(f, 0, SEEK_END);
     size_t fsz = ftell(f);
+    fseek(f, 0, SEEK_SET);
 
     char *buf = new char[fsz + 1];
-    fseek(f, 0, SEEK_SET);
-    fread(buf, 1, fsz, f);
-    buf[fsz] = 0;
+    size_t read = fread(buf, 1, fsz, f);
+    buf[read] = 0;
 
     return buf;
 }
