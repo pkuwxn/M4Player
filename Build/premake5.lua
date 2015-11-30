@@ -275,3 +275,23 @@ workspace "M4Player"
 
             files { home .. "/Lyric/GTK/*.cpp" }
             links { "wx_baseu_net-3.0" }
+
+    project "TT2OO"
+        kind "ConsoleApp"
+        targetdir "bin/%{cfg.buildcfg}"
+
+        local home = "../TT2OO"
+        files { home .. "/**.h", home .. "/**.cpp" }
+
+        defines { "_CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES=1", 
+                  "_CRT_SECURE_NO_WARNINGS" }
+
+        includedirs { home .. "/TinyXML" }
+
+        filter "configurations:Debug"
+            defines { "DEBUG" }
+            flags { "Symbols" }
+
+        filter "configurations:Release"
+            defines { "NDEBUG" }
+            optimize "On"
