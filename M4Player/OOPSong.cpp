@@ -323,8 +323,9 @@ wxString OOPSong::codec() const {
 }
 
 bool OOPSong::isVBR() const {
-    //if( !m_impl )
-    //  return false;
+    //if (!m_impl) {
+    //    return false;
+    //}
 
     // TODO: 有一个表格的，暂时不管它
     return false;

@@ -28,7 +28,7 @@ wxDEFINE_EVENT(OOP_EVT_LYRIC_LOADED, wxCommandEvent);
 Task::Task(wxEvtHandler *sinker)
     : m_hostId(wxNOT_FOUND), m_host(NULL),
       m_sessionType(ST_RETURN_LIST), m_length(0),
-      m_idListLoaded(VdkGetUniqueId(10)),     // 多多益善
+      m_idListLoaded(VdkGetUniqueId(10)), // 多多益善
       m_idLyricLoaded(m_idListLoaded + 5),
       m_sinker(sinker) {
     wxTheApp->Bind(wxEVT_HTTP_FINISH, &Task::OnListLoaded, this,
@@ -89,11 +89,11 @@ void Task::OnListLoaded(wxCommandEvent &e) {
 
     //----------------------------------------------
 
-    VdkHttpThread::FinishEvent &finishEvt =(VdkHttpThread::FinishEvent &) e;
+    VdkHttpThread::FinishEvent &finishEvt = (VdkHttpThread::FinishEvent &) e;
 
     wxString list(finishEvt.GetResult());
     if (list.Trim(true).Trim(false).empty()) {
-        wxLogDebug(L"[%s:%d]下载的内容不完整(长度:%d)", __FILE__, __LINE__,
+        wxLogDebug(L"[%s:%d] 下载的内容不完整(长度:%d)", __FILE__, __LINE__,
                    list.length());
     } else {
         m_host->ParseList(list, m_result);
@@ -104,6 +104,7 @@ void Task::OnListLoaded(wxCommandEvent &e) {
     if (m_sessionType == ST_RETURN_LIST) {
         int id = GetListLoadedEventId();
         wxCommandEvent evt(OOP_EVT_LYRIC_LIST_LOADED, id);
+
         wxPostEvent(m_sinker, evt);
     } else {
         if (!m_result.empty()) {

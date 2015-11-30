@@ -31,7 +31,6 @@
 extern OOPlayerApp *g_app;
 
 enum {
-
     MMBID_PLAY,
     MMBID_PAUSE,
     MMBID_STOP,
@@ -136,8 +135,7 @@ void OOPlayerApp::GenerateMainMenu() {
     menuSkin->RemoveStyle(VMS_BITMAP);
     menuSkin->AttachCtrl(new OOPSkinSelector);
 
-    menu->AppendItem(NewMenuItem()->caption(L"皮肤").
-                     subMenu(menuSkin));
+    menu->AppendItem(NewMenuItem()->caption(L"皮肤").subMenu(menuSkin));
 
     // 透明度
     VdkMenu *menuTransparent = m_mainPanel->CreateMenu(menu);
@@ -158,8 +156,7 @@ void OOPlayerApp::GenerateMainMenu() {
     menu->AppendItem(NewMenuItem()->id(CID_EXIT).
                      caption(L"退出").
                      bmpArrayID(VdkBitmapArrayId(m_mainMenuBitmaps,
-                                MMBID_EXIT, 0))
-                    );
+                                MMBID_EXIT, 0)));
 
     m_mainPanel->AttachMenu(menu);
     m_MainMenu = menu;
@@ -169,7 +166,6 @@ void OOPlayerApp::FillPlayModesMenu(VdkMenu *menu, bool ownedByPLP) {
     menu->SetBestWidth(150);
 
     const wchar_t *captions[] = {
-
         L"单曲播放",
         L"单曲循环",
         L"顺序播放",
@@ -196,7 +192,6 @@ void OOPlayerApp::FillPlayModesMenu(VdkMenu *menu, bool ownedByPLP) {
 //////////////////////////////////////////////////////////////////////////
 
 enum PlayListMenuBitmapIds {
-
     PLMBID_PLAY,
     PLMBID_FILE_INFO,
     PLMBID_DELETE,
@@ -207,7 +202,6 @@ enum PlayListMenuBitmapIds {
 };
 
 enum {
-
     TBMBID_ADD_FILE,
     TBMBID_ADD_FOLDER,
     TBMBID_OPEN_PLAYLIST,
@@ -229,22 +223,19 @@ void PlayListPanel::GenerateMenu() {
 
     //===============================================
 
-    menu->AppendItem(NewMenuItem()->
-                     id(OPLM_PLAY_SELECTED).
+    menu->AppendItem(NewMenuItem()->id(OPLM_PLAY_SELECTED).
                      caption(L"播放").
                      bmpArrayID(VdkBitmapArrayId(m_playListMenuBitmaps,
                                 PLMBID_PLAY, 0)));
 
     menu->AppendSeperator();
-    menu->AppendItem(NewMenuItem()->
-                     id(OPLM_FILE_PROPERTIES).
+    menu->AppendItem(NewMenuItem()->id(OPLM_FILE_PROPERTIES).
                      caption(L"文件属性").
                      bmpArrayID(VdkBitmapArrayId(m_playListMenuBitmaps,
                                 PLMBID_FILE_INFO, 0)));
 
     menu->AppendSeperator();
-    menu->AppendItem(NewMenuItem()->
-                     id(OPLM_DELETE).
+    menu->AppendItem(NewMenuItem()->id(OPLM_DELETE).
                      caption(L"删除").
                      bmpArrayID(VdkBitmapArrayId(m_playListMenuBitmaps,
                                 PLMBID_DELETE, 0)));
@@ -342,7 +333,6 @@ void PlayListPanel::GenerateMenu() {
 //////////////////////////////////////////////////////////////////////////
 
 enum {
-
     LMBID_COPY_LRC,
     LMBID_REMOVE_LRC,
     LMBID_SEARCH_LRC,

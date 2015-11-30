@@ -184,7 +184,7 @@ void OOPLyric::AttachParser(const OOPLyricParser &parser) {
     LineIter i(m_parser->begin()), e(m_parser->end());
     for (int curr = 0; i != e; ++i, ++curr) {
         VdkLcCell *cell = Append((*i)->GetLyric(), false);
-        cell->SetClientData((void *)(curr + 1));
+        cell->SetClientData((void *) (curr + 1));
     }
 
     InsertBlankLines();
@@ -356,15 +356,16 @@ void OOPLyric::OnDraw(wxDC &dc) {
     }
 }
 
-VdkCusdrawReturnFlag OOPLyric::DoDrawCellText(const VdkLcCell *cell,
-        int col_index,
-        int index0,
-        wxDC &dc,
-        VdkLcHilightState state) {
+VdkCusdrawReturnFlag OOPLyric::DoDrawCellText
+        (const VdkLcCell *cell,
+         int col_index,
+         int index0,
+         wxDC &dc,
+         VdkLcHilightState state) {
     wxASSERT(m_parser);
 
     // 注意：index 是不计算加入的空行的
-    int index = (int)(cell->GetClientData()) - 1;
+    int index = (int) (cell->GetClientData()) - 1;
     if (index == -1) { // 此时 ClientData == NULL，是我们添加的空行
         return VCCDRF_DODEFAULT;
     }
@@ -384,7 +385,7 @@ VdkCusdrawReturnFlag OOPLyric::DoDrawCellText(const VdkLcCell *cell,
 
         // 检测拖动歌词时中间线下面的一行
         if (rowHeight * index2 <= dragRegion &&
-                rowHeight * (index2 + 1) > dragRegion) {
+            rowHeight * (index2 + 1) > dragRegion) {
             m_draggHit = m_parser->GetLine(index);
 
             dc.SetTextForeground(m_HilightColor);
@@ -541,7 +542,7 @@ void OOPLyric::CorrectViewStart(wxDC *pDC) {
     // TODO: 添加 m_currIndex 吧
     int rowHeight = GetRowHeight();
     int yStart = rowHeight * double
-                 (m_parser->IndexOf(m_currLine) + GetLineProgress());
+        (m_parser->IndexOf(m_currLine) + GetLineProgress());
 
     SetViewStart(0, yStart, pDC);
 }

@@ -57,8 +57,8 @@ bool OOPLyricMgr::IsOk() const {
 }
 
 #define INVOKE( Exp ) \
-    LyricVec::const_iterator it( m_lyrics.begin() ); \
-    for( ; it != m_lyrics.end(); ++it ) \
+    LyricVec::const_iterator it(m_lyrics.begin()); \
+    for (; it != m_lyrics.end(); ++it) \
         (*it)->Exp
 
 void OOPLyricMgr::SetStopWatch(OOPStopWatch &sw) {

@@ -319,7 +319,7 @@ LineIter OOPLyricParser::WhichLine(size_t timeOffset) const {
         LineIter i(begin()), j(i);
         for (++j; j != end(); ++i, ++j) {
             if (((*i)->GetStartTime() <= timeOffset) &&
-                    ((*j)->GetStartTime() > timeOffset)) {
+                ((*j)->GetStartTime() > timeOffset)) {
                 return i;
             }
         }
