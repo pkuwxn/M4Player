@@ -2376,7 +2376,6 @@ void OOPlayerApp::OnLyricLoaded(wxCommandEvent &e) {
 }
 
 void OOPlayerApp::OnCopyLyric(VdkVObjEvent &) {
-#ifdef __WXDEBUG__
     wxASSERT(m_currSong);
 
     wxString lyric(m_currSong->embeddedLyric());
@@ -2386,9 +2385,6 @@ void OOPlayerApp::OnCopyLyric(VdkVObjEvent &) {
     }
 
     CopyText(lyric);
-#else
-    CopyText(m_lyric->GetLyric());
-#endif
 }
 
 void OOPlayerApp::OnAssociateLyric(VdkVObjEvent &e) {
