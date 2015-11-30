@@ -2,7 +2,7 @@
 
 import os
 
-os.system("premake5 gmake")
+os.system("./premake5 gmake")
 
 files = (
     ("VdkControls.make", "wxUtil.cpp"),
@@ -18,4 +18,10 @@ for f in files:
 
     with open(f[0], "w") as outf:
         outf.write(content)
+
+content = open("M4Player.make").read()
+content = content.replace("$(ALL_LDFLAGS) $(LIBS)", "$(LIBS) $(ALL_LDFLAGS)")
+
+with open("M4Player.make", "w") as outf:
+    outf.write(content)
 
