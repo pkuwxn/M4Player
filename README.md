@@ -1,4 +1,6 @@
-## 编译
+## 编译发行版（release）
+
+暂时只在 32 位操作系统下编译通过。
 
 安装必要的工具与开发库：
 ```sh
@@ -50,7 +52,8 @@ sudo make install
 ```sh
 cd ../M4Player
 git pull origin
-make
+./GenMakefile.py
+make config=release
 cp bin/Release/*.so ../Assets/Plugins
 cp bin/Release/m4 ../Assets
 ```
