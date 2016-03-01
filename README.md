@@ -1,6 +1,41 @@
-## 编译发行版（release）
+M4Player
+===========
 
-暂时只在 32 位操作系统下编译通过。
+M4Player 是 Windows 下面广受欢迎的音乐播放器“千千静听”（现”百度音乐“）在 Linux Gnome
+桌面环境下的复制品，实现了基本的音乐播放功能。不需要安装任何依赖即可支持播放
+MP3、WMA、APE、FLAC、OGG 等常见格式的音频文件。支持动态换肤，且经过完全自动化的一次转换可以直接使用千千静听的皮肤。
+
+程序使用 C++ 进行开发，用到的 GUI 库是 [wxWidgets](http://www.wxwidgets.org/)。
+
+解码器现在提供了 FFmpeg、mpg123 等后端。
+
+输出设备支持 OpenAL、PulseAudio 等。
+
+
+## 界面
+
+一图胜千言，有图有真相：
+
+![应用程序主界面](http://7xreay.com1.z0.glb.clouddn.com/m4_1.png)
+
+![“文件属性”对话框（读写歌曲文件元信息）](http://7xreay.com1.z0.glb.clouddn.com/m4_2.png)
+
+![“搜索歌词”对话框](http://7xreay.com1.z0.glb.clouddn.com/m4_3.png)
+
+
+## 特性
+
+* 跨平台运行（Windows 与 Linux）；
+* 完善的音频播放支持；
+* 歌词同步显示；
+* 自动或手动下载歌词；
+* 能正确读写 MP3 文件的元信息，充分考虑各种字符集，显示不乱码；
+* 多种播放列表迭代模式（顺序、循环、随机等等），
+* 修改歌曲文件时，如写入标签信息、重命名文件等，假如文件正在被占用而无法获得写权限，那么这个操作会被缓存，当时机合适时会再次尝试。
+
+## 编译 Linux 发行版
+
+暂时只在 32 位操作系统下编译通过，未尝试 64 位发行版。
 
 安装必要的工具与开发库：
 ```sh
@@ -83,3 +118,7 @@ cp bin/Release/m4 ../Assets
 执行 TT2OO，会提示输入要转换的皮肤文件夹，输入“~/M4Player/Skins/TT”，
 假如一切顺利则会输出“转换成功”，
 且重启 M4Player 后即可在皮肤列表里看到新加入的皮肤。
+
+Enjoy！
+
+![图标](http://7xreay.com1.z0.glb.clouddn.com/OOPlayer.png)
