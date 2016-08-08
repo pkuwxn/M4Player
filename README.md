@@ -16,11 +16,11 @@ MP3、WMA、APE、FLAC、OGG 等常见格式的音频文件。支持动态换肤
 
 一图胜千言，有图有真相：
 
-![应用程序主界面](http://7xreay.com1.z0.glb.clouddn.com/m4_1.png)
+![应用程序主界面](https://raw.githubusercontent.com/vanxining/M4Player/master/Screenshots/m4_1.png)
 
-![“文件属性”对话框（读写歌曲文件元信息）](http://7xreay.com1.z0.glb.clouddn.com/m4_2.png)
+![“文件属性”对话框（读写歌曲文件元信息）](https://raw.githubusercontent.com/vanxining/M4Player/master/Screenshots/m4_2.png)
 
-![“搜索歌词”对话框](http://7xreay.com1.z0.glb.clouddn.com/m4_3.png)
+![“搜索歌词”对话框](https://raw.githubusercontent.com/vanxining/M4Player/master/Screenshots/m4_3.png)
 
 
 ## 特性
@@ -121,4 +121,4 @@ cp bin/Release/m4 ../Assets
 
 Enjoy！
 
-![图标](http://7xreay.com1.z0.glb.clouddn.com/OOPlayer.png)
+![图标](https://raw.githubusercontent.com/vanxining/M4Player/master/Screenshots/OOPlayer.png)
